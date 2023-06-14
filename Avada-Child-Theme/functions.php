@@ -1955,12 +1955,24 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     
     $text = "";
   
-
+if($type_array[0]) {
   if($degrees_array[0]){
+     $text .= $loop->found_posts . " ". $type_array[0] . " ". $degrees_array[0]. " Scholarships";
+  } else {
+    $text .= $loop->found_posts . " Scholarships";
+  }
+} else {
+
+ if($degrees_array[0]){
      $text .= $loop->found_posts . " " . $degrees_array[0]. " Scholarships";
   } else {
     $text .= $loop->found_posts . " Scholarships";
   }
+
+}
+
+
+
    if($locations_array[0]){
      $text .= " in " . $locations_array[0];
   } 
@@ -2695,7 +2707,7 @@ function change_document_title_by_rankmath() {
         $current_date = date("Y-m-d H:i:s");
 
         $next_due_date = '';
-        
+
 
         if ($application_value == "open") {
             $next_due_date = date('Y-m-d H:i:s', strtotime("+3820 days"));
@@ -2841,15 +2853,31 @@ function change_document_title_by_rankmath() {
         $text = "";
 
         // Add a filter to modify the title
-        add_filter('rank_math/frontend/title', function ($title) use ($found_posts, $degree_value, $subject_value, $location_value) {
+        add_filter('rank_math/frontend/title', function ($title) use ($found_posts, $degree_value, $subject_value, $location_value , $scholarship_type_value) {
             $degree_string = empty($degree_value) ? '' : " " . $degree_value;
             $subject_string = empty($subject_value) ? '' : " " . $subject_value;
-
+             
+             if($scholarship_type_value){
             if ($degree_string) {
-                $text .= $found_posts . " " . $degree_string . " Scholarships";
+                $text .= $found_posts . " " . $scholarship_type_value . "" . $degree_string . " Scholarships";
             } else {
                 $text .= $found_posts . " Scholarships";
             }
+           } else  {
+
+            
+            if ($degree_string) {
+                $text .= $found_posts .  " " . $degree_string . " Scholarships";
+            } else {
+                $text .= $found_posts . " Scholarships";
+            }
+           
+
+          }
+
+
+
+
             if ($location_value) {
                 $text .= " in " . $location_value;
             }
