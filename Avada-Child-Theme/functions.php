@@ -2626,16 +2626,15 @@ function enable_comments_on_all_posts() {
 
 function custom_template_redirect() {
 
-    $current_url = $_SERVER['REQUEST_URI'];
+$current_url = $_SERVER['REQUEST_URI'];
 
-    if (strpos($current_url, 'scholarship-search') !== false) {
+if (strpos($current_url, 'scholarship-search') !== false) {
     
 $degree_label_array = ['masters', 'bachelors', 'phd'];
 $currently_open_label_array = ['open', 'one-month', 'two-month', 'three-month', 'four-month', 'five-month', 'six-month', 'twelve-month'];
 
 $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-   
-$contry_array =  get_cities_of_published_institute();
+   $contry_array =  get_cities_of_published_institute();
 $location_array = array();
 foreach($contry_array as $value) {
     $location_array[$value] = $value;
@@ -2646,8 +2645,6 @@ foreach ($location_array as $key => $location_value) {
     $location_array[$key] = $location_value;
 }
 
-
-
 $subject_array = $scholarship_details[12]['choices'];
 foreach ($subject_array as $key => $subject_value) {
     $subject_value = strtolower($subject_value);
@@ -2655,33 +2652,19 @@ foreach ($subject_array as $key => $subject_value) {
     $subject_array[$key] = $subject_value;
 }
 
-
-
-
 // remove the trailing slash if it exists
 $current_url = rtrim($current_url, '/');
-
-
-
 $url_parts = explode('/', $current_url);
-
 // we use array_slice to get rid of the first three parts
 $url_parts = array_slice($url_parts, 2);
-
-
 
 $subject_matches_array = array_intersect($subject_array, $url_parts);
 if (!empty($subject_matches_array)) {
     $subject_value = reset($subject_matches_array);
 }
 
-
-
-
 $subject_value = str_replace('-', ' ', $subject_value);
 $subject_value = ucwords(strtolower($subject_value));
-
-
 
 
 $location_matches_array = array_intersect($location_array, $url_parts);
@@ -2691,10 +2674,6 @@ if (!empty($location_matches_array)) {
 
 $location_value = str_replace('-', ' ', $location_value);
 $location_value = ucwords(strtolower($location_value));
-
-
-
-
 
 $degree_values_match = array_intersect($degree_label_array, $url_parts);
 // If there are any matching values, take the first one
@@ -2714,8 +2693,6 @@ if (!empty($degree_values_match)) {
     }
 }
 
-
-
 $scholarship_type_array = ['full-funding' , 'full-tuition' , 'Partial-funding'];
 $scholarship_type_values_match = array_intersect($scholarship_type_array, $url_parts);
 
@@ -2726,9 +2703,7 @@ if (!empty($scholarship_type_values_match)) {
 $scholarship_type_value = str_replace('-', ' ', $scholarship_type_value);
 $scholarship_type_value = ucwords(strtolower($scholarship_type_value));
 
-
-
- if(isset($subject_value) && $subject_value){
+if(isset($subject_value) && $subject_value){
         if ($subject_value != "All Subjects"){
             $subject_query = 
             array(
@@ -2743,93 +2718,25 @@ $scholarship_type_value = ucwords(strtolower($scholarship_type_value));
                     'value'   => "All Subjects",
                     'compare' => 'LIKE',
                 ),
-            );                
+            ); 
+
     } else {
         $subject_query = array('type' => 'string' , 'key' => 'eligible_programs', 'value' => $subject_value, 'compare' => 'IN');
         }
     }
 
-
-
-
-    if(isset($degree_value) && $degree_value){
+   if(isset($degree_value) && $degree_value){
         $degree_query = array('key' => 'eligible_degrees',  'value' => $degree_value,  'compare' => 'LIKE');
     }
-
-
-
-
-    //     if(isset($application_array[0]) && $application_array[0]){
-         
-    //         if($degrees_array[0]=="Master's"){
-                
-    //             if($application_array[0]=="open"){
-
-    //         $application_query = array (
-    //                          'relation' => 'AND',
-    //                           array('key' => 'current_masters_scholarship_deadline', 'compare' => '<=' ,   'value' =>  $next_due_date  , 'type' => 'date' ,   ), 
-    //                           array('key' => 'current_masters_scholarship_deadline', 'compare' => '>=' ,   'value' =>  $current_date  ,  'type' => 'date' ,  ),
-    //                           array('key' => 'master_open_date',      'value' => 'Yes',    'compare' => "LIKE"),
-    //                         );
-
-    //                   //  if($application_array[0]=="open"){
-    //                   //  $opendate_query  = array('key' => 'master_open_date',      'value' => 'Yes',    'compare' => "LIKE");
-    //                   // } 
-    //         }  else {
-             
-    //          $application_query = array (
-    //                          'relation' => 'AND',
-    //                           array('key' => 'current_masters_scholarship_deadline', 'compare' => '<=' ,   'value' =>  $next_due_date  , 'type' => 'date' ,   ), 
-    //                           array('key' => 'current_masters_scholarship_deadline', 'compare' => '>=' ,   'value' =>  $current_date  ,  'type' => 'date' ,  ),
-                             
-    //                         );
-
-
-    //         } 
-    //     }
-
-            
-    //         if($degrees_array[0]=="Bachelor's"){
-            
-    //         if($application_array[0]=="open"){
-    //         $application_query = array (
-    //                          'relation' => 'AND',
-    //                           array('key' => 'current_bachelors_scholarship_deadline', 'compare' => '<=' ,   'value' =>  $next_due_date  , 'type' => 'date' ,  ), 
-    //                           array('key' => 'current_bachelors_scholarship_deadline', 'compare' => '>=' ,   'value' =>  $current_date  ,  'type' => 'date' ,  ) ,
-    //                           array('key' => 'bachelor_open_date',      'value' => 'Yes',    'compare' => "LIKE"),
-    //                         );
-
-    //                          // if($application_array[0]=="open"){
-    //                          // $opendate_query  = array('key' => 'bachelor_open_date',      'value' => 'Yes',    'compare' => "LIKE");
-    //                          //  } 
-    //         } else {
-    //             $application_query = array (
-    //                          'relation' => 'AND',
-    //                           array('key' => 'current_bachelors_scholarship_deadline', 'compare' => '<=' ,   'value' =>  $next_due_date  , 'type' => 'date' ,  ), 
-    //                           array('key' => 'current_bachelors_scholarship_deadline', 'compare' => '>=' ,   'value' =>  $current_date  ,  'type' => 'date' ,  ) ,
-                              
-    //                         );
-    //         }
-    //     }
-    // }
-
-
 
     if(isset($scholarship_type_value) && $scholarship_type_value){
         $type_query  = array('key' => 'amount_category', 'value' => $scholarship_type_value, 'compare' => "LIKE");
     }
 
-
-
-   
-  
-  $loop_institute = get_institutions_location($location_value);
+   $loop_institute = get_institutions_location($location_value);
    $institute_ids = $loop_institute->get_posts();
 
-
-
-
-     if(isset($location_value) && $location_value){
+  if(isset($location_value) && $location_value){
         $location_query  = array('key' => 'scholarship_institution', 'value' => $institute_ids, 'compare' => "IN");
        }
 
@@ -2851,23 +2758,7 @@ $scholarship_type_value = ucwords(strtolower($scholarship_type_value));
     $meta_query[] = $type_query; 
     }
 
-    // if ($nationality_query) { 
-    // $meta_query[] = $nationality_query; 
-    // }
-
-    // if ($institution_query) { 
-    // $meta_query[] = $institution_query; 
-    // }
-
-    //  if ($application_query) { 
-    // $meta_query[] = $application_query; 
-    // }
-    
-
-
-
-
-$ad_args = array(
+    $ad_args = array(
         'post_type' => 'scholarships',
         'post_status' => 'publish',
         'posts_per_page' => $ppp,
@@ -2884,31 +2775,22 @@ $ad_args = array(
     $found_posts = $loop->found_posts;
    
    $text = "";
-
-      // Add a filter to modify the title
-add_filter( 'rank_math/frontend/title', function ( $title ) use ( $found_posts, $degree_value, $subject_value , $location_value ) {
+   // Add a filter to modify the title
+    add_filter( 'rank_math/frontend/title', function ( $title ) use ( $found_posts, $degree_value, $subject_value , $location_value ) {
     $degree_string = empty($degree_value) ? '' : " " . $degree_value;
     $subject_string = empty($subject_value) ? '' : " " . $subject_value;
-    
-
-  if($degree_string){
+    if($degree_string){
      $text .= $found_posts . " " . $degree_string. " Scholarships";
   } else {
     $text .= $found_posts . " Scholarships";
   }
-
-
-   if($location_value){
+  if($location_value){
      $text .= " in " . $location_value;
   } 
-
-
   if($subject_string){
      $text .= " for " . $subject_string;
   } 
-  //  if($nationality_array[0]){
-  //    $text .= " for " . $nationality_array[0] . " National";
-  // }
+  
 
    $text .= " for International Students ";
 
