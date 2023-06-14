@@ -124,7 +124,7 @@ $scholarships_count = get_published_scholarships_count();
    $country_list_for_url =  get_cities_of_published_institute();
     
 
-   $country_list = [ 'United States', 'Canada', 'Australia', 'South Korea', 'United Kingdom'];
+   $country_list = [   'Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States'];
 
 
 ?>  
