@@ -1711,9 +1711,9 @@ function my_ajax_handler() {
 
 
 
-     $offset = $_POST["offset"];
-     $ppp = $_POST["ppp"];
-     $page_count = $_POST['page_count'];
+   $offset = $_POST["offset"];
+   $ppp = $_POST["ppp"];
+   $page_count = $_POST['page_count'];
   
    $degrees = stripslashes($_POST['degrees']);
    $degrees_array = explode(',', $degrees); 
@@ -1735,9 +1735,18 @@ function my_ajax_handler() {
 
    $institution_array = $_POST['institutions'];
    $institution_array = explode(',', $institution_array);  
-
+  
+   
+  
    $loop_institute = get_institutions_location($locations_array[0]);
    $institute_ids = $loop_institute->get_posts();
+   
+
+
+    if(empty($institute_ids)){
+      echo '<p style="font-size:20px;color:black;"> Unfortunately, No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
+      die();
+     }
    
     $current_date = date("Y-m-d H:i:s");
                             
@@ -2615,7 +2624,10 @@ function enable_comments_on_all_posts() {
 
 
 
+
+
 function change_document_title_by_rankmath() {
+     
     $current_url = $_SERVER['REQUEST_URI'];
 
     if (strpos($current_url, 'scholarship-search') !== false) {
@@ -2839,6 +2851,7 @@ function change_document_title_by_rankmath() {
         $ad_args = array(
             'post_type' => 'scholarships',
             'post_status' => 'publish',
+            'fields' => 'ids', 
         );
 
         if ($meta_query) {
@@ -2850,10 +2863,22 @@ function change_document_title_by_rankmath() {
         // Save the found_posts value
         $found_posts = $loop->found_posts;
 
+        $page = '';
+
+foreach ($url_parts as $part) {
+    if (is_numeric($part)) {
+        $page = $part;
+
+        break; // Stop the loop if an integer value is found
+    }
+   }
+
         $text = "";
 
+
+
         // Add a filter to modify the title
-        add_filter('rank_math/frontend/title', function ($title) use ($found_posts, $degree_value, $subject_value, $location_value , $scholarship_type_value) {
+        add_filter('rank_math/frontend/title', function ($title) use ($found_posts, $degree_value, $subject_value, $location_value , $scholarship_type_value , $page) {
             $degree_string = empty($degree_value) ? '' : " " . $degree_value;
             $subject_string = empty($subject_value) ? '' : " " . $subject_value;
              
@@ -2864,21 +2889,13 @@ function change_document_title_by_rankmath() {
                 $text .= $found_posts . " Scholarships";
             }
            } else  {
-
-            
-            if ($degree_string) {
+           if ($degree_string) {
                 $text .= $found_posts .  " " . $degree_string . " Scholarships";
             } else {
                 $text .= $found_posts . " Scholarships";
             }
-           
-
-          }
-
-
-
-
-            if ($location_value) {
+            }
+           if ($location_value) {
                 $text .= " in " . $location_value;
             }
             if ($subject_string) {
@@ -2887,11 +2904,15 @@ function change_document_title_by_rankmath() {
 
             $text .= " for International Students ";
 
+            if($page) {
+                $text .= "- Page " .$page . " of " . ceil($found_posts / 20);
+               }
+
             return  $text;
         });
+
+        
     }
 }
 
 add_action('init', 'change_document_title_by_rankmath');
-
-
