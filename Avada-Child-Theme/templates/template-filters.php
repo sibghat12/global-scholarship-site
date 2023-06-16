@@ -703,7 +703,7 @@ if(page===1){
 formData.append("page_count" , page);
 formData.append("ppp" , ppp);
 formData.append("checkk" , true);
-
+console.log("results");
 $.ajax({
     url : link,
     data: formData, 
@@ -717,21 +717,13 @@ $.ajax({
         $('.card-section').css("display" , "block");
         $('.card-section').html(response);
         
+        //changeurl('scholarship-search'+url_update , "Welcome");
 
         show_pre_or_not();
-        $('.next-page').show();
-        
         var title_text = $('.title-textt').text();
-        //sibi document.title = title_text;
        
-         
-
-
-
-              
-
-         
-           $('.temp').hide();
+         $('.next-page').show();
+          $('.temp').hide();
            var  spanElements = $('.ss');
          var targetDiv = $('#sp');
 
@@ -743,29 +735,30 @@ $.ajax({
   });
 
           
+
     $('.mobile-title').text(title_text);
     var numberOnly = parseInt(title_text.match(/\d+/));
-     
-        console.log("numberony : " + numberOnly);
+         
+
+           if (is_numeric(numberOnly)) { 
+            
+            }else {
+             $('#more_posts').hide();
+              $('.next-page').hide();
+           }
+
+      
             if(numberOnly <= 20){
+               $('.next-page').show();
               $('#more_posts').hide();
               $('.desktop_page_count').hide();
+            }else {
+                
             }
 
     $('#show_number').text(numberOnly);
 
-    changeurl('scholarship-search'+url_update , "Welcome");
     
-           
-    // const filterPanel = $('.title-textt');
-    // if (window.innerWidth <= 767) {
-    //   filterPanel.style.display = 'none';
-    // } else {
-    //   filterPanel.style.display = 'block';
-    // }
-       
-  
-  
     document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
           el.setAttribute("content", title_text);
           page++;
@@ -1287,6 +1280,8 @@ console.log(updatedUrl);
           $('.mobile-title').text(title_text);
           var numberOnly = parseInt(title_text.match(/\d+/));
           
+          console.log("sibi nuber" + numberOnly);
+
           if(numberOnly <= 20) {
           	 
               $('#more_posts').hide();
@@ -1317,7 +1312,7 @@ targetDiv.empty();
     //   filterPanel.style.display = 'block';
     // }
 
-     document.title = title_text;
+     document.title = title_text + " Page" + page " of " + numberOnly/ 20;
      document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
           el.setAttribute("content", title_text);
      });   
