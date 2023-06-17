@@ -711,7 +711,14 @@ $.ajax({
     contentType: false,
     type : 'post',
     success:function(response){
+
+          if (response.includes('No Scholarships Available')) {
+      window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
+    } else {
          console.log(response);
+
+      
+
          $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
         $('.card-section').css("display" , "block");
@@ -765,6 +772,7 @@ $.ajax({
     });   
 
     }
+  }
     });
 
 }
