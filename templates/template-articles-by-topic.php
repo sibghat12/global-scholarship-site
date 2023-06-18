@@ -103,7 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $thePosts = array();
 
     foreach($articlesByTopic as $articleByTopic) {
-        $query = "SELECT * FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND post_name LIKE '%". $articleByTopic."%'";
+        $query = "SELECT * FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND post_name LIKE '%". $articleByTopic."%' ORDER BY post_date DESC";
         $results = $wpdb->get_results($query);
         $myposts = wp_list_pluck( $results, 'ID');
 
@@ -121,8 +121,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 if (!empty($thePosts)) {
     
     foreach ($thePosts as $postIdCollection) {
-        echo '<table>';
-        echo '<thead><tr><th>Title</th><th>Date Published</th><th>URL</th></tr></thead>';
+        echo '<table class="data-table">';
+        echo '<thead><tr><th class="th-title">Title</th><th class="th-date">Date Published</th><th>URL</th></tr></thead>';
         echo '<tbody>';
         
         foreach($postIdCollection as $postId) {
