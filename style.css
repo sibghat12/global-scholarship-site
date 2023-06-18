@@ -2842,7 +2842,7 @@ padding-left:0px !important;
 /* Comments Restyling: https://docs.google.com/document/d/1Y4xjA3Qix-8el6o8WAYH_t0kCNJLzrdAVGF2UKSJ5_Q/edit */
 .comment-respond #comment-input {
     display: flex;
-    flex-direction: auto;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
