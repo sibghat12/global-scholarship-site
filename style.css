@@ -2897,7 +2897,7 @@ padding-left:0px !important;
   }
   
   .data-table th {
-    background-color: #dddddd;
+    background-color: #f8f8f8;
   }
 
 .data-table tr th.th-title {
@@ -2910,7 +2910,7 @@ padding-left:0px !important;
     /* border: none; */
     width: 20%;
 }
-
-  .data-table tr:nth-child(even) {
+/* 
+  .data-table tr:nth-child(1) {
     background-color: #f2f2f2;
-  }
+  } */
