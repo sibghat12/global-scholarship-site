@@ -83,75 +83,88 @@ $scholarships = get_posts(array(
     'posts_per_page' => -1, // Retrieve all posts
 ));
 
-// Step 2: Loop through each scholarship post
+$allowed_countries = ['United States', 'United Kingdom', 'Canada', 'Australia', 'South Korea'];
 $institution_scholarships = array();
+
 foreach ($scholarships as $scholarship) {
-    // Step 3: Get institution ID or scholarship_institution custom field value
     $institution_id = get_field('scholarship_institution', $scholarship->ID);
-
-    // Step 4: Retrieve institution post
     $institution = get_post($institution_id);
-
-    // Step 5: Extract institution name
     $institution_name = $institution->post_title;
-
-    // Step 7: Extract country name
     $cities_id = get_field('cities', $institution_id);
-
-    // Step 4: Retrieve cities post
     $cities = get_post($cities_id);
-
     $country = get_field('country', $cities_id);
 
-    // Step 8: Group institutions by country name
+    if (!in_array($country, $allowed_countries)) {
+        continue;
+    }
+
+    $scholarship_deadlines = get_field('scholarship_deadlines', $scholarship->ID);
+    $admission_deadlines = get_field('admission_deadlines', $institution_id);
+    $eligible_degrees = get_field('eligible_degrees', $scholarship->ID);
+    $future_deadlines = array();
+
+    foreach ($scholarship_deadlines as $deadline) {
+        if (strtotime($deadline['deadline']) > time() && in_array($deadline['degree'], $eligible_degrees)) {
+            $future_deadlines[] = $deadline;
+        }
+    }
+
+    if (empty($future_deadlines)) {
+        foreach ($admission_deadlines as $deadline) {
+            if (strtotime($deadline['deadline']) > time() && in_array($deadline['degree'], $eligible_degrees)) {
+                $future_deadlines[] = $deadline;
+            }
+        }
+    }
+
+    if (empty($future_deadlines)) {
+        continue;
+    }
+
     if (!isset($institution_scholarships[$country])) {
         $institution_scholarships[$country] = array();
     }
 
     if (!isset($institution_scholarships[$country][$institution_name])) {
         $institution_scholarships[$country][$institution_name] = array(
-            'institution_permalink' => get_permalink($institution->ID), // Get the permalink of the institution
+            'institution_permalink' => get_permalink($institution->ID),
             'scholarships' => array()
         );
     }
 
-    // Retrieve scholarship_deadlines repeater field values
-    $deadlines = get_field('scholarship_deadlines', $scholarship->ID);
-
-    // Check if scholarship_deadlines is empty or no records found
-    if (empty($deadlines)) {
-        // Retrieve admission_deadlines repeater field values from institution
-        $deadlines = get_field('admission_deadlines', $institution_id);
-    }
-
-    $eligible_degrees = get_field('eligible_degrees', $scholarship->ID); // Get the eligible degrees for the scholarship
-
     $institution_scholarships[$country][$institution_name]['scholarships'][] = array(
         'scholarship_title' => $scholarship->post_title,
-        'scholarship_permalink' => get_permalink($scholarship->ID), // Get the permalink of the scholarship
+        'scholarship_permalink' => get_permalink($scholarship->ID),
         'coverages' => get_field('scholarship_coverage', $scholarship->ID),
         'eligible_degrees' => $eligible_degrees,
-        'deadlines' => $deadlines
+        'deadlines' => $future_deadlines
     );
 }
 
-// Step 9 and 10: Create the table
+// Continue with the table generation code
+
+
+
+
+
+
+
+
 foreach ($institution_scholarships as $country_name => $country_institutions) {
+     if (in_array($country_name, $allowed_countries)) {
     echo '<center><h2 style="margin-top:60px;margin-bottom:30px;">Currently Open Scholarships in ' . $country_name . '</h2></center>';
     echo '<table style="border-collapse: collapse; border: 1px solid black;" >';
     echo '<tr><th>Institution Name</th><th>Scholarship</th><th>Coverages</th><th>Eligible Degrees</th><th>Scholarship Deadlines</th></tr>';
 
-    $count = 0; // Keep track of the number of institutions
+    $count = 0;
 
     foreach ($country_institutions as $institution_name => $institution) {
         if ($count >= 10) {
-            break; // Limit reached, exit the loop
+            break;
         }
 
         $scholarships = $institution['scholarships'];
         $scholarship_count = count($scholarships);
-
-        // Display institution name in the first row only
         echo '<tr style="border: 1px solid black;" >';
         echo '<td rowspan="' . $scholarship_count . '"><a href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
         echo '<td><a href="' . $scholarships[0]['scholarship_permalink'] . '">' . $scholarships[0]['scholarship_title'] . '</a></td>';
@@ -162,23 +175,20 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
         echo '</td>';
         echo '<td>';
         foreach ($scholarships[0]['eligible_degrees'] as $degree) {
-            
-                echo $degree . '<br>';
-         
+            echo $degree . '<br>';
         }
         echo '</td>';
         echo '<td>';
-        $displayed_degrees = array(); // Keep track of displayed degrees
+        $displayed_degrees = array();
         foreach ($scholarships[0]['deadlines'] as $deadline) {
-            if (in_array($deadline['degree'], $scholarships[0]['eligible_degrees']) && !in_array($deadline['degree'], $displayed_degrees) && $deadline['degree'] !== 'PhD') { // Exclude PhD degree
-                 echo  '<b>' . $deadline['degree']. ":</b> " .$deadline['deadline'] . '<br>';
-                $displayed_degrees[] = $deadline['degree']; // Add displayed degree to the array
+            if (in_array($deadline['degree'], $scholarships[0]['eligible_degrees']) && !in_array($deadline['degree'], $displayed_degrees) && $deadline['degree'] !== 'PhD') {
+                echo  '<b>' . $deadline['degree']. ":</b> " .$deadline['deadline'] . '<br>';
+                $displayed_degrees[] = $deadline['degree'];
             }
         }
         echo '</td>';
         echo '</tr>';
 
-        // Display remaining scholarships in subsequent rows
         for ($i = 1; $i < $scholarship_count; $i++) {
             echo '<tr>';
             echo '<td><a href="' . $scholarships[$i]['scholarship_permalink'] . '">' . $scholarships[$i]['scholarship_title'] . '</a></td>';
@@ -189,30 +199,30 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
             echo '</td>';
             echo '<td>';
             foreach ($scholarships[$i]['eligible_degrees'] as $degree) {
-               
-                    echo $degree . '<br>';
-              
+                echo $degree . '<br>';
             }
             echo '</td>';
             echo '<td>';
-            $displayed_degrees = array(); // Keep track of displayed degrees
+            $displayed_degrees = array();
             foreach ($scholarships[$i]['deadlines'] as $deadline) {
-                if (in_array($deadline['degree'], $scholarships[$i]['eligible_degrees']) && !in_array($deadline['degree'], $displayed_degrees) && $deadline['degree'] !== 'PhD') { // Exclude PhD degree
-                   echo  '<b>' . $deadline['degree']. ":</b> " .$deadline['deadline'] . '<br>';
-                    $displayed_degrees[] = $deadline['degree']; // Add displayed degree to the array
+                if (in_array($deadline['degree'], $scholarships[$i]['eligible_degrees']) && !in_array($deadline['degree'], $displayed_degrees) && $deadline['degree'] !== 'PhD') {
+                    echo  '<b>' . $deadline['degree']. ":</b> " .$deadline['deadline'] . '<br>';
+                    $displayed_degrees[] = $deadline['degree'];
                 }
             }
             echo '</td>';
             echo '</tr>';
         }
 
-        $count++; // Increment the institution count
+        $count++;
     }
 
     echo '</table>';
 }
+}
 
 ?>
+
 
 
 
