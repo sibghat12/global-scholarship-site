@@ -1964,6 +1964,13 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     
     $text = "";
   
+
+if($type_array[0]=="Full Funding"){
+    $type_array[0] = "Fully Funded";
+}if($type_array[0]=="Partial Funding"){
+    $type_array[0] = "Partially Funded";
+}
+
 if($type_array[0]) {
   if($degrees_array[0]){
      $text .= $loop->found_posts . " ". $type_array[0] . " ". $degrees_array[0]. " Scholarships";
@@ -2875,7 +2882,12 @@ foreach ($url_parts as $part) {
 
         $text = "";
 
-       
+       if($scholarship_type_value=="Full Funding"){
+        $scholarship_type_value = "Fully Funded";
+       }
+       if($scholarship_type_value=="Partial Funding"){
+        $scholarship_type_value = "Partially Funded";
+       }
 
         // Add a filter to modify the title
         add_filter('rank_math/frontend/title', function ($title) use ($found_posts, $degree_value, $subject_value, $location_value , $scholarship_type_value , $page) {
