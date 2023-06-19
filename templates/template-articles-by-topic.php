@@ -51,26 +51,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
     }
 
-    // Get all post names in $tables_urls
-
-        // Build a SQL query to retrieve posts that are not in $tables_urls
-        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND (";
-
-        foreach ($articlesByTopic as $articleTopicTitle => $articleByTopicURL) {
-            $query .= "post_name LIKE '%" . $articleByTopicURL . "%' OR ";
-        }
-
-        $query .= "post_name NOT LIKE '%" . implode("%' AND post_name NOT LIKE '%", $tables_urls) . "%')";
-
-        $query .= " ORDER BY post_date DESC";
-
-        $myposts = $wpdb->get_results($query);
-
-        
-        $otherPosts = array('other-posts' => $myposts);
-
-    
-            
         // Output a table that references the generated tables
         if (!empty($tables_titles)) {
 
@@ -136,6 +116,20 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
 
     }
+
+    // Get all post names are not in $tables_urls
+        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND NOT (";
+
+        foreach ($tables_urls as $url) {
+            $query .= "post_name LIKE '%" . $url . "%' OR ";
+        }
+
+        $query .= "0) ORDER BY post_date DESC";
+
+        $myOtherPosts = $wpdb->get_results($query);
+
+        $otherPosts = array('other-posts' => $myOtherPosts);
+
 
     // Output a table that output all other posts that are not in $tables_urls
 
