@@ -56,12 +56,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
             echo '<table class="gs-articles-topics-reference">';
-            echo '<thead><tr><th>Table ID</th><th>Table Title</th></tr></thead>';
+            echo '<thead><tr><th>Title</th><th>URL</th></tr></thead>';
             echo '<tbody>';
 
             foreach ($tables_titles as $table_title) {
                 $table_id = str_replace(' ', '-', strtolower($table_title));
-                echo "<tr><td><a href='#$table_id'>$table_title</a></td><td>$table_title</td></tr>";
+                echo "<tr><td>$table_title</td><td><a href='#$table_id'>$table_title</a></td></tr>";
             }
 
             echo '</tbody></table>';
