@@ -228,12 +228,9 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
 
 <p style="margin-top:60px;">We hope that these currently open scholarships will help you, as you search for ways to support your studies! We also have a newsletter where we send these scholarships every Monday. If you want to get these notifications, please subscribe to our  <a href="">email list. </a> </p>
 
-<p style="margin-bottom:0px;">Please do get the currently open scholarships, and once the deadline expired, it should be removed automatically, then be replaced with a new one.
- </p>
 
- <p style="margin-bottom:0px;">Also, if possible, please rioritize putting the full tuition and full funding. If there are no other full tuition and fully funded scholarships, insert partial. Thank you!
 
- </p>
+
 
 
 

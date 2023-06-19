@@ -198,7 +198,7 @@ echo $des;
                 <div class="clearfix"> </div>
                
                 <div style="float:left;width:50% !important;border-right:1px solid gray !important;" class="domestic">
-                     <p style="font-size:13px !important;margin-bottom:0px; color:black; text-align: center;line-height: 20px !important;"> <strong style="font-size:13px !important;color:black;"> Domestic </strong>    <br>
+                     <p style="font-size:13px !important;margin-bottom:0px; color:black; text-align: center;line-height: 20px !important;">  <strong style="font-weight: 700 !important;">Domestic </strong>     <br>
 
                       <?php if($domestic_tuition_fees){
                         echo number_format($domestic_tuition_fees)  ." ". $currency;
@@ -212,7 +212,8 @@ echo $des;
 
                      <div style="float:left;width:50% !important;" class="international">
                      <p style="font-size:13px !important;margin-bottom:0px; color:black; text-align: center;
-                      line-height: 20px !important;"> <strong style="font-size:13px !important; color:black;"> International  </strong>
+                      line-height: 20px !important;">  <strong style="font-weight: 700 !important;"> 
+                      International </strong>
                       <br> 
                       
                       <?php
