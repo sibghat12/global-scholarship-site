@@ -2882,3 +2882,16 @@ padding-left:0px !important;
     padding: 16px 20px !important;
 }
 /* End Comments Restyling */
+
+
+
+
+
+/* Start Overwrite Strong tag Opencourse   */
+
+.domestic strong , .international strong {
+    font-weight: 700;
+}
+
+/* End Overwrite String tag */
+
