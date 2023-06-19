@@ -122,9 +122,13 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $post = get_post($postId);
                 $postTitle = $post->post_title;
                 $postDate = $post->post_date;
+                // Convert the post date to the desired format using date_i18n
+                $formatted_date = date_i18n('F j, Y', strtotime($postDate));
+
+                // Output the formatted date
                 $postUrl = get_permalink($postId);
 
-                echo '<tr><td>' . $postTitle . '</td><td>' . $postUrl . '</td><td>' . $postDate . '</td></tr>';
+                echo '<tr><td>' . $postTitle . '</td><td>' . $postUrl . '</td><td>' . $formatted_date . '</td></tr>';
             }
 
             echo '</tbody></table>';
