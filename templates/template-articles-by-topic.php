@@ -11,7 +11,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <?php get_header(); 
+?>
 
+<article id="template-articles-by-topic" class="articles-by-topic-page">
+
+
+	<div class="post-content">
+
+		<header class="entry-header">
+        
+
+        </header><!-- .entry-header -->
+
+        <div class="entry-content clearfix">
+            <h1><?php the_title(); ?></h1>
+
+<?php
     global $wpdb;
 
     $tables_ids = array();
@@ -37,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         if (!empty($tables_ids)) {
 
 
-            echo '<table class="reference-table">';
+            echo '<table class="gs-articles-topics-reference">';
             echo '<thead><tr><th>Table ID</th><th>Table Title</th></tr></thead>';
             echo '<tbody>';
 
@@ -75,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             $tables_ids[] = $table_id_title; 
 
 
-            echo "<div id='$table_id_title' class='table-$table_class_title'>";
+            echo "<div id='$table_id_title' class='gs-table-article-topic table-$table_class_title'>";
             echo '<table class="data-table">';
             echo '<thead><tr><th class="th-title">'. $postCollectionTitle .'</th><th>URL</th><th class="th-date">Date Published</th></tr></thead>';
             echo '<tbody>';
@@ -103,9 +118,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<h1>HELLO</h1>
 <?php do_action( 'avada_after_content' ); ?>
+</div><!-- .entry-content -->
 
+    </div><!-- .post-content -->
+
+
+</article><!-- #post-## -->
 <?php
 get_footer();
 

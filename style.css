@@ -2885,6 +2885,10 @@ padding-left:0px !important;
 
 /**********  Articles By Topic **********/
 
+.gs-table-article-topic {
+    margin-top: 50px;
+}
+
 .data-table {
     border-collapse: collapse;
     width: 100%;
@@ -2910,7 +2914,31 @@ padding-left:0px !important;
     /* border: none; */
     width: 20%;
 }
+
+.gs-articles-topics-reference {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .gs-articles-topics-reference th, .gs-articles-topics-reference td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .gs-articles-topics-reference th {
+    background-color: #008fc54A;
+  }
+
+
 /* 
   .data-table tr:nth-child(1) {
     background-color: #f2f2f2;
   } */
+
+
+  .gs-articles-topics-reference {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
