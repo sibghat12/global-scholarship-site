@@ -206,7 +206,8 @@ echo $des;
                         
                         echo number_format($domestic_tuition_fees_INT)  ." ". $currency;
                       }else {
-                        echo "7,000 " . $currency;
+                        
+                        echo "N/A";
                       }
                      ?> </p></div>
 
@@ -224,7 +225,8 @@ echo $des;
                        
                         echo number_format($domestic_tuition_fees_INT)  ." ". $currency;
                       }else {
-                           echo "7,000 " . $currency;
+
+                           echo "N/A";
                       
                      }
 
