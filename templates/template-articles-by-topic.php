@@ -29,7 +29,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
     global $wpdb;
 
-    $tables_ids = array();
+    $tables_titles = array();
+
+    $tables_urls = array();
 
     $articlesByTopic = array();
     
@@ -44,19 +46,40 @@ if ( ! defined( 'ABSPATH' ) ) {
         foreach($ArticleTopic as $ArticleTopicItem) {
             $articlesByTopic[$ArticleTopicItem['topic_title']] = $ArticleTopicItem['topic_urls'];
 
-            array_push($tables_ids, $ArticleTopicItem['topic_title']);
+            array_push($tables_titles, $ArticleTopicItem['topic_title']);
+            array_push($tables_urls, $ArticleTopicItem['topic_urls']);
         }
     }
+
+    // Get all post names in $tables_urls
+
+        // Build a SQL query to retrieve posts that are not in $tables_urls
+        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND (";
+
+        foreach ($articlesByTopic as $articleTopicTitle => $articleByTopicURL) {
+            $query .= "post_name LIKE '%" . $articleByTopicURL . "%' OR ";
+        }
+
+        $query .= "post_name NOT LIKE '%" . implode("%' AND post_name NOT LIKE '%", $tables_urls) . "%')";
+
+        $query .= " ORDER BY post_date DESC";
+
+        $myposts = $wpdb->get_results($query);
+
+        
+        $otherPosts = array('other-posts' => $myposts);
+
+    
             
         // Output a table that references the generated tables
-        if (!empty($tables_ids)) {
+        if (!empty($tables_titles)) {
 
 
             echo '<table class="gs-articles-topics-reference">';
             echo '<thead><tr><th>Table ID</th><th>Table Title</th></tr></thead>';
             echo '<tbody>';
 
-            foreach ($tables_ids as $table_title) {
+            foreach ($tables_titles as $table_title) {
                 $table_id = str_replace(' ', '-', strtolower($table_title));
                 echo "<tr><td><a href='#$table_id'>$table_title</a></td><td>$table_title</td></tr>";
             }
@@ -108,6 +131,29 @@ if ( ! defined( 'ABSPATH' ) ) {
             echo "</div>";
         }
 
+    }
+
+    // Output a table that output all other posts that are not in $tables_urls
+
+    if (!empty($otherPosts)) {
+
+        echo "<div id='other-posts' class='gs-table-article-topic table-other-posts'>";
+        echo '<table class="data-table">';
+        echo '<thead><tr><th class="th-title">Posts that Didn’t appear in any of the results</th><th>URL</th></tr></thead>';
+        echo '<tbody>';
+        
+        foreach($otherPosts as $otherPost) {
+            foreach($otherPost as $post) {
+                $postTitle = $post->post_title;
+                $postDate = $post->post_date;
+                $postUrl = get_permalink($post->ID);
+
+                echo '<tr><td>' . $postTitle . '</td><td>' . $postUrl . '</td></tr>';
+            }
+        }
+
+        echo '</tbody></table>';
+        echo "</div>";
     }
 
 
