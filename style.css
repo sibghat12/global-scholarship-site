@@ -2905,13 +2905,9 @@ padding-left:0px !important;
   }
 
 .data-table tr th.th-title {
-    /* background-color: #ffffff; */
-    /* border: none; */
     width: 30%;
 }
 .data-table tr th.th-date {
-    /* background-color: #ffffff; */
-    /* border: none; */
     width: 20%;
 }
 
@@ -2931,21 +2927,21 @@ padding-left:0px !important;
   }
 
 
-/* 
-  .data-table tr:nth-child(1) {
-    background-color: #f2f2f2;
-  } */
-
-
   .gs-articles-topics-reference {
     margin-top: 50px;
     margin-bottom: 50px;
   }
   
+/**********  End Articles By Topic **********/
 
+/**********  Post Content Max Width **********/
 
+  .post-content {
+    max-width: 1050px;
+    margin: auto;
+  }
 
-
+/**********  End Post Content Max Width **********/
 
 /* Start Overwrite Strong tag Opencourse   */
 
