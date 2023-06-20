@@ -1964,11 +1964,18 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     
     $text = "";
   
+
+if($type_array[0]=="Full Funding"){
+    $type_array[0] = "Fully Funded";
+}if($type_array[0]=="Partial Funding"){
+    $type_array[0] = "Partially Funded";
+}
+
 if($type_array[0]) {
   if($degrees_array[0]){
      $text .= $loop->found_posts . " ". $type_array[0] . " ". $degrees_array[0]. " Scholarships";
   } else {
-    $text .= $loop->found_posts . " Scholarships";
+    $text .= $loop->found_posts .  " " . $type_array[0] ." Scholarships";
   }
 } else {
 
@@ -2875,31 +2882,50 @@ foreach ($url_parts as $part) {
 
         $text = "";
 
-
+       if($scholarship_type_value=="Full Funding"){
+        $scholarship_type_value = "Fully Funded";
+       }
+       if($scholarship_type_value=="Partial Funding"){
+        $scholarship_type_value = "Partially Funded";
+       }
 
         // Add a filter to modify the title
         add_filter('rank_math/frontend/title', function ($title) use ($found_posts, $degree_value, $subject_value, $location_value , $scholarship_type_value , $page) {
             $degree_string = empty($degree_value) ? '' : " " . $degree_value;
             $subject_string = empty($subject_value) ? '' : " " . $subject_value;
              
-             if($scholarship_type_value){
-            if ($degree_string) {
-                $text .= $found_posts . " " . $scholarship_type_value . "" . $degree_string . " Scholarships";
-            } else {
-                $text .= $found_posts . " Scholarships";
-            }
-           } else  {
-           if ($degree_string) {
-                $text .= $found_posts .  " " . $degree_string . " Scholarships";
-            } else {
-                $text .= $found_posts . " Scholarships";
-            }
-            }
+          if ($scholarship_type_value) {
+    if ($degree_string) {
+        $text .= $found_posts . " " . $scholarship_type_value . " " . $degree_string . " Scholarships";
+    } else {
+        $text .= $found_posts . " " . $scholarship_type_value . " Scholarships";
+    }
+} else {
+    if ($degree_string) {
+        $text .= $found_posts . " " . $degree_string . " Scholarships";
+    } else {
+        $text .= $found_posts . " Scholarships";
+    }
+}
+
            if ($location_value) {
                 $text .= " in " . $location_value;
             }
             if ($subject_string) {
-                $text .= " for " . $subject_string;
+                 if ($scholarship_type_value) {
+    if ($degree_string) {
+        $text .= $found_posts . " " . $scholarship_type_value . " " . $degree_string . " Scholarships";
+    } else {
+        $text .= $found_posts . " " . $scholarship_type_value . " Scholarships";
+    }
+} else {
+    if ($degree_string) {
+        $text .= $found_posts . " " . $degree_string . " Scholarships";
+    } else {
+        $text .= $found_posts . " Scholarships";
+    }
+}
+$text .= " for " . $subject_string;
             }
 
             $text .= " for International Students ";

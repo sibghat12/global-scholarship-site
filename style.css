@@ -2942,3 +2942,16 @@ padding-left:0px !important;
     margin-bottom: 50px;
   }
   
+
+
+
+
+
+/* Start Overwrite Strong tag Opencourse   */
+
+.domestic strong , .international strong {
+    font-weight: 700;
+}
+
+/* End Overwrite String tag */
+
