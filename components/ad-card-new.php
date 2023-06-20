@@ -223,7 +223,7 @@ echo $des;
                         echo number_format($international_tuition_fees) ." ".  $currency ;
                       }  elseif ($international_tuition_fees_INT)  {
                        
-                        echo number_format($domestic_tuition_fees_INT)  ." ". $currency;
+                        echo number_format($international_tuition_fees_INT)  ." ". $currency;
                       }else {
 
                            echo "N/A";
