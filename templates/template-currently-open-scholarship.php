@@ -168,7 +168,7 @@ foreach ($scholarships as $scholarship) {
 // Continue with the table generation code
 
 
-$table_id_counter = 1;
+
 foreach ($institution_scholarships as $country_name => $country_institutions) {
      if (in_array($country_name, $allowed_countries)) {
     echo '<center><h2 style="margin-top:60px;margin-bottom:30px;">Currently Open Scholarships in ' . $country_name . '</h2></center>';
@@ -232,7 +232,7 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
             echo '</td>';
             echo '</tr>';
         }
-$table_id_counter++;
+
         $count++;
     }
     echo '</tbody>';
