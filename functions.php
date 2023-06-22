@@ -7,7 +7,6 @@ include ('functions/scholarships-functions.php');
 
 
 
-
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 

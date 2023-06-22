@@ -63,17 +63,33 @@ li {
 }
 
 </style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
+<!-- Load DataTables -->
 
-<?php get_header(); ?>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
+
+
+
+
+<?php get_header(); 
+
+// Get the values from the ACF fields
+$country_field = get_field('country');
+$intro = get_field('intro');
+$conclusion = get_field('conclusion');
+
+
+
+?>
 
 
 <h1 style="font-size:36px;padding-bottom:20px;text-align:center;"> Currently Open Scholarship </h1>
 
-<p> Thousands of universities and colleges around the globe offer scholarships to students from all over the world. These scholarships can help you cover the costs of tuition, room and board, books, and even travel expenses. </p>
+<?php echo $intro; ?>
 
-<p> We know that looking and applying for a scholarship is not an easy task. To help you, we compiled the currently open scholarships in the USA, United Kingdom, South Korea, Canada, and Australia.  </p>
-
-<p style="margin-bottom:60px;"> At Global Scholarships, we aim to provide the most updated scholarships for international students! Make sure to take note of the deadlines and read the scholarship pages to get to know more about eligibility, requirements, and more! </p>
 
 <?php
 
@@ -83,7 +99,15 @@ $scholarships = get_posts(array(
     'posts_per_page' => -1, // Retrieve all posts
 ));
 
+
+
+
 $allowed_countries = ['United States', 'United Kingdom', 'Canada', 'Australia', 'South Korea'];
+if ($country_field !== 'All') {
+    $allowed_countries = [$country_field];
+}
+
+
 $institution_scholarships = array();
 
 foreach ($scholarships as $scholarship) {
@@ -144,20 +168,15 @@ foreach ($scholarships as $scholarship) {
 // Continue with the table generation code
 
 
-
-
-
-
-
-
+$table_id_counter = 1;
 foreach ($institution_scholarships as $country_name => $country_institutions) {
      if (in_array($country_name, $allowed_countries)) {
     echo '<center><h2 style="margin-top:60px;margin-bottom:30px;">Currently Open Scholarships in ' . $country_name . '</h2></center>';
-    echo '<table style="border-collapse: collapse; border: 1px solid black;" >';
-    echo '<tr><th>Institution Name</th><th>Scholarship</th><th>Coverages</th><th>Eligible Degrees</th><th>Scholarship Deadlines</th></tr>';
+    echo '<table id="example"  style="border-collapse: collapse; border: 1px solid black;" >';
+    echo '<thead><tr><th> Institution Name</th><th>Scholarship</th><th>Coverages</th><th>Eligible Degrees</th><th>Scholarship Deadlines </tr></thead>';
 
     $count = 0;
-
+ echo '<tbody>';
     foreach ($country_institutions as $institution_name => $institution) {
         if ($count >= 10) {
             break;
@@ -213,10 +232,10 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
             echo '</td>';
             echo '</tr>';
         }
-
+$table_id_counter++;
         $count++;
     }
-
+    echo '</tbody>';
     echo '</table>';
 }
 }
@@ -226,14 +245,21 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
 
 
 
-<p style="margin-top:60px;">We hope that these currently open scholarships will help you, as you search for ways to support your studies! We also have a newsletter where we send these scholarships every Monday. If you want to get these notifications, please subscribe to our  <a href="">email list. </a> </p>
+<?php echo $conclusion; ?>
 
+<script type="text/javascript">
+   jQuery(document).ready(function($) {
+    var dtTable = $('#example').DataTable();
+});
 
+function rebuildTable() {
+    dtTable.clear().destroy(); // clear and destroy existing table
 
-
-
-
-
-
+    dtTable = $('#example').DataTable({ // reinitialize
+        // your DataTable options here
+    });
+}
+</script>
 
 <?php get_footer(); ?>
+
