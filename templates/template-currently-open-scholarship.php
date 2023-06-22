@@ -249,16 +249,10 @@ $table_id_counter++;
 
 <script type="text/javascript">
    jQuery(document).ready(function($) {
-    var dtTable = $('#example').DataTable();
+    $('#example').DataTable();
 });
 
-function rebuildTable() {
-    dtTable.clear().destroy(); // clear and destroy existing table
 
-    dtTable = $('#example').DataTable({ // reinitialize
-        // your DataTable options here
-    });
-}
 </script>
 
 <?php get_footer(); ?>
