@@ -2842,7 +2842,7 @@ padding-left:0px !important;
 /* Comments Restyling: https://docs.google.com/document/d/1Y4xjA3Qix-8el6o8WAYH_t0kCNJLzrdAVGF2UKSJ5_Q/edit */
 .comment-respond #comment-input {
     display: flex;
-    flex-direction: auto;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
@@ -2883,9 +2883,65 @@ padding-left:0px !important;
 }
 /* End Comments Restyling */
 
+/**********  Articles By Topic **********/
+
+.gs-table-article-topic {
+    margin-top: 50px;
+}
+
+.data-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .data-table th, .data-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .data-table th {
+    background-color: #f8f8f8;
+  }
+
+.data-table tr th.th-title {
+    width: 30%;
+}
+.data-table tr th.th-date {
+    width: 20%;
+}
+
+.gs-articles-topics-reference {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .gs-articles-topics-reference th, .gs-articles-topics-reference td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .gs-articles-topics-reference th {
+    background-color: #008fc54A;
+  }
 
 
+  .gs-articles-topics-reference {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+/**********  End Articles By Topic **********/
 
+/**********  Post Content Max Width **********/
+
+  .post-content {
+    max-width: 1050px;
+    margin: auto;
+  }
+
+/**********  End Post Content Max Width **********/
 
 /* Start Overwrite Strong tag Opencourse   */
 
