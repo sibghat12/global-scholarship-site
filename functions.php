@@ -3,7 +3,12 @@
 include ('functions/scholarships-functions.php'); 
 
 
-
+function add_datatables_scripts() {
+    wp_enqueue_style( 'datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
+    wp_enqueue_script( 'datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+    
+}
+add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
 
 
 
@@ -2614,20 +2619,65 @@ function display_latest_scholarships() {
 }
 add_shortcode('latest_scholarships', 'display_latest_scholarships');
 
-
 function enable_comments_on_all_posts() {
-    $args = array(
-        'post_type' => 'post',
-        'post_status' => 'publish',
-        'numberposts' => -1
-    );
-    $all_posts = get_posts($args);
-    foreach($all_posts as $single_post){
-        $single_post->comment_status = 'open';
-        wp_update_post( $single_post );
+    global $wpdb;
+
+    // SQL to select post IDs where comment_status is not 'open'
+    $sql = "
+        SELECT ID FROM $wpdb->posts
+        WHERE post_status = 'publish'
+        AND post_type = 'post'
+        AND comment_status != 'open'
+    ";
+
+    $posts = $wpdb->get_results($sql);
+
+    // Update each post in the chunk
+    foreach ($posts as $post) {
+        // Direct DB update
+        $wpdb->update(
+            $wpdb->posts,
+            array('comment_status' => 'open'), // data
+            array('ID' => $post->ID) // where
+        );
     }
 }
-//add_action('init', 'enable_comments_on_all_posts');
+
+add_action('init', 'enable_comments_on_all_posts');
 
 
 
+
+
+
+
+// Override comment form fields structure and remove url field from comment form at this path wp-content/plugins/fusion-builder/shortcodes/components/templates/fusion-tb-comments.php
+add_filter('comment_form_default_fields', 'unset_url_field');
+function unset_url_field(){
+	$commenter = wp_get_current_commenter();
+	$req       = get_option( 'require_name_email' );
+	$aria_req  = ( $req ) ? ' aria-required="true"' : '';
+	$html_req  = ( $req ) ? ' required="required"' : '';
+	$name      = ( $req ) ? __( 'Name (required)', 'fusion-builder' ) : __( 'Name', 'fusion-builder' );
+	$email     = ( $req ) ? __( 'Email (required)', 'fusion-builder' ) : __( 'Email', 'fusion-builder' );
+	$html5     = ( 'html5' === current_theme_supports( 'html5', 'comment-form' ) ) ? 'html5' : 'xhtml';
+	$consent   = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+
+    $fields = [];
+
+    $fields['start_comment_container'] = '<div id="comment-input">';
+	$fields['author']  = '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" placeholder="' . esc_attr( $name ) . '" size="30"' . $aria_req . $html_req . ' aria-label="' . esc_attr( $name ) . '"/>';
+	$fields['email']   = '<input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '" placeholder="' . esc_attr( $email ) . '" size="30" ' . $aria_req . $html_req . ' aria-label="' . esc_attr( $email ) . '"/>';
+	$fields['url']     = '<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . esc_html__( 'Website', 'fusion-builder' ) . '" size="30" aria-label="' . esc_attr__( 'URL', 'fusion-builder' ) . '" />';
+    $fields['end_comment_container'] = '</div>';
+	$fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /><label for="wp-comment-cookies-consent">' . esc_html__( 'Save my name, email, and website in this browser for the next time I comment.', 'fusion-builder' ) . '</label></p>';
+
+    
+	$fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /><label for="wp-comment-cookies-consent">' . esc_html__( 'Save my name, email, and website in this browser for the next time I comment.', 'fusion-builder' ) . '</label></p>';
+
+    if(isset($fields['url'])) {
+        unset($fields['url']);
+    }
+    return $fields;
+
+}
