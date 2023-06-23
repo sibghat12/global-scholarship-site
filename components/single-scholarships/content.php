@@ -119,7 +119,12 @@
             <div class="post-content">
             
             <div id="adngin-top_leaderboard-0"></div>
+
+            <?php // GS Scholarship Overview Box ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-overview.php'; ?>
+
+            <?php // GS Scholarship Summary Box ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-summary.php'; ?>
 
                 dasd
             </div>
