@@ -2952,3 +2952,37 @@ padding-left:0px !important;
 
 /* End Overwrite String tag */
 
+/* New Single Scholarships */
+
+.single-scholarships .post-content {
+    max-width: 1350px;
+    margin: auto;
+}
+
+.single-scholarships .post-content .gs-scholarship-overview-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: #e8f1f8;
+}
+
+.single-scholarships .post-content .gs-scholarship-overview-box .gs-scholarship-overview-image {
+    min-height: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    min-width: 30%;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+.single-scholarships .post-content .gs-scholarship-overview-box .gs-scholarship-overview-image img.attachment-post-thumbnail.size-post-thumbnail.wp-post-image {
+    height: 90%;
+    object-fit: cover;
+    border-radius: inherit;
+}

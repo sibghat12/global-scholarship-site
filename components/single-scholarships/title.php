@@ -1,13 +1,13 @@
 <?php
 
-$institution_id = get_post_meta($post->ID, 'scholarship_institution', true);
-if (!empty($institution_id)) {
-    $institution_title = get_the_title($institution_id);
-    $title_h1 =  get_the_title($post->ID) . ' at ' . $institution_title;
-}
+// $institution_id = get_post_meta($post->ID, 'scholarship_institution', true);
+// if (!empty($institution_id)) {
+//     $institution_title = get_the_title($institution_id);
+//     $title_h1 =  get_the_title($post->ID) . ' at ' . $institution_title;
+// }
 
 ?>
-
+<!-- 
 <div class="avada-page-titlebar-wrapper customm" role="banner">
     <div class="fusion-page-title-bar fusion-page-title-bar-none fusion-page-title-bar-center">
         <div class="fusion-page-title-row">
@@ -21,4 +21,4 @@ if (!empty($institution_id)) {
             </div>
         </div>
     </div>
-</div>
+</div> -->
