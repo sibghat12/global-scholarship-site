@@ -3012,7 +3012,7 @@ padding-left:0px !important;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 1120px;
+    max-width: 1250px;
     margin: 30px auto 0 auto;
 }
 
@@ -3025,6 +3025,27 @@ padding-left:0px !important;
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
+}
+
+.single-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-box h1 {
+    font-size: 2rem;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-scholarship-summary-list-items li {
+    font-size: 1.1rem;
+}
+
+.elipsis.show {
+    display: inline;
+}
+
+.elipsis.hide {
+    display: none;
+}
+
+
+.single-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-scholarship-nationalities-container {
+    display: inline;
 }
 .single-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-info-boxes {
     display: grid;

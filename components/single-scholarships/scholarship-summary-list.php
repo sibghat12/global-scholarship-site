@@ -9,6 +9,47 @@ Additional Scholarships Materials Required? Yes
 Admission Deadline: January 12, 2023 (Past Deadline)
 Scholarship Deadline: January 16, 2023 (Past Deadline) -->
 
+<?php 
+
+    $eligible_countries = '';
+   $countries = get_field('eligible_nationality');
+
+   asort($countries);
+   
+   $countries = explode(",",str_replace("\'","",implode(",",$countries)));
+
+   $country_array_original = explode(",", str_replace( "'",   "",    implode(",", $country_array_original)));
+   
+
+    if($countries) {
+    $newArray = array_combine($countries, $countries);
+    }
+ 
+  if($newArray) {
+    $diffArray = array_diff($country_array_original ,$newArray );
+  } 
+
+  
+
+if(count($diffArray) < 20 ) {
+    
+     if(in_array("All Nationalities", $countries )){
+        $eligible_countries .= "All Nationalities";
+     } else  {
+      array_shift($diffArray);
+      $eligible_countries .= "All Nationalities except " . convert_array_to_text($diffArray);
+    }
+
+} else {
+
+      if(in_array("All Nationalities", $countries)) { 
+        $eligible_countries .= "All Nationalities";
+        } else {
+        $eligible_countries .= convert_array_to_text($countries);
+   }
+
+}
+ ?>
 <ul>
 
 <li>  Level of Study: <b><?php  echo $degrees_text; ?></b></li>
@@ -25,48 +66,18 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
 
 <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>                   
 
-<li>  Eligible Nationalities:   <b>
-
-<?php 
-   $countries = get_field('eligible_nationality');
-   $countries = explode(",",str_replace("\'","",implode(",",$countries)));
-   
-   $country_array_original = explode(",", str_replace( "'",   "",    implode(",", $country_array_original)));
-   
-
-    if($countries) {
-    $newArray = array_combine($countries, $countries);
-    }
- 
-  if($newArray) {
-    $diffArray = array_diff($country_array_original ,$newArray );
-  } 
-
-if(count($diffArray) < 20 ) {
+<input type="hidden" class="gs-scholarship-eligible-countries" value="<?php echo $eligible_countries; ?>" />
+<li>  Eligible Nationalities:  
+    <div class="gs-scholarship-nationalities-container">
+        <b class="gs-scholarship-nationalities">
+        <!-- <?php echo $eligible_countries; ?>  -->
     
-     if(in_array("All Nationalities", $countries )){
-      echo "All Nationalities";
-     } else  {
-      array_shift($diffArray);
-      echo "All Nationalities except " . convert_array_to_text($diffArray);
-    }
-
-} else {
-
-      if(in_array("All Nationalities", $countries)) { 
-        echo "All Nationalities";
-        } else {
-     echo convert_array_to_text($countries);
-   }
-
-}
-
-
-
-
- ?>
-
-   </b> </li>
+       </b>
+        <?php if($eligible_countries != 'All Nationalities') : ?>
+            <span class="show_more"><span class="elipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+        <?php endif; ?>
+    </div>
+</li>
 
 
 <?php if ($programs){?><li>  Eligible Subjects:   <b><?php  echo $programs_text; ?>       </b> </li><?php }?>
