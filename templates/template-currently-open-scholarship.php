@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Template Name: Currently Open Scholarhsip
@@ -7,14 +8,13 @@
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Direct script access denied.' );
+    exit( 'Direct script access denied.' );
 }
 ?>
 
 
-
-	<style>
-    table {
+<style type="text/css">
+     table {
         width: 100%;
         border-collapse: collapse;
     }
@@ -58,37 +58,41 @@ td:nth-child(3) {
 }
 
 li {
-	font-size:15px !important;
-	line-height: 18px !important;
+    font-size:15px !important;
+    line-height: 18px !important;
 }
-
 </style>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
-<!-- Load DataTables -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-
-
-
-
-
-
-<?php get_header(); 
+<?php
+get_header(); 
 
 // Get the values from the ACF fields
 $country_field = get_field('country');
 $intro = get_field('intro');
 $conclusion = get_field('conclusion');
 
-
-
 ?>
-
 
 <h1 style="font-size:36px;padding-bottom:20px;text-align:center;"> Currently Open Scholarship </h1>
 
 <?php echo $intro; ?>
+
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+<!-- Include jQuery and DataTables JS. Make sure jQuery is loaded before DataTables -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+<!-- Initialize DataTables -->
+
+
+
+
+
+
+
+
 
 
 <?php
@@ -245,13 +249,18 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
 
 
 
+<div style="margin-top:50px;">
 <?php echo $conclusion; ?>
+</div>
 
-<script type="text/javascript">
-   jQuery(document).ready(function($) {
-    $('#example').DataTable();
+
+<script type="">
+    
+    jQuery(document).ready(function($) {
+    $('#example').DataTable({
+        "pageLength": 10
+    });
 });
-
 
 </script>
 

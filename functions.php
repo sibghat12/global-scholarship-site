@@ -3,6 +3,12 @@
 include ('functions/scholarships-functions.php'); 
 
 
+function add_datatables_scripts() {
+    wp_enqueue_style( 'datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
+    wp_enqueue_script( 'datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+    
+}
+add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
 
 
 
@@ -2613,20 +2619,36 @@ function display_latest_scholarships() {
 }
 add_shortcode('latest_scholarships', 'display_latest_scholarships');
 
-
 function enable_comments_on_all_posts() {
-    $args = array(
-        'post_type' => 'post',
-        'post_status' => 'publish',
-        'numberposts' => -1
-    );
-    $all_posts = get_posts($args);
-    foreach($all_posts as $single_post){
-        $single_post->comment_status = 'open';
-        wp_update_post( $single_post );
+    global $wpdb;
+
+    // SQL to select post IDs where comment_status is not 'open'
+    $sql = "
+        SELECT ID FROM $wpdb->posts
+        WHERE post_status = 'publish'
+        AND post_type = 'post'
+        AND comment_status != 'open'
+    ";
+
+    $posts = $wpdb->get_results($sql);
+
+    // Update each post in the chunk
+    foreach ($posts as $post) {
+        // Direct DB update
+        $wpdb->update(
+            $wpdb->posts,
+            array('comment_status' => 'open'), // data
+            array('ID' => $post->ID) // where
+        );
     }
 }
-//add_action('init', 'enable_comments_on_all_posts');
+
+add_action('init', 'enable_comments_on_all_posts');
+
+
+
+
+
 
 
 // Override comment form fields structure and remove url field from comment form at this path wp-content/plugins/fusion-builder/shortcodes/components/templates/fusion-tb-comments.php
