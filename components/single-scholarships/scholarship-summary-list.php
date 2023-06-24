@@ -87,7 +87,7 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
     <div class="gs-scholarship-nationalities-container">
         <b class="gs-scholarship-nationalities"></b>
         <?php if($eligible_countries != 'All Nationalities') : ?>
-            <span class="show_more"><span class="elipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+            <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
         <?php endif; ?>
     </div>
 </li>
@@ -97,7 +97,7 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
     <div class="gs-scholarship-subjects-container">
         <b class="gs-scholarship-subjects"></b>
         <?php if(count($programs) > 1) : ?>
-            <span class="show_more"><span class="elipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+            <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
         <?php endif; ?>
     </div>   
 </li>

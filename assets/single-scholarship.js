@@ -21,16 +21,16 @@ jQuery(document).ready(function($) {
   
         // Update the link text
         $(this).text('Show less');
-        $(this).parent().find('.elipsis').removeClass('show');
-        $(this).parent().find('.elipsis').addClass('hide');
+        $(this).parent().find('.ellipsis').removeClass('show');
+        $(this).parent().find('.ellipsis').addClass('hide');
     } else {
         // Display only the first 3 countries
         $('.gs-scholarship-nationalities').text(firstThreeCountries.join(', '));
   
         // Update the link text
         $(this).text('Show more');
-        $(this).parent().find('.elipsis').removeClass('hide');
-        $(this).parent().find('.elipsis').addClass('show');
+        $(this).parent().find('.ellipsis').removeClass('hide');
+        $(this).parent().find('.ellipsis').addClass('show');
       }
     });
   });
@@ -57,16 +57,16 @@ jQuery(document).ready(function($) {
   
         // Update the link text
         $(this).text('Show less');
-        $(this).parent().find('.elipsis').removeClass('show');
-        $(this).parent().find('.elipsis').addClass('hide');
+        $(this).parent().find('.ellipsis').removeClass('show');
+        $(this).parent().find('.ellipsis').addClass('hide');
     } else {
         // Display only the first 3 subjects
         $('.gs-scholarship-subjects').text(firstThreeSubjects.join(', '));
   
         // Update the link text
         $(this).text('Show more');
-        $(this).parent().find('.elipsis').removeClass('hide');
-        $(this).parent().find('.elipsis').addClass('show');
+        $(this).parent().find('.ellipsis').removeClass('hide');
+        $(this).parent().find('.ellipsis').addClass('show');
       }
     });
   });

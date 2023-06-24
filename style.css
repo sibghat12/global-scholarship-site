@@ -3035,11 +3035,11 @@ padding-left:0px !important;
     font-size: 1.1rem;
 }
 
-.elipsis.show {
+.ellipsis.show {
     display: inline;
 }
 
-.elipsis.hide {
+.ellipsis.hide {
     display: none;
 }
 
