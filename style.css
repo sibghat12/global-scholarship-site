@@ -3047,6 +3047,11 @@ padding-left:0px !important;
 .single-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-scholarship-nationalities-container {
     display: inline;
 }
+
+.single-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-scholarship-subjects-container {
+    display: inline;
+}
+
 .single-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-info-boxes {
     display: grid;
     grid-template-columns: repeat(2, minmax(150px, 1fr));

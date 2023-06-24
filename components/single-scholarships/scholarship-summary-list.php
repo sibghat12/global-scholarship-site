@@ -49,6 +49,22 @@ if(count($diffArray) < 20 ) {
    }
 
 }
+
+ // Eligible Programs (Subjects)
+
+    $programs = get_field('eligible_programs');
+        
+    $programs_text = '';
+
+
+
+    if (in_array("All Subjects", $programs)){
+    $programs_text .= "All Subjects offered at " . get_the_title(get_field("scholarship_institution"));
+    } else {
+    $programs_text .= convert_array_to_text($programs);
+    }           
+
+
  ?>
 <ul>
 
@@ -69,25 +85,31 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
 <input type="hidden" class="gs-scholarship-eligible-countries" value="<?php echo $eligible_countries; ?>" />
 <li>  Eligible Nationalities:  
     <div class="gs-scholarship-nationalities-container">
-        <b class="gs-scholarship-nationalities">
-        <!-- <?php echo $eligible_countries; ?>  -->
-    
-       </b>
+        <b class="gs-scholarship-nationalities"></b>
         <?php if($eligible_countries != 'All Nationalities') : ?>
             <span class="show_more"><span class="elipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
         <?php endif; ?>
     </div>
 </li>
+<input type="hidden" class="gs-scholarship-eligible-subjects" value="<?php echo $programs_text; ?>" />
+<?php if ($programs){
+    ?><li>  Eligible Subjects:  
+    <div class="gs-scholarship-subjects-container">
+        <b class="gs-scholarship-subjects"></b>
+        <?php if(count($programs) > 1) : ?>
+            <span class="show_more"><span class="elipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+        <?php endif; ?>
+    </div>   
+</li>
+        <?php
+        }?>
+    <?php if($number_of_recipients > 0){ ?>
+        <li> Number of Recipients:  <b> <?php  echo $number_of_recipients; ?>      </b>  </li>
+        <?php }  else {
 
+        echo "<li>Number of Recipients: <b>Not Specified</b> </li>";
 
-<?php if ($programs){?><li>  Eligible Subjects:   <b><?php  echo $programs_text; ?>       </b> </li><?php }?>
-<?php if($number_of_recipients > 0){ ?>
-<li> Number of Recipients:  <b> <?php  echo $number_of_recipients; ?>      </b>  </li>
-<?php }  else {
-
-echo "<li>Number of Recipients: <b>Not Specified</b> </li>";
-
-}?>
+    }?>
 
  <li> Additional Scholarships Materials Required? <b><?php echo $separate_application; ?></b>  </li>
 

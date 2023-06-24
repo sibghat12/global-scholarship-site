@@ -12,18 +12,6 @@
 
     $number_of_recipients = get_field('number_of_recipients');
     $scholarship_duration = get_field('scholarship_duration');
-    $programs = get_field('eligible_programs');
-    
-    $programs_text = convert_array_to_text($programs);
-
-    
-
-    if (in_array("All Subjects", $programs)){
-    $programs_text = "All Subjects offered at " . get_the_title(get_field("scholarship_institution"));
-    } else {
-    $programs_text = convert_array_to_text($programs);
-    }           
-    
 
 
     $separate_application = get_field('separate_application');
