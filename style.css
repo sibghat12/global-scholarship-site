@@ -3121,6 +3121,20 @@ padding-left:0px !important;
     width: 120px;
 }
 
+/* Coverage Section */
+
+.single-scholarships .post-content .gs-scholarship-coverage span.fa-li svg {
+    fill: #66A0F6;
+}
+
+.single-scholarships .post-content .gs-scholarship-coverage .coverage-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 @media only screen and (min-width: 768px){
     /* Scholarships Box Overview */
 
