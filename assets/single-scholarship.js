@@ -11,9 +11,8 @@ jQuery(document).ready(function($) {
     $('.gs-scholarship-nationalities').text(firstThreeCountries.join(', '));
   
     // Add a click event listener to the toggle link
-    $('#toggle-link').click(function(event) {
+    $('.gs-scholarship-nationalities-container #toggle-link').click(function(event) {
       event.preventDefault();
-  
 
     // Check whether to show more or show less
     if ($(this).text() === 'Show more') {
@@ -48,10 +47,9 @@ jQuery(document).ready(function($) {
     $('.gs-scholarship-subjects').text(firstThreeSubjects.join(', '));
   
     // Add a click event listener to the toggle link
-    $('#toggle-link').click(function(event) {
+    $('.gs-scholarship-subjects-container #toggle-link').click(function(event) {
       event.preventDefault();
   
-
     // Check whether to show more or show less
     if ($(this).text() === 'Show more') {
         // Display all the subjects
