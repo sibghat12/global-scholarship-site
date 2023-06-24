@@ -11,5 +11,8 @@
         
         <?php // Scholarship Description ?>
         <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-description.php'; ?>
+
+        <?php // Institution Scholarships  ?>
+        <?php require get_stylesheet_directory() . '/components/single-scholarships/institution-scholarships.php'; ?>
     </div>
 </div>

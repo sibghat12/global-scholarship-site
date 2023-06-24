@@ -2997,11 +2997,49 @@ padding-left:0px !important;
 
 .single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .gs-breadcrumbs a {
     color: #000 !important;
+}
 
+.single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .gs-breadcrumbs a:hover {
+    text-decoration: underline;
 }
 
 .single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .gs-breadcrumbs a.gs-breadcrumb-institution {
-    color: #008fc5 !important;
+    color: #66A0F6 !important;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .gs-breadcrumbs a.gs-breadcrumb-institution:hover {
+    text-decoration: underline;
+}
+
+.institution-scholarships-link {
+    color: #66A0F6 !important;
+    font-weight: 700;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+.single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .institution-scholarships-link a {
+    color: #66A0F6 !important;
+    font-weight: 700;
+    padding-right: 15px;
+    padding-left: 25px;
+    font-size: 18px;
+}
+
+
+.single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .institution-scholarships-link svg {
+    position: absolute;
+    margin-left: -25px;
+    margin-top: 1px;
+    fill: #66A0F6;
+}
+.single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .institution-scholarships-link:hover a {
+    color: #000 !important;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text .institution-scholarships-link:hover svg {
+    fill: #000;
 }
 
 /* Single Scholarships Summary Box */
