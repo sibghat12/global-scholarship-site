@@ -116,6 +116,9 @@
             
             <?php // GS Scholarship Coverage ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-coverage.php'; ?>
+
+            <?php // GS Scholarship Eligibility Criteria ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
             </div>
         </div>
         </section>
