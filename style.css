@@ -3123,6 +3123,10 @@ padding-left:0px !important;
 
 /* Coverage Section */
 
+.single-scholarships #main .post-content .gs-scholarship-coverage ul.fa-ul {
+    margin-left: 4.5em;
+}
+
 .single-scholarships .post-content .gs-scholarship-coverage span.fa-li svg {
     fill: #66A0F6;
 }
@@ -3174,6 +3178,62 @@ padding-left:0px !important;
     padding-top: 8px;
 }
 
+/* Scholarship Procedure */
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarship-application-procedure-note {
+    background-color: #E8F1F8;
+    padding: 16px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px #a9a7a7;
+    margin: 30px 0;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarship-application-procedure-note p {
+    margin: 0;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarship-application-procedure-note strong {
+    font-weight: 700;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure ul.fa-ul {
+    margin-left: 4.5em;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure span.fa-li svg {
+    fill: #66A0F6;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad {
+    background-color: #E8F1F8;
+    padding: 16px;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px #a9a7a7;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad h3 {
+   margin: 10px;
+   padding: 0 10px;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad .gs-scholarship-ad-arrow {
+    font-size: 50px;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad .gs-scholarship-ad-arrow a {
+    color: #000 !important;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad .gs-scholarship-ad-arrow a:hover {
+    color: #66A0F6 !important;
+}
 
 @media only screen and (min-width: 768px){
     /* Scholarships Box Overview */

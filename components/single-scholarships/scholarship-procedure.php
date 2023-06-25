@@ -15,7 +15,7 @@
             <p>
             For <?php echo $scholarship_title; ?>, you DO NOT need to apply separately. That is, once you’ve submitted your admission application, you are automatically considered for the scholarship, as long as you meet the eligibility criteria. 
             </p>
-            <p>If you need more information regarding the scholarship application process, visit the official <a href="#">scholarship page</a>.</p>
+            <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>">scholarship page</a>.</p>
         <?php else : 
             ?>
             <?php if( NULL != get_field('additional_scholarship_requirements') && !empty(get_field('additional_scholarship_requirements'))) : ?>
@@ -36,7 +36,7 @@
             </ol>
             <?php endif; ?>
 
-            <p>If you need more information regarding the scholarship application process, visit the official <a href="#">scholarship page</a>.</p>
+            <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>">scholarship page</a>.</p>
         <?php endif; ?>
     </div>
 
@@ -47,7 +47,7 @@
             <p>Are you still looking for scholarships to help pay for college? If so, you're not alone. Luckily, our Scholarship Filter is here to transform your chances of finding the perfect scholarships for college. Check it out and unlock unparalleled opportunities!</p>
         </div>
         <div class="gs-scholarship-ad-arrow">
-            <a href="#">&rarr;</a>
+            <a href="<?php echo site_url(); ?>/scholarship-search/">&rarr;</a>
         </div>
     
 
