@@ -60,4 +60,6 @@
                 <?php endif; ?>
             </div>
         </div>
+
+        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions">admissions pages</a> and the <a href="#">scholarship pages</a> for more information!</p>
 </section>

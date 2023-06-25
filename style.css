@@ -3143,6 +3143,10 @@ padding-left:0px !important;
     margin-bottom: 10px;
 }
 
+.single-scholarships #main .post-content .gs-scholarship-eligibility-criteria p {
+    margin-top: 30px;
+}
+
 .single-scholarships #main .post-content .gs-scholarship-eligibility-criteria .gs-scholarship-eligibility-criteria-institution {
     background-color: #FFFCFC;
     padding: 16px;

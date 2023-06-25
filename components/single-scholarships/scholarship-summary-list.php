@@ -1,52 +1,41 @@
-<!-- Level of Study: Bachelor's
-Host Institution: University of Toronto
-Scholarship Type: Full Funding
-Scholarship Amount: 5,000 USD
-Eligible Nationalities: All Nationalities
-Eligible Subjects: All Subjects offered at University of Toronto
-Number of Recipients: 37
-Additional Scholarships Materials Required? Yes
-Admission Deadline: January 12, 2023 (Past Deadline)
-Scholarship Deadline: January 16, 2023 (Past Deadline) -->
-
 <?php 
 
-    $eligible_countries = '';
-   $countries = get_field('eligible_nationality');
+  $eligible_countries = '';
+  $countries = get_field('eligible_nationality');
 
-   asort($countries);
-   
-   $countries = explode(",",str_replace("\'","",implode(",",$countries)));
+  asort($countries);
+  
+  $countries = explode(",",str_replace("\'","",implode(",",$countries)));
 
-   $country_array_original = explode(",", str_replace( "'",   "",    implode(",", $country_array_original)));
-   
+  $country_array_original = explode(",", str_replace( "'",   "",    implode(",", $country_array_original)));
+  
 
-    if($countries) {
-    $newArray = array_combine($countries, $countries);
-    }
- 
+  if($countries) {
+  $newArray = array_combine($countries, $countries);
+  }
+
   if($newArray) {
     $diffArray = array_diff($country_array_original ,$newArray );
   } 
 
   
 
-if(count($diffArray) < 20 ) {
+  if(count($diffArray) < 20 ) {
     
-     if(in_array("All Nationalities", $countries )){
-        $eligible_countries .= "All Nationalities";
-     } else  {
-      array_shift($diffArray);
-      $eligible_countries .= "All Nationalities except " . convert_array_to_text($diffArray);
-    }
+    if(in_array("All Nationalities", $countries )){
+      $eligible_countries .= "All Nationalities";
+    } else  {
+    array_shift($diffArray);
+    $eligible_countries .= "All Nationalities except " . convert_array_to_text($diffArray);
+  }
 
-} else {
+  } else {
 
-      if(in_array("All Nationalities", $countries)) { 
-        $eligible_countries .= "All Nationalities";
-        } else {
-        $eligible_countries .= convert_array_to_text($countries);
-   }
+    if(in_array("All Nationalities", $countries)) { 
+      $eligible_countries .= "All Nationalities";
+      } else {
+      $eligible_countries .= convert_array_to_text($countries);
+  }
 
 }
 
