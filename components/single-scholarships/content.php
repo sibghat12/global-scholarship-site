@@ -121,6 +121,10 @@
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
             <?php // GS Scholarship Application Procedure ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
+
+            <?php // GS Scholarship Deadline ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
+
         </div>
 
     </div>

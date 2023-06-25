@@ -50,7 +50,6 @@
             <a href="<?php echo site_url(); ?>/scholarship-search/">&rarr;</a>
         </div>
     
-
     </div>
 
 </section>
