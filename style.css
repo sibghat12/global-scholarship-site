@@ -3235,6 +3235,30 @@ padding-left:0px !important;
     color: #66A0F6 !important;
 }
 
+/* Popular Scholarships */
+
+.single-scholarships #main .post-content .gs-scholarship-oturo .gs-popular-scholarships-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.single-scholarships #main .post-content .gs-scholarship-oturo .gs-popular-scholarships-container .gs-popular-scholarship-item a {
+    margin: 8px;
+    background: #ebf0f4;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 30px;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000 !important;
+    margin-right: 10px;
+    font-family: roboto,sans-serif;
+}
+
 @media only screen and (min-width: 768px){
     /* Scholarships Box Overview */
 

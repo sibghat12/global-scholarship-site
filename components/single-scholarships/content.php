@@ -125,6 +125,9 @@
             <?php // GS Scholarship Deadline ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
 
+            <?php // GS Scholarship Outro ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-outro.php'; ?>
+
         </div>
 
     </div>
