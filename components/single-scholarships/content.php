@@ -100,11 +100,11 @@
 <main id="main" class="clearfix width-100">
     <div class="fusion-row" style="max-width:100%;">
 
-        <section id="content" style="<?php esc_attr_e(apply_filters('awb_content_tag_style', '')); ?>">
-        <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <section id="content" style="<?php esc_attr_e(apply_filters('awb_content_tag_style', '')); ?>">
+    <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
         
-            <div class="post-content">
+        <div class="post-content">
             
             <div id="adngin-top_leaderboard-0"></div>
 
@@ -119,9 +119,12 @@
 
             <?php // GS Scholarship Eligibility Criteria ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
-            </div>
+            <?php // GS Scholarship Application Procedure ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
         </div>
-        </section>
+
+    </div>
+    </section>
 
     </div>
 </main>
