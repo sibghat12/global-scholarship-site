@@ -357,6 +357,9 @@ document.querySelectorAll('.read-more').forEach((span) => {
 
     // If screen size is more than 991px
     if (window.innerWidth > 991) {
+
+
+
       // Select only the .col-md-8 element related to the clicked span
       var colMd8 = jQuery(this).closest('.col-md-8');
       
@@ -382,12 +385,15 @@ document.querySelectorAll('.read-more').forEach((span) => {
       // If the height of the full div is more than 70px
       else if (fullHeight > 70) {
         console.log("70");
-        colMd8.height('290');
-        colMd4.height('290');
+        colMd8.height('250');
+        colMd4.height('250');
       } else {
-        colMd8.height('240');
-        colMd4.height('240');
+        colMd8.height('200');
+        colMd4.height('200');
       }
+    jQuery('.funded-line').css('position' , 'absolute');
+    jQuery('.funded-line').css('bottom' , '0px');
+     
 
       // Add a border to the left side of the .col-md-4 element
       colMd4.css('border-left', '1px solid #77a6c9');

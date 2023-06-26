@@ -19,23 +19,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $scholarships_count = get_published_scholarships_count();
 
-    $params = get_query_info();
+    // $params = get_query_info();
 
-    $subject = $params["subject"];
-    $degrees = $params["degrees"];
-    $location = $params["location"];
-    $location_value = $params["location"];
+    // $subject = $params["subject"];
+    // $degrees = $params["degrees"];
+    // $location = $params["location"];
+    // $location_value = $params["location"];
     
-    if($degrees=="Bachelors"){
-        $degrees = "Bachelor's";
-    }
+    // if($degrees=="Bachelors"){
+    //     $degrees = "Bachelor's";
+    // }
 
-    if($degrees=="Masters"){
-        $degrees = "Master's";
-    }
+    // if($degrees=="Masters"){
+    //     $degrees = "Master's";
+    // }
 
-    $location = ucwords($location);
-    $subject = ucwords($subject);
+    // $location = ucwords($location);
+    // $subject = ucwords($subject);
 
     
    //  $loop = get_institutions_location("South Korea");
@@ -121,7 +121,7 @@ $scholarships_count = get_published_scholarships_count();
     $subject = str_replace(' ', '-', $subject);
 
  
-   $country_list_for_url =  get_cities_of_published_institute();
+   $country_list_for_url = [   'Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States']; // get_cities_of_published_institute();
     
 
    $country_list = [   'Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States'];
