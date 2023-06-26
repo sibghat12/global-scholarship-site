@@ -1153,55 +1153,55 @@ function save_deadline_post_meta(){
 
 
 
-function get_cities_of_published_institute(){
+// function get_cities_of_published_institute(){
      
-    $city_ids = array();
+//     $city_ids = array();
 
-     $args = array(
-     'post_type' => 'institution',
-     'no_found_rows' => true, 
-     'update_post_meta_cache' => false,
-     'update_post_term_cache' => false,
-     'cache_results'          => false,
-     'fields' => 'ids',
-     'posts_per_page' => -1,
-     'post_status' => 'publish', 
-     );
+//      $args = array(
+//      'post_type' => 'institution',
+//      'no_found_rows' => true, 
+//      'update_post_meta_cache' => false,
+//      'update_post_term_cache' => false,
+//      'cache_results'          => false,
+//      'fields' => 'ids',
+//      'posts_per_page' => -1,
+//      'post_status' => 'publish', 
+//      );
 
-    $loop = new WP_Query($args);
-    while ($loop->have_posts() ) {
-        $loop->the_post();
-        $city = get_field("cities"); 
-        array_push($city_ids , $city->ID);
-    }
+//     $loop = new WP_Query($args);
+//     while ($loop->have_posts() ) {
+//         $loop->the_post();
+//         $city = get_field("cities"); 
+//         array_push($city_ids , $city->ID);
+//     }
       
   
 
-    $args_cities = array(
-    'post_type' => 'city',
-    'posts_per_page' => -1,
-    'orderby' => 'post__in',
-    'order'     => 'ASC', 
-    'post__in' => $city_ids
-   );
+//     $args_cities = array(
+//     'post_type' => 'city',
+//     'posts_per_page' => -1,
+//     'orderby' => 'post__in',
+//     'order'     => 'ASC', 
+//     'post__in' => $city_ids
+//    );
 
 
-   $country_list = array();
+//    $country_list = array();
 
-   $loop_cities = new WP_Query( $args_cities );
-   while ($loop_cities->have_posts() ) {
-        $loop_cities->the_post();
-        $country_name = get_field("country"); 
-        array_push($country_list , $country_name);
-    }
-    $country_list = array_unique($country_list);
-    return $country_list;
+//    $loop_cities = new WP_Query( $args_cities );
+//    while ($loop_cities->have_posts() ) {
+//         $loop_cities->the_post();
+//         $country_name = get_field("country"); 
+//         array_push($country_list , $country_name);
+//     }
+//     $country_list = array_unique($country_list);
+//     return $country_list;
 
-}
+// }
 
 
 
-function get_countries_of_published_institute() {
+function get_cities_of_published_institute() {
   global $wpdb;
 
 $query = "
@@ -2042,9 +2042,7 @@ function custom_rankmath_title($title) {
        $scholarships_query = get_scholarships( $post->ID);
        $number_of_scholarships  = $scholarships_query->post_count;
 
-   
-
-             if ($number_of_scholarships > 0) {
+            if ($number_of_scholarships > 0) {
                 $title = $institution_title . " " . " Scholarships for International Students";            
             } elseif ($is_tuition_information) {
                 $title = $institution_title . " " . " Tuition for International Students"; 
@@ -2068,8 +2066,8 @@ function custom_rankmath_title($title) {
         $scholarship_type_array = ['full-funding', 'full-tuition', 'partial-funding'];
         $scholarship_details = acf_get_fields('group_62ca6e3cc910c');
 
-         $contry_array =  get_countries_of_published_institute();
-
+         //$contry_array =  get_cities_of_published_institute();
+$contry_array = array();
         $location_array = array();
         foreach ($contry_array as $value) {
             $location_array[$value] = $value;
@@ -2372,7 +2370,7 @@ foreach ($url_parts as $part) {
 
     return $title;
 }
-add_filter('rank_math/frontend/title', 'custom_rankmath_title');
+//add_filter('rank_math/frontend/title', 'custom_rankmath_title');
 
 
 
@@ -2380,16 +2378,34 @@ add_filter('rank_math/frontend/title', 'custom_rankmath_title');
 
 
 function get_published_scholarships_count() {
-    $args = array(
-        'post_type' => 'scholarships',
-        'post_status' => 'publish',
-        'posts_per_page' => -1
-    );
+    // Try to get the count from the transient cache.
+    $count = get_transient('published_scholarships_count');
 
-    $scholarships_query = new WP_Query($args);
+    if ($count === false) {
+        $args = array(
+            'post_type' => 'scholarships',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'no_found_rows' => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+            'cache_results' => false,
+            'fields' => 'ids',
+        );
 
-    return $scholarships_query->found_posts;
+        $scholarships_query = new WP_Query($args);
+
+        // Get the count from the query.
+        $count = $scholarships_query->found_posts;
+
+        // Store the count in a transient, cache it for 1 hour.
+        // You may adjust the caching time to a suitable value for your site.
+        set_transient('published_scholarships_count', $count, HOUR_IN_SECONDS);
+    }
+
+    return $count;
 }
+
 
 
 function find_posts_containing_institution($institution_name) {

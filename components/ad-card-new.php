@@ -96,14 +96,14 @@ $image_url = get_the_post_thumbnail_url($institute->ID);
                    <div class="clearfix"> </div>
 
               
-                <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
+                <!-- <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
                     
                     <span style="float:left;width:32px;">
                         <img style="width:24px;height: 24px;margin-right:4px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php echo $intake_dates; ?></span></p> 
-                     <div class="clearfix"> </div> 
+                    <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php //echo $intake_dates; ?></span></p>  -->
+                      
                </div>
 
 
@@ -132,7 +132,7 @@ echo $des;
                     </div>
 
 <div class="clearfix"> </div>
-                    <div class="row funded-line" style="position:absolute;bottom:0px;margin-top:0px;">
+                    <div class="row funded-line" style="">
                       
                      <p  style="font-size:12px;line-height: 18px;color:black;margin-bottom:0px !important;
                      line-height: 22px !important;">
@@ -144,7 +144,7 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
                            <span style="width:100% !important;">
-                           <strong>  *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                           <!-- <strong>  *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong> -->
                          </span> 
                               
                         </p>
@@ -162,7 +162,7 @@ echo $des;
 
                  <div class="clearfix"> </div>
 
-                <p style="font-size:12px !important;  line-height:22px;color:black;  font-weight: 400;height:40px;margin-bottom:0px;" > 
+                <p style="font-size:12px !important;  line-height:22px;color:black;  font-weight: 400;height:36px;margin-bottom:0px;" > 
                     <span style="float:left;">  
                  <img style="width:28px;height: 28px;margin-right:8px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-6.png"> </span> 
                  
@@ -173,16 +173,16 @@ echo $des;
                    <div class="clearfix"> </div>
 
               
-                <p style="line-height:22px !important; color:black;font-size:13px !important;margin-left:0px;font-weight: 400;margin-bottom:10px;"> 
+              <!--   <p style="line-height:22px !important; color:black;font-size:13px !important;margin-left:0px;font-weight: 400;margin-bottom:10px;"> 
                     
                     <span style="float:left;width:39px;">
                         <img style="width:28px;height: 28px;margin-right:8px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:-2px;  "><?php echo $intake_dates; ?></span></p>
+                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:-2px;  "><?php echo $intake_dates; ?></span></p> -->
 
 
-                    <div class="clearfix"> </div> 
+                    
                </div>
                   <div class="clearfix"> </div>
                 
@@ -244,7 +244,7 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
 
-                         <strong> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                         <!-- <strong> *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong> -->
                            
                         </p>
                     </div>

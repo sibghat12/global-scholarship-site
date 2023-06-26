@@ -1,7 +1,7 @@
 
 <?php
 /**
- * Template Name: Currently Open Scholarhsip
+ * Template Name: Currently Open Scholarships
  * @package Avada
  * @subpackage Templates
  */
@@ -10,66 +10,19 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit( 'Direct script access denied.' );
 }
-?>
 
-
-<style type="text/css">
-     table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border: 2px solid gray !important;
-    }
-    
-    th {
-        background-color: #f2f2f2;
-    }
-    
-    h2 {
-        margin-top: 20px;
-    }
-
-    hr {
-        background: gray;
-    }
-
-    td:nth-child(3) {
-    width: 20%; /* You can adjust this value to fit your needs */
-}
-
- td:nth-child(5) {
-    width: 20%; /* You can adjust this value to fit your needs */
-}
-
-td:nth-child(1) {
-    width: 20%; /* You can adjust this value to fit your needs */
-}
-
-td:nth-child(2) {
-    width: 20%; /* You can adjust this value to fit your needs */
-}
-
-td:nth-child(3) {
-    width: 20%; /* You can adjust this value to fit your needs */
-}
-
-li {
-    font-size:15px !important;
-    line-height: 18px !important;
-}
-</style>
-
-<?php
+// Get the header
 get_header(); 
 
 // Get the values from the ACF fields
-$country_field = get_field('country');
+$country = get_field('country');
 $intro = get_field('intro');
 $conclusion = get_field('conclusion');
+
+$allowed_countries = ['United States', 'United Kingdom', 'Canada', 'Australia', 'South Korea'];
+if ($country !== 'All') {
+    $allowed_countries = [$country];
+}
 
 ?>
 
@@ -77,99 +30,99 @@ $conclusion = get_field('conclusion');
 
 <?php echo $intro; ?>
 
-<!-- Include DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-
-<!-- Include jQuery and DataTables JS. Make sure jQuery is loaded before DataTables -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-
-<!-- Initialize DataTables -->
-
-
-
-
-
-
-
-
-
-
 <?php
 
-$scholarships = get_posts(array(
-    'post_type' => 'scholarships',
-    'post_status' => 'publish',
-    'posts_per_page' => -1, // Retrieve all posts
-));
+// Check if the data is already in the cache.
+$institution_scholarships = get_transient('scholarships_data');
 
+if ($institution_scholarships === false) {
+    // The data is not in the cache, process the list.
 
+    // Define the number of scholarships to process in one iteration.
+    $posts_per_page = 100;
 
+    // Calculate the total number of pages.
+    $total_posts = wp_count_posts('scholarships')->publish;
+    $total_pages = ceil($total_posts / $posts_per_page);
 
-$allowed_countries = ['United States', 'United Kingdom', 'Canada', 'Australia', 'South Korea'];
-if ($country_field !== 'All') {
-    $allowed_countries = [$country_field];
-}
+    $institution_scholarships = array();
 
+    // Process the scholarships in batches.
+    for ($page = 0; $page < $total_pages; $page++) {
+        // Get a batch of scholarships.
+        $scholarships = get_posts(array(
+            'post_type' => 'scholarships',
+            'post_status' => 'publish',
+            'fields' => 'ids',
+            'posts_per_page' => $posts_per_page,
+            'paged' => $page + 1, // 'paged' parameter is 1-indexed.
+        ));
 
-$institution_scholarships = array();
+        // Process each scholarship in the batch.
+        foreach ($scholarships as $scholarship_id) {
+            // Load all post meta data into cache.
+            $scholarship_fields = get_post_custom($scholarship_id);
 
-foreach ($scholarships as $scholarship) {
-    $institution_id = get_field('scholarship_institution', $scholarship->ID);
-    $institution = get_post($institution_id);
-    $institution_name = $institution->post_title;
-    $cities_id = get_field('cities', $institution_id);
-    $cities = get_post($cities_id);
-    $country = get_field('country', $cities_id);
+            // Get the institution's fields
+            $institution_id = $scholarship_fields['scholarship_institution'][0];
+            print_r($institution_id);
+            exit;
+            $institution_fields = get_post_custom($institution_id);
+            $institution_name = get_the_title($institution_id);
 
-    if (!in_array($country, $allowed_countries)) {
-        continue;
-    }
-
-    $scholarship_deadlines = get_field('scholarship_deadlines', $scholarship->ID);
-    $admission_deadlines = get_field('admission_deadlines', $institution_id);
-    $eligible_degrees = get_field('eligible_degrees', $scholarship->ID);
-    $future_deadlines = array();
-
-    foreach ($scholarship_deadlines as $deadline) {
-        if (strtotime($deadline['deadline']) > time() && in_array($deadline['degree'], $eligible_degrees)) {
-            $future_deadlines[] = $deadline;
-        }
-    }
-
-    if (empty($future_deadlines)) {
-        foreach ($admission_deadlines as $deadline) {
-            if (strtotime($deadline['deadline']) > time() && in_array($deadline['degree'], $eligible_degrees)) {
-                $future_deadlines[] = $deadline;
+            // Check if the institution's country is allowed
+            //$country = $institution_fields['country'][0];
+            if (!in_array($country, $allowed_countries)) {
+                continue;
             }
+
+            // Process the deadlines
+            $scholarship_deadlines = maybe_unserialize($scholarship_fields['scholarship_deadlines'][0]);
+            $admission_deadlines = maybe_unserialize($institution_fields['admission_deadlines'][0]);
+            $eligible_degrees = maybe_unserialize($scholarship_fields['eligible_degrees'][0]);
+            $future_deadlines = array();
+
+            foreach ($scholarship_deadlines as $deadline) {
+                if (strtotime($deadline['deadline']) > time() && in_array($deadline['degree'], $eligible_degrees)) {
+                    $future_deadlines[] = $deadline;
+                }
+            }
+
+            if (empty($future_deadlines)) {
+                foreach ($admission_deadlines as $deadline) {
+                    if (strtotime($deadline['deadline']) > time() && in_array($deadline['degree'], $eligible_degrees)) {
+                        $future_deadlines[] = $deadline;
+                    }
+                }
+            }
+
+            if (empty($future_deadlines)) {
+                continue;
+            }
+
+            // Build the scholarship list for each institution and country
+            if (!isset($institution_scholarships[$country])) {
+                $institution_scholarships[$country] = array();
+            }
+            if (!isset($institution_scholarships[$country][$institution_name])) {
+                $institution_scholarships[$country][$institution_name] = array(
+                    'institution_permalink' => get_permalink($institution_id),
+                    'scholarships' => array()
+                );
+            }
+            $institution_scholarships[$country][$institution_name]['scholarships'][] = array(
+                'scholarship_title' => get_the_title($scholarship_id),
+                'scholarship_permalink' => get_permalink($scholarship_id),
+                'coverages' => maybe_unserialize($scholarship_fields['scholarship_coverage'][0]),
+                'eligible_degrees' => $eligible_degrees,
+                'deadlines' => $future_deadlines
+            );
         }
     }
 
-    if (empty($future_deadlines)) {
-        continue;
-    }
-
-    if (!isset($institution_scholarships[$country])) {
-        $institution_scholarships[$country] = array();
-    }
-
-    if (!isset($institution_scholarships[$country][$institution_name])) {
-        $institution_scholarships[$country][$institution_name] = array(
-            'institution_permalink' => get_permalink($institution->ID),
-            'scholarships' => array()
-        );
-    }
-
-    $institution_scholarships[$country][$institution_name]['scholarships'][] = array(
-        'scholarship_title' => $scholarship->post_title,
-        'scholarship_permalink' => get_permalink($scholarship->ID),
-        'coverages' => get_field('scholarship_coverage', $scholarship->ID),
-        'eligible_degrees' => $eligible_degrees,
-        'deadlines' => $future_deadlines
-    );
+    // Set a transient cache for the results.
+    set_transient('scholarships_data', $institution_scholarships, HOUR_IN_SECONDS);
 }
-
-// Continue with the table generation code
 
 
 
@@ -254,15 +207,6 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
 </div>
 
 
-<script type="">
-    
-    jQuery(document).ready(function($) {
-    $('#example').DataTable({
-        "pageLength": 10
-    });
-});
 
-</script>
 
 <?php get_footer(); ?>
-

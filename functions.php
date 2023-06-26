@@ -2623,31 +2623,34 @@ function display_latest_scholarships() {
 }
 add_shortcode('latest_scholarships', 'display_latest_scholarships');
 
-function enable_comments_on_all_posts() {
-    global $wpdb;
 
-    // SQL to select post IDs where comment_status is not 'open'
-    $sql = "
-        SELECT ID FROM $wpdb->posts
-        WHERE post_status = 'publish'
-        AND post_type = 'post'
-        AND comment_status != 'open'
-    ";
 
-    $posts = $wpdb->get_results($sql);
 
-    // Update each post in the chunk
-    foreach ($posts as $post) {
-        // Direct DB update
-        $wpdb->update(
-            $wpdb->posts,
-            array('comment_status' => 'open'), // data
-            array('ID' => $post->ID) // where
-        );
-    }
-}
+// function enable_comments_on_all_posts() {
+//     global $wpdb;
 
-add_action('init', 'enable_comments_on_all_posts');
+//     // SQL to select post IDs where comment_status is not 'open'
+//     $sql = "
+//         SELECT ID FROM $wpdb->posts
+//         WHERE post_status = 'publish'
+//         AND post_type = 'post'
+//         AND comment_status != 'open'
+//     ";
+
+//     $posts = $wpdb->get_results($sql);
+
+//     // Update each post in the chunk
+//     foreach ($posts as $post) {
+//         // Direct DB update
+//         $wpdb->update(
+//             $wpdb->posts,
+//             array('comment_status' => 'open'), // data
+//             array('ID' => $post->ID) // where
+//         );
+//     }
+// }
+
+
 
 
 
@@ -2656,7 +2659,7 @@ add_action('init', 'enable_comments_on_all_posts');
 
 
 // Override comment form fields structure and remove url field from comment form at this path wp-content/plugins/fusion-builder/shortcodes/components/templates/fusion-tb-comments.php
-add_filter('comment_form_default_fields', 'unset_url_field');
+//add_filter('comment_form_default_fields', 'unset_url_field');
 function unset_url_field(){
 	$commenter = wp_get_current_commenter();
 	$req       = get_option( 'require_name_email' );
