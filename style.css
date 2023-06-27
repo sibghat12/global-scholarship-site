@@ -3124,15 +3124,15 @@ padding-left:0px !important;
 /* Navigation Panel GS Sections */
 
 .single-scholarships .post-content nav.gs-scholarship-navigation-panel {
-    width: 80%;
+    width: 92%;
     margin: 45px auto 10px auto;
 }
 
 .single-scholarships .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 15px 40px;
     background: #F9F9F9;
     border-radius: 50px;
     border: 1px solid #ccc;
@@ -3150,11 +3150,16 @@ padding-left:0px !important;
 
 }
 
-.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container  a {
-
-    padding: 16px;
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 6px 20px;
     font-size: 18px;
-    width: 24.9%;
+    font-weight: 700;
+    min-width: 25%;
+    height: 70px;
+    text-wrap: nowrap;
     background: transparent !important;
     margin-right: 10px;
     border-radius: 50px;
@@ -3167,6 +3172,14 @@ padding-left:0px !important;
     color: #fff !important;
     cursor: pointer;
 }
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a:hover svg {
+    fill: #fff !important;
+}
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a:hover svg g {
+    fill: #fff !important;
+}
+
 /* Coverage Section */
 
 .single-scholarships #main .post-content .gs-scholarship-coverage ul.fa-ul {
