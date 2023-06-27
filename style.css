@@ -3167,6 +3167,18 @@ padding-left:0px !important;
 
 }
 
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.active {
+    background-color: #5EA9E4 !important;
+    color: #fff !important;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.active svg {
+    fill: #fff !important;
+}
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.active svg g {
+    fill: #fff !important;
+}
+
 .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a:hover {
     background-color: #5EA9E4 !important;
     color: #fff !important;
