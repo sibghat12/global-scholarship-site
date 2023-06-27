@@ -113,12 +113,16 @@
 
             <?php // GS Scholarship Summary Box ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-summary.php'; ?>
+
+            <?php // GS Scholarship Navigation Panel ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-navigation-panel.php'; ?>
             
             <?php // GS Scholarship Coverage ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-coverage.php'; ?>
 
             <?php // GS Scholarship Eligibility Criteria ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
+
             <?php // GS Scholarship Application Procedure ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
 
