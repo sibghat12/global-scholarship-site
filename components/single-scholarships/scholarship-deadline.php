@@ -29,8 +29,9 @@
                     $label_text = "";
                 }
                 
-                echo '<li>';
-                      echo $degree . " Scholarship Application Deadline" . $label_text . ": " . $deadline;
+                echo '<li>'; ?>
+                <a href="<?php echo ($scholarship_deadline_link) ? $scholarship_deadline_link : $scholarship_page_link; ?>"><?php echo $degree; ?> Scholarship Application Deadline<?php echo $label_text; ?></a>: <?php echo $deadline; ?>
+                <?php 
                 echo '</li>';
             }
             echo '</ul>';                  
