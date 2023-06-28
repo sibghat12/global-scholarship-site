@@ -32,6 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $tables_titles = array();
 
     $tables_urls = array();
+    
 
     $category_slugs = array();
 
