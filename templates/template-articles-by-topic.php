@@ -33,8 +33,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     $tables_urls = array();
 
-    $category_slugs = array();
-
     $articlesByTopic = array();
     
     $thePosts = array();
@@ -47,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         foreach($ArticleTopic as $ArticleTopicItem) {
             $articlesByTopic[$ArticleTopicItem['topic_title']] = $ArticleTopicItem['topic_urls'];
-            
+
             array_push($tables_titles, $ArticleTopicItem['topic_title']);
             array_push($tables_urls, $ArticleTopicItem['topic_urls']);
         }
@@ -65,37 +63,20 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $table_id = str_replace(' ', '-', strtolower($table_title));
                 echo "<tr><td>$table_title</td><td><a href='#$table_id'>$table_title</a></td></tr>";
             }
-            echo "<tr><td>Posts that Didn’t appear in any of the results</td><td><a href='#other-posts'>Posts that Didn’t appear in any of the results</a></td></tr>";
-            
+
             echo '</tbody></table>';
         }
     
 
-        foreach ($articlesByTopic as $articleTopicTitle => $articleByTopicURL) {
-            // Extract category slug from URL (if present)
-            $url_path_parts = explode('/', $articleByTopicURL);
+    foreach($articlesByTopic as $articleTopicTitle => $articleByTopicURL) {
 
-            $category_slug = '';
-            if (count($url_path_parts) >= 2 && $url_path_parts[0] == 'category') {
-                $category_slug = $url_path_parts[1];
-                
-                if(!empty($category_slug)) {
-                    $category_slugs[] = $category_slug;
-                }
-                $category_slugs = array_unique (array_merge ($category_slugs));
-            }
+        // Select ID, post_title, date form WordPress database wpdb
+        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND post_name LIKE '%". $articleByTopicURL."%' ORDER BY post_date DESC";
 
+        $myposts = $wpdb->get_results($query);
+        $thePosts[$articleTopicTitle] = $myposts;
 
-            // Select ID, post_title, date from WordPress database wpdb
-            $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND (";
-            if ($category_slug) {
-                $query .= "ID IN (SELECT object_id FROM $wpdb->term_relationships WHERE term_taxonomy_id IN (SELECT term_taxonomy_id FROM $wpdb->term_taxonomy WHERE taxonomy = 'category' AND term_id IN (SELECT term_id FROM $wpdb->terms WHERE slug = '$category_slug'))) OR ";
-            }
-            $query .= "post_name LIKE '%" . $articleByTopicURL . "%') ORDER BY post_date DESC";
-        
-            $myposts = $wpdb->get_results($query);
-            $thePosts[$articleTopicTitle] = $myposts;
-        }
+    }
 
     // Get Posts Title and Date Published and URL in Table Format
     // Retrieve post IDs using $wpdb or WP_Query here
@@ -135,20 +116,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     }
 
-        // Get all posts that are not in $tables_urls or don't belong to any of the specified categories
-        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND (";
+    // Get all post names are not in $tables_urls
+        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND NOT (";
+
         foreach ($tables_urls as $url) {
-            $query .= "post_name NOT LIKE '%" . $url . "%' AND ";
+            $query .= "post_name LIKE '%" . $url . "%' OR ";
         }
-        if (!empty($category_slugs)) {
-            if(count($category_slugs) >= 1) {
-                $query .= "ID NOT IN (SELECT object_id FROM $wpdb->term_relationships WHERE term_taxonomy_id IN (SELECT term_taxonomy_id FROM $wpdb->term_taxonomy WHERE taxonomy = 'category' AND term_id IN (SELECT term_id FROM $wpdb->terms WHERE slug IN ('" . implode("', '", $category_slugs) . "')))) AND ";
-            }
-        }
-        $query .= "1) ORDER BY post_date DESC";
+
+        $query .= "0) ORDER BY post_date DESC";
 
         $myOtherPosts = $wpdb->get_results($query);
+
         $otherPosts = array('other-posts' => $myOtherPosts);
+
+
     // Output a table that output all other posts that are not in $tables_urls
 
     if (!empty($otherPosts)) {
@@ -173,6 +154,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
 
 
+
+        
+
+    
 
 ?>
 
