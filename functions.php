@@ -10,6 +10,21 @@ function add_datatables_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
 
+// =========================================================================
+// BOOTSTRAP CSS
+// =========================================================================
+function enqueue_bootstrap_styles(){ 
+    wp_enqueue_style('bootstrap_css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css');
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_styles' );
+  
+// =========================================================================
+// BOOTSTRAP JAVASCRIPT
+// =========================================================================
+function enqueue_bootstrap_scripts() {  
+    wp_enqueue_script( 'bootstrap_javascript', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js', array(), '5.3.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
 
 

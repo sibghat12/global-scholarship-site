@@ -2952,3 +2952,6 @@ padding-left:0px !important;
 
 /* End Overwrite String tag */
 
+.collapse.show {
+    display: block;
+}
