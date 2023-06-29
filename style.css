@@ -3330,6 +3330,19 @@ padding-left:0px !important;
     font-family: roboto,sans-serif;
 }
 
+/* Scholarships Form */
+.single-scholarships .post-content .gs-feeback-form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 18px;
+    background-color: #e8f1f8;
+}
+
+
 @media only screen and (min-width: 768px){
     /* Scholarships Box Overview */
 

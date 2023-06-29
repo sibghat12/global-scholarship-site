@@ -20,6 +20,8 @@ function theme_enqueue_styles() {
 
     wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
 
+    wp_enqueue_script('wp-ajax', admin_url('admin-ajax.php'));
+
 }
 
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
@@ -2687,4 +2689,21 @@ function unset_url_field(){
     }
     return $fields;
 
+}
+
+
+
+add_action('wp_ajax_feedback_form', 'process_feedback_form');
+add_action('wp_ajax_nopriv_feedback_form', 'process_feedback_form');
+
+function process_feedback_form() {
+  $feedback_data = array(
+    'helpful' => $_POST['yes'] ? 'Yes' : 'No',
+    'improvement' => $_POST['improvement'] ? $_POST['improvement'] : '',
+    'other_improvement' => $_POST['other_improvement'] ? $_POST['other_improvement'] : ''
+  );
+
+  // Process the feedback data here
+
+  wp_send_json_success('Feedback submitted successfully.');
 }
