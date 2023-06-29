@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php get_header(); 
 
 
-$scholarships_count = get_published_scholarships_count();
+$scholarships_count =  get_published_scholarships_count();
 
     // $params = get_query_info();
 
@@ -110,15 +110,18 @@ $scholarships_count = get_published_scholarships_count();
    //  }
 
     $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+
     $degrees_array = $scholarship_details[1]['choices'];
     $country_array = $scholarship_details[13]['choices'];
     $subject_array = $scholarship_details[12]['choices'];
-    
-    $location = $location_value;
-    $location = str_replace(' ', '-', $location);
 
-    $subject = strtolower($subject);
-    $subject = str_replace(' ', '-', $subject);
+    print_r($degrees_array);
+    
+    // $location = $location_value;
+    // $location = str_replace(' ', '-', $location);
+
+    // $subject = strtolower($subject);
+    // $subject = str_replace(' ', '-', $subject);
 
  
    $country_list_for_url = [   'Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States']; // get_cities_of_published_institute();
