@@ -1726,9 +1726,6 @@ function my_ajax_handler() {
 
  // Get the new title from the AJAX request
 
-
-
-
    $offset = $_POST["offset"];
    $ppp = $_POST["ppp"];
    $page_count = $_POST['page_count'];
@@ -2634,41 +2631,45 @@ add_shortcode('latest_scholarships', 'display_latest_scholarships');
 
 
 
+function enable_comments_on_all_posts() {
+    $args = array(
+        'post_status' => 'publish',
+        'post_type' => 'post',
+        'fields' => 'ids' // Only get post IDs
+    );
 
-// function enable_comments_on_all_posts() {
-//     global $wpdb;
+    $query = new WP_Query($args);
 
-//     // SQL to select post IDs where comment_status is not 'open'
-//     $sql = "
-//         SELECT ID FROM $wpdb->posts
-//         WHERE post_status = 'publish'
-//         AND post_type = 'post'
-//         AND comment_status != 'open'
-//     ";
+    // If posts were found
+    if ($query->have_posts()) {
+        // Loop through each post
+        foreach ($query->posts as $post_id) {
+            // Check if comment_status is not open
+            $post = get_post($post_id);
+            if($post->comment_status != 'open') {
+                // Update post comment status
+                wp_update_post(
+                    array(
+                        'ID' => $post_id,
+                        'comment_status' => 'open',
+                    )
+                );
+            }
+        }
+    }
 
-//     $posts = $wpdb->get_results($sql);
-
-//     // Update each post in the chunk
-//     foreach ($posts as $post) {
-//         // Direct DB update
-//         $wpdb->update(
-//             $wpdb->posts,
-//             array('comment_status' => 'open'), // data
-//             array('ID' => $post->ID) // where
-//         );
-//     }
-// }
-
-
+    // Reset Post Data
+    wp_reset_postdata();
+}
 
 
-
+add_action('enable_comments_on_all_posts', 'enable_comments_on_all_posts');
 
 
 
 
 // Override comment form fields structure and remove url field from comment form at this path wp-content/plugins/fusion-builder/shortcodes/components/templates/fusion-tb-comments.php
-//add_filter('comment_form_default_fields', 'unset_url_field');
+add_filter('comment_form_default_fields', 'unset_url_field');
 function unset_url_field(){
 	$commenter = wp_get_current_commenter();
 	$req       = get_option( 'require_name_email' );

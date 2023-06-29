@@ -2334,7 +2334,7 @@ foreach ($url_parts as $part) {
 
     return $title;
 }
-//add_filter('rank_math/frontend/title', 'custom_rankmath_title');
+add_filter('rank_math/frontend/title', 'custom_rankmath_title');
 
 
 
@@ -2835,22 +2835,22 @@ return $city_name;
 }
 
 
-function crop_image($file_path) {
-    $image = wp_get_image_editor($file_path);
+// function crop_image($file_path) {
+//     $image = wp_get_image_editor($file_path);
     
-    if ( ! is_wp_error($image)) {
-        $size = $image->get_size();
-        $width = $size['width'];
-        $height = $size['height'];
+//     if ( ! is_wp_error($image)) {
+//         $size = $image->get_size();
+//         $width = $size['width'];
+//         $height = $size['height'];
 
-        // Set the dimensions of the crop area (modify these as needed)
-        $crop_width = $width - 10;
-        $crop_height = $height - 10;
+//         // Set the dimensions of the crop area (modify these as needed)
+//         $crop_width = $width - 10;
+//         $crop_height = $height - 10;
 
-        // Crop the image
-        $image->crop(0, 0, $width, $height, $crop_width, $crop_height);
-        $image->save($file_path);
-    }
-}
+//         // Crop the image
+//         $image->crop(0, 0, $width, $height, $crop_width, $crop_height);
+//         $image->save($file_path);
+//     }
+// }
 
 

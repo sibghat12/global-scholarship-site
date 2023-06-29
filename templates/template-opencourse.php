@@ -194,59 +194,44 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="card-section-new" style="max-width:1000px;margin:auto;padding-top:45px;"> 
             
             
- 
-
-          
                 <?php
-                    
+if ($loop->have_posts()) {
+    while ($loop->have_posts()) {
+        $loop->the_post();
+        $ad_id = $post->ID;
+        show_ads_card_new($ad_id);
+    }
+} else {
+
+    echo "<p style='padding-bottom:20px;' class='white-background'><b>There were no courses matching your search of " . $text . ". Instead, we will show all the courses available for students " . $location_string . ". </b></p>";
+
+    $all_ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'meta_key' => 'priority',
+        'orderby' => "meta_value_num",
+        'order' => "DESC",
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),
+        ),
+    );
+
+    $new_loop = new WP_Query($all_ad_args);
+
+    if ($new_loop->have_posts()) {
+        while ($new_loop->have_posts()) {
+            $new_loop->the_post();
+            $ad_id = $post->ID;
+            show_ads_card_new($ad_id);
+        }
+    }
 
 
-                if ($loop->have_posts() ){
-                    while ($loop->have_posts() ) {
-                        $loop->the_post();
-
-                        $ad_id = $post->ID;
-                      
-                       show_ads_card_new($ad_id);
-                         
-
-                    }
-                } else {
-                    echo "<p class='white-background'><b>There were no courses matching your search of ". $text . ". Instead, we will show all the courses available for students " . $location_string . ". </b></p>";
-                    
-
-                    $all_ad_args = array(
-                        'post_type' => 'ads',
-                        'post_status' => 'publish',
-                        'posts_per_page' => -1,
-                        'meta_key' => 'priority',
-                        'orderby' => "meta_value_num",
-                        'order' => "DESC",
-                        'meta_query' => array(
-                            'relation' => 'AND',
-                            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
-                            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
-                        ),
-                    );
-                    
-                    $new_loop = new WP_Query($all_ad_args);
-                    
-
-                    if ($new_loop->have_posts() ){
-                        while ($new_loop->have_posts() ) {
-                            $new_loop->the_post();
-
-                            $ad_id = $post->ID;
-                            echo '<div class="col-sm-12 my-2 course-card">';
-                            //show_ads_card($ad_id);
-                            echo '</div>'; 
-                        }
-                    }
-
-                    
-                }
-
-                ?>
+}
+?>
 
                 <?php wp_reset_postdata(); ?>
 
