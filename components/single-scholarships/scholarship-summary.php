@@ -15,14 +15,12 @@
             <h2 class="gs-scholarship-summary-title"><?php echo $institution_name; ?></h2>
         </div>
         <?php endif; ?>
-        <?php if($scholarship_amount > 0) : ?>
         <div class="gs-scholarship-summary-scholarship-amount-box gs-summary-box">
             <div class="gs-scholarship-summary-insitute-image">
                 <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/funding-icon.png'); ?>" alt="">
             </div>
-            <h2 class="gs-scholarship-summary-title"><?php echo $scholarship_amount; ?></h2>
+            <h2 class="gs-scholarship-summary-title"><?php echo $scholarship_type; ?></h2>
         </div>
-        <?php endif; ?>
 
         <?php if( !empty($degrees_text) && isset($degrees_text) ) : ?>
         <div class="gs-scholarship-summary-degrees-box gs-summary-box">

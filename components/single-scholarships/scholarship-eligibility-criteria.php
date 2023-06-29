@@ -8,8 +8,8 @@
         </p>
 
         <ol>
-            <li>University Eligibility Criteria - the requirements you need to meet to be admitted to the university</li>
-            <li>Scholarship Specific Eligibility Criteria - the requirements you need to meet to be considered for the scholarship</li>
+            <li><b>University Eligibility Criteria</b> - the requirements you need to meet to be admitted to the university</li>
+            <li><b>Scholarship Specific Eligibility Criteria</b> - the requirements you need to meet to be considered for the scholarship</li>
         </ol>
 
         <p class="criteria-note">These criteria vary per institution and scholarship so be sure to take note of these before preparing your application.</p>
@@ -50,16 +50,16 @@
                     <?php
                     elseif(count($eligibility_criteria) == 1) : ?>
                         <p>
-                        Did you meet the admissions criteria? If yes, you’re now ready to apply for a scholarship. Applicants must be <?php echo $eligibility_criteria[0]['criteria'] ?>.
+                        Did you meet the admissions criteria? If yes, you’re now ready to apply for a scholarship. <b>Applicants must be <?php echo $eligibility_criteria[0]['criteria'] ?>.</b>
                         </p>
                     <?php endif; ?>
             
                 
                 <?php else : ?>
-                    <p>There are no specific eligibility criteria for this scholarship. You just need to be an international <?php echo $degrees_text; ?> student or applicant of <?php echo $institution_name; ?>.</p>
+                    <p>There are no specific eligibility criteria for this scholarship. <b>You just need to be an international <?php echo $degrees_text; ?> student or applicant of <?php echo $institution_name; ?>.</b></p>
                 <?php endif; ?>
             </div>
         </div>
 
-        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions">admissions pages</a> and the <a href="#">scholarship pages</a> for more information!</p>
+        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions">admissions pages</a> and the <a href="<?php echo $scholarship_page_link; ?>">scholarship pages</a> for more information!</p>
 </section>
