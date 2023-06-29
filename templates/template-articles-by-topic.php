@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
             echo '<table class="gs-articles-topics-reference">';
-            echo '<thead><tr><th>Title</th><th>URL</th></tr></thead>';
+            echo '<thead><tr><th>Topic</th><th>List of Articles</th></tr></thead>';
             echo '<tbody>';
 
             foreach ($tables_titles as $table_title) {
