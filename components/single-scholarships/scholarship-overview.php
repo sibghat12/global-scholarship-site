@@ -1,6 +1,6 @@
 <div class="gs-scholarship-overview-box">
     <div class="gs-scholarship-overview-image">
-    <?php echo the_post_thumbnail(); ?>
+        <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/scholarship-image.png'; ?>" alt="Scholarship Image" srcset="">
     </div>
     <div class="gs-scholarship-overview-text">
         <h2>

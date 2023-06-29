@@ -2977,7 +2977,7 @@ padding-left:0px !important;
     justify-content: center;
 }
 
-.single-scholarships .post-content .gs-scholarship-overview-box .gs-scholarship-overview-image img.attachment-post-thumbnail.size-post-thumbnail.wp-post-image {
+.single-scholarships .post-content .gs-scholarship-overview-box .gs-scholarship-overview-image img {
     height: 90%;
     object-fit: cover;
     border-radius: inherit;
