@@ -10,19 +10,17 @@ function add_datatables_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
 
-// =========================================================================
-// BOOTSTRAP CSS
-// =========================================================================
-function enqueue_bootstrap_styles(){ 
-    wp_enqueue_style('bootstrap_css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css');
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_styles' );
-  
-// =========================================================================
-// BOOTSTRAP JAVASCRIPT
-// =========================================================================
+// BOOTSTRAP For Accordion in Articles By Topics
 function enqueue_bootstrap_scripts() {  
-    wp_enqueue_script( 'bootstrap_javascript', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js', array(), '5.3.0', true );
+    $page_template_slug = get_page_template_slug();
+    if ($page_template_slug != 'templates/template-articles-by-topic.php') {
+        return;
+    }
+    
+    // Check if Current Page is template articles by topic
+        wp_enqueue_script( 'bootstrap_javascript',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true );
+
+        wp_enqueue_style('bootstrap_css',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 

@@ -64,7 +64,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
             foreach ($tables_titles as $table_title) {
                 $table_id = str_replace(' ', '-', strtolower($table_title));
-                echo "<tr><td>$table_title</td><td><a href='#$table_id'>$table_title</a></td></tr>";
+                ?>
+                <tr><td><?php echo $table_title; ?></td><td><a href="#<?php echo $table_id; ?>"><?php echo $table_title ?></a></td></tr>
+            <?php
             }
             echo "<tr><td>Posts that Didn’t appear in any of the results</td><td><a href='#other-posts'>Posts that Didn’t appear in any of the results</a></td></tr>";
             
@@ -102,10 +104,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     // Retrieve post IDs using $wpdb or WP_Query here
 
     if (!empty($thePosts)) {
-?>
-<div class="accordion" id="gs-articles-by-topic">
-  <div class="accordion-item">
-<?php
+    ?>
+    <div class="accordion" id="gs-articles-by-topic">
+    <?php
 
 
         foreach ($thePosts as $postCollectionTitle => $postIdCollection) {
@@ -113,10 +114,18 @@ if ( ! defined( 'ABSPATH' ) ) {
             $table_class_title = str_replace(' ', '-', strtolower($postCollectionTitle));
             $table_id_title = str_replace(' ', '-', strtolower($postCollectionTitle));
             $table_accordion_identifier = str_replace(' ', '__',  strtolower($postCollectionTitle));
+
+            // Check if the variable has a comma or a single quote
+            if (strpos($table_accordion_identifier, ",") !== false || strpos($table_accordion_identifier, "'") !== false) {
+                // Remove the comma and single quote
+                $table_accordion_identifier = str_replace(array(",", "'"), "", $table_accordion_identifier);
+            }
+
+            
             $tables_ids[] = $table_id_title; 
 
             ?>
-            <div class="accordion-item">
+            <div id="<?php echo $table_id_title ?>" class="accordion-item">
                 <div class="accordion-header" id="<?php echo $table_id_title; ?>">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $table_accordion_identifier; ?>" aria-expanded="true" aria-controls="<?php echo  $table_accordion_identifier; ?>">
                     <?php echo $postCollectionTitle; ?>
@@ -144,10 +153,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                     }
         
                     echo '</tbody></table>';
-                    echo "</div>";
+                    echo "</div></div>";
                     
                     ?>
-                </div>
                 </div>
             </div>
             <?php
@@ -174,7 +182,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     if (!empty($otherPosts)) {
 
-        echo "<div id='other-posts' class='gs-table-article-topic table-other-posts'>";
+        ?>
+        <div id="other-posts" class="accordion-item">
+            <div class="accordion-header" id="other_articles">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#other_posts_target" aria-expanded="true" aria-controls="other_posts_target">
+                Posts that Didn’t appear in any of the results
+            </button>
+            </div>
+            <div id="other_posts_target" class="accordion-collapse collapse" aria-labelledby="other_articles" data-bs-parent="#gs-articles-by-topic">
+            <div class="accordion-body">
+                <!-- Table HERE -->
+
+        <?php
+
+        echo "<div id='gs-other-posts' class='gs-table-article-topic table-other-posts'>";
         echo '<table class="data-table">';
         echo '<thead><tr><th class="th-title">Posts that Didn’t appear in any of the results</th><th>URL</th></tr></thead>';
         echo '<tbody>';
@@ -192,8 +213,11 @@ if ( ! defined( 'ABSPATH' ) ) {
         echo '</tbody></table>';
         echo "</div>";
     }
-
     ?>
+            </div>
+            </div>
+        </div>
+
   </div>
 </div>
     <?php
@@ -201,44 +225,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 ?>
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <div class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </div>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <div class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
-      </button>
-    </div>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <div class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </div>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-</div>
 <?php do_action( 'avada_after_content' ); ?>
 </div><!-- .entry-content -->
 
