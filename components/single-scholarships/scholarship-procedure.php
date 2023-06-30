@@ -47,15 +47,16 @@
         <div class="gs-scholarship-ad-image">
         <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/scholarship-image.png'; ?>" alt="Scholarship Image" srcset="">
         </div>
-        <div class="gs-scholarship-ad-content">
-            <h3>Still looking for Scholarships?</h3>
-            
-            <p>Are you still looking for scholarships to help pay for college? If so, you're not alone. Luckily, our Scholarship Filter is here to transform your chances of finding the perfect scholarships for college. Check it out and unlock unparalleled opportunities!</p>
+        <div class="gs-scholarship-ad-content-container">
+            <div class="gs-scholarship-ad-content">
+                <h3>Still looking for Scholarships?</h3>
+                
+                <p>Are you still looking for scholarships to help pay for college? If so, you're not alone. Luckily, our Scholarship Filter is here to transform your chances of finding the perfect scholarships for college. Check it out and unlock unparalleled opportunities!</p>
+            </div>
+            <div class="gs-scholarship-ad-arrow">
+                <a href="<?php echo site_url(); ?>/scholarship-search/">&rarr;</a>
+            </div>
         </div>
-        <div class="gs-scholarship-ad-arrow">
-            <a href="<?php echo site_url(); ?>/scholarship-search/">&rarr;</a>
-        </div>
-    
     </div>
 
 </section>
