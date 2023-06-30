@@ -32,9 +32,9 @@ function theme_enqueue_styles() {
     // Enqueue single-scholarship.js file in assets folder
 
     wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
-
-    wp_enqueue_script('wp-ajax', admin_url('admin-ajax.php'));
-
+    wp_localize_script( 'single-scholarship', 'frontendajax', array( 
+        'ajaxurl' => admin_url( 'admin-ajax.php' )
+    ));
 }
 
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );

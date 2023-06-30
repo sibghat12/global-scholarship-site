@@ -74,6 +74,7 @@ jQuery(document).ready(function($) {
 // DOM content loaded
 
 document.addEventListener('DOMContentLoaded', getActiveSection);
+document.addEventListener('DOMContentLoaded', getFeebackForm);
 
 function getActiveSection() {
   // Get the current hash value
@@ -109,6 +110,62 @@ function getActiveSection() {
       
       // Update the active section
       getActiveSection();
+    });
+  });
+}
+
+function getFeebackForm() {
+  const yesBtn = document.querySelector('input[name="yes"]');
+  const noBtn = document.querySelector('input[name="no"]');
+  const radioInputs = document.querySelectorAll('input[type="radio"]');
+  const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
+  const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
+  const form = document.querySelector('#gs-feeback-form');
+
+  console.log(yesBtn)
+  yesBtn.addEventListener('click', function() {
+    buttonsDiv.style.display = "block";
+    document.querySelector('.step-2').style.display = "none";
+  });
+
+  noBtn.addEventListener('click', function() {
+    buttonsDiv.style.display = "block";
+    document.querySelector('.step-2').style.display = "block";
+    for (var i = 0; i < radioInputs.length; i++) {
+      radioInputs[i].style.display = "block";
+    }
+    otherTextarea.style.display = "block";
+  });
+
+  for (var i = 0; i < radioInputs.length; i++) {
+    radioInputs[i].addEventListener('click', function() {
+      if (this.value === "other") {
+        otherTextarea.style.display = "block";
+      } else {
+        otherTextarea.style.display = "none";
+      }
+    });
+  }
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    // var formData = new FormData(form);
+    console.log(form)
+    console.log("frontendajax.ajaxurl: ",frontendajax.ajaxurl)
+    const formData = form;
+    jQuery.ajax({
+      url: frontendajax.ajaxurl,
+      type: 'POST',
+      // dataType: 'json',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        console.log(response);
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
     });
   });
 }
