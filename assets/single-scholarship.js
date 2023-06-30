@@ -113,16 +113,14 @@ function getActiveSection() {
     });
   });
 }
-
 function getFeebackForm() {
-  const yesBtn = document.querySelector('input[name="yes"]');
-  const noBtn = document.querySelector('input[name="no"]');
+  const yesBtn = document.querySelector('input[value="Yes"]');
+  const noBtn = document.querySelector('input[value="No"]');
   const radioInputs = document.querySelectorAll('input[type="radio"]');
   const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
   const form = document.querySelector('#gs-feeback-form');
 
-  console.log(yesBtn)
   yesBtn.addEventListener('click', function() {
     buttonsDiv.style.display = "block";
     document.querySelector('.step-2').style.display = "none";
@@ -132,7 +130,7 @@ function getFeebackForm() {
     buttonsDiv.style.display = "block";
     document.querySelector('.step-2').style.display = "block";
     for (var i = 0; i < radioInputs.length; i++) {
-      radioInputs[i].style.display = "block";
+      radioInputs[i].parentElement.style.display = "block";
     }
     otherTextarea.style.display = "block";
   });
@@ -147,25 +145,45 @@ function getFeebackForm() {
     });
   }
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
+  // form.addEventListener('submit', function(event) {
+  //   event.preventDefault();
     // var formData = new FormData(form);
-    console.log(form)
-    console.log("frontendajax.ajaxurl: ",frontendajax.ajaxurl)
-    const formData = form;
-    jQuery.ajax({
-      url: frontendajax.ajaxurl,
-      type: 'POST',
-      // dataType: 'json',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-        console.log(response);
-      },
-      error: function(xhr, status, error) {
-        console.log(error);
-      }
-    });
+    
+  // for (var [key, value] of formData.entries()) { 
+  //   console.log(key, value);
+  // }
+    // jQuery.ajax({
+    //   url: frontendajax.ajaxurl,
+    //   type: 'POST',
+    //   dataType: 'json',
+    //   action: 'process_feedback_form',
+    //   data: formData,
+    //   processData: false,
+    //   contentType: false,
+    //   success: function(response) {
+    //     console.log(response);
+    //   },
+    //   error: function(xhr, status, error) {
+    //     console.log("Ajax request failed: " + status + ", " + error);
+    //   }
+    // });
+
+    jQuery( '[name="submit"]' ).click( function(e) {
+      var data = {
+        action: 'feedback_form',
+        'helpful': document.querySelector('input[name="helpful"]:checked').value,
+        'improvement' : document.querySelector('input[name="improvement"]:checked').value,
+        'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+      };
+      e.preventDefault();
+      jQuery.post( 
+        frontendajax.ajaxurl, 
+          data,                   
+          function( response ) {
+              // ERROR HANDLING
+              console.log(response)
+          }
+      ); 
   });
+  // });
 }

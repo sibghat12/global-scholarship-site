@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="gs-feeback-form-container">
   <form id="gs-feeback-form" action="" method="POST" class="gs-feeback-form">
     <div class="gs-feedback-intro">We have around 4,000 scholarships on our database, and while our team strives in making sure that these scholarships are up to date, we also need your help!</div>
@@ -20,4 +20,44 @@
     </div>
   </form>
 </div>
-
+ -->
+ <div class="gs-feeback-form-container">
+  <form id="gs-feeback-form" action="" method="POST" class="gs-feeback-form">
+    <div class="gs-feedback-intro">We have around 4,000 scholarships on our database, and while our team strives in making sure that these scholarships are up to date, we also need your help!</div>
+    <div class="gs-feedback-form-question">Did you find this page helpful? If not, can you let us know why and how we can improve our page!</div>
+    <div class="gs-feedback-initial-answers">
+      <label class="gs-feedback-radio-label">
+        <input type="radio" name="helpful" value="Yes">
+        <span class="gs-feedback-radio-btn">Yes</span>
+      </label>
+      <label class="gs-feedback-radio-label">
+        <input type="radio" name="helpful" value="No">
+        <span class="gs-feedback-radio-btn">No</span>
+      </label>
+    </div>
+    <div class="step-2" style="display:none;">
+      <div class="gs-feedback-form-question">How can we improve this page?</div>
+      <label class="gs-feedback-radio-label">
+        <input type="radio" name="improvement" value="incorrect_info">
+        <span class="gs-feedback-radio-btn">The scholarship information is incorrect</span>
+      </label>
+      <label class="gs-feedback-radio-label">
+        <input type="radio" name="improvement" value="outdated_info">
+        <span class="gs-feedback-radio-btn">The scholarship details are outdated</span>
+      </label>
+      <label class="gs-feedback-radio-label">
+        <input type="radio" name="improvement" value="not_for_international_students">
+        <span class="gs-feedback-radio-btn">The scholarship is not for international students</span>
+      </label>
+      <label class="gs-feedback-radio-label">
+        <input type="radio" name="improvement" value="other">
+        <span class="gs-feedback-radio-btn">Other</span>
+      </label>
+      <textarea name="other_improvement" rows="5"placeholder="Please specify" style="display:none;"></textarea>
+      <input type="hidden" name="current_scholarship_info" data-scholarship-url="<?php echo get_permalink( get_the_ID() ); ?>" data-scholarship-id="<?php echo get_the_ID(); ?>" data-scholarship-title="<?php echo get_the_title(); ?>">
+    </div>
+    <div class="gs-feedback-form-buttons" style="display:none;">
+      <input type="submit" name="submit" value="Send">
+    </div>
+  </form>
+</div>

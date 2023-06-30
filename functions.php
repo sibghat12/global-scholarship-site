@@ -2712,12 +2712,17 @@ add_action('wp_ajax_nopriv_feedback_form', 'process_feedback_form');
 
 function process_feedback_form() {
   $feedback_data = array(
-    'helpful' => $_POST['yes'] ? 'Yes' : 'No',
+    'helpful' => ($_POST['helpful'] == 'Yes') ? 'Yes' : 'No',
     'improvement' => $_POST['improvement'] ? $_POST['improvement'] : '',
     'other_improvement' => $_POST['other_improvement'] ? $_POST['other_improvement'] : ''
   );
 
   // Process the feedback data here
 
-  wp_send_json_success('Feedback submitted successfully.');
+  wp_send_json_success(array(
+    'data' => $feedback_data,
+    'message' => 'Feedback submitted successfully.'
+  ), 200);
+
+    wp_die();
 }
