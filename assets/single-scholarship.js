@@ -174,6 +174,11 @@ function getFeebackForm() {
         'helpful': document.querySelector('input[name="helpful"]:checked').value,
         'improvement' : document.querySelector('input[name="improvement"]:checked').value,
         'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+        'scholarship_info': {
+          url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
+          id: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-id'),
+          title: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-title'),
+        },
       };
       e.preventDefault();
       jQuery.post( 

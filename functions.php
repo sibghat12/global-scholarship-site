@@ -2714,7 +2714,8 @@ function process_feedback_form() {
   $feedback_data = array(
     'helpful' => ($_POST['helpful'] == 'Yes') ? 'Yes' : 'No',
     'improvement' => $_POST['improvement'] ? $_POST['improvement'] : '',
-    'other_improvement' => $_POST['other_improvement'] ? $_POST['other_improvement'] : ''
+    'other_improvement' => $_POST['other_improvement'] ? $_POST['other_improvement'] : '',
+    'scholarship_info' => $_POST['scholarship_info'] ? $_POST['scholarship_info'] : []
   );
 
   // Process the feedback data here
