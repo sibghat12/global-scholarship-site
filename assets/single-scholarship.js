@@ -113,6 +113,7 @@ function getActiveSection() {
     });
   });
 }
+
 function getFeebackForm() {
   const yesBtn = document.querySelector('input[value="Yes"]');
   const noBtn = document.querySelector('input[value="No"]');
@@ -146,8 +147,15 @@ function getFeebackForm() {
   }
 
     jQuery( '[name="submit"]' ).click( function(e) {
+      // Check if honeypot field is filled in
+      // if (document.querySelector('input[name="gs_email"]').value) {
+      //   // If honeypot field is filled in, prevent form submission
+      //   e.preventDefault();
+      //   return;
+      // }
       var data = {
         action: 'feedback_form',
+        'gs_email': document.querySelector('input[name="gs_email"]').value,
         'helpful': document.querySelector('input[name="helpful"]:checked').value,
         ... ( document.querySelector('input[name="helpful"]:checked').value != 'Yes') && 
         {
@@ -172,5 +180,4 @@ function getFeebackForm() {
           }
       ); 
   });
-  // });
 }

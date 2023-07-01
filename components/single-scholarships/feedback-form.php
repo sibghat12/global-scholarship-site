@@ -1,5 +1,9 @@
  <div class="gs-feeback-form-container">
   <form id="gs-feeback-form" action="" method="POST" class="gs-feeback-form">
+     <div style="display:none;">
+      <label for="gs_email">Email</label>
+      <input type="email" name="gs_email" id="gs_email">
+    </div>
     <div class="gs-feedback-intro">We have around 4,000 scholarships on our database, and while our team strives in making sure that these scholarships are up to date, we also need your help!</div>
     <div class="gs-feedback-form-question">Did you find this page helpful? If not, can you let us know why and how we can improve our page!</div>
     <div class="gs-feedback-initial-answers">
