@@ -2708,3 +2708,33 @@ function unset_url_field(){
 
 // Submit Feeback Form Logic
 include ('submit-feedback.php'); 
+
+// Adding Admin Page for Feedback Form Data Tables
+
+function add_scholarship_admin_page() {
+    add_submenu_page(
+      'edit.php?post_type=scholarships', // parent slug
+      'Scholarship Settings',             // page title
+      'Settings',                         // menu title
+      'manage_options',                   // capability
+      'scholarship-settings',             // menu slug
+      'render_scholarship_settings_page'  // callback function
+    );
+  }
+  add_action( 'admin_menu', 'add_scholarship_admin_page' );
+  
+  function render_scholarship_settings_page() {
+    // Add your custom admin page HTML here
+    include('scholarships-feedback.php');
+  }
+
+
+  function enqueue_scholarship_admin_scripts( $hook_suffix ) {
+    
+    if ( $hook_suffix == 'scholarships_page_scholarship-settings' ) {
+        wp_enqueue_script( 'feeback_bootstrap_javascript',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true );
+
+        wp_enqueue_style('feedback_bootstrap_css',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+    }
+  }
+  add_action( 'admin_enqueue_scripts', 'enqueue_scholarship_admin_scripts' );
