@@ -35,7 +35,7 @@ function display_scholarship_feedback_table()
                   $feedback['improvement'] = 'This Scholarship is not for international Students.';
               } elseif($feedback['improvement'] == 'outdated_info') {
                   $feedback['improvement'] = 'The Information in this Scholarships are outdated, please fix';
-              } else {
+              } elseif($feedback['improvement'] == 'other') {
                   $feedback['improvement'] = 'None of the above here is my comment';
               }
 

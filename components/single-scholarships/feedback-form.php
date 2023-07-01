@@ -37,6 +37,8 @@
       <textarea name="other_improvement" rows="5"placeholder="Please specify" style="display:none;"></textarea>
       <input type="hidden" name="current_scholarship_info" data-scholarship-url="<?php echo get_permalink( get_the_ID() ); ?>" data-scholarship-id="<?php echo get_the_ID(); ?>" data-scholarship-title="<?php echo get_the_title(); ?>" data-scholarship-edit-page-url="<?php echo get_edit_post_link(get_the_ID()); ?>">
     </div>
+    <div class="lds-roller" style="display:none;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <!-- <div class="gs-spinner" style="display:none;"></div> -->
     <div class="gs-feedback-form-buttons" style="display:none;">
       <input type="submit" name="submit" value="Send">
     </div>

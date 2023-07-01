@@ -115,12 +115,17 @@ function getActiveSection() {
 }
 
 function getFeebackForm() {
+  const feedbackFormContainer = document.querySelector('.gs-feeback-form-container');
   const yesBtn = document.querySelector('input[value="Yes"]');
   const noBtn = document.querySelector('input[value="No"]');
   const radioInputs = document.querySelectorAll('input[type="radio"]');
   const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
   const form = document.querySelector('#gs-feeback-form');
+  const spinner = document.querySelector('.lds-roller'); // new line
+
+  const thankYouMessage = document.createElement('p'); // new line
+  thankYouMessage.innerHTML = 'Thank you for your feedback.'; // new line
 
   yesBtn.addEventListener('click', function() {
     buttonsDiv.style.display = "flex";
@@ -165,12 +170,49 @@ function getFeebackForm() {
         'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
       };
       e.preventDefault();
+      
+    // show spinner
+    spinner.style.display = "inline-block";
+
       jQuery.post( 
         frontendajax.ajaxurl, 
           data,                   
           function( response ) {
               // ERROR HANDLING
               console.log(response)
+
+               // hide spinner
+              spinner.style.display = "none";
+              
+              // hide form
+              form.style.display = "none";
+              
+              // show thank you message
+              feedbackFormContainer.appendChild(thankYouMessage);
+
+              
+          // fade in message and container
+          feedbackFormContainer.style.opacity = 0;
+          feedbackFormContainer.style.display = "block";
+          var intervalId = setInterval(function() {
+            var opacity = parseFloat(feedbackFormContainer.style.opacity);
+            if (opacity < 1) {
+              feedbackFormContainer.style.opacity = opacity + 0.1;
+            } else {
+              clearInterval(intervalId);
+              setTimeout(function() {
+                var intervalId2 = setInterval(function() {
+                  var opacity = parseFloat(feedbackFormContainer.style.opacity);
+                  if (opacity > 0) {
+                    feedbackFormContainer.style.opacity = opacity - 0.1;
+                  } else {
+                    clearInterval(intervalId2);
+                    feedbackFormContainer.style.display = "none";
+                  }
+                }, 50);
+              }, 10000);
+            }
+          }, 50);
           }
       ); 
   });
