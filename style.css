@@ -3504,6 +3504,21 @@ padding-left:0px !important;
     display: block;
 }
 
+/* GS Scholarship Page Feedback Form */
+
+form#gs-feeback-form {
+    width: 100%;
+}
+
+.gs-feedback-form-buttons {
+    justify-content: flex-end;
+}
+.gs-feedback-initial-answers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
 
 .gs-feedback-radio-label {
     display: inline-block;
@@ -3512,15 +3527,20 @@ padding-left:0px !important;
   
   .gs-feedback-radio-btn {
     display: inline-block;
-    padding: 6px 12px;
+    text-align: center;
+    padding: 16px 22px;
     background-color: #eee;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    min-width: 120px;
+  }
+  .step-2 .gs-feedback-radio-btn {
+    background-color: transparent;
   }
   
-  .gs-feedback-radio-btn:hover {
+  .gs-feedback-initial-answers .gs-feedback-radio-btn:hover {
     background-color: #ddd;
   }
   
@@ -3528,15 +3548,25 @@ padding-left:0px !important;
     background-color: #ccc;
   }
   
-  input[type="radio"] {
+  input[name="helpful"] {
     display: none;
   }
   
-  input[type="radio"]:checked + .gs-feedback-radio-btn {
+  input[name="helpful"]:checked + .gs-feedback-radio-btn {
     background-color: #007bff;
     color: #fff;
   }
   
-  input[type="radio"]:checked + .gs-feedback-radio-btn:focus, input[type="radio"]:checked + .gs-feedback-radio-btn:active {
+  input[name="helpful"]:checked + .gs-feedback-radio-btn:focus, input[name="helpful"]:checked + .gs-feedback-radio-btn:active {
     background-color: #007bff;
   }
+
+  input[type="submit"] {
+    border: none;
+    padding: 16px 60px;
+    background: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: -1px 3px 2px #5555554f;
+}

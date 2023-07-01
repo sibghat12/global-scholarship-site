@@ -123,12 +123,12 @@ function getFeebackForm() {
   const form = document.querySelector('#gs-feeback-form');
 
   yesBtn.addEventListener('click', function() {
-    buttonsDiv.style.display = "block";
+    buttonsDiv.style.display = "flex";
     document.querySelector('.step-2').style.display = "none";
   });
 
   noBtn.addEventListener('click', function() {
-    buttonsDiv.style.display = "block";
+    buttonsDiv.style.display = "flex";
     document.querySelector('.step-2').style.display = "block";
     for (var i = 0; i < radioInputs.length; i++) {
       radioInputs[i].parentElement.style.display = "block";
@@ -147,12 +147,6 @@ function getFeebackForm() {
   }
 
     jQuery( '[name="submit"]' ).click( function(e) {
-      // Check if honeypot field is filled in
-      // if (document.querySelector('input[name="gs_email"]').value) {
-      //   // If honeypot field is filled in, prevent form submission
-      //   e.preventDefault();
-      //   return;
-      // }
       var data = {
         action: 'feedback_form',
         'gs_email': document.querySelector('input[name="gs_email"]').value,

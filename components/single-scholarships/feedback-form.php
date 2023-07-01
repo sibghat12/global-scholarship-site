@@ -1,5 +1,6 @@
  <div class="gs-feeback-form-container">
-  <form id="gs-feeback-form" action="" method="POST" class="gs-feeback-form">
+   <form id="gs-feeback-form" action="" method="POST" class="gs-feeback-form">
+    <h2>Was this page helpful? </h2>
      <div style="display:none;">
       <label for="gs_email">Email</label>
       <input type="email" name="gs_email" id="gs_email">
@@ -17,7 +18,6 @@
       </label>
     </div>
     <div class="step-2" style="display:none;">
-      <div class="gs-feedback-form-question">How can we improve this page?</div>
       <label class="gs-feedback-radio-label">
         <input type="radio" name="improvement" value="incorrect_info">
         <span class="gs-feedback-radio-btn">The scholarship information is incorrect</span>
