@@ -145,40 +145,22 @@ function getFeebackForm() {
     });
   }
 
-  // form.addEventListener('submit', function(event) {
-  //   event.preventDefault();
-    // var formData = new FormData(form);
-    
-  // for (var [key, value] of formData.entries()) { 
-  //   console.log(key, value);
-  // }
-    // jQuery.ajax({
-    //   url: frontendajax.ajaxurl,
-    //   type: 'POST',
-    //   dataType: 'json',
-    //   action: 'process_feedback_form',
-    //   data: formData,
-    //   processData: false,
-    //   contentType: false,
-    //   success: function(response) {
-    //     console.log(response);
-    //   },
-    //   error: function(xhr, status, error) {
-    //     console.log("Ajax request failed: " + status + ", " + error);
-    //   }
-    // });
-
     jQuery( '[name="submit"]' ).click( function(e) {
       var data = {
         action: 'feedback_form',
         'helpful': document.querySelector('input[name="helpful"]:checked').value,
-        'improvement' : document.querySelector('input[name="improvement"]:checked').value,
-        'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+        ... ( document.querySelector('input[name="helpful"]:checked').value != 'Yes') && 
+        {
+          'improvement' : document.querySelector('input[name="improvement"]:checked').value,
+          'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+        },
         'scholarship_info': {
           url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
+          edit_url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-edit-page-url'),
           id: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-id'),
           title: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-title'),
         },
+        'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
       };
       e.preventDefault();
       jQuery.post( 
