@@ -3512,6 +3512,7 @@ form#gs-feeback-form {
 
 .gs-feedback-form-buttons {
     justify-content: flex-end;
+    cursor: pointer;
 }
 .gs-feedback-initial-answers {
     display: flex;

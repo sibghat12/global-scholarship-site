@@ -1,18 +1,20 @@
 <?php
-function display_scholarship_feedback_table() {
+
+function display_scholarship_feedback_table()
+{
     global $wpdb;
     $table_name = $wpdb->prefix . 'gs_scholarships_feedback';
-     
-  // Check if a feedback ID has been submitted for deletion
-  if ( isset( $_GET['delete_feedback'] ) ) {
-    $feedback_id = intval( $_GET['delete_feedback'] );
-    $wpdb->delete( $table_name, array( 'id' => $feedback_id ) );
-  }
+
+    // Check if a feedback ID has been submitted for deletion
+    if (isset($_GET['delete_feedback'])) {
+        $feedback_id = intval($_GET['delete_feedback']);
+        $wpdb->delete($table_name, array( 'id' => $feedback_id ));
+    }
     $feedback_data = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC", ARRAY_A);
-    
+
     ?>
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table id="gs-feedback-table" class="gs-feedback-table table table-striped">
         <thead>
           <tr>
             <th>ID</th>
@@ -26,23 +28,23 @@ function display_scholarship_feedback_table() {
           </tr>
         </thead>
         <tbody>
-          <?php foreach ( $feedback_data as $feedback ) {
-            if( $feedback['improvement'] == 'incorrect_info' ) {
-                $feedback['improvement'] = 'The Information in This Scholarship are incorrect!';
-            } elseif( $feedback['improvement'] == 'not_for_international_students' ) {
-                $feedback['improvement'] = 'This Scholarship is not for international Students.';
-            } elseif( $feedback['improvement'] == 'outdated_info' ) {
-                $feedback['improvement'] = 'The Information in this Scholarships are outdated, please fix';
-            } else {
-                $feedback['improvement'] = 'None of the above here is my comment';
-            }
+          <?php foreach ($feedback_data as $feedback) {
+              if($feedback['improvement'] == 'incorrect_info') {
+                  $feedback['improvement'] = 'The Information in This Scholarship are incorrect!';
+              } elseif($feedback['improvement'] == 'not_for_international_students') {
+                  $feedback['improvement'] = 'This Scholarship is not for international Students.';
+              } elseif($feedback['improvement'] == 'outdated_info') {
+                  $feedback['improvement'] = 'The Information in this Scholarships are outdated, please fix';
+              } else {
+                  $feedback['improvement'] = 'None of the above here is my comment';
+              }
 
-            if($feedback['other_improvement'] != '' ) {
-                $feedback['other_improvement'] = $feedback['other_improvement'];
-            }
-            
-            
-            ?>
+              if($feedback['other_improvement'] != '') {
+                  $feedback['other_improvement'] = $feedback['other_improvement'];
+              }
+
+
+              ?>
             <tr>
               <td><?php echo $feedback['id']; ?></td>
               <td><?php echo $feedback['helpful']; ?></td>
@@ -52,7 +54,7 @@ function display_scholarship_feedback_table() {
               <td><?php echo $feedback['scholarship_title']; ?></td>
               <td><?php echo $feedback['date']; ?></td>
               <td>
-              <a href="<?php echo add_query_arg( 'delete_feedback', $feedback['id'] ); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this feedback?')">Delete</a>
+              <a href="<?php echo add_query_arg('delete_feedback', $feedback['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this feedback?')">Delete</a>
                 </td>
             </tr>
           <?php } ?>
@@ -60,8 +62,8 @@ function display_scholarship_feedback_table() {
       </table>
     </div>
     <?php
-  }
-  
+}
+
 ?>
 <div class="wrap">
 
