@@ -1439,14 +1439,43 @@ $tier = "Tier" . $countryList[$location];
 
 
 
+// //Submitting Course Form
+// function course_form_submit() {
+
+//     $newURL = site_url()."/opencourses/?subject=" . $_POST["subject"] . "&degrees=" .$_POST["degree"] . "&country=" .$_POST["country"];
+
+//     wp_redirect( $newURL );
+//     exit;
+
+// }
+
+// add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
+// add_action( 'admin_post_course_form', 'course_form_submit' );
+
+
 //Submitting Course Form
 function course_form_submit() {
+    $newURL = site_url() . "/opencourses";
+    $query_args = array();
 
-    $newURL = site_url()."/opencourses/?subject=" . $_POST["subject"] . "&degrees=" .$_POST["degree"] . "&country=" .$_POST["country"];
+    if (!empty($_POST["subject"])) {
+        $query_args["subject"] = $_POST["subject"];
+    }
 
-    wp_redirect( $newURL );
+    if (!empty($_POST["degree"])) {
+        $query_args["degrees"] = $_POST["degree"];
+    }
+
+    if (!empty($_POST["country"])) {
+        $query_args["country"] = $_POST["country"];
+    }
+
+    if (!empty($query_args)) {
+        $newURL .= "?" . build_query($query_args);
+    }
+
+    wp_redirect($newURL);
     exit;
-
 }
 
 add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
