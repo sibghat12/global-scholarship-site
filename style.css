@@ -71,7 +71,7 @@ Text Domain:  Avada
     /*Responsive starting from here*/
     
 @media only screen and (max-width: 870px){
-    .filter-wrapper{
+    /* .filter-wrapper{
         display: block;
         width: 100%;
     }
@@ -85,7 +85,7 @@ Text Domain:  Avada
     .filter-boxes-wrap{
         display: grid;
         justify-content: center;
-    }
+    } */
     .category-filter, .region-filter, .funding-type-filter, .deadline-filter, .opening-date-filter{
         margin: 6px 0;
     }
@@ -648,46 +648,80 @@ text-align:center !important;
     margin: auto;
     font-weight:bold;
 }
+/** NEW Styling for Filters **/
 
-@media only screen and (max-width: 1100px)  {
+.courses-filter-search {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.course-filter .filter-btn button {
+    height: 100%;
+}
+
+.filter-wrapper {
+    width: 84% !important;
+}
+/** END NEW Styling for Filters **/
+
+@media only screen and (max-width: 768px)  {
     
+    .filter-wrapper {
+        width: 100% !important;
+    }
+
     .course-filter .filter-box{
         width: 100%;
     }
-    
+
+    .courses-filter-search .filter-box.subject-filter {
+        display: none;
+    }
+    .courses-filter-search .filter-box.country-filter {
+        display: none;
+    }
+
     .course-filter .filter-title {
-        width: 100%;
+        width: 45%;
         text-align: center;
-        font-size:1.4rem;
+        font-size:1rem;
         font-weight:bold;
     }
     
     .course-filter .filter-boxes-wrap{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
+        display: flex;
+        /* grid-template-columns: 1fr; */
+        /* grid-gap: 10px; */
         width:75%;
         margin:auto;
     }
     
     .course-filter .filter-wrapper{
-        display:block;
-    }
-    .course-filter .filter-btn button {
-        display:block;
-        margin:auto !important;
-                padding:13px 50px !important;
-        font-size: 1.1rem
-
+        display: flex;
     }
     
     .course-filter .filter-btn {
-        margin-top: 15px;
-    }   
+        margin-left: 6px;
+    }
 
+    .course-filter .filter-btn button {
+        display:block;
+        margin:auto !important;
+        padding:13px 20px !important;
+        height: 100%;
+    }
+    
+    .filter-box{
+        max-width: 100%;
+    }
+
+    .course-filter .filter-box select {
+        max-width: 60vw;
+    }
    
-
-
 }
 
 @media only screen and (max-width: 700px){
@@ -701,6 +735,46 @@ text-align:center !important;
     }
 }
 
+@media only screen and (max-width: 480px){
+    .course-filter .filter-wrapper {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+
+    .course-filter .filter-boxes-wrap {
+        display: flex;
+    }
+
+    .course-filter .filter-title {
+        font-size: 13px;
+    }
+
+    .course-filter .filter-box {
+        min-width: 0px;
+        width: 55%;
+        margin-right: 10px;
+    }
+    .course-filter .filter-box select {
+        max-width: 40vw;
+    }
+
+    .course-filter .filter-btn button {
+        display: block;
+        margin: auto !important;
+        padding: 3px 20px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .course-filter .filter-box select {
+        font-size: 13px;
+        padding: 0px 5px;
+        height: 30px;
+    }
+}
 
 .card-wide{
     
@@ -1515,18 +1589,6 @@ display: flex !important;
     margin-top:0px !important;
 }
 }
-
-
-@media screen and (max-width: 1420px){
-#desktopSticky .custom-search {
-  display: block !important;
-} }
-@media screen and (max-width: 1100px) {
-#desktopSticky .custom-search {
-  display: none !important;
-} 
-}
-
 
 
 .single-institution .post-content {

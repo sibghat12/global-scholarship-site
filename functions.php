@@ -1488,9 +1488,8 @@ add_shortcode('courseButton','course_shortcode');
 
 function course_filter_shortcode(){
     
-    $html = '
-    <aside>            
-<div class="course-filter"> 
+    $html = '<aside>
+    <div class="course-filter"> 
     
     <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
 
@@ -1548,8 +1547,7 @@ function course_filter_shortcode(){
     </div>
 
     </form>
-</div>
-</aside>';
+</div></aside>';
         
     return $html;
 }
@@ -1557,48 +1555,48 @@ function course_filter_shortcode(){
 add_shortcode('courseFilter','course_filter_shortcode');
 
 
-function course_nav_shortcode(){
+// function course_nav_shortcode(){
     
-    $html = '
-    <aside>
-<div class="course-nav"> 
+//     $html = '
+//     <aside>
+// <div class="course-nav"> 
   
-<div class="course-filter"> 
+// <div class="course-filter"> 
     
-    <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
+//     <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
 
-    <input type="hidden" name="action" value="course_form">
-    <div class="filter-boxes-wrap">
+//     <input type="hidden" name="action" value="course_form">
+//     <div class="filter-boxes-wrap">
         
-        <div class="filter-title">
-            Search Courses:
-        </div>        
+//         <div class="filter-title">
+//             Search Courses:
+//         </div>        
 
-        <div class="filter-box subject-filter">
-            <select name="degree" >
-            <option value="">Any Degree</option> 
-            <option value="undergraduate">Undergraduate</option> 
-            <option value="masters">Masters</option> 
-            <option value="mba" >MBA</option> 
+//         <div class="filter-box subject-filter">
+//             <select name="degree" >
+//             <option value="">Any Degree</option> 
+//             <option value="undergraduate">Undergraduate</option> 
+//             <option value="masters">Masters</option> 
+//             <option value="mba" >MBA</option> 
 
-            </select>
+//             </select>
 
-        </div>
+//         </div>
         
-    </div>
+//     </div>
 
-    <div class="filter-btn">
-    <button type="submit">Search</button>
+//     <div class="filter-btn">
+//     <button type="submit">Search</button>
 
-    </div>
+//     </div>
 
-    </form>
-</div>
-</div>
-</aside>';
+//     </form>
+// </div>
+// </div>
+// </aside>';
         
-    return $html;
-}
+//     return $html;
+// }
 
 /*
         <div class="filter-box subject-filter">
@@ -1616,7 +1614,7 @@ function course_nav_shortcode(){
         </div>
 */
 
-add_shortcode('coursenav','course_nav_shortcode');
+// add_shortcode('coursenav','course_nav_shortcode');
 
 function update_rankings_post_meta(){
   
