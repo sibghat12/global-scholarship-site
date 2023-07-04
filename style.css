@@ -765,6 +765,11 @@ text-align:center !important;
         max-width: 40vw;
     }
 
+    
+    .toggle-filter .course-filter .filter-boxes-wrap .filter-box {
+        width: 100%;
+    }
+
     .course-filter .filter-btn button {
         display:block;
         margin: auto !important;
