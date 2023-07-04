@@ -1428,8 +1428,6 @@ $tier = "Tier" . $countryList[$location];
             array_push($ids, $db_query["post_id"]); 
         };
     }
-
-
     return $ids;
 
 
@@ -1729,6 +1727,8 @@ function my_ajax_handler() {
    $offset = $_POST["offset"];
    $ppp = $_POST["ppp"];
    $page_count = $_POST['page_count'];
+
+   $offset = $offset - 1;
   
    $degrees = stripslashes($_POST['degrees']);
    $degrees_array = explode(',', $degrees); 
@@ -1750,15 +1750,26 @@ function my_ajax_handler() {
 
    $institution_array = $_POST['institutions'];
    $institution_array = explode(',', $institution_array);  
-  
    
+$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+$country_list = $published_countries['choices'];
+  
+    if($locations_array[0]){
+    if(!in_array($locations_array[0], $country_list)) {
+        echo '<p style="font-size:20px;color:black;"> Unfortunately,
+     No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
+      die();
+    }
+ }
   
    $loop_institute = get_institutions_location($locations_array[0]);
    $institute_ids = $loop_institute->get_posts();
-   
+ 
 
 
     if(empty($institute_ids)){
+        
       echo '<p style="font-size:20px;color:black;"> Unfortunately, No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
       die();
      }
@@ -1967,6 +1978,7 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
         'post_status' => 'publish',
         'posts_per_page' => $ppp,
         'offset' => $offset,
+        'fields' => 'ids', // Only return post IDs
     );
     
 
@@ -2088,7 +2100,8 @@ if($type_array[0]) {
         $start = 1;
     }
 
-     
+    
+
     $modulus =  fmod($loop->found_posts , $ppp);
     $page_addition = 0;
     if($modulus > 0 ){
@@ -2103,11 +2116,6 @@ if($type_array[0]) {
  
  $current_date = date("F d,Y");
     echo "<span class='ss' style='font-size:16px;padding-bottom:10px;padding-left:14px;'> | Results:  <b> " . $start .  "-" . $current  . " of " . $loop->found_posts  . " </b></span> <br>";
-
-
-
-   
-
 
     $html = "";
         

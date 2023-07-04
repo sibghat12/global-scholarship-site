@@ -145,7 +145,6 @@ function get_institution_by_idd($id) {
 }
 
 
-
 function get_scholarship_by_id($id) {
    
     $args = array(
@@ -746,6 +745,7 @@ function get_current_deadlines_institutions ($degree, $institution_id){
             return $date;
         }
     }
+
 
 
     foreach($accept_year_application as $item){
@@ -2030,8 +2030,11 @@ function custom_rankmath_title($title) {
         $scholarship_type_array = ['full-funding', 'full-tuition', 'partial-funding'];
         $scholarship_details = acf_get_fields('group_62ca6e3cc910c');
 
-         //$contry_array =  get_cities_of_published_institute();
-$contry_array = array();
+$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+       // Get fields by name.
+$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+$contry_array = $published_countries['choices'];
+        
         $location_array = array();
         foreach ($contry_array as $value) {
             $location_array[$value] = $value;
@@ -2240,7 +2243,7 @@ $contry_array = array();
              'post_type' => 'scholarships',
         'post_status' => 'publish',
      
-     'no_found_rows' => false, 
+     
      'update_post_meta_cache' => false,
      'update_post_term_cache' => false,
      'cache_results'          => false,
@@ -2334,6 +2337,7 @@ foreach ($url_parts as $part) {
 
     return $title;
 }
+
 add_filter('rank_math/frontend/title', 'custom_rankmath_title');
 
 
@@ -2342,32 +2346,23 @@ add_filter('rank_math/frontend/title', 'custom_rankmath_title');
 
 
 function get_published_scholarships_count() {
-    // Try to get the count from the transient cache.
-    $count = get_transient('published_scholarships_count');
+   $args = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    
+    'update_post_meta_cache' => false,
+    'update_post_term_cache' => false,
+    'cache_results' => false,
+    'fields' => 'ids',
+);
 
-    if ($count === false) {
-        $args = array(
-            'post_type' => 'scholarships',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'no_found_rows' => true,
-            'update_post_meta_cache' => false,
-            'update_post_term_cache' => false,
-            'cache_results' => false,
-            'fields' => 'ids',
-        );
+$scholarships_query = new WP_Query($args);
 
-        $scholarships_query = new WP_Query($args);
+// Get the count from the query.
+$count = $scholarships_query->found_posts;
 
-        // Get the count from the query.
-        $count = $scholarships_query->found_posts;
-
-        // Store the count in a transient, cache it for 1 hour.
-        // You may adjust the caching time to a suitable value for your site.
-        set_transient('published_scholarships_count', $count, HOUR_IN_SECONDS);
-    }
-
-    return $count;
+return $count;
 }
 
 
