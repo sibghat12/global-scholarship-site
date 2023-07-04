@@ -10,9 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit( 'Direct script access denied.' );
 }
 ?>
-
-
-
     <style>
     table {
         width: 100%;
@@ -38,16 +35,12 @@ if ( ! defined( 'ABSPATH' ) ) {
         background: gray;
     }
 
-   
-
-
-
-
-
-li {
+   li {
     font-size:15px !important;
     line-height: 18px !important;
 }
+
+
 
 #example_length {
     margin-bottom:20px;
@@ -85,7 +78,18 @@ li {
 .scholarships-table tr:last-child {
     border-bottom: none !important;
 }
+
+
+.dataTables_filter {
+    margin-bottom:30px !important;
+}
+
+
+
+
 </style>
+
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -168,7 +172,7 @@ $institution_scholarships = array();
 $institution_count = 0;
 
 foreach ($scholarships_ids as $scholarship_id) {
-    if ($institution_count >= 20) break; // Stop loop if institution count is 20
+    //if ($institution_count >= 20) break; // Stop loop if institution count is 20
 
     $institution_id = get_field('scholarship_institution', $scholarship_id);
     $institution = get_post($institution_id);
@@ -321,10 +325,11 @@ wp_reset_postdata();
 
 <script type="text/javascript">
     jQuery(document).ready(function($) {
-        $('#example').DataTable({
-            "pageLength": 10,
-            "lengthChange": false
-        });
+        $('#example').DataTable();
+
+
+
+
     });
 </script>
 

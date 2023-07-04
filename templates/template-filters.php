@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php get_header(); 
 
 
-$scholarships_count =  get_published_scholarships_count();
+$scholarships_count = get_published_scholarships_count();
 
     // $params = get_query_info();
 
@@ -110,12 +110,9 @@ $scholarships_count =  get_published_scholarships_count();
    //  }
 
     $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-
     $degrees_array = $scholarship_details[1]['choices'];
     $country_array = $scholarship_details[13]['choices'];
     $subject_array = $scholarship_details[12]['choices'];
-
-    print_r($degrees_array);
     
     // $location = $location_value;
     // $location = str_replace(' ', '-', $location);
@@ -123,12 +120,12 @@ $scholarships_count =  get_published_scholarships_count();
     // $subject = strtolower($subject);
     // $subject = str_replace(' ', '-', $subject);
 
- 
-   $country_list_for_url = [   'Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States']; // get_cities_of_published_institute();
-    
 
-   $country_list = [   'Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States'];
-
+  // Get fields by name.
+$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+$country_list_for_url = $published_countries['choices'];
+$country_list = ['Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States'];
+     // 
 
 ?>  
 
@@ -148,7 +145,7 @@ $scholarships_count =  get_published_scholarships_count();
 
 
 <div class="fusion-row f" style="margin-top: 30px;width:80% ;">
-	<div class="sticky-wrapper"  style="margin:auto !important;">
+  <div class="sticky-wrapper"  style="margin:auto !important;">
 <div class="mobile-sticky-div">
 <div class="card-section-mobile">
 <h2 class="mobile-title" style='font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'>   <?php echo $scholarships_count; ?> Scholarships for International Students </h2>
@@ -193,7 +190,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
 <p style="font-weight:600;margin-bottom:0px !important;"> Locations: </p>
   <select class="selectpicker check-class location_checkbox" name="location_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
         <option value="">  All Locations </option>
-       <?php foreach ($country_list as  $country) { ?>
+       <?php foreach ($country_list as $key => $country) { ?>
         <option  value="<?php if ($country != "All Nationalities"){ echo $country; } ?>"> <?php echo  $country ?> </option>
         <?php  } ?>
  </select>
@@ -246,19 +243,23 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
         'post_type' => 'institution',
         'posts_per_page' => -1,
         'post_status' => 'publish',
+        'fields' => 'ids',
     );
-    $institutes = new WP_Query($args); ?>
+    $institutes = new WP_Query($args);
+    $institute_ids = $institutes->posts; // Get all post IDs
 
-<p style="font-weight:600;margin-bottom:0px !important;"> Institutions: </p>
-  <select class="selectpicker check-class institution_checkbox" name="institution_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
-        <option value="">  All Institutions </option>
-       <?php 
-        while ($institutes->have_posts() ) {
-                  $institutes->the_post();
-                  $institute_id = $post->ID; ?>
-        <option  value="<?php echo $institute_id; ?>"> <?php the_title(); ?> </option>
-        <?php  } ?>
- </select>
+    echo '<p style="font-weight:600;margin-bottom:0px !important;"> Institutions: </p>
+      <select class="selectpicker check-class institution_checkbox" name="institution_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+            <option value="">  All Institutions </option>';
+
+    // Loop through each post ID and get the title
+    foreach ($institute_ids as $institute_id) {
+        $title = get_the_title($institute_id);
+        echo "<option  value='{$institute_id}'> {$title} </option>";
+    }
+    
+    echo '</select>';
+?>
 
 </div>
 
@@ -349,13 +350,6 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-
-
-
-
-
-
-
 
 function updatePrevPageLink() {
   var currentURL = window.location.href;
@@ -465,25 +459,19 @@ var ppp = 20;  // Post per page
 var page = 1;
 
 $(document).ready(function(){
-
 reload_data();
-
 });
 
 function reload_data(){
-
 $('.prev-page').css("display" , "none");
 $('.next-page').css("display" , "none");
-
 $('#preloader').css("display" , "block");
 $('.card-section').css("display" , "none");
 
 
-
 var degree_label_array = ['masters' , 'bachelors' , 'phd'];
-
-var currently_open_label_array = ['open' , 'one-month' , 'two-month' , 'three-month' , 'four-month' , 'five-month' , 'six-month' , 'twelve-month'];
-
+var currently_open_label_array = ['open' , 'one-month' , 'two-month' , 'three-month' , 
+'four-month' , 'five-month' , 'six-month' , 'twelve-month'];
 
 var subject_php_array = <?php echo json_encode($subject_array); ?>;
 // Converting JS object to an array
@@ -497,25 +485,16 @@ var subject_php_array = <?php echo json_encode($subject_array); ?>;
 //         return [value];
 // });
 
-
-
 var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
 // Converting JS object to an array
     var location_label_array = $.map(location_label_array, function(value, index){
         return [value];
 });
 
-
-
-
-
-
 var scholarship_type_label_array = ['Full Funding' , 'Full Tuition' , 'Partial Funding'];
 
 
 pathname_string = window.location.pathname;
-
-
 
 var result = pathname_string.substring(1, pathname_string.length-1);
 
@@ -533,11 +512,9 @@ for (let i = 0; i < pathArray.length; i++) {
     break;
   }
 }
-
 console.log("page number" + current_page_number);
 
 // Get Data from The URL Pathname and filter records accordingly.  
-
 // Degress: Get degree name from the url path
 var degree_value = "";
 for (let i = 0; i < pathArray.length; i++) {
@@ -611,6 +588,7 @@ subject_value = subject_value.replace(/-/g, ' ');
     return letter.toUpperCase();
 });
     
+console.log("Ghaffar:" + location_value);
 
 
 // Nationalities: Get Nationality from the url path
@@ -629,9 +607,6 @@ subject_value = subject_value.replace(/-/g, ' ');
 //     return letter.toUpperCase();
 // });
 
-
-
-
 if(degree_value=="masters"){
     degree_value = "Master's";
 }if(degree_value=="bachelors"){
@@ -643,7 +618,6 @@ if(degree_value=="masters"){
 var formData = new FormData;
 
 if(currenty_open_array){
-	    // Call the function and pass the selector class name and value
 setSelectedValue('.application_checkbox', currenty_open_array);
     var open_array = new Array();
     open_array.push(currenty_open_array);
@@ -651,7 +625,6 @@ setSelectedValue('.application_checkbox', currenty_open_array);
 }
 
 if(degree_value){
-	    // Call the function and pass the selector class name and value
 setSelectedValue('.degree_checkbox', degree_value);
     var degreeArr = new Array();
     degreeArr.push(degree_value);
@@ -661,10 +634,7 @@ setSelectedValue('.degree_checkbox', degree_value);
 
 
 if(subject_value){
-
-    // Call the function and pass the selector class name and value
-setSelectedValue('.subject_checkbox', subject_value);
-
+  setSelectedValue('.subject_checkbox', subject_value);
    var subjectArr = new Array();
    subjectArr.push(subject_value);
    formData.append("subjects" , subjectArr);
@@ -672,11 +642,7 @@ setSelectedValue('.subject_checkbox', subject_value);
 
 
 if(location_value){
-
-// Call the function and pass the selector class name and value
 setSelectedValue('.location_checkbox', location_value);
-
-	console.log("location_value " + location_value);
     var locationArr = new Array();
    locationArr.push(location_value);
    formData.append("locations" , location_value);
@@ -684,7 +650,6 @@ setSelectedValue('.location_checkbox', location_value);
 
 
 if(type_value){
-	// Call the function and pass the selector class name and value
 setSelectedValue('.scholarship_type', type_value);
 var typeArr = new Array(); 
   typeArr.push(type_value);
@@ -706,22 +671,21 @@ if(page===1){
 formData.append("page_count" , page);
 formData.append("ppp" , ppp);
 formData.append("checkk" , true);
-console.log("results");
+
 $.ajax({
     url : link,
     data: formData, 
     processData: false,
     contentType: false,
     type : 'post',
-    success:function(response){
+      success:function(response){
+ 
 
-          if (response.includes('No Scholarships Available')) {
-      window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
-    } else {
-         console.log(response);
 
-      
-
+    if (response.includes('No Scholarships Available')) {
+  window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
+}  else {
+        
          $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
         $('.card-section').css("display" , "block");
@@ -731,7 +695,9 @@ $.ajax({
 
         show_pre_or_not();
         var title_text = $('.title-textt').text();
-       
+        
+        console.log("Ismail" + title_text);
+
          $('.next-page').show();
           $('.temp').hide();
            var  spanElements = $('.ss');
@@ -744,31 +710,53 @@ $.ajax({
     targetDiv.append(content); // Add a line break between each content
   });
 
-          
-
+  if (response.includes('Unfortunately, we don’t keep track of PhD deadlines since they vary a lot by department.')) {
+   $('#more_posts').hide();
+   $('.next-page').hide();
+    }
+    
     $('.mobile-title').text(title_text);
     var numberOnly = parseInt(title_text.match(/\d+/));
+          
+         let page_number = Math.ceil(numberOnly / 20);
+
+         console.log("page_number" + page_number + "  - Page:" + page );
          
+        if(page_number == page || page_number < page) {
+            console.log("shamima");
+            $('.next-page').hide();
+            $('#more_posts').hide();
+          }
+         
+          
+        
+           if(numberOnly <= 20){
+              console.log("dd+ayaan");
+              $('#more_posts').hide();
+              $('.desktop_page_count').hide();
+              $('.mobile_page_count').hide();
+            }else {
+                
+            }
+
+
 
            if (is_numeric(numberOnly)) { 
-            
+              if (numberOnly==0) {
+              $('#more_posts').hide();
+              $('.next-page').hide();
+              }
             }else {
              $('#more_posts').hide();
               $('.next-page').hide();
            }
 
-      
-            if(numberOnly <= 20){
-               $('.next-page').show();
-              $('#more_posts').hide();
-              $('.desktop_page_count').hide();
-            }else {
-                
-            }
+
+
 
     $('#show_number').text(numberOnly);
-
-    
+     
+    document.title = title_text;
     document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
           el.setAttribute("content", title_text);
           page++;
@@ -781,12 +769,6 @@ $.ajax({
 }
 
 
-
-
-
-
-
-
 // Filter Based on the Input Change
 
 var ppp = 20;  // Post per page
@@ -797,10 +779,6 @@ $('select.check-class').change(function() {
  page = 1; // What page we are on.
 
  console.log(page);
-
-
-
-
 
  $("#more_posts").attr("disabled",true);
 
@@ -932,7 +910,7 @@ $.ajax({
     processData: false,
     contentType: false,
     type : 'post',
-    success:function(response){
+   success:function(response){
        
         $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
@@ -948,6 +926,17 @@ $.ajax({
             $('.mobile-title').text(title_text);
             
             var numberOnly = parseInt(title_text.match(/\d+/));
+
+       let page_number = Math.ceil(numberOnly / 20);
+
+         console.log("page_number" + page_number + "  - Page:" + page );
+         
+         if(page_number == page || page_number < page) {
+            console.log("shamima");
+            $('.next-page').hide();
+            $('#more_posts').hide();
+          }
+
             $('#show_number').text(numberOnly);
             
             if(numberOnly <= 20){
@@ -956,12 +945,17 @@ $.ajax({
               $('.mobile_page_count').hide();
             }
             
-
-
+           page_number = parseInt(numberOnly / 20);
+          
+          if(page_number == page) {
+            console.log("shamima");
+            $('.next-page').hide();
+           }
+            
 
             $('.temp').hide();
              var  spanElements = $('.ss');
-         var targetDiv = $('#sp');
+            var targetDiv = $('#sp');
 
         targetDiv.empty();
 
@@ -978,6 +972,12 @@ $.ajax({
     // } else {
     //   filterPanel.style.display = 'block';
     // }
+       
+    if (response.includes('Unfortunately')) {
+      console.log("ayaan");
+   $('#more_posts').hide();
+   $('.next-page').hide();
+    }
         
     document.title = title_text;
     document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
@@ -1095,10 +1095,10 @@ function changeurl(url, title ) {
 <script type="text/javascript">
     
     var title_text = $('.title-textt').text();
-    //sibi document.title = title_text;
-    // //sibi document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
-    //       el.setAttribute("content", title_text);
-    // });   
+    //document.title = title_text;
+    document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
+          el.setAttribute("content", title_text);
+    });   
    
 </script>
 
@@ -1244,8 +1244,6 @@ typeArr = typeArr.toLowerCase();
   
 pathname_string = window.location.pathname;
 
-
-
 var updatedString = $.trim(pathname_string.replace("/scholarship-search", ""));
 console.log("sibi+ " + updatedString);
 
@@ -1290,16 +1288,42 @@ console.log(updatedUrl);
          
           $('.mobile-title').text(title_text);
           var numberOnly = parseInt(title_text.match(/\d+/));
-          
-          console.log("sibi nuber" + numberOnly);
 
-          if(numberOnly <= 20) {
-          	 
+            
+            let page_number = Math.ceil(numberOnly / 20);
+
+         console.log("page_number" + page_number + "  - Page:" + page );
+         page = page -1 ;
+          if(page_number == page || page_number < page) {
+            console.log("shamima");
+            $('.next-page').hide();
+            $('#more_posts').hide();
+          }
+           page= page+1;
+
+
+           console.log("Page" + page);
+         
+
+           if (is_numeric(numberOnly)) { 
+              if (numberOnly==0) {
+              $('#more_posts').hide();
+              $('.next-page').hide();
+              }
+            }else {
+            
+           }
+
+      
+            if(numberOnly <= 20){
               $('#more_posts').hide();
               $('.desktop_page_count').hide();
               $('.mobile_page_count').hide();
-            
-          }
+            }else {
+                
+            }
+
+
 
 
           $('#show_number').text(numberOnly);
@@ -1307,8 +1331,7 @@ console.log(updatedUrl);
          var  spanElements = $('.ss');
          var targetDiv = $('#sp');
 
-targetDiv.empty();
-
+  targetDiv.empty();
   spanElements.each((index, element) => {
     const content = $(element).html();
     targetDiv.append(content + '<br>'); // Add a line break between each content
@@ -1323,10 +1346,10 @@ targetDiv.empty();
     //   filterPanel.style.display = 'block';
     // }
 
-     document.title = title_text + " Page" + page " of " + numberOnly/ 20;
-     document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
+    
+    document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
           el.setAttribute("content", title_text);
-     });   
+    });   
 
     }
     });
@@ -1454,12 +1477,6 @@ jQuery(document).ready(function() {
   }
 
 
-
-
-
-
-
-
 });
 
 function show_pre_or_not(){
@@ -1472,9 +1489,6 @@ function show_pre_or_not(){
   // } else {
   //   jQuery('.prev-page, .next-page').hide(); // Hide the buttons with classes '.prev-page' and '.next-page'
   // }
-
-
-
   // Check if the URL contains '/page/' followed by a number
   if (url.match(/\/page\/\d+/)) {
     jQuery('.prev-page').show(); // Show the link with class '.prev-page'
@@ -1482,8 +1496,6 @@ function show_pre_or_not(){
     jQuery('.prev-page').hide(); // Hide the link with class '.prev-page'
   }
 }
-
-
 
         function updateFilterPanelMarginTop() {
             const mobileStickyDiv = document.getElementById('mobile-sticky-div');
@@ -1501,30 +1513,20 @@ function show_pre_or_not(){
 
         // Update the filter panel margin-top when the window is resized
         window.addEventListener('resize', updateFilterPanelMarginTop);
+    </script>;
 
 
-function setSelectedValue(selector, value) {
+<script type="text/javascript">
+  function setSelectedValue(selector, value) {
   // Get the select element
   var selectElement = document.querySelector(selector);
-
   // Set the value of the select element to the desired value
   selectElement.value = value;
 }
+</script>>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-</script>
 
 <?php do_action( 'avada_after_content' ); ?>
 
