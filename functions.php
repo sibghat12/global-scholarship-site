@@ -1571,7 +1571,7 @@ function course_filter_shortcode(){
     </div>
 
     <div class="filter-btn">
-    <button type="submit">Filter</button>
+    <button type="submit">Search</button>
 
     </div>
 
