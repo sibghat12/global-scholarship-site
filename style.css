@@ -677,10 +677,10 @@ text-align:center !important;
         width: 100%;
     }
 
-    .courses-filter-search .filter-box.subject-filter {
+    .filter-box.subject-filter {
         display: none;
     }
-    .courses-filter-search .filter-box.country-filter {
+    .filter-box.country-filter {
         display: none;
     }
 
@@ -777,6 +777,10 @@ text-align:center !important;
         font-size: 13px;
         padding: 0px 5px;
         height: 30px;
+    }
+
+    .custom-search .course-filter .filter-box select {
+        height: 38px;
     }
 }
 
