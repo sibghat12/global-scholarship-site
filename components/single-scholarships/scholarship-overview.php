@@ -1,7 +1,7 @@
 <div class="gs-scholarship-overview-box">
-    <div class="gs-scholarship-overview-image">
+    <!-- <div class="gs-scholarship-overview-image">
         <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/scholarship-image.png'; ?>" alt="Scholarship Image" srcset="">
-    </div>
+    </div> -->
     <div class="gs-scholarship-overview-text">
         <h2>
             <?php echo $title; ?>
