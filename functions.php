@@ -1727,8 +1727,11 @@ function my_ajax_handler() {
    $offset = $_POST["offset"];
    $ppp = $_POST["ppp"];
    $page_count = $_POST['page_count'];
+  
 
-   $offset = $offset - 1;
+
+
+   //$offset = $offset - 1;
   
    $degrees = stripslashes($_POST['degrees']);
    $degrees_array = explode(',', $degrees); 
@@ -1755,24 +1758,28 @@ $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list = $published_countries['choices'];
   
-    if($locations_array[0]){
-    if(!in_array($locations_array[0], $country_list)) {
-        echo '<p style="font-size:20px;color:black;"> Unfortunately,
-     No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
-      die();
+
+$reload_true = $_POST["reload"];
+$location = $locations_array[0];
+
+
+
+if($reload_true){
+     
+  if($location){
+
+    
+    if( !in_array($location, $country_list)) {
+       echo '<p style="font-size:20px;color:black;"> Unfortunately,
+    No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
+    die(); 
     }
- }
-  
-   $loop_institute = get_institutions_location($locations_array[0]);
-   $institute_ids = $loop_institute->get_posts();
- 
+}
+   
+}
 
-
-    if(empty($institute_ids)){
-        
-      echo '<p style="font-size:20px;color:black;"> Unfortunately, No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
-      die();
-     }
+$loop_institute =  get_institutions_location($locations_array[0]);
+$institute_ids = $loop_institute->get_posts();
    
     $current_date = date("Y-m-d H:i:s");
                             
@@ -1975,10 +1982,13 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
 
     $ad_args = array(
         'post_type' => 'scholarships',
-        'post_status' => 'publish',
-        'posts_per_page' => $ppp,
-        'offset' => $offset,
-        'fields' => 'ids', // Only return post IDs
+    'post_status' => 'publish',
+    'posts_per_page' => $ppp,
+    'offset' => $offset,
+    'fields' => 'ids', // Only return post IDs
+    'meta_key' => 'scholarship_weights',  // name of custom field
+    'orderby' => 'meta_value_num',  // we want to order by numeric value
+    'order' => 'DESC',  // highest to lowest
     );
     
 
@@ -2114,6 +2124,9 @@ if($type_array[0]) {
         
     }
  
+   
+
+
  $current_date = date("F d,Y");
     echo "<span class='ss' style='font-size:16px;padding-bottom:10px;padding-left:14px;'> | Results:  <b> " . $start .  "-" . $current  . " of " . $loop->found_posts  . " </b></span> <br>";
 

@@ -269,7 +269,7 @@ foreach ($institution_scholarships as $country_name => $country_institutions) {
         echo '<tr style="border: 1px solid #ddd; background-color: ' . $row_color . ';">';
         echo '<td style="padding: 10px;"><a style="font-weight:500;font-size:18px;" href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
         if ($country === 'All') {
-            echo '<td style="padding: 10px;"><a href="' . site_url() . '/currently-open-scholarships-' . str_replace(' ', '-', strtolower($country_name)) . '">' . $country_name . '</a></td>';
+            echo '<td style="padding: 10px;"><a href="' . site_url() . '/currently-open-scholarships-' . str_replace(' ', '-', strtolower($country_name)) . '/">' . $country_name . '</a></td>';
         }
         echo '<td style="padding: 0px;">';
 
