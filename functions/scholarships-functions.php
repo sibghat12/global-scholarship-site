@@ -2848,4 +2848,50 @@ return $city_name;
 //     }
 // }
 
+function update_scholarship_weights() {
+    $args = array(
+        'post_type' => 'scholarships',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'fields' => 'ids', // Only get post ID's
+    );
 
+    $scholarship_posts = get_posts($args);
+
+    foreach ($scholarship_posts as $post_id) {
+        $weight = 0;
+
+       // Get eligible degrees field
+$eligible_degrees = get_field('eligible_degrees', $post_id);
+
+// Check if 'eligible_degrees' is an array before checking for specific degrees
+if (is_array($eligible_degrees)) {
+
+    // Check if currently open
+    $bachelor_open = in_array("Bachelor's", $eligible_degrees) && get_field('bachelor_open_date', $post_id) == "Yes";
+    $master_open = in_array("Master's", $eligible_degrees) && get_field('master_open_date', $post_id) == "Yes";
+
+    if ($bachelor_open || $master_open) {
+        $weight += 100;
+    }
+}
+
+        // Check for amount category
+        $amount_category = get_field('amount_category', $post_id);
+        switch ($amount_category) {
+            case 'Full Funding':
+                $weight += 100;
+                break;
+            case 'Full Tuition':
+                $weight += 50;
+                break;
+            case 'Partial Funding':
+                $weight -= 100;
+                break;
+        }
+
+        // Update the weight field
+        update_field('scholarship_weights', $weight, $post_id);
+    }
+}
+//add_action('init', 'update_scholarship_weights');
