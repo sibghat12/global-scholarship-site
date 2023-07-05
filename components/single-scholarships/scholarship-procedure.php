@@ -37,9 +37,7 @@
 
 
             <?php elseif($separate_application == "Yes" &&( NULL == get_field('application_procedure') && empty(get_field('application_procedure')) ) && ( NULL == get_field('additional_scholarship_requirements') &&  empty( get_field('additional_scholarship_requirements')) ) ): ?>
-                <p>Since a separate scholarship application in addition to the university admission is needed for <?php echo $scholarship_title; ?>, it’s important to know the application requirements and process. Make sure to take note of the important details before you apply!</p>
-                <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?> page</a>.</p>
-
+                <p>A separate scholarship application is needed for this offer. You may check the <b><a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?> page</a></b> for more details, including application requirements and procedures.</p>
         <?php endif; ?>
     </div>
 
