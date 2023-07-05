@@ -42,7 +42,7 @@
                         <ul>
                             <?php 
                             foreach($eligibility_criteria as $criteria) : ?>
-                            <li><?php echo $criteria['criteria']; ?></li>
+                            <li><b><?php echo $criteria['criteria']; ?></b></li>
                             <?php
                             endforeach;
                             ?>
