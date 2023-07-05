@@ -43,7 +43,7 @@
 
     <div class="gs-scholarships-ad">
         <div class="gs-scholarship-ad-image">
-        <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/scholarship-image.png'; ?>" alt="Scholarship Image" srcset="">
+        <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Looking-For-Scholarships-image.png'; ?>" alt="Scholarship Image" srcset="">
         </div>
         <div class="gs-scholarship-ad-content-container">
             <div class="gs-scholarship-ad-content">

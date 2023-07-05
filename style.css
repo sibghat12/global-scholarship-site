@@ -3522,6 +3522,11 @@ padding-left:0px !important;
         align-items: center;
         justify-content: space-between;
     }
+
+    .single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad .gs-scholarship-ad-image {
+        width: 500px;
+        max-width: 100%;
+    }
 }
 
 .collapse.show {
