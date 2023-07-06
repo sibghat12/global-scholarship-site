@@ -2930,4 +2930,4 @@ if (is_array($eligible_degrees)) {
         update_field('scholarship_weights', $weight, $post_id);
     }
 }
-//add_action('init', 'update_scholarship_weights');
+add_action('update_scholarship_weights', 'update_scholarship_weights');
