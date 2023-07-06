@@ -14,10 +14,6 @@
         <?php if($separate_application == "No") : ?>
 
             <p>There is no separate application procedure for this scholarship.Just apply for admission to the university and you’ll automatically be considered for this offer if you meet the criteria. </p>
-            <!-- <p>
-            For <?php echo $scholarship_title; ?>, you DO NOT need to apply separately. That is, once you’ve submitted your admission application, you are automatically considered for the scholarship, as long as you meet the eligibility criteria. 
-            </p>
-            <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>">scholarship page</a>.</p> -->
         <?php elseif( $separate_application == "Yes"  ) : 
 
          if( ( NULL != get_field('additional_scholarship_requirements') &&  !empty( get_field('additional_scholarship_requirements')) )) : 
@@ -35,12 +31,12 @@
             <p>Once you have those ready, follow these steps to submit your scholarship application and requirements:</p>
             <ol>
                 <?php foreach(get_field('application_procedure') as $step) : ?>
-                    <li></b><?php echo $step['steps']; ?></b></li>
+                    <li><b><?php echo $step['steps']; ?></b></li>
                 <?php endforeach; ?>
-            </ol>
-            
+            </ol>            
             <?php endif; ?>
-            <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>">scholarship page</a>.</p>
+            <p>For more information, please see the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?></a> Application Procedure Page </p>
+            <!-- <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>">scholarship page</a>.</p> -->
 
             <?php elseif($separate_application == "Yes" &&( NULL == get_field('application_procedure') && empty(get_field('application_procedure')) ) && ( NULL == get_field('additional_scholarship_requirements') &&  empty( get_field('additional_scholarship_requirements')) ) ): ?>
                 <p>A separate scholarship application is needed for this offer. You may check the <b><a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?> page</a></b> for more details, including application requirements and procedures.</p>
