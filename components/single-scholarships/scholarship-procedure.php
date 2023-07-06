@@ -35,7 +35,7 @@
                 <?php endforeach; ?>
             </ol>            
             <?php endif; ?>
-            <p>For more information, please see the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?></a> Application Procedure Page </p>
+            <p>For more information, please see the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?></a> Application Procedure Page.</p>
             <!-- <p>If you need more information regarding the scholarship application process, visit the official <a href="<?php echo $scholarship_page_link; ?>">scholarship page</a>.</p> -->
 
             <?php elseif($separate_application == "Yes" &&( NULL == get_field('application_procedure') && empty(get_field('application_procedure')) ) && ( NULL == get_field('additional_scholarship_requirements') &&  empty( get_field('additional_scholarship_requirements')) ) ): ?>
