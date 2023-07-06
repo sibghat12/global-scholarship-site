@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 
+
 <?php get_header(); 
 
 
@@ -459,14 +460,17 @@ var ppp = 20;  // Post per page
 var page = 1;
 
 $(document).ready(function(){
+
 reload_data();
 });
 
 function reload_data(){
-$('.prev-page').css("display" , "none");
+
 $('.next-page').css("display" , "none");
 $('#preloader').css("display" , "block");
 $('.card-section').css("display" , "none");
+$('.prev-page').css("display" , "none");
+$('#prev-posts').css("display" , "none");
 
 
 var degree_label_array = ['masters' , 'bachelors' , 'phd'];
@@ -485,7 +489,7 @@ var subject_php_array = <?php echo json_encode($subject_array); ?>;
 //         return [value];
 // });
 
-var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
+var location_label_array = <?php echo json_encode($country_array); ?>;
 // Converting JS object to an array
     var location_label_array = $.map(location_label_array, function(value, index){
         return [value];
@@ -512,7 +516,7 @@ for (let i = 0; i < pathArray.length; i++) {
     break;
   }
 }
-console.log("page number" + current_page_number);
+
 
 // Get Data from The URL Pathname and filter records accordingly.  
 // Degress: Get degree name from the url path
@@ -535,7 +539,6 @@ for (let i = 0; i < pathArray.length; i++) {
   }
 }
 
-
 // Scholarship Type: Get Schloarhsip Type  from the url path
 var type_value = "";
 for (let i = 0; i < pathArray.length; i++) {
@@ -545,14 +548,12 @@ for (let i = 0; i < pathArray.length; i++) {
    break;
   }
 }
+
+
 type_value = type_value.replace(/-/g, ' ');
     type_value = type_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
 });
-
-
-
-
 
 // Location Name : Get Location Name from the url path
 
@@ -571,9 +572,7 @@ location_value = location_value.replace(/-/g, ' ');
 });
 
 
-
 // Subject Name: Get Subject Name from the url path
-
 var subject_value = "";
 for (let i = 0; i < pathArray.length; i++) {
   result =   findValueInArray_withformat(pathArray[i], subject_label_array);
@@ -588,9 +587,6 @@ subject_value = subject_value.replace(/-/g, ' ');
     return letter.toUpperCase();
 });
     
-console.log("Ghaffar:" + location_value);
-
-
 // Nationalities: Get Nationality from the url path
 
 // var nationality_value = "";
@@ -662,15 +658,19 @@ page = current_page_number;
 }
 
 formData.append("action" ,"get_data");
-if(page===1){
-   formData.append("offset" , 0);
+if(page === 1){
+   formData.append("offset", 0);
 }else {
-   formData.append("offset" , ( ( page-1 ) * ppp) + 1);
+   formData.append("offset", (page - 1) * ppp);
 }
+
 
 formData.append("page_count" , page);
 formData.append("ppp" , ppp);
 formData.append("checkk" , true);
+formData.append("reload" , true);
+
+$('.prev-page').css("display" , "none");
 
 $.ajax({
     url : link,
@@ -680,23 +680,38 @@ $.ajax({
     type : 'post',
       success:function(response){
  
-
+          $('#prev-posts').css("display" , "none");
 
     if (response.includes('No Scholarships Available')) {
   window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
 }  else {
         
-         $("#more_posts").attr("disabled",false);
+
+
+        $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
-        $('.card-section').css("display" , "block");
+        $('.card-section').css("height" , "0px");
         $('.card-section').html(response);
+
         
         //changeurl('scholarship-search'+url_update , "Welcome");
 
         show_pre_or_not();
         var title_text = $('.title-textt').text();
+        var numberOnly = parseInt(title_text.match(/\d+/));
         
-        console.log("Ismail" + title_text);
+        if(numberOnly==0){
+           $('.prev-page').hide();
+               window.location.href = '/page-not-found';
+          }else {
+            $('.card-section').css("display" , "block");
+            $('.card-section').css("height" , "auto");
+
+          }
+
+        
+
+        
 
          $('.next-page').show();
           $('.temp').hide();
@@ -716,8 +731,10 @@ $.ajax({
     }
     
     $('.mobile-title').text(title_text);
-    var numberOnly = parseInt(title_text.match(/\d+/));
+    
           
+          
+
          let page_number = Math.ceil(numberOnly / 20);
 
          console.log("page_number" + page_number + "  - Page:" + page );
@@ -745,6 +762,7 @@ $.ajax({
               if (numberOnly==0) {
               $('#more_posts').hide();
               $('.next-page').hide();
+              $('.prev-page').hide();
               }
             }else {
              $('#more_posts').hide();
@@ -1201,13 +1219,12 @@ formData.append("institutions" , institutionArr);
 formData.append("nationality" , nationalityArr);
 
 
-if(page===1){
-   
-    console.log("page: " + page);
-   formData.append("offset" , 0);
+if(page === 1){
+   formData.append("offset", 0);
 }else {
-   formData.append("offset" , ( ( page-1 ) * ppp) + 1);
+   formData.append("offset", (page - 1) * ppp);
 }
+
 
 
 
