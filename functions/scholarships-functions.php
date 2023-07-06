@@ -35,6 +35,42 @@ function get_scholarships($institution_id){
  
 }
 
+// Gets scholarships by country
+//include dirname(__FILE__) . "/countries_list.php"; 
+
+
+function get_fully_funded_scholarships($institution_ids) {
+
+    $args = array(
+        'post_type' => 'scholarships',
+        'posts_per_page' => -1,
+
+        'no_found_rows' => true, 
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+
+        'post_status' => 'publish',
+
+        'meta_query' => array(
+            array(
+                'key' => 'amount_category',
+                'value' => 'Full Funding',
+                'compare' => '='
+            ),
+            array(
+                'key' => 'scholarship_institution',
+                'value' => $institution_ids,
+                'compare' => '='
+            )
+        ),
+    );
+
+    $query = new WP_Query($args);
+
+    return $query;
+}
 
 // Input :  Give field + type (Criteria or Coverage).
 // OutPut : Return Html List of Creteria Or Coverage in unordered list.  
@@ -2894,4 +2930,4 @@ if (is_array($eligible_degrees)) {
         update_field('scholarship_weights', $weight, $post_id);
     }
 }
-//add_action('init', 'update_scholarship_weights');
+add_action('update_scholarship_weights', 'update_scholarship_weights');
