@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <!-- Courses Filter Search -->
 <div class="courses-filter-search">
-	<?php echo do_shortcode('[courseFilter]'); ?>
+	<?php echo do_shortcode('[courseFilter filter_word="Search"]'); ?>
 </div>
 
 				<?php do_action( 'avada_after_main_container' ); ?>

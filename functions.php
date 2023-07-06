@@ -1521,8 +1521,12 @@ function course_shortcode($atts){
 
 add_shortcode('courseButton','course_shortcode');
 
-function course_filter_shortcode(){
-    
+function course_filter_shortcode($atts = [], $content = null, $tag = '' ){
+
+    shortcode_atts(array(
+        'filter_word' => 'Search',
+    ), $atts);
+
     $html = '<aside>
     <div class="course-filter"> 
     
@@ -1577,7 +1581,7 @@ function course_filter_shortcode(){
     </div>
 
     <div class="filter-btn">
-    <button type="submit">Search</button>
+    <button type="submit">'.(isset($atts['filter_word']) ? $atts['filter_word'] : 'Search').'</button>
 
     </div>
 

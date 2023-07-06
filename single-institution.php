@@ -340,7 +340,7 @@ usort($category_for_breadcrumb, "compare_funding_types");
 
 
             <div class="custom-search">
-                <?php echo do_shortcode('[courseFilter]'); ?>
+                <?php echo do_shortcode('[courseFilter filter_word="Filter"]'); ?>
             </div>    
             
 <!-- adngin-top_leaderboard-0   Ads do not delete-->

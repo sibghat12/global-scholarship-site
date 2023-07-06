@@ -122,7 +122,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		
 			
 			<div class="custom-search">
-				<?php echo do_shortcode('[courseFilter]'); ?>
+				<?php echo do_shortcode('[courseFilter filter_word="Filter"]'); ?>
 			</div>
 			<div id="adngin-top_leaderboard-0" style="text-align: center;"></div> 
 
