@@ -29,6 +29,14 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 
+    // Enqueue single-scholarship.js file in assets folder
+    if(is_singular('scholarships')) {
+        wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
+        wp_localize_script( 'single-scholarship', 'frontendajax', array( 
+            'ajaxurl' => admin_url( 'admin-ajax.php' )
+        ));
+    }
+
 }
 
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
@@ -2719,3 +2727,51 @@ function unset_url_field(){
     return $fields;
 
 }
+
+
+// Submit Feeback Form Logic
+include ('submit-feedback.php'); 
+
+
+// Adding Admin Page for Feedback Form Data Tables
+
+function add_scholarship_admin_page()
+{
+    add_submenu_page(
+        'edit.php?post_type=scholarships', // parent slug
+        'Scholarships Feedback',             // page title
+        'Feedback',             // menu title
+        'manage_options',                   // capability
+        'scholarships-form-feedback',             // menu slug
+        'render_scholarship_settings_page'  // callback function
+    );
+}
+add_action('admin_menu', 'add_scholarship_admin_page');
+
+function render_scholarship_settings_page()
+{
+    // Add your custom admin page HTML here
+    include('scholarships-feedback.php');
+}
+
+
+function enqueue_scholarship_admin_scripts($hook_suffix)
+{
+
+    if ($hook_suffix == 'scholarships_page_scholarships-form-feedback') {
+        wp_enqueue_script('feeback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
+
+        wp_enqueue_style('feedback_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+        
+        wp_enqueue_style( 'feedback_datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
+        wp_enqueue_script( 'feedback_datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+    
+        wp_enqueue_script('feedback_table_js', get_stylesheet_directory_uri(). '/assets/feedback-table.js',  array('jquery', 'feedback_datatables-js'), '1.0.0', true);
+
+        wp_enqueue_style( 'datatables-custom-style', get_stylesheet_directory_uri() . '/datatables.css', ['feedback_datatables-css'] );
+
+    }
+
+
+}
+add_action('admin_enqueue_scripts', 'enqueue_scholarship_admin_scripts');
