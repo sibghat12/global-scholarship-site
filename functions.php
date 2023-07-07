@@ -1445,14 +1445,43 @@ $tier = "Tier" . $countryList[$location];
 
 
 
+// //Submitting Course Form
+// function course_form_submit() {
+
+//     $newURL = site_url()."/opencourses/?subject=" . $_POST["subject"] . "&degrees=" .$_POST["degree"] . "&country=" .$_POST["country"];
+
+//     wp_redirect( $newURL );
+//     exit;
+
+// }
+
+// add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
+// add_action( 'admin_post_course_form', 'course_form_submit' );
+
+
 //Submitting Course Form
 function course_form_submit() {
+    $newURL = site_url() . "/opencourses";
+    $query_args = array();
 
-    $newURL = site_url()."/opencourses/?subject=" . $_POST["subject"] . "&degrees=" .$_POST["degree"] . "&country=" .$_POST["country"];
+    if (!empty($_POST["subject"])) {
+        $query_args["subject"] = $_POST["subject"];
+    }
 
-    wp_redirect( $newURL );
+    if (!empty($_POST["degree"])) {
+        $query_args["degrees"] = $_POST["degree"];
+    }
+
+    if (!empty($_POST["country"])) {
+        $query_args["country"] = $_POST["country"];
+    }
+
+    if (!empty($query_args)) {
+        $newURL .= "?" . build_query($query_args);
+    }
+
+    wp_redirect($newURL);
     exit;
-
 }
 
 add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
@@ -1492,11 +1521,14 @@ function course_shortcode($atts){
 
 add_shortcode('courseButton','course_shortcode');
 
-function course_filter_shortcode(){
-    
-    $html = '
-    <aside>            
-<div class="course-filter"> 
+function course_filter_shortcode($atts = [], $content = null, $tag = '' ){
+
+    shortcode_atts(array(
+        'filter_word' => 'Search',
+    ), $atts);
+
+    $html = '<aside>
+    <div class="course-filter"> 
     
     <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
 
@@ -1549,13 +1581,12 @@ function course_filter_shortcode(){
     </div>
 
     <div class="filter-btn">
-    <button type="submit">Filter</button>
+    <button type="submit">'.(isset($atts['filter_word']) ? $atts['filter_word'] : 'Search').'</button>
 
     </div>
 
     </form>
-</div>
-</aside>';
+</div></aside>';
         
     return $html;
 }
@@ -1563,48 +1594,48 @@ function course_filter_shortcode(){
 add_shortcode('courseFilter','course_filter_shortcode');
 
 
-function course_nav_shortcode(){
+// function course_nav_shortcode(){
     
-    $html = '
-    <aside>
-<div class="course-nav"> 
+//     $html = '
+//     <aside>
+// <div class="course-nav"> 
   
-<div class="course-filter"> 
+// <div class="course-filter"> 
     
-    <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
+//     <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
 
-    <input type="hidden" name="action" value="course_form">
-    <div class="filter-boxes-wrap">
+//     <input type="hidden" name="action" value="course_form">
+//     <div class="filter-boxes-wrap">
         
-        <div class="filter-title">
-            Search Courses:
-        </div>        
+//         <div class="filter-title">
+//             Search Courses:
+//         </div>        
 
-        <div class="filter-box subject-filter">
-            <select name="degree" >
-            <option value="">Any Degree</option> 
-            <option value="undergraduate">Undergraduate</option> 
-            <option value="masters">Masters</option> 
-            <option value="mba" >MBA</option> 
+//         <div class="filter-box subject-filter">
+//             <select name="degree" >
+//             <option value="">Any Degree</option> 
+//             <option value="undergraduate">Undergraduate</option> 
+//             <option value="masters">Masters</option> 
+//             <option value="mba" >MBA</option> 
 
-            </select>
+//             </select>
 
-        </div>
+//         </div>
         
-    </div>
+//     </div>
 
-    <div class="filter-btn">
-    <button type="submit">Search</button>
+//     <div class="filter-btn">
+//     <button type="submit">Search</button>
 
-    </div>
+//     </div>
 
-    </form>
-</div>
-</div>
-</aside>';
+//     </form>
+// </div>
+// </div>
+// </aside>';
         
-    return $html;
-}
+//     return $html;
+// }
 
 /*
         <div class="filter-box subject-filter">
@@ -1622,7 +1653,7 @@ function course_nav_shortcode(){
         </div>
 */
 
-add_shortcode('coursenav','course_nav_shortcode');
+// add_shortcode('coursenav','course_nav_shortcode');
 
 function update_rankings_post_meta(){
   
