@@ -670,6 +670,54 @@ formData.append("ppp" , ppp);
 formData.append("checkk" , true);
 formData.append("reload" , true);
 
+
+let isEmpty = val => val === "";
+
+// Assuming degree_value, subject_value, etc. are string values
+let validValues = [degree_value, subject_value, location_value, type_value, currenty_open_array];
+// Convert array values to lowercase, replace spaces with dashes, and remove apostrophes
+validValues = validValues.map(value => 
+    value.toLowerCase() // Convert to lowercase
+        .replace(/ /g, '-') // Replace spaces with dashes
+        .replace(/'/g, '') // Remove apostrophes
+);
+
+console.log(validValues);
+
+if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value) 
+    && isEmpty(type_value) && isEmpty(currenty_open_array)) {
+
+    // Additional check for ["page", "2"] or ["page", any_number]
+    if (pathArray.length === 2 && pathArray[0] === 'page' && !isNaN(pathArray[1])) {
+        // This is a valid path, your code continues...
+    } else if (pathArray.length > 0) {
+        console.log("pagenotfound");
+        // Redirect to '/page-not-found'
+        window.location.href = '/page-not-found';
+    }
+} else {
+    // If pathArray has more than one value
+    if (pathArray.length > 1) {
+        // Check if there's any value in pathArray (ignoring the first one) that doesn't match any of the valid values
+        for(let i = 1; i < pathArray.length; i++) {
+            // If it's not a valid value and not a page number
+            if (!validValues.includes(pathArray[i]) && 
+                !(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1]))) {
+                console.log("pagenotfound due to invalid value in pathArray");
+                // Redirect to '/page-not-found'
+                window.location.href = '/page-not-found';
+                break;
+            }
+            // If current path is 'page' and next is a number, skip next path
+            if(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1])) {
+                i++;
+            }
+        }
+    }
+    // Your code continues...
+}
+
+
 $('.prev-page').css("display" , "none");
 
 $.ajax({
