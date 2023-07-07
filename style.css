@@ -810,8 +810,8 @@ text-align:center !important;
 @media only screen and (max-width: 480px){
     .courses-filter-search .course-filter .filter-wrapper {
         display: flex;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         padding-right: 10px;
         padding-left: 10px;
     }
