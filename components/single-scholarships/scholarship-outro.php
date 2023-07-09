@@ -3,9 +3,17 @@
 
     <p>Want to learn more about the university, this scholarship, requirements, application process, and other related information? Check the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> page</a>!</p>
 
-    <h2>Popular Scholarships in <?php echo $country_name; ?></h2>
 
+    <!--
+    <h2>Popular Scholarships in  --> <?php //echo $country_name; ?> <!--</h2> 
+
+
+-->
     <?php
+
+    /*
+
+
 
     $country_institutions = get_institutions_location($country_name);
 
@@ -19,16 +27,30 @@
         $fully_funded_scholarship_in_country = array_merge($fully_funded_scholarship_in_country, $scholarships->posts);
         
     }
+
+
     // We only get the first 5 Fully funded Scholarships
-    $fully_funded_scholarship_in_country = array_slice( $fully_funded_scholarship_in_country, 0, 5);
+    //$fully_funded_scholarship_in_country = array_slice( $fully_funded_scholarship_in_country, 0, 5);
     ?>
     <!-- Display Popular Scholarships in Country --->
 
+    
+  
     <div class="gs-popular-scholarships-container">
-        <?php foreach($fully_funded_scholarship_in_country as $key => $scholarship) : ?>
+
+
+        <?php// foreach($fully_funded_scholarship_in_country as $key => $scholarship) : ?>
             <div class="gs-popular-scholarship-item">
                 <a href="<?php echo get_the_permalink($scholarship) ?>"><?php echo get_the_title($scholarship); ?></a>
             </div>
         <?php endforeach ?>
     </div>
+
+    */?>
+
+
+
+    
+
 </section>
+

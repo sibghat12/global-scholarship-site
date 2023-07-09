@@ -3,9 +3,9 @@
         <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/scholarship-image.png'; ?>" alt="Scholarship Image" srcset="">
     </div> -->
     <div class="gs-scholarship-overview-text">
-        <h2>
+        <h1>
             <?php echo $title; ?>
-        </h2>
+        </h1>
         <?php // Breadcrumbs ?>
         <?php require get_stylesheet_directory() . '/components/single-scholarships/breadcrumbs.php'; ?>
         
