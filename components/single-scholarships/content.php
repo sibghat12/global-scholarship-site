@@ -95,8 +95,6 @@
 
 ?>
     
-    <div id="ezoic-pub-ad-placeholder-863"> </div>
-
 <main id="main">
     <div class="fusion-row">
 
@@ -106,16 +104,18 @@
         
         <div class="post-content">
             
-            <div id="adngin-top_leaderboard-0"></div>
-
             <?php // GS Scholarship Overview Box ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-overview.php'; ?>
 
+            <?php if (function_exists ('adinserter')) echo adinserter (7); ?>
+            
             <?php // GS Scholarship Summary Box ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-summary.php'; ?>
 
             <?php // GS Scholarship Navigation Panel ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-navigation-panel.php'; ?>
+
+            <?php if (function_exists ('adinserter')) echo adinserter (8); ?>
             
             <?php // GS Scholarship Coverage ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-coverage.php'; ?>
@@ -123,11 +123,17 @@
             <?php // GS Scholarship Eligibility Criteria ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
 
+            <?php if (function_exists ('adinserter')) echo adinserter (9); ?>
+
             <?php // GS Scholarship Application Procedure ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
 
+
+
             <?php // GS Scholarship Deadline ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
+
+            <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
 
             <?php // GS Scholarship Outro ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-outro.php'; ?>

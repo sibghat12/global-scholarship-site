@@ -1819,7 +1819,14 @@ if($reload_true){
 
 $loop_institute =  get_institutions_location($locations_array[0]);
 $institute_ids = $loop_institute->get_posts();
-   
+	
+	if (empty($institute_ids)) {
+		if($reload_true){
+  echo '<p style="font-size:20px;color:black;"> Unfortunately,
+    No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
+}
+	}
+	
     $current_date = date("Y-m-d H:i:s");
                             
 
@@ -2591,7 +2598,7 @@ function create_scholarship_author_role() {
         )
     );
 }
-add_action('init', 'create_scholarship_author_role');
+//add_action('init', 'create_scholarship_author_role');
 
 
 function limit_scholarship_author_view( $query ) {

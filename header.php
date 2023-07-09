@@ -45,13 +45,13 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
 $post_type = get_post_type();
 
 
-if ($post_type === 'post' || $post_type === 'scholarships' || $post_type === 'institution') {
+if ($post_type === 'post' || $post_type === 'institution') {
 	    ?>
 
 <script data-cfasync="false" type="text/javascript">
   window.snigelPubConf = {
     "adengine": {
-      "activeAdUnits": ["incontent_1", "top_leaderboard"]
+      "activeAdUnits": ["incontent_1"]
     }
   }
 </script>
@@ -121,7 +121,6 @@ window.snigelPubConf = {
 			}
 			do_action( 'avada_before_main_container' );
 			?>
-            <!-- Ezoic - top_of_page - top_of_page -->
 
 <?php 
    
@@ -129,8 +128,7 @@ window.snigelPubConf = {
 
    } else {  ?>
 
-<div id="ezoic-pub-ad-placeholder-863"> </div>
-<!-- End Ezoic - top_of_page - top_of_page -->
+
 			<main id="main" class="clearfix <?php echo esc_attr( $main_class ); ?>">
 				<div class="fusion-row" style="<?php echo esc_attr( $row_css ); ?>">
 <?php } ?>

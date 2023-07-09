@@ -488,10 +488,7 @@ function get_institutions_location ($location_name){
                 'post_status' => 'publish',
                 'meta_key' => "cities",
                
-               'no_found_rows' => true, 
-               'update_post_meta_cache' => false,
-               'update_post_term_cache' => false,
-               'cache_results'          => false,
+              
                'fields' => 'ids',
 
                 'posts_per_page' => -1,             
@@ -2930,4 +2927,6 @@ if (is_array($eligible_degrees)) {
         update_field('scholarship_weights', $weight, $post_id);
     }
 }
+
 add_action('update_scholarship_weights', 'update_scholarship_weights');
+

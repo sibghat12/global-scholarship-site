@@ -1,8 +1,11 @@
 <div class="gs-breadcrumbs">
-        <a class="gs-breadcrumb-home" href="<?php echo site_url(); ?>/scholarship-search/<?php echo $hyphenated ?>">Home</a> >>
-        <a class="gs-breadcrumb-institution-scholarships" href="<?php echo get_permalink($institution->ID); ?>"> <?php echo $institution_name ." Scholarships";  ?> </a> >>
+        <a class="gs-breadcrumb-home" href="<?php echo site_url(); ?>">Home</a> >
+        <a class="gs-breadcrumb-home" href="<?php echo site_url(); ?>/scholarship-search/">Scholarships</a> >
+        <a class="gs-breadcrumb-home" href="<?php echo site_url(); ?>/scholarship-search/<?php echo $hyphenated ?>"><?php echo $country_name ." Scholarships";  ?> </a> >
+        <a class="gs-breadcrumb-institution-scholarships" href="<?php echo get_permalink($institution->ID); ?>"> <?php echo $institution_name ." Scholarships";  ?> </a> >
         <a class="gs-breadcrumb-institution" href="#"> <?php  echo $scholarship_title; ?> </a>
         <br>
+
         <!-- <?php 
         if (count($degrees) == 1){ ?>
             
