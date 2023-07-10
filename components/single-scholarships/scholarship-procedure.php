@@ -27,8 +27,8 @@
                 <?php endforeach; ?>
             </ul>
             <?php endif; ?>
-            <?php if( NULL != get_field('application_procedure') && !empty(get_field('application_procedure')) ) : ?>
-            <p>Once you have those ready, follow these steps to submit your scholarship application and requirements:</p>
+            <?php if( (NULL != get_field('application_procedure') && !empty(get_field('application_procedure'))) && empty( get_field('additional_scholarship_requirements')) ) : ?>
+            <p>With separate scholarship, no requirements ONLY with application steps:</p>
             <ol>
                 <?php foreach(get_field('application_procedure') as $step) : ?>
                     <li><b><?php echo $step['steps']; ?></b></li>
