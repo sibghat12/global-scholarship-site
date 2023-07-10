@@ -3225,6 +3225,9 @@ padding-left:0px !important;
     text-indent: -1.4em !important;
     margin-bottom: 3px;
 }
+.single-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-scholarship-summary-list-items li ul{
+    padding: 0 !important;
+}
 
 .ellipsis.show {
     display: inline;
