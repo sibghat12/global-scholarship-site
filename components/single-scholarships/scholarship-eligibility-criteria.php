@@ -56,7 +56,7 @@
             
                 
                 <?php else : ?>
-                    <p>There are no specific eligibility criteria for this scholarship. <b>You just need to be an international <?php echo ($degrees_text == 'PhD') ? $degrees_text : strtolower($degrees_text); ?> student or applicant of <?php echo $institution_name; ?>.</b></p>
+                    <p>There are no specific eligibility criteria for this scholarship. <b>You just need to be an international <?php echo ( str_contains($degrees_text, 'PhD') ) ? str_replace('PhD', 'Ph.D.', $degrees_text) : $degrees_text; ?> student or applicant of <?php echo $institution_name; ?>.</b></p>
                 <?php endif; ?>
             </div>
         </div>
