@@ -1,7 +1,7 @@
 <section id="scholarship-oturo" class="gs-scholarship-oturo">
     <h2><?php echo $scholarship_title; ?> Page</h2>
 
-    <p>Want to learn more about the university, this scholarship, requirements, application process, and other related information? Check the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> page</a>!</p>
+    <p>Want to learn more about <?php echo $institution_name; ?>, <?php echo $scholarship_title; ?>, requirements, application process, and other related information? Check the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> page</a>!</p>
 
 
     <!--
