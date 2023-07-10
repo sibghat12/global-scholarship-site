@@ -8,8 +8,8 @@
         </p>
 
         <ol>
-            <li><b>University Eligibility Criteria</b> - the requirements you need to meet to be admitted to the university</li>
-            <li><b>Scholarship Specific Eligibility Criteria</b> - the requirements you need to meet to be considered for the scholarship</li>
+            <li><b><?php echo $institution_name; ?> Eligibility Criteria</b> - the requirements you need to meet to be admitted to the <?php echo $institution_name; ?></li>
+            <li><b><?php echo $scholarship_title; ?> Specific Eligibility Criteria</b> - the requirements you need to meet to be considered for the <?php echo $scholarship_title; ?></li>
         </ol>
 
         <p class="criteria-note">These criteria vary per institution and scholarship so be sure to take note of these before preparing your application.</p>
