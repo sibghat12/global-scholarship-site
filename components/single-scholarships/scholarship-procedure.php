@@ -2,18 +2,18 @@
 
     <h2><?php echo $scholarship_title; ?> Application Procedure</h2>
 
-    <p>If you meet the eligibility criteria for the university and scholarship, you can move forward with the application process!</p>
+    <p>If you meet the eligibility criteria for <?php echo $institution_name ?> and <?php echo $scholarship_title; ?>, you can move forward with the application process!</p>
 
     <div class="gs-scholarship-application-procedure-note">
         <p>
-        <strong>Remember to apply for admission to the university first before applying for a scholarship.</strong> You can visit the official website found in <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> Admissions Section</a> to see the admissions application process.
+        <strong>Remember to apply for admission to <?php echo $institution_name ?> first before applying for <?php echo $scholarship_title; ?>.</strong> You can visit the official website found in <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> Admissions Section</a> to see the admissions application process.
         </p>
     </div>
     <div class="gs-scholarship-application-procedure-separate-application">
 
         <?php if($separate_application == "No") : ?>
 
-            <p>There is no separate application procedure for this scholarship.Just apply for admission to the university and you’ll automatically be considered for this offer if you meet the criteria. </p>
+            <p><b>There is no separate application procedure for <?php echo $scholarship_title; ?>.</b> Just apply for admission to <b><?php echo $institution_name; ?></b>, and you’ll automatically be considered for this offer if you meet the criteria. </p>
         <?php elseif( $separate_application == "Yes"  ) : 
 
          if( ( NULL != get_field('additional_scholarship_requirements') &&  !empty( get_field('additional_scholarship_requirements')) )) : 

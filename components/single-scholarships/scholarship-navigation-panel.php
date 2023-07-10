@@ -117,7 +117,7 @@ l-109 84 -22 -27 c-48 -59 -50 -69 -18 -96 45 -38 283 -217 288 -217 8 0 496
 678 496 688 0 10 -79 73 -89 71 -4 0 -100 -131 -215 -290z"/>
 </g>
 </svg>
-Application procedure</a>
+Application Procedure</a>
             <a href="#scholarship-deadline">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="60" height="60" viewBox="0 0 940.000000 788.000000"
