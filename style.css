@@ -3373,6 +3373,7 @@ padding-left:0px !important;
 
 .single-scholarships .post-content .gs-scholarship-coverage span.fa-li svg {
     fill: #66A0F6;
+    margin-top: 5px;
 }
 
 .single-scholarships .post-content .gs-scholarship-coverage .coverage-item {
@@ -3493,6 +3494,26 @@ padding-left:0px !important;
 .single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad .gs-scholarship-ad-arrow a:hover {
     color: #66A0F6 !important;
 }
+
+/* Scholarships Page Deadline */
+.single-scholarships .post-content .gs-scholarship-deadline .deadline-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.single-scholarships #main .post-content .gs-scholarship-deadline ul.fa-ul {
+    margin-left: 4.5em;
+}
+
+.single-scholarships .post-content .gs-scholarship-deadline span.fa-li svg {
+    fill: #66A0F6;
+    margin-top: 5px;
+}
+
 
 /* Popular Scholarships */
 
