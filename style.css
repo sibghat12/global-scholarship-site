@@ -3292,13 +3292,14 @@ padding-left:0px !important;
     /* align-items: center; */
     padding: 10px;
     background: #F9F9F9;
-    border-radius: 50px;
+    gap: 10px;
+    border-radius: 16px;
     border: 1px solid #ccc;
 }
 
 .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     padding: 6px 20px;
     font-size: 18px;
@@ -3307,7 +3308,7 @@ padding-left:0px !important;
     height: 70px; */
     /* text-wrap: nowrap; */
     background: transparent !important;
-    margin-right: 10px;
+    margin-right: 0;
     border-radius: 50px;
     color: #000 !important;
 
@@ -3336,6 +3337,32 @@ padding-left:0px !important;
 }
 .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a:hover svg g {
     fill: #fff !important;
+}
+
+/* SVG icons oranize Styling */
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-coverage-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-eligibility-criteria-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-application-procedure-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-deadline-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
 }
 
 /* Coverage Section */
@@ -3628,7 +3655,7 @@ padding-left:0px !important;
 
     .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         align-items: center;
         padding: 6px 20px;
         font-size: 18px;
