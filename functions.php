@@ -1817,8 +1817,12 @@ if($reload_true){
    
 }
 
+
+
 $loop_institute =  get_institutions_location($locations_array[0]);
 $institute_ids = $loop_institute->get_posts();
+
+echo $institute_ids->found_posts;
 	
 	if (empty($institute_ids)) {
 		if($reload_true){

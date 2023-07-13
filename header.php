@@ -129,6 +129,6 @@ window.snigelPubConf = {
    } else {  ?>
 
 
-			<main id="main" class="clearfix <?php echo esc_attr( $main_class ); ?>">
-				<div class="fusion-row" style="<?php echo esc_attr( $row_css ); ?>">
+			<main id="main" class="clearfix <?php echo esc_attr($main_class); ?>">
+	<div class="fusion-row" style="<?php echo esc_attr($row_css); ?>">
 <?php } ?>
