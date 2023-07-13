@@ -793,6 +793,19 @@ text-align:center !important;
     .courses-filter-search .course-filter .filter-box select {
         max-width: 60vw;
     }
+
+
+    .single-scholarships .post-content .gs-feeback-form-container {
+        border-radius: 0 !important;
+    }
+
+    .single-scholarships .post-content .gs-feeback-form-container input[name="helpful"] ~ .gs-feedback-radio-btn {
+        padding: 16px 50px !important;
+    }
+
+    .single-scholarships .post-content .gs-feeback-form-container .gs-feedback-form-buttons {
+        margin-top: 30px;
+    }
    
 }
 
