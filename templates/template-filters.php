@@ -14,119 +14,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 
-
 <?php get_header(); 
 
 
 $scholarships_count = get_published_scholarships_count();
 
-    // $params = get_query_info();
-
-    // $subject = $params["subject"];
-    // $degrees = $params["degrees"];
-    // $location = $params["location"];
-    // $location_value = $params["location"];
+$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+$degrees_array = $scholarship_details[1]['choices'];
+$country_array = $scholarship_details[13]['choices'];
+$subject_array = $scholarship_details[12]['choices'];
     
-    // if($degrees=="Bachelors"){
-    //     $degrees = "Bachelor's";
-    // }
-
-    // if($degrees=="Masters"){
-    //     $degrees = "Master's";
-    // }
-
-    // $location = ucwords($location);
-    // $subject = ucwords($subject);
-
     
-   //  $loop = get_institutions_location("South Korea");
-   //  $institute_ids = $loop->get_posts();
-
-
-   //  if(isset($subject) && $subject){
-   //      if ($subject != "All Subjects"){
-   //          $subject_query = 
-   //          array(
-   //              'relation' => 'OR',
-   //              array(
-   //                  'key'     => 'eligible_programs',
-   //                  'value'   => $subject,
-   //                  'compare' => 'LIKE',
-   //              ),
-   //              array(
-   //                  'key'     => 'eligible_programs',
-   //                  'value'   => "All Subjects",
-   //                  'compare' => 'LIKE',
-   //              ),
-   //          );                
-   //      } else {
-   //      $subject_query = array('key' => 'eligible_programs', 'value' => $subject, 'compare' => 'LIKE');
-   //      }
-   //  }
-   //  if(isset($degrees) && $degrees){
-   //      $degree_query = array('key' => 'eligible_degrees', 'value' => $degrees, 'compare' => 'LIKE');
-   //  }
-   //  if(isset($location) && $location){
-   //      $location_query  = array('key' => 'scholarship_institution', 'value' => $institute_ids, 'compare' => "IN");
-   //  }
-    
-   //  $meta_query = array( 'relation' => 'AND');    
-        
-   //  if ($subject_query) { 
-   //  $meta_query[] = $subject_query; 
-   //  }
-   //  if ($degree_query)  {
-   //  $meta_query[] = $degree_query;
-   //  }
-   //  if ($location_query) { 
-   //  $meta_query[] = $location_query; 
-   //  }
-
-   // $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-   //  $ad_args = array(
-   //      'post_type' => 'scholarships',
-   //      'posts_per_page' => 20,
-   //      'post_status' => 'publish',
-   //       'paged' => $paged
-   //  );
-    
-   //  if ($meta_query){
-   //      $ad_args['meta_query'] = $meta_query;
-   //  }
-
-    
-
-   //  $loop = new WP_Query($ad_args);
-
-    
-
-   //  $first = "Search Scholarship  ";
-   //  $second = "in " . ucwords($location) . " ";
-   //  $third = "for Students " . $location_string;
-
-   //  if(isset($location) && $location){
-   //      $text = $first . $second . $third;
-   //  } else {
-   //      $text = $first . $third;
-   //  }
-
-    $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-    $degrees_array = $scholarship_details[1]['choices'];
-    $country_array = $scholarship_details[13]['choices'];
-    $subject_array = $scholarship_details[12]['choices'];
-    
-    // $location = $location_value;
-    // $location = str_replace(' ', '-', $location);
-
-    // $subject = strtolower($subject);
-    // $subject = str_replace(' ', '-', $subject);
-
-
-  // Get fields by name.
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list_for_url = $published_countries['choices'];
 $country_list = ['Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States'];
-     // 
+     
 
 ?>  
 
@@ -145,14 +47,15 @@ $country_list = ['Australia', 'Canada',  'South Korea', 'United Kingdom' , 'Unit
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 
-<div class="fusion-row f" style="margin-top: 30px;width:80% ;">
+<div class="fusion-row f" style="margin-top: 30px;width:80%;">
   <div class="sticky-wrapper"  style="margin:auto !important;">
 <div class="mobile-sticky-div">
 <div class="card-section-mobile">
-<h2 class="mobile-title" style='font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'>   <?php echo $scholarships_count; ?> Scholarships for International Students </h2>
+<h1 class="mobile-title" style='font-size:24px !important;font-weight:700;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'>   <?php echo $scholarships_count; ?> Scholarships for International Students </h1> 
 <div id="sp"> <span class="temp" style='font-size:16px;padding-bottom:10px;padding-left:7px;
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results:  <b> 1-20 of  <?php echo  $scholarships_count; ?>  </b></span>  </div>
 </div>
+
 
 
  <div class="filter-toggle-btn" style=" font-size:18px;" > 
@@ -347,6 +250,12 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 <section id="content" class="col-lg-9"> </section>
 </div>
 
+
+
+
+
+
+
 <!-- <script type="text/javascript"> var ajaxurl = "";  </script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -489,7 +398,7 @@ var subject_php_array = <?php echo json_encode($subject_array); ?>;
 //         return [value];
 // });
 
-var location_label_array = <?php echo json_encode($country_array); ?>;
+var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
 // Converting JS object to an array
     var location_label_array = $.map(location_label_array, function(value, index){
         return [value];
@@ -682,7 +591,7 @@ validValues = validValues.map(value =>
         .replace(/'/g, '') // Remove apostrophes
 );
 
-console.log(validValues);
+
 
 if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value) 
     && isEmpty(type_value) && isEmpty(currenty_open_array)) {
@@ -1578,7 +1487,7 @@ function show_pre_or_not(){
 
         // Update the filter panel margin-top when the window is resized
         window.addEventListener('resize', updateFilterPanelMarginTop);
-    </script>;
+    </script>
 
 
 <script type="text/javascript">
@@ -1588,7 +1497,7 @@ function show_pre_or_not(){
   // Set the value of the select element to the desired value
   selectElement.value = value;
 }
-</script>>
+</script>
 
 
 

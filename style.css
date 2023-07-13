@@ -2861,7 +2861,9 @@ height: 30px !important;
   }
 }
 
-
+.single-post strong {
+    font-weight: bold !important;
+  }
 
 
 @media screen and (max-width: 1410px) {
@@ -4227,4 +4229,3 @@ input[type="submit"] {
 }
 
 
-  

@@ -471,14 +471,13 @@ function get_institutions_location ($location_name){
     );
     
     $the_query = new WP_Query($city_args);
+  
 
-   
-
+  
     //Make an empty new query. If $the_query has posts (that is city with location is found), then assign $loop with institutions. 
 
-    $loop = new WP_Query();
-
     if ($the_query->have_posts()) {
+
         while ( $the_query->have_posts() ){
             $the_query->the_post();
             $the_post_id = get_the_id();
@@ -508,26 +507,27 @@ function get_institutions_location ($location_name){
     };
     
    //This code doesn't run if city match is found
-
+     
+    
     
     $loop = get_cities_location($location_name, "state");
     
-    //return if states has posts 
-    if ($loop->have_posts()){
-        return $loop;
-    }; 
+    if ($loop && $loop->have_posts()) {
+    return $loop;
+    } 
 
     $loop = get_cities_location($location_name, "country");
-    
+     
+  
     //return if country has posts 
-    if ($loop->have_posts()){
+   if ($loop && $loop->have_posts()) {
         return $loop;
     };     
     
     $loop = get_cities_location($location_name, "continent");
     
     //return if continent has posts 
-    if ($loop->have_posts()){
+    if ($loop && $loop->have_posts()) {
         return $loop;
     };         
     
@@ -561,11 +561,10 @@ function get_location_values ($location_type){
 //Example2: Input(location-name:korea, location-type:continent), don't output loop since korea is not in continent
 //This function is used for get_institution_location
 function get_cities_location($location_name, $location_type){
+   
     $locations = get_location_values($location_type);
-
-    
-    
-    $loop = new WP_Query();
+   
+  
             
     if (in_array($location_name, $locations)){
         
@@ -574,11 +573,7 @@ function get_cities_location($location_name, $location_type){
             'meta_key' => $location_type,
             "meta_value" => $location_name,
  
-          'no_found_rows' => true, 
-          'update_post_meta_cache' => false,
-          'update_post_term_cache' => false,
-          'cache_results'          => false,
-          'fields' => 'ids',
+         
 
             'posts_per_page' => -1,
             'no_found_rows' => true, 
@@ -2930,3 +2925,101 @@ if (is_array($eligible_degrees)) {
 
 add_action('update_scholarship_weights', 'update_scholarship_weights');
 
+
+function update_scholarship_country() {
+    $args = array(
+        'post_type' => 'scholarships',
+        'posts_per_page' => -1,
+        'fields' => 'ids', // This will return an array of post IDs
+    );
+
+    $scholarship_ids = get_posts($args);
+
+    foreach ($scholarship_ids as $scholarship_id) {
+        $institution_id = get_field('scholarship_institution', $scholarship_id);
+        $city_id = get_field('cities', $institution_id);
+        $country_name = get_field('country', $city_id);
+
+        // Update the 'institution_country' field with the country name
+        update_field('institution_country', $country_name, $scholarship_id);
+    }
+}
+//add_action('init', 'update_scholarship_country');
+
+
+function process_scholarship($scholarship_id, $allowed_countries) {
+   
+    $institution_id = get_field('scholarship_institution', $scholarship_id);
+    $institution_name = get_the_title($institution_id);
+    $country_name = get_field('institution_country', $scholarship_id);
+    $scholarship_type = get_field('amount_category', $scholarship_id);
+    $eligible_degrees = get_field('eligible_degrees', $scholarship_id);
+
+    if (!is_array($eligible_degrees)) {
+        return null;
+    }
+
+    $deadlines = array();
+    if (in_array("Bachelor's", $eligible_degrees) && get_field('bachelor_open_date', $scholarship_id) === "Yes") {
+        $deadlines[] = array(
+            'degree' => "Bachelor's",
+            'deadline' => date('F j, Y', strtotime(get_field('current_bachelors_scholarship_deadline', $scholarship_id))),
+        );
+    }
+    
+    if (in_array("Master's", $eligible_degrees) && get_field('master_open_date', $scholarship_id) === "Yes") {
+        $deadlines[] = array(
+            'degree' => "Master's",
+            'deadline' => date('F j, Y', strtotime(get_field('current_masters_scholarship_deadline', $scholarship_id))),
+        );
+    }
+
+    if (empty($deadlines)) {
+        return null;
+    }
+
+    return array(
+        'institution_name' => $institution_name,
+        'institution_permalink' => get_permalink($institution_id),
+        'scholarship' => array(
+            'scholarship_title' => get_the_title($scholarship_id),
+            'scholarship_permalink' => get_permalink($scholarship_id),
+            'coverages' => get_field('scholarship_coverage', $scholarship_id),
+            'eligible_degrees' => $eligible_degrees,
+            'deadlines' => $deadlines,
+            'scholarship_type' => $scholarship_type,
+            'country' => $country_name,
+        )
+    );
+}
+
+function get_scholarships_info($scholarships_ids, $allowed_countries) {
+    $institution_scholarships = array();
+    $institution_count = 0;
+
+    foreach ($scholarships_ids as $scholarship_id) {
+        $processed_scholarship = process_scholarship($scholarship_id, $allowed_countries);
+        if ($processed_scholarship === null) {
+            continue;
+        }
+
+        $institution_name = $processed_scholarship['institution_name'];
+        $country_name = $processed_scholarship['scholarship']['country'];
+
+        if (!isset($institution_scholarships[$country_name])) {
+            $institution_scholarships[$country_name] = array();
+        }
+
+        if (!isset($institution_scholarships[$country_name][$institution_name])) {
+            $institution_scholarships[$country_name][$institution_name] = array(
+                'institution_permalink' => $processed_scholarship['institution_permalink'],
+                'scholarships' => array()
+            );
+            $institution_count++;
+        }
+
+        $institution_scholarships[$country_name][$institution_name]['scholarships'][] = $processed_scholarship['scholarship'];
+    }
+
+    return $institution_scholarships;
+}
