@@ -51,10 +51,6 @@
     $programs_text .= convert_array_to_text($programs);
     }           
 
-    echo '<pre>';
-    print_r( count($newArray));
-    echo '</pre>';
-    
  ?>
 <ul>
 
