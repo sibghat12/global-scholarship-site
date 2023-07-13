@@ -793,6 +793,19 @@ text-align:center !important;
     .courses-filter-search .course-filter .filter-box select {
         max-width: 60vw;
     }
+
+
+    .single-scholarships .post-content .gs-feeback-form-container {
+        border-radius: 0 !important;
+    }
+
+    .single-scholarships .post-content .gs-feeback-form-container input[name="helpful"] ~ .gs-feedback-radio-btn {
+        padding: 16px 50px !important;
+    }
+
+    .single-scholarships .post-content .gs-feeback-form-container .gs-feedback-form-buttons {
+        margin-top: 30px;
+    }
    
 }
 
@@ -3227,6 +3240,9 @@ padding-left:0px !important;
     text-indent: -1.4em !important;
     margin-bottom: 3px;
 }
+.single-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-scholarship-summary-list-items li ul{
+    padding: 0 !important;
+}
 
 .ellipsis.show {
     display: inline;
@@ -3291,13 +3307,14 @@ padding-left:0px !important;
     /* align-items: center; */
     padding: 10px;
     background: #F9F9F9;
-    border-radius: 50px;
+    gap: 10px;
+    border-radius: 16px;
     border: 1px solid #ccc;
 }
 
 .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     padding: 6px 20px;
     font-size: 18px;
@@ -3306,7 +3323,7 @@ padding-left:0px !important;
     height: 70px; */
     /* text-wrap: nowrap; */
     background: transparent !important;
-    margin-right: 10px;
+    margin-right: 0;
     border-radius: 50px;
     color: #000 !important;
 
@@ -3337,6 +3354,32 @@ padding-left:0px !important;
     fill: #fff !important;
 }
 
+/* SVG icons oranize Styling */
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-coverage-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-eligibility-criteria-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-application-procedure-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
+.single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a.scholarship-deadline-item svg {
+    width: 40px;
+    max-height: 40px !important;
+    margin-right: 18px;
+}
+
 /* Coverage Section */
 
 .single-scholarships #main .post-content .gs-scholarship-coverage ul.fa-ul {
@@ -3345,6 +3388,7 @@ padding-left:0px !important;
 
 .single-scholarships .post-content .gs-scholarship-coverage span.fa-li svg {
     fill: #66A0F6;
+    margin-top: 5px;
 }
 
 .single-scholarships .post-content .gs-scholarship-coverage .coverage-item {
@@ -3465,6 +3509,26 @@ padding-left:0px !important;
 .single-scholarships #main .post-content .gs-scholarship-application-procedure .gs-scholarships-ad .gs-scholarship-ad-arrow a:hover {
     color: #66A0F6 !important;
 }
+
+/* Scholarships Page Deadline */
+.single-scholarships .post-content .gs-scholarship-deadline .deadline-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.single-scholarships #main .post-content .gs-scholarship-deadline ul.fa-ul {
+    margin-left: 4.5em;
+}
+
+.single-scholarships .post-content .gs-scholarship-deadline span.fa-li svg {
+    fill: #66A0F6;
+    margin-top: 5px;
+}
+
 
 /* Popular Scholarships */
 
@@ -3627,7 +3691,7 @@ padding-left:0px !important;
 
     .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         align-items: center;
         padding: 6px 20px;
         font-size: 18px;

@@ -8,8 +8,8 @@
         </p>
 
         <ol>
-            <li><b>University Eligibility Criteria</b> - the requirements you need to meet to be admitted to the university</li>
-            <li><b>Scholarship Specific Eligibility Criteria</b> - the requirements you need to meet to be considered for the scholarship</li>
+            <li><b><?php echo $institution_name; ?> Eligibility Criteria</b> - the requirements you need to meet to be admitted to the <?php echo $institution_name; ?></li>
+            <li><b><?php echo $scholarship_title; ?> Specific Eligibility Criteria</b> - the requirements you need to meet to be considered for the <?php echo $scholarship_title; ?></li>
         </ol>
 
         <p class="criteria-note">These criteria vary per institution and scholarship so be sure to take note of these before preparing your application.</p>
@@ -56,7 +56,7 @@
             
                 
                 <?php else : ?>
-                    <p>There are no specific eligibility criteria for this scholarship. <b>You just need to be an international <?php echo ($degrees_text == 'PhD') ? $degrees_text : strtolower($degrees_text); ?> student or applicant of <?php echo $institution_name; ?>.</b></p>
+                    <p>There are no specific eligibility criteria for this scholarship. <b>You just need to be an international <?php echo ( str_contains($degrees_text, 'PhD') ) ? str_replace('PhD', 'Ph.D.', $degrees_text) : $degrees_text; ?> student or applicant of <?php echo $institution_name; ?>.</b></p>
                 <?php endif; ?>
             </div>
         </div>

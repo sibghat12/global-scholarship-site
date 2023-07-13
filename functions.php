@@ -2344,6 +2344,9 @@ function add_theme_caps() {
     $admins->add_cap( 'delete_others_cities' ); 
     $admins->add_cap( 'delete_published_cities' ); 
 
+    // Scholarships Feedback Access
+    $admins->add_cap( 'scholarship_access' ); 
+
     // gets the editor role
     $admins = get_role( 'editor' );
 
@@ -2387,6 +2390,9 @@ function add_theme_caps() {
     $admins->add_cap( 'delete_others_cities' ); 
     $admins->add_cap( 'delete_published_cities' ); 
       
+    // Scholarships Feedback Access
+    $admins->add_cap( 'scholarship_access' ); 
+
 }
 
 
@@ -2480,7 +2486,9 @@ $scholarship_editor->add_cap( 'assign_city_terms' );
     $scholarship_editor->remove_cap('delete_others_ads');
     $scholarship_editor->remove_cap('edit_published_ads');
     $scholarship_editor->remove_cap('edit_private_ads');
-
+    
+    // Scholarships Feedback Access
+    $scholarship_editor->add_cap( 'scholarship_access' ); 
 }
 
 add_action( 'after_setup_theme', 'add_scholarship_caps_to_scholarship_editor');
@@ -2783,7 +2791,7 @@ function add_scholarship_admin_page()
         'edit.php?post_type=scholarships', // parent slug
         'Scholarships Feedback',             // page title
         'Feedback',             // menu title
-        'manage_options',                   // capability
+        'scholarship_access',                   // capability
         'scholarships-form-feedback',             // menu slug
         'render_scholarship_settings_page'  // callback function
     );
