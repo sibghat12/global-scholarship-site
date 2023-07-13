@@ -51,7 +51,6 @@
     $programs_text .= convert_array_to_text($programs);
     }           
 
-
  ?>
 <ul>
 
@@ -73,7 +72,7 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
 <li>  Eligible Nationalities:  
     <div class="gs-scholarship-nationalities-container">
         <b class="gs-scholarship-nationalities"></b>
-        <?php if($eligible_countries != 'All Nationalities' && count($diffArray) > 5) : ?>
+        <?php if($eligible_countries != 'All Nationalities' && (( count($newArray) >= 3 && count($diffArray) >= 3 )) || count($diffArray) >= 3 ) : ?>
             <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
         <?php endif; ?>
     </div>
