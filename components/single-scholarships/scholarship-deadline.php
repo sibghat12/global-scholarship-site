@@ -39,7 +39,11 @@
         ?>
 
         <p>We also recommend visiting the <?php echo $institution_name; ?> Admissions Section for other university deadlines and requirements.</p>
-        <?php else:  ?>
+        <?php else:  
+            
+            if($degrees_text != 'PhD') :
+            
+            ?>
             <p>The great news is that there is no specific deadline to apply for <scholarship name>! While there are no specific dates, it’s important to apply before the  <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?> admission deadlines</a>. Here are the deadlines:</p>
             <?php 
             $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
@@ -61,7 +65,13 @@
             <?php
             endif;
             ?>
-    <?php
+        <?php else: ?>
+
+            <p>The great news is that there is no specific deadline to apply for <?php echo $scholarship_title; ?>! While there is no fixed deadline, you are encouraged to submit your application as early as possible. We recommend visiting the <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?> Admissions Section</a> Section for additional dates and requirements.</p>
+            <?php
+            
+            endif;
+
         endif;
     ?>
 </section>

@@ -36,7 +36,7 @@
                 </ol>            
                 <?php endif; ?>
 
-                <?php if( (  empty(get_field('application_procedure')) ) && ( empty( get_field('additional_scholarship_requirements')) ) ) : ?>
+                <?php if( ( empty(get_field('application_procedure')) ) && ( empty( get_field('additional_scholarship_requirements')) ) ) : ?>
 
                     <p>Since a separate scholarship application in addition to the university admission is needed for <b><a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title ?> page</a></b>, it’s important to know the application requirements and process. Make sure to take note of the important details before you apply!</p>
                 <?php endif; ?>
