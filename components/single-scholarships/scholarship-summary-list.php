@@ -11,15 +11,13 @@
   
 
   if($countries) {
-  $newArray = array_combine($countries, $countries);
+    $newArray = array_combine($countries, $countries);
   }
 
   if($newArray) {
     $diffArray = array_diff($country_array_original ,$newArray );
   } 
-
   
-
   if(count($diffArray) < 20 ) {
     
     if(in_array("All Nationalities", $countries )){
@@ -75,7 +73,7 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
 <li>  Eligible Nationalities:  
     <div class="gs-scholarship-nationalities-container">
         <b class="gs-scholarship-nationalities"></b>
-        <?php if($eligible_countries != 'All Nationalities') : ?>
+        <?php if($eligible_countries != 'All Nationalities' && count($diffArray) > 5) : ?>
             <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
         <?php endif; ?>
     </div>
