@@ -21,7 +21,7 @@
         <h3><?php echo $institution_name; ?> Eligibility Criteria</h3>
     
         <div class="gs-scholarship-eligibility-criteria-institution-content">
-            <p>Before applying for scholarships for international students, you need to apply for admissions at the university first. Find the <?php echo $institution_name; ?>’s admission eligibility criteria <a href="<?php echo get_permalink($institution->ID); ?>#admissions">here</a>.</p>
+            <p>Before applying for <?php echo $scholarship_title; ?> for international students, you need to apply for admissions at the <?php echo $institution_name; ?> first. Find the <?php echo $institution_name; ?>’s admission eligibility criteria <a href="<?php echo get_permalink($institution->ID); ?>#admissions">here</a>.</p>
             
         </div>
     </div>
