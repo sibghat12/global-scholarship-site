@@ -2945,7 +2945,7 @@ function update_scholarship_country() {
     }
 }
 //add_action('init', 'update_scholarship_country');
-
+add_action('update_scholarship_country', 'update_scholarship_country');
 
 function process_scholarship($scholarship_id, $allowed_countries) {
    

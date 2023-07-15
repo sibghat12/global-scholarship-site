@@ -27,7 +27,7 @@ $subject_array = $scholarship_details[12]['choices'];
     
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list_for_url = $published_countries['choices'];
-$country_list = ['Australia', 'Canada',  'South Korea', 'United Kingdom' , 'United States'];
+$country_list = $country_list_for_url;
      
 
 ?>  
