@@ -29,6 +29,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 */
 	echo apply_filters( 'avada_space_head', Avada()->settings->get( 'space_head' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 	?>
+	<style type="">
+		.awb-menu_row .menu-text {
+text-align: left !important; 
+}
+	</style>
 </head>
 
 <?php
