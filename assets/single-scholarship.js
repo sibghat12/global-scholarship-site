@@ -48,9 +48,7 @@ jQuery(document).ready(function($) {
 
       const eligibleSubjects = $('.gs-scholarship-eligible-subjects').val();
       const institutionTitle = $('.gs-scholarship-eligible-subjects').data('institution-title');
-      let theEligibleSubjects = JSON.parse(eligibleSubjects)
-      console.log("eligibleSubjects", eligibleSubjects)
-      console.log("theEligibleSubjects", theEligibleSubjects)
+      let theEligibleSubjects = JSON.parse(eligibleSubjects);
     
       if(eligibleSubjects) {
 
