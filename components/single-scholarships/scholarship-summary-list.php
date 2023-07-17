@@ -41,15 +41,15 @@
 
     $programs = get_field('eligible_programs');
         
-    $programs_text = '';
+    // $programs_text = '';
 
 
 
-    if (in_array("All Subjects", $programs)){
-    $programs_text .= "All Subjects offered at " . get_the_title(get_field("scholarship_institution"));
-    } else {
-    $programs_text .= convert_array_to_text($programs);
-    }           
+    // if (in_array("All Subjects", $programs)){
+    //   $programs_text .= "All Subjects offered at " . get_the_title(get_field("scholarship_institution"));
+    // } else {
+    //   $programs_text .= convert_array_to_text($programs);
+    // }           
 
  ?>
 <ul>
@@ -77,12 +77,12 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
         <?php endif; ?>
     </div>
 </li>
-<input type="hidden" class="gs-scholarship-eligible-subjects" value="<?php echo $programs_text; ?>" />
+<input type="hidden" class="gs-scholarship-eligible-subjects" data-institution-title="<?php echo get_the_title(get_field("scholarship_institution")); ?>" value="<?php echo htmlspecialchars(json_encode($programs)); ?>" />
 <?php if ($programs){
     ?><li>  Eligible Subjects:  
     <div class="gs-scholarship-subjects-container">
         <b class="gs-scholarship-subjects"></b>
-        <?php if(count($programs) > 1) : ?>
+        <?php if(count($programs) > 3 && !in_array("All Subjects", $programs)) : ?>
             <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
         <?php endif; ?>
     </div>   

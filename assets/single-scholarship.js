@@ -47,16 +47,32 @@ jQuery(document).ready(function($) {
     if($('.gs-scholarship-eligible-subjects')) {
 
       const eligibleSubjects = $('.gs-scholarship-eligible-subjects').val();
+      const institutionTitle = $('.gs-scholarship-eligible-subjects').data('institution-title');
+      let theEligibleSubjects = JSON.parse(eligibleSubjects)
+      console.log("eligibleSubjects", eligibleSubjects)
+      console.log("theEligibleSubjects", theEligibleSubjects)
     
       if(eligibleSubjects) {
 
         // Split the list of subjects into an array
-        const subjects = eligibleSubjects.trim().split(', ');
-      
+        // const subjects = eligibleSubjects.trim().split(', ');
+
         // Display the first 3 subjects
-        const firstThreeSubjects = subjects.slice(0, 3);
-        $('.gs-scholarship-subjects').text(firstThreeSubjects.join(', '));
-      
+        const firstThreeSubjects = theEligibleSubjects.slice(0, 3);
+        let basicSubjectsText = convertArrayToText(firstThreeSubjects)
+        let theSubjectText = '';
+
+        if(basicSubjectsText.includes('All Subjects') && firstThreeSubjects.length == 1 ) {
+          theSubjectText += "All Subjects offered at " + institutionTitle;
+        } 
+        else if(basicSubjectsText.includes('All Subjects') && firstThreeSubjects.length > 1 ) {
+          theSubjectText += basicSubjectsText + " offered at " + institutionTitle;
+        }
+        else {
+          theSubjectText += basicSubjectsText;
+        }
+
+        $('.gs-scholarship-subjects').text(theSubjectText);
         // Add a click event listener to the toggle link
         $('.gs-scholarship-subjects-container #toggle-link').click(function(event) {
           event.preventDefault();
@@ -64,7 +80,7 @@ jQuery(document).ready(function($) {
         // Check whether to show more or show less
         if ($(this).text() === 'Show more') {
             // Display all the subjects
-            $('.gs-scholarship-subjects').text(subjects.join(', '));
+            $('.gs-scholarship-subjects').text(theEligibleSubjects.join(', '));
       
             // Update the link text
             $(this).text('Show less');
@@ -235,4 +251,21 @@ function getFeebackForm() {
           }
       ); 
   });
+}
+
+function convertArrayToText(arrayList) {
+  console.log("arrayList", arrayList)
+  if (arrayList) {
+    if (arrayList.length === 1) {
+      return arrayList[0];
+    }
+    if (arrayList.length === 2) {
+      return arrayList[0] + " and " + arrayList[1];
+    }
+    var formatText = arrayList.join(", ");
+    formatText = formatText.replace(/,([^,]*)$/, ", and$1");
+    return formatText;
+  } else {
+    return "";
+  }
 }
