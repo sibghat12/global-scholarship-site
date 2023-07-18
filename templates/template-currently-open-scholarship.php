@@ -86,9 +86,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </style>
 
+
+
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+
+
 
 <?php get_header();
 
@@ -96,15 +114,101 @@ if ( ! defined( 'ABSPATH' ) ) {
 $country = get_field('country');
 $intro = get_field('intro');
 $conclusion = get_field('conclusion');
+
 ?>
 
 <h1 style="font-size:36px;padding-bottom:20px;text-align:center;"> <?php single_post_title(); ?> </h1>
-<div style="margin-bottom:60px;">
+<div style="margin-bottom:30px;">
 <?php echo $intro; ?>
 </div>
+
+
+
+
+
+ 
+
+
+<section id="content" class="small-text opencourse-template"   style="margin-bottom:30px;width:100% !important;">
+        <div id="openCourses" >
+            <div class="post-content" style="max-width:100%;">
+    <div class="toggle-filter"  >           
+ <center>
+<aside style="width:60%;max-width:1000px;">            
+<div class="course-filter"> 
+    
+    <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>"  style="margin-top:10px;width:100%;" method="POST" class="filterr-wrapper">
+    
+    <input type="hidden" name="action" value="course_form">
+    <div class="filter-boxes-wrap">
+        
+       <!--  <div class="filter-title">
+            Search for Courses:
+        </div>  -->       
+
+        <div class="filter-box degree-filter">
+            <select name="degree" >
+            <option value="">Any Degree</option> 
+            
+
+            </select>
+
+        </div>
+
+
+        <div class="filter-box subject-filter">
+            <select name="subject" >
+            <option value="">Any Subject</option>
+                            
+            </select>
+
+        </div>
+        
+        <div class="filter-box country-filter">
+            <select name="country" >
+            <option value="">Any Country</option>
+            
+
+            </select>
+
+        </div>
+        
+
+         <div class="filter-btn" style="">
+    <button  style="height: 47px;" type="submit">Filter</button>
+
+    </div>
+
+    </div>
+
+   
+
+    </form>
+</div>
+</aside>
+</center>
+</div>
+
+
+
+            
+            
+               
+                
+
+    
+
+    
+    
+</section>
+
+
+
+</div>
+  
+
+
 <?php 
-
-
 $allowed_countries = ['United States', 'United Kingdom', 'Canada', 'Australia', 'South Korea'];
 
 $meta_query = array();

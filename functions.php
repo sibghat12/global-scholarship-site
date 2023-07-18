@@ -2825,3 +2825,20 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
 
 }
 add_action('admin_enqueue_scripts', 'enqueue_scholarship_admin_scripts');
+
+
+
+
+function add_custom_scripts() {
+    ?>
+    <script>
+        window.addEventListener('load', function() {
+            var megaMenus = document.querySelectorAll('.awb-menu__mega-wrap');
+            megaMenus.forEach(function(megaMenu) {
+                megaMenu.style.display = 'block';
+            });
+        });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'add_custom_scripts');

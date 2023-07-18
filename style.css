@@ -4297,3 +4297,20 @@ input[type="submit"] {
     font-size:14px;
 }
 
+ .menu-item .menu-text {
+    text-align: left !important; 
+    }
+
+    .awb-menu_row .menu-text {
+    text-align: left !important; 
+    }
+    
+    @media screen and (max-width: 600px) {
+    .awb-menu__sub-ul span {
+   text-align:center !important;
+     }
+    }
+
+    .awb-menu__mega-wrap {
+        display: none;
+    }

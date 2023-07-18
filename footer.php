@@ -70,5 +70,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<?php get_template_part( 'templates/to-top' ); ?>
+
+		 <script>
+        window.addEventListener('load', function() {
+            var megaMenus = document.querySelectorAll('.awb-menu__mega-wrap');
+            megaMenus.forEach(function(megaMenu) {
+                megaMenu.style.display = 'block';
+            });
+        });
+    </script>
 	</body>
 </html>
