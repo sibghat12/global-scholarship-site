@@ -4315,12 +4315,18 @@ input[type="submit"] {
         display: none;
     }
 
-    /* GS Partner With Us */
+/* GS Partner With Us */
 
-    /** Home Page Hero Section **/
+/* General Stylings */
+
+.page-template-template-partner  #main {
+    max-width: 100% !important;
+}
+
+/** GS Partner With Us Hero Section **/
 .page-template-template-partner .gs-partner-hero-section {
     display: grid;
-	grid-template-columns: 4fr 4fr;
+	grid-template-columns: 5fr 4fr;
 	margin-top: 60px;
 	padding-bottom: 30px;
 }
@@ -4334,12 +4340,12 @@ input[type="submit"] {
 	text-transform: uppercase;
 }
 
-.gs-partner-hero-section-button-cta > a {
-    background: #B81B20;
+#main .gs-partner-hero-section-button-cta > a {
+    background: #FA9600;
     padding: 18px 45px;
     display: inline-block;
     margin-top: 30px;
-    color: #fff;
+    color: #fff !important;
     font-size: 22px;
     text-decoration: none;
     font-weight: 700;
@@ -4351,18 +4357,16 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
 	position: relative;
     z-index: 3;
-    padding-left: 80px;
+    padding-left: 200px;
     display: flex;
-    /* margin-right: -120px; */
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-	width: 500px;
 }
 
 /** Image Content **/
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
-	width: 100%;
+	width: 60%;
 	height: 100%;
 }
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image img {
@@ -4371,8 +4375,8 @@ input[type="submit"] {
 }
 
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-	font-size: 54px;
-	font-weight: 700;
+	font-size: 4rem;
+	font-weight: 900;
 	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
 	line-height: 1.1;
     margin-bottom: 10px;
@@ -4381,4 +4385,56 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
 	font-size: 21px;
 	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.675;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+    /** Text Content **/
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
+        padding-left: 30px;
+
+    }
+
+    
+    /** Image Content **/
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
+        width: 100%;
+        height: 100%;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+
+	.page-template-template-partner .gs-partner-hero-section {
+		display: block;
+		margin-top: 30px;
+	}
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
+		position: relative;
+		z-index: 3;
+		padding-left: 1.4rem;
+		padding-right: 1.4rem;
+		display: flex;
+		margin-right: 0;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		max-width: 100%;
+	}
+
+    
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
+		line-height: 1.55;
+	}
+
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+		font-size: 45px;
+	}
+
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
+		padding: 20px;
+	}
+
 }
