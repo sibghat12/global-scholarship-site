@@ -60,13 +60,9 @@ jQuery(document).ready(function($) {
         let basicSubjectsText = convertArrayToText(firstThreeSubjects)
         let theSubjectText = '';
 
-        if(basicSubjectsText.includes('All Subjects') && firstThreeSubjects.length == 1 ) {
+        if(basicSubjectsText.includes('All Subjects') && firstThreeSubjects.length >= 1 ) {
           theSubjectText += "All Subjects offered at " + institutionTitle;
-        } 
-        else if(basicSubjectsText.includes('All Subjects') && firstThreeSubjects.length > 1 ) {
-          theSubjectText += basicSubjectsText + " offered at " + institutionTitle;
-        }
-        else {
+        } else {
           theSubjectText += basicSubjectsText;
         }
 
