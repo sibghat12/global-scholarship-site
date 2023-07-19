@@ -42,6 +42,7 @@ $currency = get_currency($country);
 $image_url = get_the_post_thumbnail_url($institute->ID);
 
 
+$disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
 
 
 ?>
@@ -113,9 +114,9 @@ $image_url = get_the_post_thumbnail_url($institute->ID);
                         <p id="short" style="font-size:12px;line-height: 18px !important;padding-right:3%;color:black;">
                             <?php $des = get_post_meta($ad_id, 'description', true);
 
-                             if (strlen($des) > 200) {
-    $des = substr($des, 0, 200);
-    $des = $des . ' <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
+                             if (strlen($des) > 180) {
+    $des = substr($des, 0, 180);
+    $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
 }
 
 echo $des;
@@ -132,7 +133,7 @@ echo $des;
                     </div>
 
 <div class="clearfix"> </div>
-                    <div class="row funded-line" style="">
+                    <div class="row funded-line" style="position:absolute;bottom:0px;margin-top:0px;">
                       
                      <p  style="font-size:12px;line-height: 18px;color:black;margin-bottom:0px !important;
                      line-height: 22px !important;">
@@ -144,7 +145,13 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
                            <span style="width:100% !important;">
-                           <!-- <strong>  *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong> -->
+                          
+                      <!-- <?php   //if($disclaimer === "1")  {  ?>
+                         
+                         <strong> *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                       
+                       <?php } ?> -->
+
                          </span> 
                               
                         </p>
@@ -244,7 +251,11 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
 
-                         <!-- <strong> *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong> -->
+                         <!-- <?php   //if($disclaimer === true)  { echo $show_disclaimer; ?>
+                         
+                         <strong> *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                       
+                       <?php } ?> -->
                            
                         </p>
                     </div>
