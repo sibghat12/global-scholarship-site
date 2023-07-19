@@ -373,8 +373,8 @@ document.querySelectorAll('.read-more').forEach((span) => {
         colMd8.height('250');
         colMd4.height('250');
       } else {
-        colMd8.height('200');
-        colMd4.height('200');
+        colMd8.height('210');
+        colMd4.height('210');
       }
     jQuery('.funded-line').css('position' , 'absolute');
     jQuery('.funded-line').css('bottom' , '0px');

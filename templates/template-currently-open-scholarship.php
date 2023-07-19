@@ -94,20 +94,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
-
-
-
 <?php get_header();
 
 // Get the values from the ACF fields
@@ -122,12 +108,15 @@ $conclusion = get_field('conclusion');
 <?php echo $intro; ?>
 </div>
 
+<?php 
 
+$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
 
+$country_array = $scholarship_details[13]['choices'];
+$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+$country_list_for_url = $published_countries['choices'];
 
-
- 
-
+?>
 
 <section id="content" class="small-text opencourse-template"   style="margin-bottom:30px;width:100% !important;">
         <div id="openCourses" >
@@ -149,25 +138,32 @@ $conclusion = get_field('conclusion');
         <div class="filter-box degree-filter">
             <select name="degree" >
             <option value="">Any Degree</option> 
-            
-
+            <option value="Master's">Master's</option> 
+            <option value="Bachelor's">Bachelor's</option> 
+            <option value="PhD">PhD</option> 
             </select>
 
         </div>
 
 
         <div class="filter-box subject-filter">
-            <select name="subject" >
-            <option value="">Any Subject</option>
-                            
+            <select name="type" >
+            <option value="">Any Type</option>
+            <option value="Full Tuition">Full Tuition</option> 
+            <option value="Partial Funding">Partial Funding</option> 
+            <option value="Full Funding">Full Funding</option>                 
             </select>
 
         </div>
-        
+         
         <div class="filter-box country-filter">
             <select name="country" >
             <option value="">Any Country</option>
-            
+            <?php
+             foreach ($country_list_for_url as  $country) { ?>
+                <option value='<?php echo $country; ?>'> <?php echo $country ?></option> 
+             <?php }
+            ?>
 
             </select>
 
