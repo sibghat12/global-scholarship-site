@@ -4429,6 +4429,12 @@ input[type="submit"] {
     top: -45%;
 }
 
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-one {
+    position: absolute;
+    right: 30px;
+    top: 12px;
+}
+
 .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
     font-size: 3.5rem !important;
     font-family: 'Roboto' !important;

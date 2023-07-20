@@ -15,6 +15,18 @@
 
             </div>
             <div class="gs-partner-why-us-box-content">
+                <div class="gs-partner-why-us-box-circle-one">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="11" fill="url(#paint0_radial_0_176)"/>
+                        <defs>
+                        <radialGradient id="paint0_radial_0_176" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(9.5 20.5) rotate(-60.6422) scale(18.3576)">
+                        <stop stop-color="#F79A0F"/>
+                        <stop offset="1" stop-color="#F9B358"/>
+                        </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+
                 <h1 class="gs-partner-why-us-box-heading">
                 Why us?
                 </h1>
