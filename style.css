@@ -4395,6 +4395,7 @@ input[type="submit"] {
     grid-template-columns: 5fr 4fr;
     margin-top: 60px;
     padding-bottom: 30px;
+    gap: 100px;
 }
 
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
@@ -4410,7 +4411,7 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-content {
     position: relative;
     padding: 60px;
-    box-shadow: 2px 3px 2px 3px #F2F2F2;
+    box-shadow: 4px 5px 4px 0 #B8B8B825;
     border-radius: 18px;
     background: #fff !important;
     z-index: 9;
@@ -4457,6 +4458,35 @@ input[type="submit"] {
     font-size: 1.2rem;
     line-height: 1.675;
     margin-top: 20px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    width: 550px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box {
+    width: 220px;
+    position: relative;
+    padding: 20px;
+    height: max-content;
+    box-shadow: 4px 4px 9px 0px #84848425;
+    border-radius: 4px;
+    background: #fff !important;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box  h3.gs-why-us-box-title {
+    margin: 0;
+    padding: 0;
+}
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-experience {
+    margin-top: -70px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-targeted {
+    margin-top: -70px;
 }
 @media only screen and (max-width: 1200px) {
     /** Text Content **/

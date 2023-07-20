@@ -71,7 +71,9 @@
     </div>
     <!-- End Why Us Section Text -->
     <div class="gs-partner-why-us-section-boxes">
-        
+        <?php 
+        require get_stylesheet_directory() . '/components/partner-with-us/why-us-boxes.php';
+        ?>
     </div>
     <!-- End Why Us Section Image -->
 
