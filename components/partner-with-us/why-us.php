@@ -26,6 +26,28 @@
                         </defs>
                     </svg>
                 </div>
+                <div class="gs-partner-why-us-box-circle-two">
+                    <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="19.5156" cy="19.5146" r="19" fill="url(#paint0_radial_0_174)"/>
+                        <defs>
+                        <radialGradient id="paint0_radial_0_174" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(8.01562 19.5146) rotate(51.5819) scale(18.5068)">
+                        <stop stop-color="#3287A7"/>
+                        <stop offset="1" stop-color="#008FC6"/>
+                        </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="gs-partner-why-us-box-circle-three">
+                    <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19.5156" cy="19.5146" r="19" fill="url(#paint0_radial_0_175)"/>
+                        <defs>
+                        <radialGradient id="paint0_radial_0_175" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(11.5156 31.5147) rotate(-55.9228) scale(20.5244)">
+                        <stop stop-color="#F69501"/>
+                        <stop offset="1" stop-color="#F8B257"/>
+                        </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
 
                 <h1 class="gs-partner-why-us-box-heading">
                 Why us?

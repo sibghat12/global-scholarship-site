@@ -4432,7 +4432,19 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-one {
     position: absolute;
     right: 30px;
-    top: 12px;
+    top: 26px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-two {
+    position: absolute;
+    right: 90px;
+    top: 70px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
+    position: absolute;
+    right: 210px;
+    top: 56px;
 }
 
 .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
@@ -4453,11 +4465,33 @@ input[type="submit"] {
 
     }
 
-    
     /** Image Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
         width: 100%;
         height: 100%;
+    }
+
+
+    /* Why Us Section */
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
+        padding-left: 60px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
+        font-size: 2.5rem !important;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
+        position: absolute;
+        right: 32px;
+        top: 56px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-two {
+        position: absolute;
+        right: 97px;
+        top: 26px;
     }
 
 }
@@ -4486,11 +4520,45 @@ input[type="submit"] {
 	}
 
 	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-		font-size: 45px;
+		font-size: 2.5rem;
 	}
 
 	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
 		padding: 20px;
 	}
 
+
+    /* Why Us Section */
+
+    .page-template-template-partner .gs-partner-why-us-section {
+		display: block;
+		margin-top: 30px;
+	}
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
+        padding-left: 0;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
+        font-size: 2.2rem !important;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-1 {
+        display: none;
+    } 
+    .page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-2 {
+        display: none;
+    } 
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
+        position: absolute;
+        right: 32px;
+        top: 56px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-two {
+        position: absolute;
+        right: 97px;
+        top: 26px;
+    }
 }
