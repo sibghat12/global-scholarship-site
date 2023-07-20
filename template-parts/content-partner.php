@@ -13,3 +13,7 @@ $hero_section_image_id = $hero_section_image['ID'];
 
 require get_stylesheet_directory() . '/components/partner-with-us/hero.php';
 
+// GS Why Us Section Partner With Us
+
+require get_stylesheet_directory() . '/components/partner-with-us/why-us.php';
+

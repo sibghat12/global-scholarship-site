@@ -4388,8 +4388,58 @@ input[type="submit"] {
     line-height: 1.675;
 }
 
+/* Partner With Us Why Us */
 
+.page-template-template-partner .gs-partner-why-us-section {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    margin-top: 60px;
+    padding-bottom: 30px;
+}
 
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
+    position: relative;
+    z-index: 3;
+    padding-left: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-content {
+    position: relative;
+    padding: 60px;
+    box-shadow: 2px 3px 2px 3px #F2F2F2;
+    border-radius: 18px;
+    background: #fff !important;
+    z-index: 9;
+}
+.page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-1 {
+    position: absolute;
+    z-index: 0;
+    left: 40px;
+    bottom: 0px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-2 {
+    position: absolute;
+    z-index: 0;
+    right: -14%;
+    top: -45%;
+}
+
+.page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
+    font-size: 3.5rem !important;
+    font-family: 'Roboto' !important;
+    margin: 0 !important;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-text {
+    font-size: 1.2rem;
+    line-height: 1.675;
+    margin-top: 20px;
+}
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
