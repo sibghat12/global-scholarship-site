@@ -133,7 +133,7 @@ echo $des;
                     </div>
 
 <div class="clearfix"> </div>
-                    <div class="row funded-line" style="position:absolute;bottom:0px;margin-top:0px;">
+                    <div class="row funded-line" style="">
                       
                      <p  style="font-size:12px;line-height: 18px;color:black;margin-bottom:0px !important;
                      line-height: 22px !important;">
@@ -145,12 +145,12 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
                            <span style="width:100% !important;">
-                          
-                      <!-- <?php   //if($disclaimer === "1")  {  ?>
+                          <?php   if($disclaimer === "1")  {  ?>
                          
-                         <strong> *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                         <strong style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
                        
-                       <?php } ?> -->
+                       <?php } ?>
+                      
 
                          </span> 
                               
@@ -186,7 +186,7 @@ echo $des;
                         <img style="width:28px;height: 28px;margin-right:8px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:-2px;  "><?php echo $intake_dates; ?></span></p> -->
+                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:-2px;  "><?php //echo $intake_dates; ?></span></p> -->
 
 
                     
@@ -251,11 +251,11 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
 
-                         <!-- <?php   //if($disclaimer === true)  { echo $show_disclaimer; ?>
+                          <?php   if($disclaimer === "1")  {  ?>
                          
-                         <strong> *<?php //echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                         <strong style="font-weight:600 !important;" > *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
                        
-                       <?php } ?> -->
+                       <?php } ?>
                            
                         </p>
                     </div>
