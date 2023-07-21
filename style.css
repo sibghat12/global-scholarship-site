@@ -4495,7 +4495,6 @@ input[type="submit"] {
 /* GS Partner With Us What Promote */
 .page-template-template-partner .gs-partner-promote-section {
     position: relative;
-    height: 100%;
     margin-bottom: 20px;
 }
 
@@ -4587,6 +4586,44 @@ input[type="submit"] {
     padding-left: 100px;
 }
 
+
+/* GS Partner With Us Get Started */
+.page-template-template-partner .gs-partner-get-started-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    margin-bottom: 20px;
+}
+
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container h2.gs-partner-get-started-heading {
+    margin: 0px;
+    padding: 0px;
+}
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container p {
+    margin-right: 20px;
+    max-width: 100%;
+    width: 500px;
+}
+
+.page-template-template-partner #main .gs-partner-get-started-section .gs-partner-get-started-container a.gs-partner-get-started-button {
+    color: #fff!important;
+    background: #008FC6;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-weight: 700;
+}
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
@@ -4749,12 +4786,44 @@ input[type="submit"] {
         max-width: 100% !important;
         padding: 20px !important;
     }
+
+    /* GS Partner With Us Get Started */
+    .page-template-template-partner .gs-partner-get-started-section {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
+        padding: 20px 30px; 
+        width: 450px;
+        max-width: 100%;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image img {
+        width: 200px !important;
+    }
+
+
 }
 
 @media only screen and (max-width: 600px) {
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box {
         width: 100% !important;
         min-height: 150px;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+    }
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image {
+        display: none;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
+        width: 100%;
+        max-width: 100%;
     }
 
 }

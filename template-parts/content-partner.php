@@ -21,3 +21,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/why-us.php';
 
 require get_stylesheet_directory() . '/components/partner-with-us/promote.php';
 
+// GS Get Started Partner With Us
+
+require get_stylesheet_directory() . '/components/partner-with-us/get-started.php';
+
