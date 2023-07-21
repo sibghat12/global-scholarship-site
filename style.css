@@ -4319,8 +4319,9 @@ input[type="submit"] {
 
 /* General Stylings */
 
-.page-template-template-partner  #main {
+.page-template-template-partner #main {
     max-width: 100% !important;
+    padding: 0 !important;
 }
 
 /** GS Partner With Us Hero Section **/
@@ -4489,6 +4490,37 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-targeted {
     margin-top: -70px;
 }
+
+
+/* GS Partner With Us What Promote */
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, rgba(4,93,128,1) 0%, rgba(0,143,198,1) 86%);
+    padding: 0 0 100px 150px;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container h2.gs-partner-what-promote-title {
+    font-family: 'Roboto' !important;
+    padding: 0;
+    margin: 10px 0;
+    color: #fff !important;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
+    font-family: 'Roboto' !important;
+    padding: 0;
+    margin: 10px 0;
+    width: 40%;
+    color: #fff !important;
+}
+
+
+
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {

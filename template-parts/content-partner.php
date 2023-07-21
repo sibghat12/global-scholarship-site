@@ -17,3 +17,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/hero.php';
 
 require get_stylesheet_directory() . '/components/partner-with-us/why-us.php';
 
+// GS What Promote Partner With Us
+
+require get_stylesheet_directory() . '/components/partner-with-us/promote.php';
+
