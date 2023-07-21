@@ -4493,9 +4493,16 @@ input[type="submit"] {
 
 
 /* GS Partner With Us What Promote */
+.page-template-template-partner .gs-partner-promote-section {
+    position: relative;
+    height: 100%;
+    margin-bottom: 350px;
+}
 
 .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
     height: 480px;
+    max-width: 90%;
+    border-radius: 0 11px 80px 0;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -4519,7 +4526,37 @@ input[type="submit"] {
     color: #fff !important;
 }
 
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+    max-width: 30%;
+    padding: 40px 25px;
+    background-color: #fff;
+    border-radius: 23px;
+    box-shadow: 0 4px 9px 0 #9A9A9A25;
+}
 
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-box-program.gs-promote-box {
+    background-color: #ffffff50;
+    backdrop-filter: blur(25px);
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box-content h3.gs-promote-box-title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.4rem;
+}
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box-content p.gs-promote-box-text {
+    font-size: 1rem !important;
+    line-height: 1.675rem !important;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
+    display: flex;
+    justify-content: space-around;
+    z-index: 10;
+    margin-top: -165px;
+    max-width: 90%;
+    padding-left: 100px;
+}
 
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
