@@ -4496,7 +4496,7 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-promote-section {
     position: relative;
     height: 100%;
-    margin-bottom: 350px;
+    margin-bottom: 20px;
 }
 
 .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
@@ -4527,11 +4527,35 @@ input[type="submit"] {
 }
 
 .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
-    max-width: 30%;
+    max-width: 25%;
     padding: 40px 25px;
     background-color: #fff;
     border-radius: 23px;
     box-shadow: 0 4px 9px 0 #9A9A9A25;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-svg-1 {
+    display: inline-flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-svg-2 {
+    display: inline-flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px 0 #4F4F4F38;
+    margin-bottom: 20px;
+}
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-svg-3 {
+    display: inline-flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px 0 #4F4F4F38;
+    margin-bottom: 20px;
 }
 
 .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-box-program.gs-promote-box {
