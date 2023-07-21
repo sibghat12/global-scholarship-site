@@ -4515,6 +4515,7 @@ input[type="submit"] {
     font-family: 'Roboto' !important;
     padding: 0;
     margin: 10px 0;
+    font-size: 3.5rem;
     color: #fff !important;
 }
 
@@ -4522,8 +4523,10 @@ input[type="submit"] {
     font-family: 'Roboto' !important;
     padding: 0;
     margin: 10px 0;
+    font-size: 21px;
     width: 40%;
     color: #fff !important;
+    line-height: 1.675;
 }
 
 .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
@@ -4713,7 +4716,7 @@ input[type="submit"] {
     }
 
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
-        height: 200px;
+        height: 280px;
         width: 100%;
         border-radius: 0;
         padding: 0;
@@ -4724,8 +4727,12 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
         display: block !important;
     }
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-title {
+        font-size: 2.4rem !important;
+    }
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
         width: 100% !important;
+        font-size: 18px;
     }
 
     .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
