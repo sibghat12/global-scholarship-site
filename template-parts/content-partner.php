@@ -25,3 +25,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/promote.php';
 
 require get_stylesheet_directory() . '/components/partner-with-us/get-started.php';
 
+// GS Our Partners Partner With Us
+
+require get_stylesheet_directory() . '/components/partner-with-us/our-partners.php';
+

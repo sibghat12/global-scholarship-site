@@ -4624,6 +4624,31 @@ input[type="submit"] {
     border-radius: 20px;
     font-weight: 700;
 }
+
+/* GS Partner With Us Our Partners */
+
+.page-template-template-partner .gs-partner-our-partners-section {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    padding: 60px 200px;
+}
+
+.page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-right: 120px;
+    border-right: 1px solid #ccc;
+}
+
+.page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    width: 100%;
+    margin-left: 100px;
+}
+
+
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
@@ -4701,6 +4726,18 @@ input[type="submit"] {
         width: 30%;
         max-width: 30%;
         padding-bottom: 30px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section {
+        padding: 60px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+        padding-right: 40px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
+        margin-left: 30px;
     }
 }
 @media only screen and (max-width: 768px) {
@@ -4791,16 +4828,39 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-get-started-section {
         display: flex;
         flex-direction: row-reverse;
+        max-width: 100%;
+        justify-content: center;
     }
 
     .page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
         padding: 20px 30px; 
-        width: 450px;
-        max-width: 100%;
+        width: 100%;
+        max-width: 450px;
     }
 
     .page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image img {
         width: 200px !important;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section {
+        display: block;
+        padding: 20px 30px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+        padding-right: 0;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+        border-right: 0;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 30px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
+        text-align: center;
+        margin: 0;
+        margin-top: 40px;
     }
 
 
