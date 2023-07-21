@@ -4530,8 +4530,9 @@ input[type="submit"] {
 }
 
 .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
-    max-width: 25%;
-    padding: 40px 25px;
+    width: 360px;
+    max-width: 27%;
+    padding: 40px 35px 90px 35px;
     background-color: #fff;
     border-radius: 23px;
     box-shadow: 0 4px 9px 0 #9A9A9A25;
@@ -4579,7 +4580,7 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
     display: flex;
     justify-content: center;
-    gap: 45px;
+    gap: 80px;
     z-index: 10;
     margin-top: -165px;
     max-width: 90%;
@@ -4660,7 +4661,9 @@ input[type="submit"] {
     }
 
     .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+        width: 30%;
         max-width: 30%;
+        padding-bottom: 30px;
     }
 }
 @media only screen and (max-width: 768px) {
@@ -4737,6 +4740,7 @@ input[type="submit"] {
 
     .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
         max-width: 100%;
+        width: 100%;
         margin-top: 20px;
     }
     
