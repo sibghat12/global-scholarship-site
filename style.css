@@ -4875,7 +4875,8 @@ input[type="submit"] {
     }
 
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
-        height: 280px;
+        height: auto;
+        min-height: 280px;
         width: 100%;
         border-radius: 0;
         padding: 0;
