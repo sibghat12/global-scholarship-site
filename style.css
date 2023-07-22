@@ -4744,6 +4744,7 @@ input[type="submit"] {
     background-color: #ffffff;
     padding: 60px 60px 100px 60px;
     border-radius: 42px;
+    box-shadow: 4px 4px 9px 3px #99999925;
 }
 
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container h1 {
@@ -4764,6 +4765,10 @@ input[type="submit"] {
     clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
 }
 
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container {
+    margin-bottom: 100px;
+}
+
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container h2 {
     color: #000;
     font-family: 'Poppins';
@@ -4772,7 +4777,6 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-description {
     margin-top: 50px;
 }
-
 
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container h1 span.gs-partner-pricing-title-background {
     padding-right: 90px;
@@ -4784,6 +4788,16 @@ input[type="submit"] {
     clip-path: polygon(4% 22%, 82% 17%, 77% 80%, 1% 79%);
 }
 
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul {
+    list-style-type: none;
+    margin-left: 4.5em;
+    padding-left: 0;
+    margin-top: 50px;
+}
+
+.page-template-template-partner #main .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul li{
+    margin-bottom: 30px;
+}
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
@@ -5005,7 +5019,7 @@ input[type="submit"] {
         margin-top: 40px;
     }
 
-    /* GS Partner With Us  Testimonials */
+    /* GS Partner With Us Testimonials */
 
 	.page-template-template-partner .gs-partner-testimonials-section {
         display: flex;
@@ -5014,6 +5028,31 @@ input[type="submit"] {
         padding: 20px 30px;
         gap: 40px;
 	}
+
+    /* GS Partner With Us Pricing Models */
+
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container {
+        display: block;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 0;
+        padding: 40px;
+        box-shadow: 4px 4px 9px 3px #99999925;
+    }
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container {
+        margin-bottom: 30px;
+    }
+
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container h1 span.gs-partner-pricing-title-background {
+        padding-right: 50px;
+    }
+
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul {
+        margin-top: 40px;
+    }
+
+
 
 }
 
