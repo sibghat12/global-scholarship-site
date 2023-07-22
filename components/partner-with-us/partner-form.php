@@ -27,6 +27,14 @@
     </div>
     <div class="gs-partner-form-container">
         <div class="gs-partner-form">
+            <div class="gs-parnter-form-content">
+                <div class="gs-parnter-form-heading">
+                    <h1>Schedule a Meeting</h1>
+                </div>
+                <div class="gs-parnter-form-text">
+                    <p>To schedule a meeting, please provide the following information. We will promptly get in touch with you to discuss potential dates.</p>
+                </div>
+            </div>
             <?php echo do_shortcode('[contact-form-7 id="70910" title="Partner With Us Form"]');  ?>
         </div>
     </div>
