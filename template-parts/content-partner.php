@@ -37,3 +37,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/testimonials.p
 
 require get_stylesheet_directory() . '/components/partner-with-us/pricing.php';
 
+// GS Partner Form Partner With Us
+
+require get_stylesheet_directory() . '/components/partner-with-us/partner-form.php';
+

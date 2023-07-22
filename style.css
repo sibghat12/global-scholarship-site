@@ -4730,12 +4730,14 @@ input[type="submit"] {
 /* GS Partner With Us Pricing Models */
 
 .page-template-template-partner .gs-partner-pricing-section {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 100px 0;
-    background: #FAFAFA;;
+    background: #FAFAFA;
+    z-index: 2;
 }
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container {
     display: flex;
@@ -4798,6 +4800,63 @@ input[type="submit"] {
 .page-template-template-partner #main .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul li{
     margin-bottom: 30px;
 }
+
+/* GS Partner With Us Form */
+
+.page-template-template-partner .gs-partner-form-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
+    padding: 0px 250px 0 0;
+    width: 78%;
+    margin-left: 60px;
+    margin-top: 20px;
+    z-index: 2;
+    box-shadow: 8px 11px 37px 8px #BDBDBD25;
+    border-radius: 60px;
+    margin-bottom: 80px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),linear-gradient(to bottom, rgba(0, 143, 198, 1) 0%, rgba(0, 143, 198, 1) 100%);
+    background-clip: content-box, padding-box;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
+    padding: 80px 130px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-university input.gs-form-input-university {
+    margin-top: 22px;
+    border: 0 !important;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 40px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-name input.gs-form-input-name {
+    margin-top: 22px;
+    border: 0 !important;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 40px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-email input.gs-form-input-email[autocomplete="email"] {
+    margin-top: 22px;
+    border: 0 !important;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 40px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-icon-background {
+    position: absolute;
+    top: -55%;
+    right: -6%;
+    z-index: 1;
+}
+
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
