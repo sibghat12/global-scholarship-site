@@ -33,3 +33,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/our-partners.p
 
 require get_stylesheet_directory() . '/components/partner-with-us/testimonials.php';
 
+// GS Pricing Partner With Us
+
+require get_stylesheet_directory() . '/components/partner-with-us/pricing.php';
+
