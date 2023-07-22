@@ -4649,17 +4649,20 @@ input[type="submit"] {
 }
 
 
-/* Testimonials */
+/* GS Partner With Us Testimonials */
 .page-template-template-partner .gs-partner-testimonials-section {
     display: grid;
     grid-template-columns: 4fr 6fr;
     padding: 60px 200px;
     gap: 100px;
 }
+
 .page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container {
     display: flex;
     align-items: center;
+    padding: 20px;
     justify-content: center;
+    box-shadow: 1px 8px 19px 0 #77767625;
 }
 
 .page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-content-container {
@@ -4693,6 +4696,37 @@ input[type="submit"] {
     justify-content: center;
     align-items: center;
 }
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-boxes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-boxes-container .gs-partner-testimonial-item-writer-image {
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 50%;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-boxes-container .gs-partner-testimonial-item-writer-image img {
+    border-radius: 50%;
+    box-shadow: 4px 4px 10px 8px #cccccc21;
+}
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container .gs-partner-testimonial-item-text-content {
+    padding-left: 10px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container .gs-partner-testimonial-item-text-content .gs-partner-testimonial-item-text {
+    margin-top: 14px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container .gs-partner-testimonial-item-text-content .gs-partner-testimonial-item-writer {
+    margin-top: 14px;
+}
+
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
@@ -4783,6 +4817,12 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
         margin-left: 30px;
     }
+
+        /* GS Partner With Us  Testimonials */
+
+	.page-template-template-partner .gs-partner-testimonials-section {
+        padding: 60px;
+	}
 }
 @media only screen and (max-width: 768px) {
 
@@ -4790,6 +4830,7 @@ input[type="submit"] {
 		display: block;
 		margin-top: 30px;
 	}
+
 	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
 		position: relative;
 		z-index: 3;
@@ -4803,7 +4844,6 @@ input[type="submit"] {
 		max-width: 100%;
 	}
 
-    
 	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
 		line-height: 1.55;
 	}
@@ -4816,13 +4856,11 @@ input[type="submit"] {
 		padding: 20px;
 	}
 
-
     /* Why Us Section */
 
     .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
         font-size: 2.2rem !important;
     }
-
 
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
         position: absolute;
@@ -4848,9 +4886,11 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
         display: block !important;
     }
+
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-title {
         font-size: 2.4rem !important;
     }
+
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
         width: 100% !important;
         font-size: 18px;
@@ -4907,6 +4947,15 @@ input[type="submit"] {
         margin-top: 40px;
     }
 
+    /* GS Partner With Us  Testimonials */
+
+	.page-template-template-partner .gs-partner-testimonials-section {
+        display: flex;
+        flex-direction: column-reverse;
+		margin-top: 30px;
+        padding: 20px 30px;
+        gap: 40px;
+	}
 
 }
 

@@ -14,7 +14,7 @@
                 <div class="gs-partner-testimonial-item-writer"><b>Lorem ipsum</b></div>
             </div>
             <div class="gs-partner-testimonial-item-writer-image">
-                img
+                <img src="https://gs.lndo.site/wp-content/uploads/2023/07/Untitled-design-1-1-e1689809077387.png" alt="testimonial" srcset="">
             </div>
         </div>
         <div class="gs-partner-testimonial-item-container">
@@ -30,7 +30,7 @@
                 <div class="gs-partner-testimonial-item-writer"><b>Lorem ipsum</b></div>
             </div>
             <div class="gs-partner-testimonial-item-writer-image">
-                img
+                <img src="https://gs.lndo.site/wp-content/uploads/2023/07/Untitled-design-1-1-e1689809077387.png" alt="testimonial" srcset="">
             </div>
         </div>
         <div class="gs-partner-testimonial-item-container">
@@ -46,7 +46,7 @@
                 <div class="gs-partner-testimonial-item-writer"><b>Lorem ipsum</b></div>
             </div>
             <div class="gs-partner-testimonial-item-writer-image">
-                img
+                <img src="https://gs.lndo.site/wp-content/uploads/2023/07/Untitled-design-1-1-e1689809077387.png" alt="testimonial" srcset="">
             </div>
         </div>
     </div>
