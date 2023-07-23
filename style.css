@@ -4857,6 +4857,25 @@ input[type="submit"] {
     z-index: 1;
 }
 
+.page-template-template-partner .gs-partner-form-section .gs-partner-with-us-submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-with-us-submit p {
+    width: 100%;
+    text-align: center;    
+}   
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-with-us-submit  p input {
+    width: 80%;
+    background: rgba(0, 143, 198, 1);
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
@@ -4948,11 +4967,26 @@ input[type="submit"] {
         margin-left: 30px;
     }
 
-        /* GS Partner With Us  Testimonials */
+        /* GS Partner With Us Testimonials */
 
 	.page-template-template-partner .gs-partner-testimonials-section {
         padding: 60px;
 	}
+
+    /* GS Partner With Us Partner Form */
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
+        padding: 80px 60px;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
+        padding: 0px 100px 0 0;
+        width: auto;
+        max-width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
 }
 @media only screen and (max-width: 768px) {
 
@@ -5111,7 +5145,25 @@ input[type="submit"] {
         margin-top: 40px;
     }
 
+    /* GS Partner With Us Partner Form */
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
+        padding: 0px 50px 0 0;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        max-width: 100%;
+        z-index: 2;
+        box-shadow: 8px 11px 37px 8px #BDBDBD25;
+        border-radius: 0;
+        margin-bottom: 80px;
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),linear-gradient(to bottom, rgba(0, 143, 198, 1) 0%, rgba(0, 143, 198, 1) 100%);
+        background-clip: content-box, padding-box;
+    }
 
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
+        padding: 50px 30px;
+    }
 
 }
 
