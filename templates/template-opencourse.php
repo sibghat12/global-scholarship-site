@@ -9,7 +9,82 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
+
 ?>
+
+<style type="">
+   .feature-course-section {
+        margin-top:50px;
+    }
+   .feature-course-div{
+    height:auto;
+    min-height:200px;
+    box-shadow:0px 2px 2px rgba(128, 128, 128, 0.3);
+    margin:auto !important;
+    background:#f4f8fa;
+    max-width:1000px;
+    padding-top:25px;
+    padding-bottom:15px;
+    padding-left:10px;
+    
+    
+}
+.feature-course-div h2{
+    padding-left:0px;
+    margin-bottom:0px;
+    font-size:29px !important;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+} 
+.feature-course-div p {
+    padding-top:10px;
+    padding-right:5% !important;
+    color:#626262 !important;
+    font-size:18px !important;
+    line-height: 18px;
+    padding-left:0px !important;
+
+} 
+
+.courses-text-color {
+  color:  #008FC6 !important;
+}
+
+
+@media screen and (max-width: 900px) {
+    .feature-course-div img {
+    height: auto;
+    width:100%;
+    object-fit: cover;
+    margin-top:20px;
+    margin-bottom:20px !important;
+     }
+      .feature-course-div h2 {
+        padding-top:0px !important;
+      }
+     
+     .feature-course-div {
+        padding-bottom:15px !important;
+        padding:10px !important;
+     }
+      .feature-course-div p { 
+        font-size:16px !important;
+        font-weight: 400 !important;
+        font-size:16px !important;
+        line-height:16px !important;
+    }
+
+     .feature-course-div .col-md-4 {
+        padding:05px !important;
+     }    
+    
+}
+
+
+
+</style>
+
 <?php get_header(); 
 
     $params = get_query_info();
@@ -239,10 +314,35 @@ if ($loop->have_posts()) {
                
                 
 
+
     
 	<?php wp_reset_postdata(); ?>
     
     
+    <div class="feature-course-section">
+        
+  
+    <div  class="feature-course-div">
+
+   <div class="col-md-8" style="margin-top:10px;">
+        <h2> Feature your <span class="courses-text-color"> Courses </span></h2>
+        <p style="line-height: 28px !important;"> If you want to feature courses on our website for your institution, please contact us at:
+         <br>
+        <a style="font-weight:600;color:#626262 !important;" href="mailto:partnerships@globalscholarships.com"> partnerships@globalscholarships.com </a>
+        </p>
+   </div>
+
+    <div class="col-md-4 " style="margin-top:-10px;">
+        <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/07/image.png">
+    </div>
+
+</div>
+
+
+      </div>
+
+
+
 </section>
             
 <script>
@@ -281,8 +381,8 @@ jQuery( document ).ready( function($){
             
             var max_height = Math.max(height_col_md_4, height_col_md_8);
 
-            jQuery('.col-md-4').height(max_height);
-            jQuery('.col-md-8').height(max_height);
+            jQuery('.col-md-4').height(max_height+15);
+            jQuery('.col-md-8').height(max_height+15);
         } else {
             // Optional: Reset to automatic height when viewport is less than 991px
             jQuery('.col-md-4').height('auto');
@@ -352,6 +452,7 @@ document.querySelectorAll('.read-more').forEach((span) => {
       var colMd4 = colMd8.next('.col-md-4');
 
       var fullHeight = jQuery(full).height();
+      console.log(fullHeight);
 
       // If the height of the full div is more than 100px
       if (fullHeight > 140) {
