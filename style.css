@@ -4876,6 +4876,45 @@ input[type="submit"] {
     text-transform: uppercase;
 }
 
+/* GS Partner With Us Contact section */
+.page-template-template-partner .gs-partner-contact-section {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container {
+    position: relative;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .background-layer {
+    margin-bottom: -5px;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text-container {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-title{
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 3rem;
+    text-align: center;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text {
+    color: #fff;
+    margin-top: 40px;
+    font-size: 1.3rem;
+    font-family: 'Poppins';
+    line-height: 1.675;
+    text-align: center;
+
+}
+
+.page-template-template-partner #main .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text a {
+    color: #fff !important;
+}
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
