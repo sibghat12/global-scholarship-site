@@ -4883,10 +4883,14 @@ input[type="submit"] {
 }
 .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container {
     position: relative;
+    width: 87%;
+    height: 100%;
 }
 
 .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .background-layer {
     margin-bottom: -5px;
+    height: 100%;
+    width: 100%;
 }
 
 .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text-container {
