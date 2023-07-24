@@ -8,7 +8,7 @@
                 <h2>Model 1</h2>
             </div>
             <div class="gs-partner-pricing-model-one-description gs-partner-pricing-description">
-                <h2>Cost per Lead</h2>
+                <h2>Cost<br> per Lead</h2>
             </div>
             <div class="gs-partner-pricing-model-one-list gs-partner-pricing-list">
                 <ul class="fa-ul">
@@ -35,7 +35,7 @@
                 <h2>Model 2</h2>
             </div>
             <div class="gs-partner-pricing-model-two-description gs-partner-pricing-description">
-                <h2>Annual Course Listing</h2>
+                <h2>Annual Course<br> Listing</h2>
             </div>
             <div class="gs-partner-pricing-model-two-list gs-partner-pricing-list">
                 <ul class="fa-ul">
