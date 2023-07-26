@@ -4436,6 +4436,10 @@ input[type="submit"] {
     border-radius: 18px;
     background: #fff !important;
     z-index: 9;
+    min-height: 260px;
+    width: 541px;
+    min-width: 100%;
+    max-width: 100%;
 }
 .page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-1 {
     position: absolute;
@@ -4447,8 +4451,8 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-2 {
     position: absolute;
     z-index: 0;
-    right: -14%;
-    top: -45%;
+    right: -137px;
+    top: -158px;
 }
 
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-one {
@@ -4607,12 +4611,12 @@ input[type="submit"] {
 
 .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 80px;
     z-index: 10;
     margin-top: -165px;
     max-width: 90%;
-    padding-left: 100px;
+    padding-left: 150px;
 }
 
 
@@ -4673,6 +4677,7 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
     width: 100%;
     margin-left: 100px;
 }
@@ -4782,9 +4787,22 @@ input[type="submit"] {
     color: #000;
     font-family: 'Poppins';
     position: relative;
+    font-size: 4rem;
 }
 
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-title h2 {
+    color: #000;
+    font-family: 'Poppins';
+    margin-left: 20%;
+    padding-right: 47px;
+    padding-left: 8px;
+    display: inline;
+    line-height: 0.8;
+    background-color: #F5B95E;
+    -webkit-clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
+    clip-path: polygon(4% 14%, 80% 15%, 77% 83%, 0% 80%);
+}
+/* .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-title h2 {
     color: #000;
     font-family: 'Poppins';
     padding-right: 54px;
@@ -4794,7 +4812,7 @@ input[type="submit"] {
     background-color: #F5B95E;
     -webkit-clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
     clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
-}
+} */
 
 .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container {
     margin-bottom: 100px;
@@ -4909,7 +4927,9 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-contact-section {
     display: flex;
     flex-direction: row-reverse;
+    margin-bottom: 180px;
 }
+
 .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container {
     position: relative;
     width: 87%;
@@ -4981,6 +5001,7 @@ input[type="submit"] {
 
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-content {
         box-shadow: 4px 5px 20px 1px #B8B8B825;
+        margin: 0 20px;
     }
 
     .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
@@ -5014,10 +5035,7 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes {
         margin: 60px 20px 0 20px;
     }
-/* 
-    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container {
-        margin-top: 60px;
-    } */
+
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-experience {
         margin-top: 0 !important; 
     }
@@ -5027,10 +5045,22 @@ input[type="submit"] {
     }
 
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
-        padding-left: 30px;
+        padding-left: 80px;
         gap: 18px;
+        margin-top: -120px;
     }
 
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
+        width: 90% !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container h2.gs-partner-what-promote-title {
+        font-size: 3rem;
+    }
+    
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
+        padding: 80px;
+    }
     .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
         width: 30%;
         max-width: 30%;
@@ -5078,6 +5108,7 @@ input[type="submit"] {
 
     .page-template-template-partner .gs-partner-contact-section {
         background-color:rgb(0, 143, 198) ;
+        margin-bottom: 0px;
     }
 
     .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container {
@@ -5163,9 +5194,13 @@ input[type="submit"] {
         border-radius: 0;
         padding: 0;
         min-width: 100%;
-        padding: 40px 60px;
+        padding: 40px;
     }
 
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container h2.gs-partner-what-promote-title {
+        font-size: 1.9rem;
+        line-height: 2.3rem;
+    }
     .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
         display: block !important;
     }
