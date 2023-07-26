@@ -3045,6 +3045,18 @@ padding-left:0px !important;
     border-radius: 10px;
     padding: 16px 20px !important;
 }
+
+/* New Comments enhancemetns 26/07/2023 */
+#comments .commentlist .comment-author.meta {
+    color: #333333 !important;
+    font-size: 15px !important;
+    overflow: initial !important;
+
+}
+
+#comments .commentlist .the-comment .comment-text * {
+    font-size: 14px !important;
+}
 /* End Comments Restyling */
 
 /**********  Articles By Topic **********/
