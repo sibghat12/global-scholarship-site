@@ -4399,7 +4399,7 @@ input[type="submit"] {
 	font-size: 4rem;
 	font-weight: 900;
 	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
-	line-height: 1.1;
+	line-height: 1.3;
     margin-bottom: 10px;
 }
 
@@ -4414,7 +4414,7 @@ input[type="submit"] {
 .page-template-template-partner .gs-partner-why-us-section {
     display: grid;
     grid-template-columns: 5fr 4fr;
-    margin-top: 60px;
+    margin-top: 120px;
     padding-bottom: 30px;
     gap: 100px;
 }
@@ -4486,6 +4486,7 @@ input[type="submit"] {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
     width: 550px;
+    margin-right: 20px;
 }
 
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box {
@@ -4497,6 +4498,14 @@ input[type="submit"] {
     box-shadow: 4px 4px 9px 0px #84848425;
     border-radius: 4px;
     background: #fff !important;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box:hover {
+    background: linear-gradient(#F7B358, #F28938) !important;
+    color: #fff !important;
+}
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box:hover h3.gs-why-us-box-title {
+    color: #fff !important;
 }
 
 .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box  h3.gs-why-us-box-title {
@@ -4940,6 +4949,11 @@ input[type="submit"] {
 .page-template-template-partner #main .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text a {
     color: #fff !important;
 }
+@media only screen and (max-width: 1280px) {
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+		font-size: 3.3rem;
+	}
+}
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
@@ -4958,7 +4972,7 @@ input[type="submit"] {
 
     .page-template-template-partner .gs-partner-why-us-section {
 		display: block;
-		margin-top: 30px;
+		margin-top: 50px;
 	}
 
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
@@ -4997,9 +5011,13 @@ input[type="submit"] {
         width: 100%;
     }
 
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes {
+        margin: 60px 20px 0 20px;
+    }
+/* 
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container {
         margin-top: 60px;
-    }
+    } */
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-experience {
         margin-top: 0 !important; 
     }
@@ -5030,8 +5048,11 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
         margin-left: 30px;
     }
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+		font-size: 3rem;
+	}
 
-        /* GS Partner With Us Testimonials */
+    /* GS Partner With Us Testimonials */
 
 	.page-template-template-partner .gs-partner-testimonials-section {
         padding: 60px;
@@ -5110,7 +5131,7 @@ input[type="submit"] {
 	}
 
 	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-		font-size: 2.5rem;
+		font-size: 2.3rem;
 	}
 
 	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
@@ -5268,6 +5289,7 @@ input[type="submit"] {
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box {
         width: 100% !important;
         min-height: 150px;
+        height: 100%;
     }
 
     .page-template-template-partner .gs-partner-get-started-section {
