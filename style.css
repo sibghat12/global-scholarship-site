@@ -4872,7 +4872,11 @@ input[type="submit"] {
 }
 
 .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
-    padding: 80px 180px;
+    padding: 80px 100px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form .wpcf7{
+    margin: 0 80px;
 }
 
 .page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-university input.gs-form-input-university {
@@ -5091,7 +5095,11 @@ input[type="submit"] {
     /* GS Partner With Us Partner Form */
 
     .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
-        padding: 80px 60px;
+        padding: 60px 40px;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form .wpcf7{
+        margin: 0 60px;
     }
 
     .page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
@@ -5315,7 +5323,11 @@ input[type="submit"] {
     }
 
     .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
-        padding: 50px 60px;
+        padding: 50px 30px;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form .wpcf7{
+    margin: 0 50px;
     }
 
 }
