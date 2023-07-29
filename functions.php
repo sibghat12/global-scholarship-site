@@ -3077,3 +3077,75 @@ function add_custom_scripts() {
     <?php
 }
 add_action('wp_footer', 'add_custom_scripts');
+
+/**
+ * New Comments enhancemetns 26/07/2023 
+ * Remove the preposition (at) from the date
+*/
+
+/**
+	 * The comment template.
+	 *
+	 * @access public
+	 * @param Object     $comment The comment.
+	 * @param array      $args    The comment arguments.
+	 * @param int|string $depth   The comment depth.
+	 */
+	function fusion_comment( $comment, $args, $depth ) {
+		$defaults = get_query_var( 'fusion_tb_comments_args' );
+		?>
+		<?php $add_below = ''; ?>
+		<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+			<div class="the-comment">
+				<?php if ( 'hide' !== $defaults['avatar'] ) : ?>
+				<div class="avatar"><?php echo get_avatar( $comment, 54 ); ?></div>
+				<?php endif; ?>
+				<div class="comment-box">
+					<div class="comment-author meta">
+						<strong><?php echo get_comment_author_link(); ?></strong>
+						<?php
+						printf(
+							/* translators: %1$s: Comment date. %2$s: Comment time. */
+							esc_attr__( '%1$s %2$s', 'fusion-builder' ),
+							get_comment_date(), // phpcs:ignore WordPress.Security.EscapeOutput
+							get_comment_time() // phpcs:ignore WordPress.Security.EscapeOutput
+						);
+
+						edit_comment_link( __( ' - Edit', 'fusion-builder' ), '  ', '' );
+
+						comment_reply_link(
+							array_merge(
+								$args,
+								[
+									'reply_text' => __( ' - Reply', 'fusion-builder' ),
+									'add_below'  => 'comment',
+									'depth'      => $depth,
+									'max_depth'  => $args['max_depth'],
+								]
+							)
+						);
+						?>
+					</div>
+					<div class="comment-text">
+						<?php if ( '0' == $comment->comment_approved ) : // phpcs:ignore WordPress.PHP.StrictComparisons ?>
+							<em><?php esc_attr_e( 'Your comment is awaiting moderation.', 'fusion-builder' ); ?></em>
+							<br />
+						<?php endif; ?>
+						<?php comment_text(); ?>
+					</div>
+				</div>
+			</div>
+		<?php
+	}
+
+// Remove comment date
+function wpb_remove_comment_date($date, $d, $comment) { 
+    return;
+}
+add_filter( 'get_comment_date', 'wpb_remove_comment_date', 10, 3);
+
+// Remove comment time
+function wpb_remove_comment_time($date, $d, $comment) { 
+    return;
+}
+add_filter( 'get_comment_time', 'wpb_remove_comment_time', 10, 3);
