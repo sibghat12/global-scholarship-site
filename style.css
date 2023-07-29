@@ -4562,8 +4562,8 @@ input[type="submit"] {
 }
 
 .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
-    width: 360px;
-    max-width: 27%;
+    width: 28%;
+    max-width: 28%;
     padding: 40px 35px 90px 35px;
     background-color: #fff;
     border-radius: 23px;
@@ -4972,6 +4972,21 @@ input[type="submit"] {
 
 .page-template-template-partner #main .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text a {
     color: #fff !important;
+}
+@media only screen and (max-width: 1920.1) and (min-width: 1440.1px) {
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+        height: 420px !important;
+        min-height: 420px !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-box-content h3.gs-promote-box-title {
+        font-size: 1.7rem !important;
+    }
+    
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-box-content p.gs-promote-box-text {
+        font-size: 1.2rem !important;
+        line-height: 1.675rem !important;
+    }
 }
 @media only screen and (max-width: 1280px) {
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
