@@ -4335,6 +4335,28 @@ input[type="submit"] {
     padding-right:20px;
 }
 
+.awb-menu_row .menu-text {
+    text-align: left !important; 
+    }
+    
+    @media screen and (max-width: 600px) {
+    .awb-menu__sub-ul span {
+   text-align:center !important;
+     }
+     
+    }
+
+    .awb-menu__mega-wrap {
+        display: none;
+    }
+
+
+  @media screen and (max-width: 767px) {
+   .page-template-template-currently-open-scholarship .filter-box{
+       min-width:400px !important;
+   }
+}
+
 /* GS Partner With Us */
 
 /* General Stylings */
