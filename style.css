@@ -4349,7 +4349,6 @@ input[type="submit"] {
     padding-right:20px;
 }
 
-
 .awb-menu_row .menu-text {
     text-align: left !important; 
     }
@@ -4370,4 +4369,1038 @@ input[type="submit"] {
    .page-template-template-currently-open-scholarship .filter-box{
        min-width:400px !important;
    }
+}
+
+/* GS Partner With Us */
+
+/* General Stylings */
+
+.page-template-template-partner #main {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+/** GS Partner With Us Hero Section **/
+.page-template-template-partner .gs-partner-hero-section {
+    display: grid;
+	grid-template-columns: 5fr 4fr;
+	margin-top: 60px;
+	padding-bottom: 30px;
+}
+
+.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-title {
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	margin-bottom: 20px;
+	font-weight: 700;
+	color: #B81B20;
+	text-transform: uppercase;
+}
+
+#main .gs-partner-hero-section-button-cta > a {
+    background: #FA9600;
+    padding: 18px 45px;
+    display: inline-block;
+    margin-top: 30px;
+    color: #fff !important;
+    font-size: 22px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 12px;
+}
+
+/** Text Content **/
+.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
+	position: relative;
+    z-index: 3;
+    padding-left: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/** Image Content **/
+.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
+	width: 80%;
+	height: 100%;
+}
+.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image img {
+	width: 100%;
+	max-height: inherit;
+}
+
+.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+	font-size: 4rem;
+	font-weight: 900;
+	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+	line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
+	font-size: 21px;
+	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.675;
+}
+
+/* Partner With Us Why Us */
+
+.page-template-template-partner .gs-partner-why-us-section {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    margin-top: 120px;
+    padding-bottom: 30px;
+    gap: 100px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
+    position: relative;
+    z-index: 3;
+    padding-left: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-content {
+    position: relative;
+    padding: 60px;
+    box-shadow: 4px 5px 4px 0 #B8B8B825;
+    border-radius: 18px;
+    background: #fff !important;
+    z-index: 9;
+    min-height: 260px;
+    width: 541px;
+    min-width: 100%;
+    max-width: 100%;
+}
+.page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-1 {
+    position: absolute;
+    z-index: 0;
+    left: 40px;
+    bottom: 0px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-2 {
+    position: absolute;
+    z-index: 0;
+    right: -137px;
+    top: -158px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-one {
+    position: absolute;
+    right: 30px;
+    top: 26px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-two {
+    position: absolute;
+    right: 90px;
+    top: 70px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
+    position: absolute;
+    right: 210px;
+    top: 56px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
+    font-size: 3.5rem !important;
+    font-family: 'Roboto' !important;
+    margin: 0 !important;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-text {
+    font-size: 1.2rem;
+    line-height: 1.675;
+    margin-top: 20px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    width: 550px;
+    margin-right: 20px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box {
+    width: 100%;
+    position: relative;
+    padding: 15px 25px;
+    height: max-content;
+    min-height: 270px;
+    box-shadow: 4px 4px 9px 0px #84848425;
+    border-radius: 4px;
+    background: #fff !important;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box:hover {
+    background: linear-gradient(#F7B358, #F28938) !important;
+    color: #fff !important;
+}
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box:hover h3.gs-why-us-box-title {
+    color: #fff !important;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box  h3.gs-why-us-box-title {
+    margin: 0;
+    padding: 0;
+}
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-experience {
+    margin-top: -70px;
+}
+
+.page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-targeted {
+    margin-top: -70px;
+}
+
+
+/* GS Partner With Us What Promote */
+.page-template-template-partner .gs-partner-promote-section {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
+    height: 480px;
+    max-width: 90%;
+    border-radius: 0 11px 80px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, rgba(4,93,128,1) 0%, rgba(0,143,198,1) 86%);
+    padding: 0 0 100px 150px;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container h2.gs-partner-what-promote-title {
+    font-family: 'Roboto' !important;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 3.5rem;
+    color: #fff !important;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
+    font-family: 'Roboto' !important;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 21px;
+    width: 40%;
+    color: #fff !important;
+    line-height: 1.675;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+    width: 28%;
+    max-width: 28%;
+    padding: 40px 35px 90px 35px;
+    background-color: #fff;
+    border-radius: 23px;
+    box-shadow: 0 4px 9px 0 #9A9A9A25;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-svg-1 {
+    display: inline-flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-svg-2 {
+    display: inline-flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px 0 #4F4F4F38;
+    margin-bottom: 20px;
+}
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-svg-3 {
+    display: inline-flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px 0 #4F4F4F38;
+    margin-bottom: 20px;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-box-program.gs-promote-box {
+    background-color: #ffffff50;
+    backdrop-filter: blur(25px);
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box-content h3.gs-promote-box-title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.4rem;
+}
+.page-template-template-partner .gs-partner-promote-section .gs-promote-box-content p.gs-promote-box-text {
+    font-size: 1rem !important;
+    line-height: 1.675rem !important;
+}
+
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
+    display: flex;
+    /* justify-content: center; */
+    gap: 80px;
+    z-index: 10;
+    margin-top: -165px;
+    max-width: 90%;
+    padding-left: 150px;
+}
+
+
+/* GS Partner With Us Get Started */
+.page-template-template-partner .gs-partner-get-started-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    margin-bottom: 20px;
+}
+
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container h2.gs-partner-get-started-heading {
+    margin: 0px;
+    padding: 0px;
+}
+.page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container p {
+    margin-right: 20px;
+    max-width: 100%;
+    width: 500px;
+}
+
+.page-template-template-partner #main .gs-partner-get-started-section .gs-partner-get-started-container a.gs-partner-get-started-button {
+    color: #fff!important;
+    background: #008FC6;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* GS Partner With Us Our Partners */
+
+.page-template-template-partner .gs-partner-our-partners-section {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    padding: 60px 200px;
+}
+
+.page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-right: 120px;
+    border-right: 1px solid #ccc;
+}
+
+.page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    width: 100%;
+    margin-left: 100px;
+}
+
+
+/* GS Partner With Us Testimonials */
+.page-template-template-partner .gs-partner-testimonials-section {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    padding: 60px 200px;
+    gap: 100px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
+    box-shadow: 1px 8px 19px 0 #77767625;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-content-heading h2{
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-family: 'Roboto';
+}
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-content-heading h3{
+    margin: 0;
+    padding: 0;
+    font-size: 2.1rem;
+    line-height: 1.675rem !important;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-content-text {
+    margin-top: 1.8rem;
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-content-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-boxes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-boxes-container .gs-partner-testimonial-item-writer-image {
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 50%;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonials-boxes-container .gs-partner-testimonial-item-writer-image img {
+    border-radius: 50%;
+    box-shadow: 4px 4px 10px 8px #cccccc21;
+}
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container .gs-partner-testimonial-item-text-content {
+    padding-left: 10px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container .gs-partner-testimonial-item-text-content .gs-partner-testimonial-item-text {
+    margin-top: 14px;
+}
+
+.page-template-template-partner .gs-partner-testimonials-section .gs-partner-testimonial-item-container .gs-partner-testimonial-item-text-content .gs-partner-testimonial-item-writer {
+    margin-top: 14px;
+}
+
+/* GS Partner With Us Pricing Models */
+
+.page-template-template-partner .gs-partner-pricing-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+    background: #FAFAFA;
+    z-index: 2;
+}
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 60px 60px 100px 60px;
+    border-radius: 42px;
+    box-shadow: 4px 4px 9px 3px #99999925;
+}
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container h1 {
+    color: #000;
+    font-family: 'Poppins';
+    position: relative;
+    font-size: 4rem;
+}
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-title h2 {
+    color: #000;
+    font-family: 'Poppins';
+    margin-left: 20%;
+    padding-right: 47px;
+    padding-left: 8px;
+    display: inline;
+    line-height: 0.8;
+    background-color: #F5B95E;
+    -webkit-clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
+    clip-path: polygon(4% 14%, 80% 15%, 77% 83%, 0% 80%);
+}
+/* .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-title h2 {
+    color: #000;
+    font-family: 'Poppins';
+    padding-right: 54px;
+    padding-left: 8px;
+    display: inline;
+    line-height: 0.8;
+    background-color: #F5B95E;
+    -webkit-clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
+    clip-path: polygon(4% 14%, 82% 15%, 77% 83%, 0% 80%);
+} */
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container {
+    margin-bottom: 100px;
+}
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container h2 {
+    color: #000;
+    font-family: 'Poppins';
+}
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-description {
+    margin-top: 50px;
+}
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container h1 span.gs-partner-pricing-title-background {
+    padding-right: 90px;
+    padding-left: 8px;
+    display: inline;
+    line-height: 0.8;
+    background-color: #36B2E1;
+    -webkit-clip-path: polygon(4% 22%, 82% 17%, 77% 80%, 1% 79%);
+    clip-path: polygon(4% 22%, 82% 17%, 77% 80%, 1% 79%);
+}
+
+.page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul {
+    list-style-type: none;
+    margin-left: 4.5em;
+    padding-left: 0;
+    margin-top: 50px;
+}
+
+.page-template-template-partner #main .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul li{
+    margin-bottom: 30px;
+}
+
+/* GS Partner With Us Form */
+
+.page-template-template-partner .gs-partner-form-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
+    padding: 0px 250px 0 0;
+    width: 78%;
+    margin-left: 60px;
+    margin-top: 20px;
+    z-index: 2;
+    box-shadow: 8px 11px 37px 8px #BDBDBD25;
+    border-radius: 60px;
+    margin-bottom: 80px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),linear-gradient(to bottom, rgba(0, 143, 198, 1) 0%, rgba(0, 143, 198, 1) 100%);
+    background-clip: content-box, padding-box;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
+    padding: 80px 100px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form .wpcf7{
+    margin: 0 80px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-university input.gs-form-input-university {
+    margin-top: 22px;
+    border: 0 !important;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 40px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-name input.gs-form-input-name {
+    margin-top: 22px;
+    border: 0 !important;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 40px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-container label.gs-form-label-email input.gs-form-input-email[autocomplete="email"] {
+    margin-top: 22px;
+    border: 0 !important;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 40px;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-form-icon-background {
+    position: absolute;
+    top: -55%;
+    right: -6%;
+    z-index: 1;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-with-us-submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-with-us-submit p {
+    width: 100%;
+    text-align: center;    
+}   
+
+.page-template-template-partner .gs-partner-form-section .gs-partner-with-us-submit  p input {
+    width: 80%;
+    background: rgba(0, 143, 198, 1);
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+/* GS Partner With Us Contact section */
+.page-template-template-partner .gs-partner-contact-section {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 180px;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container {
+    position: relative;
+    width: 87%;
+    height: 100%;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .background-layer {
+    margin-bottom: -5px;
+    height: 100%;
+    width: 100%;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text-container {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-title{
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 3rem;
+    text-align: center;
+    line-height: 2.75rem !important;
+}
+
+.page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text {
+    color: #fff;
+    margin-top: 40px;
+    font-size: 1.3rem;
+    font-family: 'Poppins';
+    line-height: 1.675;
+    text-align: center;
+
+}
+
+.page-template-template-partner #main .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text a {
+    color: #fff !important;
+}
+@media only screen and (min-width: 1540.1px) and  (max-width: 1920.1px) {
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+        height: 420px !important;
+        min-height: 420px !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-box-content h3.gs-promote-box-title {
+        font-size: 1.7rem !important;
+    }
+    
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box .gs-promote-box-content p.gs-promote-box-text {
+        font-size: 1.2rem !important;
+        line-height: 1.675rem !important;
+    }
+}
+@media only screen and (max-width: 1280px) {
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+		font-size: 3.3rem;
+	}
+}
+@media only screen and (max-width: 1200px) {
+    /** Text Content **/
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
+        padding-left: 30px;
+
+    }
+
+    /** Image Content **/
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /* Why Us Section */
+
+    .page-template-template-partner .gs-partner-why-us-section {
+		display: block;
+		margin-top: 50px;
+	}
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
+        padding-left: 0;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-content {
+        box-shadow: 4px 5px 20px 1px #B8B8B825;
+        margin: 0 20px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
+        font-size: 2.5rem !important;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
+        position: absolute;
+        right: 32px;
+        top: 56px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-two {
+        position: absolute;
+        right: 97px;
+        top: 26px;
+    }
+
+    
+    .page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-1 {
+        display: none;
+    } 
+    .page-template-template-partner .gs-partner-why-us-section .gs-why-us-shape-2 {
+        display: none;
+    } 
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container {
+        width: 100%;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes {
+        margin: 60px 20px 0 20px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-experience {
+        margin-top: 0 !important; 
+    }
+    
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box.why-us-box-targeted {
+        margin-top: 0 !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
+        padding-left: 80px;
+        gap: 18px;
+        margin-top: -120px;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
+        width: 90% !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container h2.gs-partner-what-promote-title {
+        font-size: 3rem;
+    }
+    
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
+        padding: 80px;
+    }
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+        width: 30%;
+        max-width: 30%;
+        padding-bottom: 30px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section {
+        padding: 60px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+        padding-right: 40px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
+        margin-left: 30px;
+    }
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+		font-size: 3rem;
+	}
+
+    /* GS Partner With Us Testimonials */
+
+	.page-template-template-partner .gs-partner-testimonials-section {
+        padding: 60px;
+	}
+
+    /* GS Partner With Us Partner Form */
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
+        padding: 60px 40px;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form .wpcf7{
+        margin: 0 60px;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
+        padding: 0px 100px 0 0;
+        width: auto;
+        max-width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+
+
+    /* GS Partner With Us Contact Section */
+
+    .page-template-template-partner .gs-partner-contact-section {
+        background-color:rgb(0, 143, 198) ;
+        margin-bottom: 0px;
+    }
+
+    .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        padding: 80px 40px;
+        margin-bottom: 0;
+    }
+    .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .background-layer {
+        display: none;
+    }
+
+    .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text-container {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .page-template-template-partner #content {
+        margin-bottom: 0;
+    }
+
+    .page-template-template-partner .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-title{ 
+        line-height: 1.8rem !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+
+	.page-template-template-partner .gs-partner-hero-section {
+		display: block;
+		margin-top: 30px;
+	}
+
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
+		position: relative;
+		z-index: 3;
+		padding-left: 1.4rem;
+		padding-right: 1.4rem;
+		display: flex;
+		margin-right: 0;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		max-width: 100%;
+	}
+
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
+		line-height: 1.55;
+	}
+
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+		font-size: 2.3rem;
+	}
+
+	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
+		padding: 20px;
+	}
+
+    /* Why Us Section */
+
+    .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
+        font-size: 2.2rem !important;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-three {
+        position: absolute;
+        right: 32px;
+        top: 56px;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-circle-two {
+        position: absolute;
+        right: 97px;
+        top: 26px;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container {
+        height: auto;
+        min-height: 280px;
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+        min-width: 100%;
+        padding: 40px;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container h2.gs-partner-what-promote-title {
+        font-size: 1.9rem;
+        line-height: 2.3rem;
+    }
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
+        display: block !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-title {
+        font-size: 2.4rem !important;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-container .gs-partner-what-promote-text {
+        width: 100% !important;
+        font-size: 18px;
+    }
+
+    .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
+        margin-top: 20px;
+        max-width: 100% !important;
+        padding: 20px !important;
+    }
+
+    /* GS Partner With Us Get Started */
+    .page-template-template-partner .gs-partner-get-started-section {
+        display: flex;
+        flex-direction: row-reverse;
+        max-width: 100%;
+        justify-content: center;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
+        padding: 20px 30px; 
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image img {
+        width: 200px !important;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section {
+        display: block;
+        padding: 20px 30px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+        padding-right: 0;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-content-container {
+        border-right: 0;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 30px;
+    }
+
+    .page-template-template-partner .gs-partner-our-partners-section .gs-partner-our-partners-logos-container {
+        text-align: center;
+        margin: 0;
+        margin-top: 40px;
+    }
+
+    /* GS Partner With Us Testimonials */
+
+	.page-template-template-partner .gs-partner-testimonials-section {
+        display: flex;
+        flex-direction: column-reverse;
+		margin-top: 30px;
+        padding: 20px 30px;
+        gap: 40px;
+	}
+
+    /* GS Partner With Us Pricing Models */
+
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container {
+        display: block;
+        justify-content: space-evenly;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 0;
+        padding: 40px;
+        box-shadow: 4px 4px 9px 3px #99999925;
+    }
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container {
+        margin-bottom: 30px;
+    }
+
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-title-container h1 span.gs-partner-pricing-title-background {
+        padding-right: 50px;
+    }
+
+    .page-template-template-partner .gs-partner-pricing-section .gs-partner-pricing-box-container .gs-partner-pricing-list .fa-ul {
+        margin-top: 40px;
+    }
+
+    /* GS Partner With Us Partner Form */
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container {
+        padding: 0px 50px 0 0;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        max-width: 100%;
+        z-index: 2;
+        box-shadow: 8px 11px 37px 8px #BDBDBD25;
+        border-radius: 0;
+        margin-bottom: 80px;
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),linear-gradient(to bottom, rgba(0, 143, 198, 1) 0%, rgba(0, 143, 198, 1) 100%);
+        background-clip: content-box, padding-box;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form {
+        padding: 50px 30px;
+    }
+
+    .page-template-template-partner .gs-partner-form-section .gs-partner-form-container .gs-partner-form .wpcf7{
+    margin: 0 50px;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-boxes .why-us-boxes-container .why-us-box {
+        width: 100% !important;
+        min-height: 150px;
+        height: 100%;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+    }
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-gs-started-featured-image {
+        display: none;
+    }
+
+    .page-template-template-partner .gs-partner-get-started-section .gs-partner-get-started-container {
+        width: 100%;
+        max-width: 100%;
+    }
 }
