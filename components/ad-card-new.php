@@ -44,6 +44,10 @@ $image_url = get_the_post_thumbnail_url($institute->ID);
 
 $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
 
+$language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
+$language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
+
+
 
 ?>
 
@@ -95,15 +99,28 @@ $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
                  </p>
                   
                    <div class="clearfix"> </div>
+                    
 
-              
-                <!-- <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
+                    <?php  
+                    $language_of_instruction = "";
+                    if($language_of_instructions_ads){
+                      $language_of_instruction = $language_of_instructions_ads;
+                    } else if($language_of_instructions_AdsInt){
+                      $language_of_instruction = $language_of_instructions_AdsInt; }
+                      else {
+                      $language_of_instruction = "English";
+                    }
+                   
+                    ?>
+                            
+
+                              <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
                     
                     <span style="float:left;width:32px;">
                         <img style="width:24px;height: 24px;margin-right:4px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php //echo $intake_dates; ?></span></p>  -->
+                    <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php echo $language_of_instruction; ?></span></p>  
                       
                </div>
 
@@ -144,10 +161,10 @@ echo $des;
                        <span title="We work closely with these partner universities to match you with the best possible courses"  style="font-size:14px; font-weight: 600; display: block;"> Partner University  
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
-                           <span style="width:100% !important;">
+                           <span id="disclaimerr" style="width:100% !important;">
                           <?php   if($disclaimer === "1")  {  ?>
                          
-                         <strong style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                         <strong  style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
                        
                        <?php } ?>
                       
@@ -180,13 +197,13 @@ echo $des;
                    <div class="clearfix"> </div>
 
               
-              <!--   <p style="line-height:22px !important; color:black;font-size:13px !important;margin-left:0px;font-weight: 400;margin-bottom:10px;"> 
+            <p style="line-height:22px !important; color:black;font-size:13px !important;margin-left:0px;font-weight: 400;margin-bottom:10px;"> 
                     
                     <span style="float:left;width:39px;">
-                        <img style="width:28px;height: 28px;margin-right:8px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
+                        <img style="width:28px;height: 28px;margin-right:8px;" src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:-2px;  "><?php //echo $intake_dates; ?></span></p> -->
+                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:4px;  "><?php echo $language_of_instruction; ?></span></p> 
 
 
                     
