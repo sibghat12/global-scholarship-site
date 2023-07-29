@@ -333,7 +333,7 @@ if ($loop->have_posts()) {
    </div>
 
     <div class="col-md-4 " style="margin-top:-10px;">
-        <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/07/image.png">
+        <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/image.png">
     </div>
 
 </div>
@@ -371,24 +371,41 @@ jQuery( document ).ready( function($){
 
   jQuery('.fusion-search-field input').attr('placeholder', 'Search for Courses');
 
- function adjustHeight() {
-    console.log("dd");
-        if (window.matchMedia("(min-width: 991px)").matches) {
-            var height_col_md_4 = jQuery('.col-md-4').height();
-            var height_col_md_8 = jQuery('.col-md-8').height();
 
-            console.log(height_col_md_8);
-            
+
+function adjustHeight() {
+    console.log("dd");
+    if (window.matchMedia("(min-width: 991px)").matches) {
+        var height_col_md_4 = jQuery('.col-md-4').height();
+        var height_col_md_8 = jQuery('.col-md-8').height();
+
+        console.log(height_col_md_8);
+
+        var elementId = 'disclaimerr';
+        var element = document.getElementById(elementId);
+
+        if (element && element.innerText.trim().length > 0) {
+            console.log("ddfinal");
             var max_height = Math.max(height_col_md_4, height_col_md_8);
 
-            jQuery('.col-md-4').height(max_height+15);
-            jQuery('.col-md-8').height(max_height+15);
+            // Add 15px extra height to the col-md-8 div
+            jQuery('.col-md-4').height(max_height);
+            jQuery('.col-md-8').height(max_height + 15);
         } else {
-            // Optional: Reset to automatic height when viewport is less than 991px
-            jQuery('.col-md-4').height('auto');
-            jQuery('.col-md-8').height('auto');
+            console.log('The element does not have text or is empty.');
+            var max_height = Math.max(height_col_md_4, height_col_md_8);
+
+            // Reset the height of both divs to the same height
+            jQuery('.col-md-4').height(max_height);
+            jQuery('.col-md-8').height(max_height);
         }
+    } else {
+        // Optional: Reset to automatic height when viewport is less than 991px
+        jQuery('.col-md-4').height('auto');
+        jQuery('.col-md-8').height('auto');
     }
+}
+
 
 
   jQuery(window).on('load', function() {
@@ -491,6 +508,33 @@ document.querySelectorAll('.read-more').forEach((span) => {
 
     }
   });
+});
+
+
+
+function adjustHeight_disclaimer() {
+    jQuery('.course-card-new').each(function() {
+        var row = jQuery(this);
+        var col_md_4 = row.find('.col-md-4');
+        var col_md_8 = row.find('.col-md-8');
+        var disclaimerrElement = col_md_8.find('#disclaimerr');
+
+        if (disclaimerrElement.length && disclaimerrElement.text().trim().length > 0) {
+            var max_height = Math.max(col_md_4.height(), col_md_8.height()) + 15;
+            col_md_4.css('height', max_height + 'px');
+            col_md_8.css('height', max_height + 'px');
+        }
+    });
+}
+
+// Call the adjustHeight function when the document is ready
+jQuery(document).ready(function($) {
+    adjustHeight_disclaimer();
+});
+
+// Optional: Recalculate heights when the window is resized (if needed)
+jQuery(window).resize(function() {
+    adjustHeight_disclaimer();
 });
 
 

@@ -750,19 +750,14 @@ var ppp = 20;  // Post per page
 var page = 1;
 
 $('select.check-class').change(function() {
+page = 1; // What page we are on.
+console.log(page);
 
- page = 1; // What page we are on.
-
- console.log(page);
-
- $("#more_posts").attr("disabled",true);
-
+$("#more_posts").attr("disabled",true);
 var check = $(this).is(":checked");
 var link = "<?php echo  admin_url("admin-ajax.php"); ?>";
-
 $('#preloader').css("display" , "block");
 $('.card-section').css("display" , "none");
-
 $('.prev-page').css("display" , "none");
 $('.next-page').css("display" , "none");
 

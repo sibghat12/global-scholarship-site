@@ -1822,14 +1822,14 @@ if($reload_true){
 $loop_institute =  get_institutions_location($locations_array[0]);
 $institute_ids = $loop_institute->get_posts();
 
-echo $institute_ids->found_posts;
+//echo $institute_ids->found_posts;
 	
-	if (empty($institute_ids)) {
+/* if (empty($institute_ids)) {
 		if($reload_true){
   echo '<p style="font-size:20px;color:black;"> Unfortunately,
     No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
-}
-	}
+   }
+	} */
 	
     $current_date = date("Y-m-d H:i:s");
                             
@@ -2228,11 +2228,246 @@ add_action('wp_ajax_nopriv_get_data', 'my_ajax_handler' );
 add_action( 'wp_ajax_get_data', 'my_ajax_handler' );
 
 
- 
+function generate_scholarships_table($country="" , $degree="" , $type="", $acf_country="") {
+    
+
+
+$degree = wp_unslash($degree);
+
+$meta_query = array();
+
+if ($acf_country !== 'All') {
+    $meta_query[] = array(
+        'key' => 'institution_country',
+        'value' => $acf_country,
+        'compare' => '=',
+    );
+} else {
+    if ($country !== 'All') {
+        $meta_query[] = array(
+            'key' => 'institution_country',
+            'value' => $country,
+            'compare' => '=',
+        );
+    }
+}
+
+
+if (!empty($degree)) {
+    $meta_query[] = array(
+        'relation' => 'OR',
+        array(
+            'key' => 'eligible_degrees',
+            'value' => $degree,
+            'compare' => 'LIKE',
+        ),
+        array(
+            'key' => 'eligible_degrees',
+            'value' => 'All',
+            'compare' => '=',
+        ),
+    );
+if($degree=="Bachelor's") {
+    $meta_query[] = array(
+        'key' => 'bachelor_open_date',
+        'value' => 'Yes',
+        'compare' => '=',
+    );
+ }
+if($degree=="Master's") {
+    $meta_query[] = array(
+        'key' => 'master_open_date',
+        'value' => 'Yes',
+        'compare' => '=',
+    );
+ }
+
+} 
+else {
+    $meta_query[] = array(
+    'relation' => 'OR',
+    array(
+        'key' => 'bachelor_open_date',
+        'value' => "Yes",
+        'compare' => '=',
+    ),
+    array(
+        'key' => 'master_open_date',
+        'value' => "Yes",
+        'compare' => '=',
+    ),
+);
+
+}
+
+if (!empty($type)) {
+    $meta_query[] = array(
+        'key' => 'amount_category',
+        'value' => $type,
+        'compare' => '=',
+    );
+}
+
+$scholarships_ids = get_posts(array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',
+    'update_post_meta_cache' => false,
+    'update_post_term_cache' => false,
+    'cache_results' => false,
+    'fields' => 'ids',
+    'posts_per_page' => -1,
+    'meta_query' => $meta_query,
+));
 
 
 
+    // Fetch scholarship info
+    $institution_scholarships = get_scholarships_info($scholarships_ids, $allowed_countries);
 
+    $previous_institution = '';
+    $row_color = '';
+   
+    $table_html = '<div class="">';
+    $table_html = '<table id="example" style="border-collapse: collapse; border: 1px solid black; width: 100%;">';
+    $table_html .= '<thead><tr style="border:none !important;">';
+    $table_html .= '<th style="width:20%;">Institution Name</th>';
+    if ($acf_country === 'All') {
+        $table_html .= '<th style="width:15%;">Country</th>';
+    }
+    $table_html .= '<th style="width:65%;padding:0px !important;">';
+    $table_html .= '<table style="border:none !important;border-collapse:none !important;"><thead><tr>';
+    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25%;">Scholarship</th>';
+    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25%;">Coverages</th>';
+    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25%;">Eligible Degrees</th>';
+    $table_html .= '<th style="border:none !important;width:25%;">Scholarship Deadlines</th>';
+    $table_html .= '</tr></thead></table></th></tr></thead>';
+    $table_html .= '<tbody>';
+
+    foreach ($institution_scholarships as $country_name => $country_institutions) {
+        foreach ($country_institutions as $institution_name => $institution) {
+            // Switch row color when institution changes
+            if ($previous_institution != $institution_name) {
+                //$row_color = ($row_color == '#F5F5F5') ? '#ffffff' : '#F5F5F5';
+            }
+            $previous_institution = $institution_name;
+
+            $table_html .= '<tr style="border: 1px solid #ddd; background-color: ' . $row_color . ';">';
+            $table_html .= '<td style="padding: 10px;"><a style="font-weight:500;font-size:18px;" href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
+            if ($acf_country === 'All') {
+                $table_html .= '<td style="padding: 10px;"><a href="' . site_url() . '/scholarship-search/' . str_replace(' ', '-', strtolower($country_name)) . '/">' . $country_name . '</a></td>';
+            }
+            $table_html .= '<td style="padding: 0px;">';
+
+            // start nested table for scholarships
+            $table_html .= '<table class="scholarships-table" style="width: 100%; border: 1px solid #ddd; border-collapse: collapse; margin-top:0px;">';
+            
+
+            $scholarships = $institution['scholarships'];
+            foreach ($scholarships as $scholarship) {
+                $table_html .= '<tr style="border-bottom: 1px solid #ddd;">';
+
+                $table_html .= '<td style="width:25% !important; padding: 10px 15px;">';
+$scholarship_permalink = $scholarship['scholarship_permalink'];
+$scholarship_title = $scholarship['scholarship_title'];
+$scholarship_type = strtolower($scholarship['scholarship_type']);
+$category_amount = str_replace(' ', '-', $scholarship_type);
+$category_amount = str_replace("'", '', $category_amount);
+
+if ($category_amount === 'partial-funding') {
+    $category_amount_url = 'partial-funding';
+} else {
+    $category_amount_url = $category_amount;
+}
+
+$table_html .= '<a style="font-size:16px;font-weight:600;" href="' . $scholarship_permalink . '">' . $scholarship_title . '</a><br> ';
+$table_html .= '<a href="' . site_url() . '/scholarship-search/' . $category_amount_url . '">  (' . $scholarship['scholarship_type'] . ')</a>';
+
+$table_html .= '</td>';
+
+                
+
+                $table_html .= '<td style="width:25% !important;padding: 10px 15px;"><ul>';
+                foreach (array_column($scholarship['coverages'], 'coverage') as $coverage) {
+                    $table_html .= '<li>' . $coverage . '</li>';
+                }
+                $table_html .= '</ul></td>';
+               $table_html .= '<td style="width:25% !important; padding: 10px 15px;">';
+
+foreach ($scholarship['eligible_degrees'] as $eligible_degree) {
+    $degree_name = '';
+
+    if ($eligible_degree === "Master's") {
+        $degree_name = 'masters';
+    } elseif ($eligible_degree === "Bachelor's") {
+        $degree_name = 'bachelors';
+    } else {
+        // Handle other degree names here
+        $degree_name = strtolower($eligible_degree);
+    }
+
+    $eligible_degree_url = site_url() . '/scholarship-search/' . urlencode($degree_name);
+    $table_html .= '<a href="' . $eligible_degree_url . '">' . $eligible_degree . '</a><br>';
+}
+
+$table_html .= '</td>';
+                $table_html .= '<td style="width:25% !important;padding: 10px 15px;">';
+                $degreeDeadlines = array();
+                $currentDate = date('Y-m-d');
+                foreach ($scholarship['deadlines'] as $deadline) {
+                    if (strtotime($deadline['deadline']) >= strtotime($currentDate) && in_array($deadline['degree'], $scholarship['eligible_degrees']) && $deadline['degree'] !== 'PhD') {
+                        // Only store the deadline for each degree type if it doesn't already exist in the array
+                        if (!array_key_exists($deadline['degree'], $degreeDeadlines)) {
+                            $degreeDeadlines[$deadline['degree']] = '<strong>' . $deadline['degree'] . '</strong>: ' . $deadline['deadline'];
+                        }
+                    }
+                }
+                $table_html .= implode('<br>', $degreeDeadlines);
+                $table_html .= '</td>';
+                $table_html .= '</tr>';
+            }
+            $table_html .= '</table>'; // end nested table
+            $table_html .= '</td>';
+            $table_html .= '</tr>';
+        }
+    }
+
+    $table_html .= '</tbody>';
+    $table_html .= '</table>';
+    $table_html .= '</div>';
+
+   
+
+    return $table_html;
+
+}
+
+
+
+ function get_scholarships_ajax() {
+    
+    $degree = $_POST["degree"];
+    $country = $_POST["country"];
+    $type = $_POST["type"];
+    $acf_country = $_POST["acf_country"];
+
+
+
+    // Generate the scholarships table HTML
+    $table_html = generate_scholarships_table($country , $degree, $type , $acf_country);
+
+
+
+    // Return the table HTML as the AJAX response
+    echo $table_html;
+
+
+
+    // Terminate the AJAX request
+    wp_die();
+}
+
+add_action('wp_ajax_nopriv_get_scholarships_ajax', 'get_scholarships_ajax');
+add_action('wp_ajax_get_scholarships_ajax', 'get_scholarships_ajax');
 
 add_action( 'init', function() {
 
