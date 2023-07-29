@@ -29,9 +29,9 @@ require get_stylesheet_directory() . '/components/partner-with-us/get-started.ph
 
 require get_stylesheet_directory() . '/components/partner-with-us/our-partners.php';
 
-// GS Testimonials Partner With Us
+// GS Testimonials Partner With Us (commented out once we have enough testimonials)
 
-require get_stylesheet_directory() . '/components/partner-with-us/testimonials.php';
+// require get_stylesheet_directory() . '/components/partner-with-us/testimonials.php';
 
 // GS Pricing Partner With Us
 

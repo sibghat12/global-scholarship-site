@@ -5009,6 +5009,7 @@ input[type="submit"] {
 .page-template-template-partner #main .gs-partner-contact-section .gs-partner-contact-container .gs-partner-contact-text a {
     color: #fff !important;
 }
+
 @media only screen and (min-width: 1540.1px) and  (max-width: 1920.1px) {
     .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
         height: 420px !important;
@@ -5024,6 +5025,21 @@ input[type="submit"] {
         line-height: 1.675rem !important;
     }
 }
+
+@media only screen and (min-width: 1200.1px) and (max-width: 1440px) {
+
+    .page-template-template-partner .gs-partner-why-us-section {
+        gap: 60px !important;
+    }
+    .page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-boxes-conatiner {
+        gap: 60px !important;
+    }
+
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
+        padding-left: 60px !important;
+    }
+}
+
 @media only screen and (max-width: 1280px) {
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
 		font-size: 3.3rem;
@@ -5050,13 +5066,16 @@ input[type="submit"] {
 		margin-top: 50px;
 	}
 
+    .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-content {
+        margin: 0 20px;
+    }
+
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box {
         padding-left: 0;
     }
 
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-box-content {
         box-shadow: 4px 5px 20px 1px #B8B8B825;
-        margin: 0 20px;
     }
 
     .page-template-template-partner .gs-partner-why-us-section h1.gs-partner-why-us-box-heading {
