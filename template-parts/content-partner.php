@@ -10,16 +10,21 @@ $hero_section_button_title = get_field( 'hero_section_button_title', $partner_wi
 $hero_section_button = get_field( 'hero_section_button', $partner_with_us_page_id );
 $hero_section_image_id = $hero_section_image['ID'];
 
-// Why Us Section
-
 $partner_with_us_sections = get_field('partner_with_us_sections', $partner_with_us_page_id);
+
+// Why Us Section
 $why_us_section = $partner_with_us_sections['why_us_section'];
 $why_us_box_heading = $why_us_section['why_us_box_heading'];
 $why_us_box_text = $why_us_section['why_us_box_text'];
 $why_us_boxes = $why_us_section['why_us_answers_boxes'];
 
+// Promote Section
+$promote_section = $partner_with_us_sections['promote_section'];
+$promote_box = $promote_section['promote_box'];
+
+
 echo '<pre>';
-print_r($why_us_boxes);
+print_r($partner_with_us_sections );
 echo '</pre>';
 
 
