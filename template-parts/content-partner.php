@@ -30,10 +30,16 @@ $get_started_heading = $get_started_section['get_started_heading'];
 $get_started_description = $get_started_section['get_started_description'];
 $get_started_link = $get_started_section['get_started_link']; // absolute not the whole link
 
+// Our Partners Section
 
-echo '<pre>';
-print_r($partner_with_us_sections );
-echo '</pre>';
+$our_partners_section =  $partner_with_us_sections['our_partners_section'];
+$our_partners_heading =  $our_partners_section['our_partners_heading'];
+$our_partner_description =  $our_partners_section['our_partner_description'];
+$our_partners_images =  $our_partners_section['our_partners_images'];
+
+// echo '<pre>';
+// print_r($our_partners_section );
+// echo '</pre>';
 
 
 // GS Hero Section Partner With Us
