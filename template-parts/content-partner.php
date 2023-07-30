@@ -22,6 +22,14 @@ $why_us_boxes = $why_us_section['why_us_answers_boxes'];
 $promote_section = $partner_with_us_sections['promote_section'];
 $promote_box = $promote_section['promote_box'];
 
+// Get Started Section
+
+$get_started_section =  $partner_with_us_sections['get_started_section'];
+$get_started_image = wp_get_attachment_image($get_started_section['get_started_image'], 'full');
+$get_started_heading = $get_started_section['get_started_heading'];
+$get_started_description = $get_started_section['get_started_description'];
+$get_started_link = $get_started_section['get_started_link']; // absolute not the whole link
+
 
 echo '<pre>';
 print_r($partner_with_us_sections );
