@@ -3149,3 +3149,33 @@ function wpb_remove_comment_time($date, $d, $comment) {
     return;
 }
 add_filter( 'get_comment_time', 'wpb_remove_comment_time', 10, 3);
+
+/**
+ * ACF SVG filter to allow raw SVG code.
+ * https://www.advancedcustomfields.com/resources/html-escaping/
+ * Source: https://support.advancedcustomfields.com/forums/topic/svg-code-getting-stripped-out-of-field/
+ * 
+ */
+add_filter( 'wp_kses_allowed_html', 'acf_add_allowed_svg_tag', 10, 2 );
+
+function acf_add_allowed_svg_tag( $tags, $context ) {
+    if ( $context === 'acf' ) {
+        $tags['svg']  = array(
+            'xmlns'				=> true,
+			'width'			=> true,
+			'height'		=> true,
+			'preserveAspectRatio'	=> true,
+            'fill'				=> true,
+            'viewbox'				=> true,
+            'role'				=> true,
+            'aria-hidden'			=> true,
+            'focusable'				=> true,
+        );
+        $tags['path'] = array(
+            'd'    => true,
+            'fill' => true,
+        );
+    }
+
+    return $tags;
+}
