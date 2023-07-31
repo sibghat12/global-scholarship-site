@@ -29,7 +29,7 @@
                 <h2>Model 2</h2>
             </div>
             <div class="gs-partner-pricing-model-two-description gs-partner-pricing-description">
-                <h2>Annual Course<br> Listing</h2>
+                <h2><?php echo $pricing_model_2_title; ?></h2>
             </div>
             <?php if(!empty($pricing_model_2_features)) : ?>
             <div class="gs-partner-pricing-model-two-list gs-partner-pricing-list">
