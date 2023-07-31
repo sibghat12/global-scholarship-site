@@ -4630,7 +4630,7 @@ input[type="submit"] {
     margin-bottom: 20px;
 }
 
-.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-box-program.gs-promote-box {
+.page-template-template-partner .gs-partner-promote-section .gs-partner-what-promote-box-program.gs-promote-box[data-promote-box="1"] {
     background-color: #ffffff50;
     backdrop-filter: blur(25px);
 }

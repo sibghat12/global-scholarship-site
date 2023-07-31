@@ -61,9 +61,11 @@ $partner_form = $partner_with_us_sections['partner_form'];
 $partner_form_heading = $partner_form['partner_form_heading'];
 $partner_form_text = $partner_form['partner_form_text'];
 $partner_form_shortcode = $partner_form['partner_form_shortcode'];
-echo '<pre>';
-print_r($partner_form);
-echo '</pre>';
+
+// Partner Contact
+$partner_contact = $partner_with_us_sections['partner_contact'];
+$partner_contact_heading = $partner_contact['partner_contact_heading'];
+$partner_contact_text = $partner_contact['partner_contact_text'];
 
 
 // GS Hero Section Partner With Us

@@ -8,11 +8,10 @@
     </div>
         <div class="gs-partner-contact-text-container">
             <h2 class="gs-partner-contact-title">
-                Do you have further questions?
+                <?php echo $partner_contact_heading; ?>
             </h2>
             <div class="gs-partner-contact-text">
-                If you have any further questions, please do not hesitate to contact us at:<br>
-                <a href="mailto:partnerships@globalscholarships.com">partnerships@globalscholarships.com</a>
+                <?php echo $partner_contact_text; ?>
             </div>
         </div>
     </div>
