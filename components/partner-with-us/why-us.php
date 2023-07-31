@@ -50,10 +50,10 @@
                 </div>
 
                 <h1 class="gs-partner-why-us-box-heading">
-                Why us?
+                <?php echo $why_us_box_heading; ?>
                 </h1>
                 <div class="gs-partner-why-us-box-text">
-                    Many of our partners have been working with us for many years. We are very flexible, and we have something for everyone. 
+                   <?php echo $why_us_box_text; ?>
                 </div>
             </div>
             <div class="gs-why-us-shape-2">
