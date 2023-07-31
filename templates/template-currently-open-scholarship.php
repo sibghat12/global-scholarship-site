@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     
     th {
        
-        padding-left:px !important;
+        
         background-color: #f2f2f2;
     }
     
@@ -89,17 +89,53 @@ if ( ! defined( 'ABSPATH' ) ) {
    justify-content: center !important;
 }
 
+
+#example-wrapper {
+    width: 90%;
+    overflow-x: auto;
+     
+
+}
+#example-wrapper ::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+#example-wrapper ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px; /* optional */
+}
+
+#example-wrapper ::-webkit-scrollbar-track {
+    background-color: lightgrey;
+    border-radius: 10px; /* optional */
+}
+
+
+
+
 @media screen and (max-width: 767px) {
    .page-template-template-currently-open-scholarship .filter-box{
-       min-width:450px !important;
-   }
+       //min-width:450px !important;
+    }
+
+    #example-wrapper {
+     padding:10px !important;
+     overflow-x: auto;
+     margin:auto;
+    }
+
 }
 
 @media screen and (max-width: 600px) {
    .page-template-template-currently-open-scholarship .filter-box{
        min-width:350px !important;
    }
-
+#example-wrapper {
+     padding:10px !important;
+     overflow-x: auto;
+     
+}
    
 
 }
@@ -108,35 +144,56 @@ if ( ! defined( 'ABSPATH' ) ) {
    .page-template-template-currently-open-scholarship .filter-box{
        min-width:270px !important;
    }
+   #example-wrapper {
+    padding:10px !important;
+     overflow-x: auto;
+    
 }
-
-
-
-@media only screen and (max-width: 800px) {
-.dtr-control {
-    width:50% !important;
-    padding-left:20px !important;
-}
-
-#example {
-    width:96% !important;
-}
-
-td ,td a  { font-size:12px !important; }
 
 }
 
-table.dataTable>tbody>tr.child span.dtr-title {
-    min-width:100% !important;
+@media screen and (max-width: 900px) {
+    th, td, th a , td a {
+        font-size:12px !important;
+    }
+#ajax-response { 
+    width: calc(100vw - 60px)
+!important;
+
+
+
+}
+
+  #example-wrapper {
+    padding:10px !important;
+  }
+
+
+}
+
+@media screen and (max-width: 600px) {
+    #ajax-response {
+         width: calc(100vw - 50px)
+!important;
+    }
+}
+
+.dataTables_scroll {
+box-shadow:2px 2px 2px #cdcdcd !important;
 }
 
 
+@media screen and (max-width: 1024px) {
+    th, td, th a , td a {
 
+        font-size:12px !important;
+    }
 
+}
 
-
-
-
+td {
+    box-sizing: border-box !important;
+}
 </style>
 
 
@@ -149,24 +206,15 @@ table.dataTable>tbody>tr.child span.dtr-title {
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/2.0.3/css/scroller.dataTables.min.css">
+<script src="https://cdn.datatables.net/scroller/2.0.3/js/dataTables.scroller.min.js"></script>
 
-<!-- Responsive JS -->
-<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-
-
-
-
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
 
 <?php get_header();
-
 $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-
-
-    
-    
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list = $published_countries['choices'];
 
@@ -256,31 +304,21 @@ $conclusion = get_field('conclusion');
 </center>
 </div>
 
-
-
-            
-            
-               
-                
-
-    
-
-    
     
 </section>
 
 
-<section>
+
     
 <div id="preloader" style="width:100%;margin:auto;display: none;">
 <center><img style="margin:auto;width:40% !important;" src="https://globalscholarships.com/wp-content/uploads/2023/03/Curve-Loading.gif"> </center>
 </div>
 
-    <div id="ajax-response">
+    <div id="ajax-response" >
         
     </div>
 
-</section>
+
 
 
 </div>
@@ -315,11 +353,14 @@ $conclusion = get_field('conclusion');
             $('#ajax-response').html(response);
 
    
-   $(document).ready(function() {
+   
     $('#example').DataTable({
-        responsive: true
+       
+    scrollX: true
+  
+      
     });
-});
+
 
 
 
@@ -388,15 +429,6 @@ $(document).ready(function() {
 <?php echo $conclusion; ?>
 </div>
 
-<!-- <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('#example').DataTable();
-    
 
-
-
-
-    });
-</script> -->
 
 <?php get_footer(); ?>

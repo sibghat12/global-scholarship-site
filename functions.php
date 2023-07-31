@@ -2326,20 +2326,21 @@ $scholarships_ids = get_posts(array(
 
     $previous_institution = '';
     $row_color = '';
-   
-    $table_html = '<div class="">';
-    $table_html = '<table id="example" style="border-collapse: collapse; border: 1px solid black; width: 100%;">';
+  
+    $table_html = '<div id="example-wrapper" style="width:100%;">';
+    $table_html .= '<table id="example" style="border-collapse: collapse; border: 1px solid black; width: 100%;">';
     $table_html .= '<thead><tr style="border:none !important;">';
     $table_html .= '<th style="width:20%;">Institution Name</th>';
     if ($acf_country === 'All') {
         $table_html .= '<th style="width:15%;">Country</th>';
     }
     $table_html .= '<th style="width:65%;padding:0px !important;">';
-    $table_html .= '<table style="border:none !important;border-collapse:none !important;"><thead><tr>';
-    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25%;">Scholarship</th>';
-    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25%;">Coverages</th>';
-    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25%;">Eligible Degrees</th>';
-    $table_html .= '<th style="border:none !important;width:25%;">Scholarship Deadlines</th>';
+    $table_html .= '<table style="border:none !important;border-collapse:none !important;"><thead><tr style="width:100% !important;">';
+    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25% !important;">Scholarship</th>';
+    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25% !important;">Coverages</th>';
+    $table_html .= '<th style="border:none !important;border-right:2px solid gray !important;width:25% !important;">Eligible Degrees</th>';
+    $table_html .= '<th style="border:none !important;width:25%;
+    border-right:2px solid gray !important !important;">Scholarship Deadlines</th>';
     $table_html .= '</tr></thead></table></th></tr></thead>';
     $table_html .= '<tbody>';
 
@@ -2352,21 +2353,21 @@ $scholarships_ids = get_posts(array(
             $previous_institution = $institution_name;
 
             $table_html .= '<tr style="border: 1px solid #ddd; background-color: ' . $row_color . ';">';
-            $table_html .= '<td style="padding: 10px;"><a style="font-weight:500;font-size:18px;" href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
+            $table_html .= '<td style="width:20%;padding: 10px;"><a style="font-weight:500;font-size:18px;" href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
             if ($acf_country === 'All') {
-                $table_html .= '<td style="padding: 10px;"><a href="' . site_url() . '/scholarship-search/' . str_replace(' ', '-', strtolower($country_name)) . '/">' . $country_name . '</a></td>';
+                $table_html .= '<td style="width:15%;padding: 10px;"><a href="' . site_url() . '/scholarship-search/' . str_replace(' ', '-', strtolower($country_name)) . '/">' . $country_name . '</a></td>';
             }
             $table_html .= '<td style="padding: 0px;">';
 
             // start nested table for scholarships
-            $table_html .= '<table class="scholarships-table" style="width: 100%; border: 1px solid #ddd; border-collapse: collapse; margin-top:0px;">';
+            $table_html .= '<table class="scholarships-table" style="width: 100%;  border-collapse: collapse; margin-top:0px;">';
             
 
             $scholarships = $institution['scholarships'];
             foreach ($scholarships as $scholarship) {
                 $table_html .= '<tr style="border-bottom: 1px solid #ddd;">';
 
-                $table_html .= '<td style="width:25% !important; padding: 10px 15px;">';
+                $table_html .= '<td style="max-width:25% !important;width:25% !important; ">';
 $scholarship_permalink = $scholarship['scholarship_permalink'];
 $scholarship_title = $scholarship['scholarship_title'];
 $scholarship_type = strtolower($scholarship['scholarship_type']);
@@ -2386,12 +2387,12 @@ $table_html .= '</td>';
 
                 
 
-                $table_html .= '<td style="width:25% !important;padding: 10px 15px;"><ul>';
+                $table_html .= '<td style="max-width:25% !important;max-width:25% !important;"><ul>';
                 foreach (array_column($scholarship['coverages'], 'coverage') as $coverage) {
                     $table_html .= '<li>' . $coverage . '</li>';
                 }
                 $table_html .= '</ul></td>';
-               $table_html .= '<td style="width:25% !important; padding: 10px 15px;">';
+               $table_html .= '<td style="width:25% !important; ">';
 
 foreach ($scholarship['eligible_degrees'] as $eligible_degree) {
     $degree_name = '';
@@ -2434,6 +2435,7 @@ $table_html .= '</td>';
     $table_html .= '</tbody>';
     $table_html .= '</table>';
     $table_html .= '</div>';
+    
 
    
 
