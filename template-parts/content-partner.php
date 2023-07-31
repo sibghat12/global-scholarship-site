@@ -33,12 +33,19 @@ $get_started_link = $get_started_section['get_started_link']; // absolute not th
 // Our Partners Section
 
 $our_partners_section =  $partner_with_us_sections['our_partners_section'];
-$our_partners_heading =  $our_partners_section['our_partners_heading'];
+$our_partners_heading =  $our_partners_section['our_partner_heading'];
 $our_partner_description =  $our_partners_section['our_partner_description'];
 $our_partners_images =  $our_partners_section['our_partners_images'];
 
+// Testimonials Section
+
+$testimonials_section = $partner_with_us_sections['testimonials_section'];
+$testimonials_heading = $testimonials_section['testimonials_heading'];
+$testimonials_text = $testimonials_section['testimonials_text'];
+$testimonials = $testimonials_section['testimonials'];
+
 // echo '<pre>';
-// print_r($our_partners_section );
+// print_r($testimonials_heading);
 // echo '</pre>';
 
 
@@ -64,7 +71,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/our-partners.p
 
 // GS Testimonials Partner With Us (commented out once we have enough testimonials)
 
-// require get_stylesheet_directory() . '/components/partner-with-us/testimonials.php';
+require get_stylesheet_directory() . '/components/partner-with-us/testimonials.php';
 
 // GS Pricing Partner With Us
 
