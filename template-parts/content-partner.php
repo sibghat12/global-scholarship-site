@@ -88,7 +88,7 @@ require get_stylesheet_directory() . '/components/partner-with-us/get-started.ph
 
 require get_stylesheet_directory() . '/components/partner-with-us/our-partners.php';
 
-// GS Testimonials Partner With Us (commented out once we have enough testimonials)
+// GS Testimonials Partner With Us
 
 require get_stylesheet_directory() . '/components/partner-with-us/testimonials.php';
 
