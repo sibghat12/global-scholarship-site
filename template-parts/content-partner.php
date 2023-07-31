@@ -44,9 +44,21 @@ $testimonials_heading = $testimonials_section['testimonials_heading'];
 $testimonials_text = $testimonials_section['testimonials_text'];
 $testimonials = $testimonials_section['testimonials'];
 
-// echo '<pre>';
-// print_r($testimonials_heading);
-// echo '</pre>';
+// Our Pricing Models Section
+$pricing_models_section = $partner_with_us_sections['pricing_models_section'];
+
+$pricing_model_1 = $pricing_models_section['pricing_model_1'];
+$pricing_model_1_title = $pricing_model_1['pricing_model_1_title'];
+$pricing_model_1_features = $pricing_model_1['pricing_model_1_features'];
+
+$pricing_model_2 = $pricing_models_section['pricing_model_2'];
+$pricing_model_2_title = $pricing_model_2['pricing_model_2_title'];
+$pricing_model_2_features = $pricing_model_2['pricing_model_2_features'];
+
+
+echo '<pre>';
+print_r($pricing_models_section);
+echo '</pre>';
 
 
 // GS Hero Section Partner With Us
