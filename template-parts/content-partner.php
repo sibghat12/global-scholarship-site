@@ -56,8 +56,13 @@ $pricing_model_2_title = $pricing_model_2['pricing_model_2_title'];
 $pricing_model_2_features = $pricing_model_2['pricing_model_2_features'];
 
 
+// Partner Form
+$partner_form = $partner_with_us_sections['partner_form'];
+$partner_form_heading = $partner_form['partner_form_heading'];
+$partner_form_text = $partner_form['partner_form_text'];
+$partner_form_shortcode = $partner_form['partner_form_shortcode'];
 echo '<pre>';
-print_r($pricing_models_section);
+print_r($partner_form);
 echo '</pre>';
 
 

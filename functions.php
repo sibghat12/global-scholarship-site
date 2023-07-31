@@ -3179,3 +3179,6 @@ function acf_add_allowed_svg_tag( $tags, $context ) {
 
     return $tags;
 }
+
+// Allow Shortcode in textarea in ACF fields for Contact Form 7
+add_filter('acf/format_value/type=textarea', 'do_shortcode');
