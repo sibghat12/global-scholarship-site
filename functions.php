@@ -1523,7 +1523,7 @@ add_shortcode('courseButton','course_shortcode');
 
 function course_filter_shortcode($atts = [], $content = null, $tag = '' ){
 
-    // Fetch fields from ACF
+    // Fetch fields from ACF Courses Group
     $courses_details = acf_get_fields('group_64c9f01dd1837');
 
     // Get subjects and their choices
