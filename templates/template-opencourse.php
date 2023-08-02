@@ -87,6 +87,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php get_header(); 
 
+    
+    $courses_details  = acf_get_fields('group_64c9f01dd1837');
+    $courses_subject = array_column($courses_details, null, 'name')['subjects'];
+    $ads_subject = $courses_subject['choices'];
+
+    $courses_countries = array_column($courses_details, null, 'name')['countries'];
+    $courses_countries = $courses_countries['choices'];
+
     $params = get_query_info();
 
     $subject = $params["subject"];
@@ -222,13 +230,17 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="filter-box subject-filter">
             <select name="subject" >
             <option value="">Any Subject</option>
-            <option value="business" <?php echo $subject == 'business' ? 'selected' : ''; ?>>Business</option>
-            <option value="computer-science" <?php echo $subject == 'computer science' ? 'selected' : ''; ?>>Computer Science</option>
-            <option value="data-science" <?php echo $subject == 'data science' ? 'selected' : ''; ?>>Data Science</option>
-            <option value="design" <?php echo $subject == 'design' ? 'selected' : ''; ?>>Design</option>
-            <option value="marketing" <?php echo $subject == 'marketing' ? 'selected' : ''; ?>>Marketing</option>
-            <option value="hospitality-and-tourism-management" <?php echo $subject == 'hospitality and tourism management' ? 'selected' : ''; ?>>Hospitality and Tourism Management</option>
-            <option value="law" <?php echo $subject == 'law' ? 'selected' : ''; ?>>Law</option>                
+            <?php
+            
+
+              foreach($ads_subject as $sub) { 
+                     $sub_value =  str_replace(" ", "-", strtolower($sub));
+                 ?>
+             <option value="<?php echo $sub_value; ?>" <?php echo $subject == $sub_value ? 'selected' : ''; ?>> 
+                <?php echo $sub ?> </option>
+              <?php }
+             ?>
+                            
             </select>
 
         </div>
@@ -236,10 +248,16 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="filter-box country-filter">
             <select name="country" >
             <option value="">Any Country</option>
-            <option value="canada" <?php echo $country == 'canada' ? 'selected' : ''; ?>>Canada</option>
-            <option value="germany" <?php echo $country == 'germany' ? 'selected' : ''; ?>>Germany</option>
-            <option value="united-kingdom" <?php echo $country == 'united kingdom' ? 'selected' : ''; ?>>United Kingdom</option>
-            <option value="europe" <?php echo $country == 'europe' ? 'selected' : ''; ?>>Europe</option>
+            <?php
+            
+
+              foreach($courses_countries as $country_name) { 
+                     $country_value =  str_replace(" ", "-", strtolower($country_name));
+                 ?>
+             <option value="<?php echo $country_value; ?>" <?php echo $country == $country_value ? 'selected' : ''; ?>> 
+                <?php echo $country_name ?> </option>
+              <?php }
+             ?>
 
             </select>
 

@@ -1523,75 +1523,69 @@ add_shortcode('courseButton','course_shortcode');
 
 function course_filter_shortcode($atts = [], $content = null, $tag = '' ){
 
+    // Fetch fields from ACF
+    $courses_details = acf_get_fields('group_64c9f01dd1837');
+
+    // Get subjects and their choices
+    $courses_subject = array_column($courses_details, null, 'name')['subjects'];
+    $ads_subject = $courses_subject['choices'];
+
+    // Get countries and their choices
+    $courses_countries = array_column($courses_details, null, 'name')['countries'];
+    $courses_countries = $courses_countries['choices'];
+
+    // Parse shortcode attributes
     shortcode_atts(array(
         'filter_word' => 'Search',
     ), $atts);
 
-    $html = '<aside>
-    <div class="course-filter"> 
-    
-    <form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">
+    // Start the HTML for the filter form
+    $html = '<aside><div class="course-filter">';
 
-    <input type="hidden" name="action" value="course_form">
-    <div class="filter-boxes-wrap">
-        
-        <div class="filter-title">
-            Search Courses:
-        </div>        
+    $html .= '<form action="' . esc_url( admin_url("admin-post.php") ) . '" method="POST" class="filter-wrapper">';
 
-        <div class="filter-box degree-filter">
-            <select name="degree" >
-            <option value="">Any Degree</option> 
-            <option value="undergraduate">Undergraduate</option> 
-            <option value="masters">Masters</option> 
-            <option value="mba" >MBA</option> 
+    $html .= '<input type="hidden" name="action" value="course_form">';
+    $html .= '<div class="filter-boxes-wrap">';
 
-            </select>
+    $html .= '<div class="filter-title">Search Courses:</div>'; 
 
-        </div>
+    $html .= '<div class="filter-box degree-filter">';
+    $html .= '<select name="degree"><option value="">Any Degree</option>'; 
+    $html .= '<option value="undergraduate">Undergraduate</option>'; 
+    $html .= '<option value="masters">Masters</option>'; 
+    $html .= '<option value="mba">MBA</option></select></div>';
 
+    // Dynamic subject dropdown
+    $html .= '<div class="filter-box subject-filter">';
+    $html .= '<select name="subject"><option value="">Any Subject</option>';
+    foreach($ads_subject as $sub) {
+        $sub_value = str_replace(" ", "-", strtolower($sub));
+        $html .= '<option value="' . esc_attr($sub_value) . '">' . esc_html($sub) . '</option>';
+    }
+    $html .= '</select></div>';
 
-        <div class="filter-box subject-filter">
-            <select name="subject" >
-           
-            <option value="">Any Subject</option>
-            <option value="business">Business</option>
-            <option value="computer-science">Computer Science</option>
-            <option value="data-science">Data Science</option>
-            <option value="design">Design</option>
-            <option value="marketing">Marketing</option>
-            <option value="hospitality-and-tourism-management">Hospitality and Tourism Management</option>
-            <option value="law">Law</option>               
-           
-            </select>
+    // Dynamic country dropdown
+    $html .= '<div class="filter-box country-filter">';
+    $html .= '<select name="country"><option value="">Any Country</option>';
+    foreach($courses_countries as $country) {
+        $country_value = str_replace(" ", "-", strtolower($country));
+        $html .= '<option value="' . esc_attr($country_value) . '">' . esc_html($country) . '</option>';
+    }
+    $html .= '</select></div>';
 
-        </div>
-        
-        <div class="filter-box country-filter">
-            <select name="country" >
-            <option value="">Any Country</option>
-            <option value="canada">Canada</option>
-            <option value="germany">Germany</option>
-            <option value="united-kingdom">United Kingdom</option>
-            <option value="europe">Europe</option>
+    // Close out the HTML for the form and filter
+    $html .= '<div class="filter-btn">';
+    $html .= '<button type="submit">'.(isset($atts['filter_word']) ? $atts['filter_word'] : 'Search').'</button>';
+    $html .= '</div></form></div></aside>';
 
-            </select>
-
-        </div>
-    </div>
-
-    <div class="filter-btn">
-    <button type="submit">'.(isset($atts['filter_word']) ? $atts['filter_word'] : 'Search').'</button>
-
-    </div>
-
-    </form>
-</div></aside>';
-        
     return $html;
 }
 
-add_shortcode('courseFilter','course_filter_shortcode');
+add_shortcode('courseFilter', 'course_filter_shortcode');
+
+
+
+
 
 
 // function course_nav_shortcode(){
@@ -2211,18 +2205,9 @@ if($type_array[0]) {
         } 
 
     echo $html;
-    
 
-    
-
-
-
-   
     die();
    }
-
-
-
 
 add_action('wp_ajax_nopriv_get_data', 'my_ajax_handler' );
 add_action( 'wp_ajax_get_data', 'my_ajax_handler' );
@@ -2353,11 +2338,11 @@ $scholarships_ids = get_posts(array(
             $previous_institution = $institution_name;
 
             $table_html .= '<tr style="border: 1px solid #ddd; background-color: ' . $row_color . ';">';
-            $table_html .= '<td style="width:20%;padding: 10px;"><a style="font-weight:500;font-size:18px;" href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
+            $table_html .= '<td style="width:20% !important;padding: 10px;"><a style="font-weight:500;font-size:18px;" href="' . $institution['institution_permalink'] . '">' . $institution_name . '</a></td>';
             if ($acf_country === 'All') {
-                $table_html .= '<td style="width:15%;padding: 10px;"><a href="' . site_url() . '/scholarship-search/' . str_replace(' ', '-', strtolower($country_name)) . '/">' . $country_name . '</a></td>';
+                $table_html .= '<td style="width:15% !important;padding: 10px;"><a href="' . site_url() . '/scholarship-search/' . str_replace(' ', '-', strtolower($country_name)) . '/">' . $country_name . '</a></td>';
             }
-            $table_html .= '<td style="padding: 0px;">';
+            $table_html .= '<td style="width:65% !important;padding: 0px;">';
 
             // start nested table for scholarships
             $table_html .= '<table class="scholarships-table" style="width: 100%;  border-collapse: collapse; margin-top:0px;">';
