@@ -1561,6 +1561,9 @@ ul.classList.add('my-custom-class');
     
   // Listen for changes on the "All Nationalities" checkbox
   $("#acf-field_62ca6ed806bc6-All-Nationalities").change(function() {
+    
+
+
     if($(this).is(":checked")) {
       // If the "All Nationalities" checkbox is checked,
       // uncheck all other nationality checkboxes
@@ -1742,6 +1745,65 @@ new_array = Array.from(new Set(new_array));
 }
 
   });
+
+
+   //Exclude Regions Logic Here 
+
+   //First we add a class to the closet ul
+
+   const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
+        const exclude_regons_ul = exclude_regions_checkbox.closest('ul');
+        // add a custom class to the ul element
+        exclude_regons_ul.classList.add('exclude_regions_class');
+
+
+$(".exclude_regions_class li input").change(function() {
+    if($(this).is(":checked")) {
+        // Initially, check all countries
+        $('.my-custom-class li input[type="checkbox"]').prop('checked', true);
+
+        // Get countries that belong to the checked region
+        const excludedRegion = $(this).val();
+        const countriesToExclude = getRegionCountries(excludedRegion);
+
+        // Uncheck those countries
+        $('.my-custom-class li input[type="checkbox"]').each(function() {
+            const checkboxValue = $(this).val();
+            if (countriesToExclude.includes(checkboxValue)) {
+                $(this).prop('checked', false);
+            }
+        });
+
+        // Now, for the include regions checkboxes
+        let excludedRegions = $('.exclude_regions_class li input[type=checkbox]:checked').map(function() {
+          return this.value;
+        }).get();
+
+        $(".include_regions_class li input").each(function() {
+            if (excludedRegions.includes($(this).val())) {
+                $(this).prop('checked', false);  // uncheck the region in include regions
+            } else {
+                $(this).prop('checked', true);   // check other regions
+            }
+        });
+
+    } else {
+        // If the region is unchecked, we assume you want to revert to checking those countries again
+        const includedRegion = $(this).val();
+        const countriesToInclude = getRegionCountries(includedRegion);
+
+        $('.my-custom-class li input[type="checkbox"]').each(function() {
+            const checkboxValue = $(this).val();
+            if (countriesToInclude.includes(checkboxValue)) {
+                $(this).prop('checked', true);
+            }
+        });
+
+        // Also, since the region is unchecked in exclude regions, we should check it in include regions
+        $(".include_regions_class li input[value='" + includedRegion + "']").prop('checked', true);
+    }
+});
+
 
 });
 
