@@ -1,3 +1,19 @@
 .dataTables_wrapper .dataTables_length select {
     width: 60px;
 }
+
+
+.single-post table {
+    margin-top:20px;
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+.single-post td , .single-post th{
+    padding:5px;
+    text-align:left;
+    border: 1px solid black !important;
+    border-collapse: collapse;
+}
