@@ -142,6 +142,9 @@ function getFeebackForm() {
   const yesBtn = document.querySelector('input[value="Yes"]');
   const noBtn = document.querySelector('input[value="No"]');
   const radioInputs = document.querySelectorAll('input[type="radio"]');
+  const incorrectInfoTextarea = document.querySelector('textarea[name="incorrect_info_improvement"]');
+  const outdatedInfoTextarea = document.querySelector('textarea[name="outdated_info_improvement"]');
+  const notForInternationalTextarea = document.querySelector('textarea[name="not_for_international_improvement"]');
   const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
   const form = document.querySelector('#gs-feeback-form');
@@ -176,6 +179,22 @@ function getFeebackForm() {
         } else {
           otherTextarea.style.display = "none";
         }
+        if(this.value == 'incorrect_info') {
+          incorrectInfoTextarea.style.display = "block";
+        } else {
+          incorrectInfoTextarea.style.display = "none";
+        }
+        if(this.value == 'outdated_info') {
+          outdatedInfoTextarea.style.display = "block";
+        } else {
+          outdatedInfoTextarea.style.display = "none";
+        }
+        if(this.value == 'not_for_international_students') {
+          notForInternationalTextarea.style.display = "block";
+        } else {
+          notForInternationalTextarea.style.display = "none";
+        }
+
       });
     }
   }
@@ -188,7 +207,18 @@ function getFeebackForm() {
         ... ( document.querySelector('input[name="helpful"]:checked').value != 'Yes') && 
         {
           'improvement' : document.querySelector('input[name="improvement"]:checked').value,
-          'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+          ... document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
+            'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
+          },
+          ... document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
+            'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
+          },
+          ... document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
+            'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
+          },
+          ... document.querySelector('textarea[name="other_improvement"]').value != '' && {
+            'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+          },
         },
         'scholarship_info': {
           url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),

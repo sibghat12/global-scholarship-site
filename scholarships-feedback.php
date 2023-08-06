@@ -42,6 +42,15 @@ function display_scholarship_feedback_table()
               if($feedback['other_improvement'] != '') {
                   $feedback['other_improvement'] = $feedback['other_improvement'];
               }
+              if($feedback['incorrect_info_improvement'] != '') {
+                  $feedback['incorrect_info_improvement'] = $feedback['incorrect_info_improvement'];
+              }
+              if($feedback['outdated_info_improvement'] != '') {
+                  $feedback['outdated_info_improvement'] = $feedback['outdated_info_improvement'];
+              }
+              if($feedback['not_for_international_improvement'] != '') {
+                  $feedback['not_for_international_improvement'] = $feedback['not_for_international_improvement'];
+              }
 
 
               ?>
@@ -49,7 +58,19 @@ function display_scholarship_feedback_table()
               <td><?php echo $feedback['id']; ?></td>
               <td><?php echo $feedback['helpful']; ?></td>
               <td><?php echo $feedback['improvement']; ?></td>
-              <td><?php echo $feedback['other_improvement']; ?></td>
+              <?php if( !empty($feedback['other_improvement'])) : ?>
+                <td><?php echo $feedback['other_improvement']; ?></td>
+                <?php elseif( !empty($feedback['other_improvement'])) : ?>
+                <td><?php echo $feedback['other_improvement']; ?></td>
+                <?php elseif( !empty($feedback['incorrect_info_improvement'])) : ?>
+                <td><?php echo $feedback['incorrect_info_improvement']; ?></td>
+                <?php elseif( !empty($feedback['outdated_info_improvement'])) : ?>
+                <td><?php echo $feedback['outdated_info_improvement']; ?></td>
+                <?php elseif( !empty($feedback['not_for_international_improvement'])) : ?>
+                <td><?php echo $feedback['not_for_international_improvement']; ?></td>
+                <?php else : ?>
+                <td></td>
+              <?php endif; ?>
               <td><?php echo $feedback['scholarship_url']; ?></td>
               <td><?php echo $feedback['scholarship_title']; ?></td>
               <td><?php echo $feedback['date']; ?></td>
