@@ -29,48 +29,47 @@ function display_scholarship_feedback_table()
         </thead>
         <tbody>
           <?php foreach ($feedback_data as $feedback) {
+            
+              if($feedback['improvement'] == 'other' && $feedback['other_improvement'] != '') {
+                $feedback['other_improvement'] = $feedback['other_improvement'];
+              }elseif($feedback['improvement'] == 'incorrect_info' && $feedback['incorrect_info_improvement'] != '') {
+                $feedback['incorrect_info_improvement'] = $feedback['incorrect_info_improvement'];
+              }elseif($feedback['improvement'] == 'outdated_info' && $feedback['outdated_info_improvement'] != '') {
+                $feedback['outdated_info_improvement'] = $feedback['outdated_info_improvement'];
+              } elseif($feedback['improvement'] == 'not_for_international_students' && $feedback['not_for_international_improvement'] != '') {
+                $feedback['not_for_international_improvement'] = $feedback['not_for_international_improvement'];
+              }
+
+              $improvement_type_info = '';
+
+              if( $feedback['improvement'] == 'other' && !empty($feedback['other_improvement'])) :
+                $improvement_type_info .= "<td>".$feedback['other_improvement']."</td>";
+              elseif( $feedback['improvement'] == 'incorrect_info' && !empty($feedback['incorrect_info_improvement'])) : 
+                $improvement_type_info .= "<td>".$feedback['incorrect_info_improvement']."</td>";
+              elseif($feedback['improvement'] == 'outdated_info' && !empty($feedback['outdated_info_improvement'])) :
+                $improvement_type_info .= "<td>".$feedback['outdated_info_improvement']."</td>";
+              elseif( $feedback['improvement'] == 'not_for_international_students' && !empty($feedback['not_for_international_improvement'])) :
+                $improvement_type_info .= "<td>".$feedback['not_for_international_improvement']."</td>";
+              else :
+                $improvement_type_info .= "<td></td>";
+              endif;
+
               if($feedback['improvement'] == 'incorrect_info') {
-                  $feedback['improvement'] = 'The Information in This Scholarship are incorrect!';
-              } elseif($feedback['improvement'] == 'not_for_international_students') {
-                  $feedback['improvement'] = 'This Scholarship is not for international Students.';
-              } elseif($feedback['improvement'] == 'outdated_info') {
-                  $feedback['improvement'] = 'The Information in this Scholarships are outdated, please fix';
-              } elseif($feedback['improvement'] == 'other') {
-                  $feedback['improvement'] = 'None of the above here is my comment';
-              }
-
-              if($feedback['other_improvement'] != '') {
-                  $feedback['other_improvement'] = $feedback['other_improvement'];
-              }
-              if($feedback['incorrect_info_improvement'] != '') {
-                  $feedback['incorrect_info_improvement'] = $feedback['incorrect_info_improvement'];
-              }
-              if($feedback['outdated_info_improvement'] != '') {
-                  $feedback['outdated_info_improvement'] = $feedback['outdated_info_improvement'];
-              }
-              if($feedback['not_for_international_improvement'] != '') {
-                  $feedback['not_for_international_improvement'] = $feedback['not_for_international_improvement'];
-              }
-
+                $feedback['improvement'] = 'The Information in This Scholarship are incorrect!';
+            } elseif($feedback['improvement'] == 'not_for_international_students') {
+                $feedback['improvement'] = 'This Scholarship is not for international Students.';
+            } elseif($feedback['improvement'] == 'outdated_info') {
+                $feedback['improvement'] = 'The Information in this Scholarships are outdated, please fix';
+            } elseif($feedback['improvement'] == 'other') {
+                $feedback['improvement'] = 'None of the above here is my comment';
+            }
 
               ?>
             <tr>
               <td><?php echo $feedback['id']; ?></td>
               <td><?php echo $feedback['helpful']; ?></td>
               <td><?php echo $feedback['improvement']; ?></td>
-              <?php if( !empty($feedback['other_improvement'])) : ?>
-                <td><?php echo $feedback['other_improvement']; ?></td>
-                <?php elseif( !empty($feedback['other_improvement'])) : ?>
-                <td><?php echo $feedback['other_improvement']; ?></td>
-                <?php elseif( !empty($feedback['incorrect_info_improvement'])) : ?>
-                <td><?php echo $feedback['incorrect_info_improvement']; ?></td>
-                <?php elseif( !empty($feedback['outdated_info_improvement'])) : ?>
-                <td><?php echo $feedback['outdated_info_improvement']; ?></td>
-                <?php elseif( !empty($feedback['not_for_international_improvement'])) : ?>
-                <td><?php echo $feedback['not_for_international_improvement']; ?></td>
-                <?php else : ?>
-                <td></td>
-              <?php endif; ?>
+              <?php echo $improvement_type_info; ?>
               <td><?php echo $feedback['scholarship_url']; ?></td>
               <td><?php echo $feedback['scholarship_title']; ?></td>
               <td><?php echo $feedback['date']; ?></td>
