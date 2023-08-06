@@ -43,15 +43,18 @@ function display_scholarship_feedback_table()
                     <?php foreach ($feedback_data as $feedback) {
                         $improvement_type_info = '';
 
-                        if ($feedback['improvement'] == 'other' && !empty($feedback['other_improvement'])) {
-                            $improvement_type_info = $feedback['other_improvement'];
-                        } elseif ($feedback['improvement'] == 'incorrect_info' && !empty($feedback['incorrect_info_improvement'])) {
-                            $improvement_type_info = $feedback['incorrect_info_improvement'];
-                        } elseif ($feedback['improvement'] == 'outdated_info' && !empty($feedback['outdated_info_improvement'])) {
-                            $improvement_type_info = $feedback['outdated_info_improvement'];
-                        } elseif ($feedback['improvement'] == 'not_for_international_students' && !empty($feedback['not_for_international_improvement'])) {
-                            $improvement_type_info = $feedback['not_for_international_improvement'];
-                        }
+                        if( $feedback['improvement'] == 'other' && !empty($feedback['other_improvement'])) :
+                          $improvement_type_info .= "<td>".$feedback['other_improvement']."</td>";
+                        elseif( $feedback['improvement'] == 'incorrect_info' && !empty($feedback['incorrect_info_improvement'])) : 
+                          $improvement_type_info .= "<td>".$feedback['incorrect_info_improvement']."</td>";
+                        elseif($feedback['improvement'] == 'outdated_info' && !empty($feedback['outdated_info_improvement'])) :
+                          $improvement_type_info .= "<td>".$feedback['outdated_info_improvement']."</td>";
+                        elseif( $feedback['improvement'] == 'not_for_international_students' && !empty($feedback['not_for_international_improvement'])) :
+                          $improvement_type_info .= "<td>".$feedback['not_for_international_improvement']."</td>";
+                        else :
+                          $improvement_type_info .= "<td></td>";
+                        endif;
+          
 
                         if ($feedback['improvement'] == 'incorrect_info') {
                             $feedback['improvement'] = 'The Information in This Scholarship is incorrect!';
@@ -68,7 +71,7 @@ function display_scholarship_feedback_table()
                             <td><?php echo $feedback['id']; ?></td>
                             <td><?php echo $feedback['helpful']; ?></td>
                             <td><?php echo $feedback['improvement']; ?></td>
-                            <td><?php echo $feedback['user_comment']; ?></td>
+                            <?php echo $improvement_type_info; ?>
                             <td><?php echo $feedback['scholarship_url']; ?></td>
                             <td><?php echo $feedback['scholarship_title']; ?></td>
                             <td><?php echo $feedback['date']; ?></td>
