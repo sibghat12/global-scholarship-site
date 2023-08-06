@@ -18,10 +18,10 @@ function process_feedback_form() {
     $feedback_data = array(
         'helpful' => ($_POST['helpful'] == 'Yes') ? 'Yes' : 'No',
         'improvement' => isset($_POST['improvement']) ? sanitize_text_field($_POST['improvement']) : '',
-        'incorrect_info_improvement' => isset($_POST['incorrect_info_improvement']) ? sanitize_text_field($_POST['incorrect_info_improvement']) : '',
-        'outdated_info_improvement' => isset($_POST['outdated_info_improvement']) ? sanitize_text_field($_POST['outdated_info_improvement']) : '',
-        'not_for_international_improvement' => isset($_POST['not_for_international_improvement']) ? sanitize_text_field($_POST['not_for_international_improvement']) : '',
-        'other_improvement' => isset($_POST['other_improvement']) ? sanitize_text_field($_POST['other_improvement']) : '',
+        'incorrect_info_improvement' => (isset($_POST['incorrect_info_improvement']) && sanitize_text_field($_POST['improvement']) == 'incorrect_info') ? sanitize_text_field($_POST['incorrect_info_improvement']) : '',
+        'outdated_info_improvement' => (isset($_POST['outdated_info_improvement']) && sanitize_text_field($_POST['improvement']) == 'outdated_info') ? sanitize_text_field($_POST['outdated_info_improvement']) : '',
+        'not_for_international_improvement' => (isset($_POST['not_for_international_improvement']) && sanitize_text_field($_POST['improvement']) == 'not_for_international_students' ) ? sanitize_text_field($_POST['not_for_international_improvement']) : '',
+        'other_improvement' => (isset($_POST['other_improvement']) && sanitize_text_field($_POST['improvement']) == 'other') ? sanitize_text_field($_POST['other_improvement']) : '',
         'scholarship_info' => isset($_POST['scholarship_info']) ? $_POST['scholarship_info'] : [],
         'date' => isset($_POST['date']) ? $_POST['date'] : ''
     );
