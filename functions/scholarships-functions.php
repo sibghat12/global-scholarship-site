@@ -1751,7 +1751,7 @@ new_array = Array.from(new Set(new_array));
 
    //First we add a class to the closet ul
 
-   const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
+   const exclude_regions_checkbox = document.getElementById('acf-field_64cb9496f11d3-Africa');
         const exclude_regons_ul = exclude_regions_checkbox.closest('ul');
         // add a custom class to the ul element
         exclude_regons_ul.classList.add('exclude_regions_class');

@@ -117,7 +117,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                               <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
                     
                     <span style="float:left;width:32px;">
-                        <img style="width:24px;height: 24px;margin-right:4px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
+                        <img style="width:24px;height: 24px;margin-right:4px;" src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
                          </span> 
 
                     <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php echo $language_of_instruction; ?></span></p>  
