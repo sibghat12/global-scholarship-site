@@ -50,7 +50,10 @@ $institution_query = new WP_Query($institution_args);
 $grouped_institutions = array();
 
 $currentDate = time();
-$sixMonthsAgo = strtotime('-9 months', $currentDate);
+//$sixMonthsAgo = strtotime('-9 months', $currentDate);
+
+$nineToTwelveMonthsAgoStart = strtotime('-12 months', $currentDate);
+$nineToTwelveMonthsAgoEnd = strtotime('-9 months', $currentDate);
 
 // Group institutions by country
 if ($institution_query->have_posts()) {
@@ -84,7 +87,10 @@ if ($institution_query->have_posts()) {
                 
                 $deadline_timestamp = strtotime($deadline_date);
 
-               if ($deadline_timestamp && $deadline_timestamp <= $currentDate && $deadline_timestamp <= $sixMonthsAgo) {
+    if ($deadline_timestamp) {
+    // 6 to 9 months
+    if ($deadline_timestamp <= $nineToTwelveMonthsAgoEnd && $deadline_timestamp > $nineToTwelveMonthsAgoStart) {
+
                       if ($degree_value == "Bachelor's") {
         $institution_data['deadlines_bachelor'][] = array(
             'label' => $label,
@@ -106,6 +112,8 @@ if ($institution_query->have_posts()) {
         $has_found_row = true;
     }
                 }
+            }
+
             }
         }
 
