@@ -626,7 +626,6 @@ function uscollege_custom_post_types() {
         'title',
         'author',
         'thumbnail',
-        'comments'
     );
     $args = array(
         'labels'                => $labels,
@@ -692,6 +691,7 @@ function uscollege_custom_post_types() {
         'title',
         'author',
         'thumbnail',
+        'comments'
     );
     $args = array(
         'labels'                => $labels,
