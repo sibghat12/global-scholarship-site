@@ -794,7 +794,12 @@ wp_reset_postdata();
              
                 
 	<?php fusion_link_pages(); ?>
-               
+    <?php 
+        if ( comments_open() || get_comments_number() ) {
+            comments_template();
+        }
+    ?>
+         
 	</div>
 			
             <?php if ( ! post_password_required( $post->ID ) ) : ?>

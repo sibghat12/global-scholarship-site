@@ -626,6 +626,7 @@ function uscollege_custom_post_types() {
         'title',
         'author',
         'thumbnail',
+        'comments'
     );
     $args = array(
         'labels'                => $labels,
@@ -657,6 +658,7 @@ function uscollege_custom_post_types() {
         'title',
         'author',
         'thumbnail',
+        'comments'
     );
     $args = array(
         'labels'                => $labels,
@@ -2935,7 +2937,7 @@ add_shortcode('latest_scholarships', 'display_latest_scholarships');
 function enable_comments_on_all_posts() {
     $args = array(
         'post_status' => 'publish',
-        'post_type' => 'post',
+        'post_type' => ['post', 'scholarships', 'institution'],
         'fields' => 'ids' // Only get post IDs
     );
 
