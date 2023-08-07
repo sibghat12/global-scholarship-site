@@ -657,6 +657,7 @@ function uscollege_custom_post_types() {
         'title',
         'author',
         'thumbnail',
+        'comments'
     );
     $args = array(
         'labels'                => $labels,
@@ -690,6 +691,7 @@ function uscollege_custom_post_types() {
         'title',
         'author',
         'thumbnail',
+        'comments'
     );
     $args = array(
         'labels'                => $labels,
@@ -2935,7 +2937,7 @@ add_shortcode('latest_scholarships', 'display_latest_scholarships');
 function enable_comments_on_all_posts() {
     $args = array(
         'post_status' => 'publish',
-        'post_type' => 'post',
+        'post_type' => ['post'],
         'fields' => 'ids' // Only get post IDs
     );
 
@@ -3169,3 +3171,19 @@ function acf_add_allowed_svg_tag( $tags, $context ) {
 
 // Allow Shortcode in textarea in ACF fields for Contact Form 7
 add_filter('acf/format_value/type=textarea', 'do_shortcode');
+
+
+function enable_comments_on_custom_post_types() {
+    global $wpdb;
+    $post_types = array( 'scholarships', 'institution' );
+
+    foreach ( $post_types as $post_type ) {
+        $wpdb->query(
+            $wpdb->prepare(
+                "UPDATE $wpdb->posts SET comment_status = 'open' WHERE post_type = %s",
+                $post_type
+            )
+        );
+    }
+}
+// add_action( 'init', 'enable_comments_on_custom_post_types' );
