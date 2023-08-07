@@ -3790,7 +3790,7 @@ form#gs-feeback-form {
     background: #fff;
     font-size: 1.2rem;
     font-weight: 700;
-    border-radius: 10px;
+    border-radius: 22px;
     box-shadow: -1px 3px 2px #5555554f;
   }
   .step-2 .gs-feedback-radio-btn {
@@ -3832,16 +3832,24 @@ form#gs-feeback-form {
 }
 
 .single-scholarships .post-content .gs-feeback-form-container textarea {
-    width: 100%;
+    width: 90%;
     background: #fff;
     padding: 12px;
     margin-top: 20px;
+    margin-left: 4%;
+    border: 0;
+    box-shadow: 0px 4px 4px 0px #00000025;
     font-size: 1.2rem;
     margin-bottom: 20px;
+    border-radius: 22px;
 }
 
 .single-scholarships .post-content .gs-feeback-form-container textarea::placeholder {
-    font-size: 1.2rem;
+    font-size: 1.5rem  !important;
+    color: #000 !important;
+    font-weight: 100 !important;
+    font-style: italic;
+    font-family: 'Roboto', sans-serif;
 }
 
 input[type="submit"] {
@@ -3850,7 +3858,7 @@ input[type="submit"] {
     background: #fff;
     font-size: 1.2rem;
     font-weight: 700;
-    border-radius: 10px;
+    border-radius: 22px;
     box-shadow: -1px 3px 2px #5555554f;
 }
 

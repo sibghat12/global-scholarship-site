@@ -22,19 +22,22 @@
         <input type="radio" name="improvement" value="incorrect_info">
         <span class="gs-feedback-radio-btn">The scholarship information is incorrect</span>
       </label>
+      <textarea name="incorrect_info_improvement" rows="5"placeholder="What information is incorrect?" style="display:none;"></textarea>
       <label class="gs-feedback-radio-label">
         <input type="radio" name="improvement" value="outdated_info">
         <span class="gs-feedback-radio-btn">The scholarship details are outdated</span>
       </label>
+      <textarea name="outdated_info_improvement" rows="5"placeholder="What information is outdated?" style="display:none;"></textarea>
       <label class="gs-feedback-radio-label">
         <input type="radio" name="improvement" value="not_for_international_students">
         <span class="gs-feedback-radio-btn">The scholarship is not for international students</span>
       </label>
+      <textarea name="not_for_international_improvement" rows="5"placeholder="What is the reason why this scholarship is not for international students?" style="display:none;"></textarea>
       <label class="gs-feedback-radio-label">
         <input type="radio" name="improvement" value="other">
         <span class="gs-feedback-radio-btn">Other</span>
       </label>
-      <textarea name="other_improvement" rows="5"placeholder="Please specify" style="display:none;"></textarea>
+      <textarea name="other_improvement" rows="5"placeholder="Please specify your other reasons why this page is not helpful." style="display:none;"></textarea>
       <input type="hidden" name="current_scholarship_info" data-scholarship-url="<?php echo get_permalink( get_the_ID() ); ?>" data-scholarship-id="<?php echo get_the_ID(); ?>" data-scholarship-title="<?php echo get_the_title(); ?>" data-scholarship-edit-page-url="<?php echo get_edit_post_link(get_the_ID()); ?>">
     </div>
     <div class="lds-roller" style="display:none;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
