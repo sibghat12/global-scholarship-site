@@ -76,7 +76,7 @@ function display_scholarship_feedback_table()
                             <td><?php echo $feedback['scholarship_title']; ?></td>
                             <td><?php echo $feedback['date']; ?></td>
                             <td>
-                                <a href="?page=scholarship-feedback&delete_feedback=<?php echo $feedback['id']; ?>" class="btn btn-danger">Delete</a>
+                                <a href="<?php echo add_query_arg('delete_feedback', $feedback['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this feedback?')">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -84,7 +84,7 @@ function display_scholarship_feedback_table()
             </table>
             <div>
                 <div>
-                    <button type="submit" name="delete_multiple_feedbacks" class="btn btn-danger">Delete Selected</button>
+                    <button type="submit" name="delete_multiple_feedbacks" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete these feedbacks?')">Delete Selected</button>
                 </div>
             </div>
         </form>
