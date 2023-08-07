@@ -231,9 +231,37 @@ function getFeebackForm() {
 
         // display thank you message
         feedbackFormContainer.appendChild(thankYouMessage);
+
+        fadeInElement(feedbackFormContainer);
       }
     );
   });
+}
+
+function fadeInElement(Element) {
+  
+          // fade in message and container
+          Element.style.opacity = 0;
+          Element.style.display = "block";
+          var intervalId = setInterval(function() {
+            var opacity = parseFloat(Element.style.opacity);
+            if (opacity < 1) {
+              Element.style.opacity = opacity + 0.1;
+            } else {
+              clearInterval(intervalId);
+              setTimeout(function() {
+                var intervalId2 = setInterval(function() {
+                  var opacity = parseFloat(Element.style.opacity);
+                  if (opacity > 0) {
+                    Element.style.opacity = opacity - 0.1;
+                  } else {
+                    clearInterval(intervalId2);
+                    Element.style.display = "none";
+                  }
+                }, 50);
+              }, 10000);
+            }
+          }, 50);
 }
 
 function showTextareaBasedOnRadioInput() {
