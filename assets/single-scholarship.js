@@ -136,12 +136,11 @@ function getActiveSection() {
     });
   });
 }
-
 function getFeebackForm() {
   const feedbackFormContainer = document.querySelector('.gs-feeback-form-container');
   const yesBtn = document.querySelector('input[value="Yes"]');
   const noBtn = document.querySelector('input[value="No"]');
-  const radioInputs = document.querySelectorAll('input[type="radio"]');
+  const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
   const incorrectInfoTextarea = document.querySelector('textarea[name="incorrect_info_improvement"]');
   const outdatedInfoTextarea = document.querySelector('textarea[name="outdated_info_improvement"]');
   const notForInternationalTextarea = document.querySelector('textarea[name="not_for_international_improvement"]');
@@ -153,14 +152,15 @@ function getFeebackForm() {
   const thankYouMessage = document.createElement('p'); // new line
   thankYouMessage.innerHTML = 'Thank you for your feedback.'; // new line
 
-  if(yesBtn) {
+  if (yesBtn) {
     yesBtn.addEventListener('click', function() {
       buttonsDiv.style.display = "flex";
       document.querySelector('.step-2').style.display = "none";
+      showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
     });
   }
 
-  if(noBtn) {
+  if (noBtn) {
     noBtn.addEventListener('click', function() {
       buttonsDiv.style.display = "flex";
       document.querySelector('.step-2').style.display = "block";
@@ -168,114 +168,251 @@ function getFeebackForm() {
         radioInputs[i].parentElement.style.display = "block";
       }
       otherTextarea.style.display = "block";
+      showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
     });
   }
 
-  if( radioInputs && radioInputs.length > 0 ) {
+  if (radioInputs && radioInputs.length > 0) {
     for (var i = 0; i < radioInputs.length; i++) {
       radioInputs[i].addEventListener('click', function() {
-        if (this.value === "other") {
-          otherTextarea.style.display = "block";
-        } else {
-          otherTextarea.style.display = "none";
-        }
-        if(this.value == 'incorrect_info') {
-          incorrectInfoTextarea.style.display = "block";
-        } else {
-          incorrectInfoTextarea.style.display = "none";
-        }
-        if(this.value == 'outdated_info') {
-          outdatedInfoTextarea.style.display = "block";
-        } else {
-          outdatedInfoTextarea.style.display = "none";
-        }
-        if(this.value == 'not_for_international_students') {
-          notForInternationalTextarea.style.display = "block";
-        } else {
-          notForInternationalTextarea.style.display = "none";
-        }
-
+        showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
       });
+
+      // Check the initial state of the radio inputs
+      if (radioInputs[i].checked) {
+        showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+      }
     }
   }
 
-    jQuery( '[name="submit"]' ).click( function(e) {
-      var data = {
-        action: 'feedback_form',
-        'gs_email': document.querySelector('input[name="gs_email"]').value,
-        'helpful': document.querySelector('input[name="helpful"]:checked').value,
-        ... ( document.querySelector('input[name="helpful"]:checked').value != 'Yes') && 
+  jQuery('[name="submit"]').click(function(e) {
+    var data = {
+      action: 'feedback_form',
+      'gs_email': document.querySelector('input[name="gs_email"]').value,
+      'helpful': document.querySelector('input[name="helpful"]:checked').value,
+      ... (document.querySelector('input[name="helpful"]:checked').value != 'Yes') &&
         {
-          'improvement' : document.querySelector('input[name="improvement"]:checked').value,
-          ... document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
-            'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
-          },
-          ... document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
-            'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
-          },
-          ... document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
-            'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
-          },
-          ... document.querySelector('textarea[name="other_improvement"]').value != '' && {
-            'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
-          },
+        'improvement': document.querySelector('input[name="improvement"]:checked').value,
+        ...document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
+          'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
         },
-        'scholarship_info': {
-          url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
-          edit_url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-edit-page-url'),
-          id: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-id'),
-          title: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-title'),
+        ...document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
+          'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
         },
-        'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
-      };
-      e.preventDefault();
-      
+        ...document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
+          'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
+        },
+        ...document.querySelector('textarea[name="other_improvement"]').value != '' && {
+          'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+        },
+      },
+      'scholarship_info': {
+        url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
+        edit_url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-edit-page-url'),
+        id: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-id'),
+        title: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-title'),
+      },
+      'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+    };
+    e.preventDefault();
+
     // show spinner
     spinner.style.display = "inline-block";
 
-      jQuery.post( 
-        frontendajax.ajaxurl, 
-          data,                   
-          function( response ) {
-              // ERROR HANDLING
-              console.log(response)
+    jQuery.post(
+      frontendajax.ajaxurl,
+      data,
+      function(response) {
+        // ERROR HANDLING
+        console.log(response)
 
-               // hide spinner
-              spinner.style.display = "none";
-              
-              // hide form
-              form.style.display = "none";
-              
-              // show thank you message
-              feedbackFormContainer.appendChild(thankYouMessage);
+        // hide spinner
+        spinner.style.display = "none";
 
-              
-          // fade in message and container
-          feedbackFormContainer.style.opacity = 0;
-          feedbackFormContainer.style.display = "block";
-          var intervalId = setInterval(function() {
-            var opacity = parseFloat(feedbackFormContainer.style.opacity);
-            if (opacity < 1) {
-              feedbackFormContainer.style.opacity = opacity + 0.1;
-            } else {
-              clearInterval(intervalId);
-              setTimeout(function() {
-                var intervalId2 = setInterval(function() {
-                  var opacity = parseFloat(feedbackFormContainer.style.opacity);
-                  if (opacity > 0) {
-                    feedbackFormContainer.style.opacity = opacity - 0.1;
-                  } else {
-                    clearInterval(intervalId2);
-                    feedbackFormContainer.style.display = "none";
-                  }
-                }, 50);
-              }, 10000);
-            }
-          }, 50);
-          }
-      ); 
+        // hide form
+        form.style.display ="none";
+
+        // display thank you message
+        feedbackFormContainer.appendChild(thankYouMessage);
+      }
+    );
   });
 }
+
+function showTextareaBasedOnRadioInput() {
+  const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
+  const incorrectInfoTextarea = document.querySelector('textarea[name="incorrect_info_improvement"]');
+  const outdatedInfoTextarea = document.querySelector('textarea[name="outdated_info_improvement"]');
+  const notForInternationalTextarea = document.querySelector('textarea[name="not_for_international_improvement"]');
+  const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
+
+  for (var i = 0; i < radioInputs.length; i++) {
+    if (radioInputs[i].checked) {
+      if (radioInputs[i].value == "incorrect_info") {
+        incorrectInfoTextarea.style.display = "block";
+      } else {
+        incorrectInfoTextarea.style.display = "none";
+      }
+
+      if (radioInputs[i].value == "outdated_info") {
+        outdatedInfoTextarea.style.display = "block";
+      } else {
+        outdatedInfoTextarea.style.display = "none";
+      }
+
+      if (radioInputs[i].value == "not_for_international_students") {
+        notForInternationalTextarea.style.display = "block";
+      } else {
+        notForInternationalTextarea.style.display = "none";
+      }
+      if (radioInputs[i].value == "other") {
+        otherTextarea.style.display = "block";
+      } else {
+        otherTextarea.style.display = "none";
+      }
+    }
+  }
+
+}
+// function getFeebackForm() {
+//   const feedbackFormContainer = document.querySelector('.gs-feeback-form-container');
+//   const yesBtn = document.querySelector('input[value="Yes"]');
+//   const noBtn = document.querySelector('input[value="No"]');
+//   const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
+//   const incorrectInfoTextarea = document.querySelector('textarea[name="incorrect_info_improvement"]');
+//   const outdatedInfoTextarea = document.querySelector('textarea[name="outdated_info_improvement"]');
+//   const notForInternationalTextarea = document.querySelector('textarea[name="not_for_international_improvement"]');
+//   const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
+//   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
+//   const form = document.querySelector('#gs-feeback-form');
+//   const spinner = document.querySelector('.lds-roller'); // new line
+
+//   const thankYouMessage = document.createElement('p'); // new line
+//   thankYouMessage.innerHTML = 'Thank you for your feedback.'; // new line
+
+//   if(yesBtn) {
+//     yesBtn.addEventListener('click', function() {
+//       buttonsDiv.style.display = "flex";
+//       document.querySelector('.step-2').style.display = "none";
+//     });
+//   }
+
+//   if(noBtn) {
+//     noBtn.addEventListener('click', function() {
+//       buttonsDiv.style.display = "flex";
+//       document.querySelector('.step-2').style.display = "block";
+//       for (var i = 0; i < radioInputs.length; i++) {
+//         radioInputs[i].parentElement.style.display = "block";
+//       }
+//       otherTextarea.style.display = "block";
+//     });
+//   }
+
+//   if( radioInputs && radioInputs.length > 0 ) {
+//     for (var i = 0; i < radioInputs.length; i++) {
+//       radioInputs[i].addEventListener('click', function() {
+//         if (this.value === "other") {
+//           otherTextarea.style.display = "block";
+//         } else {
+//           otherTextarea.style.display = "none";
+//         }
+//         if(this.value == 'incorrect_info') {
+//           incorrectInfoTextarea.style.display = "block";
+//         } else {
+//           incorrectInfoTextarea.style.display = "none";
+//         }
+//         if(this.value == 'outdated_info') {
+//           outdatedInfoTextarea.style.display = "block";
+//         } else {
+//           outdatedInfoTextarea.style.display = "none";
+//         }
+//         if(this.value == 'not_for_international_students') {
+//           notForInternationalTextarea.style.display = "block";
+//         } else {
+//           notForInternationalTextarea.style.display = "none";
+//         }
+
+//       });
+//     }
+//   }
+
+//     jQuery( '[name="submit"]' ).click( function(e) {
+//       var data = {
+//         action: 'feedback_form',
+//         'gs_email': document.querySelector('input[name="gs_email"]').value,
+//         'helpful': document.querySelector('input[name="helpful"]:checked').value,
+//         ... ( document.querySelector('input[name="helpful"]:checked').value != 'Yes') && 
+//         {
+//           'improvement' : document.querySelector('input[name="improvement"]:checked').value,
+//           ... document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
+//             'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
+//           },
+//           ... document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
+//             'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
+//           },
+//           ... document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
+//             'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
+//           },
+//           ... document.querySelector('textarea[name="other_improvement"]').value != '' && {
+//             'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+//           },
+//         },
+//         'scholarship_info': {
+//           url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
+//           edit_url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-edit-page-url'),
+//           id: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-id'),
+//           title: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-title'),
+//         },
+//         'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+//       };
+//       e.preventDefault();
+      
+//     // show spinner
+//     spinner.style.display = "inline-block";
+
+//       jQuery.post( 
+//         frontendajax.ajaxurl, 
+//           data,                   
+//           function( response ) {
+//               // ERROR HANDLING
+//               console.log(response)
+
+//                // hide spinner
+//               spinner.style.display = "none";
+              
+//               // hide form
+//               form.style.display = "none";
+              
+//               // show thank you message
+//               feedbackFormContainer.appendChild(thankYouMessage);
+
+              
+//           // fade in message and container
+//           feedbackFormContainer.style.opacity = 0;
+//           feedbackFormContainer.style.display = "block";
+//           var intervalId = setInterval(function() {
+//             var opacity = parseFloat(feedbackFormContainer.style.opacity);
+//             if (opacity < 1) {
+//               feedbackFormContainer.style.opacity = opacity + 0.1;
+//             } else {
+//               clearInterval(intervalId);
+//               setTimeout(function() {
+//                 var intervalId2 = setInterval(function() {
+//                   var opacity = parseFloat(feedbackFormContainer.style.opacity);
+//                   if (opacity > 0) {
+//                     feedbackFormContainer.style.opacity = opacity - 0.1;
+//                   } else {
+//                     clearInterval(intervalId2);
+//                     feedbackFormContainer.style.display = "none";
+//                   }
+//                 }, 50);
+//               }, 10000);
+//             }
+//           }, 50);
+//           }
+//       ); 
+//   });
+// }
 
 function convertArrayToText(arrayList) {
   console.log("arrayList", arrayList)
