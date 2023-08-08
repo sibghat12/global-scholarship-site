@@ -3546,7 +3546,7 @@ padding-left:0px !important;
 
 /* Popular Scholarships */
 
-.single-scholarships #main .post-content .gs-scholarship-oturo .gs-popular-scholarships-container {
+.single-scholarships #main .post-content .gs-scholarship-outro .gs-popular-scholarships-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -3554,7 +3554,7 @@ padding-left:0px !important;
     margin: 0 auto;
 }
 
-.single-scholarships #main .post-content .gs-scholarship-oturo .gs-popular-scholarships-container .gs-popular-scholarship-item a {
+.single-scholarships #main .post-content .gs-scholarship-outro .gs-popular-scholarships-container .gs-popular-scholarship-item a {
     margin: 8px;
     background: #ebf0f4;
     display: inline-block;
