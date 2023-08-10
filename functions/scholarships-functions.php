@@ -1751,7 +1751,7 @@ new_array = Array.from(new Set(new_array));
 
    //First we add a class to the closet ul
 
-   const exclude_regions_checkbox = document.getElementById('acf-field_64cb9496f11d3-Africa');
+   const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
         const exclude_regons_ul = exclude_regions_checkbox.closest('ul');
         // add a custom class to the ul element
         exclude_regons_ul.classList.add('exclude_regions_class');
@@ -1761,7 +1761,7 @@ $(".exclude_regions_class li input").change(function() {
     if($(this).is(":checked")) {
         // Initially, check all countries
         $('.my-custom-class li input[type="checkbox"]').prop('checked', true);
-
+          $("#acf-field_62ca6ed806bc6-All-Nationalities").prop("checked", false);
         // Get countries that belong to the checked region
         const excludedRegion = $(this).val();
         const countriesToExclude = getRegionCountries(excludedRegion);
