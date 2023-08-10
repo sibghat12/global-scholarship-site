@@ -35,10 +35,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <hr>
 <?php 
 
-// Fetch all institutions with their related city custom field
 $institution_args = array(
     'post_type'      => 'institution',
     'posts_per_page' => -1,
+    'fields'         => 'ids',   // Get only post IDs
     'meta_query'     => array(
         array(
             'key' => 'cities'
@@ -50,29 +50,20 @@ $institution_query = new WP_Query($institution_args);
 $grouped_institutions = array();
 
 $currentDate = time();
-//$sixMonthsAgo = strtotime('-6 months', $currentDate);
 
 $sixToNineMonthsAgoStart = strtotime('-9 months', $currentDate);
 $sixToNineMonthsAgoEnd = strtotime('-6 months', $currentDate);
 
 // Group institutions by country
 if ($institution_query->have_posts()) {
-    while ($institution_query->have_posts()) {
-        $institution_query->the_post();
-        $institution_id = get_the_ID();
-        $city_id = get_field('cities');
+    foreach ($institution_query->posts as $institution_id) { 
+        $city_id = get_field('cities', $institution_id);
         $country = get_field('country', $city_id);
 
-        $has_found_row = false;
-
-        if (!isset($grouped_institutions[$country])) {
-            $grouped_institutions[$country] = array();
-        }
-
         $institution_data = array(
-            'id' => get_the_ID(),
-            'title' => get_the_title(),
-            'link'  => get_permalink(),
+            'id' => $institution_id,
+            'title' => get_the_title($institution_id),
+            'link'  => get_permalink($institution_id),
             'deadlines_bachelor' => array(),
             'deadlines_master' => array()
         );
@@ -87,45 +78,47 @@ if ($institution_query->have_posts()) {
                 
                 $deadline_timestamp = strtotime($deadline_date);
 
-               if ($deadline_timestamp) {
-    // 6 to 9 months
-    if ($deadline_timestamp <= $sixToNineMonthsAgoEnd && $deadline_timestamp > $sixToNineMonthsAgoStart) {
-
-
-                      if ($degree_value == "Bachelor's") {
-        $institution_data['deadlines_bachelor'][] = array(
-            'label' => $label,
-            'deadline' => $deadline_date
-        );
-        $has_found_row = true;
-    } elseif ($degree_value == "Master's") {
-        $institution_data['deadlines_master'][] = array(
-            'label' => $label,
-            'deadline' => $deadline_date
-        );
-        $has_found_row = true;
-    } else {
-        $institution_data['deadlines_bachelor'][] = array(
-            'label' => $label,
-            'deadline' => $deadline_date,
-            'no_degree_selected' => true
-        );
-        $has_found_row = true;
-    }
+                if ($deadline_timestamp) {
+                    if ($deadline_timestamp <= $sixToNineMonthsAgoEnd && $deadline_timestamp > $sixToNineMonthsAgoStart) {
+                        if ($degree_value == "Bachelor's") {
+                            $institution_data['deadlines_bachelor'][] = array(
+                                'label' => $label,
+                                'deadline' => $deadline_date
+                            );
+                        } elseif ($degree_value == "Master's") {
+                            $institution_data['deadlines_master'][] = array(
+                                'label' => $label,
+                                'deadline' => $deadline_date
+                            );
+                        } else {
+                            $institution_data['deadlines_bachelor'][] = array(
+                                'label' => $label,
+                                'deadline' => $deadline_date,
+                                'no_degree_selected' => true
+                            );
+                        }
+                    }
                 }
             }
-            
+
+            // Only add institutions that have deadlines matching our criteria.
+            if(!empty($institution_data['deadlines_bachelor']) || !empty($institution_data['deadlines_master'])){
+                if (!isset($grouped_institutions[$country])) {
+                    $grouped_institutions[$country] = array();
+                }
+                $grouped_institutions[$country][] = $institution_data;
             }
         }
-
-        if(empty($has_found_row)){
-            continue;
-        }
-
-        $grouped_institutions[$country][] = $institution_data;
     }
-    wp_reset_postdata();
 }
+
+// Filter out countries with no institutions
+$grouped_institutions = array_filter($grouped_institutions, function($institutions) {
+    return !empty($institutions);
+});
+
+// You can then loop through $grouped_institutions to display your data.
+
 
 $count_six_month = 1;
 // Display institutions grouped by country

@@ -2968,6 +2968,38 @@ function enable_comments_on_all_posts() {
 
 add_action('enable_comments_on_all_posts', 'enable_comments_on_all_posts');
 
+function enable_comments_on_custom_posts() {
+    $args = array(
+        'post_status' => 'publish',
+        'post_type' => ['scholarships', 'institution'], // Added custom post types
+        'fields' => 'ids' // Only get post IDs
+    );
+
+    $query = new WP_Query($args);
+
+    // If posts were found
+    if ($query->have_posts()) {
+        // Loop through each post
+        foreach ($query->posts as $post_id) {
+            // Check if comment_status is not open
+            $post = get_post($post_id);
+            if($post->comment_status != 'open') {
+                // Update post comment status
+                wp_update_post(
+                    array(
+                        'ID' => $post_id,
+                        'comment_status' => 'open',
+                    )
+                );
+            }
+        }
+    }
+
+    // Reset Post Data
+    wp_reset_postdata();
+}
+
+add_action('enable_comments_on_custom_posts', 'enable_comments_on_custom_posts');
 
 
 
