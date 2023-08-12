@@ -3483,3 +3483,28 @@ function get_scholarships_by_country($country) {
         'scholarships' => $scholarships,
     ];
 }
+
+
+/**
+ * Retrieves the author who last edited the post id.
+ *
+ * @since 2.8.0
+ *
+ * @return string|void The author's display name, empty string if unknown.
+ */
+function get_the_last_modified_user_name($id) {
+	$last_id = get_post_meta( $id, '_edit_last', true );
+
+	if ( $last_id ) {
+		$last_user = get_userdata( $last_id );
+
+		/**
+		 * Filters the display name of the author who last edited the current post.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param string $display_name The author's display name, empty string if unknown.
+		 */
+		return apply_filters( 'last_author_modified', $last_user ? $last_user->display_name : '' );
+	}
+}

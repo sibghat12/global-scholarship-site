@@ -50,10 +50,6 @@ $countries_list = get_the_countries();
                 // Scholarships Data
                 $scholarships_per_institition = get_scholarships($gs_single_institution);
                 $the_scholarships = $scholarships_per_institition->posts;
-                // echo '<pre>';
-                // print_r($the_scholarships);
-                // echo '</pre>';
-                
 
                 // Institutions Data
                 $institution_admissions_deadlines = get_field('admission_deadlines', $gs_single_institution);
@@ -69,6 +65,13 @@ $countries_list = get_the_countries();
                     $institution_label = $institution_admissions_deadline['label'];
                     $institution_degree = $institution_admissions_deadline['degree'];
                     $institution_title = get_the_title($gs_single_institution);
+                    $institution_last_author = get_the_last_modified_user_name($gs_single_institution);
+
+                    $author_id = get_post_field('post_author', $gs_single_institution); // Get the author ID of the post
+                    $author = get_user_by('id', $author_id); // Get the user object for the author ID
+
+                    $institution_author_name = $author->display_name;
+
                     if( isset($institution_deadline) && !empty( $institution_deadline) ) :
                         echo "<td>" . $institution_deadline ."</td>";
                     else:
@@ -94,6 +97,11 @@ $countries_list = get_the_countries();
                     else:
                         echo "<td></td>";
                     endif;
+                    if( isset($institution_last_author) && !empty( $institution_last_author) ) :
+                        echo "<td>" . $institution_last_author ."</td>";
+                    else:
+                        echo "<td>". $institution_author_name ."</td>";
+                    endif;
                     
                     
 
@@ -103,19 +111,22 @@ $countries_list = get_the_countries();
                 // Scholarships Rows
 
                 foreach($the_scholarships as $key => $scholarship ) {
-                    // echo '<pre>';
-                    // print_r($scholarship);
-                    // echo '</pre>';
-                    
+
                     $scholarship_deadlines = get_field('scholarship_deadlines', $scholarship);
 
                     if(isset($scholarship_deadlines) && !empty($scholarship_deadlines)) {
-
                         $scholarship_deadline = $scholarship_deadlines['deadline'];
                         $scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
                         $scholarship_label = $scholarship_deadlines['label'];
                         $scholarship_degree = $scholarship_deadlines['degree'];
                         $scholarship_title = get_the_title($scholarship);
+                        $scholarship_last_author = get_the_last_modified_user_name($scholarship);
+
+                        $scholarship_author_id = get_post_field('post_author', $scholarship); // Get the author ID of the post
+                        $scholarship_author = get_user_by('id', $scholarship_author_id); // Get the user object for the author ID
+    
+                        $scholarship_author_name = $scholarship_author->display_name;
+
                         echo "<tr>";
     
                         if( isset($scholarship_deadline) && !empty( $scholarship_deadline) ) :
@@ -143,6 +154,13 @@ $countries_list = get_the_countries();
                         else:
                             echo "<td></td>";
                         endif;
+                        if( isset($scholarship_last_author) && !empty( $scholarship_last_author) ) :
+                            echo "<td>" . $scholarship_last_author ."</td>";
+                        else:
+                            echo "<td>" . $scholarship_author_name . "</td>";
+                        endif;
+
+
                         echo "</tr>";
                     }
 
