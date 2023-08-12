@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $countries_list = get_the_countries();
+$today_date = strtotime(date("F j, Y"));
 
 ?>
 
@@ -61,12 +62,12 @@ $countries_list = get_the_countries();
                 foreach($institution_admissions_deadlines as $institution_admissions_deadline) {
                     echo "<tr>";
                     $institution_deadline = $institution_admissions_deadline['deadline'];
-                    $institution_last_updated = get_the_modified_date('Y-m-d', $gs_single_institution);
+                    $institution_last_updated = get_the_modified_date('', $gs_single_institution);
                     $institution_label = $institution_admissions_deadline['label'];
                     $institution_degree = $institution_admissions_deadline['degree'];
                     $institution_title = get_the_title($gs_single_institution);
                     $institution_last_author = get_the_last_modified_user_name($gs_single_institution);
-
+                    $institution_target_date = strtotime($institution_deadline);
                     $author_id = get_post_field('post_author', $gs_single_institution); // Get the author ID of the post
                     $author = get_user_by('id', $author_id); // Get the user object for the author ID
 
@@ -97,14 +98,21 @@ $countries_list = get_the_countries();
                     else:
                         echo "<td></td>";
                     endif;
+                    if( isset($institution_target_date) && !empty( $institution_target_date) ) :
+                        if( $today_date < $institution_target_date ) :
+                            echo "<td data-status='oepn'>OPEN</td>";
+                        else:
+                            echo "<td data-status='closed'>CLOSED</td>";
+                        endif;
+                    else:
+                        echo "<td data-status='empty'></td>";
+                    endif;
                     if( isset($institution_last_author) && !empty( $institution_last_author) ) :
                         echo "<td>" . $institution_last_author ."</td>";
                     else:
                         echo "<td>". $institution_author_name ."</td>";
                     endif;
                     
-                    
-
                     echo "</tr>";
                 }
 
@@ -115,10 +123,17 @@ $countries_list = get_the_countries();
                     $scholarship_deadlines = get_field('scholarship_deadlines', $scholarship);
 
                     if(isset($scholarship_deadlines) && !empty($scholarship_deadlines)) {
-                        $scholarship_deadline = $scholarship_deadlines['deadline'];
-                        $scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
-                        $scholarship_label = $scholarship_deadlines['label'];
-                        $scholarship_degree = $scholarship_deadlines['degree'];
+
+                        foreach($scholarship_deadlines as $scholarship_deadline) {
+
+                            $the_scholarship_deadline = $scholarship_deadline['deadline'];
+                            $the_scholarship_label = $scholarship_deadline['label'];
+                            $the_scholarship_degree = $scholarship_deadline['degree'];
+                            $scholarship_target_date = strtotime($the_scholarship_deadline);
+
+                        }
+                        
+                        $the_scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
                         $scholarship_title = get_the_title($scholarship);
                         $scholarship_last_author = get_the_last_modified_user_name($scholarship);
 
@@ -129,8 +144,8 @@ $countries_list = get_the_countries();
 
                         echo "<tr>";
     
-                        if( isset($scholarship_deadline) && !empty( $scholarship_deadline) ) :
-                            echo "<td>" . $scholarship_deadline ."</td>";
+                        if( isset($the_scholarship_deadline) && !empty( $the_scholarship_deadline) ) :
+                            echo "<td>" . $the_scholarship_deadline ."</td>";
                         else:
                             echo "<td></td>";
                         endif;
@@ -144,15 +159,24 @@ $countries_list = get_the_countries();
                         else:
                             echo "<td></td>";
                         endif;
-                        if( isset($scholarship_degree) && !empty( $scholarship_degree) ) :
-                            echo "<td>" . $scholarship_degree ."</td>";
+                        if( isset($the_scholarship_degree) && !empty( $the_scholarship_degree) ) :
+                            echo "<td>" . $the_scholarship_degree ."</td>";
                         else:
                             echo "<td></td>";
                         endif;
-                        if( isset($scholarship_label) && !empty( $scholarship_label) ) :
-                            echo "<td>" . $scholarship_label ."</td>";
+                        if( isset($the_scholarship_label) && !empty( $the_scholarship_label) ) :
+                            echo "<td>" . $the_scholarship_label ."</td>";
                         else:
                             echo "<td></td>";
+                        endif;
+                        if( isset($scholarship_target_date) && !empty( $scholarship_target_date) ) :
+                            if( $today_date < $scholarship_target_date ) :
+                                echo "<td data-status='open'>OPEN</td>";
+                            else:
+                                echo "<td data-status='closed'>CLOSED</td>";
+                            endif;
+                        else:
+                            echo "<td data-status='empty'></td>";
                         endif;
                         if( isset($scholarship_last_author) && !empty( $scholarship_last_author) ) :
                             echo "<td>" . $scholarship_last_author ."</td>";
@@ -160,14 +184,9 @@ $countries_list = get_the_countries();
                             echo "<td>" . $scholarship_author_name . "</td>";
                         endif;
 
-
                         echo "</tr>";
                     }
 
-                    // echo '<pre>';
-                    // print_r($scholarship_deadlines);
-                    // echo '</pre>';
-                    
                 }
                 
             endforeach;

@@ -7,6 +7,10 @@ function add_datatables_scripts() {
     wp_enqueue_style( 'datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
     wp_enqueue_script( 'datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
     
+    wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery'), '1.10.25', true );
+
+    
+    
 }
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
 
