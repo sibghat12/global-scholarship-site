@@ -6,7 +6,7 @@ include ('functions/scholarships-functions.php');
 function add_datatables_scripts() {
     wp_enqueue_style( 'datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
     wp_enqueue_script( 'datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
-    
+
     wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery'), '1.10.25', true );
 
     
@@ -3275,10 +3275,6 @@ function get_the_countries() {
 
     $data = json_decode($json, true);
     
-    // echo '<pre>';
-    // print_r($data);
-    // echo '</pre>';
-    
     $countries = [];
 
     foreach($data as $id) {
@@ -3295,22 +3291,6 @@ function get_the_countries() {
 
 // add_action('init', 'get_the_countries');
 
-
-// function get_institutions_ids($country){
-//     global $wpdb;
-    
-//     $text = $wpdb->prepare("SELECT post_id FROM wp_postmeta WHERE meta_key = 'country' AND meta_value = %s", $country);
-    
-//     $db_queries = $wpdb->get_results($text, ARRAY_A);
-    
-//     $institutions = array();
-//     foreach ($db_queries as $db_query){
-//         array_push($institutions, $db_query["post_id"]); 
-//     };
-    
-//     return $institutions;
-    
-// };
 /**
  * Get Number of Cities for Published Institutions
  * 
@@ -3348,11 +3328,9 @@ function get_the_countries() {
 //If not, it returns empty.
 //Example: input: Korea, output: all the institutions in country korea
 //Example: input: test, output: empty since there's no Country named test
-function get_institutions_by_country ($country){
+function get_institutions_by_country($country){
     
     //Direct City Match
-    
-    
     $city_args = array(
         'post_type' => 'city',
         'title' => $country,
@@ -3405,71 +3383,6 @@ function get_institutions_by_country ($country){
     return $loop;
 };
 
-
-// //This function outputs all the scholarships given a Country name
-// //If found, it returns the scholarships in that Country
-// //If not found, it returns an empty loop
-// //It is used for url like all-universities-Country, where it takes Country and checks for scholarships in that Country
-// //If the given Country is a city, state, country, or continent, the it outputs the instituitons
-// //If not, it returns empty.
-// //Example: input: Korea, output: all the scholarships in country korea
-// //Example: input: test, output: empty since there's no Country named test
-// function get_scholarships_by_country($country){
-    
-//     //Direct City Match
-    
-    
-//     $city_args = array(
-//         'post_type' => 'city',
-//         'title' => $country,
-//     );
-    
-//     $the_query = new WP_Query($city_args);
-
-//     //Make an empty new query. If $the_query has posts (that is city with location is found), then assign $loop with institutions. 
-
-//     $loop = new WP_Query();
-
-//     if ($the_query->have_posts()) {
-//         while ( $the_query->have_posts() ){
-//             $the_query->the_post();
-//             $the_post_id = get_the_id();
-            
-//             $institute_args = array(
-//                 'post_type' => 'scholarships',
-//                 'post_status' => 'publish',
-//                 'meta_key' => "cities",
-//                 'posts_per_page' => -1,             
-//                 "meta_value" => $the_post_id,
-//                 'no_found_rows' => true, 
-//                 'update_post_meta_cache' => false, 
-//                 'update_post_term_cache' => false,   
-//                 'cache_results'          => false,
-//                 'fields' => 'ids',                             
-                
-//             );                  
-//         };
-                
-//         $loop = new WP_Query($institute_args); 
-
-//         //Return $loop if it has a direct match
-//         return $loop;
-        
-//     };
-    
-//    //This code doesn't run if city match is found
-
-
-//     $loop = get_cities_location($country, "country");
-    
-//     //return if country has posts 
-//     if ($loop->have_posts()){
-//         return $loop;
-//     };     
-
-    
-//     return $loop;
-// };
 
 function get_scholarships_by_country($country) {
     $loop = get_institutions_by_country($country);
