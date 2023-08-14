@@ -57,18 +57,22 @@
 
                     $application_all_year =  $admission_deadline["accepts_application_all_year_round"];
 
+                    $degree = $admission_deadline['degree'];
+                    if (!$degree){
+                        $degree = "Bachelor's and Master's";
                     
+                    }    
                     if ($varied_deadlines == "Yes"){
-                        $varied_text = "(Different " . $admission_deadline['degree'] . " programs have different deadlines)";
+                        $varied_text = "(Different " . $degree . " programs have different deadlines)";
                     } else {
                         $varied_text = "";
                     }
 
                     $application_text = '';
                     if ($application_all_year == "Yes"){
-                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $admission_deadline['degree'] . " Deadline</a>: Accepts Application All Year" ;
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline</a>: Accepts Application All Year" ;
                     } else if ($application_all_year == "No"){
-                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $admission_deadline['degree'] . " Deadline " . $$admission_deadline['label'] . "</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline " . $$admission_deadline['label'] . "</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
                     }
                     
                     ?>
