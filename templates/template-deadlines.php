@@ -169,7 +169,7 @@ $country = ucwords($country);
                         if( isset($the_scholarship_degree) && !empty( $the_scholarship_degree) ) :
                             echo "<td>" . $the_scholarship_degree ."</td>";
                         else:
-                            echo "<td>Bachelor’s and Master’s</td>";
+                            echo "<td></td>";
                         endif;
                         if( isset($the_scholarship_label) && !empty( $the_scholarship_label) ) :
                             echo "<td>" . $the_scholarship_label ."</td>";
