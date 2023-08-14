@@ -892,19 +892,11 @@ function save_scholarships_deadline_post_meta_ajax() {
     $batchSize = isset($_POST['batchSize']) ? intval($_POST['batchSize']) : 20;
     $postType = isset($_POST['postType']) ? sanitize_text_field($_POST['postType']) : 'scholarships';
     
-    $the_args = array(
-      'post_type' => $postType,
-      'posts_per_page' => -1,
-      'no_found_rows' => true, 
-      'update_post_meta_cache' => false, 
-      'update_post_term_cache' => false,   
-      'cache_results' => false,
-      'post_status' => 'publish',
-      'fields' => 'ids',
-    );
-    
-    $the_query = new WP_Query($the_args);
-    $thePosts = $the_query->get_posts();
+
+    $scholarship_posts_count = wp_count_posts($postType);
+    $scholarship_posts_count_published = $scholarship_posts_count->publish;
+
+
     
     $args = array(
       'post_type' => $postType,
@@ -1104,8 +1096,8 @@ function save_scholarships_deadline_post_meta_ajax() {
        }
     
     $totalUpdated = $offset + count($myPosts);
-    $totalPosts =  count($thePosts);
-    
+    $totalPosts =  intval($scholarship_posts_count_published);
+
     $response = array(
       'totalUpdated' => $totalUpdated,
       'totalPosts' => $totalPosts,
