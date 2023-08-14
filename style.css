@@ -5729,6 +5729,6 @@ box-shadow:2px 2px 2px #cdcdcd !important;
 
 /*  End Currently Open Scholarship */
 
-tr.closed {
-    background-color: #d6f5fd;
+.table.data-table tr.closed {
+    background-color: #d6f5fd !important;
 }

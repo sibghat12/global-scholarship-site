@@ -6,4 +6,8 @@ jQuery(document).ready(function ($) {
     const trParent = tdClosed.closest('tr');
     trParent.addClass('closed');
     }
+
+    $('.data-table').DataTable( {
+        responsive: true,
+    } );
 });

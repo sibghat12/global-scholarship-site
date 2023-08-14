@@ -4,12 +4,16 @@ include ('functions/scholarships-functions.php');
 
 
 function add_datatables_scripts() {
-    wp_enqueue_style( 'datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
-    wp_enqueue_script( 'datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+    $page_template_slug = get_page_template_slug();
+    if ($page_template_slug != 'templates/template-deadlines.php') {
+        return;
+    }
 
-    wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery'), '1.10.25', true );
+    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+    wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+    wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
 
-    
+    wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
     
 }
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
@@ -2472,6 +2476,16 @@ add_rewrite_rule(
 });
 
 
+// Add Rewrite Rule for Best Universities Template.
+add_action( 'init',  function() {
+    add_rewrite_rule(
+        '^deadlines-by-country-([^/]*)?',
+        'index.php?pagename=deadlines-by-country&country=$matches[1]',
+        'top'
+    );
+} );
+    
+
 
 // $url = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 // echo $url;
@@ -3069,12 +3083,11 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
 {
 
     if ($hook_suffix == 'scholarships_page_scholarships-form-feedback') {
-        wp_enqueue_script('feeback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
+        wp_enqueue_script('feedback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
 
         wp_enqueue_style('feedback_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
-        
-        wp_enqueue_style( 'feedback_datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
-        wp_enqueue_script( 'feedback_datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+        wp_enqueue_style( 'feedback_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+        wp_enqueue_script( 'feedback_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
     
         wp_enqueue_script('feedback_table_js', get_stylesheet_directory_uri(). '/assets/feedback-table.js',  array('jquery', 'feedback_datatables-js'), '1.0.0', true);
 
@@ -3286,10 +3299,28 @@ function get_the_countries() {
 
     }
 
-    return $countries;
+    
+    // Store the countries in json file
+    $json_data = json_encode($countries);
+    file_put_contents('published_gs_countries.json', $json_data);
+
+    // return $countries;
 }
 
-// add_action('init', 'get_the_countries');
+add_action('get_the_countries', 'get_the_countries');
+
+
+function get_gs_countries() {
+        
+    // Get the JSON data from the file
+    $json_data = file_get_contents('published_gs_countries.json');
+
+    // Decode the JSON data into an array
+    $countries = json_decode($json_data, true);
+
+    return $countries;
+
+}
 
 /**
  * Get Number of Cities for Published Institutions
@@ -3317,7 +3348,6 @@ function get_the_countries() {
 
     return $cities;
 }
-
 
 
 //This function outputs all the institutions given a Country name

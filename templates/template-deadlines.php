@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit( 'Direct script access denied.' );
 }
 
-$countries_list = get_the_countries();
+$countries_list = get_gs_countries();
 $today_date = strtotime(date("F j, Y"));
+$params = get_query_info();
+
+$country        = $params["country"];
+$country = ucwords($country);
 
 ?>
 
@@ -21,7 +25,6 @@ $today_date = strtotime(date("F j, Y"));
 
 <h1>Deadlines By Country</h1>
 
-    <?php foreach($countries_list as $index => $country) : ?>
         <?php
            $gs_institutions_scholarships = get_scholarships_by_country($country);
 
@@ -31,7 +34,7 @@ $today_date = strtotime(date("F j, Y"));
             $gs_institutions = $gs_institutions_scholarships['institutions'];
             echo "<h2>" . $gs_country ."</h2>";
 
-            echo '<table class="data-table">';
+            echo '<table class="table table-bordered data-table" style="width:100%">';
             ?>
             <thead>
                 <tr>
@@ -54,11 +57,12 @@ $today_date = strtotime(date("F j, Y"));
 
                 // Institutions Data
                 $institution_admissions_deadlines = get_field('admission_deadlines', $gs_single_institution);
-                $institution_deadline = $institution_admissions_deadline['deadline'];
-                $institution_label = $institution_admissions_deadline['label'];
-                $institution_degree = $institution_admissions_deadline['degree'];
+                // $institution_deadline = $institution_admissions_deadline['deadline'];
+                // $institution_label = $institution_admissions_deadline['label'];
+                // $institution_degree = $institution_admissions_deadline['degree'];
                 
-                // Institutions Rows
+            // Institutions Rows
+            if(isset($institution_admissions_deadlines) && !empty($institution_admissions_deadlines)) :
                 foreach($institution_admissions_deadlines as $institution_admissions_deadline) {
                     echo "<tr>";
                     $institution_deadline = $institution_admissions_deadline['deadline'];
@@ -66,6 +70,7 @@ $today_date = strtotime(date("F j, Y"));
                     $institution_label = $institution_admissions_deadline['label'];
                     $institution_degree = $institution_admissions_deadline['degree'];
                     $institution_title = get_the_title($gs_single_institution);
+                    $institution_permalink = get_the_permalink($gs_single_institution);
                     $institution_last_author = get_the_last_modified_user_name($gs_single_institution);
                     $institution_target_date = strtotime($institution_deadline);
                     $author_id = get_post_field('post_author', $gs_single_institution); // Get the author ID of the post
@@ -84,14 +89,14 @@ $today_date = strtotime(date("F j, Y"));
                         echo "<td></td>";
                     endif;
                     if( isset($institution_title) && !empty( $institution_title) ) :
-                        echo "<td>" . $institution_title ."</td>";
+                        echo "<td><a href=". $institution_permalink .">" . $institution_title ."</a></td>";
                     else:
                         echo "<td></td>";
                     endif;
                     if( isset($institution_degree) && !empty( $institution_degree) ) :
                         echo "<td>" . $institution_degree ."</td>";
                     else:
-                        echo "<td></td>";
+                        echo "<td>Bachelor’s and Master’s</td>";
                     endif;
                     if( isset($institution_label) && !empty( $institution_label) ) :
                         echo "<td>" . $institution_label ."</td>";
@@ -115,6 +120,7 @@ $today_date = strtotime(date("F j, Y"));
                     
                     echo "</tr>";
                 }
+            endif;
 
                 // Scholarships Rows
 
@@ -135,6 +141,7 @@ $today_date = strtotime(date("F j, Y"));
                         
                         $the_scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
                         $scholarship_title = get_the_title($scholarship);
+                        $scholarship_permalink = get_the_permalink($scholarship);
                         $scholarship_last_author = get_the_last_modified_user_name($scholarship);
 
                         $scholarship_author_id = get_post_field('post_author', $scholarship); // Get the author ID of the post
@@ -149,20 +156,20 @@ $today_date = strtotime(date("F j, Y"));
                         else:
                             echo "<td></td>";
                         endif;
-                        if( isset($scholarship_last_updated) && !empty( $scholarship_last_updated) ) :
-                            echo "<td>" . $scholarship_last_updated ."</td>";
+                        if( isset($the_scholarship_last_updated) && !empty( $the_scholarship_last_updated) ) :
+                            echo "<td>" . $the_scholarship_last_updated ."</td>";
                         else:
                             echo "<td></td>";
                         endif;
                         if( isset($scholarship_title) && !empty( $scholarship_title) ) :
-                            echo "<td>" . $scholarship_title ."</td>";
+                            echo "<td><a href=". $scholarship_permalink .">" . $scholarship_title ."</a></td>";
                         else:
                             echo "<td></td>";
                         endif;
                         if( isset($the_scholarship_degree) && !empty( $the_scholarship_degree) ) :
                             echo "<td>" . $the_scholarship_degree ."</td>";
                         else:
-                            echo "<td></td>";
+                            echo "<td>Bachelor’s and Master’s</td>";
                         endif;
                         if( isset($the_scholarship_label) && !empty( $the_scholarship_label) ) :
                             echo "<td>" . $the_scholarship_label ."</td>";
@@ -200,7 +207,6 @@ $today_date = strtotime(date("F j, Y"));
 
             ?>
 
-    <?php endforeach; ?>
 
     
 </article>
