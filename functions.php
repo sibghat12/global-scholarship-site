@@ -45,9 +45,28 @@ function theme_enqueue_styles() {
         ));
     }
 
-}
+    wp_enqueue_script('gs_scholarships_update',  get_stylesheet_directory_uri() . '/assets/update-scholarships.js', array('jquery'),
+    '1.0.45',
+    false );
 
+    
+    wp_localize_script( 'gs_scholarships_update', 'my_ajax_object',
+      array( 
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+      )
+    );
+
+}
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
+
+
+function update_scholarships_shortcode() {
+    if( is_user_logged_in() &&  current_user_can('administrator') ) {
+        return '<button id="update-gs-scholarships">Update Scholarships</button>';
+    }
+}
+add_shortcode('update_scholarships', 'update_scholarships_shortcode');
+
 
 function avada_lang_setup() {
     $lang = get_stylesheet_directory() . '/languages';
