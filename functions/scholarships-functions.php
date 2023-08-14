@@ -923,6 +923,7 @@ function save_scholarships_deadline_post_meta_ajax() {
     $bachelor_degree = "Bachelor's";
 
     $myPosts = $query->get_posts();
+    $current_date = strtotime(date("F j, Y"));
     
     foreach($myPosts as $scholarship_id) {
 
