@@ -4,8 +4,16 @@ include ('functions/scholarships-functions.php');
 
 
 function add_datatables_scripts() {
-    wp_enqueue_style( 'datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
-    wp_enqueue_script( 'datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+    $page_template_slug = get_page_template_slug();
+    if ($page_template_slug != 'templates/template-deadlines.php') {
+        return;
+    }
+
+    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+    wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+    wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+
+    wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
     
 }
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
@@ -2468,6 +2476,16 @@ add_rewrite_rule(
 });
 
 
+// Add Rewrite Rule for Best Universities Template.
+add_action( 'init',  function() {
+    add_rewrite_rule(
+        '^deadlines-by-country-([^/]*)?',
+        'index.php?pagename=deadlines-by-country&country=$matches[1]',
+        'top'
+    );
+} );
+    
+
 
 // $url = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 // echo $url;
@@ -3065,12 +3083,11 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
 {
 
     if ($hook_suffix == 'scholarships_page_scholarships-form-feedback') {
-        wp_enqueue_script('feeback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
+        wp_enqueue_script('feedback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
 
         wp_enqueue_style('feedback_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
-        
-        wp_enqueue_style( 'feedback_datatables-css', '//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css' );
-        wp_enqueue_script( 'feedback_datatables-js', '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js', array('jquery'), '1.10.25', true );
+        wp_enqueue_style( 'feedback_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+        wp_enqueue_script( 'feedback_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
     
         wp_enqueue_script('feedback_table_js', get_stylesheet_directory_uri(). '/assets/feedback-table.js',  array('jquery', 'feedback_datatables-js'), '1.0.0', true);
 
@@ -3219,3 +3236,222 @@ function enable_comments_on_custom_post_types() {
     }
 }
 // add_action( 'init', 'enable_comments_on_custom_post_types' );
+
+
+
+/**
+ * Get Number of Cities for Published Institutions
+ * 
+ */
+
+ function get_institutions_cities() {
+
+    $fileName = "published_cities_institutions.json";
+
+    $args = array(
+        'post_type' => 'institution',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+    );
+    $institutions_ids = get_posts($args);
+
+    $cities = array();
+    foreach($institutions_ids as $id) {
+        $get_cities = get_field('cities', $id);
+        if(!in_array($get_cities, $cities)) {
+            $cities[] = $get_cities;
+        }
+
+    }
+
+    $post_ids = wp_list_pluck( $cities, 'ID' );
+
+    $posts = json_encode($post_ids, true);
+    // Write the JSON string to a new file named "data.json"
+    file_put_contents($fileName, $posts);
+
+}
+add_action('get_institutions_cities', 'get_institutions_cities');
+
+
+
+/**
+ * Get the Countries for Published Institutions
+ */
+
+function get_the_countries() {
+
+    $file =  'published_cities_institutions.json';
+
+    $json = file_get_contents($file);
+
+    $data = json_decode($json, true);
+    
+    $countries = [];
+
+    foreach($data as $id) {
+        $get_countries = get_field('country', $id);
+        
+        if(!in_array($get_countries, $countries)) {
+            $countries[] = $get_countries;
+        }
+
+    }
+
+    
+    // Store the countries in json file
+    $json_data = json_encode($countries);
+    file_put_contents('published_gs_countries.json', $json_data);
+
+    // return $countries;
+}
+
+add_action('get_the_countries', 'get_the_countries');
+
+
+function get_gs_countries() {
+        
+    // Get the JSON data from the file
+    $json_data = file_get_contents('published_gs_countries.json');
+
+    // Decode the JSON data into an array
+    $countries = json_decode($json_data, true);
+
+    return $countries;
+
+}
+
+/**
+ * Get Number of Cities for Published Institutions
+ * 
+ */
+
+ function get_institutions_by_country_name($country_name) {
+
+    // $fileName = "published_cities_institutions.json";
+
+    $args = array(
+        'post_type' => 'institution',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+    );
+    $institutions_ids = get_posts($args);
+
+    $cities = array();
+    foreach($institutions_ids as $id) {
+        $get_cities = get_field('cities', $id);
+            $cities[] = $get_cities;
+
+    }
+
+    return $cities;
+}
+
+
+//This function outputs all the institutions given a Country name
+//If found, it returns the institutions in that Country
+//If not found, it returns an empty loop
+//It is used for url like all-universities-Country, where it takes Country and checks for institutions in that Country
+//If the given Country is a city, state, country, or continent, the it outputs the instituitons
+//If not, it returns empty.
+//Example: input: Korea, output: all the institutions in country korea
+//Example: input: test, output: empty since there's no Country named test
+function get_institutions_by_country($country){
+    
+    //Direct City Match
+    $city_args = array(
+        'post_type' => 'city',
+        'title' => $country,
+    );
+    
+    $the_query = new WP_Query($city_args);
+
+    //Make an empty new query. If $the_query has posts (that is city with location is found), then assign $loop with institutions. 
+
+    $loop = new WP_Query();
+
+    if ($the_query->have_posts()) {
+        while ( $the_query->have_posts() ){
+            $the_query->the_post();
+            $the_post_id = get_the_id();
+            
+            $institute_args = array(
+                'post_type' => 'institution',
+                'post_status' => 'publish',
+                'meta_key' => "cities",
+                'posts_per_page' => -1,             
+                "meta_value" => $the_post_id,
+                'no_found_rows' => true, 
+                'update_post_meta_cache' => false, 
+                'update_post_term_cache' => false,   
+                'cache_results'          => false,
+                'fields' => 'ids',                             
+                
+            );                  
+        };
+                
+        $loop = new WP_Query($institute_args); 
+
+        //Return $loop if it has a direct match
+        return $loop;
+        
+    };
+    
+   //This code doesn't run if city match is found
+
+
+    $loop = get_cities_location($country, "country");
+    
+    //return if country has posts 
+    if ($loop->have_posts()){
+        return $loop;
+    };     
+
+    
+    return $loop;
+};
+
+
+function get_scholarships_by_country($country) {
+    $loop = get_institutions_by_country($country);
+    $institute_ids = $loop->get_posts();
+    $scholarships = [];
+    foreach ($institute_ids as $institute_id) {
+        $query = get_scholarships($institute_id);
+        if ($query->have_posts()) {
+            $scholarships[$institute_id] = $query->get_posts();
+        }
+    }
+    return [
+        'country' => $country,
+        'institutions' => $institute_ids,
+        'scholarships' => $scholarships,
+    ];
+}
+
+
+/**
+ * Retrieves the author who last edited the post id.
+ *
+ * @since 2.8.0
+ *
+ * @return string|void The author's display name, empty string if unknown.
+ */
+function get_the_last_modified_user_name($id) {
+	$last_id = get_post_meta( $id, '_edit_last', true );
+
+	if ( $last_id ) {
+		$last_user = get_userdata( $last_id );
+
+		/**
+		 * Filters the display name of the author who last edited the current post.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param string $display_name The author's display name, empty string if unknown.
+		 */
+		return apply_filters( 'last_author_modified', $last_user ? $last_user->display_name : '' );
+	}
+}
