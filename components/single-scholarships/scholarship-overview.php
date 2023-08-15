@@ -4,7 +4,7 @@
     </div> -->
     <div class="gs-scholarship-overview-text">
         <h1>
-            <?php echo $title; ?>
+            <?php echo $title .' '. date("Y").' - '.date('Y', strtotime('+1 year')); ?>
         </h1>
         <?php // Breadcrumbs ?>
         <?php require get_stylesheet_directory() . '/components/single-scholarships/breadcrumbs.php'; ?>
