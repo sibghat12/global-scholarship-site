@@ -3313,3 +3313,37 @@ function get_scholarships_info($scholarships_ids, $allowed_countries) {
 
     return $institution_scholarships;
 }
+
+function get_scholarships_by_weight($institution_ids) {
+
+    $args = array(
+        'post_type' => 'scholarships',
+        'posts_per_page' => -1,
+
+        'no_found_rows' => true, 
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+
+        'post_status' => 'publish',
+
+        'meta_query' => array(
+            array(
+                'key' => 'scholarship_weights',
+            ),
+            array(
+                'key' => 'scholarship_institution',
+                'value' => $institution_ids,
+                'compare' => '='
+            )
+        ),
+        'orderby' => array(
+            'scholarship_weights' => 'DESC'
+        ),
+    );
+
+    $query = new WP_Query($args);
+
+    return $query;
+}
