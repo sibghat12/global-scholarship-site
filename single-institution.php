@@ -76,6 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 $title_custom = $institution_title ." ". "Background Information ";     
             }
 
+            $title_custom = $title_custom .' '. date("Y").' - '.date('Y', strtotime('+1 year'));
 
         ?>
 
