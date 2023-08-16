@@ -2275,7 +2275,7 @@ function custom_rankmath_title($title) {
             $title = get_the_title($post->ID);
         }
 
-
+        $title  =  $title .' '. date("Y").' - '.date('Y', strtotime('+1 year'));
     } elseif ($post->post_type == 'institution') {
         $institution_title = get_the_title( $post->ID );
             $ibl = get_field("tuition_fee_international_lower" , $post->ID);
@@ -2331,6 +2331,8 @@ function custom_rankmath_title($title) {
             } else {
                 $title = $institution_title ." ". "Background Information ";     
             }
+
+            $title = $title .' '. date("Y").' - '.date('Y', strtotime('+1 year'));
     } 
 
     
