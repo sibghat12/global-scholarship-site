@@ -1446,64 +1446,136 @@ return $country_list;
 
 
 
+function save_scholarships_open_date_post_meta() {
 
-function save_scholarships_open_date_post_meta(){
+    // Get the current offset
+    $offset = 0;
+    $batchSize = 20;
+    $postType = 'scholarships';
 
-$args = array(
-        'post_type' => 'scholarships',
+
+    $scholarship_posts_count = wp_count_posts($postType);
+    $scholarship_posts_count_published = $scholarship_posts_count->publish;
+   
+    
+    // Create a while loop that will continue to run until all posts have been processed
+    while ( $offset <  intval($scholarship_posts_count_published) ) {
+  
+      // Get the scholarships that need to be processed
+      $args = array(
+        'post_type' => $postType,
         'post_status' => 'publish',
+        'posts_per_page' => $batchSize,
+        'offset' => $offset,
+        'no_found_rows' => true, 
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results'          => false,
+        'fields' => 'ids',
+      );
+  
+      $query = new WP_Query($args);
+
+      $scholarship_posts = $query->get_posts();
+
+
+      // If there are no more scholarships to process, break out of the loop
+      if ($query->have_posts() == false) {
+        break;
+      }
+  
+      // Loop through the scholarships and update the open date meta
+      foreach ($scholarship_posts as $scholarship_id) {
+    
+        // Get the current date
+        $current_date = strtotime(date("F j, Y"));
+  
+        // Get the current master deadline
+        $current_master_deadline = get_field('current_masters_scholarship_deadline', $scholarship_id);
+        $current_bachelor_deadline = get_field('current_bachelors_scholarship_deadline', $scholarship_id);
+  
+        // Get the institution ID
+        $institution = get_field("scholarship_institution", $scholarship_id);
+        $institution_id = $institution->ID;
+  
+        // If the master deadline is in the past, set the open date to "No"
+        if (!empty($current_master_deadline) && strtotime($current_master_deadline) < $current_date) {
+          update_field('master_open_date', 'No', $scholarship_id);
+        } else {
+          get_open_dates($master_degree, $institution_id, $scholarship_id);
+        }
+  
+        // If the bachelor deadline is in the past, set the open date to "No"
+        if (!empty($current_bachelor_deadline) && strtotime($current_bachelor_deadline) < $current_date) {
+          update_field('bachelor_open_date', 'No', $scholarship_id);
+        } else {
+          get_open_dates($bachelor_degree, $institution_id, $scholarship_id);
+        }
+      }
+  
+      // Increment the offset
+      $offset += $batchSize;
+    }
+    
+}
+// add_action('init', 'save_scholarships_open_date_post_meta', 100);
+// function save_scholarships_open_date_post_meta(){
+
+// $args = array(
+//         'post_type' => 'scholarships',
+//         'post_status' => 'publish',
      
-     'no_found_rows' => true, 
-     'update_post_meta_cache' => false,
-     'update_post_term_cache' => false,
-     'cache_results'          => false,
-     'fields' => 'ids',
+//      'no_found_rows' => true, 
+//      'update_post_meta_cache' => false,
+//      'update_post_term_cache' => false,
+//      'cache_results'          => false,
+//      'fields' => 'ids',
 
 
-        'post_per_page' => -1,
-     );
+//         'post_per_page' => -1,
+//      );
     
    
-   $query = new WP_Query($args);
+//    $query = new WP_Query($args);
    
-    $current_date = strtotime(date("F j, Y"));
+//     $current_date = strtotime(date("F j, Y"));
 
-   $master_degree = "Master's";
-   $bachelor_degree = "Bachelor's";
-   while ( $query->have_posts() ) {
+//    $master_degree = "Master's";
+//    $bachelor_degree = "Bachelor's";
+//    while ( $query->have_posts() ) {
         
-        $query->the_post();
-        $scholarship_id = get_the_ID();
+//         $query->the_post();
+//         $scholarship_id = get_the_ID();
 
-        $current_master_deadline = get_field('current_masters_scholarship_deadline');
-        $current_bachelor_deadline = get_field('current_bachelors_scholarship_deadline');
+//         $current_master_deadline = get_field('current_masters_scholarship_deadline');
+//         $current_bachelor_deadline = get_field('current_bachelors_scholarship_deadline');
 
-        $institution = get_field("scholarship_institution");
-        $institution_id = $institution->ID;
+//         $institution = get_field("scholarship_institution");
+//         $institution_id = $institution->ID;
          
        
-               if (!empty($current_master_deadline) && strtotime($current_master_deadline) < $current_date) {
-            update_field('master_open_date', 'No', $scholarship_id);
-        } else {
-            get_open_dates($master_degree, $institution_id, $scholarship_id);
-        }
+//                if (!empty($current_master_deadline) && strtotime($current_master_deadline) < $current_date) {
+//             update_field('master_open_date', 'No', $scholarship_id);
+//         } else {
+//             get_open_dates($master_degree, $institution_id, $scholarship_id);
+//         }
 
-        if (!empty($current_bachelor_deadline) && strtotime($current_bachelor_deadline) < $current_date) {
-                update_field('bachelor_open_date', 'No', $scholarship_id);
-            } else {
-                get_open_dates($bachelor_degree, $institution_id, $scholarship_id);
-            }
+//         if (!empty($current_bachelor_deadline) && strtotime($current_bachelor_deadline) < $current_date) {
+//                 update_field('bachelor_open_date', 'No', $scholarship_id);
+//             } else {
+//                 get_open_dates($bachelor_degree, $institution_id, $scholarship_id);
+//             }
               
 
-      //  get_open_dates($bachelor_degree , $institution_id , $scholarship_id);
-       // get_open_dates($master_degree , $institution_id , $scholarship_id);
-         //get_open_dates($master_degree , $institution_id , 50499);
+//       //  get_open_dates($bachelor_degree , $institution_id , $scholarship_id);
+//        // get_open_dates($master_degree , $institution_id , $scholarship_id);
+//          //get_open_dates($master_degree , $institution_id , 50499);
        
         
-    }
+//     }
 
 
-}
+// }
 
 
 
@@ -1581,9 +1653,6 @@ function get_open_dates($degree, $institute_id, $scholarship_id) {
     wp_reset_postdata();
 }
 
-
-
-//save_scholarships_open_date_post_meta();
 
 
 
