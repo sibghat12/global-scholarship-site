@@ -5459,6 +5459,10 @@ input[type="submit"] {
     background:#c1dfef !important;
 }
 
+.single-post td li { 
+font-size:14px !important;
+  line-height:22px !important;
+}
 
 
 
