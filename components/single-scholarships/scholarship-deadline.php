@@ -45,18 +45,44 @@
             
             ?>
             <p>The great news is that there is no specific deadline to apply for <?php echo $scholarship_title; ?>! While there are no specific dates, it’s important to apply before the  <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?> admission deadlines</a>. Here are the deadlines:</p>
-            <?php 
-            $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
 
-            ?>
-         
             <ul class="fa-ul">
             <?php
+            $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
+                     
             if(!empty($institution_admissions_deadlines)) :
                 foreach($institution_admissions_deadlines as $key => $admission_deadline ) :
+                    
+                    $varied_deadlines = $admission_deadline["varied_deadline"];
+
+                    $application_all_year =  $admission_deadline["accepts_application_all_year_round"];
+
+                    $degree = $admission_deadline['degree'];
+                    if (!$degree){
+                        $degree = "Bachelor's and Master's";
+                    
+                    }    
+                    if ($varied_deadlines == "Yes"){
+                        $varied_text = "(Different " . $degree . " programs have different deadlines)";
+                    } else {
+                        $varied_text = "";
+                    }
+
+                    $application_text = '';
+                    if ($application_all_year == "Yes"){
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline</a>: Accepts Application All Year" ;
+                    } else if ($application_all_year == "No"){
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline " . $$admission_deadline['label'] . "</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
+                    }
+                    
                     ?>
 
-                    <li><span class="fa-li"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg></span><div class="deadline-item"><?php echo (($admission_deadline['degree']) ? ($admission_deadline['degree']) : "Bachelor's and Master's"); ?> Deadline <?php echo (($admission_deadline['label']) ? '(' .$admission_deadline['label'] . ')' : ""); ?>: <?php echo ($admission_deadline['deadline']) ? $admission_deadline['deadline'] : '(Different '. (($admission_deadline['degree']) ? ($admission_deadline['degree']) : 'Bachelor\'s and Master\'s'). ' programs have different deadlines)' ?></div></li>
+                    <li>
+                        <span class="fa-li"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg></span>
+                        <div class="deadline-item">
+                           <?php echo $application_text; ?>
+                        </div>
+                    </li>
                     <?php
                     
                 endforeach;

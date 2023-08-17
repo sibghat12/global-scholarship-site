@@ -70,7 +70,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<?php get_template_part( 'templates/to-top' ); ?>
-
-		
 	</body>
 </html>
