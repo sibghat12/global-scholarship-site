@@ -1452,7 +1452,8 @@ function save_scholarships_open_date_post_meta() {
     $offset = 0;
     $batchSize = 20;
     $postType = 'scholarships';
-
+    $master_degree = "Master's";
+    $bachelor_degree = "Bachelor's";
 
     $scholarship_posts_count = wp_count_posts($postType);
     $scholarship_posts_count_published = $scholarship_posts_count->publish;
