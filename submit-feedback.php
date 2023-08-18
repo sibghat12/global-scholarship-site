@@ -78,32 +78,33 @@ function create_table_for_gs_scholarships_feedback_form() {
 add_action('init', 'create_table_for_gs_scholarships_feedback_form');
 
 function add_new_columns() {
-
     global $wpdb;
     $table_name = $wpdb->prefix . 'gs_scholarships_feedback';
     $column_name_1 = 'incorrect_info_improvement';
     $column_name_2 = 'outdated_info_improvement';
     $column_name_3 = 'not_for_international_improvement';
 
-    $column_1_query=$wpdb->prepare("SELECT $column_name_1 FROM $table_name");
-	$column_1 = $wpdb->get_results($column_1_query);
-    $column_2_query=$wpdb->prepare("SELECT $column_name_2 FROM $table_name");
-	$column_2 = $wpdb->get_results($column_2_query);
-    $column_3_query=$wpdb->prepare("SELECT $column_name_3 FROM $table_name");
-	$column_3 = $wpdb->get_results($column_3_query);
+    $column_1_query = $wpdb->prepare("SELECT %s FROM $table_name", $column_name_1);
+    $column_1 = $wpdb->get_results($column_1_query);
 
-    if($column_1 == null) {
-        $prepare_column_1= $wpdb->prepare("ALTER TABLE $table_name ADD $column_name_1 TEXT NOT NULL");
+    $column_2_query = $wpdb->prepare("SELECT %s FROM $table_name", $column_name_2);
+    $column_2 = $wpdb->get_results($column_2_query);
+
+    $column_3_query = $wpdb->prepare("SELECT %s FROM $table_name", $column_name_3);
+    $column_3 = $wpdb->get_results($column_3_query);
+
+    if (empty($column_1)) {
+        $prepare_column_1 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_1 TEXT NOT NULL");
         $wpdb->query($prepare_column_1);
     }
 
-    if($column_2 == null) {
-        $prepare_column_2= $wpdb->prepare("ALTER TABLE $table_name ADD $column_name_2 TEXT NOT NULL");
+    if (empty($column_2)) {
+        $prepare_column_2 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_2 TEXT NOT NULL");
         $wpdb->query($prepare_column_2);
     }
 
-    if($column_3 == null) {
-        $prepare_column_3= $wpdb->prepare("ALTER TABLE $table_name ADD $column_name_3 TEXT NOT NULL");
+    if (empty($column_3)) {
+        $prepare_column_3 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_3 TEXT NOT NULL");
         $wpdb->query($prepare_column_3);
     }
 }
