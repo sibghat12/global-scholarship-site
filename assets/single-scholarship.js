@@ -181,12 +181,13 @@ function getFeebackForm() {
     labels.on("click", function() {
       // Get the value of the input associated with the label
       var value = $(this).find("input").val();
+      console.log("value", value)
 
       // Hide all the textareas
-      $("textarea").hide();
+      $(".gs-user-comment").hide();
 
       // Show the textarea with the matching name
-      $("textarea[name='" + value + "']").show();
+      $(".gs-user-comment[name='" + value + "_improvement']").show();
     });
   });
 
@@ -225,26 +226,28 @@ function getFeebackForm() {
   // }
 
   jQuery('[name="submit"]').click(function(e) {
+    e.preventDefault();
+
     var data = {
       action: 'feedback_form',
       'gs_email': document.querySelector('input[name="gs_email"]').value,
-      'helpful': document.querySelector('input[name="helpful"]:checked').value,
-      ... (document.querySelector('input[name="helpful"]:checked').value != 'Yes') &&
-        {
-        'improvement': document.querySelector('input[name="improvement"]:checked').value,
-        ...document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
-          'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
-        },
-        ...document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
-          'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
-        },
-        ...document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
-          'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
-        },
-        ...document.querySelector('textarea[name="other_improvement"]').value != '' && {
-          'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
-        },
-      },
+      // 'helpful': document.querySelector('input[name="helpful"]:checked').value,
+      // ... (document.querySelector('input[name="helpful"]:checked').value != 'Yes') &&
+      //   {
+      //   'improvement': document.querySelector('input[name="improvement"]:checked').value,
+      //   ...document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
+      //     'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
+      //   },
+      //   ...document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
+      //     'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
+      //   },
+      //   ...document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
+      //     'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
+      //   },
+      //   ...document.querySelector('textarea[name="other_improvement"]').value != '' && {
+      //     'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
+      //   },
+      // },
       'scholarship_info': {
         url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
         edit_url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-edit-page-url'),
@@ -253,10 +256,9 @@ function getFeebackForm() {
       },
       'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
     };
-    e.preventDefault();
 
     // show spinner
-    spinner.style.display = "inline-block";
+    // spinner.style.display = "inline-block";
 
     jQuery.post(
       frontendajax.ajaxurl,
@@ -265,16 +267,16 @@ function getFeebackForm() {
         // ERROR HANDLING
         console.log(response)
 
-        // hide spinner
-        spinner.style.display = "none";
+        // // hide spinner
+        // spinner.style.display = "none";
 
-        // hide form
-        form.style.display ="none";
+        // // hide form
+        // form.style.display ="none";
 
-        // display thank you message
-        feedbackFormContainer.appendChild(thankYouMessage);
+        // // display thank you message
+        // feedbackFormContainer.appendChild(thankYouMessage);
 
-        fadeInElement(feedbackFormContainer);
+        // fadeInElement(feedbackFormContainer);
       }
     );
   });
