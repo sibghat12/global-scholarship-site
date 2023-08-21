@@ -4333,9 +4333,9 @@ input[type="submit"] {
      }
     }
 
-    .awb-menu__mega-wrap {
-        display: none;
-    }
+    /*.awb-menu__mega-wrap {
+     //   display: none;
+    }*/
 
 
 
@@ -5741,4 +5741,12 @@ box-shadow:2px 2px 2px #cdcdcd !important;
 nav .fusion-title-heading {
     text-align:center !important;
 }
+}
+
+
+
+@media (min-width: 768px) {
+    .awb-menu__mega-wrap {
+        display: none; 
+    }
 }
