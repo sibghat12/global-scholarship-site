@@ -137,14 +137,14 @@ function getActiveSection() {
   });
 }
 function getFeebackForm() {
-  const feedbackFormContainer = document.querySelector('.gs-feeback-form-container');
+  const feedbackFormContainer = document.querySelector('.gs-feedback-form-container');
   const yesBtn = document.querySelector('input[value="Yes"]');
   const noBtn = document.querySelector('input[value="No"]');
   const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
   // const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
   const $buttonsDiv = jQuery('.gs-feedback-form-buttons');
-  const form = document.querySelector('#gs-feeback-form');
+  const form = document.querySelector('#gs-feedback-form');
   const spinner = document.querySelector('.lds-roller'); // new line
 
   const thankYouMessage = document.createElement('p'); // new line
@@ -172,7 +172,7 @@ function getFeebackForm() {
     });
 
     // Hide all the textareas initially
-    $("textarea").hide();
+    $("textarea.gs-user-comment").hide();
 
     // Get the labels
     var labels = $(".gs-feedback-radio-label");
@@ -184,10 +184,10 @@ function getFeebackForm() {
       console.log("value", value)
 
       // Hide all the textareas
-      $(".gs-user-comment").hide();
+      $("textarea.gs-user-comment").hide();
 
       // Show the textarea with the matching name
-      $(".gs-user-comment[name='" + value + "_improvement']").show();
+      $("textarea.gs-user-comment[name='" + value + "_improvement']").show();
     });
   });
 
@@ -285,16 +285,16 @@ function getFeebackForm() {
         // ERROR HANDLING
         console.log(response)
 
-        // // hide spinner
-        // spinner.style.display = "none";
+        // hide spinner
+        spinner.style.display = "none";
 
-        // // hide form
-        // form.style.display ="none";
+        // hide form
+        form.style.display ="none";
 
-        // // display thank you message
-        // feedbackFormContainer.appendChild(thankYouMessage);
+        // display thank you message
+        feedbackFormContainer.appendChild(thankYouMessage);
 
-        // fadeInElement(feedbackFormContainer);
+        fadeInElement(feedbackFormContainer);
       }
     );
   });
