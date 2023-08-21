@@ -141,7 +141,7 @@ function getFeebackForm() {
   const yesBtn = document.querySelector('input[value="Yes"]');
   const noBtn = document.querySelector('input[value="No"]');
   const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
-  const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
+  // const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
   const $buttonsDiv = jQuery('.gs-feedback-form-buttons');
   const form = document.querySelector('#gs-feeback-form');
@@ -231,23 +231,41 @@ function getFeebackForm() {
     var data = {
       action: 'feedback_form',
       'gs_email': document.querySelector('input[name="gs_email"]').value,
-      // 'helpful': document.querySelector('input[name="helpful"]:checked').value,
-      // ... (document.querySelector('input[name="helpful"]:checked').value != 'Yes') &&
-      //   {
-      //   'improvement': document.querySelector('input[name="improvement"]:checked').value,
-      //   ...document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
-      //     'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
-      //   },
-      //   ...document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
-      //     'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
-      //   },
-      //   ...document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
-      //     'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
-      //   },
-      //   ...document.querySelector('textarea[name="other_improvement"]').value != '' && {
-      //     'other_improvement': document.querySelector('textarea[name="other_improvement"]').value,
-      //   },
-      // },
+      'helpful': document.querySelector('input[name="helpful"]:checked').value,
+      // Scholarship Information Inputs
+      ... (document.querySelector('input[name="helpful"]:checked').value == 'scholarship-information') &&
+        {
+          'improvement': document.querySelector('input[name="improvement"]:checked').value,
+          ...document.querySelector('textarea[name="incorrect_info_improvement"]').value != '' && {
+            'incorrect_info_improvement': document.querySelector('textarea[name="incorrect_info_improvement"]').value,
+          },
+          ...document.querySelector('textarea[name="outdated_info_improvement"]').value != '' && {
+            'outdated_info_improvement': document.querySelector('textarea[name="outdated_info_improvement"]').value,
+          },
+          ...document.querySelector('textarea[name="not_for_international_improvement"]').value != '' && {
+            'not_for_international_improvement': document.querySelector('textarea[name="not_for_international_improvement"]').value,
+          },
+        },
+      ... (document.querySelector('input[name="helpful"]:checked').value == 'page-content') &&
+        {
+          'improvement': document.querySelector('input[name="improvement"]:checked').value,
+          ...document.querySelector('textarea[name="not_easy_to_read_improvement"]').value != '' && {
+            'not_easy_to_read_improvement': document.querySelector('textarea[name="not_easy_to_read_improvement"]').value,
+          },
+          ...document.querySelector('textarea[name="details_missing_improvement"]').value != '' && {
+            'details_missing_improvement': document.querySelector('textarea[name="details_missing_improvement"]').value,
+          },
+          ...document.querySelector('textarea[name="not_clear_procedures_improvement"]').value != '' && {
+            'not_clear_procedures_improvement': document.querySelector('textarea[name="not_clear_procedures_improvement"]').value,
+          },
+        },
+      ... (document.querySelector('input[name="helpful"]:checked').value == 'suggestions') &&
+        {
+          'improvement': document.querySelector('input[name="improvement"]:checked').value,
+          ...document.querySelector('textarea[name="suggestion_improvement"]').value != '' && {
+            'suggestion_improvement': document.querySelector('textarea[name="suggestion_improvement"]').value,
+          },
+        },
       'scholarship_info': {
         url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-url'),
         edit_url: document.querySelector('input[name="current_scholarship_info"]').getAttribute('data-scholarship-edit-page-url'),
