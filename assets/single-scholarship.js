@@ -143,44 +143,86 @@ function getFeebackForm() {
   const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
   const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
   const buttonsDiv = document.querySelector('.gs-feedback-form-buttons');
+  const $buttonsDiv = jQuery('.gs-feedback-form-buttons');
   const form = document.querySelector('#gs-feeback-form');
   const spinner = document.querySelector('.lds-roller'); // new line
 
   const thankYouMessage = document.createElement('p'); // new line
   thankYouMessage.innerHTML = 'Thank you for your feedback.'; // new line
 
-  if (yesBtn) {
-    yesBtn.addEventListener('click', function() {
-      buttonsDiv.style.display = "flex";
-      document.querySelector('.step-2').style.display = "none";
-      showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+  jQuery(document).ready(function($) {
+    // Hide all the step-2 divs initially
+    $(".step-2").hide();
+    $buttonsDiv.hide();
+  
+    // Get the labels
+    var labelQuestion = $(".gs-feedback-radio-question");
+  
+    // Attach an event listener to each label
+    labelQuestion.on("click", function() {
+      // Get the value of the input associated with the label
+      var value = $(this).find("input").val();
+  
+      // Hide all the step-2 divs
+      $(".step-2").hide();
+  
+      // Show the step-2 div with the matching data-feedback-type attribute
+      $(".step-2[data-feedback-type='" + value + "']").css({"display": "flex","flex-direction": "column"} );
+      $buttonsDiv.show();
     });
-  }
 
-  if (noBtn) {
-    noBtn.addEventListener('click', function() {
-      buttonsDiv.style.display = "flex";
-      document.querySelector('.step-2').style.display = "block";
-      for (var i = 0; i < radioInputs.length; i++) {
-        radioInputs[i].parentElement.style.display = "block";
-      }
-      otherTextarea.style.display = "block";
-      showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+    // Hide all the textareas initially
+    $("textarea").hide();
+
+    // Get the labels
+    var labels = $(".gs-feedback-radio-label");
+
+    // Attach an event listener to each label
+    labels.on("click", function() {
+      // Get the value of the input associated with the label
+      var value = $(this).find("input").val();
+
+      // Hide all the textareas
+      $("textarea").hide();
+
+      // Show the textarea with the matching name
+      $("textarea[name='" + value + "']").show();
     });
-  }
+  });
 
-  if (radioInputs && radioInputs.length > 0) {
-    for (var i = 0; i < radioInputs.length; i++) {
-      radioInputs[i].addEventListener('click', function() {
-        showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
-      });
+  
+  // if (yesBtn) {
+  //   yesBtn.addEventListener('click', function() {
+  //     buttonsDiv.style.display = "flex";
+  //     document.querySelector('.step-2').style.display = "none";
+  //     showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+  //   });
+  // }
 
-      // Check the initial state of the radio inputs
-      if (radioInputs[i].checked) {
-        showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
-      }
-    }
-  }
+  // if (noBtn) {
+  //   noBtn.addEventListener('click', function() {
+  //     buttonsDiv.style.display = "flex";
+  //     document.querySelector('.step-2').style.display = "block";
+  //     for (var i = 0; i < radioInputs.length; i++) {
+  //       radioInputs[i].parentElement.style.display = "block";
+  //     }
+  //     otherTextarea.style.display = "block";
+  //     showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+  //   });
+  // }
+
+  // if (radioInputs && radioInputs.length > 0) {
+  //   for (var i = 0; i < radioInputs.length; i++) {
+  //     radioInputs[i].addEventListener('click', function() {
+  //       showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+  //     });
+
+  //     // Check the initial state of the radio inputs
+  //     if (radioInputs[i].checked) {
+  //       showTextareaBasedOnRadioInput(); // Show textarea fields based on radio inputs
+  //     }
+  //   }
+  // }
 
   jQuery('[name="submit"]').click(function(e) {
     var data = {
@@ -264,41 +306,41 @@ function fadeInElement(Element) {
           }, 50);
 }
 
-function showTextareaBasedOnRadioInput() {
-  const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
-  const incorrectInfoTextarea = document.querySelector('textarea[name="incorrect_info_improvement"]');
-  const outdatedInfoTextarea = document.querySelector('textarea[name="outdated_info_improvement"]');
-  const notForInternationalTextarea = document.querySelector('textarea[name="not_for_international_improvement"]');
-  const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
+// function showTextareaBasedOnRadioInput() {
+//   const radioInputs = document.querySelectorAll('.gs-feedback-radio-label input[type="radio"]');
+//   const incorrectInfoTextarea = document.querySelector('textarea[name="incorrect_info_improvement"]');
+//   const outdatedInfoTextarea = document.querySelector('textarea[name="outdated_info_improvement"]');
+//   const notForInternationalTextarea = document.querySelector('textarea[name="not_for_international_improvement"]');
+//   const otherTextarea = document.querySelector('textarea[name="other_improvement"]');
 
-  for (var i = 0; i < radioInputs.length; i++) {
-    if (radioInputs[i].checked) {
-      if (radioInputs[i].value == "incorrect_info") {
-        incorrectInfoTextarea.style.display = "block";
-      } else {
-        incorrectInfoTextarea.style.display = "none";
-      }
+//   for (var i = 0; i < radioInputs.length; i++) {
+//     if (radioInputs[i].checked) {
+//       if (radioInputs[i].value == "incorrect_info") {
+//         incorrectInfoTextarea.style.display = "block";
+//       } else {
+//         incorrectInfoTextarea.style.display = "none";
+//       }
 
-      if (radioInputs[i].value == "outdated_info") {
-        outdatedInfoTextarea.style.display = "block";
-      } else {
-        outdatedInfoTextarea.style.display = "none";
-      }
+//       if (radioInputs[i].value == "outdated_info") {
+//         outdatedInfoTextarea.style.display = "block";
+//       } else {
+//         outdatedInfoTextarea.style.display = "none";
+//       }
 
-      if (radioInputs[i].value == "not_for_international_students") {
-        notForInternationalTextarea.style.display = "block";
-      } else {
-        notForInternationalTextarea.style.display = "none";
-      }
-      if (radioInputs[i].value == "other") {
-        otherTextarea.style.display = "block";
-      } else {
-        otherTextarea.style.display = "none";
-      }
-    }
-  }
+//       if (radioInputs[i].value == "not_for_international_students") {
+//         notForInternationalTextarea.style.display = "block";
+//       } else {
+//         notForInternationalTextarea.style.display = "none";
+//       }
+//       if (radioInputs[i].value == "other") {
+//         otherTextarea.style.display = "block";
+//       } else {
+//         otherTextarea.style.display = "none";
+//       }
+//     }
+//   }
 
-}
+// }
 
 
 function convertArrayToText(arrayList) {
