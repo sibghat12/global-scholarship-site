@@ -3125,11 +3125,14 @@ function add_custom_scripts() {
     ?>
     <script>
         window.addEventListener('load', function() {
-            var megaMenus = document.querySelectorAll('.awb-menu__mega-wrap');
-            megaMenus.forEach(function(megaMenu) {
-                megaMenu.style.display = 'block';
-            });
+    if (window.innerWidth > 767) {
+        var megaMenus = document.querySelectorAll('.awb-menu__mega-wrap');
+        megaMenus.forEach(function(megaMenu) {
+            megaMenu.style.display = 'block';
         });
+    }
+});
+
     </script>
     <?php
 }
