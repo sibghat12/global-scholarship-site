@@ -1,12 +1,12 @@
  <div class="gs-feedback-form-container">
    <form id="gs-feedback-form" action="" method="POST" class="gs-feedback-form">
-    <h2>Was this page helpful? </h2>
+    <h2>Help Us Improve Our Page!</h2>
      <div style="display:none;">
       <label for="gs_email">Email</label>
       <input type="email" name="gs_email" id="gs_email">
     </div>
     <p class="gs-feedback-intro">We have around 4,000 scholarships on our database, and while our team strives in making sure that these scholarships are up to date, we also need your help!</p>
-    <p class="gs-feedback-form-question">Did you find this page helpful? If not, can you let us know why and how we can improve our page!</p>
+    <p class="gs-feedback-form-question">We appreciate your feedback! We'd love to hear your thoughts on the following areas:</p>
     <div class="gs-feedback-initial-answers">
       <label class="gs-feedback-radio-question">
         <input type="radio" name="helpful" value="scholarship-information">
