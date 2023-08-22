@@ -30,7 +30,6 @@ function display_scholarship_feedback_table()
                     <tr>
                         <th><input type="checkbox" id="select-all-checkbox"></th>
                         <th>ID</th>
-                        <th>Helpful</th>
                         <th>Improvement</th>
                         <th>User Comment</th>
                         <th>Scholarship URL</th>
@@ -43,14 +42,20 @@ function display_scholarship_feedback_table()
                     <?php foreach ($feedback_data as $feedback) {
                         $improvement_type_info = '';
 
-                        if( $feedback['improvement'] == 'other' && !empty($feedback['other_improvement'])) :
-                          $improvement_type_info .= "<td>".$feedback['other_improvement']."</td>";
-                        elseif( $feedback['improvement'] == 'incorrect_info' && !empty($feedback['incorrect_info_improvement'])) : 
+                        if( $feedback['improvement'] == 'incorrect_info' && !empty($feedback['incorrect_info_improvement'])) : 
                           $improvement_type_info .= "<td>".$feedback['incorrect_info_improvement']."</td>";
                         elseif($feedback['improvement'] == 'outdated_info' && !empty($feedback['outdated_info_improvement'])) :
                           $improvement_type_info .= "<td>".$feedback['outdated_info_improvement']."</td>";
-                        elseif( $feedback['improvement'] == 'not_for_international_students' && !empty($feedback['not_for_international_improvement'])) :
+                        elseif( $feedback['improvement'] == 'not_for_international' && !empty($feedback['not_for_international_improvement'])) :
                           $improvement_type_info .= "<td>".$feedback['not_for_international_improvement']."</td>";
+                        elseif( $feedback['improvement'] == 'not_easy_to_read' && !empty($feedback['not_easy_to_read_improvement'])) : 
+                          $improvement_type_info .= "<td>".$feedback['not_easy_to_read_improvement']."</td>";
+                        elseif($feedback['improvement'] == 'details_missing' && !empty($feedback['details_missing_improvement'])) :
+                          $improvement_type_info .= "<td>".$feedback['details_missing_improvement']."</td>";
+                        elseif( $feedback['improvement'] == 'not_clear_procedures' && !empty($feedback['not_clear_procedures_improvement'])) :
+                          $improvement_type_info .= "<td>".$feedback['not_clear_procedures_improvement']."</td>";
+                        elseif( $feedback['improvement'] == 'suggestion' && !empty($feedback['suggestion_improvement'])) :
+                          $improvement_type_info .= "<td>".$feedback['suggestion_improvement']."</td>";
                         else :
                           $improvement_type_info .= "<td></td>";
                         endif;
@@ -58,18 +63,29 @@ function display_scholarship_feedback_table()
 
                         if ($feedback['improvement'] == 'incorrect_info') {
                             $feedback['improvement'] = 'The Information in This Scholarship is incorrect!';
-                        } elseif ($feedback['improvement'] == 'not_for_international_students') {
+                        } elseif ($feedback['improvement'] == 'not_for_international') {
                             $feedback['improvement'] = 'This Scholarship is not for international Students.';
-                        } elseif ($feedback['improvement'] == 'outdated_info') {
+                        } 
+                        elseif ($feedback['improvement'] == 'outdated_info') {
                             $feedback['improvement'] = 'The Information in this Scholarships is outdated, please fix';
-                        } elseif ($feedback['improvement'] == 'other') {
-                            $feedback['improvement'] = 'None of the above, here is my comment';
                         }
+                        elseif ($feedback['improvement'] == 'not_easy_to_read') {
+                            $feedback['improvement'] = 'Not easy to read';
+                        }
+                        elseif ($feedback['improvement'] == 'details_missing') {
+                            $feedback['improvement'] = 'Some details are missing';
+                        }
+                        elseif ($feedback['improvement'] == 'not_clear_procedures') {
+                            $feedback['improvement'] = 'Procdeures are not clear';
+                        }
+                        elseif ($feedback['improvement'] == 'suggestion') {
+                            $feedback['improvement'] = 'Suggestion';
+                        }
+                        
                         ?>
                         <tr>
                             <td><input type="checkbox" name="feedback_ids[]" value="<?php echo $feedback['id']; ?>"></td>
                             <td><?php echo $feedback['id']; ?></td>
-                            <td><?php echo $feedback['helpful']; ?></td>
                             <td><?php echo $feedback['improvement']; ?></td>
                             <?php echo $improvement_type_info; ?>
                             <td><?php echo $feedback['scholarship_url']; ?></td>

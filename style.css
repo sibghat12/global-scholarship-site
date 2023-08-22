@@ -797,15 +797,15 @@ text-align:center !important;
     }
 
 
-    .single-scholarships .post-content .gs-feeback-form-container {
+    .single-scholarships .post-content .gs-feedback-form-container {
         border-radius: 0 !important;
     }
 
-    .single-scholarships .post-content .gs-feeback-form-container input[name="helpful"] ~ .gs-feedback-radio-btn {
+    .single-scholarships .post-content .gs-feedback-form-container input[name="helpful"] ~ .gs-feedback-radio-btn {
         padding: 16px 50px !important;
     }
 
-    .single-scholarships .post-content .gs-feeback-form-container .gs-feedback-form-buttons {
+    .single-scholarships .post-content .gs-feedback-form-container .gs-feedback-form-buttons {
         margin-top: 30px;
     }
    
@@ -3569,7 +3569,7 @@ padding-left:0px !important;
 }
 
 /* Scholarships Form */
-.single-scholarships .post-content .gs-feeback-form-container {
+.single-scholarships .post-content .gs-feedback-form-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3580,7 +3580,7 @@ padding-left:0px !important;
     background-color: #e8f1f8;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container input[type="radio"] {
+.single-scholarships .post-content .gs-feedback-form-container input[type="radio"] {
     position: relative;
     display: inline-block;
     width: 36px;
@@ -3590,7 +3590,7 @@ padding-left:0px !important;
     cursor: pointer;
   }
   
-  .single-scholarships .post-content .gs-feeback-form-container input[type="radio"]::before {
+  .single-scholarships .post-content .gs-feedback-form-container input[type="radio"]::before {
     content: "";
     position: absolute;
     top: 6px;
@@ -3600,7 +3600,7 @@ padding-left:0px !important;
     border-radius: 50%;
   }
   
-  .single-scholarships .post-content .gs-feeback-form-container input[type="radio"]:checked::before {
+  .single-scholarships .post-content .gs-feedback-form-container input[type="radio"]:checked::before {
     background-color: #000;
   }
 
@@ -3764,29 +3764,40 @@ padding-left:0px !important;
 
 /* GS Scholarship Page Feedback Form */
 
-form#gs-feeback-form {
+form#gs-feedback-form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container .gs-feedback-form-buttons {
+.single-scholarships .post-content .gs-feedback-form-container .gs-feedback-form-buttons {
+    display: flex;
     justify-content: flex-end;
+}
+.single-scholarships .post-content .gs-feedback-form-container .gs-feedback-form-buttons input[type="submit"] {
     cursor: pointer;
 }
-.single-scholarships .post-content .gs-feeback-form-container .gs-feedback-initial-answers {
+.single-scholarships .post-content .gs-feedback-form-container .gs-feedback-initial-answers {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    gap: 20px;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container .gs-feedback-radio-label {
-    display: inline-block;
+.single-scholarships .post-content .gs-feedback-form-container .gs-feedback-radio-question {
+    display: flex;
     margin-right: 10px;
+    align-items: center;
+  }
+
+.single-scholarships .post-content .gs-feedback-form-container .gs-feedback-radio-question:hover {
+    cursor: pointer;
   }
   
-  .single-scholarships .post-content .gs-feeback-form-container input[name="helpful"] ~ .gs-feedback-radio-btn {
+  .single-scholarships .post-content .gs-feedback-form-container input[name="helpful"] ~ .gs-feedback-radio-btn {
     border: none;
-    padding: 16px 60px;
+    padding: 30px 60px;
     background: #fff;
     font-size: 1.2rem;
     font-weight: 700;
@@ -3802,7 +3813,7 @@ form#gs-feeback-form {
     margin-top: 24px;
 }
 
-#gs-feeback-form .step-2 {
+#gs-feedback-form .step-2 {
     margin-top: 30px;
 }
   
@@ -3814,24 +3825,24 @@ form#gs-feeback-form {
     background-color: #ccc;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container input[name="helpful"] {
+.single-scholarships .post-content .gs-feedback-form-container input[name="helpful"] {
     display: none;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container input[name="helpful"]:checked + .gs-feedback-radio-btn {
+.single-scholarships .post-content .gs-feedback-form-container input[name="helpful"]:checked + .gs-feedback-radio-btn {
     background-color: #007bff;
     color: #fff;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container input[name="helpful"]:checked + .gs-feedback-radio-btn:focus, input[name="helpful"]:checked + .gs-feedback-radio-btn:active {
+.single-scholarships .post-content .gs-feedback-form-container input[name="helpful"]:checked + .gs-feedback-radio-btn:focus, input[name="helpful"]:checked + .gs-feedback-radio-btn:active {
     background-color: #007bff;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container p {
+.single-scholarships .post-content .gs-feedback-form-container p {
     margin-bottom: 0;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container textarea {
+.single-scholarships .post-content .gs-feedback-form-container textarea {
     width: 90%;
     background: #fff;
     padding: 12px;
@@ -3844,7 +3855,7 @@ form#gs-feeback-form {
     border-radius: 22px;
 }
 
-.single-scholarships .post-content .gs-feeback-form-container textarea::placeholder {
+.single-scholarships .post-content .gs-feedback-form-container textarea::placeholder {
     font-size: 1.5rem  !important;
     color: #000 !important;
     font-weight: 100 !important;
