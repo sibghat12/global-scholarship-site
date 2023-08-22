@@ -28,7 +28,10 @@ $subject_array = $scholarship_details[12]['choices'];
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list_for_url = $published_countries['choices'];
 $country_list = $country_list_for_url;
-     
+   
+$scholarships_array = get_all_scholarships();  
+
+
 
 ?>  
 
@@ -164,6 +167,18 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
     
     echo '</select>';
 ?>
+
+<p style="font-weight:600;margin-bottom:0px !important;"> Scholarships: </p>
+ <select class="selectpicker check-class scholarship_checkbox" name="scholarship_checkbox" data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+    <option value="">All Scholarships</option>
+    <?php foreach ($scholarships_array as $id => $title) {  ?>
+        <option value="<?php echo $title; ?>"><?php echo $title; ?></option>
+    <?php } ?>
+</select>
+
+
+
+
 
 </div>
 
@@ -386,6 +401,14 @@ var degree_label_array = ['masters' , 'bachelors' , 'phd'];
 var currently_open_label_array = ['open' , 'one-month' , 'two-month' , 'three-month' , 
 'four-month' , 'five-month' , 'six-month' , 'twelve-month'];
 
+
+var scholarship_php_array = <?php echo json_encode($scholarships_array); ?>;
+// Converting JS object to an array
+    var scholarship_label_array = $.map(scholarship_php_array, function(value, index){
+        return [value];
+});
+
+
 var subject_php_array = <?php echo json_encode($subject_array); ?>;
 // Converting JS object to an array
     var subject_label_array = $.map(subject_php_array, function(value, index){
@@ -491,6 +514,21 @@ for (let i = 0; i < pathArray.length; i++) {
   }
 }
 
+// Scholarship Name: Get Scholarship Name from the url path
+var scholarship_value = "";
+for (let i = 0; i < pathArray.length; i++) {
+  result =   findValueInArray_withformat(pathArray[i], scholarship_label_array);
+  if(result=="Exist"){
+   scholarship_value = pathArray[i];
+   break;
+  }
+}
+
+scholarship_value = scholarship_value.replace(/-/g, ' ');
+    scholarship_value = scholarship_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+    return letter.toUpperCase();
+});
+
 subject_value = subject_value.replace(/-/g, ' ');
     subject_value = subject_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
@@ -543,6 +581,14 @@ if(subject_value){
    var subjectArr = new Array();
    subjectArr.push(subject_value);
    formData.append("subjects" , subjectArr);
+}
+
+console.log(scholarship_value);
+if(scholarship_value){
+  setSelectedValue('.scholarship_checkbox', scholarship_value);
+   var scholarshipArr = new Array();
+   scholarshipArr.push(scholarship_value);
+   formData.append("scholarship" , scholarshipArr);
 }
 
 
@@ -770,6 +816,10 @@ var locationArr = new Array();
 var loc = $('select.location_checkbox').find(":selected").val();
 locationArr.push(loc);
 
+var scholarshipArr = new Array();
+var scholarship_idd = $('select.scholarship_checkbox').find(":selected").val();
+scholarshipArr.push(scholarship_idd);
+
 var degreeArr = new Array();
 var deg = $('select.degree_checkbox').find(":selected").val();
 degreeArr.push(deg);
@@ -812,6 +862,7 @@ var formData = new FormData;
 
 formData.append("action" ,"get_data");
 formData.append("degrees" , degreeArr);
+formData.append("scholarship" , scholarshipArr);
 formData.append("subjects" , subjectArr);
 formData.append("locations" , locationArr);
 formData.append("scholarship_type" , typeArr);
@@ -831,6 +882,11 @@ formData.append("ppp" , ppp);
 degreeArr = degreeArr.toString().replaceAll(",", '-');
 degreeArr = degreeArr.toString().replaceAll("'", "");
 degreeArr = degreeArr.toLowerCase();
+
+
+scholarshipArr = scholarshipArr.toString().replaceAll(" ", "-");
+scholarshipArr = scholarshipArr.toLowerCase();
+
 
 locationArr = locationArr.toString().replaceAll(" ", "-");
 locationArr = locationArr.toLowerCase();
@@ -854,6 +910,12 @@ nationalityArr = nationalityArr.toLowerCase();
     if(degreeArr){
     url_update += "/" + degreeArr;
     }
+
+    if(scholarshipArr){
+    url_update += "/" + scholarshipArr;
+    }
+
+
     if(locationArr){
     url_update += "/" + locationArr;
     }
@@ -1108,8 +1170,6 @@ load_more_button();
 
 function load_more_button(){
 
-
-   
    
 var check = $(this).is(":checked");
 var link = "<?php echo  admin_url("admin-ajax.php"); ?>";

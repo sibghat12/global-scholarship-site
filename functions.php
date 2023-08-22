@@ -1800,6 +1800,10 @@ function my_ajax_handler() {
 
    $subjects = $_POST['subjects'];
    $subject_array = explode(',', $subjects); 
+
+   $scholarship = $_POST['scholarship'];
+   $scholarship_array = explode(',', $scholarship);
+
   
    $locations = $_POST['locations'];
    $locations_array = explode(',', $locations); 
@@ -2016,7 +2020,9 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     if(isset($type_array[0]) && $type_array[0]){
         $type_query  = array('key' => 'amount_category', 'value' => $type_array[0], 'compare' => "LIKE");
     }
+  
 
+  
     if(isset($institution_array[0]) && $institution_array[0]){
        $institution_query  = array('key' => 'scholarship_institution', 'value' => $institution_array, 'compare' => "IN");
      } else {
@@ -2052,9 +2058,23 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     $meta_query[] = $application_query; 
     }
     
-
+   
+ if($scholarship_array[0]){
+ $ad_args = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',
+    'posts_per_page' => $ppp,
+    'offset' => $offset,
+    'fields' => 'ids', // Only return post IDs
+    'meta_key' => 'scholarship_weights',  // name of custom field
+    'orderby' => 'meta_value_num',  // we want to order by numeric value
+    'order' => 'DESC',  // highest to lowest
+    'title' => $scholarship_array[0]
+);
+   }
+   else {
     $ad_args = array(
-        'post_type' => 'scholarships',
+    'post_type' => 'scholarships',
     'post_status' => 'publish',
     'posts_per_page' => $ppp,
     'offset' => $offset,
@@ -2063,7 +2083,7 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     'orderby' => 'meta_value_num',  // we want to order by numeric value
     'order' => 'DESC',  // highest to lowest
     );
-    
+    }
 
    if ($meta_query){
         $ad_args['meta_query'] = $meta_query;
