@@ -235,30 +235,95 @@ function getFeebackForm() {
       },
       'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
     };
+// show spinner
+spinner.style.display = "inline-block";
+// Get the value of the selected radio button
+var improvement = document.querySelector('input[name="improvement"]:checked').value;
+var warning = document.querySelector(`.improvement_warning`);
+var textareas = document.querySelectorAll('textarea[name^="' + improvement + '_improvement"]');
 
-    // show spinner
-    spinner.style.display = "inline-block";
+// Check if the textarea for the selected radio button is empty
+var textarea = document.querySelector('textarea[name="' + improvement + '_improvement"]');
+if (textarea.value == '') {
+  // Append warning message
+  if (!warning) {
+    warning = document.createElement('div');
+    warning.classList.add('improvement_warning')
+    warning.style.color = "red";
+    warning.style.fontSize = "16px";
+    warning.style.border = "1px solid #000";
+    warning.style.margin = "8px";
+    warning.style.padding = "16px";
+    form.appendChild(warning);
+  }
 
-    jQuery.post(
-      frontendajax.ajaxurl,
-      data,
-      function(response) {
-        // ERROR HANDLING
-        console.log(response)
+  warning.textContent = getWarningText(improvement);
 
-        // hide spinner
-        spinner.style.display = "none";
-
-        // hide form
-        form.style.display ="none";
-
-        // display thank you message
-        feedbackFormContainer.appendChild(thankYouMessage);
-
-        fadeInElement(feedbackFormContainer);
-      }
-    );
+  // Hide warning message when the user starts typing in the textarea
+  textareas.forEach(function(textarea) {
+    textarea.addEventListener('input', function() {
+      warning.style.display = "none";
+    });
+    if( textarea.value == '' ) {
+      warning.style.display = "block";
+    }
   });
+
+  // Show warning message when the user selects a different radio button, even if there are another textarea in the form with text, but their radio buttons are not checked.
+  document.querySelector('input[name="improvement"]').addEventListener('change', function() {
+    var currentRadioButton = document.querySelector('input[name="improvement"]:checked');
+    var currentTextarea = document.querySelector('textarea[name^="' + currentRadioButton.value + '_improvement"]');
+    warning.style.display = currentTextarea.value == '' ? 'block' : 'none';
+  });
+
+  spinner.style.display = "none";
+
+  // Stop sending the request
+  return;
+}
+
+
+jQuery.post(
+  frontendajax.ajaxurl,
+  data,
+  function(response) {
+    // ERROR HANDLING
+    console.log(response)
+    warning.remove();
+
+    // hide spinner
+    spinner.style.display = "none";
+
+    // hide form
+    form.style.display ="none";
+
+    // display thank you message
+    feedbackFormContainer.appendChild(thankYouMessage);
+
+    fadeInElement(feedbackFormContainer);
+  });
+});
+}
+
+function getWarningText(improvement) {
+  switch (improvement) {
+    case "incorrect_info":
+      return "Please fill in the 'Incorrect Information' textarea before submitting the form.";
+    case "outdated_info":
+      return "Please fill in the 'Outdated Details' textarea before submitting the form.";
+    case "not_for_international":
+      return "Please fill in the 'Not for International Students' textarea before submitting the form.";
+    case "not_easy_to_read":
+      return "Please fill in the 'Not Easy to Read' textarea before submitting the form.";
+    case "details_missing":
+      return "Please fill in the 'Details Missing' textarea before submitting the form.";
+    case "not_clear_procedures":
+      return "Please fill in the 'Not Clear Procedures' textarea before submitting the form.";
+    case "suggestion":
+      return "Please fill in the 'Suggestion' textarea before submitting the form.";
+    default:
+      return "";
+  }
 }
 
 function fadeInElement(Element) {
@@ -286,7 +351,6 @@ function fadeInElement(Element) {
             }
           }, 50);
 }
-
 
 function convertArrayToText(arrayList) {
   if (arrayList) {
