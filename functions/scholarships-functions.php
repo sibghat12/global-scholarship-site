@@ -3904,6 +3904,90 @@ function get_all_scholarships() {
 
 
 
+// function gs_update_deadlines() {
+//     $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+//     $batchSize = isset($_POST['batchSize']) ? intval($_POST['batchSize']) : 20;
+//     $postType = isset($_POST['postType']) ? sanitize_text_field($_POST['postType']) : 'institution';
+//     $openingDate = isset($_POST['openingDate']) ? sanitize_text_field($_POST['openingDate']) : '';
+//     $deadlineDate = isset($_POST['deadlineDate']) ? sanitize_text_field($_POST['deadlineDate']) : '';
+//     $institutionCountry = isset($_POST['institutionCountry']) ? sanitize_text_field($_POST['institutionCountry']) : '';
+//     $institutionDegree = isset($_POST['institutionDegree']) ? sanitize_text_field($_POST['institutionDegree']) : '';
+//     $newOpeningDate = isset($_POST['newOpeningDate']) ? sanitize_text_field($_POST['newOpeningDate']) : '';
+//     $newDeadlineDate = isset($_POST['newDeadlineDate']) ? sanitize_text_field($_POST['newDeadlineDate']) : '';
+
+//     $institution_posts_count = wp_count_posts($postType);
+//     $institution_posts_count_published = $institution_posts_count->publish;
+
+//     $args = array(
+//         'post_type' => $postType,
+//         'posts_per_page' => $batchSize,
+//         'no_found_rows' => true, 
+//         'update_post_meta_cache' => false, 
+//         'update_post_term_cache' => false,   
+//         'cache_results' => false,
+//         'fields' => 'ids',
+//         'post_status' => 'publish',
+//         'offset' => $offset
+//       );
+      
+//     $query = new WP_Query($args);
+//     $deadlinesPosts = $query->get_posts();
+//     $theOpeningDate = array();
+//     $admissions_details_institution= array();
+//     $theOpeningDateInstitution = array();
+
+//     if(isset($deadlinesPosts) && !empty($deadlinesPosts)) {
+
+//         foreach($deadlinesPosts as $institution_id) {
+
+//             // Get admissions Repeater for Institution
+//             $admissions_details_institution[] = get_field('admission_deadlines', $institution_id);
+
+//             foreach($admissions_details_institution as $admission_row) {
+//                 if(!empty($admission_row['open_date'])) {
+//                     $theOpeningDateInstitution[] = $admission_row['open_date'];
+//                 } else {
+//                     $theOpeningDateInstitution[] = null;
+//                 }
+//             }
+//         }
+//     }
+
+//     // if(isset($deadlinesPosts) && !empty($deadlinesPosts)) {
+
+//     //     foreach($deadlinesPosts as $institution_id) {
+
+//     //         // Get admissions Repeater for Institution
+//     //         $admissions_details_institution[] = get_field('admission_deadlines', $institution_id);
+    
+//     //     }
+//     // }
+
+//     // if(isset($admissions_details_institution) && !empty($admissions_details_institution)) {
+
+//     //     foreach($admissions_details_institution as $admission_row) {
+//     //         $theOpeningDateInstitution[] = $admission_row->open_date;
+//     //     }
+//     // }
+
+
+//     $totalUpdated = $offset + count($deadlinesPosts);
+//     $totalPosts =  intval($institution_posts_count_published);
+
+//     $response = array(
+//       'totalUpdated' => $totalUpdated,
+//       'totalPosts' => $totalPosts,
+//       'institutionAdmissionDetails' => $admissions_details_institution,
+//       'openingDates' => $theOpeningDateInstitution,
+//     );
+    
+//     wp_send_json($response);
+
+// }
+// add_action('wp_ajax_nopriv_update_deadlines', 'gs_update_deadlines' );
+// add_action( 'wp_ajax_update_deadlines', 'gs_update_deadlines' );
+
+
 function gs_update_deadlines() {
     $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
     $batchSize = isset($_POST['batchSize']) ? intval($_POST['batchSize']) : 20;
@@ -3926,43 +4010,42 @@ function gs_update_deadlines() {
         'update_post_term_cache' => false,   
         'cache_results' => false,
         'fields' => 'ids',
-        // 'post_status' => 'publish',
+        'post_status' => 'publish',
         'offset' => $offset
-      );
-      
+    );
+
     $query = new WP_Query($args);
     $deadlinesPosts = $query->get_posts();
-    if(isset($deadlinesPosts) && !empty($deadlinesPosts)) {
+    $theInstitutionConditions = array();
 
-        foreach($deadlinesPosts as $institution_id) {
-
+    if (isset($deadlinesPosts) && !empty($deadlinesPosts)) {
+        foreach ($deadlinesPosts as $institution_id) {
             // Get admissions Repeater for Institution
-            $admissions_details_institution = get_field('admission_deadlines');
+            $admission_deadlines = get_field('admission_deadlines', $institution_id);
+            $city_id = get_field('cities', $institution_id);
+            $country = get_field('country', $city_id);
 
-            if(isset($admissions_details_institution) && !empty($admissions_details_institution)) {
-
-                foreach($admissions_details_institution as $admission_row) {
-                    $theOpeningDateInstitution = $admission_row['open_date'];
-                    
+            if ($admission_deadlines) {
+                foreach ($admission_deadlines as $admission_row) {
+                    $theInstitutionConditions[$institution_id]['open_date'][] = $admission_row['open_date'];
+                    $theInstitutionConditions[$institution_id]['deadline'][] = $admission_row['deadline'];
+                    $theInstitutionConditions[$institution_id]['degree'][] = $admission_row['degree'];
+                    $theInstitutionConditions[$institution_id]['country'] = $country;
                 }
             }
-
-    
         }
     }
 
-
     $totalUpdated = $offset + count($deadlinesPosts);
-    $totalPosts =  intval($institution_posts_count_published);
+    $totalPosts = intval($institution_posts_count_published);
 
     $response = array(
-      'totalUpdated' => $totalUpdated,
-      'totalPosts' => $totalPosts,
-      'openingDate' => $theOpeningDateInstitution,
+        'totalUpdated' => $totalUpdated,
+        'totalPosts' => $totalPosts,
+        'institutionConditions' => $theInstitutionConditions,
     );
-    
-    wp_send_json($response);
 
+    wp_send_json($response);
 }
-add_action('wp_ajax_nopriv_update_deadlines', 'gs_update_deadlines' );
-add_action( 'wp_ajax_update_deadlines', 'gs_update_deadlines' );
+add_action('wp_ajax_nopriv_update_deadlines', 'gs_update_deadlines');
+add_action('wp_ajax_update_deadlines', 'gs_update_deadlines');
