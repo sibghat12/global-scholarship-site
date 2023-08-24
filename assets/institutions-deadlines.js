@@ -44,6 +44,22 @@ jQuery(document).ready(function($) {
     let formattedDeadlineDate = deadlineDate && deadlineDate.toLocaleDateString('en-US', options);
     let institutionCountry = $('#institution-country').val();
     let institutionDegree = $('#institution-degree').val();
+    // Remove dashes and replace with spaces
+    institutionCountry = institutionCountry.replace(/-/g, ' ');
+    institutionDegree = institutionDegree.replace(/-/g, ' ');
+
+    // Capitalize first letter of each word
+    institutionCountry = institutionCountry.replace(/\b\w/g, function (match) {
+        return match.toUpperCase();
+    });
+
+    // institutionDegree = institutionDegree.replace(/\b\w/g, function (match) {
+    //     return match.toUpperCase();
+    // });
+    
+    institutionDegree = institutionDegree.replace(/\b\w/g, function (match) {
+      return match.toLowerCase();
+  })
 
     // New Dates
     let formattedNewOpeningDate = newOpeningDate && newOpeningDate.toLocaleDateString('en-US', options);
@@ -51,10 +67,12 @@ jQuery(document).ready(function($) {
     
 
 
-    // console.log("formattedOpeningDate",formattedOpeningDate)
-    // console.log("formattedDeadlineDate",formattedDeadlineDate)
-    // console.log("institutionCountry",institutionCountry)
-    // console.log("institutionDegree",institutionDegree)
+    console.log("formattedOpeningDate",formattedOpeningDate)
+    console.log("formattedDeadlineDate",formattedDeadlineDate)
+    console.log("institutionCountry",institutionCountry)
+    console.log("institutionDegree",institutionDegree)
+    console.log("formattedNewOpeningDate",formattedNewOpeningDate)
+    console.log("formattedNewDeadlineDate",formattedNewDeadlineDate)
 
     const data = {
         action: 'update_deadlines', // Change the action name here

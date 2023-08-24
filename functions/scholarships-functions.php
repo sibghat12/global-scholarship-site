@@ -4017,7 +4017,6 @@ function gs_update_deadlines() {
     $query = new WP_Query($args);
     $deadlinesPosts = $query->get_posts();
     $theInstitutionConditions = array();
-
     if (isset($deadlinesPosts) && !empty($deadlinesPosts)) {
         foreach ($deadlinesPosts as $institution_id) {
             // Get admissions Repeater for Institution
@@ -4026,13 +4025,20 @@ function gs_update_deadlines() {
             $country = get_field('country', $city_id);
 
             if ($admission_deadlines) {
-                foreach ($admission_deadlines as $admission_row) {
-                    $theInstitutionConditions[$institution_id]['open_date'][] = $admission_row['open_date'];
-                    $theInstitutionConditions[$institution_id]['deadline'][] = $admission_row['deadline'];
-                    $theInstitutionConditions[$institution_id]['degree'][] = $admission_row['degree'];
-                    $theInstitutionConditions[$institution_id]['country'] = $country;
+                foreach ($admission_deadlines as $index => $admission_row) {
+                    if ( $admission_row['open_date'] === $openingDate && $admission_row['deadline'] === $deadlineDate && $country == $institutionCountry ) {
+                        $admission_deadlines[$index]['open_date'] = $newOpeningDate;
+                        $admission_deadlines[$index]['deadline'] = $newDeadlineDate;
+                    }
                 }
+                // Update the admission deadlines repeater field
+                update_field('admission_deadlines', $admission_deadlines, $institution_id);
             }
+
+            $theInstitutionConditions[$institution_id]['open_date'] = wp_list_pluck($admission_deadlines, 'open_date');
+            $theInstitutionConditions[$institution_id]['deadline'] = wp_list_pluck($admission_deadlines, 'deadline');
+            $theInstitutionConditions[$institution_id]['degree'] = wp_list_pluck($admission_deadlines, 'degree');
+            $theInstitutionConditions[$institution_id]['country'] = $country;
         }
     }
 
