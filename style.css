@@ -3593,6 +3593,7 @@ padding-left:0px !important;
     display: inline-block;
     width: 36px;
     height: 36px;
+    min-width: 36px;
     margin-right: 8px;
     margin-bottom: 4px;
     cursor: pointer;
