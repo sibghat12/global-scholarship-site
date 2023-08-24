@@ -56,7 +56,8 @@ $gs_degrees = array(
         </div>
     </div>
     <div class="gs-update-instructions-fields-update">
-    <div class="institution-opening-updated-date-container">
+        <h2>Update Dates</h2>
+        <div class="institution-opening-updated-date-container">
             <label for="institution-updated-opening-date">
                 <span>Updated Opening Date</span>
                 <input type="date" name="institution-updated-opening-date" id="institution-updated-opening-date">
@@ -69,4 +70,5 @@ $gs_degrees = array(
             </label>
         </div>
     </div>
+    <?php submit_button( __( 'Update Deadlines', 'gs' ), 'secondary', 'gs_update_deadlines', true, 'data-deadlines="update_deadlines"' ); ?>
 </div>
