@@ -29,6 +29,9 @@ $subject_array = $scholarship_details[12]['choices'];
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list_for_url = $published_countries['choices'];
 $country_list = $country_list_for_url;
+
+$nationalites_array = array_column($scholarship_details, null, 'name')['eligible_nationality'];
+$nationalites_array = $nationalites_array['choices'];
    
 $scholarships_array = get_all_scholarships();  
 
@@ -363,12 +366,18 @@ function findValueInArray(value,arr){
 
 function findValueInArray_withformat(value,arr){
   var result = "Doesn't exist";
- value = value.replace(/-/g, ' ');
-  console.log(value); // 
+
+  console.log(arr);
+
+   value = value.replace(/-/g, ' ');
+ 
   value = value.charAt(0).toUpperCase() + value.slice(1);
   value = value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
   return letter.toUpperCase();
 });
+
+    console.log(value);
+
 for(var i=0; i<arr.length; i++){
     var name = arr[i];
     if(name == value){
@@ -377,6 +386,7 @@ for(var i=0; i<arr.length; i++){
     }
   }
   return result;
+
 }
 
 
@@ -416,11 +426,14 @@ var subject_php_array = <?php echo json_encode($subject_array); ?>;
         return [value];
 });
 
-var nationalities_php_array = <?php echo json_encode($country_array); ?>;
+var nationalities_php_array = <?php echo json_encode($nationalites_array); ?>;
 // Converting JS object to an array
     var nationalities_label_array = $.map(nationalities_php_array, function(value, index){
         return [value];
 });
+
+
+
 
 
 var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
@@ -491,6 +504,7 @@ type_value = type_value.replace(/-/g, ' ');
 
 // Location Name : Get Location Name from the url path
 
+
 var location_value = "";
 for (let i = 0; i < pathArray.length; i++) {
   result =   findValueInArray_withformat(pathArray[i], location_label_array);
@@ -500,10 +514,14 @@ for (let i = 0; i < pathArray.length; i++) {
   }
 }
 
+
+
 location_value = location_value.replace(/-/g, ' ');
     location_value = location_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
 });
+
+    console.log("After" + location_value);
 
 
 // Subject Name: Get Subject Name from the url path
@@ -537,22 +555,52 @@ subject_value = subject_value.replace(/-/g, ' ');
 });
     
 // Nationalities: Get Nationality from the url path
-
 var nationality_value = "";
-for (let i = 0; i < pathArray.length; i++) {
-  result =   findValueInArray_withformat(pathArray[i], nationalities_label_array);
-  if(result=="Exist"){
-   nationality_value = pathArray[i];
-   break;
-  }
+if (pathArray.some(item => item.includes('nationality-'))) {
+   
+
+   nationalities_label_array = nationalities_label_array.map(item => 
+    "Nationality " + item
+   );
+
+
+    // Using find() method to get the first item that includes "nationality-"
+     nationality_value = pathArray.find(item => item.includes('nationality-'));
+    
+    console.log("English" + nationality_value);
+   
+    if (nationality_value) {
+        const result = findValueInArray_withformat(nationality_value, nationalities_label_array);
+
+        
+
+        if (result == "Exist") {
+            console.log("hashim sibi");
+            console.log("final " + nationality_value);
+            
+        }
+    }
+
+    pathArray = pathArray.map(item => item.replace(/nationality-/g, ''));
+
+
+
 }
+
+
 
 nationality_value = nationality_value.replace(/-/g, ' ');
     nationality_value = nationality_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
 });
 
-console.log($nationality_value);
+
+nationality_value = nationality_value.replace("Nationality ", "");
+
+
+
+
+
 
 if(degree_value=="masters"){
     degree_value = "Master's";
@@ -571,13 +619,20 @@ setSelectedValue('.application_checkbox', currenty_open_array);
     formData.append("applications" , open_array);
 }
 
+if(nationality_value){
+setSelectedValue('.nationality_checkbox', nationality_value);
+    var nationalityArr = new Array();
+    nationalityArr.push(nationality_value);
+    formData.append("nationality" , nationalityArr);
+}
+
+
 if(degree_value){
 setSelectedValue('.degree_checkbox', degree_value);
     var degreeArr = new Array();
     degreeArr.push(degree_value);
     formData.append("degrees" , degreeArr);
 }
-
 
 
 if(subject_value){
@@ -634,7 +689,7 @@ formData.append("reload" , true);
 let isEmpty = val => val === "";
 
 // Assuming degree_value, subject_value, etc. are string values
-let validValues = [degree_value, subject_value, location_value, type_value, currenty_open_array];
+let validValues = [degree_value, subject_value, location_value, type_value, currenty_open_array, nationality_value];
 // Convert array values to lowercase, replace spaces with dashes, and remove apostrophes
 validValues = validValues.map(value => 
     value.toLowerCase() // Convert to lowercase
@@ -645,7 +700,7 @@ validValues = validValues.map(value =>
 
 
 if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value) 
-    && isEmpty(type_value) && isEmpty(currenty_open_array)) {
+    && isEmpty(type_value) && isEmpty(currenty_open_array) && isEmpty(nationality_value)) {
 
     // Additional check for ["page", "2"] or ["page", any_number]
     if (pathArray.length === 2 && pathArray[0] === 'page' && !isNaN(pathArray[1])) {
@@ -653,7 +708,7 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
     } else if (pathArray.length > 0) {
         console.log("pagenotfound");
         // Redirect to '/page-not-found'
-        window.location.href = '/page-not-found';
+       window.location.href = '/page-not-found';
     }
 } else {
     // If pathArray has more than one value

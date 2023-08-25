@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php get_header(); 
 
-include get_stylesheet_directory() . "/functions/cities_functions.php";
+//include get_stylesheet_directory() . "/functions/cities_functions.php";
 
 ?>  
 
@@ -24,7 +24,26 @@ include get_stylesheet_directory() . "/functions/cities_functions.php";
 
                 
    <?php 
-    $ids = get_all_institutions("draft");
+
+   $args = array(
+        'post_type' => 'institution',
+        'post_status' => 'draft',        
+        'posts_per_page' => -1,
+        'orderby'   => 'title',
+        'order'     => 'ASC',
+        'no_found_rows' => true, 
+        'update_post_meta_cache' => false, 
+        'update_post_term_cache' => false,   
+        'cache_results'          => false,
+        'fields' => 'ids',      
+    );
+    
+    $the_query = new WP_Query($args);
+    
+    $ids = $the_query->get_posts();
+
+
+    
     echo "<ul>";
     foreach ($ids as $id){ 
        $permalink = get_site_url() . "/wp-admin/post.php?post=" . $id .  "&action=edit";         

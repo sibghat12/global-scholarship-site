@@ -1790,9 +1790,6 @@ function my_ajax_handler() {
    $ppp = $_POST["ppp"];
    $page_count = $_POST['page_count'];
   
-
-
-
    //$offset = $offset - 1;
   
    $degrees = stripslashes($_POST['degrees']);
@@ -1811,9 +1808,7 @@ function my_ajax_handler() {
    $nationality = $_POST['nationality'];
    $nationality_array = explode(',', $nationality); 
 
-  
-
-   $scholarship_type = $_POST['scholarship_type'];
+   $scholarship_type = $_POST['scholarshi.p_type'];
    $type_array = explode(',', $scholarship_type); 
 
    $applications = $_POST['applications'];
@@ -2009,12 +2004,15 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     if ($subject_query) { 
     $meta_query[] = $subject_query; 
     }
+    
     if ($degree_query)  {
     $meta_query[] = $degree_query;
     }
+
     if ($location_query) { 
     $meta_query[] = $location_query; 
     }
+    
     if ($type_query) { 
     $meta_query[] = $type_query; 
     }
@@ -2098,11 +2096,16 @@ if($type_array[0]) {
   if($subject_array[0]){
      $text .= " for " . $subject_array[0];
   } 
+
+
    if($nationality_array[0]){
-     $text .= " for " . $nationality_array[0] . " National";
+     $text .= " for " . $nationality_array[0] . " Students";
+  }else {
+     $text .= " for International Students ";
   }
 
-   $text .= " for International Students ";
+   
+  
 
    
 
