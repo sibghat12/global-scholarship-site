@@ -156,7 +156,8 @@ if ( ! defined( 'ABSPATH' ) ) {
             $international = $enrollments['international'];
                         
                         
-            $average_ranking = round(get_post_meta(get_the_ID(), 'average_rankings', true));
+            $average_ranking_value = get_post_meta(get_the_ID(), 'average_rankings', true);
+            $average_ranking_value = round((int) $average_ranking_value);
 
             $city = get_field('cities');
             $city = get_post($city->ID);
