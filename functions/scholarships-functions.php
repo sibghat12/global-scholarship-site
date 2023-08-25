@@ -2049,9 +2049,9 @@ new_array = Array.from(new Set(new_array));
 
    //First we add a class to the closet ul
 
-  // const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
+   const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
   
-   const exclude_regions_checkbox = document.getElementById('acf-field_64cb9496f11d3-Africa');
+   //const exclude_regions_checkbox = document.getElementById('acf-field_64cb9496f11d3-Africa');
         const exclude_regons_ul = exclude_regions_checkbox.closest('ul');
         // add a custom class to the ul element
         exclude_regons_ul.classList.add('exclude_regions_class');
@@ -2426,7 +2426,18 @@ $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
        // Get fields by name.
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $contry_array = $published_countries['choices'];
-        
+
+$nationalites_array = array_column($scholarship_details, null, 'name')['eligible_nationality'];
+$nationalites_array = $nationalites_array['choices'];
+
+  foreach ($nationalites_array as $key => $national_value) {
+            $national_value = strtolower($national_value);
+            $national_value = str_replace(' ', '-', $national_value);
+            $nationalites_array[$key] = $national_value;
+        }
+
+
+
         $location_array = array();
         foreach ($contry_array as $value) {
             $location_array[$value] = $value;
@@ -2437,6 +2448,15 @@ $contry_array = $published_countries['choices'];
             $location_value = str_replace(' ', '-', $location_value);
             $location_array[$key] = $location_value;
         }
+         
+        
+
+      
+        
+
+
+
+
         $location_value = '';
         $location_matches_array = array_intersect($location_array, $url_parts);
         if (!empty($location_matches_array)) {
@@ -2455,7 +2475,39 @@ $contry_array = $published_countries['choices'];
             $subject_value = str_replace(' ', '-', $subject_value);
             $subject_array[$key] = $subject_value;
         }
+       
+         
+// Initialize the variable to false
+$nationality = false;
 
+// Loop through the array
+foreach ($url_parts as &$part) {
+    if (strpos($part, 'nationality-') === 0) {
+        $nationality = true; // Set the variable to true if "nationality-" is found
+        $part = str_replace('nationality-', '', $part); // Remove the "nationality-" prefix
+    }
+}
+unset($part);  // Unset the reference to prevent unintended side-effects
+$nationality_value = "";
+
+
+if ($nationality) {
+   $nationality_matches_array = array_intersect($nationalites_array, $url_parts);
+        if (!empty($nationality_matches_array)) {
+            $nationality_value = reset($nationality_matches_array);
+        } else {
+            $nationality_value = '';
+        }
+
+        $nationality_value = str_replace('-', ' ', $nationality_value);
+        $nationality_value = ucwords(strtolower($nationality_value));
+} 
+      
+
+      
+        
+
+ 
         $subject_matches_array = array_intersect($subject_array, $url_parts);
         if (!empty($subject_matches_array)) {
             $subject_value = reset($subject_matches_array);
@@ -2536,25 +2588,17 @@ $contry_array = $published_countries['choices'];
             $next_due_date = date('Y-m-d H:i:s',  strtotime("+364 days"));
         }
 
-        if (isset($subject_value) && $subject_value) {
-            if ($subject_value != "All Subjects") {
-                $subject_query = array(
-                    'relation' => 'OR',
-                    array(
-                        'key' => 'eligible_programs',
-                        'value' => $subject_value,
-                        'compare' => 'LIKE',
-                    ),
-                    array(
-                        'key' => 'eligible_programs',
-                        'value' => "All Subjects",
-                        'compare' => 'LIKE',
-                    ),
-                );
-            } else {
-                $subject_query = array('type' => 'string', 'key' => 'eligible_programs', 'value' => $subject_value, 'compare' => 'IN');
-            }
+        if(isset($subject_value) && $subject_value){
+    
+        $subject_query = array('type' => 'string' , 'key' => 'eligible_programs', 'value' => $subject_value, 'compare' => 'LIKE');
         }
+
+
+        if(isset($nationality_value) && $nationality_value){
+    
+        $nationality_query = array('type' => 'string' , 'key' => 'eligible_nationality', 
+            'value' => $nationality_value, 'compare' => 'LIKE');
+        }  
 
         if (isset($degree_value) && $degree_value) {
             $degree_query = array('key' => 'eligible_degrees',  'value' => $degree_value,  'compare' => 'LIKE');
@@ -2627,6 +2671,10 @@ $contry_array = $published_countries['choices'];
             $meta_query[] = $type_query;
         }
 
+          if ($nationality_query) {
+            $meta_query[] = $nationality_query;
+        }
+
         if ($application_query) {
             $meta_query[] = $application_query;
         }
@@ -2656,67 +2704,58 @@ $contry_array = $published_countries['choices'];
 
         $page = '';
 
-foreach ($url_parts as $part) {
-    if (is_numeric($part)) {
+      foreach ($url_parts as $part) {
+       if (is_numeric($part)) {
         $page = $part;
 
         break; // Stop the loop if an integer value is found
     }
    }
 
-        $text = "";
+       $text = "";
 
-       if($scholarship_type_value=="Full Funding"){
-        $scholarship_type_value = "Fully Funded";
-       }
-       if($scholarship_type_value=="Partial Funding"){
-        $scholarship_type_value = "Partially Funded";
-       }
-
-        
-            
-             
-          if ($scholarship_type_value) {
-    if ($degree_value) {
-        $text .= $found_posts . " " . $scholarship_type_value . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " " . $scholarship_type_value . " Scholarships";
-    }
-} else {
-    if ($degree_value) {
-        $text .= $found_posts . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " Scholarships";
-    }
+if ($scholarship_type_value == "Full Funding") {
+    $scholarship_type_value = "Fully Funded";
 }
 
-           if ($location_value) {
-                $text .= " in " . $location_value;
-            }
-            if ($subject_value) {
-                 if ($scholarship_type_value) {
-    if ($degree_string) {
-        $text .= $found_posts . " " . $scholarship_type_value . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " " . $scholarship_type_value . " Scholarships";
-    }
-} else {
-    if ($degree_string) {
-        $text .= $found_posts . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " Scholarships";
-    }
+if ($scholarship_type_value == "Partial Funding") {
+    $scholarship_type_value = "Partially Funded";
 }
-        $text .= " for " . $subject_value;
-            }
 
-            $text .= " for International Students ";
+// Initial scholarship phrase construction
+$scholarship_phrase = $found_posts;
 
-            if($page) {
-                $text .= "- Page " .$page . " of " . ceil($found_posts / 20);
-               }
+if ($scholarship_type_value) {
+    $scholarship_phrase .= " " . $scholarship_type_value;
+}
 
-            return  $text;
+if ($degree_value) {
+    $scholarship_phrase .= " " . $degree_value;
+}
+
+$scholarship_phrase .= " Scholarships";
+
+$text .= $scholarship_phrase;
+
+// Add location if present
+if ($location_value) {
+    $text .= " in " . $location_value;
+}
+
+// Add subject if present
+if ($subject_value) {
+    $text .= " for " . $subject_value;
+}
+
+$text .= " for International Students ";
+
+// Add pagination details if present
+if ($page) {
+    $text .= "- Page " . $page . " of " . ceil($found_posts / 20);
+}
+
+return $text;
+
        
 
         
@@ -2756,10 +2795,10 @@ function generate_scholarship_text($current_url) {
         $scholarship_type_array = ['full-funding', 'full-tuition', 'partial-funding'];
         $scholarship_details = acf_get_fields('group_62ca6e3cc910c');
 
-$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+        $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
        // Get fields by name.
-$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
-$contry_array = $published_countries['choices'];
+        $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+        $contry_array = $published_countries['choices'];
         
         $location_array = array();
         foreach ($contry_array as $value) {
@@ -2870,24 +2909,11 @@ $contry_array = $published_countries['choices'];
             $next_due_date = date('Y-m-d H:i:s',  strtotime("+364 days"));
         }
 
-        if (isset($subject_value) && $subject_value) {
-            if ($subject_value != "All Subjects") {
-                $subject_query = array(
-                    'relation' => 'OR',
-                    array(
-                        'key' => 'eligible_programs',
-                        'value' => $subject_value,
-                        'compare' => 'LIKE',
-                    ),
-                    array(
-                        'key' => 'eligible_programs',
-                        'value' => "All Subjects",
-                        'compare' => 'LIKE',
-                    ),
-                );
-            } else {
-                $subject_query = array('type' => 'string', 'key' => 'eligible_programs', 'value' => $subject_value, 'compare' => 'IN');
-            }
+        
+
+      if(isset($subject_value) && $subject_value){
+    
+        $subject_query = array('type' => 'string' , 'key' => 'eligible_programs', 'value' => $subject_value, 'compare' => 'LIKE');
         }
 
         if (isset($degree_value) && $degree_value) {
@@ -2998,70 +3024,66 @@ foreach ($url_parts as $part) {
     }
    }
           
-        if($empty_url){  
-        $text = "Find All ";
-    } else {
-        $text = "Find ";
-    }
-
-       if($scholarship_type_value=="Full Funding"){
-        $scholarship_type_value = "Fully Funded";
-       }
-       if($scholarship_type_value=="Partial Funding"){
-        $scholarship_type_value = "Partially Funded";
-       }
-
         
-            
-             
-          if ($scholarship_type_value) {
-    if ($degree_value) {
-        $text .= $found_posts . " " . $scholarship_type_value . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " " . $scholarship_type_value . " Scholarships";
-    }
+$text = "";
+
+$found_posts_orignal = $found_posts;
+
+// Determine the prefix based on empty_url
+if ($empty_url) {
+    $text .= "Find All";
 } else {
-    if ($degree_value) {
-        $text .= $found_posts . " " . $degree_value . " Scholarships";
-    } else {
-        if($empty_url){
-            $text .=  "Scholarships";
-        }else {
-            $text .= $found_posts . " Scholarships";
-        }
-        
-    }
+    $text .= "Find";
 }
 
-           if ($location_value) {
-                $text .= " in " . $location_value;
-            }
-            if ($subject_value) {
-                 if ($scholarship_type_value) {
-    if ($degree_string) {
-        $text .= $found_posts . " " . $scholarship_type_value . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " " . $scholarship_type_value . " Scholarships";
-    }
-} else {
-    if ($degree_string) {
-        $text .= $found_posts . " " . $degree_value . " Scholarships";
-    } else {
-        $text .= $found_posts . " Scholarships";
-    }
+// Adjust scholarship type values
+if ($scholarship_type_value == "Full Funding") {
+    $scholarship_type_value = "Fully Funded";
 }
-        $text .= " for " . $subject_value;
-            }
+if ($scholarship_type_value == "Partial Funding") {
+    $scholarship_type_value = "Partially Funded";
+}
 
-            $text .= " for International Students. ";
+// Construct the main scholarship phrase, ensuring we don't repeat information
+$main_phrase = "";
+if (!$empty_url) {
+    $main_phrase .= " " . $found_posts;
+}
+if ($scholarship_type_value) {
+    $main_phrase .= " " . $scholarship_type_value;
+}
+if ($degree_value) {
+    $main_phrase .= " " . $degree_value;
+}
+$main_phrase .= " Scholarships";
 
-            if($page) {
-                $text .= "- Page " .$page . " of " . ceil($found_posts / 20);
-               }
- 
-               $text .= " Check All " . $found_posts . " Scholarships";
+// Append main scholarship phrase to text
+$text .= " " . $main_phrase;
 
-            return  $text;
+// Add location if present
+if ($location_value) {
+    $text .= " in " . $location_value;
+}
+
+// Add subject if present
+if ($subject_value) {
+    $text .= " for " . $subject_value;
+}
+
+$text .= " for International Students.";
+
+// Add pagination details if present
+if ($page) {
+    $text .= " - Page " . $page . " of " . ceil($found_posts / 20) . ".";
+}
+
+// Append total scholarships information
+$text .= " Check All " . $found_posts_orignal . " Scholarships.";
+
+return $text;
+
+
+
 }
 
 

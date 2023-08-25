@@ -16,34 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<?php Avada()->head->the_viewport(); ?>
 
-	<?php wp_head(); ?>
 
-	<?php
-	/**
-	 * The setting below is not sanitized.
-	 * In order to be able to take advantage of this,
-	 * a user would have to gain access to the database
-	 * in which case this is the least of your worries.
-	 */
-	echo apply_filters( 'avada_space_head', Avada()->settings->get( 'space_head' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
-	?>
 	
-
-</head>
-
 <?php
-$object_id      = get_queried_object_id();
-$c_page_id      = Avada()->fusion_library->get_page_id();
-$wrapper_class  = 'fusion-wrapper';
-$wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
-?>
-<body <?php body_class(); ?> <?php fusion_element_attributes( 'body' ); ?>>
-
- 
-
- <?php
 $post_type = get_post_type();
 
 
@@ -75,6 +51,35 @@ window.snigelPubConf = {
 <?php
 }
 ?>
+
+	<?php Avada()->head->the_viewport(); ?>
+
+	<?php wp_head(); ?>
+
+	<?php
+	/**
+	 * The setting below is not sanitized.
+	 * In order to be able to take advantage of this,
+	 * a user would have to gain access to the database
+	 * in which case this is the least of your worries.
+	 */
+	echo apply_filters( 'avada_space_head', Avada()->settings->get( 'space_head' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+	?>
+	
+
+</head>
+
+<?php
+$object_id      = get_queried_object_id();
+$c_page_id      = Avada()->fusion_library->get_page_id();
+$wrapper_class  = 'fusion-wrapper';
+$wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
+?>
+<body <?php body_class(); ?> <?php fusion_element_attributes( 'body' ); ?>>
+
+ 
+
+ 
 
 
   

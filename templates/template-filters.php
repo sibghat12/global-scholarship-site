@@ -24,7 +24,8 @@ $degrees_array = $scholarship_details[1]['choices'];
 $country_array = $scholarship_details[13]['choices'];
 $subject_array = $scholarship_details[12]['choices'];
     
-    
+   
+
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list_for_url = $published_countries['choices'];
 $country_list = $country_list_for_url;
@@ -415,11 +416,12 @@ var subject_php_array = <?php echo json_encode($subject_array); ?>;
         return [value];
 });
 
-// var nationalities_php_array = <?php //echo json_encode($country_array); ?>;
-// // Converting JS object to an array
-//     var nationalities_label_array = $.map(nationalities_php_array, function(value, index){
-//         return [value];
-// });
+var nationalities_php_array = <?php echo json_encode($country_array); ?>;
+// Converting JS object to an array
+    var nationalities_label_array = $.map(nationalities_php_array, function(value, index){
+        return [value];
+});
+
 
 var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
 // Converting JS object to an array
@@ -536,19 +538,21 @@ subject_value = subject_value.replace(/-/g, ' ');
     
 // Nationalities: Get Nationality from the url path
 
-// var nationality_value = "";
-// for (let i = 0; i < pathArray.length; i++) {
-//   result =   findValueInArray_withformat(pathArray[i], nationalities_label_array);
-//   if(result=="Exist"){
-//    nationality_value = pathArray[i];
-//    break;
-//   }
-// }
+var nationality_value = "";
+for (let i = 0; i < pathArray.length; i++) {
+  result =   findValueInArray_withformat(pathArray[i], nationalities_label_array);
+  if(result=="Exist"){
+   nationality_value = pathArray[i];
+   break;
+  }
+}
 
-// nationality_value = nationality_value.replace(/-/g, ' ');
-//     nationality_value = nationality_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-//     return letter.toUpperCase();
-// });
+nationality_value = nationality_value.replace(/-/g, ' ');
+    nationality_value = nationality_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+    return letter.toUpperCase();
+});
+
+console.log($nationality_value);
 
 if(degree_value=="masters"){
     degree_value = "Master's";
@@ -618,6 +622,7 @@ if(page === 1){
 }else {
    formData.append("offset", (page - 1) * ppp);
 }
+
 
 
 formData.append("page_count" , page);
@@ -868,7 +873,7 @@ formData.append("locations" , locationArr);
 formData.append("scholarship_type" , typeArr);
 formData.append("applications" , applicationArr);
 formData.append("institutions" , institutionArr);
-//formData.append("nationality" , nationalityArr);
+formData.append("nationality" , nationalityArr);
 
 if(page===1){
    formData.append("offset" , 0);
@@ -895,6 +900,10 @@ subjectArr = subjectArr.toString().replaceAll(" ", "-");
 subjectArr = subjectArr.toString().replaceAll(",", "-");
 subjectArr = subjectArr.toLowerCase();
 
+nationalityArr = nationalityArr.toString().replaceAll(" ", "-");
+nationalityArr = nationalityArr.toString().replaceAll(",", "-");
+nationalityArr = nationalityArr.toLowerCase();
+
 typeArr = typeArr.toString().replaceAll(" ", "-");
 typeArr = typeArr.toLowerCase();
 
@@ -906,6 +915,10 @@ nationalityArr = nationalityArr.toLowerCase();
     //  if(nationalityArr){
     // url_update += "/" + nationalityArr;
     // }
+    
+     if(nationalityArr){
+    url_update +=  "/" + "nationality-"+nationalityArr;
+    }
 
     if(degreeArr){
     url_update += "/" + degreeArr;
@@ -930,7 +943,8 @@ nationalityArr = nationalityArr.toLowerCase();
     if(applicationArr){
     url_update +=  "/" + applicationArr;
     }
-
+   
+    
    
 
     // const filterPanel = document.getElementById('filter-panell');

@@ -1811,6 +1811,8 @@ function my_ajax_handler() {
    $nationality = $_POST['nationality'];
    $nationality_array = explode(',', $nationality); 
 
+  
+
    $scholarship_type = $_POST['scholarship_type'];
    $type_array = explode(',', $scholarship_type); 
 
@@ -1916,47 +1918,18 @@ $institute_ids = $loop_institute->get_posts();
     }
     }
 
+   
     if(isset($subject_array[0]) && $subject_array[0]){
-        if ($subject_array[0] != "All Subjects"){
-            $subject_query = 
-            array(
-                'relation' => 'OR',
-                array(
-                    'key'     => 'eligible_programs',
-                    'value'   => $subject_array[0],
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => 'eligible_programs',
-                    'value'   => "All Subjects",
-                    'compare' => 'LIKE',
-                ),
-            );                
-    } else {
-        $subject_query = array('type' => 'string' , 'key' => 'eligible_programs', 'value' => $subject_array[0], 'compare' => 'IN');
+    
+        $subject_query = array('type' => 'string' , 'key' => 'eligible_programs', 'value' => $subject_array[0], 'compare' => 'LIKE');
         }
-    }
+    
 
 
 if(isset($nationality_array[0]) && $nationality_array[0]){
-        if ($nationality_array[0] != "All Nationalities"){
-            $nationality_query = 
-            array(
-                'relation' => 'OR',
-                array(
-                    'key'     => 'eligible_nationality',
-                    'value'   => $nationality_array[0],
-                    'compare' => 'LIKE',
-                ),
-                array(
-                    'key'     => 'eligible_nationality',
-                    'value'   => "All Nationalities",
-                    'compare' => 'LIKE',
-                ),
-            );                
-    } else {
-        $nationality_query = array('type' => 'string' , 'key' => 'eligible_nationality', 'value' => $nationality_array[0], 'compare' => 'IN');
-        }
+      
+        $nationality_query = array('type' => 'string' , 'key' => 'eligible_nationality', 'value' => $nationality_array[0], 'compare' => 'LIKE');
+        
     }
 
     if(isset($degrees_array[0]) && $degrees_array[0]){
