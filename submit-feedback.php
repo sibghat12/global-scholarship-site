@@ -83,68 +83,83 @@ function add_new_columns() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'gs_scholarships_feedback';
 
-    $helpful_column = 'helpful';
-    $other_improvement_column = 'other_improvement';
-    
-
+    // Define column names
     $column_name_1 = 'incorrect_info_improvement';
     $column_name_2 = 'outdated_info_improvement';
     $column_name_3 = 'not_for_international_improvement';
-
-
-    $column_1_query = $wpdb->prepare("SELECT %s FROM $table_name", $column_name_1);
-    $column_1 = $wpdb->get_results($column_1_query);
-
-    $column_2_query = $wpdb->prepare("SELECT %s FROM $table_name", $column_name_2);
-    $column_2 = $wpdb->get_results($column_2_query);
-
-    $column_3_query = $wpdb->prepare("SELECT %s FROM $table_name", $column_name_3);
-    $column_3 = $wpdb->get_results($column_3_query);
-
-
-    if (empty($column_1)) {
-        $prepare_column_1 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_1 TEXT NOT NULL");
-        $wpdb->query($prepare_column_1);
-    }
-
-    if (empty($column_2)) {
-        $prepare_column_2 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_2 TEXT NOT NULL");
-        $wpdb->query($prepare_column_2);
-    }
-
-    if (empty($column_3)) {
-        $prepare_column_3 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_3 TEXT NOT NULL");
-        $wpdb->query($prepare_column_3);
-    }
-
-
-    $wpdb->query("ALTER TABLE $table_name DROP $helpful_column");
-    $wpdb->query("ALTER TABLE $table_name DROP $other_improvement_column");
-
     $column_name_4 = 'not_easy_to_read_improvement';
     $column_name_5 = 'details_missing_improvement';
     $column_name_6 = 'not_clear_procedures_improvement';
     $column_name_7 = 'suggestion_improvement';
-    
-    if (empty($column_4)) {
-        $prepare_column_4 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_4 TEXT NOT NULL");
-        $wpdb->query($prepare_column_4);
+
+    // Check if column 1 exists
+    $column_1_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_1'");
+    if ($column_1_exists !== $column_name_1) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_1 TEXT NOT NULL");
     }
 
-    if (empty($column_5)) {
-        $prepare_column_5 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_5 TEXT NOT NULL");
-        $wpdb->query($prepare_column_5);
+    // Check if column 2 exists
+    $column_2_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_2'");
+    if ($column_2_exists !== $column_name_2) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_2 TEXT NOT NULL");
     }
 
-    if (empty($column_6)) {
-        $prepare_column_6 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_6 TEXT NOT NULL");
-        $wpdb->query($prepare_column_6);
+    // Check if column 3 exists
+    $column_3_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_3'");
+    if ($column_3_exists !== $column_name_3) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_3 TEXT NOT NULL");
     }
 
-    if (empty($column_7)) {
-        $prepare_column_7 = $wpdb->prepare("ALTER TABLE $table_name ADD COLUMN $column_name_7 TEXT NOT NULL");
-        $wpdb->query($prepare_column_7);
+    // Check if column 4 exists
+    $column_4_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_4'");
+    if ($column_4_exists !== $column_name_4) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_4 TEXT NOT NULL");
+    }
+
+    // Check if column 5 exists
+    $column_5_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_5'");
+    if ($column_5_exists !== $column_name_5) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_5 TEXT NOT NULL");
+    }
+
+    // Check if column 6 exists
+    $column_6_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_6'");
+    if ($column_6_exists !== $column_name_6) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_6 TEXT NOT NULL");
+    }
+
+    // Check if column 7 exists
+    $column_7_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE '$column_name_7'");
+    if ($column_7_exists !== $column_name_7) {
+        $wpdb->query("ALTER TABLE $table_name ADD COLUMN $column_name_7 TEXT NOT NULL");
     }
 }
 
 add_action('init', 'add_new_columns', 1);
+
+function drop_columns_if_exist() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'gs_scholarships_feedback';
+
+    // Check if the table exists
+    $table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'");
+    if ($table_exists) {
+        // Define columns to drop
+        $columns_to_drop = array(
+            'helpful',
+            'other_improvement',
+        );
+
+        // Get the existing columns from the table
+        $existing_columns = $wpdb->get_col("DESCRIBE $table_name", 0);
+
+        // Loop through the columns to drop
+        foreach ($columns_to_drop as $column) {
+            if (in_array($column, $existing_columns)) {
+                $wpdb->query("ALTER TABLE $table_name DROP COLUMN $column");
+            }
+        }
+    }
+}
+
+add_action('admin_init', 'drop_columns_if_exist');
