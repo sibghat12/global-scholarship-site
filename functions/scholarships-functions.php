@@ -2049,9 +2049,9 @@ new_array = Array.from(new Set(new_array));
 
    //First we add a class to the closet ul
 
-   const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
+   //const exclude_regions_checkbox = document.getElementById('acf-field_64ca21f1da211-Africa');
   
-   //const exclude_regions_checkbox = document.getElementById('acf-field_64cb9496f11d3-Africa');
+   const exclude_regions_checkbox = document.getElementById('acf-field_64cb9496f11d3-Africa');
         const exclude_regons_ul = exclude_regions_checkbox.closest('ul');
         // add a custom class to the ul element
         exclude_regons_ul.classList.add('exclude_regions_class');
@@ -2422,10 +2422,10 @@ function custom_rankmath_title($title) {
         $scholarship_type_array = ['full-funding', 'full-tuition', 'partial-funding'];
         $scholarship_details = acf_get_fields('group_62ca6e3cc910c');
 
-$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+       $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
        // Get fields by name.
-$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
-$contry_array = $published_countries['choices'];
+       $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+       $contry_array = $published_countries['choices'];
 
 $nationalites_array = array_column($scholarship_details, null, 'name')['eligible_nationality'];
 $nationalites_array = $nationalites_array['choices'];
@@ -2504,7 +2504,7 @@ if ($nationality) {
 } 
       
 
-      
+
         
 
  
@@ -2746,8 +2746,11 @@ if ($location_value) {
 if ($subject_value) {
     $text .= " for " . $subject_value;
 }
-
-$text .= " for International Students ";
+if($nationality_value){
+$text .= " for ". $nationality_value . " Students";
+}else {
+   $text .= " for International Students "; 
+}
 
 // Add pagination details if present
 if ($page) {
@@ -2775,31 +2778,33 @@ add_filter('rank_math/frontend/title', 'custom_rankmath_title');
 
 function generate_scholarship_text($current_url) {
     
-    // remove the trailing slash if it exists
+        // remove the trailing slash if it exists
         $current_url = rtrim($current_url, '/');
         $url_parts = explode('/', $current_url);
         // we use array_slice to get rid of the first three parts
         $url_parts = array_slice($url_parts, 2);
-        
-        if(empty($url_parts)){
-           $empty_url = true;
-        }else 
-        {
-            $empty_url = false;
-        }
-
-
 
         $degree_label_array = ['masters', 'bachelors', 'phd'];
         $currently_open_label_array = ['open', 'one-month', 'two-month', 'three-month', 'four-month', 'five-month', 'six-month', 'twelve-month'];
         $scholarship_type_array = ['full-funding', 'full-tuition', 'partial-funding'];
         $scholarship_details = acf_get_fields('group_62ca6e3cc910c');
 
-        $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+       $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
        // Get fields by name.
-        $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
-        $contry_array = $published_countries['choices'];
-        
+       $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+       $contry_array = $published_countries['choices'];
+
+$nationalites_array = array_column($scholarship_details, null, 'name')['eligible_nationality'];
+$nationalites_array = $nationalites_array['choices'];
+
+  foreach ($nationalites_array as $key => $national_value) {
+            $national_value = strtolower($national_value);
+            $national_value = str_replace(' ', '-', $national_value);
+            $nationalites_array[$key] = $national_value;
+        }
+
+
+
         $location_array = array();
         foreach ($contry_array as $value) {
             $location_array[$value] = $value;
@@ -2810,6 +2815,15 @@ function generate_scholarship_text($current_url) {
             $location_value = str_replace(' ', '-', $location_value);
             $location_array[$key] = $location_value;
         }
+         
+        
+
+      
+        
+
+
+
+
         $location_value = '';
         $location_matches_array = array_intersect($location_array, $url_parts);
         if (!empty($location_matches_array)) {
@@ -2828,7 +2842,39 @@ function generate_scholarship_text($current_url) {
             $subject_value = str_replace(' ', '-', $subject_value);
             $subject_array[$key] = $subject_value;
         }
+       
+         
+// Initialize the variable to false
+$nationality = false;
 
+// Loop through the array
+foreach ($url_parts as &$part) {
+    if (strpos($part, 'nationality-') === 0) {
+        $nationality = true; // Set the variable to true if "nationality-" is found
+        $part = str_replace('nationality-', '', $part); // Remove the "nationality-" prefix
+    }
+}
+unset($part);  // Unset the reference to prevent unintended side-effects
+$nationality_value = "";
+
+
+if ($nationality) {
+   $nationality_matches_array = array_intersect($nationalites_array, $url_parts);
+        if (!empty($nationality_matches_array)) {
+            $nationality_value = reset($nationality_matches_array);
+        } else {
+            $nationality_value = '';
+        }
+
+        $nationality_value = str_replace('-', ' ', $nationality_value);
+        $nationality_value = ucwords(strtolower($nationality_value));
+} 
+      
+
+
+        
+
+ 
         $subject_matches_array = array_intersect($subject_array, $url_parts);
         if (!empty($subject_matches_array)) {
             $subject_value = reset($subject_matches_array);
@@ -2909,12 +2955,17 @@ function generate_scholarship_text($current_url) {
             $next_due_date = date('Y-m-d H:i:s',  strtotime("+364 days"));
         }
 
-        
-
-      if(isset($subject_value) && $subject_value){
+        if(isset($subject_value) && $subject_value){
     
         $subject_query = array('type' => 'string' , 'key' => 'eligible_programs', 'value' => $subject_value, 'compare' => 'LIKE');
         }
+
+
+        if(isset($nationality_value) && $nationality_value){
+    
+        $nationality_query = array('type' => 'string' , 'key' => 'eligible_nationality', 
+            'value' => $nationality_value, 'compare' => 'LIKE');
+        }  
 
         if (isset($degree_value) && $degree_value) {
             $degree_query = array('key' => 'eligible_degrees',  'value' => $degree_value,  'compare' => 'LIKE');
@@ -2987,6 +3038,10 @@ function generate_scholarship_text($current_url) {
             $meta_query[] = $type_query;
         }
 
+          if ($nationality_query) {
+            $meta_query[] = $nationality_query;
+        }
+
         if ($application_query) {
             $meta_query[] = $application_query;
         }
@@ -3005,6 +3060,7 @@ function generate_scholarship_text($current_url) {
       
         );
 
+        
         if ($meta_query) {
             $ad_args['meta_query'] = $meta_query;
         }
@@ -3070,7 +3126,13 @@ if ($subject_value) {
     $text .= " for " . $subject_value;
 }
 
-$text .= " for International Students.";
+
+if($nationality_value){
+$text .= " for " . $nationality_value . " Students.";  
+}else {
+  $text .= " for International Students.";  
+}
+
 
 // Add pagination details if present
 if ($page) {
