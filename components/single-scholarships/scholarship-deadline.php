@@ -72,7 +72,7 @@
                     if ($application_all_year == "Yes"){
                         $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline</a>: Accepts Application All Year" ;
                     } else if ($application_all_year == "No"){
-                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline " . $$admission_deadline['label'] . "</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline " . $admission_deadline['label'] . "</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
                     }
                     
                     ?>
@@ -93,7 +93,7 @@
             ?>
         <?php else: ?>
 
-            <p>The great news is that there is no specific deadline to apply for <?php echo $scholarship_title; ?>! While there is no fixed deadline, you are encouraged to submit your application as early as possible. We recommend visiting the <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?> Admissions Section</a> Section for additional dates and requirements.</p>
+            <p>The great news is that there is no specific deadline to apply for <?php echo $scholarship_title; ?>! While there is no fixed deadline, you are encouraged to submit your application as early as possible. We recommend visiting the <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?> Admissions Section</a> for additional dates and requirements.</p>
             <?php
             
             endif;

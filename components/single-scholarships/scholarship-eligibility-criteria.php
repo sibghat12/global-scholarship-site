@@ -61,5 +61,5 @@
             </div>
         </div>
 
-        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> admissions pages</a> and the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> Scholarship pages</a> for more information!</p>
+        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> admissions pages</a> and the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> pages</a> for more information!</p>
 </section>
