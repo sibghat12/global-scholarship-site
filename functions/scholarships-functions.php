@@ -4002,6 +4002,8 @@ function gs_update_deadlines() {
     $institution_posts_count = wp_count_posts($postType);
     $institution_posts_count_published = $institution_posts_count->publish;
 
+    $institutionDegree = stripslashes_from_strings_only($institutionDegree);
+
     $args = array(
         'post_type' => $postType,
         'posts_per_page' => $batchSize,
@@ -4026,7 +4028,7 @@ function gs_update_deadlines() {
 
             if ($admission_deadlines) {
                 foreach ($admission_deadlines as $index => $admission_row) {
-                    if ( $admission_row['open_date'] === $openingDate && $admission_row['deadline'] === $deadlineDate && $country == $institutionCountry ) {
+                    if ( $admission_row['open_date'] === $openingDate && $admission_row['deadline'] === $deadlineDate && $country == $institutionCountry && $admission_row['degree'] == $institutionDegree ) {
                         $admission_deadlines[$index]['open_date'] = $newOpeningDate;
                         $admission_deadlines[$index]['deadline'] = $newDeadlineDate;
                     }
@@ -4049,7 +4051,6 @@ function gs_update_deadlines() {
         'totalUpdated' => $totalUpdated,
         'totalPosts' => $totalPosts,
         'institutionConditions' => $theInstitutionConditions,
-        'degreeSelected' => $institutionDegree,
     );
 
     wp_send_json($response);

@@ -57,9 +57,8 @@ jQuery(document).ready(function($) {
     //     return match.toUpperCase();
     // });
     
-    institutionDegree = institutionDegree.replace(/\b\w/g, function (match) {
-      return match.toLowerCase();
-  })
+    const theInstitutionDegree = institutionDegree.charAt(0).toUpperCase() + institutionDegree.slice(1);
+
 
     // New Dates
     let formattedNewOpeningDate = newOpeningDate && newOpeningDate.toLocaleDateString('en-US', options);
@@ -70,7 +69,7 @@ jQuery(document).ready(function($) {
     console.log("formattedOpeningDate",formattedOpeningDate)
     console.log("formattedDeadlineDate",formattedDeadlineDate)
     console.log("institutionCountry",institutionCountry)
-    console.log("institutionDegree",institutionDegree)
+    console.log("institutionDegree",theInstitutionDegree)
     console.log("formattedNewOpeningDate",formattedNewOpeningDate)
     console.log("formattedNewDeadlineDate",formattedNewDeadlineDate)
 
@@ -88,8 +87,8 @@ jQuery(document).ready(function($) {
         ...institutionCountry && {
           institutionCountry: institutionCountry 
         },
-        ...institutionDegree && {
-          institutionDegree: institutionDegree 
+        ...theInstitutionDegree && {
+          institutionDegree: theInstitutionDegree 
         },
         ...formattedNewOpeningDate && {
           newOpeningDate: formattedNewOpeningDate 
