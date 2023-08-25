@@ -4049,6 +4049,7 @@ function gs_update_deadlines() {
         'totalUpdated' => $totalUpdated,
         'totalPosts' => $totalPosts,
         'institutionConditions' => $theInstitutionConditions,
+        'degreeSelected' => $institutionDegree,
     );
 
     wp_send_json($response);
