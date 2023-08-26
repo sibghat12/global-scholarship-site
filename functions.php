@@ -3087,18 +3087,18 @@ function add_scholarship_admin_page()
 }
 add_action('admin_menu', 'add_scholarship_admin_page');
 
-function add_institutions_admin_page()
-{
-    add_submenu_page(
-        'edit.php?post_type=institution', // parent slug
-        'Instituitions Update Deadlines',             // page title
-        'Instituitions Update Deadlines',             // menu title
-        'scholarship_access',                   // capability
-        'instituitions-update-deadlines-meta',             // menu slug
-        'render_institutions_update_deadlines_meta_page'  // callback function
-    );
-}
-add_action('admin_menu', 'add_institutions_admin_page');
+// function add_institutions_admin_page()
+// {
+//     add_submenu_page(
+//         'edit.php?post_type=institution', // parent slug
+//         'Instituitions Update Deadlines',             // page title
+//         'Instituitions Update Deadlines',             // menu title
+//         'scholarship_access',                   // capability
+//         'instituitions-update-deadlines-meta',             // menu slug
+//         'render_institutions_update_deadlines_meta_page'  // callback function
+//     );
+// }
+// add_action('admin_menu', 'add_institutions_admin_page');
 
 function render_scholarship_settings_page()
 {
@@ -3129,21 +3129,28 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
 
     }
 
-    if ($hook_suffix == 'institution_page_instituitions-update-deadlines-meta') {
+    // if ($hook_suffix == 'institution_page_instituitions-update-deadlines-meta') {
         
-        // wp_enqueue_script('feedback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
 
-        // wp_enqueue_style('feedback_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
-        // wp_enqueue_style( 'feedback_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
-        // wp_enqueue_script( 'feedback_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+    //     wp_enqueue_script('gs_institutions_update',  get_stylesheet_directory_uri() . '/assets/institutions-deadlines.js', array('jquery'),
+    //     '1.0.45',
+    //     false );
     
-        // wp_enqueue_script('feedback_table_js', get_stylesheet_directory_uri(). '/assets/feedback-table.js',  array('jquery', 'feedback_datatables-js'), '1.0.0', true);
+        
+    //     wp_localize_script( 'gs_institutions_update', 'my_ajax_object',
+    //       array( 
+    //         'ajax_url' => admin_url( 'admin-ajax.php' ),
+    //       )
+    //     );
+    
 
-        // wp_enqueue_style( 'datatables-custom-style', get_stylesheet_directory_uri() . '/datatables.css', ['feedback_datatables-css'] );
+    // }
+
+    if ($hook_suffix == 'institution_page_acf-options-update-institutions-deadlines') {
+        
         wp_enqueue_script('gs_institutions_update',  get_stylesheet_directory_uri() . '/assets/institutions-deadlines.js', array('jquery'),
         '1.0.45',
         false );
-    
         
         wp_localize_script( 'gs_institutions_update', 'my_ajax_object',
           array( 

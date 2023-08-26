@@ -13,88 +13,99 @@ jQuery(document).ready(function($) {
   
   function updateInstitutionsDeadlines(offset, batchSize, postType) {
     // Define the options for date formatting
-    const options = { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
+    // const options = { 
+    //   year: 'numeric', 
+    //   month: 'long', 
+    //   day: 'numeric' 
+    // };
 
-    // Dates
-    const instOpeningDate =  $('#institution-opening-date').val();
-    const instDeadlineDate = $('#institution-deadline-date').val()
-    const instNewOpeningDate =  $('#institution-updated-opening-date').val()
-    const instNewDeadlineDate =  $('#institution-updated-deadline-date').val();
+    // // Dates
+    // const instOpeningDate =  $('#institution-opening-date').val();
+    // const instDeadlineDate = $('#institution-deadline-date').val()
+    // const instNewOpeningDate =  $('#institution-updated-opening-date').val()
+    // const instNewDeadlineDate =  $('#institution-updated-deadline-date').val();
     
-    let openingDate, deadlineDate, newOpeningDate, newDeadlineDate;
-    if(instOpeningDate) {
-      openingDate = new Date(instOpeningDate);
-    }
-    if(instDeadlineDate) {
-      deadlineDate = new Date(instDeadlineDate);
-    }
-    if(instNewOpeningDate) {
-      newOpeningDate = new Date(instNewOpeningDate);
-    }
-    if(instNewDeadlineDate) {
-      newDeadlineDate = new Date(instNewDeadlineDate);
-    }
+    // ACF Dates
+    const instACFOpeningDate =  $('#institution-opening-date').find('.hasDatepicker').val();
+    const instACFDeadlineDate = $('#institution-deadline-date').find('.hasDatepicker').val();
+    const instACFNewOpeningDate =  $('#institution-updated-opening-date').find('.hasDatepicker').val();
+    const instACFNewDeadlineDate =  $('#institution-updated-deadline-date').find('.hasDatepicker').val();
+    const institutionACFCountry = $('#institution-country').find('select').val();
+    const institutionACFDegree = $('#institution-degree').find('select').val();
+
+    console.log("instACFOpeningDate", instACFOpeningDate)
+    console.log("instACFDeadlineDate", instACFDeadlineDate)
+    console.log("instACFNewOpeningDate", instACFNewOpeningDate)
+    console.log("instACFNewDeadlineDate", instACFNewDeadlineDate)
+    console.log("institutionACFCountry", institutionACFCountry)
+    console.log("institutionACFDegree", institutionACFDegree)
     
-    // Conditions
-    let formattedOpeningDate = openingDate && openingDate.toLocaleDateString('en-US', options);
-    let formattedDeadlineDate = deadlineDate && deadlineDate.toLocaleDateString('en-US', options);
-    let institutionCountry = $('#institution-country').val();
-    let institutionDegree = $('#institution-degree').val();
-    // Remove dashes and replace with spaces
-    institutionCountry = institutionCountry.replace(/-/g, ' ');
-    institutionDegree = institutionDegree.replace(/-/g, ' ');
+    // let openingDate, deadlineDate, newOpeningDate, newDeadlineDate;
+    // if(instOpeningDate) {
+    //   openingDate = new Date(instOpeningDate);
+    // }
+    // if(instDeadlineDate) {
+    //   deadlineDate = new Date(instDeadlineDate);
+    // }
+    // if(instNewOpeningDate) {
+    //   newOpeningDate = new Date(instNewOpeningDate);
+    // }
+    // if(instNewDeadlineDate) {
+    //   newDeadlineDate = new Date(instNewDeadlineDate);
+    // }
+    
+    // // Conditions
+    // let formattedOpeningDate = openingDate && openingDate.toLocaleDateString('en-US', options);
+    // let formattedDeadlineDate = deadlineDate && deadlineDate.toLocaleDateString('en-US', options);
+    // let institutionCountry = $('#institution-country').val();
+    // let institutionDegree = $('#institution-degree').val();
+    // // Remove dashes and replace with spaces
+    // institutionCountry = institutionCountry.replace(/-/g, ' ');
+    // institutionDegree = institutionDegree.replace(/-/g, ' ');
 
-    // Capitalize first letter of each word
-    institutionCountry = institutionCountry.replace(/\b\w/g, function (match) {
-        return match.toUpperCase();
-    });
-
-    // institutionDegree = institutionDegree.replace(/\b\w/g, function (match) {
+    // // Capitalize first letter of each word
+    // institutionCountry = institutionCountry.replace(/\b\w/g, function (match) {
     //     return match.toUpperCase();
     // });
+
+    // const theInstitutionDegree = institutionDegree.charAt(0).toUpperCase() + institutionDegree.slice(1);
+
+
+    // // New Dates
+    // let formattedNewOpeningDate = newOpeningDate && newOpeningDate.toLocaleDateString('en-US', options);
+    // let formattedNewDeadlineDate = newDeadlineDate && newDeadlineDate.toLocaleDateString('en-US', options);
     
-    const theInstitutionDegree = institutionDegree.charAt(0).toUpperCase() + institutionDegree.slice(1);
 
 
-    // New Dates
-    let formattedNewOpeningDate = newOpeningDate && newOpeningDate.toLocaleDateString('en-US', options);
-    let formattedNewDeadlineDate = newDeadlineDate && newDeadlineDate.toLocaleDateString('en-US', options);
-    
-
-
-    console.log("formattedOpeningDate",formattedOpeningDate)
-    console.log("formattedDeadlineDate",formattedDeadlineDate)
-    console.log("institutionCountry",institutionCountry)
-    console.log("institutionDegree",theInstitutionDegree)
-    console.log("formattedNewOpeningDate",formattedNewOpeningDate)
-    console.log("formattedNewDeadlineDate",formattedNewDeadlineDate)
+    // console.log("formattedOpeningDate",formattedOpeningDate)
+    // console.log("formattedDeadlineDate",formattedDeadlineDate)
+    // console.log("institutionCountry",institutionCountry)
+    // console.log("institutionDegree",theInstitutionDegree)
+    // console.log("formattedNewOpeningDate",formattedNewOpeningDate)
+    // console.log("formattedNewDeadlineDate",formattedNewDeadlineDate)
 
     const data = {
         action: 'update_deadlines', // Change the action name here
         offset: offset,
         batchSize: batchSize,
         postType: postType,
-        ...formattedOpeningDate && {
-          openingDate: formattedOpeningDate 
+        ...instACFOpeningDate && {
+          openingDate: instACFOpeningDate 
         },
-        ...formattedDeadlineDate && {
-          deadlineDate: formattedDeadlineDate 
+        ...instACFDeadlineDate && {
+          deadlineDate: instACFDeadlineDate 
         },
-        ...institutionCountry && {
-          institutionCountry: institutionCountry 
+        ...institutionACFCountry && {
+          institutionCountry: institutionACFCountry 
         },
-        ...theInstitutionDegree && {
-          institutionDegree: theInstitutionDegree 
+        ...institutionACFDegree && {
+          institutionDegree: institutionACFDegree 
         },
-        ...formattedNewOpeningDate && {
-          newOpeningDate: formattedNewOpeningDate 
+        ...instACFNewOpeningDate && {
+          newOpeningDate: instACFNewOpeningDate 
         },
-        ...formattedNewDeadlineDate && {
-          newDeadlineDate: formattedNewDeadlineDate 
+        ...instACFNewDeadlineDate && {
+          newDeadlineDate: instACFNewDeadlineDate 
         },
     } 
 
