@@ -3060,7 +3060,7 @@ if ($nationality) {
       
         );
 
-
+        
         if ($meta_query) {
             $ad_args['meta_query'] = $meta_query;
         }
@@ -3903,4 +3903,129 @@ function get_all_scholarships() {
 }
 
 
+if( function_exists('acf_add_options_page') ) {
+    
+    acf_add_options_sub_page(array(
+        'page_title'     => 'Update Institutions Deadlines',
+        'menu_title'    => 'Update Institutions Deadlines',
+        'parent_slug'    => 'edit.php?post_type=institution',
+    ));
 
+}
+/**
+ * 
+ * Update Deadlines for Institutions based on Conditions Looping through all posts and change deadlines that matches the conditions 
+ * 
+ */
+function gs_update_deadlines() {
+    $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+    $batchSize = isset($_POST['batchSize']) ? intval($_POST['batchSize']) : 20;
+    $postType = isset($_POST['postType']) ? sanitize_text_field($_POST['postType']) : 'institution';
+    $postStatus = isset($_POST['postStatus']) ? sanitize_text_field($_POST['postStatus']) : array('publish', 'draft');
+    $openingDate = isset($_POST['openingDate']) ? sanitize_text_field($_POST['openingDate']) : '';
+    $deadlineDate = isset($_POST['deadlineDate']) ? sanitize_text_field($_POST['deadlineDate']) : '';
+    $institutionCountry = isset($_POST['institutionCountry']) ? sanitize_text_field($_POST['institutionCountry']) : '';
+    $institutionDegree = isset($_POST['institutionDegree']) ? sanitize_text_field($_POST['institutionDegree']) : '';
+    $newOpeningDate = isset($_POST['newOpeningDate']) ? sanitize_text_field($_POST['newOpeningDate']) : '';
+    $newDeadlineDate = isset($_POST['newDeadlineDate']) ? sanitize_text_field($_POST['newDeadlineDate']) : '';
+
+    if(!empty($postStatus) && is_string($postStatus)) {
+        $postStatus = array($postStatus);
+    }
+    $institution_posts_count = get_all_posts_count([$postType], $postStatus);
+    // $institution_posts_count_published = $institution_posts_count->publish;
+
+    $institutionDegree = stripslashes_from_strings_only($institutionDegree);
+
+    $args = array(
+        'post_type' => $postType,
+        'posts_per_page' => $batchSize,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+        'post_status' => $postStatus,
+        'offset' => $offset
+    );
+
+    $query = new WP_Query($args);
+    $deadlinesPosts = $query->get_posts();
+    $theInstitutionConditions = array();
+    if (isset($deadlinesPosts) && !empty($deadlinesPosts)) {
+        foreach ($deadlinesPosts as $institution_id) {
+            // Get admissions Repeater for Institution
+            $admission_deadlines = get_field('admission_deadlines', $institution_id);
+            $city_id = get_field('cities', $institution_id);
+            $country = get_field('country', $city_id);
+
+            if ($admission_deadlines) {
+                foreach ($admission_deadlines as $index => $admission_row) {
+                    $shouldUpdate = true;
+
+                    // Check if the conditions are provided
+                    if (!empty($openingDate) && $admission_row['open_date'] !== $openingDate) {
+                        $shouldUpdate = false;
+                    }
+
+                    if (!empty($deadlineDate) && $admission_row['deadline'] !== $deadlineDate) {
+                        $shouldUpdate = false;
+                    }
+
+                    if (!empty($institutionCountry) && $country !== $institutionCountry) {
+                        $shouldUpdate = false;
+                    }
+
+                    if (!empty($institutionDegree) && $admission_row['degree'] !== $institutionDegree) {
+                        $shouldUpdate = false;
+                    }
+
+                    // Update the opening date if the conditions are met
+                    if ($shouldUpdate) {
+                        if (!empty($newOpeningDate)) {
+                            $admission_deadlines[$index]['open_date'] = $newOpeningDate;
+                        }
+
+                        if (!empty($newDeadlineDate)) {
+                            $admission_deadlines[$index]['deadline'] = $newDeadlineDate;
+                        }
+                    }
+                }
+
+                // Update the admission deadlines repeater field
+                update_field('admission_deadlines', $admission_deadlines, $institution_id);
+            }
+
+            $theInstitutionConditions[$institution_id]['open_date'] = wp_list_pluck($admission_deadlines, 'open_date');
+            $theInstitutionConditions[$institution_id]['deadline'] = wp_list_pluck($admission_deadlines, 'deadline');
+            $theInstitutionConditions[$institution_id]['degree'] = wp_list_pluck($admission_deadlines, 'degree');
+            $theInstitutionConditions[$institution_id]['country'] = $country;
+        }
+    }
+
+    $totalUpdated = $offset + count($deadlinesPosts);
+    $totalPosts = intval($institution_posts_count);
+
+    $response = array(
+        'totalUpdated' => $totalUpdated,
+        'totalPosts' => $totalPosts,
+        'institutionConditions' => $theInstitutionConditions,
+    );
+
+    wp_send_json($response);
+}
+add_action('wp_ajax_nopriv_update_deadlines', 'gs_update_deadlines');
+add_action('wp_ajax_update_deadlines', 'gs_update_deadlines');
+
+
+function get_all_posts_count(array $postType, array $postStatus) {
+    $args = array(
+      'post_status' => $postStatus,
+      'post_type' => $postType,
+    );
+  
+    $query = new WP_Query($args);
+    $count = $query->found_posts;
+  
+    return $count;
+}
