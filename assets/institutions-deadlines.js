@@ -1,6 +1,8 @@
 jQuery(document).ready(function($) {
   
-  console.log("DEADLINES INSTITUTIONS")
+  const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
+  const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
+  acfSettings.after('<div class="process-data"></div>');
   $('#gs_update_deadlines').on('click', function() {
     
     var offset = 0;
@@ -12,20 +14,15 @@ jQuery(document).ready(function($) {
   });
   
   function updateInstitutionsDeadlines(offset, batchSize, postType) {
-    // Define the options for date formatting
-    // const options = { 
-    //   year: 'numeric', 
-    //   month: 'long', 
-    //   day: 'numeric' 
-    // };
+    $('.process-data').css('display','block');
+    $('.process-data').css('opacity','1');
 
-    // // Dates
-    // const instOpeningDate =  $('#institution-opening-date').val();
-    // const instDeadlineDate = $('#institution-deadline-date').val()
-    // const instNewOpeningDate =  $('#institution-updated-opening-date').val()
-    // const instNewDeadlineDate =  $('#institution-updated-deadline-date').val();
+    if($('.process-data').hasClass('done')) {
+      $('.process-data').removeClass('done');
+    }
     
     // ACF Dates
+    const institutionACFStatus = $('#institution-status').find('select').val();
     const instACFOpeningDate =  $('#institution-opening-date').find('.hasDatepicker').val();
     const instACFDeadlineDate = $('#institution-deadline-date').find('.hasDatepicker').val();
     const instACFNewOpeningDate =  $('#institution-updated-opening-date').find('.hasDatepicker').val();
@@ -33,62 +30,16 @@ jQuery(document).ready(function($) {
     const institutionACFCountry = $('#institution-country').find('select').val();
     const institutionACFDegree = $('#institution-degree').find('select').val();
 
-    console.log("instACFOpeningDate", instACFOpeningDate)
-    console.log("instACFDeadlineDate", instACFDeadlineDate)
-    console.log("instACFNewOpeningDate", instACFNewOpeningDate)
-    console.log("instACFNewDeadlineDate", instACFNewDeadlineDate)
-    console.log("institutionACFCountry", institutionACFCountry)
-    console.log("institutionACFDegree", institutionACFDegree)
-    
-    // let openingDate, deadlineDate, newOpeningDate, newDeadlineDate;
-    // if(instOpeningDate) {
-    //   openingDate = new Date(instOpeningDate);
-    // }
-    // if(instDeadlineDate) {
-    //   deadlineDate = new Date(instDeadlineDate);
-    // }
-    // if(instNewOpeningDate) {
-    //   newOpeningDate = new Date(instNewOpeningDate);
-    // }
-    // if(instNewDeadlineDate) {
-    //   newDeadlineDate = new Date(instNewDeadlineDate);
-    // }
-    
-    // // Conditions
-    // let formattedOpeningDate = openingDate && openingDate.toLocaleDateString('en-US', options);
-    // let formattedDeadlineDate = deadlineDate && deadlineDate.toLocaleDateString('en-US', options);
-    // let institutionCountry = $('#institution-country').val();
-    // let institutionDegree = $('#institution-degree').val();
-    // // Remove dashes and replace with spaces
-    // institutionCountry = institutionCountry.replace(/-/g, ' ');
-    // institutionDegree = institutionDegree.replace(/-/g, ' ');
 
-    // // Capitalize first letter of each word
-    // institutionCountry = institutionCountry.replace(/\b\w/g, function (match) {
-    //     return match.toUpperCase();
-    // });
-
-    // const theInstitutionDegree = institutionDegree.charAt(0).toUpperCase() + institutionDegree.slice(1);
-
-
-    // // New Dates
-    // let formattedNewOpeningDate = newOpeningDate && newOpeningDate.toLocaleDateString('en-US', options);
-    // let formattedNewDeadlineDate = newDeadlineDate && newDeadlineDate.toLocaleDateString('en-US', options);
-    
-
-
-    // console.log("formattedOpeningDate",formattedOpeningDate)
-    // console.log("formattedDeadlineDate",formattedDeadlineDate)
-    // console.log("institutionCountry",institutionCountry)
-    // console.log("institutionDegree",theInstitutionDegree)
-    // console.log("formattedNewOpeningDate",formattedNewOpeningDate)
-    // console.log("formattedNewDeadlineDate",formattedNewDeadlineDate)
 
     const data = {
         action: 'update_deadlines', // Change the action name here
         offset: offset,
         batchSize: batchSize,
         postType: postType,
+        ... institutionACFStatus && {
+          postStatus: institutionACFStatus,
+        },
         ...instACFOpeningDate && {
           openingDate: instACFOpeningDate 
         },
@@ -114,16 +65,55 @@ jQuery(document).ready(function($) {
       type: 'POST',
       data,
       success: function(response) {
+        // $('.process-data').css('display','block');
+
+        acfSettings.find('.process-data');
+        $('.process-data').text(`Number of Posts looped ${response.totalUpdated} from ${response.totalPosts} Posts.`);
+        $('.process-data').css('font-family', 'Roboto');
+        $('.process-data').css('background', '#6ea2c750');
+        $('.process-data').css('color', '#000');
+        $('.process-data').css('border', '2px solid #000000');
+        $('.process-data').css('padding', '30px');
+        $('.process-data').css('font-size', '1.2rem');
         
-        console.log(response);
-        
+
         if (response.totalUpdated < response.totalPosts) {
           offset = response.totalUpdated;
           updateInstitutionsDeadlines(offset, batchSize, postType);
+        } else {
+          $('.process-data').addClass('done');
+          $('.process-data.done').css('background', '#6ea2c7');
+          $('.process-data').css('color', '#fff');
+          $('.process-data.done').text(`Posts that met the conditions have been updated (Total Posts Looped: ${response.totalPosts}).`);
+          fadeInElementjQuery($('.process-data.done'), 15000);
         }
         
       }
     });
-    
+  }
+
+  function fadeInElementjQuery(element, timems) {
+    // fade in message and container
+    element.css("opacity", 0);
+    element.css("display", "block");
+    var intervalId = setInterval(function() {
+      var opacity = parseFloat(element.css("opacity"));
+      if (opacity < 1) {
+        element.css("opacity", opacity + 0.1);
+      } else {
+        clearInterval(intervalId);
+        setTimeout(function() {
+          var intervalId2 = setInterval(function() {
+            var opacity = parseFloat(element.css("opacity"));
+            if (opacity > 0) {
+              element.css("opacity", opacity - 0.1);
+            } else {
+              clearInterval(intervalId2);
+              element.css("display", "none");
+            }
+          }, 50);
+        }, timems);
+      }
+    }, 50);
   }
 })

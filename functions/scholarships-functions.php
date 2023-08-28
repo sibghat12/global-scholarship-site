@@ -3921,6 +3921,7 @@ function gs_update_deadlines() {
     $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
     $batchSize = isset($_POST['batchSize']) ? intval($_POST['batchSize']) : 20;
     $postType = isset($_POST['postType']) ? sanitize_text_field($_POST['postType']) : 'institution';
+    $postStatus = isset($_POST['postStatus']) ? sanitize_text_field($_POST['postStatus']) : array('publish', 'draft');
     $openingDate = isset($_POST['openingDate']) ? sanitize_text_field($_POST['openingDate']) : '';
     $deadlineDate = isset($_POST['deadlineDate']) ? sanitize_text_field($_POST['deadlineDate']) : '';
     $institutionCountry = isset($_POST['institutionCountry']) ? sanitize_text_field($_POST['institutionCountry']) : '';
@@ -3928,8 +3929,11 @@ function gs_update_deadlines() {
     $newOpeningDate = isset($_POST['newOpeningDate']) ? sanitize_text_field($_POST['newOpeningDate']) : '';
     $newDeadlineDate = isset($_POST['newDeadlineDate']) ? sanitize_text_field($_POST['newDeadlineDate']) : '';
 
-    $institution_posts_count = wp_count_posts($postType);
-    $institution_posts_count_published = $institution_posts_count->publish;
+    if(!empty($postStatus) && is_string($postStatus)) {
+        $postStatus = array($postStatus);
+    }
+    $institution_posts_count = get_all_posts_count([$postType], $postStatus);
+    // $institution_posts_count_published = $institution_posts_count->publish;
 
     $institutionDegree = stripslashes_from_strings_only($institutionDegree);
 
@@ -3941,7 +3945,7 @@ function gs_update_deadlines() {
         'update_post_term_cache' => false,
         'cache_results' => false,
         'fields' => 'ids',
-        'post_status' => 'publish',
+        'post_status' => $postStatus,
         'offset' => $offset
     );
 
@@ -4000,7 +4004,7 @@ function gs_update_deadlines() {
     }
 
     $totalUpdated = $offset + count($deadlinesPosts);
-    $totalPosts = intval($institution_posts_count_published);
+    $totalPosts = intval($institution_posts_count);
 
     $response = array(
         'totalUpdated' => $totalUpdated,
@@ -4012,3 +4016,16 @@ function gs_update_deadlines() {
 }
 add_action('wp_ajax_nopriv_update_deadlines', 'gs_update_deadlines');
 add_action('wp_ajax_update_deadlines', 'gs_update_deadlines');
+
+
+function get_all_posts_count(array $postType, array $postStatus) {
+    $args = array(
+      'post_status' => $postStatus,
+      'post_type' => $postType,
+    );
+  
+    $query = new WP_Query($args);
+    $count = $query->found_posts;
+  
+    return $count;
+}
