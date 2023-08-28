@@ -14,7 +14,13 @@ jQuery(document).ready(function($) {
   });
   
   function updateInstitutionsDeadlines(offset, batchSize, postType) {
+    $('.process-data').css('display','block');
+    $('.process-data').css('opacity','1');
 
+    if($('.process-data').hasClass('done')) {
+      $('.process-data').removeClass('done');
+    }
+    
     // ACF Dates
     const instACFOpeningDate =  $('#institution-opening-date').find('.hasDatepicker').val();
     const instACFDeadlineDate = $('#institution-deadline-date').find('.hasDatepicker').val();
@@ -55,9 +61,10 @@ jQuery(document).ready(function($) {
       type: 'POST',
       data,
       success: function(response) {
+        // $('.process-data').css('display','block');
 
         acfSettings.find('.process-data');
-        $('.process-data').text(`${response.totalUpdated} from ${response.totalPosts}`);
+        $('.process-data').text(`Number of Posts looped ${response.totalUpdated} from ${response.totalPosts} Posts.`);
         $('.process-data').css('font-family', 'Roboto');
         $('.process-data').css('background', '#6ea2c750');
         $('.process-data').css('color', '#000');
@@ -73,7 +80,7 @@ jQuery(document).ready(function($) {
           $('.process-data').addClass('done');
           $('.process-data.done').css('background', '#6ea2c7');
           $('.process-data').css('color', '#fff');
-          $('.process-data.done').text(`All ${response.totalPosts} Posts that met the conditions have been updated`);
+          $('.process-data.done').text(`Posts that met the conditions have been updated (Total Posts Looped: ${response.totalPosts}).`);
           fadeInElementjQuery($('.process-data.done'), 15000);
         }
         
