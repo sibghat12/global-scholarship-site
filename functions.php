@@ -1808,7 +1808,7 @@ function my_ajax_handler() {
    $nationality = $_POST['nationality'];
    $nationality_array = explode(',', $nationality); 
 
-   $scholarship_type = $_POST['scholarshi.p_type'];
+   $scholarship_type = $_POST['scholarship_type'];
    $type_array = explode(',', $scholarship_type); 
 
    $applications = $_POST['applications'];
@@ -3524,3 +3524,62 @@ function get_the_last_modified_user_name($id) {
 		return apply_filters( 'last_author_modified', $last_user ? $last_user->display_name : '' );
 	}
 }
+
+
+
+
+
+
+
+function cta_shortcode($atts) {
+    
+    // Get the ACF fields
+    $cta_details  = acf_get_fields('group_64ecee859ce7e');
+    $title_array = array_column($cta_details, null, 'name')['title'];
+    $default_title = $title_array["default_value"];
+
+    $description_array = array_column($cta_details, null, 'name')['description'];
+    $default_description = $description_array["default_value"];
+
+    $image_array = array_column($cta_details, null, 'name')['image_link'];
+    $default_image = $image_array["default_value"];
+
+    $link_array = array_column($cta_details, null, 'name')['link_url'];
+    $default_link = $link_array["default_value"];
+
+
+    https://env-globalscholarshipsa-sibi.kinsta.cloud/best-fashion-schools-germany/
+    
+    $args = shortcode_atts(array(
+        'title' => $default_title,  // Use the ACF default title
+        'desc' => $default_description, // Provide a default description
+        'img_url' => $default_image, // Provide a default image URL
+        'link_url' =>  $default_link, // Provide a default link URL for Apply now
+    ), $atts);
+
+    // Construct the output
+    $output = '<div class="container mt-5 cta-container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div class="row">
+          
+            <div class="col-md-4 col-sm-12 text-center ">
+                <img src="' . esc_url($args['img_url']) . '" alt="Description" class="img-fluid cta-image">
+                
+            </div>
+            
+          
+            <div class="col-md-8 col-sm-12">
+                <h2 style="font-size:30px;">' . esc_html($args['title']) . '</h2>
+                <p>' . esc_html($args['desc']) . '</p>
+                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:#0055F9 !important;">   Apply now   <i style="margin-top:3px;width:20px;margin-left:5px;color:#0055F9 !important;" class="fa fa-long-arrow-right"> </i> </a>
+            </div>
+        </div>
+    </div>';
+
+    return $output;
+}
+
+// Register the shortcode
+add_shortcode('cta_shortcode', 'cta_shortcode');
+
+
