@@ -22,6 +22,7 @@ jQuery(document).ready(function($) {
     }
     
     // ACF Dates
+    const institutionACFStatus = $('#institution-status').find('select').val();
     const instACFOpeningDate =  $('#institution-opening-date').find('.hasDatepicker').val();
     const instACFDeadlineDate = $('#institution-deadline-date').find('.hasDatepicker').val();
     const instACFNewOpeningDate =  $('#institution-updated-opening-date').find('.hasDatepicker').val();
@@ -36,6 +37,9 @@ jQuery(document).ready(function($) {
         offset: offset,
         batchSize: batchSize,
         postType: postType,
+        ... institutionACFStatus && {
+          postStatus: institutionACFStatus,
+        },
         ...instACFOpeningDate && {
           openingDate: instACFOpeningDate 
         },
