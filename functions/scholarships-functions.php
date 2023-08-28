@@ -3060,7 +3060,7 @@ if ($nationality) {
       
         );
 
-        
+
         if ($meta_query) {
             $ad_args['meta_query'] = $meta_query;
         }
@@ -3901,3 +3901,6 @@ function get_all_scholarships() {
 
     return $scholarships_array;
 }
+
+
+
