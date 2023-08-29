@@ -3597,3 +3597,119 @@ function cta_shortcode($atts) {
 add_shortcode('cta_shortcode', 'cta_shortcode');
 
 
+function courses_grid_shortcode() {
+    ob_start(); // Start output buffering
+   
+    $args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 3,
+      
+      
+        'order' => 'DESC',
+    );
+
+    $new_loop = new WP_Query($args);
+    ?>
+
+    <div class="container courses-grid">
+        <div class="row">
+        <?php 
+        if ($new_loop->have_posts()) : 
+            while ($new_loop->have_posts()) : $new_loop->the_post();
+                // You can access custom fields or meta data using get_post_meta()
+                $image_url = get_the_post_thumbnail_url();
+                $course_title = get_the_title();
+                $institute = get_post(get_post_meta(get_the_ID(), 'adsInstitution', true));
+
+
+                
+                $log_url = get_the_post_thumbnail_url($institute->ID);
+                $image_url = "https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/c7eb49b396dc06f16c576792f2086aa9.jpeg";
+
+
+               $logo_url = get_the_post_thumbnail_url($institute->ID);
+                // Replace these with your actual meta data or custom field keys
+                
+                //$logo_url = get_post_meta(get_the_ID(), 'logo_key', true); 
+                $flag_url = get_post_meta(get_the_ID(), 'flag_key', true);
+        ?>
+                <div class="col-md-4 course-item">
+                    <div  class="course-image">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
+                    </div>
+                    <div class="course-grid-dev">
+                    <div class="course-text">
+                        
+                        <div class="col-md-3 course-logo">
+                            <img  style="width:60px;height: 60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
+                        </div>
+                        
+                        <div class="col-md-7 course-title" style="padding-right:10px;padding-left:3px;font-size:16px;
+                        line-height:20px !important;
+                        font-weight: 700 !important;">
+                            <?php echo esc_html($course_title); ?>
+                        </div>
+
+                        <div class="col-md-2 course-flag">
+                            <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
+                        </div>
+                    </div>
+
+                  <div class="course-text" style="margin-top:20px !important;">
+                   
+                   <p style="font-weight:600;padding-left:15px;padding-right:15px;font-size:18px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
+
+
+                  </div>
+
+                  <div class="course-text" style="margin-top:20px;">
+                   
+                   <p style="text-align:center;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">Annual Tuition Fee* </p>
+
+
+                  </div>
+
+
+                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:5px;width:86% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;">
+
+                    <div style="border-right:1px solid #cdcdcd;width:100% !important;">  
+                    
+                    <p style="text-align: center;"> 
+                    <span style="font-weight: 700 !important;font-size:12px;text-align:center;">  Domestic  </span> </p> 
+
+                    </div>
+                   
+                   
+                   
+                    <div style="width:100% !important;">  
+                    
+                    <p style="text-align: center;"> 
+                    <span style="font-weight: 700 !important;font-size:12px;text-align:center;">  International  </span> </p> 
+
+                    </div>
+
+                  </div>
+
+
+
+                   </div>
+                   
+
+                    
+
+
+                </div>
+        <?php 
+            endwhile;
+        endif;
+        ?>
+        </div>
+    </div>
+
+    <?php
+    return ob_get_clean(); // Return buffered output
+}
+add_shortcode('courses_grid_shortcode', 'courses_grid_shortcode');
+
+
