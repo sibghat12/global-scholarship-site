@@ -5885,3 +5885,63 @@ border-radius: 10px;
 }
 
 }
+
+
+
+
+
+
+.courses-grid {
+    padding-top:40px !important;
+    margin-bottom: 40px !important;
+}
+
+.course-item {
+   margin-bottom:20px !important;
+}
+
+
+
+.course-grid-dev {
+padding-bottom:30px !important;
+    box-shadow: 10px 10px 10px 10px  rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius:13px !important;
+    border-bottom-right-radius: 13px !important
+}
+
+.course-image img{
+    border-top-left-radius:13px !important;
+    border-top-right-radius: 13px !important;
+    height: 160px !important;
+}
+
+ .course-text {
+    padding-left:15px !important;
+    padding-right:15px !important;
+    margin-top:20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;  /* To horizontally center content */
+    }
+
+    .course-logo, .course-title, .course-flag {
+        display: flex;
+        align-items: center;
+        justify-content: center;  /* This line will horizontally center content within each column */
+    }
+
+    /* Assuming you are using Bootstrap 3, which has no d-flex class. If using Bootstrap 4 or newer, you can remove this */
+    .d-flex {
+        display: flex;
+    }
+
+     .course-text .col-md-3 , .course-text .col-md-7   {
+       padding-left: 5px !important;
+     }
+
+
+    .course-grid  .course-title {
+        font-weight: 700 !important;
+        font-size:20px;
+        line-height: 25px;
+    } 
