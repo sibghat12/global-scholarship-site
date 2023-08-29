@@ -3165,9 +3165,7 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
     if ($hook_suffix == 'edit-comments.php') {
         
 
-        wp_enqueue_script('gs_comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'),
-        '1.0.0',
-        false );
+        wp_enqueue_style('gs_comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.css' );
 
     }
 
