@@ -3162,6 +3162,16 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
     }
 
 
+    if ($hook_suffix == 'edit-comments.php') {
+        
+
+        wp_enqueue_script('gs_comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'),
+        '1.0.0',
+        false );
+
+    }
+
+
 }
 add_action('admin_enqueue_scripts', 'enqueue_scholarship_admin_scripts');
 
