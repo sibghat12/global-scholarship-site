@@ -1,6 +1,5 @@
 jQuery(document).ready(function($) {
   
-    console.log("UPDATE SCHOLARSHIPS")
     $('#update-gs-scholarships').on('click', function() {
       
       var offset = 0;
