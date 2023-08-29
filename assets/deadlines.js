@@ -1,5 +1,3 @@
-console.log("DEAdLINES")
-
 jQuery(document).ready(function ($) {
     const tdClosed = $('td[data-status="closed"]');
     if (tdClosed) {
