@@ -186,7 +186,7 @@ function getFeebackForm() {
   });
 
   
-  jQuery('[name="submit"]').click(function(e) {
+  jQuery('.gs-feedback-form-buttons [name="submit"]').click(function(e) {
     e.preventDefault();
     // Check if the input radio is checked
     var improvementRadio = document.querySelector('input[name="improvement"]:checked');
