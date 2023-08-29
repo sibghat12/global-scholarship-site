@@ -1,7 +1,16 @@
 <?php
 
+// filter
+function institutions_where( $where ) {
+    
+    $where = str_replace("meta_key = 'admission_deadlines_$", "meta_key LIKE 'admission_deadlines_%", $where);
+
+    return $where;
+}
+
 include ('functions/scholarships-functions.php'); 
 
+add_filter('posts_where', 'institutions_where');
 
 function add_datatables_scripts() {
     $page_template_slug = get_page_template_slug();
@@ -3597,3 +3606,57 @@ function cta_shortcode($atts) {
 add_shortcode('cta_shortcode', 'cta_shortcode');
 
 
+/**
+ * Update Institutions Post Meta for Country and Continent using ACF cities and CPT city
+ * 
+ */
+function update_country_meta() {
+   // Get the current offset
+    $offset = 0;
+    $batchSize = 20;
+    $postType = 'institution';
+
+    $institution_posts_count = wp_count_posts($postType);
+    $institution_posts_count_published = $institution_posts_count->publish;
+
+    while ($offset <  intval($institution_posts_count_published)) {
+
+        $the_args = array(
+        'post_type' => $postType,
+        'posts_per_page' => $batchSize,
+        'offset' => $offset,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+        );
+
+        $the_query = new WP_Query($the_args);
+        $thePosts = $the_query->get_posts();
+
+        // If there are no more scholarships to process, break out of the loop
+        if ($the_query->have_posts() == false) {
+            break;
+        }
+
+        foreach($thePosts as $id) {
+
+            $getCities = get_field('cities', $id);
+            if(is_object($getCities)) {
+                $getCitiesIds = $getCities->ID;
+            }
+            $theCountryNamePost = get_field('country', $getCitiesIds);
+            $theContinentNamePost = get_field('continent', $getCitiesIds);
+            update_field('location_country', $theCountryNamePost, $id);
+            update_field('location_continent', $theContinentNamePost, $id);
+
+            
+        }
+
+        $offset += $batchSize;
+
+    }
+    
+  }
+  add_action('update_country_meta', 'update_country_meta');

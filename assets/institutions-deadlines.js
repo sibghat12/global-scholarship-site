@@ -3,6 +3,16 @@ jQuery(document).ready(function($) {
   const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
   const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
   acfSettings.after('<div class="process-data"></div>');
+  $('#gs_preview_institutions').on('click', function() {
+    
+    var offset = 0;
+    var batchSize = -1; // Change the batch size here
+    var postType = 'institution'; // Change the post type here
+    
+    getInstitutionsPreview(offset, batchSize, postType);
+    
+  });
+
   $('#gs_update_deadlines').on('click', function() {
     
     var offset = 0;
@@ -115,5 +125,55 @@ jQuery(document).ready(function($) {
         }, timems);
       }
     }, 50);
+  }
+
+  function getInstitutionsPreview(offset, batchSize, postType) {
+    console.log("Institutions Preview HERE")
+
+    const institutionACFStatus = $('#institution-status').find('select').val();
+    const instACFOpeningDate =  $('#institution-opening-date').find('.hasDatepicker').val();
+    const instACFDeadlineDate = $('#institution-deadline-date').find('.hasDatepicker').val();
+    const instACFNewOpeningDate =  $('#institution-updated-opening-date').find('.hasDatepicker').val();
+    const instACFNewDeadlineDate =  $('#institution-updated-deadline-date').find('.hasDatepicker').val();
+    const institutionACFCountry = $('#institution-country').find('select').val();
+    const institutionACFDegree = $('#institution-degree').find('select').val();
+
+    const data = {
+      action: 'institutions_preview', // Change the action name here
+      offset: offset,
+      batchSize: batchSize,
+      postType: postType,
+      ... institutionACFStatus && {
+        postStatus: institutionACFStatus,
+      },
+      ...instACFOpeningDate && {
+        openingDate: instACFOpeningDate 
+      },
+      ...instACFDeadlineDate && {
+        deadlineDate: instACFDeadlineDate 
+      },
+      ...institutionACFCountry && {
+        institutionCountry: institutionACFCountry 
+      },
+      ...institutionACFDegree && {
+        institutionDegree: institutionACFDegree 
+      },
+      ...instACFNewOpeningDate && {
+        newOpeningDate: instACFNewOpeningDate 
+      },
+      ...instACFNewDeadlineDate && {
+        newDeadlineDate: instACFNewDeadlineDate 
+      },
+    }
+
+    $.ajax({
+      url: my_ajax_object.ajax_url,
+      type: 'POST',
+      data,
+      success: function(response) {
+        console.log("response Preview", response)
+      }
+    });
+
   }
 })
