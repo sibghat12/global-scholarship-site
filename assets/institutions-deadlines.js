@@ -218,13 +218,13 @@ jQuery(document).ready(function($) {
                   
           // Hide the loader
 
-          let html = '<ul>'; // Start the unordered list
+          let html = `<h2>List of Institutions (${response?.institutionsData?.length}) that will be updated according the criteria selected in (Institution Deadlines Conditions)</h2><ol>`; // Start the  list
         
           $.each(response?.institutionsData, function(indexInArray, institution) {
             html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
           });
         
-          html += '</ul>'; // End the unordered list
+          html += '</ol>'; // End the  list
 
         
           $('.preview-data').html(html);
