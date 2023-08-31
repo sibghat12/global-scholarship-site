@@ -4107,8 +4107,32 @@ function get_gs_institutions_preview() {
     $preview_query = new WP_Query($args);
     
     $preview_posts = $preview_query->get_posts();
+
+    $institutionData = []; 
+
+
+
+    if(isset($preview_posts) && !empty($preview_posts) && is_array($preview_posts)) {
+        foreach ($preview_posts as $key => $id) {
+            $institution = array(); // Create a new empty array for each institution
+
+            $institution['id'] = $id; // Get the institution title
+            $institution['permalink'] = get_permalink($id); // Get the institution permalink
+            $institution['title'] = get_the_title($id); // Get the institution title
+            
+            if (!empty($id)) {
+                $institution['country'] = get_field('location_country', $id); // Get the institution country
+            } else {
+                $institution['country'] = '';
+            }
+
+            $institutionData[] = $institution; // Add the institution array to the $institutionData array
+        }
+    }
+
     $response = array(
-        'institutionsPreview' => $preview_posts
+        'institutionsPreview' => $preview_posts,
+        'institutionsData' =>  $institutionData,
     );
 
     wp_send_json($response, 200);
