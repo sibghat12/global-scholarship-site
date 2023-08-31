@@ -1,8 +1,12 @@
 jQuery(document).ready(function($) {
-  
+
+  let previewShowing = false;
+
   const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
   const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
   acfSettings.after('<div class="process-data"></div>');
+  acfSettings.after('<div class="preview-data"></div>');
+ 
   $('#gs_preview_institutions').on('click', function() {
     
     var offset = 0;
@@ -128,7 +132,39 @@ jQuery(document).ready(function($) {
   }
 
   function getInstitutionsPreview(offset, batchSize, postType) {
-    console.log("Institutions Preview HERE")
+
+    const loaderHtml = '<div class="loader"></div>';
+
+    
+    $('.preview-data').css('font-family', 'Roboto');
+    $('.preview-data').css('background', '#6ea2c750');
+    $('.preview-data').css('color', '#000');
+    $('.preview-data').css('border', '2px solid #000000');
+    $('.preview-data').css('padding', '30px');
+    $('.preview-data').css('font-size', '1.2rem');
+
+
+    $('.preview-data').html(loaderHtml);
+
+    const theLoader = $('.preview-data').find('.loader');
+
+    theLoader.css( 'display', 'block');
+    theLoader.css( 'margin', '20px auto');
+    theLoader.css( 'border', '4px solid #f3f3f3');
+    theLoader.css( 'borderRadius', '50px');
+    theLoader.css( 'borderTop', '4px solid #3498db');
+    theLoader.css( 'width', '30px');
+    theLoader.css( 'height', '30px');
+    theLoader.css( 'animation', 'spin 2s linear infinite');
+
+    if(previewShowing) {
+      $('.preview-data').css('display','block');
+      $('.preview-data').css('opacity','1');
+  
+      if($('.preview-data').hasClass('done')) {
+        $('.preview-data').removeClass('done');
+      }
+    }
 
     const institutionACFStatus = $('#institution-status').find('select').val();
     const instACFOpeningDate =  $('#institution-opening-date').find('.hasDatepicker').val();
@@ -171,7 +207,32 @@ jQuery(document).ready(function($) {
       type: 'POST',
       data,
       success: function(response) {
+        const previewElement = acfSettings.find('.preview-data');
         console.log("response Preview", response)
+
+        console.log("previewElement", previewElement)
+
+
+        if (response?.institutionsData) {
+          previewShowing = true;
+                  
+          // Hide the loader
+
+          let html = '<ul>'; // Start the unordered list
+        
+          $.each(response?.institutionsData, function(indexInArray, institution) {
+            html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
+          });
+        
+          html += '</ul>'; // End the unordered list
+
+        
+          $('.preview-data').html(html);
+        } else {
+          previewShowing = false;
+          $('.loader').css('display', 'none');
+          $('.preview-data').html('');
+        }
       }
     });
 
