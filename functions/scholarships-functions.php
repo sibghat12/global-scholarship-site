@@ -1656,6 +1656,8 @@ function get_open_dates($degree, $institute_id, $scholarship_id) {
 
 
 
+//save_scholarships_open_date_post_meta();
+
 
 function check_opening_soon($institute_id) {
    

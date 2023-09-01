@@ -3208,18 +3208,50 @@ jQuery(document).ready(function() {
 
     jQuery(".first-div").mouseenter(function() {
         var secondDiv = jQuery(this).next('.second-div');
-        jQuery(this).fadeOut('slow', function() {
-            secondDiv.fadeIn('slow');
+        jQuery(this).fadeOut('500', function() {
+            secondDiv.fadeIn('500');
         });
     });
 
     jQuery(".second-div").mouseleave(function() {
         var firstDiv = jQuery(this).prev('.first-div');
-        jQuery(this).fadeOut('slow', function() {
-            firstDiv.fadeIn('slow');
+        jQuery(this).fadeOut('500', function() {
+            firstDiv.fadeIn('500');
         });
     });
 });
+
+
+
+jQuery(document).ready(function() {
+    jQuery(".read-more").click(function(event) {
+        event.preventDefault();
+        
+        // Hide the "short" paragraph containing the clicked "read-more" span
+        jQuery(this).parent('#short').hide().siblings('#full').show();
+       
+        // Show the "full"
+       // jQuery('#full').show();
+    });
+});
+
+
+jQuery(document).ready(function() {
+    jQuery(".read-less").click(function(event) {
+        event.preventDefault();
+        
+        // Hide the "short" paragraph containing the clicked "read-more" span
+        jQuery(this).parent('#full').hide().siblings('#short').show();
+       
+        // Show the "full"
+       // jQuery('#full').show();
+    });
+});
+
+   
+
+
+
 
 
 
@@ -3629,20 +3661,25 @@ add_shortcode('cta_shortcode', 'cta_shortcode');
 function courses_grid_shortcode() {
     ob_start(); // Start output buffering
    
-    $args = array(
-        'post_type' => 'ads',
-        'post_status' => 'publish',
-        'posts_per_page' => 3,
-      
-      
-        'order' => 'DESC',
-    );
+   $args = array(
+    'post_type'      => 'ads',
+    'post_status'    => 'publish',
+    'posts_per_page' => 3,
+    'order'          => 'DESC',
+    'meta_query'     => array(
+        array(
+            'key'     => 'related_course',
+            'value'   => 'Yes',
+            'compare' => '='
+        )
+    )
+);
 
     $new_loop = new WP_Query($args);
     ?>
 
-    <div class="container courses-grid"  style="">
-        <div class="row" style="padding-left:20px !important;padding-right:20px;">
+    <div class="container courses-grid"  >
+        <div class="row" style="padding-left:20px !important;">
         <?php 
         if ($new_loop->have_posts()) : 
             while ($new_loop->have_posts()) : $new_loop->the_post();
@@ -3650,7 +3687,8 @@ function courses_grid_shortcode() {
                 $ad_id = get_the_ID();
 
                 // You can access custom fields or meta data using get_post_meta()
-                $image_url = get_the_post_thumbnail_url();
+                $image_url = get_the_post_thumbnail_url($ad_id);
+
                 $course_title = get_the_title();
                 $institute = get_post(get_post_meta(get_the_ID(), 'adsInstitution', true));
 
@@ -3664,22 +3702,17 @@ $country = get_post_meta($institute->ID, 'adsIntCountry', true);
 
 $currency = get_currency($country);
 
-$language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
+     $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
 $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
 
- $des = get_post_meta($ad_id, 'description', true);
-
- $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
-
-
-$link_post_meta = get_post_meta($ad_id, 'link', true);
-if (!empty($link_post_meta)){
-  
-    $link = $link_post_meta;
-} else {
-  
-    $link = get_post_meta($institute->ID, 'adsIntLink', true);
-}
+             $des = get_post_meta($ad_id, 'description', true);
+             $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
+             $link_post_meta = get_post_meta($ad_id, 'link', true);
+             if (!empty($link_post_meta)){
+             $link = $link_post_meta;
+             } else {
+             $link = get_post_meta($institute->ID, 'adsIntLink', true);
+             }
 
                     $language_of_instruction = "";
                     if($language_of_instructions_ads){
@@ -3690,13 +3723,18 @@ if (!empty($link_post_meta)){
                       $language_of_instruction = "English";
                     }
                    
-                    
-
                 
                 $log_url = get_the_post_thumbnail_url($institute->ID);
-                $image_url = "https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/c7eb49b396dc06f16c576792f2086aa9.jpeg";
+              
+
+              if($image_url) {
+    // Do something if $image_url is set
+} else {
+    $image_url = "https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/c7eb49b396dc06f16c576792f2086aa9.jpeg";
+}
 
 
+              
                 $logo_url = get_the_post_thumbnail_url($institute->ID);
                 // Replace these with your actual meta data or custom field keys
                 
@@ -3706,29 +3744,27 @@ if (!empty($link_post_meta)){
                ?>
 
 
-                <div class="col-md-4 course-item" style="width:31%;margin-right:2%;">
+                <div class="col-md-4 course-item " style="width:31%;margin-right:2%;">
                     <div  class="course-image">
                         <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
                     </div>
                     <div class="course-grid-dev first-div">
-                    <div class="course-text" style="min-height: 90px;margin-top:0px;">
+                    <div class="course-text heading-section " style="min-height: 90px;margin-top:0px;">
                         
                         <div class="col-md-3 course-logo">
                             <img  style="width:60px;height: 60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
                         </div>
                         
-                        <div class="col-md-7 course-title" style="padding-right:10px;padding-left:3px;font-size:16px;
+                        <div class="col-md-9 course-title" style="padding-right:10px;padding-left:3px;font-size:16px;
                         line-height:20px !important;
                         font-weight: 700 !important;">
                             <?php echo esc_html($course_title); ?>
                         </div>
 
-                        <div class="col-md-2 course-flag">
-                            <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
-                        </div>
+                        
                     </div>
 
-                  <div class="course-text" style="margin-top:0px !important;">
+                  <div class="course-text heading-section" style="margin-top:0px !important;">
                    
                    <p style="height:60px;font-weight:600;padding-left:15px;padding-right:15px;font-size:18px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
 
@@ -3833,14 +3869,22 @@ if (!empty($link_post_meta)){
 
                   <div class="course-text" style="margin-top:-10px !important;">
                    
-                   <p style="text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
+                   <p id="short" style="text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
                       
                       <?php  if (strlen($des) > 110) {
-    $des = substr($des, 0, 110);
+    $des = substr($des, 0, 100);
     $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
 }
 
 echo $des;
+                             ?>
+                     </p>
+
+                     <p id="full" style="display:none;text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
+                      
+                       <?php 
+                              $des = get_post_meta($ad_id, 'description', true);
+                              echo $des . '...  <span class="read-less" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read Less </span>';
                              ?>
                      </p>
 

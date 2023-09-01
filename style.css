@@ -5892,8 +5892,8 @@ border-radius: 10px;
 /* Related Courses For Gs  */ 
 
 .courses-grid {
-    padding-left:10px !important;
-    padding-right:10px !important;
+    padding-left:20px !important;
+   
     padding-top:40px !important;
     margin-bottom: 40px !important;
 }
@@ -5984,3 +5984,55 @@ padding-bottom:40px !important;
         margin-top:-5px;
     }
 
+
+
+@media (max-width: 1300px) {
+.courses-grid .course-item , .courses-grid .col-md-4   {
+    width:48% !important;
+    margin-top:20px !important;
+    margin-right:2%!important;
+    float:left !important;
+}
+
+.courses-grid {
+    width:100% !important;
+   }
+
+   .course-flag {
+    display: none !important;
+   }
+    .course-text.heading-section{
+    justify-content: flex-start !important;
+   }
+
+}
+
+@media (max-width: 700px) {
+
+.courses-grid .course-item {
+   width:auto !important;
+   float:left !important}
+
+   .courses-grid {
+    width:100% !important;
+   }
+   
+   .course-flag {
+    display: none !important;
+   }
+   
+   .course-text.heading-section{
+    justify-content: flex-start !important;
+   }
+
+}
+
+
+.course-flag{
+    display: none !important;
+}
+
+.course-text{
+justify-content: flex-start; 
+
+}
