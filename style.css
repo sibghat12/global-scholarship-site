@@ -5885,3 +5885,102 @@ border-radius: 10px;
 }
 
 }
+
+
+
+
+/* Related Courses For Gs  */ 
+
+.courses-grid {
+    padding-left:10px !important;
+    padding-right:10px !important;
+    padding-top:40px !important;
+    margin-bottom: 40px !important;
+}
+.courses-grid .col-md-4{
+    padding-left:0px !important;
+    padding-right:0px !important;
+}
+.course-item {
+  
+   padding-right:20px !important;
+   border-radius: 15px !important;
+     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1),
+      -2px -3px 5px rgba(0, 0, 0, 0.1),
+      -1px 2px 5px rgba(0, 0, 0, 0.1), 
+      2px -3px 5px rgba(0, 0, 0, 0.1)
+       !important;
+
+   margin-bottom:20px !important;
+
+}
+
+.course-grid-dev {
+padding-bottom:40px !important;
+  
+}
+
+.course-image img{
+    border-top-left-radius:13px !important;
+    border-top-right-radius: 13px !important;
+    height: 180px !important;
+}
+
+ .course-text {
+    padding-left:15px !important;
+    padding-right:15px !important;
+    margin-top:20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;  
+    }
+
+    .course-logo, .course-title, .course-flag {
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+    } .course-title {
+        margin-top:-5px !important;
+    }
+
+    .col-md-7 {
+        padding-right:0px;
+    }
+
+    /* Assuming you are using Bootstrap 3, which has no d-flex class. If using Bootstrap 4 or newer, you can remove this */
+    .d-flex {
+        display: flex;
+    }
+
+     .course-text .col-md-3 , .course-text .col-md-7   {
+       padding-left: 5px !important;
+     }
+
+
+    .course-grid  .course-title {
+        font-weight: 700 !important;
+        font-size:20px;
+        line-height: 25px;
+    } 
+
+    .course-item {
+    position: relative;
+
+}
+
+.course-item:not(:nth-child(3n)) { 
+    margin-right: 20px; 
+}
+
+.course-item .col-md-9{
+    padding-left:0px !important;
+}
+
+ .second-div .course-title {
+        display: block !important;
+       text-align: left !important;
+        justify-content: left; 
+        padding-left:10px !important;
+        margin-top:-5px;
+    }
+
