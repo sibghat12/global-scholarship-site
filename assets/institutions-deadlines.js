@@ -1,6 +1,7 @@
 jQuery(document).ready(function($) {
 
   let previewShowing = false;
+  var allInstitutionsUpdated = [];
 
   const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
   const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
@@ -80,6 +81,20 @@ jQuery(document).ready(function($) {
       data,
       success: function(response) {
         // $('.process-data').css('display','block');
+
+
+      // Get the institutionsUpdated array
+      var institutionsUpdated = response?.institutionsUpdated;
+
+      // If the institutionsUpdated array is not empty
+      if (institutionsUpdated) {
+        // Add the institutionsUpdated array to the allInstitutionsUpdated array
+        allInstitutionsUpdated = allInstitutionsUpdated.concat(institutionsUpdated);
+      }
+
+
+      console.log("institutionsUpdated", institutionsUpdated)
+      console.log("allInstitutionsUpdated", allInstitutionsUpdated)
 
         acfSettings.find('.process-data');
         $('.process-data').text(`Number of Posts looped ${response.totalUpdated} from ${response.totalPosts} Posts.`);

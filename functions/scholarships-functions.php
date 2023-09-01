@@ -3953,7 +3953,11 @@ function gs_update_deadlines() {
     $query = new WP_Query($args);
     $deadlinesPosts = $query->get_posts();
     $theInstitutionConditions = array();
+    $institutionUpdatedData = array();
+
     if (isset($deadlinesPosts) && !empty($deadlinesPosts)) {
+        $institutionsUpdated = array();
+
         foreach ($deadlinesPosts as $institution_id) {
             // Get admissions Repeater for Institution
             $admission_deadlines = get_field('admission_deadlines', $institution_id);
@@ -3992,9 +3996,34 @@ function gs_update_deadlines() {
                         }
                     }
                 }
+                
+                // Get the original value of the custom field
+                $oldAdmissionDeadlines = get_field('admission_deadlines', $institution_id, true);
 
                 // Update the admission deadlines repeater field
                 update_field('admission_deadlines', $admission_deadlines, $institution_id);
+
+                
+                // Compare the original value to the new value
+                if ($oldAdmissionDeadlines !== $admission_deadlines) {
+                    // The custom field has been changed
+                    $institutionsUpdated = array(); // Create a new empty array for each institution
+                    $institutionsUpdated[] = $institution_id;
+
+
+                    $institutionsUpdated['id'] = $institution_id; // Get the institution title
+                    $institutionsUpdated['permalink'] = get_permalink($institution_id); // Get the institution permalink
+                    $institutionsUpdated['title'] = get_the_title($institution_id); // Get the institution title
+                    
+                    if (!empty($institution_id)) {
+                        $institutionsUpdated['country'] = get_field('location_country', $institution_id); // Get the institution country
+                    } else {
+                        $institutionsUpdated['country'] = '';
+                    }
+        
+                    $institutionUpdatedData[] = $institutionsUpdated; // Add the institution array to the $institutionData array
+                }
+
             }
 
             $theInstitutionConditions[$institution_id]['open_date'] = wp_list_pluck($admission_deadlines, 'open_date');
@@ -4011,6 +4040,7 @@ function gs_update_deadlines() {
         'totalUpdated' => $totalUpdated,
         'totalPosts' => $totalPosts,
         'institutionConditions' => $theInstitutionConditions,
+        'institutionsUpdated' => $institutionUpdatedData,
     );
 
     wp_send_json($response);
