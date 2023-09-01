@@ -91,10 +91,65 @@ jQuery(document).ready(function($) {
         // Add the institutionsUpdated array to the allInstitutionsUpdated array
         allInstitutionsUpdated = allInstitutionsUpdated.concat(institutionsUpdated);
       }
+      const today = new Date();
 
+      const day = today.getDate();
+      const month = today.getMonth() + 1; // January is 0, so we need to add 1
+      const year = today.getFullYear();
+      
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      
+      const formattedDate = `${day} ${monthNames[month - 1]}, ${year}`;
+    
+      $('.preview-data').css('font-family', 'Roboto');
+      $('.preview-data').css('background', '#6ea2c750');
+      $('.preview-data').css('color', '#000');
+      $('.preview-data').css('border', '2px solid #000000');
+      $('.preview-data').css('padding', '30px');
+      $('.preview-data').css('font-size', '1.2rem');
+  
+      let html = `<h2>List of Institutions (${allInstitutionsUpdated?.length}) that have been updated.</h2>
+      
+      <div class="gs-dates-update">
+      <div class="gs-opening-dates-to-update">
+      Past Dates:
+      <ul class="gs-update-deadlines-dates">
+        <li>Opening Date: ${instACFOpeningDate}</li>
+        <li>Deadline Date: ${instACFDeadlineDate}</li>
+      </ul>
+      </div>
+      <div class="gs-opening-dates-to-update">
+      New Dates:
+      <ul class="gs-updated-deadlines-dates">
+        <li>Opening Date: ${instACFNewOpeningDate}</li>
+        <li>Deadline Date: ${instACFNewDeadlineDate}</li>
+      </ul>
+      </div>
+      <div>On ${formattedDate}</div>
+      </div>
+      <hr/>
+      <ol>`; // Start the  list
+    
+      $.each(allInstitutionsUpdated, function(indexInArray, institution) {
+        html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
+      });
+      html += '</ol>'; // End the  list
 
-      console.log("institutionsUpdated", institutionsUpdated)
-      console.log("allInstitutionsUpdated", allInstitutionsUpdated)
+    
+      $('.preview-data').html(html);
 
         acfSettings.find('.process-data');
         $('.process-data').text(`Number of Posts looped ${response.totalUpdated} from ${response.totalPosts} Posts.`);
