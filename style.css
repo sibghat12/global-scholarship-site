@@ -333,11 +333,6 @@ div#fusion-slider-308 {
     padding: 10px 36px;
 }
 
-.fusion-page-title-bar .fusion-page-title-row h1 {
-    font-size: 56px;
-    line-height: 1.3;
-}
-
 .post-template-default .fusion-page-title-bar {
     height: 130px !important;
 }
@@ -3988,99 +3983,99 @@ input[type="submit"] {
   }
 
   .related-posts h3 {
-	margin:auto !important;
+    margin:auto !important;
 }
 
 .related-posts .fusion-date {
-	display: none
+    display: none
 }
 .single article .post-content a {
-	font-weight: bold;
-	text-decoration: underline;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .single .fusion-content-tb a {
-	font-weight: bold;
-	text-decoration: underline;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .single article .post-content aside a {
-	text-decoration: none;
+    text-decoration: none;
 } 
 
 .single .fusion-content-tb aside a {
-	text-decoration: none;
+    text-decoration: none;
 
 }
 
 
 #main {
-	max-width: 1400px;
-	margin: auto !important;
+    max-width: 1400px;
+    margin: auto !important;
 }
 
 .home #main {
-	max-width: 1800px;
-	margin: auto !important;
+    max-width: 1800px;
+    margin: auto !important;
 }
 
 #content {
-	width: 100% !important;
+    width: 100% !important;
 }
 
 .post-content {
-	max-width: 1050px;
-		margin: auto;
+    max-width: 1050px;
+        margin: auto;
 }
 
 .home .post-content {
-	max-width: 1400px;
-	margin: auto;
+    max-width: 1400px;
+    margin: auto;
 }
 
 .page-id-31429 .courses-filter-search, .search .courses-filter-search, .page-id-48159 .courses-filter-search, .home .courses-filter-search, .category .courses-filter-search, .page-id-54138 .courses-filter-search, .page-id-57041 .courses-filter-search, .page-id-57040 .courses-filter-search, .page-id-32055 .courses-filter-search, .single-ads .courses-filter-search, .page-id-57664 .courses-filter-search, .category .courses-filter-search, .page-id-68222 .courses-filter-search, .page-id-70259 .courses-filter-search {
-	display:none;
+    display:none;
 }
 
 
 .single-institution h4 {
-	font-size:1.3em !important;
+    font-size:1.3em !important;
 }
 
 
 
 .course-buttons {
-	padding: 15px 25px;
-	display:block;
-	background-color: white;
-	color:black;
-	font-size: 1.15rem;
-	border-color:black;
-	border:2px solid;
-	font-weight:700;
-	margin-left:auto;
-	margin-right:auto;
+    padding: 15px 25px;
+    display:block;
+    background-color: white;
+    color:black;
+    font-size: 1.15rem;
+    border-color:black;
+    border:2px solid;
+    font-weight:700;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .course-aside a{
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .course-buttons:hover{
-	background-color:#f0f0f0;
-	color:black;
+    background-color:#f0f0f0;
+    color:black;
 }
 
 #desktopSticky .custom-search {
-	z-index:1000;
-	position:fixed;
-	bottom:0;
-	right:0;
-	left:0;
+    z-index:1000;
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
 }
 
 #desktopSticky .custom-search .filter-btn button {
-	padding: 12px 50px;
+    padding: 12px 50px;
 }
 
 
@@ -4088,126 +4083,126 @@ input[type="submit"] {
 
 /*Tablet + Desktop*/
 @media only screen and (min-width: 481px){
-	.home .fusion-slider-308  .fusion-title h2 	{
-		font-size: 3.5rem !important;
-	}
-	
-	.home .fusion-slider-308  {
-		max-height:350px !important;
-	}
-	
-	.course-nav {
-		display:none;
-	}
-	
-	#main .card-wide .custom-ad-heading {
-		font-size:1.4rem;
-	}
-	
-	.ad-read-more {
-		display: none;
-	}
+    .home .fusion-slider-308  .fusion-title h2  {
+        font-size: 3.5rem !important;
+    }
+    
+    .home .fusion-slider-308  {
+        max-height:350px !important;
+    }
+    
+    .course-nav {
+        display:none;
+    }
+    
+    #main .card-wide .custom-ad-heading {
+        font-size:1.4rem;
+    }
+    
+    .ad-read-more {
+        display: none;
+    }
 }
 
 /*Tablet + Mobile */
 
 @media screen and (max-width: 1000px) {
-		/*Mobile Don't display Desktop Sticky*/
+        /*Mobile Don't display Desktop Sticky*/
 
-		#desktopSticky .custom-search{ display: none;
-		}
-	
+        #desktopSticky .custom-search{ display: none;
+        }
+    
 }
 
 /*Mobile*/
 @media only screen and (max-width: 480px){
-	
-	/*Removes white sidebar in mobile. White sidebar creates some space between title and search for courses*/
-	
-	#main .white-sidebar {
-		display:none;
-	}
-	
-	.single-institution .fusion-page-title-bar {
-		padding-left:15px !important;
-		padding-right:15px !important;
-		padding-top:5px !important;
-		line-height:1.5;
-	}
-	
-		.single-institution .fusion-page-title-bar h1 {	
-	font-size:1.7rem !important;}
-	
-	/*Mobile Sticky*/
+    
+    /*Removes white sidebar in mobile. White sidebar creates some space between title and search for courses*/
+    
+    #main .white-sidebar {
+        display:none;
+    }
+    
+    .single-institution .fusion-page-title-bar {
+        padding-left:15px !important;
+        padding-right:15px !important;
+        padding-top:5px !important;
+        line-height:1.5;
+    }
+    
+        .single-institution .fusion-page-title-bar h1 { 
+    font-size:1.7rem !important;}
+    
+    /*Mobile Sticky*/
 .course-nav {
-		z-index:1000;
-	position:fixed;
-	bottom:0;
-	width: 100%;
+        z-index:1000;
+    position:fixed;
+    bottom:0;
+    width: 100%;
 }
-	
-	.course-nav .course-filter .filter-wrapper{
-			display:flex;
-			padding-top:10px;
-			padding-bottom:10px;
-			padding-right:10px;
-			padding-left:10px;			
-	}
-	
-	.course-nav .course-filter .filter-title {
-		width: 45%;
-		font-size:13px;
-	}
-	
-	.course-nav .course-filter .filter-box {
-		min-width: 0px;
-		width:55%;
-		margin-right:10px;
-	}
-	
-		.course-nav .course-filter .filter-box select {
-		font-size: 13px;
-		padding: 0px 5px;
-		height:30px;
-	}
-	
-	.course-nav .course-filter .filter-btn button {
-		padding:7px 22px !important;
-		font-size:12px !important;
-		margin-bottom:4px !important;
-		
-	}	
-	
-	.course-nav .course-filter .filter-boxes-wrap {
-		display:flex;
-	}	
-	
-		.home .fusion-slider-308 .fusion-title h2 	{
-		font-size: 1.8rem !important;
-	}
-	
-			.home .fusion-slider-308 .fusion-title h3 	{
-		font-size: 1.2rem !important;
-	}
-	
-	.home .fusion-slider-308 {
-		margin-bottom: 20px !important;
-	}
-	
-	#main .card-wide .custom-ad-heading {
-	font-size: 1.1rem;
-	}
+    
+    .course-nav .course-filter .filter-wrapper{
+            display:flex;
+            padding-top:10px;
+            padding-bottom:10px;
+            padding-right:10px;
+            padding-left:10px;          
+    }
+    
+    .course-nav .course-filter .filter-title {
+        width: 45%;
+        font-size:13px;
+    }
+    
+    .course-nav .course-filter .filter-box {
+        min-width: 0px;
+        width:55%;
+        margin-right:10px;
+    }
+    
+        .course-nav .course-filter .filter-box select {
+        font-size: 13px;
+        padding: 0px 5px;
+        height:30px;
+    }
+    
+    .course-nav .course-filter .filter-btn button {
+        padding:7px 22px !important;
+        font-size:12px !important;
+        margin-bottom:4px !important;
+        
+    }   
+    
+    .course-nav .course-filter .filter-boxes-wrap {
+        display:flex;
+    }   
+    
+        .home .fusion-slider-308 .fusion-title h2   {
+        font-size: 1.8rem !important;
+    }
+    
+            .home .fusion-slider-308 .fusion-title h3   {
+        font-size: 1.2rem !important;
+    }
+    
+    .home .fusion-slider-308 {
+        margin-bottom: 20px !important;
+    }
+    
+    #main .card-wide .custom-ad-heading {
+    font-size: 1.1rem;
+    }
 }
 
 /*Styling Table*/
 
 .styled-table {
-		width:100%;
+        width:100%;
     border-collapse: collapse;
     margin-top: 0px;
-		margin-bottom: 25px;
-		margin-right: auto;
-		margin-left: auto;
+        margin-bottom: 25px;
+        margin-right: auto;
+        margin-left: auto;
     font-size: 1em;
     font-family: sans-serif;
     min-width: 400px;
@@ -4218,7 +4213,7 @@ input[type="submit"] {
     background-color: #009879;
     color: #ffffff;
     text-align: center;
-		
+        
 }
 
 .styled-table th,
@@ -4240,75 +4235,75 @@ input[type="submit"] {
 
 .styled-table tbody tr:hover {
     color: #009879;
-		text-shadow: .25px 0px .1px,
-		-.25px 0px .1px;
+        text-shadow: .25px 0px .1px,
+        -.25px 0px .1px;
 }
 
 /*Currently Open Scholarships*/
 .postid-32231 h3{
-	margin-top:0px;
+    margin-top:0px;
 }
 
 .s-course-details .info-tags{
-	display: flex;
+    display: flex;
     flex-wrap: wrap;
     font-size: 0.75rem;
     gap: 7px 10px;
-		line-height:20px;
+        line-height:20px;
 }
 .s-course-details .info-tags .tag-with-icon{
-		background: #e6e6e6;
+        background: #e6e6e6;
     border-radius: 5px;
     padding: 5px 10px;
 }
 
 #main .card-wide .custom-ad-heading {
-	padding-top:30px;
-	margin-bottom: 5px;
-	font-weight:bold;
-	color: black;
+    padding-top:30px;
+    margin-bottom: 5px;
+    font-weight:bold;
+    color: black;
 }
 #main .card-wide p {
-	font-size:0.95rem;
-	padding-right:0px;
-	padding-left: 0px;	
+    font-size:0.95rem;
+    padding-right:0px;
+    padding-left: 0px;  
 }
 
 #main .card-wide .line-clamp-3{
-		text-overflow: clip;
-	  overflow: hidden;
+        text-overflow: clip;
+      overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 
 .card-wide .filter-btn button {
-	font-size:0.95rem;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 27px;
-	padding-right: 27px;
-	font-weight: bold;
+    font-size:0.95rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 27px;
+    padding-right: 27px;
+    font-weight: bold;
 }
 
 .display-none-text {
-	display:none;
+    display:none;
 }
 .ad-read-more, .ad-read-less{
-	color:#008fc5;
-	font-weight:bold;
+    color:#008fc5;
+    font-weight:bold;
 }
 
 /*Made another sidebar for ezoic sticky ads and make the background white*/
 #main .white-sidebar .sidebar:not(.fusion-sticky-sidebar){
-	background-color:white !important;
+    background-color:white !important;
 }
 
 .page-numbers {
-	margin-right:10px !important;
-	font-size:20px !important;
-	padding-left:3px !important;
-		padding-right:3px !important;
+    margin-right:10px !important;
+    font-size:20px !important;
+    padding-left:3px !important;
+        padding-right:3px !important;
 }
 
 .single .fusion-page-title-bar {
@@ -4318,24 +4313,24 @@ input[type="submit"] {
 /*Transfer for new development*/
 
 .home #main .fusion-post-content-wrapper p {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 .home #main .statistics p {
-	font-size: 22px;
-	font-family:"Open Sans",sans-serif;
-	font-weight:600;
+    font-size: 22px;
+    font-family:"Open Sans",sans-serif;
+    font-weight:600;
 }
 
 .home #main .statistics h4 {
-	font-weight:400 !important;
-	font-size: 50px !important;
-	padding:0px !important;
-	margin:0px !important;
+    font-weight:400 !important;
+    font-size: 50px !important;
+    padding:0px !important;
+    margin:0px !important;
 }
 .home #main .statistics .no-bold p{
-	font-weight:400;
-	font-size:18px;
+    font-weight:400;
+    font-size:18px;
 }
 
 
@@ -4415,18 +4410,18 @@ input[type="submit"] {
 /** GS Partner With Us Hero Section **/
 .page-template-template-partner .gs-partner-hero-section {
     display: grid;
-	grid-template-columns: 5fr 4fr;
-	margin-top: 60px;
-	padding-bottom: 30px;
+    grid-template-columns: 5fr 4fr;
+    margin-top: 60px;
+    padding-bottom: 30px;
 }
 
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-title {
-	font-family: 'Roboto', sans-serif;
-	font-size: 18px;
-	margin-bottom: 20px;
-	font-weight: 700;
-	color: #B81B20;
-	text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #B81B20;
+    text-transform: uppercase;
 }
 
 #main .gs-partner-hero-section-button-cta > a {
@@ -4444,7 +4439,7 @@ input[type="submit"] {
 
 /** Text Content **/
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
-	position: relative;
+    position: relative;
     z-index: 3;
     padding-left: 200px;
     display: flex;
@@ -4455,25 +4450,25 @@ input[type="submit"] {
 
 /** Image Content **/
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
-	width: 80%;
-	height: 100%;
+    width: 80%;
+    height: 100%;
 }
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image img {
-	width: 100%;
-	max-height: inherit;
+    width: 100%;
+    max-height: inherit;
 }
 
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-	font-size: 4rem;
-	font-weight: 900;
-	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
-	line-height: 1.3;
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.3;
     margin-bottom: 10px;
 }
 
 .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
-	font-size: 21px;
-	font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 21px;
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.675;
 }
 
@@ -5080,8 +5075,8 @@ input[type="submit"] {
 
 @media only screen and (max-width: 1280px) {
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-		font-size: 3.3rem;
-	}
+        font-size: 3.3rem;
+    }
 }
 @media only screen and (max-width: 1200px) {
     /** Text Content **/
@@ -5100,9 +5095,9 @@ input[type="submit"] {
     /* Why Us Section */
 
     .page-template-template-partner .gs-partner-why-us-section {
-		display: block;
-		margin-top: 50px;
-	}
+        display: block;
+        margin-top: 50px;
+    }
 
     .page-template-template-partner .gs-partner-why-us-section .gs-partner-why-us-section-content {
         margin: 0 20px;
@@ -5191,14 +5186,14 @@ input[type="submit"] {
         margin-left: 30px;
     }
     .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-		font-size: 3rem;
-	}
+        font-size: 3rem;
+    }
 
     /* GS Partner With Us Testimonials */
 
-	.page-template-template-partner .gs-partner-testimonials-section {
+    .page-template-template-partner .gs-partner-testimonials-section {
         padding: 60px;
-	}
+    }
 
     /* GS Partner With Us Partner Form */
 
@@ -5255,35 +5250,35 @@ input[type="submit"] {
 }
 @media only screen and (max-width: 768px) {
 
-	.page-template-template-partner .gs-partner-hero-section {
-		display: block;
-		margin-top: 30px;
-	}
+    .page-template-template-partner .gs-partner-hero-section {
+        display: block;
+        margin-top: 30px;
+    }
 
-	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
-		position: relative;
-		z-index: 3;
-		padding-left: 1.4rem;
-		padding-right: 1.4rem;
-		display: flex;
-		margin-right: 0;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		max-width: 100%;
-	}
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-content {
+        position: relative;
+        z-index: 3;
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+        display: flex;
+        margin-right: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 100%;
+    }
 
-	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
-		line-height: 1.55;
-	}
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-text {
+        line-height: 1.55;
+    }
 
-	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
-		font-size: 2.3rem;
-	}
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-intro-heading {
+        font-size: 2.3rem;
+    }
 
-	.page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
-		padding: 20px;
-	}
+    .page-template-template-partner .gs-partner-hero-section .gs-partner-hero-section-image {
+        padding: 20px;
+    }
 
     /* Why Us Section */
 
@@ -5383,13 +5378,13 @@ input[type="submit"] {
 
     /* GS Partner With Us Testimonials */
 
-	.page-template-template-partner .gs-partner-testimonials-section {
+    .page-template-template-partner .gs-partner-testimonials-section {
         display: flex;
         flex-direction: column-reverse;
-		margin-top: 30px;
+        margin-top: 30px;
         padding: 20px 30px;
         gap: 40px;
-	}
+    }
 
     /* GS Partner With Us Pricing Models */
 
@@ -5801,6 +5796,8 @@ nav .fusion-title-heading {
         display: none; 
     }
 }
+
+
 
 
 
