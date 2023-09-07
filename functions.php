@@ -3658,6 +3658,70 @@ function cta_shortcode($atts) {
 add_shortcode('cta_shortcode', 'cta_shortcode');
 
 
+
+function cta_post_shortcode($atts) {
+    
+    // Get the ACF fields
+    $cta_details  = acf_get_fields('group_64ecee859ce7e');
+    $title_array = array_column($cta_details, null, 'name')['title'];
+    $default_title = $title_array["default_value"];
+
+    $description_array = array_column($cta_details, null, 'name')['description'];
+    $default_description = $description_array["default_value"];
+
+    $image_array = array_column($cta_details, null, 'name')['image_link'];
+    $default_image = $image_array["default_value"];
+
+    $link_array = array_column($cta_details, null, 'name')['link_url'];
+    $default_link = $link_array["default_value"];
+
+
+    https://env-globalscholarshipsa-sibi.kinsta.cloud/best-fashion-schools-germany/
+    
+    $args = shortcode_atts(array(
+        'title' => $default_title,  // Use the ACF default title
+        'desc' => $default_description, // Provide a default description
+        'img_url' => $default_image, // Provide a default image URL
+        'link_url' =>  $default_link, // Provide a default link URL for Apply now
+    ), $atts);
+
+    // Construct the output
+    $output = '<div class="container mt-5 cta-container">
+    
+
+
+        <div class="row" style="padding:16px;">
+          
+           
+            
+
+            
+          
+            <div class="col-md-9 col-sm-12">
+                <h2 style="font-size:22px;padding-left:0px;margin-bottom:0px;">' . esc_html($args['title']) . '</h2>
+                <p style="color:#808080;padding-left:0px;font-size:18px;line-height:23px;">' . esc_html($args['desc']) . '</p>
+                
+            </div>
+
+             <div class="col-md-3 col-sm-12 text-center ">
+
+                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:white !important;width:200px;float:right;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);">   Apply now  </a>
+                
+            </div>
+
+
+        </div>
+    </div>';
+
+    return $output;
+}
+
+// Register the shortcode
+add_shortcode('cta_post_shortcode', 'cta_post_shortcode');
+
+
+
+
 function courses_grid_shortcode() {
     ob_start(); // Start output buffering
    
