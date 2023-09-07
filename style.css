@@ -5806,10 +5806,10 @@ nav .fusion-title-heading {
     width:100% !important;
     margin:40px;
     margin-left:20px !important;
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.4);
      border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-    border-radius: 25px;
+    border-radius: 16px;
 
 }
 
@@ -5826,9 +5826,11 @@ nav .fusion-title-heading {
     padding-left:0px;
 }
 
-.cta-container .col-md-8{
-margin-top:-5px !important;
-}
+ .cta-container .col-md-8 p {
+padding-bottom: 0px !important;
+font-size:16px !important;
+line-height: 22px !important;
+ }
 
 .cta-container h2 {
 margin-bottom:5px;
@@ -5839,20 +5841,26 @@ padding-top:0px ;
 .cta-container p {
  color:#858585;
  line-height: 28px;
-
 }
+
+
 
 .cta-container .apply-now {
     padding-left: 15px;
-    font-size: 22px;
-    color:#0055F9 !important;
+    font-size: 18px;
+    color:white !important;
+    background: #DD4B39 !important;
+    padding:12px !important;
     font-weight: 500 !important;
+    border-radius: 25px !important;
+    width:200px !important;
+    text-align: center !important;
     text-decoration: none !important;
      
 }
 
 .cta-container .apply-now:hover {
-     color:#0055F9 !important;
+     color:white !important;
     }
 
 @media (max-width: 900px) {

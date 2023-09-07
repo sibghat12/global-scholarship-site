@@ -712,86 +712,158 @@ function scholarship_card( $scholarship_id ){
 
 
 
-function get_current_deadlines_institutions ($degree, $institution_id){ 
 
-   $degree_name = $degree;
-   $current_date = strtotime(date("F j, Y"));
 
-   $institution_query = get_institution_by_id($institution_id);
-   $deadline = array();
-   $accept_year_application = array();
 
-    while ($institution_query->have_posts() ) {
-        $institution_query->the_post();
+//Commented by Sibi 5 September 
+
+// function get_current_deadlines_institutions ($degree, $institution_id){ 
+
+//    $degree_name = $degree;
+//    $current_date = strtotime(date("F j, Y"));
+
+//    $institution_query = get_institution_by_id($institution_id);
+//    $deadline = array();
+//    $accept_year_application = array();
+
+//     while ($institution_query->have_posts() ) {
+//         $institution_query->the_post();
              
-        if( have_rows('admission_deadlines') ) {
+//         if( have_rows('admission_deadlines') ) {
 
-            //Push Deadline with according to degree
-            while( have_rows('admission_deadlines') ) {
-            the_row();
-            $degree_value = get_sub_field('degree');
-            if($degree_value == $degree_name ){
-                $deadline_date = get_sub_field('deadline');
-                $accept_year_value = get_sub_field('accepts_application_all_year_round');
-                array_push($deadline, $deadline_date);
-                array_push($accept_year_application , $accept_year_value );
-                }
-             }
+//             //Push Deadline with according to degree
+//             while( have_rows('admission_deadlines') ) {
+//             the_row();
+//             $degree_value = get_sub_field('degree');
+//             if($degree_value == $degree_name ){
+//                 $deadline_date = get_sub_field('deadline');
+//                 $accept_year_value = get_sub_field('accepts_application_all_year_round');
+//                 array_push($deadline, $deadline_date);
+//                 array_push($accept_year_application , $accept_year_value );
+//                 }
+//              }
               
-        if(empty($deadline)){
-        //Push Deadline without according to degree
-            while( have_rows('admission_deadlines') ) {
-            the_row();
-            $degree_value = get_sub_field('degree');
-            if(empty($degree_value)){
-                $deadline_date = get_sub_field('deadline');
-                $accept_year_value = get_sub_field('accepts_application_all_year_round');
-                array_push($deadline, $deadline_date);
-                array_push($accept_year_application , $accept_year_value );
-                }
-             }
-        }
+//         if(empty($deadline)){
+//         //Push Deadline without according to degree
+//             while( have_rows('admission_deadlines') ) {
+//             the_row();
+//             $degree_value = get_sub_field('degree');
+//             if(empty($degree_value)){
+//                 $deadline_date = get_sub_field('deadline');
+//                 $accept_year_value = get_sub_field('accepts_application_all_year_round');
+//                 array_push($deadline, $deadline_date);
+//                 array_push($accept_year_application , $accept_year_value );
+//                 }
+//              }
+//         }
 
        
+//         }
+
+//         if(empty($deadline)) {
+//         $old_date = date_create("2000-03-15");
+//         $old_date = date_format($old_date,"F j, Y");
+//         return $old_date;
+//         }
+//     }
+
+
+//     //Sort the deadline array from oldest to latest
+//     usort($deadline, "compareByTimeStamp");
+//     $deadline = array_reverse($deadline);   
+     
+//     foreach($deadline as $date){
+//          $date_to_time =  strtotime($date);
+//         if($date_to_time > $current_date){
+//             return $date;
+//         }
+//     }
+
+
+
+//     foreach($accept_year_application as $item){
+//       if($item=="Yes"){
+//         $far_date = date_create("2050-03-15");
+//         $far_date = date_format($far_date,"F j,Y");
+//         return $far_date;
+//       }
+//     }
+
+// // If the below gets run, then there should be only one date (the 2010 deadline) or all the deadlines were past
+
+
+//     /*return the latest deadline here*/
+//    $latest_date = end($deadline);
+//    return $latest_date; 
+
+// }
+
+
+function get_current_deadlines_institutions($degree, $institution_id) {
+    $degree_name = $degree;
+    $current_date = strtotime(date("F j, Y"));
+
+    $institution_query = get_institution_by_id($institution_id);
+    $deadline = array();
+    $accept_year_application = array();
+
+    while ($institution_query->have_posts()) {
+        $institution_query->the_post();
+
+        if (have_rows('admission_deadlines')) {
+            // Always start with checking all rows of 'admission_deadlines'
+            while (have_rows('admission_deadlines')) {
+                the_row();
+                $degree_value = get_sub_field('degree');
+
+                // Check if the degree value matches the specified degree OR the degree value is empty
+                if ($degree_value == $degree_name || empty($degree_value)) {
+                    $deadline_date = get_sub_field('deadline');
+
+                    // Only push the deadline if it's not already in the array (to avoid duplicates)
+                    if (!in_array($deadline_date, $deadline) && !empty($deadline_date)) {
+                        array_push($deadline, $deadline_date);
+                    }
+
+                    $accept_year_value = get_sub_field('accepts_application_all_year_round');
+                    if (!in_array($accept_year_value, $accept_year_application)) {
+                        array_push($accept_year_application, $accept_year_value);
+                    }
+                }
+            }
         }
 
-        if(empty($deadline)) {
-        $old_date = date_create("2000-03-15");
-        $old_date = date_format($old_date,"F j, Y");
-        return $old_date;
+        if (empty($deadline)) {
+            $old_date = date_create("2000-03-15");
+            $old_date = date_format($old_date, "F j, Y");
+            return $old_date;
         }
     }
 
-
-    //Sort the deadline array from oldest to latest
+    // Sort the deadline array from oldest to latest
     usort($deadline, "compareByTimeStamp");
-    $deadline = array_reverse($deadline);   
-     
-    foreach($deadline as $date){
-         $date_to_time =  strtotime($date);
-        if($date_to_time > $current_date){
+    $deadline = array_reverse($deadline);
+
+    foreach ($deadline as $date) {
+        $date_to_time = strtotime($date);
+        if ($date_to_time > $current_date) {
             return $date;
         }
     }
 
-
-
-    foreach($accept_year_application as $item){
-      if($item=="Yes"){
-        $far_date = date_create("2050-03-15");
-        $far_date = date_format($far_date,"F j,Y");
-        return $far_date;
-      }
+    foreach ($accept_year_application as $item) {
+        if ($item == "Yes") {
+            $far_date = date_create("2050-03-15");
+            $far_date = date_format($far_date, "F j,Y");
+            return $far_date;
+        }
     }
 
-// If the below gets run, then there should be only one date (the 2010 deadline) or all the deadlines were past
-
-
-    /*return the latest deadline here*/
-   $latest_date = end($deadline);
-   return $latest_date; 
-
+    // If the below gets run, then there should be only one date (the 2010 deadline) or all the deadlines were past
+    $latest_date = end($deadline);
+    return $latest_date;
 }
+
 
 
 
@@ -1112,250 +1184,317 @@ function save_scholarships_deadline_post_meta_ajax() {
 //get_scholarship_deadline(48187, "Master's");
 
 
-function save_scholarships_deadline_post_meta(){
-$args = array(
-        'post_type' => 'scholarships',
-         
-         'no_found_rows' => true, 
-          'update_post_meta_cache' => false,
-          'update_post_term_cache' => false,
-          'cache_results'          => false,
-          'fields' => 'ids',
+// function save_scholarships_deadline_post_meta() {
 
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-    );
+
+//     $args = array(
+//         'post_type' => 'scholarships',
+//         'no_found_rows' => true,
+//         'update_post_meta_cache' => false,
+//         'update_post_term_cache' => false,
+//         'cache_results' => false,
+//         'fields' => 'ids',
+//         'posts_per_page' => -1,
+//         'post_status' => 'publish',
+//     );
+
+//     $current_date = strtotime(date("F j, Y"));
+//     $query = new WP_Query($args);
     
-   $current_date = strtotime(date("F j, Y"));
-   $query = new WP_Query($args);
-   
-   $master_degree = "Master's";
-   $bachelor_degree = "Bachelor's";
-   while ($query->have_posts() ) {
-        
-        $query->the_post();
-        $scholarship_id = get_the_ID(); 
-        
+//     $master_degree = "Master's";
+//     $bachelor_degree = "Bachelor's";
+
+//     foreach ($query->posts as $scholarship_id) {
+//         $check_master = strtotime(get_field('current_masters_scholarship_deadline', $scholarship_id));
+//         $check_bachelor = strtotime(get_field('current_bachelors_scholarship_deadline', $scholarship_id));
        
-        // Ignore that Scholarship that has Value Set 
-        // And Has Deadline Greator that current Time . (Mean Deadline Is In future so we continue to new scholarship)
-        // Else loop goes down to save meta. 
+     
 
-        $check_master = strtotime(get_field('current_masters_scholarship_deadline'));
-        $check_bachelor = strtotime(get_field('current_bachelors_scholarship_deadline'));
-
-        //Code that skips udating deadlines if the check_bachelor's is latest then the current date.
-        
-        if( isset($check_master) && isset($check_bachelor) ){
-            if($check_master > $current_date && $check_bachelor > $current_date){
-                continue;
-            }
-        }
-
+//         // Ignore that Scholarship that has Value Set 
+//         // And Has Deadline Greator that current Time . (Mean Deadline Is In future so we continue to new scholarship)
+//         // Else loop goes down to save meta. 
 
         
+//         //Code that skips udating deadlines if the check_bachelor's is latest then the current date.
+        
+//         // if( isset($check_master) && isset($check_bachelor) ){
+//         //     if($check_master > $current_date && $check_bachelor > $current_date){
+//         //         continue;
+//         //     }
+//         // }
 
-        $institution = get_field("scholarship_institution");
 
+        
 
+//         $institution = get_field("scholarship_institution" , $scholarship_id);
 
-       // ..............................   Code to Work for the Master's. .........................
-        $scholarship_deadline = get_scholarship_deadline($scholarship_id, $master_degree);
-        $admission_deadline  = get_current_deadlines_institutions($master_degree , $institution->ID );
+    
+//        // ..............................   Code to Work for the Master's. .........................
+//         $scholarship_deadline = get_scholarship_deadline($scholarship_id, $master_degree);
+//         $admission_deadline  = get_current_deadlines_institutions($master_degree , $institution->ID );
         
     
-        $scholarship_deadline_date = strtotime($scholarship_deadline);     // 14 December 
-        $admission_deadline_date = strtotime($admission_deadline);         // 1 December  
+//         $scholarship_deadline_date = strtotime($scholarship_deadline);     // 14 December 
+//         $admission_deadline_date = strtotime($admission_deadline);         // 1 December  
                   
            
-        $scholarship_deadline = date("Y-m-d H:i:s" , $scholarship_deadline_date);
-        $admission_deadline = date("Y-m-d H:i:s" , $admission_deadline_date);
+//         $scholarship_deadline = date("Y-m-d H:i:s" , $scholarship_deadline_date);
+//         $admission_deadline = date("Y-m-d H:i:s" , $admission_deadline_date);
        
 
-         // echo "Scholarship deadline: " .$scholarship_deadline;
-         // echo "<br>";
-         // echo "Admission deadline: " . $admission_deadline;
-         // echo "<br>";
-         // echo "Current Date : " . date("F j, Y");
+//          // echo "Scholarship deadline: " .$scholarship_deadline;
+//          // echo "<br>";
+//          // echo "Admission deadline: " . $admission_deadline;
+//          // echo "<br>";
+//          // echo "Current Date : " . date("F j, Y");
          
          
 
          
-         // if both deadlines are latest than current date, save the oldest deadline
+//          // if both deadlines are latest than current date, save the oldest deadline
 
-         if($scholarship_deadline_date > $current_date  && $admission_deadline_date > $current_date) {
+//          if($scholarship_deadline_date > $current_date  && $admission_deadline_date > $current_date) {
 
-            if($scholarship_deadline_date > $admission_deadline_date){
-                update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id); 
-            }else {
-                 update_field('current_masters_scholarship_deadline', $scholarship_deadline , $scholarship_id); 
-            }
+//             if($scholarship_deadline_date > $admission_deadline_date){
+//                 update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id); 
+//             }else {
+//                  update_field('current_masters_scholarship_deadline', $scholarship_deadline , $scholarship_id); 
+//             }
        
        
-        } 
+//         } 
 
-         // if Scholar deadlines are older than current date And
-       // if Admisison Deadlines are latest current Date . Save Older Date
+//          // if Scholar deadlines are older than current date And
+//        // if Admisison Deadlines are latest current Date . Save Older Date
 
-       else if ($scholarship_deadline_date < $current_date  && $admission_deadline_date > $current_date) {
+//        else if ($scholarship_deadline_date < $current_date  && $admission_deadline_date > $current_date) {
         
-        $date_greator_2010 = date_create("2015-03-15");
-        $date_greator_formated = date_format($date_greator_2010, "F j, Y");
-        $date_greator_timestamp = strtotime($date_greator_formated);
+//         $date_greator_2010 = date_create("2015-03-15");
+//         $date_greator_formated = date_format($date_greator_2010, "F j, Y");
+//         $date_greator_timestamp = strtotime($date_greator_formated);
 
-       if($scholarship_deadline_date < $date_greator_timestamp  ) { 
-          update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id);
-        } else { 
-        update_field('current_masters_scholarship_deadline', $scholarship_deadline , $scholarship_id);
-        }
+//        if($scholarship_deadline_date < $date_greator_timestamp  ) { 
+//           update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id);
+//         } else { 
+//         update_field('current_masters_scholarship_deadline', $scholarship_deadline , $scholarship_id);
+//         }
 
-       } 
-
-
+//        } 
 
 
-       // if Scholar deadlines are latest than current date And
-       // if Admisison Deadlines are older current Date . Save Older Date
+
+
+//        // if Scholar deadlines are latest than current date And
+//        // if Admisison Deadlines are older current Date . Save Older Date
  
-        else if($scholarship_deadline_date > $current_date  && $admission_deadline_date < $current_date) {
-        update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id);
-        }
+//         else if($scholarship_deadline_date > $current_date  && $admission_deadline_date < $current_date) {
+//         update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id);
+//         }
 
        
 
-        //When both scholarship deadline and admission deadline are older than the current date, save the latest deadline
+//         //When both scholarship deadline and admission deadline are older than the current date, save the latest deadline
 
-       else {
+//        else {
           
-          if($scholarship_deadline_date > $admission_deadline_date){
-           update_field('current_masters_scholarship_deadline', $scholarship_deadline , $scholarship_id);
-          }else {
-            update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id);
-          }
+//           if($scholarship_deadline_date > $admission_deadline_date){
+//            update_field('current_masters_scholarship_deadline', $scholarship_deadline , $scholarship_id);
+//           }else {
+//             update_field('current_masters_scholarship_deadline', $admission_deadline , $scholarship_id);
+//           }
 
-         }
+//          }
 
          
-         // ..............................   Code to Work for the Bachelors's. .........................
+//          // ..............................   Code to Work for the Bachelors's. .........................
 
-        $scholarship_deadline = get_scholarship_deadline($scholarship_id, $bachelor_degree);
-        $admission_deadline  = get_current_deadlines_institutions($bachelor_degree , $institution->ID );
+//         $scholarship_deadline = get_scholarship_deadline($scholarship_id, $bachelor_degree);
+//         $admission_deadline  = get_current_deadlines_institutions($bachelor_degree , $institution->ID );
 
         
-        $scholarship_deadline_date = strtotime($scholarship_deadline);
-        $admission_deadline_date = strtotime($admission_deadline);
+//         $scholarship_deadline_date = strtotime($scholarship_deadline);
+//         $admission_deadline_date = strtotime($admission_deadline);
 
-        /* Here, please check that scholarship_deadline and admission_deadline are > current date. 
-        if both deadlines are older than current date, please save the scholarship_deadline (doesn't really matter which one you save since they are both old)
-        if only one is > than the current date, then please save that deadline.
-        if both are > than the current date, then save whichever is most closest to the current date */
+//         /* Here, please check that scholarship_deadline and admission_deadline are > current date. 
+//         if both deadlines are older than current date, please save the scholarship_deadline (doesn't really matter which one you save since they are both old)
+//         if only one is > than the current date, then please save that deadline.
+//         if both are > than the current date, then save whichever is most closest to the current date */
         
-        $scholarship_deadline = date("Y-m-d H:i:s" , $scholarship_deadline_date);
-        $admission_deadline = date("Y-m-d H:i:s" , $admission_deadline_date);
+//         $scholarship_deadline = date("Y-m-d H:i:s" , $scholarship_deadline_date);
+//         $admission_deadline = date("Y-m-d H:i:s" , $admission_deadline_date);
        
     
-        // if both deadlines are latest than current date, save the oldest deadline
+//         // if both deadlines are latest than current date, save the oldest deadline
 
-        if($scholarship_deadline_date > $current_date  && $admission_deadline_date > $current_date) {
+//         if($scholarship_deadline_date > $current_date  && $admission_deadline_date > $current_date) {
 
-            if($scholarship_deadline_date > $admission_deadline_date){
-                update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id); 
-            }else {
-                 update_field('current_bachelors_scholarship_deadline', $scholarship_deadline , $scholarship_id); 
-            }
+//             if($scholarship_deadline_date > $admission_deadline_date){
+//                 update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id); 
+//             }else {
+//                  update_field('current_bachelors_scholarship_deadline', $scholarship_deadline , $scholarship_id); 
+//             }
        
        
-        } 
+//         } 
 
 
-        // if Scholar deadlines are latest than current date And
-       // if Admisison Deadlines are older current Date . Save Older Date
+//         // if Scholar deadlines are latest than current date And
+//        // if Admisison Deadlines are older current Date . Save Older Date
 
-        else if($scholarship_deadline_date > $current_date  && $admission_deadline_date < $current_date) {
-        update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id);
-        }
+//         else if($scholarship_deadline_date > $current_date  && $admission_deadline_date < $current_date) {
+//         update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id);
+//         }
 
-       // if Scholar deadlines are older than current date And
-       // if Admisison Deadlines are latest current Date . Save Older Date 
+//        // if Scholar deadlines are older than current date And
+//        // if Admisison Deadlines are latest current Date . Save Older Date 
 
-       else if ($scholarship_deadline_date < $current_date  && $admission_deadline_date > $current_date) {
+//        else if ($scholarship_deadline_date < $current_date  && $admission_deadline_date > $current_date) {
         
-        $date_greator_2010 = date_create("2015-03-15");
-        $date_greator_formated = date_format($date_greator_2010, "F j, Y");
-        $date_greator_timestamp = strtotime($date_greator_formated);
+//         $date_greator_2010 = date_create("2015-03-15");
+//         $date_greator_formated = date_format($date_greator_2010, "F j, Y");
+//         $date_greator_timestamp = strtotime($date_greator_formated);
 
-       if($scholarship_deadline_date < $date_greator_timestamp  ) { 
-         update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id);
-        } else { 
-        update_field('current_bachelors_scholarship_deadline', $scholarship_deadline , $scholarship_id);
-        }
+//        if($scholarship_deadline_date < $date_greator_timestamp  ) { 
+//          update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id);
+//         } else { 
+//         update_field('current_bachelors_scholarship_deadline', $scholarship_deadline , $scholarship_id);
+//         }
 
       
 
 
-       } 
+//        } 
        
-       //When both scholarship deadline and admission deadline are older than the current date, save the latest deadline
-
-       else {
-          
-          if($scholarship_deadline_date > $admission_deadline_date){
-           update_field('current_bachelors_scholarship_deadline', $scholarship_deadline , $scholarship_id);
-          }else {
-            update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id);
-          }
-
-         }
+//        //When both scholarship deadline and admission deadline are older than the current date, save the latest deadline
+//         else {
+//         if($scholarship_deadline_date > $admission_deadline_date){
+//            update_field('current_bachelors_scholarship_deadline', $scholarship_deadline , $scholarship_id);
+//           }else {
+//             update_field('current_bachelors_scholarship_deadline', $admission_deadline , $scholarship_id);
+//           }
+//         }
 
           
 
-       }
+//        }
 
+// }
+
+
+function save_scholarships_deadline_post_meta() {
+    $batch_size = 20; // Fetch 100 posts at a time
+    $paged = 1; // Start at the first page
+    $current_date = strtotime(date("F j, Y"));
+    $master_degree = "Master's";
+    $bachelor_degree = "Bachelor's";
+
+    do {
+        $args = array(
+            'post_type' => 'scholarships',
+            'no_found_rows' => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+            'cache_results' => false,
+            'fields' => 'ids',
+            'posts_per_page' => $batch_size,
+            'paged' => $paged, // This enables the batching
+            'post_status' => 'publish',
+        );
+
+        $query = new WP_Query($args);
+
+        if (!$query->have_posts()) {
+            break; // Exit the loop if there are no posts
+        }
+
+        foreach ($query->posts as $scholarship_id) {
+            // Check and process Master's scholarship
+            check_and_update_scholarship_deadline($scholarship_id, $master_degree, $current_date);
+            
+            // Check and process Bachelor's scholarship
+            check_and_update_scholarship_deadline($scholarship_id, $bachelor_degree, $current_date);
+        }
+           wp_cache_flush(); // Clear the WordPress object cache
+        $paged++; // Move on to the next batch
+
+    } while (true); // Keep running until there are no posts left
+}
+
+function check_and_update_scholarship_deadline($scholarship_id, $degree, $current_date) {
+    $institution = get_field("scholarship_institution", $scholarship_id);
+    
+    $scholarship_deadline_date = strtotime(get_scholarship_deadline($scholarship_id, $degree));
+    $admission_deadline_date = strtotime(get_current_deadlines_institutions($degree, $institution->ID));
+
+    // Mapping the degree type for field naming
+    $degree_mapping = [
+        "Master's" => 'masters',
+        "Bachelor's" => 'bachelors'
+    ];
+    $degree_key = $degree_mapping[$degree] ?? '';
+
+
+
+    // Determine the new deadline value
+    $new_deadline = '';
+    if ($scholarship_deadline_date > $current_date && $admission_deadline_date > $current_date) {
+        $new_deadline = ($scholarship_deadline_date < $admission_deadline_date) ? $scholarship_deadline_date : $admission_deadline_date;
+    } elseif ($scholarship_deadline_date > $current_date) {
+        $new_deadline = $scholarship_deadline_date;
+    } elseif ($admission_deadline_date > $current_date) {
+        $date_greator_2010 = strtotime("2015-03-15");
+        if ($scholarship_deadline_date >= $date_greator_2010) {
+            $new_deadline = $scholarship_deadline_date;
+        } else {
+            $new_deadline = $admission_deadline_date;
+        }
+    } else {
+        $new_deadline = ($scholarship_deadline_date > $admission_deadline_date) ? $scholarship_deadline_date : $admission_deadline_date;
+    }
+
+    // Only update if there's a valid deadline and degree key
+    if ($new_deadline && $degree_key) {
+        update_field('current_' . $degree_key . '_scholarship_deadline', date("Y-m-d H:i:s", $new_deadline), $scholarship_id);
+    }
 }
 
 
 
 
-function save_institution_deadline_post_meta(){
+function save_institution_deadline_post_meta() {
+    $posts_per_batch = 10;
+    $paged = 1;
 
- $args = array(
-        'post_type' => 'institution',
-         
-         'no_found_rows' => true, 
-          'update_post_meta_cache' => false,
-          'update_post_term_cache' => false,
-          'cache_results'          => false,
-          'fields' => 'ids',
+    while (true) { // Keep looping until all posts are processed.
+        $args = array(
+            'post_type' => 'institution',
+            'posts_per_page' => $posts_per_batch,
+            'post_status' => 'publish',
+            'paged' => $paged,
+            'fields' => 'ids'
+        );
 
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-    );
-    
-   $query = new WP_Query($args);
-   $master_degree = "Master's";
-   $bachelor_degree = "Bachelor's";
-   
-   while ($query->have_posts() ) {
+        $query = new WP_Query($args);
 
+        if (!$query->have_posts()) {
+            break; // Exit loop if there are no posts left to process.
+        }
 
-        
-        $query->the_post();
-        $institution_id = get_the_ID(); 
+        $master_degree = "Master's";
+        $bachelor_degree = "Bachelor's";
 
-        
-        // ..............................   Code to Work for the Master's. .........................
+        foreach ($query->posts as $institution_id) {
+            // Logic for the Master's Deadline
+            $admission_deadline_master = get_current_deadlines_institutions($master_degree, $institution_id);
+            update_field('current_masters_admission_deadline', $admission_deadline_master, $institution_id);
 
-       $admission_deadline  = get_current_deadlines_institutions($master_degree , $institution_id );
-        update_field('current_masters_admission_deadline', $admission_deadline , $institution_id);
-         
-        
-        // ..............................   Code to Work for the Bachelors's. .........................
+            // Logic for the Bachelor's Deadline
+            $admission_deadline_bachelor = get_current_deadlines_institutions($bachelor_degree, $institution_id);
+            update_field('current_bachelors_admission_deadline', $admission_deadline_bachelor, $institution_id);
+        }
 
-        $admission_deadline  = get_current_deadlines_institutions($bachelor_degree , $institution_id );
-        update_field('current_bachelors_admission_deadline', $admission_deadline , $institution_id);
-
+        $paged++; // Move to the next batch.
     }
-
 }
 
    
@@ -1367,62 +1506,17 @@ function save_deadline_post_meta(){
 }
 
 
-//save_deadline_post_meta();
-
 //add_action( 'init', 'save_deadline_post_meta' );
+//add_action( 'init', 'save_deadline_post_meta' );
+add_action('save_deadline_post_meta', 'save_deadline_post_meta');
 
 
 
-// function get_cities_of_published_institute(){
-     
-//     $city_ids = array();
-
-//      $args = array(
-//      'post_type' => 'institution',
-//      'no_found_rows' => true, 
-//      'update_post_meta_cache' => false,
-//      'update_post_term_cache' => false,
-//      'cache_results'          => false,
-//      'fields' => 'ids',
-//      'posts_per_page' => -1,
-//      'post_status' => 'publish', 
-//      );
-
-//     $loop = new WP_Query($args);
-//     while ($loop->have_posts() ) {
-//         $loop->the_post();
-//         $city = get_field("cities"); 
-//         array_push($city_ids , $city->ID);
-//     }
-      
-  
-
-//     $args_cities = array(
-//     'post_type' => 'city',
-//     'posts_per_page' => -1,
-//     'orderby' => 'post__in',
-//     'order'     => 'ASC', 
-//     'post__in' => $city_ids
-//    );
-
-
-//    $country_list = array();
-
-//    $loop_cities = new WP_Query( $args_cities );
-//    while ($loop_cities->have_posts() ) {
-//         $loop_cities->the_post();
-//         $country_name = get_field("country"); 
-//         array_push($country_list , $country_name);
-//     }
-//     $country_list = array_unique($country_list);
-//     return $country_list;
-
-// }
 
 
 
 function get_cities_of_published_institute() {
-  global $wpdb;
+global $wpdb;
 
 $query = "
     SELECT DISTINCT pm_country.meta_value as country_name
@@ -1445,7 +1539,6 @@ return $country_list;
 
 
 
-
 function save_scholarships_open_date_post_meta() {
 
     // Get the current offset
@@ -1457,7 +1550,7 @@ function save_scholarships_open_date_post_meta() {
 
     $scholarship_posts_count = wp_count_posts($postType);
     $scholarship_posts_count_published = $scholarship_posts_count->publish;
-   
+     
     
     // Create a while loop that will continue to run until all posts have been processed
     while ( $offset <  intval($scholarship_posts_count_published) ) {
@@ -1519,18 +1612,24 @@ function save_scholarships_open_date_post_meta() {
     }
     
 }
-// add_action('init', 'save_scholarships_open_date_post_meta', 100);
+
+
+//add_action('init', 'save_scholarships_open_date_post_meta', 100);
+add_action('save_scholarships_open_date_post_meta', 'save_scholarships_open_date_post_meta');
+
+
+
 // function save_scholarships_open_date_post_meta(){
 
 // $args = array(
 //         'post_type' => 'scholarships',
 //         'post_status' => 'publish',
      
-//      'no_found_rows' => true, 
-//      'update_post_meta_cache' => false,
-//      'update_post_term_cache' => false,
-//      'cache_results'          => false,
-//      'fields' => 'ids',
+//      // 'no_found_rows' => true, 
+//      // 'update_post_meta_cache' => false,
+//      // 'update_post_term_cache' => false,
+//      // 'cache_results'          => false,
+//      // 'fields' => 'ids',
 
 
 //         'post_per_page' => -1,
@@ -1571,12 +1670,8 @@ function save_scholarships_open_date_post_meta() {
 //       //  get_open_dates($bachelor_degree , $institution_id , $scholarship_id);
 //        // get_open_dates($master_degree , $institution_id , $scholarship_id);
 //          //get_open_dates($master_degree , $institution_id , 50499);
-       
-        
 //     }
-
-
-// }
+//  }
 
 
 
@@ -1655,7 +1750,6 @@ function get_open_dates($degree, $institute_id, $scholarship_id) {
 }
 
 
-
 //save_scholarships_open_date_post_meta();
 
 
@@ -1732,6 +1826,51 @@ function check_opening_soon($institute_id) {
         }
 
   
+// function get_cities_of_published_institute(){
+     
+//     $city_ids = array();
+
+//      $args = array(
+//      'post_type' => 'institution',
+//      'no_found_rows' => true, 
+//      'update_post_meta_cache' => false,
+//      'update_post_term_cache' => false,
+//      'cache_results'          => false,
+//      'fields' => 'ids',
+//      'posts_per_page' => -1,
+//      'post_status' => 'publish', 
+//      );
+
+//     $loop = new WP_Query($args);
+//     while ($loop->have_posts() ) {
+//         $loop->the_post();
+//         $city = get_field("cities"); 
+//         array_push($city_ids , $city->ID);
+//     }
+      
+  
+
+//     $args_cities = array(
+//     'post_type' => 'city',
+//     'posts_per_page' => -1,
+//     'orderby' => 'post__in',
+//     'order'     => 'ASC', 
+//     'post__in' => $city_ids
+//    );
+
+
+//    $country_list = array();
+
+//    $loop_cities = new WP_Query( $args_cities );
+//    while ($loop_cities->have_posts() ) {
+//         $loop_cities->the_post();
+//         $country_name = get_field("country"); 
+//         array_push($country_list , $country_name);
+//     }
+//     $country_list = array_unique($country_list);
+//     return $country_list;
+
+// }
 
         
 
