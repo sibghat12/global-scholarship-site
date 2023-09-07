@@ -1,7 +1,12 @@
 jQuery(document).ready(function($) {
 
   let previewShowing = false;
+  let updatingProcess = false;
   var allInstitutionsUpdated = [];
+  const updateDeadlinesButton = $('#gs_update_deadlines').find('button');
+  const previewInstitutionsButton = $('#gs_preview_institutions').find('button');
+  console.log("updateDeadlinesButton", updateDeadlinesButton)
+  console.log("previewInstitutionsButton", previewInstitutionsButton)
 
   const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
   const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
@@ -29,6 +34,11 @@ jQuery(document).ready(function($) {
   });
   
   function updateInstitutionsDeadlines(offset, batchSize, postType) {
+    updatingProcess = true;
+    
+    if(updatingProcess) {
+      updateDeadlinesButton.prop('disabled', true);
+    }
     $('.process-data').css('display','block');
     $('.process-data').css('opacity','1');
 
@@ -165,11 +175,16 @@ jQuery(document).ready(function($) {
           offset = response.totalUpdated;
           updateInstitutionsDeadlines(offset, batchSize, postType);
         } else {
+          updatingProcess = false;
+          if(!updatingProcess) {
+            updateDeadlinesButton.prop('disabled', false);
+          }
           $('.process-data').addClass('done');
           $('.process-data.done').css('background', '#6ea2c7');
           $('.process-data').css('color', '#fff');
           $('.process-data.done').text(`Posts that met the conditions have been updated (Total Posts Looped: ${response.totalPosts}).`);
           fadeInElementjQuery($('.process-data.done'), 15000);
+
         }
         
       }
@@ -202,7 +217,10 @@ jQuery(document).ready(function($) {
   }
 
   function getInstitutionsPreview(offset, batchSize, postType) {
-
+    previewShowing = true;
+    if(previewShowing) {
+      previewInstitutionsButton.prop('disabled', true);
+    }
     const loaderHtml = '<div class="loader"></div>';
 
     
@@ -284,8 +302,7 @@ jQuery(document).ready(function($) {
 
 
         if (response?.institutionsData) {
-          previewShowing = true;
-                  
+          
           // Hide the loader
 
           let html = `<h2>List of Institutions (${response?.institutionsData?.length}) that will be updated according the criteria selected in (Institution Deadlines Conditions)</h2><ol>`; // Start the  list
@@ -300,9 +317,17 @@ jQuery(document).ready(function($) {
           $('.preview-data').html(html);
         } else {
           previewShowing = false;
+          if(!previewShowing) {
+            previewInstitutionsButton.props('disabled', false);
+          }
           $('.loader').css('display', 'none');
           $('.preview-data').html('');
         }
+        previewShowing = false;
+        if(!previewShowing) {
+          previewInstitutionsButton.prop('disabled', false);
+        }
+        
       }
     });
 
