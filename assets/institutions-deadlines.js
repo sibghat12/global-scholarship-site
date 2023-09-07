@@ -137,28 +137,27 @@ jQuery(document).ready(function($) {
       <div class="gs-opening-dates-to-update">
       Past Dates:
       <ul class="gs-update-deadlines-dates">
-        <li>Opening Date: ${instACFOpeningDate}</li>
-        <li>Deadline Date: ${instACFDeadlineDate}</li>
+        <li>Opening Date: <span class="gs-update-deadlines-opening-date">${instACFOpeningDate}</span></li>
+        <li>Deadline Date: <span class="gs-update-deadlines-deadline-date">${instACFDeadlineDate}</span></li>
       </ul>
       </div>
       <div class="gs-opening-dates-to-update">
       New Dates:
       <ul class="gs-updated-deadlines-dates">
-        <li>Opening Date: ${instACFNewOpeningDate}</li>
-        <li>Deadline Date: ${instACFNewDeadlineDate}</li>
+        <li>Opening Date: <span class="gs-updated-deadlines-opening-date">${instACFNewOpeningDate}</span></li>
+        <li>Deadline Date: <span class="gs-updated-deadlines-deadline-date">${instACFNewDeadlineDate}<span></li>
       </ul>
       </div>
-      <div>On ${formattedDate}</div>
+      <div>On <span class="gs-updated-deadlines-formatted-date">${formattedDate}</span></div>
       </div>
       <hr/>
-      <ol>`; // Start the  list
+      <ol class="gs-updated-deadlines-ordered-list">`; // Start the  list
     
       $.each(allInstitutionsUpdated, function(indexInArray, institution) {
-        html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
+        html += `<li class="gs-updated-deadlines-list-item"><a href="${institution.permalink}" data-institution-title="${institution.title}" data-institution-country="${institution.country}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
       });
       html += '</ol>'; // End the  list
 
-    
       $('.preview-data').html(html);
 
         acfSettings.find('.process-data');
@@ -178,6 +177,8 @@ jQuery(document).ready(function($) {
           updatingProcess = false;
           if(!updatingProcess) {
             updateDeadlinesButton.prop('disabled', false);
+            $('.preview-data').addClass('done');
+            // Here run a function that gets all the data from the frontend and send back to the database :)
           }
           $('.process-data').addClass('done');
           $('.process-data.done').css('background', '#6ea2c7');
@@ -305,14 +306,14 @@ jQuery(document).ready(function($) {
           
           // Hide the loader
 
-          let html = `<h2>List of Institutions (${response?.institutionsData?.length}) that will be updated according the criteria selected in (Institution Deadlines Conditions)</h2><ol>`; // Start the  list
+          let html = `<div class="gs-deadlines-preview-data-container"><h2 class="gs-deadlines-preview-data-heading">List of Institutions (<span class="gs-deadlines-preview-data-gs-deadlines-preview-data-number-institutions">${response?.institutionsData?.length}</span>) that will be updated according the criteria selected in (Institution Deadlines Conditions)</h2><ol>`; // Start the  list
         
           $.each(response?.institutionsData, function(indexInArray, institution) {
-            html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
+            html += `<li><a href="${institution.permalink}" data-institution-title="${institution.title}" data-institution-country="${institution.country}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
           });
         
           html += '</ol>'; // End the  list
-
+          html += '</div>'; // End of Preivew Deadlines Element
         
           $('.preview-data').html(html);
         } else {
