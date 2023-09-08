@@ -4311,3 +4311,67 @@ function get_gs_institutions_preview() {
 
 add_action('wp_ajax_nopriv_institutions_preview', 'get_gs_institutions_preview');
 add_action('wp_ajax_institutions_preview', 'get_gs_institutions_preview');
+
+function create_table_for_gs_deadlines_data() {
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . 'gs_deadlines_data';
+
+    $sql = "CREATE TABLE $table_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    openingDateUpdate TEXT NOT NULL,
+    deadlineDateUpdate TEXT NOT NULL,
+    openingDateUpdated TEXT NOT NULL,
+    deadlineDateUpdated TEXT NOT NULL,
+    updateDeadlinesDate TEXT NOT NULL,
+    updatedInstitutionsIds LONGTEXT NOT NULL,
+    date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+    PRIMARY KEY  (id)
+    );";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
+}
+
+add_action('init', 'create_table_for_gs_deadlines_data');
+
+
+function get_gs_institutions_updated_data() {
+
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'gs_deadlines_data';
+    
+    $gsDeadlinesData = array();
+   
+    $gsDeadlinesData['openingDeadlineDateUpdate'] =  (isset($_POST['openingDeadlineDateUpdate'])) ? sanitize_text_field($_POST['openingDeadlineDateUpdate']) : '';
+    $gsDeadlinesData['deadlineDeadlineDateUpdate'] =  (isset($_POST['deadlineDeadlineDateUpdate'])) ? sanitize_text_field($_POST['deadlineDeadlineDateUpdate']) : '';
+    $gsDeadlinesData['openingDeadlineDateUpdated'] =  (isset($_POST['openingDeadlineDateUpdated'])) ? sanitize_text_field($_POST['openingDeadlineDateUpdated']) : '';
+    $gsDeadlinesData['deadlineDeadlineDateUpdated'] =  (isset($_POST['deadlineDeadlineDateUpdated'])) ? sanitize_text_field($_POST['deadlineDeadlineDateUpdated']) : '';
+    $gsDeadlinesData['updateDeadlinesDate'] =  (isset($_POST['updateDeadlinesDate'])) ? sanitize_text_field($_POST['updateDeadlinesDate']) : '';
+    $gsDeadlinesData['updatedInstitutionsIds'] =  isset($_POST['updatedInstitutionsIds']) ? (array) $_POST['updatedInstitutionsIds'] : array();
+    $gsDeadlinesData['date'] = isset($_POST['date']) ? $_POST['date'] : '';
+
+    $updatedInstitutionsIds = json_encode($gsDeadlinesData['updatedInstitutionsIds']);
+    $wpdb->insert(
+        $table_name,
+        array(
+        'openingDateUpdate' => $gsDeadlinesData['openingDeadlineDateUpdate'],
+        'deadlineDateUpdate' => $gsDeadlinesData['deadlineDeadlineDateUpdate'],
+        'openingDateUpdated' => $gsDeadlinesData['openingDeadlineDateUpdated'],
+        'deadlineDateUpdated' => $gsDeadlinesData['deadlineDeadlineDateUpdated'],
+        'updateDeadlinesDate' => $gsDeadlinesData['updateDeadlinesDate'],
+        'updatedInstitutionsIds' => $updatedInstitutionsIds,
+        'date' => $gsDeadlinesData['date']
+        )
+    );   
+    $response = array(
+        'data' => $gsDeadlinesData,
+        'success' => 'data entered into the database',
+    );
+
+    wp_send_json($response, 200);
+
+}
+
+add_action('wp_ajax_nopriv_update_deadlines_data', 'get_gs_institutions_updated_data');
+add_action('wp_ajax_update_deadlines_data', 'get_gs_institutions_updated_data');

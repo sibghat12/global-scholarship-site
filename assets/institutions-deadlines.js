@@ -141,7 +141,7 @@ jQuery(document).ready(function($) {
         <li>Deadline Date: <span class="gs-update-deadlines-deadline-date">${instACFDeadlineDate}</span></li>
       </ul>
       </div>
-      <div class="gs-opening-dates-to-update">
+      <div class="gs-opening-dates-updated">
       New Dates:
       <ul class="gs-updated-deadlines-dates">
         <li>Opening Date: <span class="gs-updated-deadlines-opening-date">${instACFNewOpeningDate}</span></li>
@@ -178,6 +178,7 @@ jQuery(document).ready(function($) {
           if(!updatingProcess) {
             updateDeadlinesButton.prop('disabled', false);
             $('.preview-data').addClass('done');
+            getUpdatedInstitutionsData();
             // Here run a function that gets all the data from the frontend and send back to the database :)
           }
           $('.process-data').addClass('done');
@@ -332,5 +333,52 @@ jQuery(document).ready(function($) {
       }
     });
 
+  }
+
+  function getUpdatedInstitutionsData() {
+
+    const previewDataDone = $('.preview-data.done');
+    const getOpeningDeadlineDateUpdate = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-to-update').find('.gs-update-deadlines-dates').find('.gs-update-deadlines-opening-date').text();
+    const getDeadlineDeadlineDateUpdate = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-to-update').find('.gs-update-deadlines-dates').find('.gs-update-deadlines-deadline-date').text();
+
+    
+    const getOpeningDeadlineDateUpdated = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-updated').find('.gs-updated-deadlines-dates').find('.gs-updated-deadlines-opening-date').text();
+    const getDeadlineDeadlineDateUpdated = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-updated').find('.gs-updated-deadlines-dates').find('.gs-updated-deadlines-deadline-date').text();
+
+    console.log("getOpeningDeadlineDateUpdated", getOpeningDeadlineDateUpdated)
+    console.log("getDeadlineDeadlineDateUpdated", getDeadlineDeadlineDateUpdated)
+
+    const getDateDeadlinesUpdate = previewDataDone.find('.gs-updated-deadlines-formatted-date').text();
+
+    // // Get all institutions Updated (Done) Deadlines ids
+
+    let updatedInstitutionsIds = [];
+    let updatedInstitutionsElems = previewDataDone.find('.gs-updated-deadlines-ordered-list').find('.gs-updated-deadlines-list-item').find('*[data-institution-id]');
+    $.each(updatedInstitutionsElems, function (indexInArray, element) { 
+      updatedInstitutionsIds.push($(element).data('institution-id'));
+    });
+
+    // console.log("updatedInstitutionsElems", updatedInstitutionsElems);
+
+    const ajaxData = {
+      action: 'update_deadlines_data',
+      openingDeadlineDateUpdate: getOpeningDeadlineDateUpdate,
+      deadlineDeadlineDateUpdate: getDeadlineDeadlineDateUpdate,
+      openingDeadlineDateUpdated: getOpeningDeadlineDateUpdated,
+      deadlineDeadlineDateUpdated: getDeadlineDeadlineDateUpdated,
+      updateDeadlinesDate: getDateDeadlinesUpdate,
+      updatedInstitutionsIds: updatedInstitutionsIds,
+      date: new Date().toISOString().slice(0, 19).replace('T', ' ')
+    };
+
+    $.ajax({
+      url: my_ajax_object.ajax_url,
+      type: 'POST',
+      data: ajaxData,
+      success: function(response) {
+        console.log("response :::: Institutions::::", response);
+        
+      }
+    });
   }
 })
