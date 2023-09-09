@@ -4319,6 +4319,8 @@ function create_table_for_gs_deadlines_data() {
 
     $sql = "CREATE TABLE $table_name (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
+    deadlinesUpdatedDegree TEXT NOT NULL,
+    deadlinesUpdatedCountry TEXT NOT NULL,
     openingDateUpdate TEXT NOT NULL,
     deadlineDateUpdate TEXT NOT NULL,
     openingDateUpdated TEXT NOT NULL,
@@ -4343,18 +4345,40 @@ function get_gs_institutions_updated_data() {
     
     $gsDeadlinesData = array();
    
+    // Degree
+    $gsDeadlinesData['deadlinesUpdatedDegree'] =  (isset($_POST['deadlinesUpdatedDegree'])) ? sanitize_text_field($_POST['deadlinesUpdatedDegree']) : '';
+
+    // Country
+    $gsDeadlinesData['deadlinesUpdatedCountry'] =  (isset($_POST['deadlinesUpdatedCountry'])) ? sanitize_text_field($_POST['deadlinesUpdatedCountry']) : '';
+
+    // Past Opening Date
     $gsDeadlinesData['openingDeadlineDateUpdate'] =  (isset($_POST['openingDeadlineDateUpdate'])) ? sanitize_text_field($_POST['openingDeadlineDateUpdate']) : '';
+    // Past Deadline Date
+
     $gsDeadlinesData['deadlineDeadlineDateUpdate'] =  (isset($_POST['deadlineDeadlineDateUpdate'])) ? sanitize_text_field($_POST['deadlineDeadlineDateUpdate']) : '';
+    // New Opening Date
+
     $gsDeadlinesData['openingDeadlineDateUpdated'] =  (isset($_POST['openingDeadlineDateUpdated'])) ? sanitize_text_field($_POST['openingDeadlineDateUpdated']) : '';
+
+    // New Deadline Date
+
     $gsDeadlinesData['deadlineDeadlineDateUpdated'] =  (isset($_POST['deadlineDeadlineDateUpdated'])) ? sanitize_text_field($_POST['deadlineDeadlineDateUpdated']) : '';
+
+    // Date of the Process
     $gsDeadlinesData['updateDeadlinesDate'] =  (isset($_POST['updateDeadlinesDate'])) ? sanitize_text_field($_POST['updateDeadlinesDate']) : '';
+
+    // Institutions Ids with dates changed
     $gsDeadlinesData['updatedInstitutionsIds'] =  isset($_POST['updatedInstitutionsIds']) ? (array) $_POST['updatedInstitutionsIds'] : array();
+
+    // Database logged Date
     $gsDeadlinesData['date'] = isset($_POST['date']) ? $_POST['date'] : '';
 
     $updatedInstitutionsIds = json_encode($gsDeadlinesData['updatedInstitutionsIds']);
     $wpdb->insert(
         $table_name,
         array(
+        'deadlinesUpdatedDegree' => $gsDeadlinesData['deadlinesUpdatedDegree'],
+        'deadlinesUpdatedCountry' => $gsDeadlinesData['deadlinesUpdatedCountry'],
         'openingDateUpdate' => $gsDeadlinesData['openingDeadlineDateUpdate'],
         'deadlineDateUpdate' => $gsDeadlinesData['deadlineDeadlineDateUpdate'],
         'openingDateUpdated' => $gsDeadlinesData['openingDeadlineDateUpdated'],

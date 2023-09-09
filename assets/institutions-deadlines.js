@@ -130,10 +130,26 @@ jQuery(document).ready(function($) {
       $('.preview-data').css('border', '2px solid #000000');
       $('.preview-data').css('padding', '30px');
       $('.preview-data').css('font-size', '1.2rem');
+
+      let degreeUpdated = '';
+      if(institutionACFDegree){
+        degreeUpdated = institutionACFDegree;
+      } else {
+        degreeUpdated = 'All Degrees';
+      }
+
+      let countryUpdated = '';
+      if(institutionACFCountry){
+        countryUpdated = institutionACFCountry;
+      } else {
+        countryUpdated = 'All Countries';
+      }
   
       let html = `<h2>List of Institutions (${allInstitutionsUpdated?.length}) that have been updated.</h2>
       
       <div class="gs-dates-update">
+      <input type="hidden" class="gs-deadlines-degree" value="${degreeUpdated}" >
+      <input type="hidden" class="gs-deadlines-country" value="${countryUpdated}" >
       <div class="gs-opening-dates-to-update">
       Past Dates:
       <ul class="gs-update-deadlines-dates">
@@ -345,6 +361,9 @@ jQuery(document).ready(function($) {
     const getOpeningDeadlineDateUpdated = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-updated').find('.gs-updated-deadlines-dates').find('.gs-updated-deadlines-opening-date').text();
     const getDeadlineDeadlineDateUpdated = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-updated').find('.gs-updated-deadlines-dates').find('.gs-updated-deadlines-deadline-date').text();
 
+    const getDeadlinesUpdatedDegree = previewDataDone.find('.gs-dates-update').find('.gs-deadlines-degree').val();
+    const getDeadlinesUpdatedCountry = previewDataDone.find('.gs-dates-update').find('.gs-deadlines-country').val();
+
     console.log("getOpeningDeadlineDateUpdated", getOpeningDeadlineDateUpdated)
     console.log("getDeadlineDeadlineDateUpdated", getDeadlineDeadlineDateUpdated)
 
@@ -362,6 +381,8 @@ jQuery(document).ready(function($) {
 
     const ajaxData = {
       action: 'update_deadlines_data',
+      deadlinesUpdatedDegree: getDeadlinesUpdatedDegree,
+      deadlinesUpdatedCountry: getDeadlinesUpdatedCountry,
       openingDeadlineDateUpdate: getOpeningDeadlineDateUpdate,
       deadlineDeadlineDateUpdate: getDeadlineDeadlineDateUpdate,
       openingDeadlineDateUpdated: getOpeningDeadlineDateUpdated,
