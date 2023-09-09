@@ -2761,6 +2761,7 @@ $scholarship_editor->add_cap( 'assign_city_terms' );
     
     // Scholarships Feedback Access
     $scholarship_editor->add_cap( 'scholarship_access' ); 
+
 }
 
 add_action( 'after_setup_theme', 'add_scholarship_caps_to_scholarship_editor');
@@ -3121,6 +3122,28 @@ function render_scholarship_settings_page()
     include('scholarships-feedback.php');
 }
 
+// Adding Admin Page for Feedback Form Data Tables
+
+function add_institutions_deadlines_updated_page()
+{
+    add_submenu_page(
+        'edit.php?post_type=institution', // parent slug
+        'Updated Institutions List',             // page title
+        'Updated Institutions List',             // menu title
+        'scholarship_access',                   // capability
+        'institutions-deadlines-updated',             // menu slug
+        'render_institutions_deadlines_updated_page'  // callback function
+    );
+}
+add_action('admin_menu', 'add_institutions_deadlines_updated_page');
+
+
+function render_institutions_deadlines_updated_page()
+{
+    // Add your custom admin page HTML here
+    include('institutions-deadlines-updated.php');
+}
+
 function render_institutions_update_deadlines_meta_page()
 {
     // Add your custom admin page HTML here
@@ -3172,8 +3195,28 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
             'ajax_url' => admin_url( 'admin-ajax.php' ),
           )
         );
-    
+    }
 
+
+    if ($hook_suffix == 'institution_page_institutions-deadlines-updated') {
+        
+
+        wp_enqueue_script('deadlines_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
+
+        wp_enqueue_style('deadlines_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+        wp_enqueue_style( 'deadlines_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+        wp_enqueue_script( 'deadlines_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+
+
+        wp_enqueue_script('gs_deadlines_updated_script',  get_stylesheet_directory_uri() . '/assets/institutions-updated-deadlines.js', array('jquery', 'deadlines_datatables-js'),
+        '1.0.45',
+        false );
+        
+        wp_localize_script( 'gs_deadlines_updated_script', 'my_ajax_object',
+          array( 
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+          )
+        );
     }
 
 
