@@ -398,7 +398,9 @@ jQuery(document).ready(function($) {
       data: ajaxData,
       success: function(response) {
         console.log("response :::: Institutions::::", response);
-        
+
+        const html = "<div>All Data Processed and Stored into Database Successfully!</div>";
+        $('.preview-data').html(html);
       }
     });
   }
