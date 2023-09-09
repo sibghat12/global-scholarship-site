@@ -30,6 +30,8 @@ function display_institutions_deadlines_updated_table()
                     <tr>
                         <th><input type="checkbox" id="select-all-checkbox"></th>
                         <th>ID</th>
+                        <th>Degree</th>
+                        <th>Country</th>
                         <th>Opening Date (Past)</th>
                         <th>Deadline Date (Past)</th>
                         <th>Opening Date (NEW)</th>
@@ -45,6 +47,8 @@ function display_institutions_deadlines_updated_table()
                         <tr>
                             <td><input type="checkbox" name="deadlines_data_ids[]" value="<?php echo $deadline_data['id']; ?>"></td>
                             <td><?php echo $deadline_data['id']; ?></td>
+                            <td><?php echo $deadline_data['deadlinesUpdatedDegree']; ?></td>
+                            <td><?php echo $deadline_data['deadlinesUpdatedCountry']; ?></td>
                             <td><?php echo $deadline_data['openingDateUpdate']; ?></td>
                             <td><?php echo $deadline_data['deadlineDateUpdate']; ?></td>
                             <td><?php echo $deadline_data['openingDateUpdated']; ?></td>
