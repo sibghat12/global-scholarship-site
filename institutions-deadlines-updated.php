@@ -60,7 +60,7 @@ function display_institutions_deadlines_updated_table()
                             <td><?php echo $deadline_data['updateDeadlinesDate']; ?></td>
                             <td><?php 
                                 foreach($institutions_ids as $institution) {
-                                    echo '<a href="'. get_permalink($institution).'">'.get_the_title($institution).'</a>';
+                                    echo '<div><a href="'. get_permalink($institution).'">'.get_the_title($institution).'</a></div>';
                                 }
                             ?></td>
                             <td><?php echo $deadline_data['date']; ?></td>
