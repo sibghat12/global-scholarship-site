@@ -3695,7 +3695,7 @@ function cta_post_shortcode($atts) {
            
             
 
-            
+
           
             <div class="col-md-9 col-sm-12">
                 <h2 style="font-size:22px;padding-left:0px;margin-bottom:0px;">' . esc_html($args['title']) . '</h2>
@@ -3705,7 +3705,7 @@ function cta_post_shortcode($atts) {
 
              <div class="col-md-3 col-sm-12 text-center ">
 
-                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:white !important;width:200px;float:right;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);">   Apply now  </a>
+                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:white !important;width:200px;float:left;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);">   Apply now  </a>
                 
             </div>
 

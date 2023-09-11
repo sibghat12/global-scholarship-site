@@ -919,10 +919,8 @@ function get_scholarship_deadline($id, $degree){
         }
 
           }
- 
-
-    
     }
+
 
    //Sort the deadline array from oldest to latest
 
@@ -1382,7 +1380,7 @@ function save_scholarships_deadline_post_meta_ajax() {
 
 
 function save_scholarships_deadline_post_meta() {
-    $batch_size = 20; // Fetch 100 posts at a time
+    $batch_size = 05; // Fetch 100 posts at a time
     $paged = 1; // Start at the first page
     $current_date = strtotime(date("F j, Y"));
     $master_degree = "Master's";
@@ -1431,10 +1429,15 @@ function check_and_update_scholarship_deadline($scholarship_id, $degree, $curren
         "Master's" => 'masters',
         "Bachelor's" => 'bachelors'
     ];
-    $degree_key = $degree_mapping[$degree] ?? '';
+     $degree_key = $degree_mapping[$degree] ?? '';
 
+       if($scholarship_id == "53014") {
+        echo  $dd = get_scholarship_deadline($scholarship_id, $degree);
+       
+       }
+      
 
-
+   
     // Determine the new deadline value
     $new_deadline = '';
     if ($scholarship_deadline_date > $current_date && $admission_deadline_date > $current_date) {
@@ -1497,16 +1500,15 @@ function save_institution_deadline_post_meta() {
     }
 }
 
-   
-
-
 function save_deadline_post_meta(){
     save_institution_deadline_post_meta();
     save_scholarships_deadline_post_meta();
 }
 
 
-//add_action( 'init', 'save_deadline_post_meta' );
+save_scholarships_deadline_post_meta();
+
+
 //add_action( 'init', 'save_deadline_post_meta' );
 add_action('save_deadline_post_meta', 'save_deadline_post_meta');
 

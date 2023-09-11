@@ -100,7 +100,7 @@ Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
  <li> Additional Scholarships Materials Required? <b><?php echo $separate_application; ?></b>  </li>
 
 
- <?php 
+<?php 
 
 
      $bachelor_open_date = get_field('bachelor_open_date');
@@ -122,107 +122,75 @@ if ($institution_query->have_posts()) {
  $current_date_date = date('F j, Y');
  $current_date = time();
 
- while ($institution_query->have_posts()) {
-    $institution_query->the_post();
+while ($institution_query->have_posts()) {
+$institution_query->the_post();
 
-    if (have_rows('admission_deadlines')) {
-        while (have_rows('admission_deadlines')) {
-            the_row();
+if (have_rows('admission_deadlines')) {
 
-            $degree = get_sub_field('degree');
-            $current_deadline = get_sub_field('deadline');
-            $current_date = strtotime(date("F j, Y"));
+// Push Deadline according to the degree
+while (have_rows('admission_deadlines')) {
+the_row();
 
-            // Check for Bachelor's or if the degree is empty
-            if ($degree == "Bachelor's" || empty($degree)) {
-                if (empty($bachelors_deadline) || 
-                    (strtotime($current_deadline) > $current_date && 
-                     strtotime($current_deadline) < strtotime($bachelors_deadline))) {
-                    $bachelors_deadline = $current_deadline;
-                    $bachelors_deadline_label = get_sub_field("label");
-                }
+$degree = get_sub_field('degree');
+
+if ($degree == "Bachelor's" || $degree == "") {
+  $current_bachelors_deadline = get_sub_field("deadline");
+   $bachelor_accpet_all_year = get_sub_field("accepts_application_all_year_round");
+  if (empty($bachelors_deadline) ||
+      (strtotime($current_bachelors_deadline) > $current_date && (strtotime($current_bachelors_deadline) < strtotime($bachelors_deadline) || strtotime($bachelors_deadline) < $current_date)) ||
+      (strtotime($current_bachelors_deadline) < $current_date && strtotime($current_bachelors_deadline) > strtotime($bachelors_deadline))) {
+          $bachelors_deadline = $current_bachelors_deadline;
+        if($bachelors_deadline=="") {
+            if($bachelor_accpet_all_year=="Yes"){
+              $bachelors_deadline = "Accepts Application All Year";
             }
+          }
+          $bachelors_deadline_label = get_sub_field("label");
 
-            // Check for Master's or if the degree is empty
-            if ($degree == "Master's" || empty($degree)) {
-                if (empty($masters_deadline) || 
-                    (strtotime($current_deadline) > $current_date && 
-                     strtotime($current_deadline) < strtotime($masters_deadline))) {
-                    $masters_deadline = $current_deadline;
-                    $masters_deadline_label = get_sub_field("label");
-                }
+  }
+}
+
+if ($degree == "Master's" || $degree == ""){
+  $current_masters_deadline = get_sub_field("deadline");
+  $master_accept_all_year = get_sub_field("accepts_application_all_year_round");
+  if (empty($masters_deadline) ||
+      (strtotime($current_masters_deadline) > $current_date && (strtotime($current_masters_deadline) < strtotime($masters_deadline) || strtotime($masters_deadline) < $current_date)) || $master_accept_all_year =="Yes" ||
+      (strtotime($current_masters_deadline) < $current_date && strtotime($current_masters_deadline) > strtotime($masters_deadline))) {
+          $masters_deadline = $current_masters_deadline;
+          if($masters_deadline=="") {
+            if($master_accept_all_year=="Yes"){
+              $masters_deadline = "Accepts Application All Year";
             }
-        }
-    }
+          }
+          $masters_deadline_label = get_sub_field("label");
+  }
+}
 }
 
 
-// while ($institution_query->have_posts()) {
-// $institution_query->the_post();
 
-// if (have_rows('admission_deadlines')) {
 
-// // Push Deadline according to the degree
-// while (have_rows('admission_deadlines')) {
-// the_row();
+if (empty($masters_deadline) || empty($bachelors_deadline)) {
 
-// $degree = get_sub_field('degree');
+if (!$has_found_bachelor && !$has_found_master) {
 
-// if ($degree == "Bachelor's") {
-//   $current_bachelors_deadline = get_sub_field("deadline");
-//    $bachelor_accpet_all_year = get_sub_field("accepts_application_all_year_round");
-//   if (empty($bachelors_deadline) ||
-//       (strtotime($current_bachelors_deadline) > $current_date && (strtotime($current_bachelors_deadline) < strtotime($bachelors_deadline) || strtotime($bachelors_deadline) < $current_date)) ||
-//       (strtotime($current_bachelors_deadline) < $current_date && strtotime($current_bachelors_deadline) > strtotime($bachelors_deadline))) {
-//           $bachelors_deadline = $current_bachelors_deadline;
-//         if($bachelors_deadline=="") {
-//             if($bachelor_accpet_all_year=="Yes"){
-//               $bachelors_deadline = "Accepts Application All Year";
-//             }
-//           }
-//           $bachelors_deadline_label = get_sub_field("label");
+  while (have_rows('admission_deadlines')) {
+      the_row();
+      $current_deadline_without_degree = get_sub_field("deadline");
 
-//   }
-// }
-
-// if ($degree == "Master's") {
-//   $current_masters_deadline = get_sub_field("deadline");
-//   $master_accept_all_year = get_sub_field("accepts_application_all_year_round");
-//   if (empty($masters_deadline) ||
-//       (strtotime($current_masters_deadline) > $current_date && (strtotime($current_masters_deadline) < strtotime($masters_deadline) || strtotime($masters_deadline) < $current_date)) || $master_accept_all_year =="Yes" ||
-//       (strtotime($current_masters_deadline) < $current_date && strtotime($current_masters_deadline) > strtotime($masters_deadline))) {
-//           $masters_deadline = $current_masters_deadline;
-//           if($masters_deadline=="") {
-//             if($master_accept_all_year=="Yes"){
-//               $masters_deadline = "Accepts Application All Year";
-//             }
-//           }
-//           $masters_deadline_label = get_sub_field("label");
-//   }
-// }
-// }
-
-// if (empty($masters_deadline) || empty($bachelors_deadline)) {
-
-// if (!$has_found_bachelor && !$has_found_master) {
-
-//   while (have_rows('admission_deadlines')) {
-//       the_row();
-//       $current_deadline_without_degree = get_sub_field("deadline");
-
-//       if (empty($deadline_without_degree) ||
-//           (strtotime($current_deadline_without_degree) > $current_date && (strtotime($current_deadline_without_degree) < strtotime($deadline_without_degree) || strtotime($deadline_without_degree) < $current_date)) ||
-//           (strtotime($current_deadline_without_degree) < $current_date && strtotime($current_deadline_without_degree) > strtotime($deadline_without_degree))) {
-//               $deadline_without_degree = $current_deadline_without_degree;
-//               $label_without_degree = get_sub_field("label");
-//               $accept_all_year = get_sub_field("accepts_application_all_year_round");
-//               $no_degree_selected = true;
-//       }
-//   }
-// }
-// }
-// }
-// }
+      if (empty($deadline_without_degree) ||
+          (strtotime($current_deadline_without_degree) > $current_date && (strtotime($current_deadline_without_degree) < strtotime($deadline_without_degree) || strtotime($deadline_without_degree) < $current_date)) ||
+          (strtotime($current_deadline_without_degree) < $current_date && strtotime($current_deadline_without_degree) > strtotime($deadline_without_degree))) {
+              $deadline_without_degree = $current_deadline_without_degree;
+              $label_without_degree = get_sub_field("label");
+              $accept_all_year = get_sub_field("accepts_application_all_year_round");
+              $no_degree_selected = true;
+      }
+  }
+}
+}
+}
+}
 
 
 
@@ -281,11 +249,13 @@ echo "<i> (Past Deadline)</i>";
 echo " </b>";
 }
 
-
 } else {
 
 // Both Bachelor's and Master's degrees are in the array
 echo " <ul style='padding-left:100px;font-weight:700;margin-top:0px;line-height:28px;font-size:17px;'>"; 
+
+
+
 if($bachelors_deadline) {
 echo "<li> Bachelor's: ";
 if ($bachelor_accpet_all_year=="Yes") { echo ": Currently Open";} else {
@@ -329,9 +299,6 @@ echo " </li>";
 echo "</ul>"; 
 
 }
-
-
-
 
 } elseif (in_array("Bachelor's", $degrees)) {
 // Only Bachelor's degree is in the array
@@ -379,6 +346,7 @@ echo '</li>'; }
 
 
 }
+
 
 
 //Scholarship Deadline
