@@ -37,8 +37,8 @@ function display_institutions_deadlines_updated_table()
                         <th>Opening Date (NEW)</th>
                         <th>Deadline Date (NEW)</th>
                         <th>Date of The Process</th>
-                        <th>Date Processed</th>
                         <th>Institutions Updated</th>
+                        <th>Date Processed</th>
                         <th>Action</th>
                     </tr>
                 </thead>
