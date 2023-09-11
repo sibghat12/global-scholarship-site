@@ -4105,3 +4105,50 @@ function update_country_meta() {
     
   }
   add_action('update_country_meta', 'update_country_meta');
+
+  /**
+ * Update Institutions Post Meta for Country and Continent using ACF cities and CPT city
+ * 
+ */
+function new_update_meta_location() {
+    // Get the current offset
+    $offset = 0;
+    $batchSize = 20;
+    $postType = 'institution';
+
+    $institution_posts_count = wp_count_posts($postType);
+    $institution_posts_count_published = $institution_posts_count->publish;
+
+
+        $the_args = array(
+        'post_type' => 'institution',
+        'posts_per_page' => -1,
+        // 'offset' => $offset,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+        );
+
+        $the_query = new WP_Query($the_args);
+        $thePosts = $the_query->get_posts();
+
+        foreach($thePosts as $id) {
+
+            $getCities = get_field('cities', $id);
+            if(is_object($getCities)) {
+                $getCitiesIds = $getCities->ID;
+            }
+            $theCountryNamePost = get_field('country', $getCitiesIds);
+            $theContinentNamePost = get_field('continent', $getCitiesIds);
+            update_field('location_country', $theCountryNamePost, $id);
+            update_field('location_continent', $theContinentNamePost, $id);
+
+            
+        }
+
+
+    
+}
+add_action('new_update_meta_location', 'new_update_meta_location');
