@@ -333,17 +333,25 @@ jQuery(document).ready(function($) {
           html += '</div>'; // End of Preivew Deadlines Element
         
           $('.preview-data').html(html);
-        } else {
+        } else if(response?.institutionsData == null) {
+          previewShowing = false;
+          previewInstitutionsButton?.prop('disabled', false);
+          $('.loader').css('display', 'none');
+
+          let html = `<div class="gs-deadlines-preview-data-container"><h2 class="gs-deadlines-preview-data-heading">No Insitutions Available for the Current Conditions (Please review your current conditions to preview)</h2>`; // Start the  list
+          html += '</div>'; // End of Preivew Deadlines Element
+          $('.preview-data').html(html);
+        }else {
           previewShowing = false;
           if(!previewShowing) {
-            previewInstitutionsButton.props('disabled', false);
+            previewInstitutionsButton?.prop('disabled', false);
           }
           $('.loader').css('display', 'none');
           $('.preview-data').html('');
         }
         previewShowing = false;
         if(!previewShowing) {
-          previewInstitutionsButton.prop('disabled', false);
+          previewInstitutionsButton?.prop('disabled', false);
         }
         
       }
