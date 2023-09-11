@@ -4470,25 +4470,34 @@ function get_gs_institutions_updated_data() {
     // Database logged Date
     $gsDeadlinesData['date'] = isset($_POST['date']) ? $_POST['date'] : '';
 
-    $updatedInstitutionsIds = json_encode($gsDeadlinesData['updatedInstitutionsIds']);
-    $wpdb->insert(
-        $table_name,
-        array(
-        'deadlinesUpdatedDegree' => $gsDeadlinesData['deadlinesUpdatedDegree'],
-        'deadlinesUpdatedCountry' => $gsDeadlinesData['deadlinesUpdatedCountry'],
-        'openingDateUpdate' => $gsDeadlinesData['openingDeadlineDateUpdate'],
-        'deadlineDateUpdate' => $gsDeadlinesData['deadlineDeadlineDateUpdate'],
-        'openingDateUpdated' => $gsDeadlinesData['openingDeadlineDateUpdated'],
-        'deadlineDateUpdated' => $gsDeadlinesData['deadlineDeadlineDateUpdated'],
-        'updateDeadlinesDate' => $gsDeadlinesData['updateDeadlinesDate'],
-        'updatedInstitutionsIds' => $updatedInstitutionsIds,
-        'date' => $gsDeadlinesData['date']
-        )
-    );   
-    $response = array(
-        'data' => $gsDeadlinesData,
-        'success' => 'data entered into the database',
-    );
+
+    $response = array();
+    if(!empty($gsDeadlinesData['updatedInstitutionsIds'])) {
+        $updatedInstitutionsIds = json_encode($gsDeadlinesData['updatedInstitutionsIds']);
+        $wpdb->insert(
+            $table_name,
+            array(
+            'deadlinesUpdatedDegree' => $gsDeadlinesData['deadlinesUpdatedDegree'],
+            'deadlinesUpdatedCountry' => $gsDeadlinesData['deadlinesUpdatedCountry'],
+            'openingDateUpdate' => $gsDeadlinesData['openingDeadlineDateUpdate'],
+            'deadlineDateUpdate' => $gsDeadlinesData['deadlineDeadlineDateUpdate'],
+            'openingDateUpdated' => $gsDeadlinesData['openingDeadlineDateUpdated'],
+            'deadlineDateUpdated' => $gsDeadlinesData['deadlineDeadlineDateUpdated'],
+            'updateDeadlinesDate' => $gsDeadlinesData['updateDeadlinesDate'],
+            'updatedInstitutionsIds' => $updatedInstitutionsIds,
+            'date' => $gsDeadlinesData['date']
+            )
+        );   
+        $response = array(
+            'data' => $gsDeadlinesData,
+            'success' => 'data entered into the database',
+        );
+    } else {
+        $response = array(
+            'data' => [],
+            'success' => 'It is empty, no institutions exist for this update, so we are going to skip it!',
+        ); 
+    }
 
     wp_send_json($response, 200);
 

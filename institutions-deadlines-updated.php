@@ -38,12 +38,16 @@ function display_institutions_deadlines_updated_table()
                         <th>Deadline Date (NEW)</th>
                         <th>Date of The Process</th>
                         <th>Date Processed</th>
+                        <th>Institutions Updated</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($deadlines_data as $deadline_data) { ?>
-
+                        <?php
+                            
+                            $institutions_ids = json_decode($deadline_data['updatedInstitutionsIds']);
+                            ?>
                         <tr>
                             <td><input type="checkbox" name="deadlines_data_ids[]" value="<?php echo $deadline_data['id']; ?>"></td>
                             <td><?php echo $deadline_data['id']; ?></td>
@@ -54,6 +58,11 @@ function display_institutions_deadlines_updated_table()
                             <td><?php echo $deadline_data['openingDateUpdated']; ?></td>
                             <td><?php echo $deadline_data['deadlineDateUpdated']; ?></td>
                             <td><?php echo $deadline_data['updateDeadlinesDate']; ?></td>
+                            <td><?php 
+                                foreach($institutions_ids as $institution) {
+                                    echo '<a href="'. get_permalink($institution).'">'.get_the_title($institution).'</a>';
+                                }
+                            ?></td>
                             <td><?php echo $deadline_data['date']; ?></td>
                             <td>
                                 <a href="<?php echo add_query_arg('delete_deadline_data', $deadline_data['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Deadline Data?')">Delete</a>
