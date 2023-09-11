@@ -155,9 +155,11 @@ function drop_columns_if_exist() {
 
         // Loop through the columns to drop
         foreach ($columns_to_drop as $column) {
-            if (in_array($column, $existing_columns)) {
-                $wpdb->query("ALTER TABLE $table_name DROP COLUMN $column");
+            if (!in_array($column, $existing_columns)) {
+                return;
             }
+
+            $wpdb->query("ALTER TABLE $table_name DROP COLUMN $column");
         }
     }
 }

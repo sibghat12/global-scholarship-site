@@ -4235,6 +4235,7 @@ function get_gs_institutions_preview() {
     $preview_posts = $preview_query->get_posts();
     $institutionData = array();
     $match_found = false;
+    $the_unique_institutions = [];
 
     if (isset($preview_posts) && !empty($preview_posts) && is_array($preview_posts)) {
         foreach ($preview_posts as $id) {
@@ -4269,7 +4270,6 @@ function get_gs_institutions_preview() {
 
                         $unique_institutions = [];
 
-                        $the_unique_institutions = [];
                         foreach ($institutionData as $object) {
                             $id = $object['id'];
 
