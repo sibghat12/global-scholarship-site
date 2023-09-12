@@ -2761,6 +2761,7 @@ $scholarship_editor->add_cap( 'assign_city_terms' );
     
     // Scholarships Feedback Access
     $scholarship_editor->add_cap( 'scholarship_access' ); 
+
 }
 
 add_action( 'after_setup_theme', 'add_scholarship_caps_to_scholarship_editor');
@@ -3121,6 +3122,28 @@ function render_scholarship_settings_page()
     include('scholarships-feedback.php');
 }
 
+// Adding Admin Page for Feedback Form Data Tables
+
+function add_institutions_deadlines_updated_page()
+{
+    add_submenu_page(
+        'edit.php?post_type=institution', // parent slug
+        'Updated Institutions List',             // page title
+        'Updated Institutions List',             // menu title
+        'scholarship_access',                   // capability
+        'institutions-deadlines-updated',             // menu slug
+        'render_institutions_deadlines_updated_page'  // callback function
+    );
+}
+add_action('admin_menu', 'add_institutions_deadlines_updated_page');
+
+
+function render_institutions_deadlines_updated_page()
+{
+    // Add your custom admin page HTML here
+    include('institutions-deadlines-updated.php');
+}
+
 function render_institutions_update_deadlines_meta_page()
 {
     // Add your custom admin page HTML here
@@ -3172,8 +3195,28 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
             'ajax_url' => admin_url( 'admin-ajax.php' ),
           )
         );
-    
+    }
 
+
+    if ($hook_suffix == 'institution_page_institutions-deadlines-updated') {
+        
+
+        wp_enqueue_script('deadlines_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
+
+        wp_enqueue_style('deadlines_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+        wp_enqueue_style( 'deadlines_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+        wp_enqueue_script( 'deadlines_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+
+
+        wp_enqueue_script('gs_deadlines_updated_script',  get_stylesheet_directory_uri() . '/assets/institutions-updated-deadlines.js', array('jquery', 'deadlines_datatables-js'),
+        '1.0.45',
+        false );
+        
+        wp_localize_script( 'gs_deadlines_updated_script', 'my_ajax_object',
+          array( 
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+          )
+        );
     }
 
 
@@ -4062,3 +4105,50 @@ function update_country_meta() {
     
   }
   add_action('update_country_meta', 'update_country_meta');
+
+  /**
+ * Update Institutions Post Meta for Country and Continent using ACF cities and CPT city
+ * 
+ */
+function new_update_meta_location() {
+    // Get the current offset
+    $offset = 0;
+    $batchSize = 20;
+    $postType = 'institution';
+
+    $institution_posts_count = wp_count_posts($postType);
+    $institution_posts_count_published = $institution_posts_count->publish;
+
+
+        $the_args = array(
+        'post_type' => 'institution',
+        'posts_per_page' => -1,
+        // 'offset' => $offset,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+        );
+
+        $the_query = new WP_Query($the_args);
+        $thePosts = $the_query->get_posts();
+
+        foreach($thePosts as $id) {
+
+            $getCities = get_field('cities', $id);
+            if(is_object($getCities)) {
+                $getCitiesIds = $getCities->ID;
+            }
+            $theCountryNamePost = get_field('country', $getCitiesIds);
+            $theContinentNamePost = get_field('continent', $getCitiesIds);
+            update_field('location_country', $theCountryNamePost, $id);
+            update_field('location_continent', $theContinentNamePost, $id);
+
+            
+        }
+
+
+    
+}
+add_action('new_update_meta_location', 'new_update_meta_location');
