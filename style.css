@@ -2420,7 +2420,7 @@ font-size:15px !important;
     } 
 }
 
-  .apply-now-btn {
+  .apply-now-btn{
     width:200px !important;
   }
 
@@ -6015,7 +6015,7 @@ padding-bottom:40px !important;
 
 
 @media (max-width: 1300px) {
-.courses-grid .course-item , .courses-grid .col-md-4   {
+.card-container  {
     width:48% !important;
     margin-top:20px !important;
     margin-right:2%!important;
@@ -6026,9 +6026,7 @@ padding-bottom:40px !important;
     width:100% !important;
    }
 
-   .course-flag {
-    display: none !important;
-   }
+   
     .course-text.heading-section{
     justify-content: flex-start !important;
    }
@@ -6042,13 +6040,11 @@ padding-bottom:40px !important;
    float:left !important;
    }
 
-   .courses-grid {
+   .card-container {
     width:100% !important;
    }
    
-   .course-flag {
-    display: none !important;
-   }
+  
    
    .course-text.heading-section{
     justify-content: flex-start !important;
@@ -6057,9 +6053,9 @@ padding-bottom:40px !important;
 }
 
 
-.course-flag{
-    display: none !important;
-}
+
+
+
 
 .course-text{
 justify-content: flex-start; 
@@ -6126,3 +6122,4 @@ justify-content: flex-start;
     min-height: 600px;
     height: 600px;  /* You'll need to set a specific height here. */
 }
+
