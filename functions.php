@@ -2687,6 +2687,16 @@ $scholarship_editor = get_role( 'scholarship_editor' );
     $scholarship_editor->remove_cap('delete_private_ads');
     $scholarship_editor->remove_cap('delete_published_ads');
 
+    if ($scholarship_editor) {
+        $scholarship_editor->remove_cap('edit_posts');
+        $scholarship_editor->remove_cap('edit_posts');
+        $scholarship_editor->remove_cap('publish_posts');
+        $scholarship_editor->remove_cap('edit_published_posts');
+        $scholarship_editor->remove_cap('edit_others_posts');
+        $scholarship_editor->remove_cap('delete_posts');
+        $scholarship_editor->remove_cap('delete_others_posts');
+    }
+
     // Add capabilities for institutions
     $scholarship_editor->add_cap( 'edit_institution' );
     $scholarship_editor->add_cap( 'read_institution' );
@@ -3130,7 +3140,7 @@ function add_institutions_deadlines_updated_page()
         'edit.php?post_type=institution', // parent slug
         'Updated Institutions List',             // page title
         'Updated Institutions List',             // menu title
-        'scholarship_access',                   // capability
+        'edit_posts',                   // capability
         'institutions-deadlines-updated',             // menu slug
         'render_institutions_deadlines_updated_page'  // callback function
     );
@@ -3140,6 +3150,10 @@ add_action('admin_menu', 'add_institutions_deadlines_updated_page');
 
 function render_institutions_deadlines_updated_page()
 {
+    $current_user = wp_get_current_user();
+    if (in_array('scholarship_editor', $current_user->roles) || in_array("scholarship_author", $current_user->roles)) {
+        return;
+    }
     // Add your custom admin page HTML here
     include('institutions-deadlines-updated.php');
 }
