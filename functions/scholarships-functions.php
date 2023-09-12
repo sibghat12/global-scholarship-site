@@ -4534,63 +4534,64 @@ function get_gs_institutions_updated_data() {
 add_action('wp_ajax_nopriv_update_deadlines_data', 'get_gs_institutions_updated_data');
 add_action('wp_ajax_update_deadlines_data', 'get_gs_institutions_updated_data');
 
-// Get all Institutions that are connected to scholarships
-function get_institutions_scholarships() {
-     // Custom WP_Query for institution custom post type
-     $args = array(
+// Get all Institutions that are not connected to scholarships
+function get_institutions_without_scholarships() {
+    // Custom WP_Query for scholarships custom post type
+    $scholarships_args = array(
         'post_type' => 'scholarships',
+        'post_status' => 'publish',
         'posts_per_page' => -1,
-        'no_found_rows' => true, 
+        'no_found_rows' => true,
         'update_post_meta_cache' => false,
         'update_post_term_cache' => false,
-        'cache_results'          => false,
+        'cache_results' => false,
         'fields' => 'ids'
     );
-    $query = new WP_Query($args);
+    $scholarships_query = new WP_Query($scholarships_args);
 
-    $the_scholarships = $query->get_posts();
+    $scholarships = $scholarships_query->get_posts();
 
-     $institutions_args = array(
+    $institutions_args = array(
         'post_type' => 'institution',
+        'post_status' => 'publish',
         'posts_per_page' => -1,
-        'no_found_rows' => true, 
+        'no_found_rows' => true,
         'update_post_meta_cache' => false,
         'update_post_term_cache' => false,
-        'cache_results'          => false,
+        'cache_results' => false,
         'fields' => 'ids'
     );
     $institutions_query = new WP_Query($institutions_args);
 
-    $the_scholarships = $query->get_posts();
-    $the_institutions = $institutions_query->get_posts();
+    $institutions = $institutions_query->get_posts();
 
-    // echo '<pre>';
-    // print_r($the_scholarships);
-    // echo '</pre>';
-    // echo '<pre>';
-    // print_r($the_institutions);
-    // echo '</pre>';
     $institutions_with_scholarships = [];
 
-    foreach($the_scholarships as $key => $scholarship) {
-        $scholarship_instituiton = get_field('scholarship_institution', $scholarship);
-        array_push($institutions_with_scholarships, $scholarship_instituiton->ID);
-        
+    foreach ($scholarships as $scholarship) {
+        $scholarship_institution = get_field('scholarship_institution', $scholarship);
+        if ($scholarship_institution) {
+            $institutions_with_scholarships[] = $scholarship_institution->ID;
+        }
     }
-    
 
     $unique_institutions = array_unique($institutions_with_scholarships);
-    echo '<pre>';
-    print_r($unique_institutions);
-    echo '</pre>';
 
-    
-    $result=array_diff($the_institutions,$unique_institutions);
+    $result = array_diff($institutions, $unique_institutions);
 
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';
-    
+    return $result;
 }
 
-add_action('init', 'get_institutions_scholarships');
+function institutions_without_scholarships_list( $atts ){
+
+    $result = get_institutions_without_scholarships();
+	echo "<ol>";
+        foreach($result as $key => $institution) {
+            ?>
+            <li>
+                <a  href="<?php echo get_permalink($institution); ?>"> <?php echo get_the_title($institution); ?></a>
+            </li>
+            <?php
+        }
+    echo "</ol>";
+}
+add_shortcode( 'institutions-without-scholarships', 'institutions_without_scholarships_list' );
