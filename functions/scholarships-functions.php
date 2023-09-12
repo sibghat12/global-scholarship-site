@@ -285,7 +285,22 @@ function get_currency($country){
         "Estonia" => "Euros",
         "Iceland" => "ISK",
         "Slovenia" => "Euros",
-
+        "Brazil" => "Brazilian Real",
+        "Malta" => "Euros",
+        "Vietnam" => "VND",
+        "Thailand" => "THB",
+        "Sri Lanka" => "LKR",
+        "Nepal" => "NPR",
+        "Vatican City" => "Euros",
+        "Slovakia" => "Euros",
+        "Serbia" => "RSD",
+        "Cyprus" => "Euros",
+        "Lithuania" => "Euros",
+        "Luxembourg" => "Euros",
+        "Bulgaria" => "BGN",
+        "Qatar" => "QAR",
+        "Israel" => "NIS",
+        "Hong Kong" => "HKD",
     );
     
     return $currency_list[$country];
@@ -439,6 +454,22 @@ function convert_to_usd($amount, $currency){
     "Rp" => 0.000066,
     "SAR" => 0.27,
     "MYR" => 0.23,
+    "RON" => 0.22,
+    "BYN" => 0.40,
+    "HUF" => 0.0028,
+    "BAM" => 0.55,
+    "ALL" => 0.010,
+    "ISK" => 0.0075,
+    "Brazilian Real" => 0.20,
+    "VND" => 0.000041,
+    "THB" => 0.028,
+    "LKR" => 0.0031,
+    "NPR" => 0.0075,
+    "RSD" => 0.0092,
+    "BGN" => 0.55,
+    "QAR" => 0.27,
+    "NIS" => 0.26,
+    "HKD" => 0.13
     );
 
     return (float)$amount * (float)$list[$currency];
