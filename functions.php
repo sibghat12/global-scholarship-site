@@ -3106,7 +3106,8 @@ function add_scholarship_admin_page()
         'edit.php?post_type=scholarships', // parent slug
         'Scholarships Feedback',             // page title
         'Feedback',             // menu title
-        'scholarship_access',                   // capability
+        // 'scholarship_access',                   // capability (allow scholaship-edior role)
+        'edit_posts',                   // capability (DO NOT allow scholaship-edior role)
         'scholarships-form-feedback',             // menu slug
         'render_scholarship_settings_page'  // callback function
     );
