@@ -1431,10 +1431,7 @@ function check_and_update_scholarship_deadline($scholarship_id, $degree, $curren
     ];
      $degree_key = $degree_mapping[$degree] ?? '';
 
-       if($scholarship_id == "53014") {
-        echo  $dd = get_scholarship_deadline($scholarship_id, $degree);
-       
-       }
+      
       
 
    
@@ -1505,8 +1502,6 @@ function save_deadline_post_meta(){
     save_scholarships_deadline_post_meta();
 }
 
-
-save_scholarships_deadline_post_meta();
 
 
 //add_action( 'init', 'save_deadline_post_meta' );

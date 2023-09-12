@@ -2420,6 +2420,10 @@ font-size:15px !important;
     } 
 }
 
+  .apply-now-btn {
+    width:200px !important;
+  }
+
 @media screen and (max-width: 1400px) {
 
 .opencourse-template .domestic , .opencourse-template .international{
@@ -5863,7 +5867,7 @@ padding-top:0px ;
      color:white !important;
     }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 .cta-container {
  width:92% !important; 
  }
@@ -5890,6 +5894,24 @@ border-radius: 10px;
 }
 
 }
+
+
+
+@media (max-width: 1000px) {
+.cta-container .row {
+    display: inline;
+    align-items: center; /* This will vertically center the contents of the flex children */
+}
+.cta-container{
+padding-top:0px;
+padding-bottom:0px;
+padding-right:20px !important;
+padding-left:25px !important;
+
+border-radius: 10px;
+}
+}
+
 
 
 
@@ -5941,10 +5963,11 @@ padding-bottom:40px !important;
     }
 
     .course-logo, .course-title, .course-flag {
-        display: flex;
+      
         align-items: center;
         justify-content: center; 
-    } .course-title {
+    }
+     .course-title {
         margin-top:-5px !important;
     }
 
@@ -6014,9 +6037,10 @@ padding-bottom:40px !important;
 
 @media (max-width: 700px) {
 
-.courses-grid .course-item {
+  .courses-grid .course-item {
    width:auto !important;
-   float:left !important}
+   float:left !important;
+   }
 
    .courses-grid {
     width:100% !important;
@@ -6028,7 +6052,7 @@ padding-bottom:40px !important;
    
    .course-text.heading-section{
     justify-content: flex-start !important;
-   }
+    }
 
 }
 
@@ -6039,5 +6063,66 @@ padding-bottom:40px !important;
 
 .course-text{
 justify-content: flex-start; 
+}
 
+
+
+
+#courses-flipcard {
+    margin-bottom:20px !important;
+    width:100% !important;
+    display: block !important;
+}
+.col-md-4 {
+    margin-left:10px !important;
+    margin-right:10px !important;
+    width:31% !important;
+}
+
+.front,
+.back {
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    width: 100%;
+    height: auto !important;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 300ms;
+    transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    transition: transform 300ms, -webkit-transform 300ms;
+    -webkit-transition-timing-function: linear;
+            transition-timing-function: linear;
+    border-radius: 5px;
+}
+.front {
+    transform: rotateY(0deg);
+    background: white !important;
+    text-align: center;
+    
+}
+.back {
+   background: white !important;
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+   
+    
+}
+.col-md-4:hover .front {
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+}
+.col-md-4:hover .back {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+}
+
+
+
+.card-container {
+    position: relative;
+    min-height: 600px;
+    height: 600px;  /* You'll need to set a specific height here. */
 }
