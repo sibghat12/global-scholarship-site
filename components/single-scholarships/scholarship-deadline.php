@@ -38,7 +38,7 @@
           }
         ?>
 
-        <p>We also recommend visiting the <?php echo $institution_name; ?> Admissions Section for other university deadlines and requirements.</p>
+        <p>We also recommend visiting the <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> Admissions Section</a> for other university deadlines and requirements.</p>
         <?php else:  
             
             if($degrees_text != 'PhD') :
