@@ -3689,7 +3689,7 @@ function cta_shortcode($atts) {
             <div class="col-md-8 col-sm-12">
                 <h2 style="font-size:30px;">' . esc_html($args['title']) . '</h2>
                 <p>' . esc_html($args['desc']) . '</p>
-                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:#0055F9 !important;">   Apply now   <i style="margin-top:3px;width:20px;margin-left:5px;color:#0055F9 !important;" class="fa fa-long-arrow-right"> </i> </a>
+                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="width:200px;color:#0055F9 !important;">   Apply now   <i style="margin-top:3px;width:20px;margin-left:5px;color:#0055F9 !important;" class="fa fa-long-arrow-right"> </i> </a>
             </div>
         </div>
     </div>';
@@ -3748,7 +3748,8 @@ function cta_post_shortcode($atts) {
 
              <div class="col-md-3 col-sm-12 text-center ">
 
-                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:white !important;width:200px;float:left;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);">   Apply now  </a>
+                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:white !important;
+                width:100% !important;padding-left:40px !important;padding-right:40px !important;float:leftbox-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);width:200px !important;">   Apply now  </a>
                 
             </div>
 
@@ -4049,7 +4050,313 @@ echo $des;
     <?php
     return ob_get_clean(); // Return buffered output
 }
-add_shortcode('courses_grid_shortcode', 'courses_grid_shortcode');
+//add_shortcode('courses_grid_shortcode', 'courses_grid_shortcode');
+
+
+add_shortcode('courses_grid_shortcode_new', 'courses_grid_shortcode_new');
+function courses_grid_shortcode_new() {
+    ob_start(); // Start output buffering
+   
+   $args = array(
+    'post_type'      => 'ads',
+    'post_status'    => 'publish',
+    'posts_per_page' => 3,
+    'order'          => 'DESC',
+    'meta_query'     => array(
+        array(
+            'key'     => 'related_course',
+            'value'   => 'Yes',
+            'compare' => '='
+        )
+    )
+);
+
+    $new_loop = new WP_Query($args);
+    ?>
+  <div class="clearfix"> </div>
+    <div id="courses-flipcard" >
+       
+        <?php 
+        if ($new_loop->have_posts()) : 
+            while ($new_loop->have_posts()) : $new_loop->the_post();
+
+                $ad_id = get_the_ID();
+
+                // You can access custom fields or meta data using get_post_meta()
+                $image_url = get_the_post_thumbnail_url($ad_id);
+
+                $course_title = get_the_title();
+                $institute = get_post(get_post_meta(get_the_ID(), 'adsInstitution', true));
+
+                $domestic_tuition_fees_INT = get_post_meta($institute->ID, 'domestic_tuition_fees' , true);
+$international_tuition_fees_INT = get_post_meta($institute->ID, 'international_tuition_fees' , true);
+
+$domestic_tuition_fees = get_post_meta($ad_id, 'domestic_tuition_fees' , true);
+$international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
+
+$country = get_post_meta($institute->ID, 'adsIntCountry', true);
+
+$currency = get_currency($country);
+
+     $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
+$language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
+
+             $des = get_post_meta($ad_id, 'description', true);
+             $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
+             $link_post_meta = get_post_meta($ad_id, 'link', true);
+             if (!empty($link_post_meta)){
+             $link = $link_post_meta;
+             } else {
+             $link = get_post_meta($institute->ID, 'adsIntLink', true);
+             }
+
+                    $language_of_instruction = "";
+                    if($language_of_instructions_ads){
+                      $language_of_instruction = $language_of_instructions_ads;
+                    } else if($language_of_instructions_AdsInt){
+                      $language_of_instruction = $language_of_instructions_AdsInt; }
+                      else {
+                      $language_of_instruction = "English";
+                    }
+                   
+                
+                $log_url = get_the_post_thumbnail_url($institute->ID);
+              
+
+              if($image_url) {
+    // Do something if $image_url is set
+} else {
+    $image_url = "https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/c7eb49b396dc06f16c576792f2086aa9.jpeg";
+}
+
+
+              
+                $logo_url = get_the_post_thumbnail_url($institute->ID);
+                // Replace these with your actual meta data or custom field keys
+                
+                //$logo_url = get_post_meta(get_the_ID(), 'logo_key', true); 
+                $flag_url = get_post_meta(get_the_ID(), 'flag_key', true);
+
+               ?>
+               
+
+               
+               
+
+
+  
+  
+  
+  <div class='col-md-4  card-container'>
+    <div class='front'>
+         
+                    <div  class="course-image">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
+                    </div>
+
+
+      <div class="course-text heading-section " style="min-height: 90px;margin-top:0px;">
+                        
+                        <div class="col-md-3 course-logo">
+                            <img  style="width:60px;height: 60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
+                        </div>
+                        
+                        <div class="col-md-7 course-title" style="padding-right:10px;padding-left:3px;font-size:15px;
+                        line-height:20px !important;
+                        font-weight: 700 !important; text-align: left;">
+                            <?php echo esc_html($course_title); ?>
+                        </div>
+
+                         <div class="col-md-2">
+                           <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
+
+                         </div>
+
+                        
+                    </div>
+
+                    <div class="course-text heading-section" style="margin-top:0px !important;">
+                   
+                   <p style="height:60px;text-align:left;font-weight:600;padding-left:15px;padding-right:15px;font-size:16px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
+
+
+                  </div>
+
+                  <div>
+                   <p style="text-align:center !important;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">Annual Tuition Fee* </p>
+                  </div>
+
+
+                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:8px;width:86% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
+
+                    <div style="border-right:2px solid #cdcdcd;width:100% !important;">  
+                    
+                    <p style="text-align: center;font-size:13px;line-height: 23px;"> 
+                    <span style="line-height:16px;font-weight: 700 !important;font-size:13px !important;text-align:center;">  Domestic  </span>  <br>
+                    <?php if($domestic_tuition_fees){
+                        echo number_format($domestic_tuition_fees)  ." ". $currency;
+                      }  elseif($domestic_tuition_fees_INT) {
+                        
+                        echo number_format($domestic_tuition_fees_INT)  ." ". $currency;
+                      }else {
+                        
+                        echo "N/A";
+                      }
+                     ?>
+
+                </p> 
+
+                    </div>
+                   
+                   
+                   
+                    <div style="width:100% !important;">  
+                    
+                    <p style="text-align: center;font-size:13px;line-height: 23px;" > 
+                    <span style="line-height:16px;font-weight: 700 !important;font-size:13px !important;text-align:center;">  International  </span> <br> 
+                    <?php
+                      
+                      if($international_tuition_fees){
+                        echo number_format($international_tuition_fees) ." ".  $currency ;
+                      }  elseif ($international_tuition_fees_INT)  {
+                       
+                        echo number_format($international_tuition_fees_INT)  ." ". $currency;
+                      }else {
+
+                           echo "N/A";
+                      
+                     }
+
+                       ?> 
+                    </p> 
+
+                    </div>
+
+                  </div>
+
+                     <div class="course-text" style="margin-bottom:20px !important;margin-top:20px;float:right;">
+                   
+                   <p style="float:right;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">
+                       
+                       <span style="width:32px;">
+                        <img style="width:24px;height: 24px;margin-right:4px;" src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
+                         </span> 
+
+                    <span style="color:gray; width: calc(100% - 32px) !important; line-height: 24px;"><?php echo $language_of_instruction; ?></span>
+
+                   </p>
+
+
+                  </div>
+      
+    </div>
+    <div class='back'>
+      
+      <div  class="course-image">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
+                    </div>
+
+         <div class="course-text" style="min-height: 90px;margin-top:0px;">
+                        
+                        <div class="col-md-3 course-logo">
+                            <img  style="width:60px;height: 60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
+                        </div>
+                        
+                        <div class="col-md-9 course-title" style="padding-right:10px;padding-left:3px;font-size:16px;
+                        line-height:20px !important;
+                        font-weight: 700 !important;">
+                            <?php echo esc_html($course_title); ?>
+                        </div>
+
+                        
+                    </div>
+
+                  <div class="course-text institution-title" style="margin-top:0px !important;">
+                   
+                   <p style="height:60px;font-weight:600;padding-left:15px;padding-right:15px;font-size:18px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
+
+
+                  </div>
+
+                  <div class="course-text" style="margin-top:-10px !important;">
+                   
+                   <p id="short" style="text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
+                      
+                      <?php  if (strlen($des) > 110) {
+    $des = substr($des, 0, 100);
+    $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
+}
+
+echo $des;
+                             ?>
+                     </p>
+
+                     <p id="full" style="display:none;text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
+                      
+                       <?php 
+                              $des = get_post_meta($ad_id, 'description', true);
+                              echo $des . '...  <span class="read-less" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read Less </span>';
+                             ?>
+                     </p>
+
+
+                  </div>
+
+                    <div class="course-text" style="margin-top:-5px !important;">
+                   
+                   <p style="line-height: 18px;">   
+                      
+                      <?php   if($disclaimer === "1")  {  ?>
+                         
+                         <strong style="line-height:16px;padding-left:0px;font-size:12px;padding-right:10px;font-weight:700 !important;" > *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+
+                     <?php } ?>
+                     
+                     </p>
+
+
+                  </div>
+
+
+
+
+                   
+
+<div class="course-text" style="margin-bottom:20px !important;margin-top:5px;float:left;">
+                   
+                   <p style="float:right;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">
+                       
+                       <a style="font-weight:500;font-size:16px;text-decoration:none;color:black !important;" href="<?php  echo $link; ?>"> Learn more <i  style="font-size:16px !important;color:black;margin-left:5px;" 
+                        class="fa fa-long-arrow-right">  </i></a>
+                   
+                    
+
+                   </p>
+
+
+                  </div>
+        
+      </div>
+    </div>
+  
+
+
+               
+
+
+
+               
+        <?php 
+            endwhile;
+        endif;
+        ?>
+        </div>
+    
+
+    <?php
+    return ob_get_clean(); // Return buffered output
+}
+
 
 /**
  * Update Institutions Post Meta for Country and Continent using ACF cities and CPT city

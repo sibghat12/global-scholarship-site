@@ -173,6 +173,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</article>
 	<?php endwhile; ?>
 	<?php wp_reset_postdata(); ?>
+
+   <?php 
+    // Display the cta_post_shortcode
+    echo do_shortcode('[cta_post_shortcode]'); 
+
+    // Display the courses_grid_shortcode_new
+    echo do_shortcode('[courses_grid_shortcode_new]');
+?>
+
+
 </section>
 
 <script>
