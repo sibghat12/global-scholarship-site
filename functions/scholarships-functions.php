@@ -4296,19 +4296,8 @@ function get_gs_institutions_preview() {
 
                         $institutionData[] = $institution;
 
-                        $unique_institutions = [];
-
-                        foreach ($institutionData as $object) {
-                            $id = $object['id'];
-
-                            if (!in_array($id, array_keys($unique_institutions))) {
-                                $unique_institutions[$id] = $object;
-                            }
-                        }
-
-                        foreach($unique_institutions as $institution) {
-                            array_push($the_unique_institutions, $institution);
-                        }
+                        $unique_ids = array_column($institutionData, 'id');
+                        $institutionData = array_intersect_key($institutionData, array_unique($unique_ids));
                     }
                 }
 
@@ -4317,7 +4306,7 @@ function get_gs_institutions_preview() {
     }
     
     $response = array(
-        'institutionsData' => $the_unique_institutions ?? $the_unique_institutions,
+        'institutionsData' => $institutionData ?? $institutionData,
     );
     
     wp_send_json($response, 200);

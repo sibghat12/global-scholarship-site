@@ -92,7 +92,9 @@ jQuery(document).ready(function($) {
       success: function(response) {
         // $('.process-data').css('display','block');
 
-
+        if($('.preview-data').hasClass('done')) {
+          $('.preview-data').removeClass('done');
+        }
       // Get the institutionsUpdated array
       var institutionsUpdated = response?.institutionsUpdated;
 
@@ -202,7 +204,6 @@ jQuery(document).ready(function($) {
           $('.process-data').css('color', '#fff');
           $('.process-data.done').text(`Posts that met the conditions have been updated (Total Posts Looped: ${response.totalPosts}).`);
           fadeInElementjQuery($('.process-data.done'), 15000);
-
         }
         
       }
