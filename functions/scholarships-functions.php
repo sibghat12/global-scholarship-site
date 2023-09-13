@@ -285,7 +285,22 @@ function get_currency($country){
         "Estonia" => "Euros",
         "Iceland" => "ISK",
         "Slovenia" => "Euros",
-
+        "Brazil" => "Brazilian Real",
+        "Malta" => "Euros",
+        "Vietnam" => "VND",
+        "Thailand" => "THB",
+        "Sri Lanka" => "LKR",
+        "Nepal" => "NPR",
+        "Vatican City" => "Euros",
+        "Slovakia" => "Euros",
+        "Serbia" => "RSD",
+        "Cyprus" => "Euros",
+        "Lithuania" => "Euros",
+        "Luxembourg" => "Euros",
+        "Bulgaria" => "BGN",
+        "Qatar" => "QAR",
+        "Israel" => "NIS",
+        "Hong Kong" => "HKD",
     );
     
     return $currency_list[$country];
@@ -439,6 +454,22 @@ function convert_to_usd($amount, $currency){
     "Rp" => 0.000066,
     "SAR" => 0.27,
     "MYR" => 0.23,
+    "RON" => 0.22,
+    "BYN" => 0.40,
+    "HUF" => 0.0028,
+    "BAM" => 0.55,
+    "ALL" => 0.010,
+    "ISK" => 0.0075,
+    "Brazilian Real" => 0.20,
+    "VND" => 0.000041,
+    "THB" => 0.028,
+    "LKR" => 0.0031,
+    "NPR" => 0.0075,
+    "RSD" => 0.0092,
+    "BGN" => 0.55,
+    "QAR" => 0.27,
+    "NIS" => 0.26,
+    "HKD" => 0.13
     );
 
     return (float)$amount * (float)$list[$currency];
@@ -4047,7 +4078,7 @@ if( function_exists('acf_add_options_page') ) {
         'page_title'     => 'Update Institutions Deadlines',
         'menu_title'    => 'Update Institutions Deadlines',
         'parent_slug'    => 'edit.php?post_type=institution',
-        'capability'     => 'delete_others_institutions',
+        'capability'     => 'edit_posts',
     ));
 
 }
@@ -4502,3 +4533,65 @@ function get_gs_institutions_updated_data() {
 
 add_action('wp_ajax_nopriv_update_deadlines_data', 'get_gs_institutions_updated_data');
 add_action('wp_ajax_update_deadlines_data', 'get_gs_institutions_updated_data');
+
+// Get all Institutions that are not connected to scholarships
+function get_institutions_without_scholarships() {
+    // Custom WP_Query for scholarships custom post type
+    $scholarships_args = array(
+        'post_type' => 'scholarships',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids'
+    );
+    $scholarships_query = new WP_Query($scholarships_args);
+
+    $scholarships = $scholarships_query->get_posts();
+
+    $institutions_args = array(
+        'post_type' => 'institution',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids'
+    );
+    $institutions_query = new WP_Query($institutions_args);
+
+    $institutions = $institutions_query->get_posts();
+
+    $institutions_with_scholarships = [];
+
+    foreach ($scholarships as $scholarship) {
+        $scholarship_institution = get_field('scholarship_institution', $scholarship);
+        if ($scholarship_institution) {
+            $institutions_with_scholarships[] = $scholarship_institution->ID;
+        }
+    }
+
+    $unique_institutions = array_unique($institutions_with_scholarships);
+
+    $result = array_diff($institutions, $unique_institutions);
+
+    return $result;
+}
+
+function institutions_without_scholarships_list( $atts ){
+
+    $result = get_institutions_without_scholarships();
+	echo "<ol>";
+        foreach($result as $key => $institution) {
+            ?>
+            <li>
+                <a  href="<?php echo get_permalink($institution); ?>"> <?php echo get_the_title($institution); ?></a>
+            </li>
+            <?php
+        }
+    echo "</ol>";
+}
+add_shortcode( 'institutions-without-scholarships', 'institutions_without_scholarships_list' );
