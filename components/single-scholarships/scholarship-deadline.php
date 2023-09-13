@@ -72,7 +72,7 @@
                     if ($application_all_year == "Yes"){
                         $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline</a>: Accepts Application All Year" ;
                     } else if ($application_all_year == "No"){
-                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline " . $admission_deadline['label'] . "</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline (" . $admission_deadline['label'] . ")</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
                     }
                     
                     ?>
