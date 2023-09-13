@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
   let previewShowing = false;
   let updatingProcess = false;
-  var allInstitutionsUpdated = [];
+  let allInstitutionsUpdated = [];
   const updateDeadlinesButton = $('#gs_update_deadlines').find('button');
   const previewInstitutionsButton = $('#gs_preview_institutions').find('button');
   console.log("updateDeadlinesButton", updateDeadlinesButton)
@@ -97,6 +97,7 @@ jQuery(document).ready(function($) {
         }
       // Get the institutionsUpdated array
       var institutionsUpdated = response?.institutionsUpdated;
+      console.log("institutionsUpdated", institutionsUpdated)
 
       // If the institutionsUpdated array is not empty
       if (institutionsUpdated) {
@@ -197,6 +198,7 @@ jQuery(document).ready(function($) {
             updateDeadlinesButton.prop('disabled', false);
             $('.preview-data').addClass('done');
             getUpdatedInstitutionsData();
+            allInstitutionsUpdated = [];
             // Here run a function that gets all the data from the frontend and send back to the database :)
           }
           $('.process-data').addClass('done');
