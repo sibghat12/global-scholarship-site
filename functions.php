@@ -2675,6 +2675,7 @@ add_action( 'after_setup_theme', 'add_theme_caps');
 function add_scholarship_caps_to_scholarship_editor() {
 
 $scholarship_editor = get_role( 'scholarship_editor' );
+$scholarship_author = get_role( 'scholarship_author' );
     
 
 
@@ -2687,14 +2688,23 @@ $scholarship_editor = get_role( 'scholarship_editor' );
     $scholarship_editor->remove_cap('delete_private_ads');
     $scholarship_editor->remove_cap('delete_published_ads');
 
-    if ($scholarship_editor) {
-        $scholarship_editor->remove_cap('edit_posts');
+    if ( $scholarship_editor || $scholarship_author ) {
+
+        // Scholarship Editor
         $scholarship_editor->remove_cap('edit_posts');
         $scholarship_editor->remove_cap('publish_posts');
         $scholarship_editor->remove_cap('edit_published_posts');
         $scholarship_editor->remove_cap('edit_others_posts');
         $scholarship_editor->remove_cap('delete_posts');
         $scholarship_editor->remove_cap('delete_others_posts');
+
+        // Scholarship Author
+        $scholarship_author->remove_cap('edit_posts');
+        $scholarship_author->remove_cap('publish_posts');
+        $scholarship_author->remove_cap('edit_published_posts');
+        $scholarship_author->remove_cap('edit_others_posts');
+        $scholarship_author->remove_cap('delete_posts');
+        $scholarship_author->remove_cap('delete_others_posts');
     }
 
     // Add capabilities for institutions
