@@ -2781,7 +2781,6 @@ $scholarship_editor->add_cap( 'assign_city_terms' );
     
     // Scholarships Feedback Access
     $scholarship_editor->add_cap( 'scholarship_access' ); 
-
 }
 
 add_action( 'after_setup_theme', 'add_scholarship_caps_to_scholarship_editor');
@@ -3143,6 +3142,7 @@ function render_scholarship_settings_page()
     include('scholarships-feedback.php');
 }
 
+
 // Adding Admin Page for Feedback Form Data Tables
 
 function add_institutions_deadlines_updated_page()
@@ -3168,6 +3168,7 @@ function render_institutions_deadlines_updated_page()
     // Add your custom admin page HTML here
     include('institutions-deadlines-updated.php');
 }
+
 
 function render_institutions_update_deadlines_meta_page()
 {
@@ -3220,28 +3221,8 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
             'ajax_url' => admin_url( 'admin-ajax.php' ),
           )
         );
-    }
+    
 
-
-    if ($hook_suffix == 'institution_page_institutions-deadlines-updated') {
-        
-
-        wp_enqueue_script('deadlines_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
-
-        wp_enqueue_style('deadlines_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
-        wp_enqueue_style( 'deadlines_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
-        wp_enqueue_script( 'deadlines_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
-
-
-        wp_enqueue_script('gs_deadlines_updated_script',  get_stylesheet_directory_uri() . '/assets/institutions-updated-deadlines.js', array('jquery', 'deadlines_datatables-js'),
-        '1.0.45',
-        false );
-        
-        wp_localize_script( 'gs_deadlines_updated_script', 'my_ajax_object',
-          array( 
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-          )
-        );
     }
 
 
@@ -4124,10 +4105,13 @@ $country = get_post_meta($institute->ID, 'adsIntCountry', true);
 $currency = get_currency($country);
 
      $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
-$language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
+     $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
 
              $des = get_post_meta($ad_id, 'description', true);
              $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
+             
+             
+
              $link_post_meta = get_post_meta($ad_id, 'link', true);
              if (!empty($link_post_meta)){
              $link = $link_post_meta;
@@ -4171,7 +4155,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
 
   
   
-  
+  <a style="color:black !important;" href="<?php  echo $link; ?>">
   <div class='col-md-4  card-container'>
     <div class='front'>
          
@@ -4192,7 +4176,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                             <?php echo esc_html($course_title); ?>
                         </div>
 
-                         <div class="col-md-2">
+                         <div class="col-md-2 course-flag">
                            <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
 
                          </div>
@@ -4208,11 +4192,12 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                   </div>
 
                   <div>
-                   <p style="text-align:center !important;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">Annual Tuition Fee* </p>
+                   <p style="text-align:center !important;padding-left:15px;padding-right:15px;font-size:14px;
+                   line-height: 20px;font-weight: 600;">Annual Tuition Fee </p>
                   </div>
 
 
-                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:8px;width:86% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
+                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:8px;width:92% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
 
                     <div style="border-right:2px solid #cdcdcd;width:100% !important;">  
                     
@@ -4307,22 +4292,16 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                    
                    <p id="short" style="text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
                       
-                      <?php  if (strlen($des) > 110) {
+                      <?php  if (strlen($des) > 120) {
     $des = substr($des, 0, 100);
-    $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
+    $des = $des . '...';
 }
 
 echo $des;
                              ?>
                      </p>
 
-                     <p id="full" style="display:none;text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
-                      
-                       <?php 
-                              $des = get_post_meta($ad_id, 'description', true);
-                              echo $des . '...  <span class="read-less" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read Less </span>';
-                             ?>
-                     </p>
+                   
 
 
                   </div>
@@ -4365,7 +4344,7 @@ echo $des;
     </div>
   
 
-
+  </a>
                
 
 
@@ -4437,50 +4416,3 @@ function update_country_meta() {
     
   }
   add_action('update_country_meta', 'update_country_meta');
-
-  /**
- * Update Institutions Post Meta for Country and Continent using ACF cities and CPT city
- * 
- */
-function new_update_meta_location() {
-    // Get the current offset
-    $offset = 0;
-    $batchSize = 20;
-    $postType = 'institution';
-
-    $institution_posts_count = wp_count_posts($postType);
-    $institution_posts_count_published = $institution_posts_count->publish;
-
-
-        $the_args = array(
-        'post_type' => 'institution',
-        'posts_per_page' => -1,
-        // 'offset' => $offset,
-        'no_found_rows' => true,
-        'update_post_meta_cache' => false,
-        'update_post_term_cache' => false,
-        'cache_results' => false,
-        'fields' => 'ids',
-        );
-
-        $the_query = new WP_Query($the_args);
-        $thePosts = $the_query->get_posts();
-
-        foreach($thePosts as $id) {
-
-            $getCities = get_field('cities', $id);
-            if(is_object($getCities)) {
-                $getCitiesIds = $getCities->ID;
-            }
-            $theCountryNamePost = get_field('country', $getCitiesIds);
-            $theContinentNamePost = get_field('continent', $getCitiesIds);
-            update_field('location_country', $theCountryNamePost, $id);
-            update_field('location_continent', $theContinentNamePost, $id);
-
-            
-        }
-
-
-    
-}
-add_action('new_update_meta_location', 'new_update_meta_location');
