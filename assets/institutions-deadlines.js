@@ -1,14 +1,12 @@
 jQuery(document).ready(function($) {
 
   let previewShowing = false;
-
   let updatingProcess = false;
   let allInstitutionsUpdated = [];
   const updateDeadlinesButton = $('#gs_update_deadlines').find('button');
   const previewInstitutionsButton = $('#gs_preview_institutions').find('button');
   console.log("updateDeadlinesButton", updateDeadlinesButton)
   console.log("previewInstitutionsButton", previewInstitutionsButton)
-
 
   const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
   const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
@@ -36,6 +34,11 @@ jQuery(document).ready(function($) {
   });
   
   function updateInstitutionsDeadlines(offset, batchSize, postType) {
+    updatingProcess = true;
+    
+    if(updatingProcess) {
+      updateDeadlinesButton.prop('disabled', true);
+    }
     $('.process-data').css('display','block');
     $('.process-data').css('opacity','1');
 
@@ -130,35 +133,50 @@ jQuery(document).ready(function($) {
       $('.preview-data').css('border', '2px solid #000000');
       $('.preview-data').css('padding', '30px');
       $('.preview-data').css('font-size', '1.2rem');
+
+      let degreeUpdated = '';
+      if(institutionACFDegree){
+        degreeUpdated = institutionACFDegree;
+      } else {
+        degreeUpdated = 'All Degrees';
+      }
+
+      let countryUpdated = '';
+      if(institutionACFCountry){
+        countryUpdated = institutionACFCountry;
+      } else {
+        countryUpdated = 'All Countries';
+      }
   
       let html = `<h2>List of Institutions (${allInstitutionsUpdated?.length}) that have been updated.</h2>
       
       <div class="gs-dates-update">
+      <input type="hidden" class="gs-deadlines-degree" value="${degreeUpdated}" >
+      <input type="hidden" class="gs-deadlines-country" value="${countryUpdated}" >
       <div class="gs-opening-dates-to-update">
       Past Dates:
       <ul class="gs-update-deadlines-dates">
-        <li>Opening Date: ${instACFOpeningDate}</li>
-        <li>Deadline Date: ${instACFDeadlineDate}</li>
+        <li>Opening Date: <span class="gs-update-deadlines-opening-date">${instACFOpeningDate}</span></li>
+        <li>Deadline Date: <span class="gs-update-deadlines-deadline-date">${instACFDeadlineDate}</span></li>
       </ul>
       </div>
-      <div class="gs-opening-dates-to-update">
+      <div class="gs-opening-dates-updated">
       New Dates:
       <ul class="gs-updated-deadlines-dates">
-        <li>Opening Date: ${instACFNewOpeningDate}</li>
-        <li>Deadline Date: ${instACFNewDeadlineDate}</li>
+        <li>Opening Date: <span class="gs-updated-deadlines-opening-date">${instACFNewOpeningDate}</span></li>
+        <li>Deadline Date: <span class="gs-updated-deadlines-deadline-date">${instACFNewDeadlineDate}<span></li>
       </ul>
       </div>
-      <div>On ${formattedDate}</div>
+      <div>On <span class="gs-updated-deadlines-formatted-date">${formattedDate}</span></div>
       </div>
       <hr/>
-      <ol>`; // Start the  list
+      <ol class="gs-updated-deadlines-ordered-list">`; // Start the  list
     
       $.each(allInstitutionsUpdated, function(indexInArray, institution) {
-        html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
+        html += `<li class="gs-updated-deadlines-list-item"><a href="${institution.permalink}" data-institution-title="${institution.title}" data-institution-country="${institution.country}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
       });
       html += '</ol>'; // End the  list
 
-    
       $('.preview-data').html(html);
 
         acfSettings.find('.process-data');
@@ -175,7 +193,6 @@ jQuery(document).ready(function($) {
           offset = response.totalUpdated;
           updateInstitutionsDeadlines(offset, batchSize, postType);
         } else {
-
           updatingProcess = false;
           if(!updatingProcess) {
             updateDeadlinesButton.prop('disabled', false);
@@ -184,7 +201,6 @@ jQuery(document).ready(function($) {
             allInstitutionsUpdated = [];
             // Here run a function that gets all the data from the frontend and send back to the database :)
           }
-
           $('.process-data').addClass('done');
           $('.process-data.done').css('background', '#6ea2c7');
           $('.process-data').css('color', '#fff');
@@ -222,7 +238,10 @@ jQuery(document).ready(function($) {
   }
 
   function getInstitutionsPreview(offset, batchSize, postType) {
-
+    previewShowing = true;
+    if(previewShowing) {
+      previewInstitutionsButton.prop('disabled', true);
+    }
     const loaderHtml = '<div class="loader"></div>';
 
     
@@ -304,27 +323,96 @@ jQuery(document).ready(function($) {
 
 
         if (response?.institutionsData) {
-          previewShowing = true;
-                  
+          
           // Hide the loader
 
-          let html = `<h2>List of Institutions (${response?.institutionsData?.length}) that will be updated according the criteria selected in (Institution Deadlines Conditions)</h2><ol>`; // Start the  list
+          let html = `<div class="gs-deadlines-preview-data-container"><h2 class="gs-deadlines-preview-data-heading">List of Institutions (<span class="gs-deadlines-preview-data-gs-deadlines-preview-data-number-institutions">${response?.institutionsData?.length}</span>) that will be updated according the criteria selected in (Institution Deadlines Conditions)</h2><ol>`; // Start the  list
         
           $.each(response?.institutionsData, function(indexInArray, institution) {
-            html += `<li><a href="${institution.permalink}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
+            html += `<li><a href="${institution.permalink}" data-institution-title="${institution.title}" data-institution-country="${institution.country}" data-institution-id="${institution.id}">${institution.title}</a><span> (${institution.country})</span></li>`;
           });
         
           html += '</ol>'; // End the  list
-
+          html += '</div>'; // End of Preivew Deadlines Element
         
           $('.preview-data').html(html);
-        } else {
+        } else if(response?.institutionsData == null) {
           previewShowing = false;
+          previewInstitutionsButton?.prop('disabled', false);
+          $('.loader').css('display', 'none');
+
+          let html = `<div class="gs-deadlines-preview-data-container"><h2 class="gs-deadlines-preview-data-heading">No Insitutions Available for the Current Conditions (Please review your current conditions to preview)</h2>`; // Start the  list
+          html += '</div>'; // End of Preivew Deadlines Element
+          $('.preview-data').html(html);
+        }else {
+          previewShowing = false;
+          if(!previewShowing) {
+            previewInstitutionsButton?.prop('disabled', false);
+          }
           $('.loader').css('display', 'none');
           $('.preview-data').html('');
         }
+        previewShowing = false;
+        if(!previewShowing) {
+          previewInstitutionsButton?.prop('disabled', false);
+        }
+        
       }
     });
 
+  }
+
+  function getUpdatedInstitutionsData() {
+
+    const previewDataDone = $('.preview-data.done');
+    const getOpeningDeadlineDateUpdate = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-to-update').find('.gs-update-deadlines-dates').find('.gs-update-deadlines-opening-date').text();
+    const getDeadlineDeadlineDateUpdate = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-to-update').find('.gs-update-deadlines-dates').find('.gs-update-deadlines-deadline-date').text();
+
+    
+    const getOpeningDeadlineDateUpdated = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-updated').find('.gs-updated-deadlines-dates').find('.gs-updated-deadlines-opening-date').text();
+    const getDeadlineDeadlineDateUpdated = previewDataDone.find('.gs-dates-update').find('.gs-opening-dates-updated').find('.gs-updated-deadlines-dates').find('.gs-updated-deadlines-deadline-date').text();
+
+    const getDeadlinesUpdatedDegree = previewDataDone.find('.gs-dates-update').find('.gs-deadlines-degree').val();
+    const getDeadlinesUpdatedCountry = previewDataDone.find('.gs-dates-update').find('.gs-deadlines-country').val();
+
+    console.log("getOpeningDeadlineDateUpdated", getOpeningDeadlineDateUpdated)
+    console.log("getDeadlineDeadlineDateUpdated", getDeadlineDeadlineDateUpdated)
+
+    const getDateDeadlinesUpdate = previewDataDone.find('.gs-updated-deadlines-formatted-date').text();
+
+    // // Get all institutions Updated (Done) Deadlines ids
+
+    let updatedInstitutionsIds = [];
+    let updatedInstitutionsElems = previewDataDone.find('.gs-updated-deadlines-ordered-list').find('.gs-updated-deadlines-list-item').find('*[data-institution-id]');
+    $.each(updatedInstitutionsElems, function (indexInArray, element) { 
+      updatedInstitutionsIds.push($(element).data('institution-id'));
+    });
+
+    // console.log("updatedInstitutionsElems", updatedInstitutionsElems);
+
+    const ajaxData = {
+      action: 'update_deadlines_data',
+      deadlinesUpdatedDegree: getDeadlinesUpdatedDegree,
+      deadlinesUpdatedCountry: getDeadlinesUpdatedCountry,
+      openingDeadlineDateUpdate: getOpeningDeadlineDateUpdate,
+      deadlineDeadlineDateUpdate: getDeadlineDeadlineDateUpdate,
+      openingDeadlineDateUpdated: getOpeningDeadlineDateUpdated,
+      deadlineDeadlineDateUpdated: getDeadlineDeadlineDateUpdated,
+      updateDeadlinesDate: getDateDeadlinesUpdate,
+      updatedInstitutionsIds: updatedInstitutionsIds,
+      date: new Date().toISOString().slice(0, 19).replace('T', ' ')
+    };
+
+    $.ajax({
+      url: my_ajax_object.ajax_url,
+      type: 'POST',
+      data: ajaxData,
+      success: function(response) {
+        console.log("response :::: Institutions::::", response);
+
+        const html = "<div>All Data Processed and Stored into Database Successfully!</div>";
+        $('.preview-data').html(html);
+      }
+    });
   }
 })
