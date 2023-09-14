@@ -4311,9 +4311,12 @@ function get_gs_institutions_preview() {
 
 
 
-    if(isset($preview_posts) && !empty($preview_posts) && is_array($preview_posts)) {
-        foreach ($preview_posts as $key => $id) {
-            $institution = array(); // Create a new empty array for each institution
+
+                        $unique_ids = array_column($institutionData, 'id');
+                        $institutionData = array_intersect_key($institutionData, array_unique($unique_ids));
+                    }
+                }
+
 
             $institution['id'] = $id; // Get the institution title
             $institution['permalink'] = get_permalink($id); // Get the institution permalink
