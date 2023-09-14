@@ -6123,3 +6123,45 @@ justify-content: flex-start;
     height: 600px;  /* You'll need to set a specific height here. */
 }
 
+
+
+@media (max-width: 860px) {
+
+.card-container { 
+ width:46% !important;
+ float:left !important;
+}
+
+}
+
+@media (max-width: 600px) {
+
+.card-container { 
+    margin-left:0px !important;
+ width:92% !important;
+ float:left !important;
+}
+
+.course-image img {
+    border-top-left-radius: 13px !important;
+    border-top-right-radius: 13px !important;
+    height: 220px !important;
+    width: 100%;
+}
+
+
+
+}
+
+@media (max-width: 1000px) {
+
+.cta-container .col-md-3 {
+    margin-top:30px;
+    margin-bottom:20px;
+}
+}
+
+.course-flag img {
+    min-width:24px !important;
+    height: 24px !important;
+}
