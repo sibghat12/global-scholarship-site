@@ -4322,10 +4322,40 @@ function get_gs_institutions_preview() {
             $institution['permalink'] = get_permalink($id); // Get the institution permalink
             $institution['title'] = get_the_title($id); // Get the institution title
             
-            if (!empty($id)) {
-                $institution['country'] = get_field('location_country', $id); // Get the institution country
-            } else {
-                $institution['country'] = '';
+
+            if (!empty($repeater_rows) && is_array($repeater_rows)) {
+                
+                foreach ($repeater_rows as $row) {
+                    $country = get_field('location_country', $id); // Get the institution country
+                    // if ($row['degree'] == $institutionDegree && $row['open_date'] == $openingDate && $row['deadline'] == $deadlineDate && ($institutionCountry === '' || $country == $institutionCountry) ) 
+                    if (
+                        ($institutionDegree === '' || $row['degree'] == $institutionDegree) &&
+                        ($openingDate === '' || $row['open_date'] == $openingDate) &&
+                        ($deadlineDate === '' || $row['deadline'] == $deadlineDate) &&
+                        ($institutionCountry === '' || $country == $institutionCountry)
+                    )
+                    {
+                        $match_found = true;
+                        $institution = array(); // Create a new empty array for each institution
+
+                        $institution['id'] = $id; // Get the institution title
+                        $institution['permalink'] = get_permalink($id); // Get the institution permalink
+                        $institution['title'] = get_the_title($id); // Get the institution title
+                        
+                        if (!empty($id)) {
+                            $institution['country'] = get_field('location_country', $id); // Get the institution country
+                        } else {
+                            $institution['country'] = '';
+                        }
+
+                        $institutionData[] = $institution;
+
+                        $unique_ids = array_column($institutionData, 'id');
+                        $institutionData = array_intersect_key($institutionData, array_unique($unique_ids));
+                    }
+                }
+
+
             }
 
             $institutionData[] = $institution; // Add the institution array to the $institutionData array
