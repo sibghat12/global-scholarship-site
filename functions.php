@@ -263,6 +263,362 @@ function disable_emojis_tinymce( $plugins ) {
 
 
 
+
+function hks_generate_filters_html($atts) {
+
+    // $form_action_url = '';
+
+
+    $form_action_url = get_home_url();
+
+    $current_category_filter = (isset($_GET['category']) && $_GET['category'] != '') ? $_GET['category'] : '';
+    $current_region_filter = (isset($_GET['region']) && $_GET['region'] != '') ? $_GET['region'] : '';
+    $current_degree_filter = (isset($_GET['degree']) && $_GET['degree'] != '') ? $_GET['degree'] : '';
+    $current_subject_filter = (isset($_GET['subject']) && $_GET['subject'] != '') ? $_GET['subject'] : '';
+    $current_opening_date_filter = (isset($_GET['opening_date']) && $_GET['opening_date'] != '') ? $_GET['opening_date'] : '';
+
+
+    $category_options_html = '';
+    $region_options_html = '';
+    $degree_options_html = '';
+    $subject_options_html = '';
+    $opening_date_options_html = '';
+
+
+    $category_options = array(
+        'full_funding' => 'Full Funding',
+        'full_tuition' => 'Full Tuition',
+        'partial_funding' => 'Partial Funding',
+        'no_funding' => 'No Funding',
+        
+    );
+    
+    
+    $degree_options = array(
+        'diploma' => 'Diploma',
+        'undergraduate' => 'Undergraduate',
+        'masters' => 'Master’s',
+        'phd' => 'PhD',
+        'md' => 'Doctor of Medicine',
+
+        
+    );
+    
+    
+
+    $region_options = array(
+        'united_states' => 'United States',
+        'canada' => 'Canada',
+        'united_kingdom' => 'United Kingdom',
+        'germany' => 'Germany',
+        'europe' => 'Europe',
+        'australia' => 'Australia',
+        'china' => 'China',
+        'korea' => 'Korea',
+        'middle_east' => 'Middle East',
+        'asia' => 'Asia',
+        'africa' => 'Africa',
+    
+    );
+
+    $subject_options = array(
+
+        'business' => 'Business',
+        'computer_science' => "Computer Science",
+        'data_analytics' => 'Data Analytics',
+        'medicine' => 'Medicine',
+        'health_related_field' => 'Health Related Field',
+        'humanities' => 'Humanities',
+        'engineering' => 'Engineering',
+        'sciences' => 'Sciences',
+    
+    );
+
+    $opening_date_options = array(
+    
+        'Ongoing' => 'ongoing',
+        '2 Weeks' => '2_weeks',
+        '30_days' => '30 Days',
+        '90_days' => '90 Days',
+        '180_days' => '180 Days',
+
+    );
+
+    
+
+foreach($category_options as $value => $label) {
+
+    $category_options_html .= sprintf('<option %s value="%s">%s</option>',(($value == $current_category_filter) ? 'selected' : ''),$value, $label);
+
+}
+foreach($region_options as $value => $label) {
+
+    $region_options_html .= sprintf('<option %s value="%s">%s</option>',(($value == $current_region_filter) ? 'selected' : ''),$value, $label);
+
+}
+foreach($degree_options as $value => $label) {
+
+    $degree_options_html .= sprintf('<option %s value="%s">%s</option>',(($value == $current_degree_filter) ? 'selected' : ''),$value, $label);
+
+}
+foreach($subject_options as $value => $label) {
+
+    $subject_options_html .= sprintf('<option %s value="%s">%s</option>',(($value == $current_subject_filter) ? 'selected' : ''),$value, $label);
+
+}
+foreach($opening_date_options as $value => $label) {
+
+    $opening_date_options_html .= sprintf('<option %s value="%s">%s</option>',(($value == $current_opening_date_filter) ? 'selected' : ''),$value, $label);
+
+}
+
+
+$finalOutput = '';
+
+$finalOutput .= ' <div class="custom-search-box"><p class="custom-search-heading">Search Scholarships</p> <form method="GET" action="'.$form_action_url.'" class="filter-wrapper">
+<input type="hidden" name="s" value="none" />
+<div class="filter-boxes-wrap">
+<div class="filter-box category-filter">
+<select name="category">
+<option value="">Any Scholarship</option> 
+'.$category_options_html.'
+
+</select>
+
+</div>
+
+<div class="filter-box region-filter">
+<select name="degree" >
+<option value="">Any Degree</option> 
+'.$degree_options_html.'
+
+</select>
+
+</div>
+
+<div class="filter-box funding-type-filter">
+<select name="region">
+<option value="">Any Region</option>
+'.$region_options_html.'
+
+</select>
+
+</div>
+
+<div class="filter-box deadline-filter">
+<select name="subject" >
+<option value="">Any Subject</option>
+'.$subject_options_html.'
+
+</select>
+
+</div>
+
+
+
+
+</div>
+
+<div class="filter-btn">
+<button type="submit">Search</button>
+
+</div>
+
+
+</form>
+</div>
+';
+
+
+return $finalOutput;
+
+
+}
+
+
+add_shortcode('hks_generate_filters','hks_generate_filters_html');
+
+
+
+function hks_print_filters_markup() {
+
+    if(!is_search()) {
+        return;
+    }
+
+    echo do_shortcode('[hks_generate_filters]');
+    // echo '<h3>Hello</h3>';
+
+}
+
+
+
+//add_action('avada_before_main_container','hks_print_filters_markup');
+
+
+
+function hks_handle_filter_functions($query) {
+    
+    
+    $sticky_posts = get_option('sticky_posts');
+    
+
+
+    $default_posts_array = array(
+        'post_type' => 'post'
+    );
+
+
+
+
+
+    if(isset($_GET['search'])) {
+        $query->is_home = false;
+        $query->is_search = true;
+    }
+
+    if($query->is_search()  && $query->is_main_query() ) {
+        // return $query;
+
+
+        $filter_array_post_meta = array('relation' => 'AND');
+
+        if(isset($_GET['s']) && $_GET['s'] == 'none' ) {
+            $query->set('s',null); 
+            unset($query->query_vars['s']);
+            unset($query->query['s']);
+
+            add_filter('get_search_query',function() {  return 'none'; });
+            $query->set('post_type','post'); 
+
+            add_action('avada_override_current_page_title_bar',function () {
+
+                // if(is_search_page()) {
+
+                $output ='<div class="fusion-page-title-bar fusion-page-title-bar-breadcrumbs fusion-page-title-bar-center">
+                <div class="fusion-page-title-row">
+                    <div class="fusion-page-title-wrapper">
+                        <div class="fusion-page-title-captions a">
+                                <h1 class="entry-title" data-fontsize="37" data-lineheight="48">Search results for:</h1>
+                                <div class="fusion-page-title-secondary">
+                                    <div class="fusion-breadcrumbs"><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://globalscholarships.com"><span itemprop="title">Home</span></a></span><span class="fusion-breadcrumb-sep">/</span><span class="breadcrumb-leaf">Search: none</span></div>                        
+                                </div>                
+                        </div>
+                    </div>
+                </div>
+            ';
+                echo $output;
+            // }
+            });
+            
+        }
+
+        if(isset($_GET['category']) && $_GET['category'] != '') {
+
+            $filter_array_post_meta[] = array(
+                'key' => 'any_category',
+                'value' => sanitize_text_field($_GET['category']),
+                'compare' => 'LIKE'
+            );
+
+
+        }
+
+
+        if(isset($_GET['degree']) && $_GET['degree'] != '') {
+
+            $filter_array_post_meta[] = array(
+                'key' => 'any_region',
+                'value' => sanitize_text_field($_GET['degree']),
+                'compare' => 'LIKE'
+            );
+
+        }
+
+
+
+        if(isset($_GET['region']) && $_GET['region'] != '') {
+
+            $filter_array_post_meta[] = array(
+                'key' => 'any_fields',
+                'value' => sanitize_text_field($_GET['region']),
+                'compare' => 'LIKE'
+            );
+
+        }
+
+
+        if(isset($_GET['subject']) && $_GET['subject'] != '') {
+
+            $filter_array_post_meta[] = array(
+                'key' => 'any_deadline',
+                'value' => sanitize_text_field($_GET['subject']),
+                'compare' => 'LIKE'
+            );
+
+        }
+
+        if(isset($_GET['opening_date']) && $_GET['opening_date'] != '') {
+
+            $filter_array_post_meta[] = array(
+                'key' => 'any_opening',
+                'value' => sanitize_text_field($_GET['opening_date']),
+                'compare' => 'LIKE'
+            );
+
+        }
+
+        if(array_key_exists('meta_query',$query->query_vars)) {
+            $filter_array_post_meta = array_merge( $filter_array_post_meta,$query->query_vars['meta_query']);
+        }
+
+        if(count($filter_array_post_meta) > 1) {
+            $query->set('meta_query', $filter_array_post_meta);
+            
+        }
+
+        $default_posts_array['order'] = 'DESC';
+        $default_posts_array['order_by'] = 'date';        
+        $default_posts_array['posts_per_page'] = -1;
+
+
+        $get_default_posts = new WP_Query($default_posts_array);
+
+        wp_reset_postdata();
+
+        $post_ids = array();
+
+        if($get_default_posts->post_count > 0) {
+
+           for($i = 0; $i < count($get_default_posts->posts); $i++) {
+
+                $post_ids[] = $get_default_posts->posts[$i]->ID;
+
+           }
+
+        }
+
+        $query->set('orderby','post__in');
+        $query->set('post__in',$post_ids);
+
+
+        
+        return $query;
+
+
+
+    }
+
+    // var_dump(json_encode($query->query_vars)); die();
+    return $query;
+
+
+
+}
+
+//add_filter('pre_get_posts','hks_handle_filter_functions',5,1);
+
+
 function uscollege_custom_post_types() {
     
     $labels = array(
@@ -1506,14 +1862,14 @@ $loop_institute =  get_institutions_location($locations_array[0]);
 $institute_ids = $loop_institute->get_posts();
 
 //echo $institute_ids->found_posts;
-	
+    
 /* if (empty($institute_ids)) {
-		if($reload_true){
+        if($reload_true){
   echo '<p style="font-size:20px;color:black;"> Unfortunately,
     No Scholarships Available in <b>' .  $locations_array[0] . ' </b> <p>';
    }
-	} */
-	
+    } */
+    
     $current_date = date("Y-m-d H:i:s");
                             
 
@@ -2425,6 +2781,7 @@ $scholarship_editor->add_cap( 'assign_city_terms' );
     
     // Scholarships Feedback Access
     $scholarship_editor->add_cap( 'scholarship_access' ); 
+
 }
 
 add_action( 'after_setup_theme', 'add_scholarship_caps_to_scholarship_editor');
@@ -2718,26 +3075,26 @@ add_action('enable_comments_on_custom_posts', 'enable_comments_on_custom_posts')
 // Override comment form fields structure and remove url field from comment form at this path wp-content/plugins/fusion-builder/shortcodes/components/templates/fusion-tb-comments.php
 add_filter('comment_form_default_fields', 'unset_url_field');
 function unset_url_field(){
-	$commenter = wp_get_current_commenter();
-	$req       = get_option( 'require_name_email' );
-	$aria_req  = ( $req ) ? ' aria-required="true"' : '';
-	$html_req  = ( $req ) ? ' required="required"' : '';
-	$name      = ( $req ) ? __( 'Name (required)', 'fusion-builder' ) : __( 'Name', 'fusion-builder' );
-	$email     = ( $req ) ? __( 'Email (required)', 'fusion-builder' ) : __( 'Email', 'fusion-builder' );
-	$html5     = ( 'html5' === current_theme_supports( 'html5', 'comment-form' ) ) ? 'html5' : 'xhtml';
-	$consent   = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+    $commenter = wp_get_current_commenter();
+    $req       = get_option( 'require_name_email' );
+    $aria_req  = ( $req ) ? ' aria-required="true"' : '';
+    $html_req  = ( $req ) ? ' required="required"' : '';
+    $name      = ( $req ) ? __( 'Name (required)', 'fusion-builder' ) : __( 'Name', 'fusion-builder' );
+    $email     = ( $req ) ? __( 'Email (required)', 'fusion-builder' ) : __( 'Email', 'fusion-builder' );
+    $html5     = ( 'html5' === current_theme_supports( 'html5', 'comment-form' ) ) ? 'html5' : 'xhtml';
+    $consent   = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
 
     $fields = [];
 
     $fields['start_comment_container'] = '<div id="comment-input">';
-	$fields['author']  = '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" placeholder="' . esc_attr( $name ) . '" size="30"' . $aria_req . $html_req . ' aria-label="' . esc_attr( $name ) . '"/>';
-	$fields['email']   = '<input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '" placeholder="' . esc_attr( $email ) . '" size="30" ' . $aria_req . $html_req . ' aria-label="' . esc_attr( $email ) . '"/>';
-	$fields['url']     = '<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . esc_html__( 'Website', 'fusion-builder' ) . '" size="30" aria-label="' . esc_attr__( 'URL', 'fusion-builder' ) . '" />';
+    $fields['author']  = '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" placeholder="' . esc_attr( $name ) . '" size="30"' . $aria_req . $html_req . ' aria-label="' . esc_attr( $name ) . '"/>';
+    $fields['email']   = '<input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '" placeholder="' . esc_attr( $email ) . '" size="30" ' . $aria_req . $html_req . ' aria-label="' . esc_attr( $email ) . '"/>';
+    $fields['url']     = '<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . esc_html__( 'Website', 'fusion-builder' ) . '" size="30" aria-label="' . esc_attr__( 'URL', 'fusion-builder' ) . '" />';
     $fields['end_comment_container'] = '</div>';
-	$fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /><label for="wp-comment-cookies-consent">' . esc_html__( 'Save my name, email, and website in this browser for the next time I comment.', 'fusion-builder' ) . '</label></p>';
+    $fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /><label for="wp-comment-cookies-consent">' . esc_html__( 'Save my name, email, and website in this browser for the next time I comment.', 'fusion-builder' ) . '</label></p>';
 
     
-	$fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /><label for="wp-comment-cookies-consent">' . esc_html__( 'Save my name, email, and website in this browser for the next time I comment.', 'fusion-builder' ) . '</label></p>';
+    $fields['cookies'] = '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . ' /><label for="wp-comment-cookies-consent">' . esc_html__( 'Save my name, email, and website in this browser for the next time I comment.', 'fusion-builder' ) . '</label></p>';
 
     if(isset($fields['url'])) {
         unset($fields['url']);
@@ -2786,7 +3143,6 @@ function render_scholarship_settings_page()
     include('scholarships-feedback.php');
 }
 
-
 // Adding Admin Page for Feedback Form Data Tables
 
 function add_institutions_deadlines_updated_page()
@@ -2812,7 +3168,6 @@ function render_institutions_deadlines_updated_page()
     // Add your custom admin page HTML here
     include('institutions-deadlines-updated.php');
 }
-
 
 function render_institutions_update_deadlines_meta_page()
 {
@@ -2865,8 +3220,28 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
             'ajax_url' => admin_url( 'admin-ajax.php' ),
           )
         );
-    
+    }
 
+
+    if ($hook_suffix == 'institution_page_institutions-deadlines-updated') {
+        
+
+        wp_enqueue_script('deadlines_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
+
+        wp_enqueue_style('deadlines_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+        wp_enqueue_style( 'deadlines_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+        wp_enqueue_script( 'deadlines_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+
+
+        wp_enqueue_script('gs_deadlines_updated_script',  get_stylesheet_directory_uri() . '/assets/institutions-updated-deadlines.js', array('jquery', 'deadlines_datatables-js'),
+        '1.0.45',
+        false );
+        
+        wp_localize_script( 'gs_deadlines_updated_script', 'my_ajax_object',
+          array( 
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+          )
+        );
     }
 
 
@@ -2959,59 +3334,59 @@ add_action('wp_footer', 'add_custom_scripts');
 */
 
 /**
-	 * The comment template.
-	 *
-	 * @access public
-	 * @param Object     $comment The comment.
-	 * @param array      $args    The comment arguments.
-	 * @param int|string $depth   The comment depth.
-	 */
-	function fusion_comment( $comment, $args, $depth ) {
-		$defaults = get_query_var( 'fusion_tb_comments_args' );
-		?>
-		<?php $add_below = ''; ?>
-		<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-			<div class="the-comment">
-				<?php if ( 'hide' !== $defaults['avatar'] ) : ?>
-				<div class="avatar"><?php echo get_avatar( $comment, 54 ); ?></div>
-				<?php endif; ?>
-				<div class="comment-box">
-					<div class="comment-author meta">
-						<strong><?php echo get_comment_author_link(); ?></strong>
-						<?php
-						printf(
-							/* translators: %1$s: Comment date. %2$s: Comment time. */
-							esc_attr__( '%1$s %2$s', 'fusion-builder' ),
-							get_comment_date(), // phpcs:ignore WordPress.Security.EscapeOutput
-							get_comment_time() // phpcs:ignore WordPress.Security.EscapeOutput
-						);
+     * The comment template.
+     *
+     * @access public
+     * @param Object     $comment The comment.
+     * @param array      $args    The comment arguments.
+     * @param int|string $depth   The comment depth.
+     */
+    function fusion_comment( $comment, $args, $depth ) {
+        $defaults = get_query_var( 'fusion_tb_comments_args' );
+        ?>
+        <?php $add_below = ''; ?>
+        <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+            <div class="the-comment">
+                <?php if ( 'hide' !== $defaults['avatar'] ) : ?>
+                <div class="avatar"><?php echo get_avatar( $comment, 54 ); ?></div>
+                <?php endif; ?>
+                <div class="comment-box">
+                    <div class="comment-author meta">
+                        <strong><?php echo get_comment_author_link(); ?></strong>
+                        <?php
+                        printf(
+                            /* translators: %1$s: Comment date. %2$s: Comment time. */
+                            esc_attr__( '%1$s %2$s', 'fusion-builder' ),
+                            get_comment_date(), // phpcs:ignore WordPress.Security.EscapeOutput
+                            get_comment_time() // phpcs:ignore WordPress.Security.EscapeOutput
+                        );
 
-						edit_comment_link( __( ' - Edit', 'fusion-builder' ), '  ', '' );
+                        edit_comment_link( __( ' - Edit', 'fusion-builder' ), '  ', '' );
 
-						comment_reply_link(
-							array_merge(
-								$args,
-								[
-									'reply_text' => __( ' - Reply', 'fusion-builder' ),
-									'add_below'  => 'comment',
-									'depth'      => $depth,
-									'max_depth'  => $args['max_depth'],
-								]
-							)
-						);
-						?>
-					</div>
-					<div class="comment-text">
-						<?php if ( '0' == $comment->comment_approved ) : // phpcs:ignore WordPress.PHP.StrictComparisons ?>
-							<em><?php esc_attr_e( 'Your comment is awaiting moderation.', 'fusion-builder' ); ?></em>
-							<br />
-						<?php endif; ?>
-						<?php comment_text(); ?>
-					</div>
-				</div>
-			</div>
-		<?php
-	}
+                        comment_reply_link(
+                            array_merge(
+                                $args,
+                                [
+                                    'reply_text' => __( ' - Reply', 'fusion-builder' ),
+                                    'add_below'  => 'comment',
+                                    'depth'      => $depth,
+                                    'max_depth'  => $args['max_depth'],
+                                ]
+                            )
+                        );
+                        ?>
+                    </div>
+                    <div class="comment-text">
+                        <?php if ( '0' == $comment->comment_approved ) : // phpcs:ignore WordPress.PHP.StrictComparisons ?>
+                            <em><?php esc_attr_e( 'Your comment is awaiting moderation.', 'fusion-builder' ); ?></em>
+                            <br />
+                        <?php endif; ?>
+                        <?php comment_text(); ?>
+                    </div>
+                </div>
+            </div>
+        <?php
+    }
 
 // Remove comment date
 function wpb_remove_comment_date($date, $d, $comment) { 
@@ -3036,15 +3411,15 @@ add_filter( 'wp_kses_allowed_html', 'acf_add_allowed_svg_tag', 10, 2 );
 function acf_add_allowed_svg_tag( $tags, $context ) {
     if ( $context === 'acf' ) {
         $tags['svg']  = array(
-            'xmlns'				=> true,
-			'width'			=> true,
-			'height'		=> true,
-			'preserveAspectRatio'	=> true,
-            'fill'				=> true,
-            'viewbox'				=> true,
-            'role'				=> true,
-            'aria-hidden'			=> true,
-            'focusable'				=> true,
+            'xmlns'             => true,
+            'width'         => true,
+            'height'        => true,
+            'preserveAspectRatio'   => true,
+            'fill'              => true,
+            'viewbox'               => true,
+            'role'              => true,
+            'aria-hidden'           => true,
+            'focusable'             => true,
         );
         $tags['path'] = array(
             'd'    => true,
@@ -3277,20 +3652,20 @@ function get_scholarships_by_country($country) {
  * @return string|void The author's display name, empty string if unknown.
  */
 function get_the_last_modified_user_name($id) {
-	$last_id = get_post_meta( $id, '_edit_last', true );
+    $last_id = get_post_meta( $id, '_edit_last', true );
 
-	if ( $last_id ) {
-		$last_user = get_userdata( $last_id );
+    if ( $last_id ) {
+        $last_user = get_userdata( $last_id );
 
-		/**
-		 * Filters the display name of the author who last edited the current post.
-		 *
-		 * @since 2.8.0
-		 *
-		 * @param string $display_name The author's display name, empty string if unknown.
-		 */
-		return apply_filters( 'last_author_modified', $last_user ? $last_user->display_name : '' );
-	}
+        /**
+         * Filters the display name of the author who last edited the current post.
+         *
+         * @since 2.8.0
+         *
+         * @param string $display_name The author's display name, empty string if unknown.
+         */
+        return apply_filters( 'last_author_modified', $last_user ? $last_user->display_name : '' );
+    }
 }
 
 
@@ -3749,13 +4124,10 @@ $country = get_post_meta($institute->ID, 'adsIntCountry', true);
 $currency = get_currency($country);
 
      $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
-     $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
+$language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
 
              $des = get_post_meta($ad_id, 'description', true);
              $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
-             
-             
-
              $link_post_meta = get_post_meta($ad_id, 'link', true);
              if (!empty($link_post_meta)){
              $link = $link_post_meta;
@@ -3799,7 +4171,7 @@ $currency = get_currency($country);
 
   
   
-  <a style="color:black !important;" href="<?php  echo $link; ?>">
+  
   <div class='col-md-4  card-container'>
     <div class='front'>
          
@@ -3820,7 +4192,7 @@ $currency = get_currency($country);
                             <?php echo esc_html($course_title); ?>
                         </div>
 
-                         <div class="col-md-2 course-flag">
+                         <div class="col-md-2">
                            <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
 
                          </div>
@@ -3836,12 +4208,11 @@ $currency = get_currency($country);
                   </div>
 
                   <div>
-                   <p style="text-align:center !important;padding-left:15px;padding-right:15px;font-size:14px;
-                   line-height: 20px;font-weight: 600;">Annual Tuition Fee </p>
+                   <p style="text-align:center !important;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">Annual Tuition Fee* </p>
                   </div>
 
 
-                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:8px;width:92% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
+                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:8px;width:86% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
 
                     <div style="border-right:2px solid #cdcdcd;width:100% !important;">  
                     
@@ -3936,16 +4307,22 @@ $currency = get_currency($country);
                    
                    <p id="short" style="text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
                       
-                      <?php  if (strlen($des) > 120) {
+                      <?php  if (strlen($des) > 110) {
     $des = substr($des, 0, 100);
-    $des = $des . '...';
+    $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
 }
 
 echo $des;
                              ?>
                      </p>
 
-                   
+                     <p id="full" style="display:none;text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
+                      
+                       <?php 
+                              $des = get_post_meta($ad_id, 'description', true);
+                              echo $des . '...  <span class="read-less" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read Less </span>';
+                             ?>
+                     </p>
 
 
                   </div>
@@ -3988,7 +4365,7 @@ echo $des;
     </div>
   
 
-  </a>
+
                
 
 
@@ -4060,3 +4437,50 @@ function update_country_meta() {
     
   }
   add_action('update_country_meta', 'update_country_meta');
+
+  /**
+ * Update Institutions Post Meta for Country and Continent using ACF cities and CPT city
+ * 
+ */
+function new_update_meta_location() {
+    // Get the current offset
+    $offset = 0;
+    $batchSize = 20;
+    $postType = 'institution';
+
+    $institution_posts_count = wp_count_posts($postType);
+    $institution_posts_count_published = $institution_posts_count->publish;
+
+
+        $the_args = array(
+        'post_type' => 'institution',
+        'posts_per_page' => -1,
+        // 'offset' => $offset,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids',
+        );
+
+        $the_query = new WP_Query($the_args);
+        $thePosts = $the_query->get_posts();
+
+        foreach($thePosts as $id) {
+
+            $getCities = get_field('cities', $id);
+            if(is_object($getCities)) {
+                $getCitiesIds = $getCities->ID;
+            }
+            $theCountryNamePost = get_field('country', $getCitiesIds);
+            $theContinentNamePost = get_field('continent', $getCitiesIds);
+            update_field('location_country', $theCountryNamePost, $id);
+            update_field('location_continent', $theContinentNamePost, $id);
+
+            
+        }
+
+
+    
+}
+add_action('new_update_meta_location', 'new_update_meta_location');
