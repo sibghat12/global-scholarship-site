@@ -285,7 +285,22 @@ function get_currency($country){
         "Estonia" => "Euros",
         "Iceland" => "ISK",
         "Slovenia" => "Euros",
-
+        "Brazil" => "Brazilian Real",
+        "Malta" => "Euros",
+        "Vietnam" => "VND",
+        "Thailand" => "THB",
+        "Sri Lanka" => "LKR",
+        "Nepal" => "NPR",
+        "Vatican City" => "Euros",
+        "Slovakia" => "Euros",
+        "Serbia" => "RSD",
+        "Cyprus" => "Euros",
+        "Lithuania" => "Euros",
+        "Luxembourg" => "Euros",
+        "Bulgaria" => "BGN",
+        "Qatar" => "QAR",
+        "Israel" => "NIS",
+        "Hong Kong" => "HKD",
     );
     
     return $currency_list[$country];
@@ -439,6 +454,22 @@ function convert_to_usd($amount, $currency){
     "Rp" => 0.000066,
     "SAR" => 0.27,
     "MYR" => 0.23,
+    "RON" => 0.22,
+    "BYN" => 0.40,
+    "HUF" => 0.0028,
+    "BAM" => 0.55,
+    "ALL" => 0.010,
+    "ISK" => 0.0075,
+    "Brazilian Real" => 0.20,
+    "VND" => 0.000041,
+    "THB" => 0.028,
+    "LKR" => 0.0031,
+    "NPR" => 0.0075,
+    "RSD" => 0.0092,
+    "BGN" => 0.55,
+    "QAR" => 0.27,
+    "NIS" => 0.26,
+    "HKD" => 0.13
     );
 
     return (float)$amount * (float)$list[$currency];
@@ -4047,7 +4078,7 @@ if( function_exists('acf_add_options_page') ) {
         'page_title'     => 'Update Institutions Deadlines',
         'menu_title'    => 'Update Institutions Deadlines',
         'parent_slug'    => 'edit.php?post_type=institution',
-        'capability'     => 'delete_others_institutions',
+        'capability'     => 'edit_posts',
     ));
 
 }
@@ -4288,10 +4319,40 @@ function get_gs_institutions_preview() {
             $institution['permalink'] = get_permalink($id); // Get the institution permalink
             $institution['title'] = get_the_title($id); // Get the institution title
             
-            if (!empty($id)) {
-                $institution['country'] = get_field('location_country', $id); // Get the institution country
-            } else {
-                $institution['country'] = '';
+
+            if (!empty($repeater_rows) && is_array($repeater_rows)) {
+                
+                foreach ($repeater_rows as $row) {
+                    $country = get_field('location_country', $id); // Get the institution country
+                    // if ($row['degree'] == $institutionDegree && $row['open_date'] == $openingDate && $row['deadline'] == $deadlineDate && ($institutionCountry === '' || $country == $institutionCountry) ) 
+                    if (
+                        ($institutionDegree === '' || $row['degree'] == $institutionDegree) &&
+                        ($openingDate === '' || $row['open_date'] == $openingDate) &&
+                        ($deadlineDate === '' || $row['deadline'] == $deadlineDate) &&
+                        ($institutionCountry === '' || $country == $institutionCountry)
+                    )
+                    {
+                        $match_found = true;
+                        $institution = array(); // Create a new empty array for each institution
+
+                        $institution['id'] = $id; // Get the institution title
+                        $institution['permalink'] = get_permalink($id); // Get the institution permalink
+                        $institution['title'] = get_the_title($id); // Get the institution title
+                        
+                        if (!empty($id)) {
+                            $institution['country'] = get_field('location_country', $id); // Get the institution country
+                        } else {
+                            $institution['country'] = '';
+                        }
+
+                        $institutionData[] = $institution;
+
+                        $unique_ids = array_column($institutionData, 'id');
+                        $institutionData = array_intersect_key($institutionData, array_unique($unique_ids));
+                    }
+                }
+
+
             }
 
             $institutionData[] = $institution; // Add the institution array to the $institutionData array
@@ -4299,8 +4360,9 @@ function get_gs_institutions_preview() {
     }
 
     $response = array(
-        'institutionsPreview' => $preview_posts,
-        'institutionsData' =>  $institutionData,
+
+        'institutionsData' => $institutionData ?? $institutionData,
+
     );
 
     wp_send_json($response, 200);
@@ -4308,3 +4370,275 @@ function get_gs_institutions_preview() {
 
 add_action('wp_ajax_nopriv_institutions_preview', 'get_gs_institutions_preview');
 add_action('wp_ajax_institutions_preview', 'get_gs_institutions_preview');
+
+
+
+// function get_gs_institutions_preview() {
+
+//     $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+//     $batchSize = isset($_POST['batchSize']) ? intval($_POST['batchSize']) : 20;
+//     $postType = isset($_POST['postType']) ? sanitize_text_field($_POST['postType']) : 'institution';
+//     $postStatus = isset($_POST['postStatus']) ? sanitize_text_field($_POST['postStatus']) : array('publish', 'draft');
+//     $openingDate = isset($_POST['openingDate']) ? sanitize_text_field($_POST['openingDate']) : '';
+//     $deadlineDate = isset($_POST['deadlineDate']) ? sanitize_text_field($_POST['deadlineDate']) : '';
+//     $institutionCountry = isset($_POST['institutionCountry']) ? sanitize_text_field($_POST['institutionCountry']) : '';
+//     $institutionDegree = isset($_POST['institutionDegree']) ? sanitize_text_field($_POST['institutionDegree']) : '';
+//     $newOpeningDate = isset($_POST['newOpeningDate']) ? sanitize_text_field($_POST['newOpeningDate']) : '';
+//     $newDeadlineDate = isset($_POST['newDeadlineDate']) ? sanitize_text_field($_POST['newDeadlineDate']) : '';
+//     if(!empty($postStatus) && is_string($postStatus)) {
+//         $postStatus = array($postStatus);
+//     }
+//     $institution_posts_count = get_all_posts_count([$postType], $postStatus);
+
+//     $institutionDegree = stripslashes_from_strings_only($institutionDegree);
+
+
+//     $meta_query = array();
+
+//     // Check if the opening date is set and not empty.
+//     if (isset($openingDate) && !empty($openingDate)) {
+//         $meta_query[] = array(
+//             'key' => 'admission_deadlines_$_open_date',
+//             'compare' => '=',
+//             'value' => $openingDate,
+//         );
+//     }
+
+//     // Check if the deadline date is set and not empty.
+//     if (isset($deadlineDate) && !empty($deadlineDate)) {
+//         $meta_query[] = array(
+//             'key' => 'admission_deadlines_$_deadline',
+//             'compare' => '=',
+//             'value' => $deadlineDate,
+//         );
+//     }
+
+//     // Check if the institution degree is set and not empty.
+//     if (isset($institutionDegree) && !empty($institutionDegree)) {
+//         $meta_query[] = array(
+//             'key' => 'admission_deadlines_$_degree',
+//             'compare' => '=',
+//             'value' => $institutionDegree,
+//         );
+//     }
+
+//     // Check if the institution country is set and not empty.
+//     if (isset($institutionCountry) && !empty($institutionCountry)) {
+//         $meta_query[] = array(
+//             'key' => 'location_country',
+//             'compare' => '=',
+//             'value' => $institutionCountry,
+//         );
+//     }
+
+//     $meta_query['relation'] = 'AND';
+    
+//     $args = array(
+//         'post_type' => $postType,
+//         'post_status' => $postStatus,
+//         'posts_per_page' => $batchSize,
+//         'no_found_rows' => true,
+//         'update_post_meta_cache' => false,
+//         'update_post_term_cache' => false,
+//         'cache_results' => false,
+//         'fields' => 'ids',
+//         'offset' => $offset,
+//         'meta_query' => $meta_query,
+//     );
+    
+//     $preview_query = new WP_Query($args);
+    
+//     $preview_posts = $preview_query->get_posts();
+
+//     $institutionData = []; 
+
+
+
+//     if(isset($preview_posts) && !empty($preview_posts) && is_array($preview_posts)) {
+//         foreach ($preview_posts as $key => $id) {
+//             $institution = array(); // Create a new empty array for each institution
+
+//             $institution['id'] = $id; // Get the institution title
+//             $institution['permalink'] = get_permalink($id); // Get the institution permalink
+//             $institution['title'] = get_the_title($id); // Get the institution title
+            
+//             if (!empty($id)) {
+//                 $institution['country'] = get_field('location_country', $id); // Get the institution country
+//             } else {
+//                 $institution['country'] = '';
+//             }
+
+//             $institutionData[] = $institution; // Add the institution array to the $institutionData array
+//         }
+//     }
+
+//     $response = array(
+//         'institutionsPreview' => $preview_posts,
+//         'institutionsData' =>  $institutionData,
+//     );
+
+//     wp_send_json($response, 200);
+// }
+
+// add_action('wp_ajax_nopriv_institutions_preview', 'get_gs_institutions_preview');
+// add_action('wp_ajax_institutions_preview', 'get_gs_institutions_preview');
+
+function create_table_for_gs_deadlines_data() {
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . 'gs_deadlines_data';
+
+    $sql = "CREATE TABLE $table_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    deadlinesUpdatedDegree TEXT NOT NULL,
+    deadlinesUpdatedCountry TEXT NOT NULL,
+    openingDateUpdate TEXT NOT NULL,
+    deadlineDateUpdate TEXT NOT NULL,
+    openingDateUpdated TEXT NOT NULL,
+    deadlineDateUpdated TEXT NOT NULL,
+    updateDeadlinesDate TEXT NOT NULL,
+    updatedInstitutionsIds LONGTEXT NOT NULL,
+    date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+    PRIMARY KEY  (id)
+    );";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
+}
+
+add_action('init', 'create_table_for_gs_deadlines_data');
+
+
+function get_gs_institutions_updated_data() {
+
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'gs_deadlines_data';
+    
+    $gsDeadlinesData = array();
+   
+    // Degree
+    $gsDeadlinesData['deadlinesUpdatedDegree'] =  (isset($_POST['deadlinesUpdatedDegree'])) ? sanitize_text_field($_POST['deadlinesUpdatedDegree']) : '';
+
+    // Country
+    $gsDeadlinesData['deadlinesUpdatedCountry'] =  (isset($_POST['deadlinesUpdatedCountry'])) ? sanitize_text_field($_POST['deadlinesUpdatedCountry']) : '';
+
+    // Past Opening Date
+    $gsDeadlinesData['openingDeadlineDateUpdate'] =  (isset($_POST['openingDeadlineDateUpdate'])) ? sanitize_text_field($_POST['openingDeadlineDateUpdate']) : '';
+    // Past Deadline Date
+
+    $gsDeadlinesData['deadlineDeadlineDateUpdate'] =  (isset($_POST['deadlineDeadlineDateUpdate'])) ? sanitize_text_field($_POST['deadlineDeadlineDateUpdate']) : '';
+    // New Opening Date
+
+    $gsDeadlinesData['openingDeadlineDateUpdated'] =  (isset($_POST['openingDeadlineDateUpdated'])) ? sanitize_text_field($_POST['openingDeadlineDateUpdated']) : '';
+
+    // New Deadline Date
+
+    $gsDeadlinesData['deadlineDeadlineDateUpdated'] =  (isset($_POST['deadlineDeadlineDateUpdated'])) ? sanitize_text_field($_POST['deadlineDeadlineDateUpdated']) : '';
+
+    // Date of the Process
+    $gsDeadlinesData['updateDeadlinesDate'] =  (isset($_POST['updateDeadlinesDate'])) ? sanitize_text_field($_POST['updateDeadlinesDate']) : '';
+
+    // Institutions Ids with dates changed
+    $gsDeadlinesData['updatedInstitutionsIds'] =  isset($_POST['updatedInstitutionsIds']) ? (array) $_POST['updatedInstitutionsIds'] : array();
+
+    // Database logged Date
+    $gsDeadlinesData['date'] = isset($_POST['date']) ? $_POST['date'] : '';
+
+
+    $response = array();
+    if(!empty($gsDeadlinesData['updatedInstitutionsIds'])) {
+        $updatedInstitutionsIds = json_encode($gsDeadlinesData['updatedInstitutionsIds']);
+        $wpdb->insert(
+            $table_name,
+            array(
+            'deadlinesUpdatedDegree' => $gsDeadlinesData['deadlinesUpdatedDegree'],
+            'deadlinesUpdatedCountry' => $gsDeadlinesData['deadlinesUpdatedCountry'],
+            'openingDateUpdate' => $gsDeadlinesData['openingDeadlineDateUpdate'],
+            'deadlineDateUpdate' => $gsDeadlinesData['deadlineDeadlineDateUpdate'],
+            'openingDateUpdated' => $gsDeadlinesData['openingDeadlineDateUpdated'],
+            'deadlineDateUpdated' => $gsDeadlinesData['deadlineDeadlineDateUpdated'],
+            'updateDeadlinesDate' => $gsDeadlinesData['updateDeadlinesDate'],
+            'updatedInstitutionsIds' => $updatedInstitutionsIds,
+            'date' => $gsDeadlinesData['date']
+            )
+        );   
+        $response = array(
+            'data' => $gsDeadlinesData,
+            'success' => 'data entered into the database',
+        );
+    } else {
+        $response = array(
+            'data' => [],
+            'success' => 'It is empty, no institutions exist for this update, so we are going to skip it!',
+        ); 
+    }
+
+    wp_send_json($response, 200);
+
+}
+
+add_action('wp_ajax_nopriv_update_deadlines_data', 'get_gs_institutions_updated_data');
+add_action('wp_ajax_update_deadlines_data', 'get_gs_institutions_updated_data');
+
+// Get all Institutions that are not connected to scholarships
+function get_institutions_without_scholarships() {
+    // Custom WP_Query for scholarships custom post type
+    $scholarships_args = array(
+        'post_type' => 'scholarships',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids'
+    );
+    $scholarships_query = new WP_Query($scholarships_args);
+
+    $scholarships = $scholarships_query->get_posts();
+
+    $institutions_args = array(
+        'post_type' => 'institution',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'cache_results' => false,
+        'fields' => 'ids'
+    );
+    $institutions_query = new WP_Query($institutions_args);
+
+    $institutions = $institutions_query->get_posts();
+
+    $institutions_with_scholarships = [];
+
+    foreach ($scholarships as $scholarship) {
+        $scholarship_institution = get_field('scholarship_institution', $scholarship);
+        if ($scholarship_institution) {
+            $institutions_with_scholarships[] = $scholarship_institution->ID;
+        }
+    }
+
+    $unique_institutions = array_unique($institutions_with_scholarships);
+
+    $result = array_diff($institutions, $unique_institutions);
+
+    return $result;
+}
+
+function institutions_without_scholarships_list( $atts ){
+
+    $result = get_institutions_without_scholarships();
+	echo "<ol>";
+        foreach($result as $key => $institution) {
+            ?>
+            <li>
+                <a  href="<?php echo get_permalink($institution); ?>"> <?php echo get_the_title($institution); ?></a>
+            </li>
+            <?php
+        }
+    echo "</ol>";
+}
+add_shortcode( 'institutions-without-scholarships', 'institutions_without_scholarships_list' );
+
