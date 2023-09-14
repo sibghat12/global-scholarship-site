@@ -1,7 +1,14 @@
 jQuery(document).ready(function($) {
 
   let previewShowing = false;
-  var allInstitutionsUpdated = [];
+
+  let updatingProcess = false;
+  let allInstitutionsUpdated = [];
+  const updateDeadlinesButton = $('#gs_update_deadlines').find('button');
+  const previewInstitutionsButton = $('#gs_preview_institutions').find('button');
+  console.log("updateDeadlinesButton", updateDeadlinesButton)
+  console.log("previewInstitutionsButton", previewInstitutionsButton)
+
 
   const updateInstitutionsDeadlinesPage = $('.institution_page_acf-options-update-institutions-deadlines');
   const acfSettings = updateInstitutionsDeadlinesPage.find('.acf-settings-wrap');
@@ -82,9 +89,12 @@ jQuery(document).ready(function($) {
       success: function(response) {
         // $('.process-data').css('display','block');
 
-
+        if($('.preview-data').hasClass('done')) {
+          $('.preview-data').removeClass('done');
+        }
       // Get the institutionsUpdated array
       var institutionsUpdated = response?.institutionsUpdated;
+      console.log("institutionsUpdated", institutionsUpdated)
 
       // If the institutionsUpdated array is not empty
       if (institutionsUpdated) {
@@ -165,6 +175,16 @@ jQuery(document).ready(function($) {
           offset = response.totalUpdated;
           updateInstitutionsDeadlines(offset, batchSize, postType);
         } else {
+
+          updatingProcess = false;
+          if(!updatingProcess) {
+            updateDeadlinesButton.prop('disabled', false);
+            $('.preview-data').addClass('done');
+            getUpdatedInstitutionsData();
+            allInstitutionsUpdated = [];
+            // Here run a function that gets all the data from the frontend and send back to the database :)
+          }
+
           $('.process-data').addClass('done');
           $('.process-data.done').css('background', '#6ea2c7');
           $('.process-data').css('color', '#fff');

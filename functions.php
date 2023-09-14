@@ -2675,6 +2675,7 @@ add_action( 'after_setup_theme', 'add_theme_caps');
 function add_scholarship_caps_to_scholarship_editor() {
 
 $scholarship_editor = get_role( 'scholarship_editor' );
+$scholarship_author = get_role( 'scholarship_author' );
     
 
 
@@ -2686,6 +2687,25 @@ $scholarship_editor = get_role( 'scholarship_editor' );
    
     $scholarship_editor->remove_cap('delete_private_ads');
     $scholarship_editor->remove_cap('delete_published_ads');
+
+    if ( $scholarship_editor || $scholarship_author ) {
+
+        // Scholarship Editor
+        $scholarship_editor->remove_cap('edit_posts');
+        $scholarship_editor->remove_cap('publish_posts');
+        $scholarship_editor->remove_cap('edit_published_posts');
+        $scholarship_editor->remove_cap('edit_others_posts');
+        $scholarship_editor->remove_cap('delete_posts');
+        $scholarship_editor->remove_cap('delete_others_posts');
+
+        // Scholarship Author
+        $scholarship_author->remove_cap('edit_posts');
+        $scholarship_author->remove_cap('publish_posts');
+        $scholarship_author->remove_cap('edit_published_posts');
+        $scholarship_author->remove_cap('edit_others_posts');
+        $scholarship_author->remove_cap('delete_posts');
+        $scholarship_author->remove_cap('delete_others_posts');
+    }
 
     // Add capabilities for institutions
     $scholarship_editor->add_cap( 'edit_institution' );
@@ -3095,7 +3115,8 @@ function add_scholarship_admin_page()
         'edit.php?post_type=scholarships', // parent slug
         'Scholarships Feedback',             // page title
         'Feedback',             // menu title
-        'scholarship_access',                   // capability
+        // 'scholarship_access',                   // capability (allow scholaship-edior role)
+        'edit_posts',                   // capability (DO NOT allow scholaship-edior role)
         'scholarships-form-feedback',             // menu slug
         'render_scholarship_settings_page'  // callback function
     );
@@ -3120,6 +3141,34 @@ function render_scholarship_settings_page()
     // Add your custom admin page HTML here
     include('scholarships-feedback.php');
 }
+
+
+// Adding Admin Page for Feedback Form Data Tables
+
+function add_institutions_deadlines_updated_page()
+{
+    add_submenu_page(
+        'edit.php?post_type=institution', // parent slug
+        'Updated Institutions List',             // page title
+        'Updated Institutions List',             // menu title
+        'edit_posts',                   // capability
+        'institutions-deadlines-updated',             // menu slug
+        'render_institutions_deadlines_updated_page'  // callback function
+    );
+}
+add_action('admin_menu', 'add_institutions_deadlines_updated_page');
+
+
+function render_institutions_deadlines_updated_page()
+{
+    $current_user = wp_get_current_user();
+    if (in_array('scholarship_editor', $current_user->roles) || in_array("scholarship_author", $current_user->roles)) {
+        return;
+    }
+    // Add your custom admin page HTML here
+    include('institutions-deadlines-updated.php');
+}
+
 
 function render_institutions_update_deadlines_meta_page()
 {

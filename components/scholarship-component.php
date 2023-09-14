@@ -3,9 +3,9 @@
    
    
     $id = get_the_ID();
-    $scholarship_type = get_field('scholarship_type');
-    $scholarship_amount = get_field('amount_in_numbers');
     $scholarship_category = get_field('amount_category');
+    $scholarship_type = $scholarship_category;
+    $scholarship_amount = get_field('amount_in_numbers');
     $eligibility_criteria = 'eligibility_criteria';
     $coverage = 'scholarship_coverage';
     $university_name = $name;
