@@ -4098,6 +4098,9 @@ input[type="submit"] {
     text-align: center;
     line-height: 4rem;
 }
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs {
+    text-align: center;
+}
 
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs a{
     font-family: 'Roboto', sans-serif;
