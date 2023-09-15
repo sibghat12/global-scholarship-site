@@ -361,32 +361,51 @@ function get_adjective_scholarship_amount($text){
 // Output : Return Course string in such oder  : Course 1, Course 2 and Course 3.
 
 function get_formatted_courses($courses) {
-               
-               $courses_text = ""; $format_courses_text = "";
-               $counter = 0;
+            
+    $courses_text = ""; $format_courses_text = "";
+    $counter = 0;
 
-               if ($courses){
+    if ($courses){
 
-                if(sizeof($courses) > 3 ) {
-                    
-                foreach ($courses as $courses_name) {
-                    if($counter==3){
-                            break;
-                        }
-                    foreach($courses_name as  $val){
-                    $courses_text = $courses_text . $val . ", ";
-                    }
-                    $counter++;
+        if(sizeof($courses) > 3 ) {
+            
+        foreach ($courses as $courses_name) {
+            if($counter==3){
+                    break;
                 }
-                $courses_text = rtrim($courses_text , ' ,');
-                $format_courses_text = substr_replace($courses_text, ', and', strrpos($courses_text, ','), 1);
-                }
+            foreach($courses_name as  $val){
+            $courses_text = $courses_text . $val . ", ";
+            }
+            $counter++;
         }
+        $courses_text = rtrim($courses_text , ' ,');
+        $format_courses_text = substr_replace($courses_text, ', and', strrpos($courses_text, ','), 1);
+        }
+    }
 
-             return $format_courses_text;
+    return $format_courses_text;
         
-        }
+}
 
+// Pass Degrees array
+// Output : Return degree string in such oder  : degree 1, degree 2 and degree 3.
+
+function formatArrayToString($array) {
+    $count = count($array);
+    
+    if ($count === 0) {
+        return '';
+    } elseif ($count === 1) {
+        return $array[0];
+    } elseif ($count === 2) {
+        return $array[0] . ' and ' . $array[1];
+    } else {
+        $lastElement = array_pop($array);
+        $string = implode(', ', $array);
+        $string .= ', and ' . $lastElement;
+        return $string;
+    }
+}
 
 
 /* Deleted this because I would like the all the degrees to show now. 
