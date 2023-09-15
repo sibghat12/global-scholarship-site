@@ -4083,7 +4083,93 @@ input[type="submit"] {
 }
 
 
+/* NEW Institutions Pages Stylings */
 
+.single-institution .gs-institution-overview-box {
+    background-color: #EAF4FB;
+    padding: 40px 60px 80px 60px;
+    border-radius: 20px;
+}
+
+.single-institution .gs-institution-overview-box .gs-institution-overview-text h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 4.1rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 4rem;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs a{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.1rem;
+    color: #000000 !important;
+    text-decoration: underline;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs a.gs-institutions-breadcrumb-institution{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.1rem;
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    color: #000000 !important;
+    margin: 1.2rem 0;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data .gs-institution-data-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.7rem;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data .gs-institution-tag {
+    font-family: 'Roboto', sans-serif;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-icon {
+    background-color: #98c8ee;
+    padding: 8px 0;
+    border-radius: 14px;
+}
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-icon svg {
+    max-height: 60px !important;
+}
+/* End NEW Institutions Pages Stylings */
 
 /*Tablet + Desktop*/
 @media only screen and (min-width: 481px){
