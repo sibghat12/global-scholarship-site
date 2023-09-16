@@ -7,7 +7,13 @@
     $ibu = get_field("tuition_fee_upper_tuition_fee");
     $iml = get_field("masters_tuition_fee_international_lower");
     $imu = get_field("masters_tuition_fee_upper_tuition_fee");
+    
+    $city = get_post(get_field('cities'));
+    $city_name = get_the_title($city);
+    $country_name = get_post_meta($city->ID, 'country', TRUE);
+    $current_currency = get_currency($country_name);
 
+    $current_currency = get_currency($country_name);
 
     $ibl = roundNearestHundreth(convert_to_usd($ibl, $current_currency));
     $ibu = roundNearestHundreth(convert_to_usd($ibu, $current_currency));
@@ -38,11 +44,6 @@
     } else {
         $is_tuition_information = true;
     }
-    
-    $city = get_post(get_field('cities'));
-    $city_name = get_the_title($city);
-    $country_name = get_post_meta($city->ID, 'country', TRUE);
-    $current_currency = get_currency($country_name);
 
 
     $currency = get_currency($country_name);    
@@ -99,10 +100,6 @@
     $average_ranking_value = get_post_meta(get_the_ID(), 'average_rankings', true);
     $average_ranking_value = round((int) $average_ranking_value);
 
-    $city = get_field('cities');
-    $city = get_post($city->ID);
-    $city_name = get_the_title($city);
-    $country = get_post_meta($city->ID, 'country', TRUE);
 
     // Bachlerors Courses String
     $bachelor_courses = get_field('bachelors_courses');
@@ -135,7 +132,7 @@
 
     //Round to the nearest hundredth
 
-    $current_currency = get_currency($country);
+    $current_currency = get_currency($country_name);
 
 
 
@@ -203,7 +200,7 @@
                 
     // $currency = "USD";
 
-    $lowercase = strtolower($country);
+    $lowercase = strtolower($country_name);
     $hyphenated = str_replace(' ', '-', $lowercase);
     $degrees_scholarships = array();
     $scholarships_category = array();
@@ -270,44 +267,12 @@
                     
                     <div class="post-content">
                         
-                        <?php // GS Scholarship Overview Box ?>
+                        <?php // GS Institution Overview Box ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-overview.php'; ?>
-
-                        <!-- <?php if (function_exists ('adinserter')) echo adinserter (7); ?>
                         
-                        <?php // GS Scholarship Summary Box ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-summary.php'; ?>
+                        <?php // GS Institution Intro ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-intro.php'; ?>
 
-                        <?php // GS Scholarship Navigation Panel ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-navigation-panel.php'; ?>
-
-                        <?php if (function_exists ('adinserter')) echo adinserter (8); ?>
-                        
-                        <?php // GS Scholarship Coverage ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-coverage.php'; ?>
-
-                        <?php // GS Scholarship Eligibility Criteria ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
-
-                        <?php if (function_exists ('adinserter')) echo adinserter (9); ?>
-
-                        <?php // GS Scholarship Application Procedure ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
-
-
-
-                        <?php // GS Scholarship Deadline ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
-
-                        <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
-
-                        <?php // GS Scholarship Outro ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-outro.php'; ?>
-
-                        <?php // GS Scholarship Form ?>
-                        <?php require get_stylesheet_directory() . '/components/single-scholarships/feedback-form.php'; ?>
-
-                         -->
                         <?php 
                         if ( comments_open() || get_comments_number() ) {
                             comments_template();
