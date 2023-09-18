@@ -73,15 +73,6 @@
     // $ibl = $tuition_fee['international_lower'];
     // $ibu = $tuition_fee['upper_tuition_fee'];
 
-
-
-    $ibl = get_field("tuition_fee_international_lower");
-    $ibu = get_field("tuition_fee_upper_tuition_fee");
-
-
-    $iml = get_field("masters_tuition_fee_international_lower");
-    $imu = get_field("masters_tuition_fee_upper_tuition_fee"); 
-
     $admission_pages = get_field("admissions_pages");
 
     $admission_deadlines = get_field("admission_deadlines");
@@ -124,53 +115,6 @@
 
     $undergraduate_list = get_graduate_undergraduate_list($scholarships_query , "undergraduate");
     $graduate_list =      get_graduate_undergraduate_list($scholarships_query , "graduate");
-
-
-
-
-
-
-    //Round to the nearest hundredth
-
-    $current_currency = get_currency($country_name);
-
-
-
-                
-    $ibl = roundNearestHundreth(convert_to_usd($ibl, $current_currency));
-    $ibu = roundNearestHundreth(convert_to_usd($ibu, $current_currency));
-    $imu = roundNearestHundreth(convert_to_usd($imu, $current_currency));
-    $iml = roundNearestHundreth(convert_to_usd($iml, $current_currency));
-                
-                
-    //If the original $ibl was -1, change it back to -1
-    //This is in place so that the rounding and such does not mess $ibl > 0 up
-
-
-    if (get_field("tuition_fee_international_lower") == -1){
-        $ibl = -1; 
-    }
-
-    if (get_field("tuition_fee_upper_tuition_fee") == -1){
-        $ibu = -1; 
-    }
-
-    if (get_field("masters_tuition_fee_international_lower") == -1){
-        $iml = -1; 
-    }
-
-    if (get_field("masters_tuition_fee_upper_tuition_fee") == -1){
-        $imu = -1; 
-    }
-
-
-    //Checks if there are tuition information. This is used for titles
-    if ($ibl == -1 && $ibu == -1 && $iml == -1 && $imu == -1){
-        $is_tuition_information = false;
-    } else {
-        $is_tuition_information = true;
-    }
-
 
 
     //Checks if there is scholarship information. This is also used for titles
@@ -272,6 +216,9 @@
                         
                         <?php // GS Institution Intro ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-intro.php'; ?>
+                        
+                        <?php // GS Institution Admissions ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-admissions.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {
