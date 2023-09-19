@@ -219,6 +219,9 @@
                         
                         <?php // GS Institution Admissions ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-admissions.php'; ?>
+                        
+                        <?php // GS Institution Deadlines ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-deadlines.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {

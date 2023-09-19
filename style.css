@@ -4273,6 +4273,42 @@ input[type="submit"] {
     line-height: 24px;
 }
 
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.single-institution #main .gs-institution-deadlines h1.gs-institution-deadlines-title {
+    border-left: 2px solid #3C76E6;
+    padding: 16px 12px;
+    background-color: #EAF4FB;
+    margin-bottom: 30px;
+}
+
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-content ul.gs-institution-deadlines-list {
+    margin-left: 120px;
+    max-width: 80%;
+}
+
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-content ul.gs-institution-deadlines-list li {
+    font-weight: 700;
+}
+
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-content ul.gs-institution-deadlines-list li a{
+    color: #000 !important;
+    text-decoration: underline;
+}
+
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-content ul.gs-institution-deadlines-list li a:hover {
+    color: #008fc5!important;
+}
+
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-container .gs-institution-deadlines-thumbnail img{
+    height: 274px;
+}
+
+
 /* End NEW Institutions Pages Stylings */
 
 /*Tablet + Desktop*/
@@ -5680,6 +5716,16 @@ input[type="submit"] {
     .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box {
         width: 94%;
         margin: 0 auto;
+    }
+
+    .single-institution #main .gs-institution-deadlines .gs-institution-deadlines-content ul.gs-institution-deadlines-list {
+        margin-left: 30px;
+        max-width: 80%;
+    }
+    
+
+    .single-institution #main .gs-institution-deadlines .gs-institution-deadlines-container .gs-institution-deadlines-thumbnail {
+        display: none;
     }
 }
 
