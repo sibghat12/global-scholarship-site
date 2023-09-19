@@ -1618,9 +1618,9 @@ background:#77A6C9 !important;
     background:#C5d4E0 !important;
 }
 
-//.page-id-48159 #main {
+/*.page-id-48159 #main {
     margin-top:100px !important;
-}
+}*/
 
 .page-template-template-filters .fusion-header-wrapper {
     position:fixed !important;
@@ -2118,7 +2118,7 @@ padding-top:24px !important;
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
-    margin-top:5px; !important;
+    margin-top:5px!important;
 }
 
 
@@ -4308,6 +4308,13 @@ input[type="submit"] {
     height: 274px;
 }
 
+
+.single-institution #main .gs-institution-tuition-fees h1.gs-institution-tuition-fees-title{
+    border-left: 2px solid #3C76E6;
+    padding: 16px 12px;
+    background-color: #EAF4FB;
+    margin-bottom: 30px;
+}
 
 /* End NEW Institutions Pages Stylings */
 

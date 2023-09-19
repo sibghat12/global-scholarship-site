@@ -15,10 +15,13 @@
 
     $current_currency = get_currency($country_name);
 
-    $ibl = roundNearestHundreth(convert_to_usd($ibl, $current_currency));
-    $ibu = roundNearestHundreth(convert_to_usd($ibu, $current_currency));
-    $imu = roundNearestHundreth(convert_to_usd($imu, $current_currency));
-    $iml = roundNearestHundreth(convert_to_usd($iml, $current_currency));  
+    $usdCurrency=  'USD';
+
+    //  the convert from local currency to USD
+    $iblUSD = roundNearestHundreth(convert_to_usd($ibl, $current_currency));
+    $ibuUSD = roundNearestHundreth(convert_to_usd($ibu, $current_currency));
+    $imuUSD = roundNearestHundreth(convert_to_usd($imu, $current_currency));
+    $imlUSD = roundNearestHundreth(convert_to_usd($iml, $current_currency));  
 
 
     if (get_field("tuition_fee_international_lower") == -1){
@@ -222,6 +225,9 @@
                         
                         <?php // GS Institution Deadlines ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-deadlines.php'; ?>
+                        
+                        <?php // GS Institution Tuition Fees ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-tuition-fees.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {
