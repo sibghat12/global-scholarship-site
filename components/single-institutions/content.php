@@ -15,13 +15,13 @@
 
     $current_currency = get_currency($country_name);
 
-    $usdCurrency=  'USD';
+    $currencyUSD=  'USD';
 
     //  the convert from local currency to USD
-    $iblUSD = roundNearestHundreth(convert_to_usd($ibl, $current_currency));
-    $ibuUSD = roundNearestHundreth(convert_to_usd($ibu, $current_currency));
-    $imuUSD = roundNearestHundreth(convert_to_usd($imu, $current_currency));
-    $imlUSD = roundNearestHundreth(convert_to_usd($iml, $current_currency));  
+    $iblUSD = number_format(roundNearestHundreth(convert_to_usd($ibl, $current_currency)));
+    $ibuUSD = number_format(roundNearestHundreth(convert_to_usd($ibu, $current_currency)));
+    $imuUSD = number_format(roundNearestHundreth(convert_to_usd($imu, $current_currency)));
+    $imlUSD = number_format(roundNearestHundreth(convert_to_usd($iml, $current_currency)));  
 
 
     if (get_field("tuition_fee_international_lower") == -1){

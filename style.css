@@ -4315,6 +4315,9 @@ input[type="submit"] {
     background-color: #EAF4FB;
     margin-bottom: 30px;
 }
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p{
+    margin-bottom: 0px !important;
+}
 
 /* End NEW Institutions Pages Stylings */
 
