@@ -155,4 +155,5 @@
             </p>
     <?php } ?>
         </div>
+    </div>
 <?php endif; ?>

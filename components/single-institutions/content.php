@@ -132,21 +132,19 @@
     //Generate Title using the tuition and scholarship information
     $title_bread = $title;
 
-    if ($is_scholarship_information){
-        $title = $name . " Scholarships for International Students";            
-    } else if ($is_tuition_information){
-        $title = $name . " Tuition for International Students";
-    } else {
-        $title = $name . " Background Information ";           
-    }
+    // if ($is_scholarship_information){
+    //     $title = $name . " Scholarships for International Students";            
+    // } else if ($is_tuition_information){
+    //     $title = $name . " Tuition for International Students";
+    // } else {
+    //     $title = $name . " Background Information ";           
+    // }
 
 
 
     //$current_currency is the currency of the institution's country. We use that for scholarship amount
     //We are using USD though for tuition fees
                 
-    // $currency = "USD";
-
     $lowercase = strtolower($country_name);
     $hyphenated = str_replace(' ', '-', $lowercase);
     $degrees_scholarships = array();
@@ -228,6 +226,9 @@
                         
                         <?php // GS Institution Tuition Fees ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-tuition-fees.php'; ?>
+                        
+                        <?php // GS Institution Scholarships ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-scholarships.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {
