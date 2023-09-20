@@ -4315,8 +4315,42 @@ input[type="submit"] {
     background-color: #EAF4FB;
     margin-bottom: 30px;
 }
+
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p{
     margin-bottom: 0px !important;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors {
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors h1 {
+    font-family: inherit !important;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-note {
+    font-style: italic;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average > .gs-institution-tuition-fees-bachelors + .gs-institution-tuition-fees-masters {
+    border-left: 1px solid #bbb;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters {
+    padding-left: 20px;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters h1 {
+    font-family: inherit !important;
 }
 
 /* End NEW Institutions Pages Stylings */

@@ -1,16 +1,53 @@
 <?php if (isset($tuition_fee) && !empty($tuition_fee)) :
+
+    $average_international_bachelors = 0;
+    $average_international_masters = 0;
+
+    if ($ibl > 0 && $ibu > 0) {
+        $average_international_bachelors = number_format(roundNearestHundreth(($ibl + $ibu) / 2));
+    } elseif ($ibl > 0) {
+        $average_international_bachelors = number_format(roundNearestHundreth($ibl));
+    } elseif ($ibu > 0) {
+        $average_international_bachelors = number_format(roundNearestHundreth($ibu));
+    }
+
+
+    
+    if ($iml > 0 && $imu > 0) {
+        $average_international_masters = number_format(roundNearestHundreth(($iml + $imu) / 2));
+    } elseif ($iml > 0) {
+        $average_international_masters = number_format(roundNearestHundreth($iml));
+    } elseif ($imu > 0) {
+        $average_international_masters = number_format(roundNearestHundreth($imu));
+    }
+
 ?>
     <div class="gs-institution-tuition-fees">
 
         <div class="gs-institution-tutition-fees-text">
+        <h1 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at <?php echo $institution_title ?> for International Students</h1>       
                   
         <?php
                 // Print out tuition fees if it is available
 
-                if ($ibl > -1 && $iml > -1 ) {
+                if ($ibl > -1 && $iml > -1 ) { ?>
 
-                echo "<h1 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at " . $institution_title . " for International Students</h1>";
+                <div class="gs-institution-tuition-fees-for-international-average">
+                    <?php if($average_international_bachelors > 0) : ?>
+                    <div class="gs-institution-tuition-fees-bachelors">
+                        <h1><?php echo $average_international_bachelors .' '. $currency; ?></h1>
+                        <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($average_international_masters > 0) : ?>
+                    <div class="gs-institution-tuition-fees-masters">
+                        <h1><?php echo $average_international_masters .' '. $currency; ?></h1>
+                        <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
+                    </div>
+                    <?php endif; ?>
+                </div>
 
+                <?php
                 if($ibl == 0 && $iml== 0 && $ibu == 0 && $iml == 0 ) {
                 
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
@@ -53,36 +90,26 @@
 
                 <?php  if($ibl==0) { 
 
-                    echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                    ?>
 
                 <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> are free.</b></p>
 
                 <?php  } else { ?>
-
-                <?php echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
                 <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu &&$iblUSD != $ibuUSD ? 
                     number_format($ibl) . " " . $currency  . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency  . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency  . " ($iblUSD $currencyUSD)"; ?> per year.</b></p>
 
 
                 
                 <?php } } else if ($iml > -1 ) { 
-                
-                
 
-                    
                     if($iml==0) {
-                    
-                    echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                    ?>
                     <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> is free.</b></p> 
 
                     <?php } else {
-
-                    echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                        ?>
+                    <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency  . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)" : number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p> 
                 
-
-                <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency  . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)" : number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p> 
-                
-
                 <?php } } ?>
                 
                 
