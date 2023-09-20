@@ -5920,7 +5920,6 @@ border-radius: 10px;
 
 .courses-grid {
     padding-left:20px !important;
-   
     padding-top:40px !important;
     margin-bottom: 40px !important;
 }
@@ -5937,8 +5936,7 @@ border-radius: 10px;
       -1px 2px 5px rgba(0, 0, 0, 0.1), 
       2px -3px 5px rgba(0, 0, 0, 0.1)
        !important;
-
-   margin-bottom:20px !important;
+       margin-bottom:20px !important;
 
 }
 
@@ -5975,7 +5973,7 @@ padding-bottom:40px !important;
         padding-right:0px;
     }
 
-    /* Assuming you are using Bootstrap 3, which has no d-flex class. If using Bootstrap 4 or newer, you can remove this */
+    
     .d-flex {
         display: flex;
     }
@@ -6015,12 +6013,6 @@ padding-bottom:40px !important;
 
 
 @media (max-width: 1300px) {
-.card-container  {
-    width:48% !important;
-    margin-top:20px !important;
-    margin-right:2%!important;
-    float:left !important;
-}
 
 .courses-grid {
     width:100% !important;
@@ -6043,33 +6035,23 @@ padding-bottom:40px !important;
    .card-container {
     width:100% !important;
    }
-   
   
-   
    .course-text.heading-section{
     justify-content: flex-start !important;
     }
 
 }
 
-
-
-
-
-
 .course-text{
 justify-content: flex-start; 
 }
-
-
-
 
 #courses-flipcard {
     margin-bottom:20px !important;
     width:100% !important;
     display: block !important;
 }
-.col-md-4 {
+#courses-flipcard .col-md-4 {
     margin-left:10px !important;
     margin-right:10px !important;
     width:31% !important;
@@ -6079,7 +6061,6 @@ justify-content: flex-start;
 .back {
 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
     width: 100%;
     height: auto !important;
     position: absolute;
@@ -6115,8 +6096,6 @@ justify-content: flex-start;
             transform: rotateY(0deg);
 }
 
-
-
 .card-container {
     position: relative;
     min-height: 600px;
@@ -6136,12 +6115,6 @@ justify-content: flex-start;
 
 @media (max-width: 600px) {
 
-.card-container { 
-    margin-left:0px !important;
- width:92% !important;
- float:left !important;
-}
-
 .course-image img {
     border-top-left-radius: 13px !important;
     border-top-right-radius: 13px !important;
@@ -6153,15 +6126,258 @@ justify-content: flex-start;
 
 }
 
-@media (max-width: 1000px) {
-
+@media (max-width: 1100px) {
 .cta-container .col-md-3 {
     margin-top:30px;
     margin-bottom:20px;
 }
+
+#courses-flipcard .col-md-4  {
+    width:46% !important;
+    margin-top:20px !important;
+    margin-right:2%!important;
+    float:left !important;
 }
+
+
+}
+
+
+
+@media (max-width: 600px) {
+#courses-flipcard .col-md-4  {
+    width:92% !important;
+    margin-top:20px !important;
+    margin-right:2%!important;
+    float:left !important;
+    margin-left:0px !important;
+    margin-bottom:40px !important;
+}
+}
+
 
 .course-flag img {
     min-width:24px !important;
     height: 24px !important;
 }
+
+
+#courses-flipcard .col-md-4:first-child {
+    margin-left: 0px !important;
+}
+
+#courses-flipcard .course-image img {
+    width:100%;
+}
+
+
+
+
+
+/* Recent Posts Template STyling */
+
+.recent-wrapper {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.recent-wrapper .posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* Single column by default for mobile */
+    gap: 15px; 
+}
+
+/* For tablet screens */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .recent-wrapper .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .recent-wrapper .post-card:not(:last-child) {
+        margin-right: 10px;  /* Add margin to the right of all cards except the last one in a row */
+    }
+}
+
+/* For wider screens (e.g., desktop and above) */
+@media screen and (min-width: 1024px) {
+    .recent-wrapper .posts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .recent-wrapper .post-card:not(:last-child) {
+        margin-right: 10px;  /* Add margin to the right of all cards except the last one in a row */
+    }
+}
+
+
+
+
+.recent-wrapper .post-card {
+    border-radius: 5px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);  /* Add box shadow */
+    overflow: hidden;
+    transition: transform .2s;
+    margin-bottom:40px;
+}
+
+.recent-wrapper .post-card h2 {
+    line-height: 24px;
+    color:#008fc5;
+    font-size: 19px;
+    font-weight: 700;
+    padding-left:0px;
+}
+
+.recent-wrapper .post-card p {
+    font-size: 18px !important;
+    font-weight: 300;
+    line-height: 22px !important;
+    
+    max-width: 100%;  /* Ensures text overflow works as expected */
+}
+
+.recent-wrapper .read-more {
+    display: block;
+    margin-top: 10px;
+    font-size:16px;
+    line-height: 28px;
+    margin-top:20px;
+    font-weight: 600;
+    color: blue;
+    width:inherit;
+   
+    text-decoration: none;
+}
+
+.recent-wrapper .read-more  span {
+    border-bottom:1px solid #008fd0;
+}
+.recent-wrapper .post-card img {
+    width: 100%;  /* Image takes the full width of its container */
+    display: block;  /* Removes any default margin or padding */
+    height: auto;  /* Keeps the image aspect ratio */
+}
+.recent-wrapper .text-wrapper {
+   padding:20px;
+   padding-bottom:40px;
+}
+
+.recent-posts-heading{
+    padding-top:50px;
+    padding-bottom:60px;
+    text-align: center;
+    width:100%;
+}
+
+.post-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;  
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    width:100% !important;
+    align-items: center;
+    padding: 20px 0; /* Optional: adds some vertical spacing */
+}
+
+
+
+
+
+.category .fusion-page-title-bar {
+    margin-top:40px;
+    height: 70px !important;
+}
+
+.category-description {
+    margin:auto;
+    max-width: 800px !important;
+    text-align: center !important;
+    padding-bottom:70px;
+}
+
+
+
+
+
+.page-template-template-recent-posts .courses-filter-search , .category .courses-filter-search{
+    display: none !important;
+}
+
+
+
+
+.recent-post-cta {
+   
+    max-width: 1140px;
+    background: #559cc6;
+    margin: auto !important;
+    padding: 60px 0; /* Combined padding-top and padding-bottom */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+.recent-post-cta .first-column {
+     width:60%;
+    padding-left: 60px; /* Optional, if you want some spacing between the columns */
+}
+
+.recent-post-cta .second-column {
+    flex: 50; /* 40% width */
+    width:40%;
+}
+
+.recent-post-cta .cta-text {
+    padding-left:10%;
+    flex: 1;
+    padding-right: 20px;
+}
+
+.recent-post-cta .cta-text h2{ 
+      color:white;
+}
+
+.recent-post-cta .cta-text p{ 
+    color:white;
+}
+
+.recent-post-cta .cta-image {
+    flex: 1;
+    margin-left:10%;
+}
+
+.recent-post-cta .cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent; /* Or any color you like */
+    color: white !important;
+    text-decoration: none;
+    border-radius: 5px;
+    border:1px solid white;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: transparent; /* A slightly darker blue for hover effect */
+}
+
+@media screen and (max-width: 767px) {
+
+
+   .recent-post-cta .first-column {
+     width:100%; 
+   }
+   
+   .recent-post-cta .second-column {
+     display: none;
+   }
+
+}
+
+

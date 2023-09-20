@@ -3728,6 +3728,12 @@ echo $des;
 add_shortcode('courses_grid_shortcode_new', 'courses_grid_shortcode_new');
 function courses_grid_shortcode_new() {
     ob_start(); // Start output buffering
+
+    ?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <?php 
    
    $args = array(
     'post_type'      => 'ads',
@@ -3761,10 +3767,10 @@ function courses_grid_shortcode_new() {
                 $institute = get_post(get_post_meta(get_the_ID(), 'adsInstitution', true));
 
                 $domestic_tuition_fees_INT = get_post_meta($institute->ID, 'domestic_tuition_fees' , true);
-$international_tuition_fees_INT = get_post_meta($institute->ID, 'international_tuition_fees' , true);
+                $international_tuition_fees_INT = get_post_meta($institute->ID, 'international_tuition_fees' , true);
 
-$domestic_tuition_fees = get_post_meta($ad_id, 'domestic_tuition_fees' , true);
-$international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
+                $domestic_tuition_fees = get_post_meta($ad_id, 'domestic_tuition_fees' , true);
+                $international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
 
 $country = get_post_meta($institute->ID, 'adsIntCountry', true);
 
@@ -3827,7 +3833,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                     </div>
 
 
-      <div class="course-text heading-section " style="min-height: 90px;margin-top:0px;">
+      <div class="course-text heading-section" style="min-height: 90px;margin-top:0px;">
                         
                         <div class="col-md-3 course-logo">
                             <img  style="width:60px;height: 60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
@@ -3847,7 +3853,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                         
                     </div>
 
-                    <div class="course-text heading-section" style="margin-top:0px !important;">
+                    <div class="course-text heading-section" style="min-height:80px;margin-top:0px !important;">
                    
                    <p style="height:60px;text-align:left;font-weight:600;padding-left:15px;padding-right:15px;font-size:16px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
 
@@ -3859,7 +3865,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                   </div>
 
 
-                   <div class="course-text" style="padding-top:0px;margin-top:0px;border-radius:8px;width:86% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
+                   <div class="course-text" style="min-height:90px;padding-top:0px;margin-top:0px;border-radius:8px;width:86% !important;margin:auto;background:#F2F8FF;padding-left:0px;padding-right:0px;padding-top:7px;padding-bottom:7px;">
 
                     <div style="border-right:2px solid #cdcdcd;width:100% !important;">  
                     
@@ -3956,25 +3962,19 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                       
                       <?php  if (strlen($des) > 110) {
     $des = substr($des, 0, 100);
-    $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
+    $des = $des . '...  ';
 }
 
 echo $des;
                              ?>
                      </p>
 
-                     <p id="full" style="display:none;text-align:left;padding-left:15px;padding-right:15px;font-size:13px;line-height: 22px;">   
-                      
-                       <?php 
-                              $des = get_post_meta($ad_id, 'description', true);
-                              echo $des . '...  <span class="read-less" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read Less </span>';
-                             ?>
-                     </p>
+                     
 
 
                   </div>
 
-                    <div class="course-text" style="margin-top:-5px !important;">
+                    <div class="course-text" style="min-height:84px;margin-top:-5px !important;">
                    
                    <p style="line-height: 18px;">   
                       
@@ -3994,7 +3994,7 @@ echo $des;
 
                    
 
-<div class="course-text" style="margin-bottom:20px !important;margin-top:5px;float:left;">
+<div class="course-text" style="margin-bottom:20px !important;margin-top:7px;float:left;">
                    
                    <p style="float:right;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">
                        
@@ -4131,3 +4131,15 @@ function new_update_meta_location() {
     
 }
 add_action('new_update_meta_location', 'new_update_meta_location');
+
+
+
+
+
+
+
+
+
+
+
+
