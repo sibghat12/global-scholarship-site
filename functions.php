@@ -3733,6 +3733,8 @@ function courses_grid_shortcode_new() {
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+   
+
     <?php 
    
    $args = array(
@@ -3772,12 +3774,11 @@ function courses_grid_shortcode_new() {
                 $domestic_tuition_fees = get_post_meta($ad_id, 'domestic_tuition_fees' , true);
                 $international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
 
-$country = get_post_meta($institute->ID, 'adsIntCountry', true);
+                $country = get_post_meta($institute->ID, 'adsIntCountry', true);
+                $currency = get_currency($country);
 
-$currency = get_currency($country);
-
-     $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
-$language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
+                $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
+                $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
 
              $des = get_post_meta($ad_id, 'description', true);
              $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
@@ -3819,12 +3820,11 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                
 
                
-               
 
 
   
   
-  
+  <a style="text-decoration:none;color:inherit !important;" href="<?php  echo $link; ?>">
   <div class='col-md-4  card-container'>
     <div class='front'>
          
@@ -3846,6 +3846,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                         </div>
 
                          <div class="col-md-2">
+
                            <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
 
                          </div>
@@ -3861,7 +3862,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                   </div>
 
                   <div>
-                   <p style="text-align:center !important;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">Annual Tuition Fee* </p>
+                   <p style="font-weight:700;text-align:center !important;padding-left:15px;padding-right:15px;font-size:15px;line-height: 22px;">Annual Tuition Fee </p>
                   </div>
 
 
@@ -4011,7 +4012,7 @@ echo $des;
       </div>
     </div>
   
-
+  </a>
 
                
 
