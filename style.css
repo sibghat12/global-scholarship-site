@@ -5920,7 +5920,6 @@ border-radius: 10px;
 
 .courses-grid {
     padding-left:20px !important;
-   
     padding-top:40px !important;
     margin-bottom: 40px !important;
 }
@@ -5937,8 +5936,7 @@ border-radius: 10px;
       -1px 2px 5px rgba(0, 0, 0, 0.1), 
       2px -3px 5px rgba(0, 0, 0, 0.1)
        !important;
-
-   margin-bottom:20px !important;
+       margin-bottom:20px !important;
 
 }
 
@@ -5975,7 +5973,7 @@ padding-bottom:40px !important;
         padding-right:0px;
     }
 
-    /* Assuming you are using Bootstrap 3, which has no d-flex class. If using Bootstrap 4 or newer, you can remove this */
+    
     .d-flex {
         display: flex;
     }
@@ -6015,12 +6013,6 @@ padding-bottom:40px !important;
 
 
 @media (max-width: 1300px) {
-.card-container  {
-    width:48% !important;
-    margin-top:20px !important;
-    margin-right:2%!important;
-    float:left !important;
-}
 
 .courses-grid {
     width:100% !important;
@@ -6043,26 +6035,16 @@ padding-bottom:40px !important;
    .card-container {
     width:100% !important;
    }
-   
   
-   
    .course-text.heading-section{
     justify-content: flex-start !important;
     }
 
 }
 
-
-
-
-
-
 .course-text{
 justify-content: flex-start; 
 }
-
-
-
 
 #courses-flipcard {
     margin-bottom:20px !important;
@@ -6079,7 +6061,6 @@ justify-content: flex-start;
 .back {
 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
     width: 100%;
     height: auto !important;
     position: absolute;
@@ -6115,8 +6096,6 @@ justify-content: flex-start;
             transform: rotateY(0deg);
 }
 
-
-
 .card-container {
     position: relative;
     min-height: 600px;
@@ -6136,12 +6115,6 @@ justify-content: flex-start;
 
 @media (max-width: 600px) {
 
-.card-container { 
-    margin-left:0px !important;
- width:92% !important;
- float:left !important;
-}
-
 .course-image img {
     border-top-left-radius: 13px !important;
     border-top-right-radius: 13px !important;
@@ -6153,18 +6126,50 @@ justify-content: flex-start;
 
 }
 
-@media (max-width: 1000px) {
-
+@media (max-width: 1100px) {
 .cta-container .col-md-3 {
     margin-top:30px;
     margin-bottom:20px;
 }
+
+#courses-flipcard .col-md-4  {
+    width:46% !important;
+    margin-top:20px !important;
+    margin-right:2%!important;
+    float:left !important;
 }
+
+
+}
+
+
+
+@media (max-width: 600px) {
+#courses-flipcard .col-md-4  {
+    width:92% !important;
+    margin-top:20px !important;
+    margin-right:2%!important;
+    float:left !important;
+    margin-left:0px !important;
+    margin-bottom:40px !important;
+}
+}
+
 
 .course-flag img {
     min-width:24px !important;
     height: 24px !important;
 }
+
+
+#courses-flipcard .col-md-4:first-child {
+    margin-left: 0px !important;
+}
+
+#courses-flipcard .course-image img {
+    width:100%;
+}
+
 
 
 
@@ -6374,3 +6379,5 @@ justify-content: flex-start;
    }
 
 }
+
+
