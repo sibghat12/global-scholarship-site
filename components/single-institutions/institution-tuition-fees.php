@@ -9,7 +9,7 @@
 
                 if ($ibl > -1 && $iml > -1 ) {
 
-                echo "<h1  class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at " . $institution_title . " for International Students</h1>";
+                echo "<h1 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at " . $institution_title . " for International Students</h1>";
 
                 if($ibl == 0 && $iml== 0 && $ibu == 0 && $iml == 0 ) {
                 
@@ -53,13 +53,13 @@
 
                 <?php  if($ibl==0) { 
 
-                    echo "<h2>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                    echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
 
                 <p>The bachelor's tuition fees for international students at <?php echo $institution_title ?> are free.</p>
 
                 <?php  } else { ?>
 
-                <?php echo "<h2>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                <?php echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
                 <p>The bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu ? 
                     number_format($ibl) . " " . $currency . " to " . number_format($ibu) . " " . $currency: number_format($ibl) . " " . $currency; ?> per year.</p>
 
@@ -72,12 +72,12 @@
                     
                     if($iml==0) {
                     
-                    echo "<h2>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                    echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
                     <p>Master's tuition fee for international students at <?php echo $institution_title ?> is free. </p> 
 
                     <?php } else {
 
-                    echo "<h2>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
+                    echo "<h1 class='gs-institution-tuition-fees-title'>Tuition Fees at " . $institution_title . " for International Students</h2>"; ?>
                 
 
                 <p>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu ? number_format($iml) . " " . $currency . " to " . number_format($imu) . " " . $currency : number_format($iml) . " " . $currency; ?> per year. </p> 
