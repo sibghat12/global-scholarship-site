@@ -4354,11 +4354,56 @@ input[type="submit"] {
     font-family: inherit !important;
 }
 
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+    border-radius: 22px;
+    padding: 24px;
+    margin-top: 30px;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text a {
+    text-decoration: underline;
+    color: #000000 !important;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text a:hover {
+    color: #3b8dbd !important;
+}
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container:nth-child(even) {
+    background-color: #EAF4FB;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships- .gs-institution-scholarships-scholarship-container:nth-child(odd) {
+    background-color: #ffffff;
+}
+
 .single-institution #main .gs-institution-scholarships h1.gs-institution-scholarships-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
     margin-bottom: 30px;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0px !important;
+    margin-bottom: 20px !important;
+    padding-top: 6px !important;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container ul {
+    margin-left: 20px !important;
+}
+
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container a {
+    text-decoration: underline;
+    color: #000000 !important;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container a:hover {
+    color: #3b8dbd !important;
 }
 
 .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-subtext {

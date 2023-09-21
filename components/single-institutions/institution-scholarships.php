@@ -38,9 +38,15 @@
         $degrees = get_field('eligible_degrees');
         if (in_array("Bachelor's", $degrees)) {
             $program = "undergraduate";
+            ?>
+            <div class="gs-institution-scholarships-scholarship-container">
+                <?php
             require get_stylesheet_directory() .'/components/scholarship-component.php';
+            
             $count = $count + 1;
-
+            ?>
+            </div>
+            <?php
         }
     }
 
@@ -84,9 +90,15 @@
 
                 if(in_array("Master's", $degrees) || in_array("PhD", $degrees)){
                     $program = "graduate";
+                    ?>
+                    <div class="gs-institution-scholarships-scholarship-container">
+                    <?php
                     require get_stylesheet_directory() .'/components/scholarship-component.php';
 
                     $count = $count + 1;
+                    ?>
+                    </div>
+                    <?php
 
                 }
 
