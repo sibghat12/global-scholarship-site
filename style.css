@@ -4385,7 +4385,7 @@ input[type="submit"] {
     background-color: #ffffff;
 }
 
-.single-institution #main .gs-institution-scholarships h1.gs-institution-scholarships-title {
+.single-institution #main .gs-institution-scholarships h2.gs-institution-scholarships-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4416,6 +4416,7 @@ input[type="submit"] {
 
 .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-subtext {
     margin-left: 30px;
+    margin-top: 40px;
 }
 
 .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text h2 {

@@ -15,7 +15,14 @@
 
     $current_currency = get_currency($country_name);
 
-    $currencyUSD=  'USD';
+
+    // /currently-open-scholarships-canada/
+    $currently_open_scholarships_country  =  strtolower($country_name);
+    $currently_open_scholarships_country = str_replace(" ","-", $currently_open_scholarships_country);
+    // Get Currently Open Scholarships in Link of the Country based on institution Location ( even it is city, state it will return the Country in which this city or state located )
+    $currently_open_scholarships_by_country = site_url() . '/currently-open-scholarships-' .  $currently_open_scholarships_country . '/';
+
+    $currencyUSD = 'USD';
 
     //  the convert from local currency to USD
     $iblUSD = number_format(roundNearestHundreth(convert_to_usd($ibl, $current_currency)));
@@ -111,8 +118,6 @@
     //get_scholarships gets all the scholarships custom post type that are associated with the institution name.
     //The function is in functions/scholarships-functions.php
 
-
-
     $scholarships_query = get_scholarships(get_the_ID());
     $number_of_scholarships  = $scholarships_query->post_count;
 
@@ -178,8 +183,6 @@
         return $a_index - $b_index;
     }
 
-
-
     $category_for_breadcrumb = array_values(array_unique($scholarships_category));
     // Sort the array using the custom comparison function
     usort($category_for_breadcrumb, "compare_funding_types");
@@ -229,6 +232,9 @@
                         
                         <?php // GS Institution Scholarships ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-scholarships.php'; ?>
+                        
+                        <?php // GS Institution Conclusion ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-conclusion.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {
