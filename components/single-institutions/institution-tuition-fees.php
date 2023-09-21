@@ -25,7 +25,7 @@
     <div class="gs-institution-tuition-fees">
 
         <div class="gs-institution-tutition-fees-text">
-        <h1 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at <?php echo $institution_title ?> for International Students</h1>       
+        <h2 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at <?php echo $institution_title ?> for International Students</h2>       
                   
         <?php
                 // Print out tuition fees if it is available
@@ -35,13 +35,13 @@
                 <div class="gs-institution-tuition-fees-for-international-average">
                     <?php if($average_international_bachelors > 0) : ?>
                     <div class="gs-institution-tuition-fees-bachelors">
-                        <h1><?php echo $average_international_bachelors .' '. $currency; ?></h1>
+                        <h2><?php echo $average_international_bachelors .' '. $currency; ?></h2>
                         <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
                     </div>
                     <?php endif; ?>
                     <?php if($average_international_masters > 0) : ?>
                     <div class="gs-institution-tuition-fees-masters">
-                        <h1><?php echo $average_international_masters .' '. $currency; ?></h1>
+                        <h2><?php echo $average_international_masters .' '. $currency; ?></h2>
                         <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
                     </div>
                     <?php endif; ?>

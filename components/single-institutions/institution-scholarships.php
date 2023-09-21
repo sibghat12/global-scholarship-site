@@ -4,7 +4,7 @@
 ?>
 <div class="gs-institution-scholarships">
 
-    <h1 class="gs-institution-scholarships-title"><?php $institution_title ?> Scholarships for International Students</h1>
+    <h2 class="gs-institution-scholarships-title"><?php $institution_title ?> Scholarships for International Students</h2>
     <?php if($number_of_scholarships > 0) { ?>
     <div class="gs-institution-scholarships-text">
     <?php

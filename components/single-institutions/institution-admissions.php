@@ -1,9 +1,9 @@
 <?php if (isset($admission_pages) && !empty($admission_pages)) :
 ?>
     <div class="gs-institution-admissions">
-        <h1 class="gs-institution-admissions-title">
+        <h2 class="gs-institution-admissions-title">
             <?php echo $institution_title;  ?> Admissions
-        </h1>
+        </h2>
 
         <div class="gs-institution-admissions-text">
             <p>If you’re planning to study at the <?php echo $institution_title; ?>, it’s important to familiarize yourself with the application process and requirements of the institution.<p>

@@ -4089,6 +4089,7 @@ input[type="submit"] {
     background-color: #EAF4FB;
     padding: 40px 60px 80px 60px;
     border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .single-institution .gs-institution-overview-box .gs-institution-overview-text h1{
@@ -4139,11 +4140,18 @@ input[type="submit"] {
 
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
     gap: 8px;
+    flex: 1 1 0px;
+    padding: 10px;
 }
+
+.single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item + .gs-institution-summary-item {
+    border-left: 1px solid;
+}
+
 
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data {
     display: flex;
@@ -4334,7 +4342,7 @@ input[type="submit"] {
     padding-right: 20px;
 }
 
-.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors h1 {
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors h2 {
     font-family: inherit !important;
 }
 
@@ -4350,7 +4358,7 @@ input[type="submit"] {
     padding-left: 20px;
 }
 
-.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters h1 {
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters h2 {
     font-family: inherit !important;
 }
 
@@ -5838,6 +5846,30 @@ input[type="submit"] {
 
     .single-institution #main .gs-institution-deadlines .gs-institution-deadlines-container .gs-institution-deadlines-thumbnail {
         display: none;
+    }
+
+    .single-institution .gs-institution-overview-box {
+        padding: 25px 20px 20px 20px;
+        border-radius: 0px;
+    }
+    .single-institution .gs-institution-overview-box .gs-institution-overview-text h1{
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.1rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 2rem;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item + .gs-institution-summary-item {
+        border-left: none;
     }
 }
 
