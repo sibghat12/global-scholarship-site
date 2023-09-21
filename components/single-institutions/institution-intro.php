@@ -7,8 +7,12 @@
 
     <p>If you want to join the throng of learners who make their way to this nation, you’ll need to enroll in a university. In that case, you may want to include the <?php echo $institution_title; ?> in your list of options.</p>
 
-    <p><?php echo $institution_title; ?> is located in <?php echo $city_name . ", " . $country_name; ?> and it was established in <?php echo $founded_year; ?>. It is home to <?php echo $total_students_formatted; ?> students, so you’re sure to find a welcoming community that can give you the boost you need to achieve your academic potential.</p>
-
+    <?php if($total_students > 0) : ?>
+        <p><?php echo $institution_title; ?> is located in <?php echo $city_name . ", " . $country_name; ?> and it was established in <?php echo $founded_year; ?>. It is home to <?php echo $total_students_formatted; ?> students, so you’re sure to find a welcoming community that can give you the boost you need to achieve your academic potential.</p>
+    <?php else: ?>
+        <p><?php echo $institution_title; ?> is located in <?php echo $city_name . ", " . $country_name; ?> and it was established in  <?php echo $founded_year; ?>. You’ll surely find a welcoming community that can give you the boost you need to achieve your academic potential.</p>
+    <?php endif; ?>
+    
     <?php } else if ($country_name == "United States"){?>
 
     <p>Many American universities have made their education and names synonymous to prestige and excellence. Thus, it is unsurprising that the country and its institutions are among the top choices of aspiring international students when deciding where to study abroad. 
@@ -63,13 +67,21 @@
 
     <p>Breathe the refreshing air and explore the exhilarating sites of New Zealand while you study there! The archipelago is home to <?php echo $institution_title; ?>, which welcomes <?php echo $total_students_formatted; ?> students annually, and you can be one of them!</p>
 
-    <p><?php echo $institution_title; ?> is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. It is known for its programs like <?php echo $degrees_text; ?>. Its facilities and educators are also worldclass, so you’re sure to experience quality training that will propel your career and expand your knowledge. </p>
-
+        <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p><?php echo $institution_title; ?> is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. It is known for its programs like <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>. Its facilities and educators are also worldclass, so you’re sure to experience quality training that will propel your career and expand your knowledge.</p>
+        <?php else: ?>
+            <p><?php echo $institution_title; ?> is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. It offers various academic programs for both local and international students. Its facilities and educators are also world-class, so you’re sure to experience quality training that will propel your career and expand your knowledge.</p>
+        <?php endif; ?>
+    
     <?php } else if ($country_name == "Switzerland"){?>
 
     <p>From snow-capped Alps to ancient medieval towns, Switzerland is a paradise for students who want to study here. The country is abundant in picturesque spots, mouth-watering foods, and prominent international schools. <?php echo $institution_title; ?> is just one of the many Swiss institutions known for being open to international student regardless of their race, background, and culture. </p>
 
-    <p>This Swiss institution is located in the stunning city of <?php echo $city_name . ", " . $country_name; ?> and has been in the education sector since  <?php echo $founded_year; ?>. <?php echo $institution_title; ?> has a population of <?php echo $total_students_formatted; ?> students, offering degree courses in <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>. Over the years, it has already produced thousands of graduates who now succeed in their desired career paths.</p>
+    <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p>This Swiss institution is located in the stunning city of <?php echo $city_name . ", " . $country_name; ?> and has been in the education sector since <?php echo $founded_year; ?>. <?php echo $institution_title; ?> has a population of <?php echo $total_students_formatted; ?> students, offering degree courses in <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>. Over the years, it has already produced thousands of graduates who now succeed in their desired career paths.</p>
+        <?php else: ?>
+            <p>This Swiss institution is located in the stunning city of <?php echo $city_name . ", " . $country_name; ?> and has been in the education sector since <?php echo $founded_year; ?>. Over the years, <?php echo $institution_title; ?> has already produced thousands of graduates who now succeed in their desired career paths.</p>
+        <?php endif; ?>
 
     <?php } else if ($country_name == "Poland"){?>
 
@@ -93,7 +105,11 @@
 
     <p>With Italy's mesmerizing architecture, pristine beaches, and astounding educational system, thousands of international students aim to study in the country every year. It is one of the best countries to visit, especially if you are inclined toward arts, fashion, and design. Italy houses one of the most prominent institutions in the world, the <?php echo $institution_title; ?>.</p>
 
-    <p><?php echo $institution_title; ?> was established in <?php echo $founded_year; ?> at <?php echo $city_name . ", " . $country_name; ?>. Since then, it has grown to become a respected academic institution that offers programs such as <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>. With an annual population of <?php echo $total_students_formatted; ?> students, <?php echo $institution_title; ?> has successfully created a space for students to achieve their aspirations and maximize their skills.</p>
+    <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p><?php echo $institution_title; ?> was established in <?php echo $founded_year; ?> at <?php echo $city_name . ", " . $country_name; ?>. Since then, it has grown to become a respected academic institution that offers programs such as <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>. With an annual population of <?php echo $total_students_formatted; ?> students, <?php echo $institution_title; ?> has successfully created a space for students to achieve their aspirations and maximize their skills.</p>
+        <?php else: ?>
+            <p><?php echo $institution_title; ?> was established in <?php echo $founded_year; ?> at <?php echo $city_name . ", " . $country_name; ?>. Since then, it has grown to become a respected academic institution that offers various academic programs for international students. <?php echo $institution_title; ?> has successfully created a space for students to achieve their aspirations and maximize their skills.</p>
+        <?php endif; ?>
         
     <?php } else if ($country_name == "Qatar"){?>
 
@@ -110,8 +126,12 @@
     <?php } else if ($country_name == "Singapore"){?>
 
     <p>Singapore has built a reputation for academic excellence not just in Asia, but across the world. Such a feat can be credited to its world-class education system that produces highly advanced and competitive academic talent. The country also also hosts students from various corners of the globe, which gives you the opportunity to meet, network, and make connections with plenty of new people.</p>
-
-    <p>You can enjoy all those Singaporean education benefits by being an international student at <?php echo $institution_title; ?>. You’ll find this institution in <?php echo $city_name . ", " . $country_name; ?>, where it welcomes <?php echo $total_students_formatted; ?> of students every year. <?php echo $institution_title; ?> was founded in <?php echo $founded_year; ?>, and is best known for its high-quality programs, such as <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>.</p>
+    
+    <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p>You can enjoy all those Singaporean education benefits by being an international student at <?php echo $institution_title; ?>. You’ll find this institution in <?php echo $city_name . ", " . $country_name; ?>, where it welcomes <?php echo $total_students_formatted; ?> of students every year. <?php echo $institution_title; ?> was founded in <?php echo $founded_year; ?>, and is best known for its high-quality programs, such as <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>.</p>
+        <?php else: ?>
+            <p>You can enjoy all those Singaporean education benefits by being an international student at <?php echo $institution_title; ?>. You’ll find this institution in <?php echo $city_name . ", " . $country_name; ?>, where it welcomes both local and international students. <?php echo $institution_title; ?> was founded in <?php echo $founded_year; ?>, and is best known for its high-quality programs and other academic opportunities.</p>
+        <?php endif; ?> 
     
     <?php } else if ($country_name == "Greece"){?>
 
@@ -124,9 +144,9 @@
 
     <p>Norway has a solid reputation for research and offers premium education at relatively low costs. It also has an active student life, with many opportunities to participate in clubs, societies, and events. You also won’t have to be scared to join those activities, as the country is known for its consistently low crime rate. </p>
 
-    <p>To benefit from all those, enroll at <?php echo $institution_title; ?>. This institution in <?php echo $city_name . ", " . $country_name; ?> welcomes <?php echo $total_students_formatted; ?>  students per year, and you can easily be one of them as there are several programs offered. Thus, you can take your pick from <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>, and more!</p>
+    <p>To benefit from all those, enroll at <?php echo $institution_title; ?>. As one of the <?php echo $type; ?> institutions in Norway, you’ll have the opportunity to earn a world-class degree and be a part of an global community!</p>
             
-    <?php } else if ($country_name == "Norway"){?>
+    <?php } else if ($country_name == "Netherlands"){?>
 
     <p>The Netherlands is home to a growing international student community, with members from over a hundred different countries. So many students are attracted to this country because not only are living costs lower than other English-speaking nationals, Dutch institutions are also known for their innovative methods that focus on students and interactive teaching.</p>
 
@@ -142,13 +162,18 @@
 
     <p>There is a growing community of international students in the Philippines. That phenomenon can be attributed to the general population’s fluency in English (which extends to academia), low living costs, premier education, rich culture, and wonderful sights.</p>
 
-    <p>Also, there are many reputed institutions you can go to if you choose to be an international student in the Philippines. One of them is [university], which is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. Simply comply with admission requirements, and you can join its population of <?php echo $total_students_formatted; ?> students.</p>
+    <p>Also, there are many reputed institutions you can go to if you choose to be an international student in the Philippines. One of them is <?php echo $institution_title; ?>, which is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. Simply comply with admission requirements, and you can join its population of <?php echo $total_students_formatted; ?> students.</p>
 
     <?php } else if ($country_name == "Spain"){?>
 
     <p>Thousands of international students have made their way to Spain. Some of the reasons many foreigners opted to study there are its high-quality education, numerous research opportunities, diverse culture, and the chance to learn other languages.</p>
 
-    <p>To become an international student in Spain, you’ll need to pick a university. If you haven’t chosen one, consider <?php echo $institution_title; ?> in <?php echo $city_name . ", " . $country_name; ?>. This institution, which was established in <?php echo $founded_year; ?>, offers courses in <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>, and other fields. Even when you’re thousand of miles from home, you won’t feel alone here as there’s a bustling crowd of <?php echo $total_students_formatted; ?> students.</p>
+    <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p>To become an international student in Spain, you’ll need to pick a university. If you haven’t chosen one, consider <?php echo $institution_title; ?> in <?php echo $city_name . ", " . $country_name; ?>. This institution, which was established in <?php echo $founded_year; ?>, offers courses in <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>, and other fields. Even when you’re thousand of miles from home, you won’t feel alone here as there’s a bustling crowd of <?php echo $total_students_formatted; ?> students.</p>
+        <?php else: ?>
+            <p>To become an international student in Spain, you’ll need to pick a university. If you haven’t chosen one, consider <?php echo $institution_title; ?> in <?php echo $city_name . ", " . $country_name; ?>. This institution, which was established in <?php echo $founded_year; ?> and it offers various courses for international students like you! Even when you’re thousand of miles from home, you won’t feel alone here as there’s a bustling crowd of international students here.</p>
+        <?php endif; ?> 
+    
 
     <?php } else if ($country_name == "Portugal"){?>
 
@@ -178,14 +203,44 @@
 
     <p>Have you imagined yourself studying amidst snow-capped mountains, lush sceneries, grand castles, and magnificent churches? You can make that reverie come true by studying Austria, a small, land-locked country in the heart of Europe.</p>
 
-    <p>You have a choice of many academic institutions there, but you may want to consider <?php echo $institution_title; ?>, which was founded in [year]. Once admitted, you’ll find yourself charmed by its campus in <?php echo $city_name . ", " . $country_name; ?>. You’ll also find yourself enthralled amidst the crowd of <?php echo $total_students_formatted; ?> students.</p>
+    <p>You have a choice of many academic institutions there, but you may want to consider <?php echo $institution_title; ?>, which was founded in <?php echo $founded_year; ?>. Once admitted, you’ll find yourself charmed by its campus in <?php echo $city_name . ", " . $country_name; ?>. You’ll also find yourself enthralled amidst the crowd of <?php echo $total_students_formatted; ?> students.</p>
     
     <?php } else if ($country_name == "Finland"){?>
 
     <p>Do you want the chance to study in the happiest country in the world? You can have that by enrolling in a university in Finland! This country of ice and snow is renowned not just for its carbon reduction efforts, complex language, thousand lakes, or social democratic system.</p>
 
-    <p>The country is also popular for its affordable education, offered by prestigious universities. One of such institutions is <?php echo $institution_title; ?>, which stands in <?php echo $city_name . ", " . $country_name; ?>. Founded in [year], you can choose from the many programs it offers, which <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>.</p>
+    
+    <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p>The country is also popular for its affordable education, offered by prestigious universities. One of such institutions is <?php echo $institution_title; ?>, which stands in <?php echo $city_name . ", " . $country_name; ?>. Founded in <?php echo $founded_year; ?>, you can choose from the many programs it offers, which <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>.</p>
+        <?php else: ?>
+            <p>The country is also popular for its affordable education, offered by prestigious universities. One of such institutions is <?php echo $institution_title; ?>, which stands in <?php echo $city_name . ", " . $country_name; ?>. Aside from its academic subjects, this <?php echo $type; ?> institution also offers a variety of extracurricular activities and opportunities for international students to get involved.</p>
+        <?php endif; ?> 
 
+    
+    <?php } else if ($country_name == "Turkey"){?>
+
+        <p>Experience high-quality education in Turkey! The country is located on the border of Southeast Europe and West Asia, which is why its locals showcase diverse cultures and traditions. Beyond its historic places and notable landmarks, Turkey also offers a great place for international students to study and live.</p>
+        
+        <p>One of the renowned Turkish universities is <?php echo $institution_title; ?>. Since <?php echo $founded_year; ?>, it has already trained students from different parts of the world. It is located in <?php echo $city_name . ", " . $country_name; ?> and considered as one of the best institutions in the country.</p>
+    
+        <?php } else if ($country_name == "Taiwan"){?>
+
+        <p>Famous for its delicious street foods and captivating lantern festivals, Taiwan is a stunning location for international students looking for a place to learn. Its vibrant cities and friendly locals are worth considering, especially its affordable living costs!</p>
+
+        <p>In addition, Taiwan is also home to many internationally-recognized universities. One of which is <?php echo $institution_title; ?> located in <?php echo $city_name . ", " . $country_name; ?>. As an international student here, you’ll have the chance to open new learning opportunities for your chosen field!</p>
+            
+        <?php } else if ($country_name == "Indonesia"){?>
+
+            <p>Do you want to learn at the world's largest archipelagic state? Then, come to Indonesia and witness its diverse and astonishing landscapes! The country is located in Southeast Asia and is one of the top destinations for international students due to its climate and living standards.</p>
+
+            <p>If you are looking for an educational institution in the country, the prominent <?php echo $institution_title; ?> might be the answer. Located in <?php echo $city_name . ", " . $country_name; ?>, the institution was established in <?php echo $founded_year; ?> and is considered as one of the top institutions in the country!</p>
+            <?php } else {?>
+
+            <p>Studying abroad is a one-of-a-lifetime opportunity. Aside from experiencing a new culture, meeting a lot of people, and seeing breathtaking places, studying in a foreign country will give you a global perspective in your chosen field. It will surely boost your career opportunities.</p>
+
+            <p>Now, if you’re looking for your next educational destination, you can consider <?php echo $country_name; ?>. This country is home to [institution name], and as an international student here, you’ll have the chance to be a part of a global community.</p>
+
+            <p>Founded in <?php echo $founded_year; ?>, <?php echo $institution_title; ?> is a <?php echo $type; ?> in <?php echo $city_name . ", " . $country_name; ?>. As one of the educational institutions in <?php echo $country_name; ?>, studying here can open many avenues for academic and professional growth.</p>
 <?php } ?>
 
 <p>Scholarships, grants, and other forms of funding are offered by <?php echo $institution_title; ?> to international students. We’ll discuss them in this article, and you can use them to fulfill your dream of studying abroad without incurring high costs. So, let’s get started!</p>
