@@ -4149,9 +4149,8 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item + .gs-institution-summary-item {
-    border-left: 1px solid;
+    border-left: 1px solid  #3C76E635;
 }
-
 
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data {
     display: flex;
@@ -4182,6 +4181,47 @@ input[type="submit"] {
     max-height: 60px !important;
 }
 
+/* Panel Navigation*/
+
+.single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 15px 28px;
+    background: #F9F9F9;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+}
+
+.single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 25%;
+    height: 70px;
+    background: transparent !important;
+    margin-right: 10px;
+    border-radius: 50px;
+    color: #000 !important;
+}
+
+.single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item:hover {
+    background-color: #5EA9E4 !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+/* .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item svg {
+        width: 40px;
+        max-height: 40px !important;
+        margin-right: 18px;
+} */
+
+.single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item:hover svg, .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item:hover svg g {
+    fill: #fff !important;
+}
 
 /* Intro */
 .single-institution .post-content {
@@ -4236,7 +4276,7 @@ input[type="submit"] {
     border-radius: 6px;
 }
 
-.single-institution #main .gs-institution-admissions h1.gs-institution-admissions-title{
+.single-institution #main .gs-institution-admissions h2.gs-institution-admissions-title{
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4288,7 +4328,7 @@ input[type="submit"] {
     align-items: center;
 }
 
-.single-institution #main .gs-institution-deadlines h1.gs-institution-deadlines-title {
+.single-institution #main .gs-institution-deadlines h2.gs-institution-deadlines-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4318,7 +4358,7 @@ input[type="submit"] {
 }
 
 
-.single-institution #main .gs-institution-tuition-fees h1.gs-institution-tuition-fees-title{
+.single-institution #main .gs-institution-tuition-fees h2.gs-institution-tuition-fees-title{
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;

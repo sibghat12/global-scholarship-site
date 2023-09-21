@@ -2,7 +2,7 @@
     $degrees = get_field('eligible_degrees');
 
 ?>
-<div class="gs-institution-scholarships">
+<div id="institution-scholarships" class="gs-institution-scholarships">
 
     <h2 class="gs-institution-scholarships-title"><?php $institution_title ?> Scholarships for International Students</h2>
     <?php if($number_of_scholarships > 0) { ?>

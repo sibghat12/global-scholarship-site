@@ -218,6 +218,9 @@
                         <?php // GS Institution Overview Box ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-overview.php'; ?>
                         
+                        <?php // GS Institution Navigation Panel ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-navigation-panel.php'; ?>
+                        
                         <?php // GS Institution Intro ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-intro.php'; ?>
                         
