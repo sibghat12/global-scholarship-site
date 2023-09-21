@@ -4181,7 +4181,7 @@ input[type="submit"] {
     max-height: 60px !important;
 }
 
-/* Panel Navigation*/
+/* Institution Panel Navigation*/
 
 .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
     display: grid;
@@ -4211,6 +4211,18 @@ input[type="submit"] {
     background-color: #5EA9E4 !important;
     color: #fff !important;
     cursor: pointer;
+}
+
+.single-institution #main .post-content nav.gs-institution-navigation-panel .gs-institution-items-container a.active {
+    background-color: #5EA9E4 !important;
+    color: #fff !important;
+}
+
+.single-institution #main .post-content nav.gs-institution-navigation-panel .gs-institution-items-container a.active svg {
+    fill: #fff !important;
+}
+.single-institution #main .post-content nav.gs-institution-navigation-panel .gs-institution-items-container a.active svg g {
+    fill: #fff !important;
 }
 
 /* .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item svg {

@@ -55,6 +55,15 @@ function theme_enqueue_styles() {
 
         
     }
+    // Enqueue single-institution.js file in assets folder
+    if(is_singular('institution')) {
+        wp_enqueue_script('single-institution',  get_stylesheet_directory_uri() . '/assets/single-institution.js', array('jquery'), '1.0.0', true);
+        // wp_localize_script( 'single-scholarship', 'frontendajax', array( 
+        //     'ajaxurl' => admin_url( 'admin-ajax.php' )
+        // ));
+
+        
+    }
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('institution') || is_singular('scholarships')) {
         wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
