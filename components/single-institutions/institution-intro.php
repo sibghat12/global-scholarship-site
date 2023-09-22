@@ -178,7 +178,7 @@
 
     <p>Thousands of international students have made their way to Spain. Some of the reasons many foreigners opted to study there are its high-quality education, numerous research opportunities, diverse culture, and the chance to learn other languages.</p>
 
-    <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+        <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
             <p>To become an international student in Spain, you’ll need to pick a university. If you haven’t chosen one, consider <?php echo $institution_title; ?> in <?php echo $city_name . ", " . $country_name; ?>. This institution, which was established in <?php echo $founded_year; ?>, offers courses in <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>, and other fields. Even when you’re thousand of miles from home, you won’t feel alone here as there’s a <?php echo $institution_title; ?>.<?php echo ($total_students > 0) ?  "bustling crowd of " .$total_students_formatted ." students": "bustling crowd of many students"; ?>.
             </p>
         <?php else: ?>
