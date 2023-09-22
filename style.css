@@ -6980,3 +6980,8 @@ justify-content: flex-start;
 }
 
 
+.country-flag img{
+   
+   box-shadow: 1px 1px 1px 1px #cdcdcd !important;
+
+}

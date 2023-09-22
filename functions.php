@@ -3734,9 +3734,171 @@ echo $des;
 //add_shortcode('courses_grid_shortcode', 'courses_grid_shortcode');
 
 
+
+// Function to get the country code from a country name
+function getCountryCode($countryName, $countryCodes) {
+    // Use array_key_exists to check if the country name exists in the array
+    if (array_key_exists($countryName, $countryCodes)) {
+        return $countryCodes[$countryName];
+    } else {
+        // Return an appropriate value if the country name is not found
+        return "Unknown";
+    }
+}
+
 add_shortcode('courses_grid_shortcode_new', 'courses_grid_shortcode_new');
 function courses_grid_shortcode_new() {
     ob_start(); // Start output buffering
+
+$countryCodes = array(
+    "Afghanistan" => "af",
+    "Albania" => "al",
+    "Algeria" => "dz",
+    "Andorra" => "ad",
+    "Angola" => "ao",
+    "Antigua and Barbuda" => "ag",
+    "Argentina" => "ar",
+    "Armenia" => "am",
+    "Australia" => "au",
+    "Austria" => "at",
+    "Azerbaijan" => "az",
+    "Bahamas" => "bs",
+    "Bahrain" => "bh",
+    "Bangladesh" => "bd",
+    "Barbados" => "bb",
+    "Belarus" => "by",
+    "Belgium" => "be",
+    "Belize" => "bz",
+    "Benin" => "bj",
+    "Bhutan" => "bt",
+    "Bolivia" => "bo",
+    "Bosnia and Herzegovina" => "ba",
+    "Botswana" => "bw",
+    "Brazil" => "br",
+    "Brunei" => "bn",
+    "Bulgaria" => "bg",
+    "Burkina Faso" => "bf",
+    "Burundi" => "bi",
+    "Cambodia" => "kh",
+    "Cameroon" => "cm",
+    "Canada" => "ca",
+    "Cape Verde" => "cv",
+    "Central African Republic" => "cf",
+    "Chad" => "td",
+    "Chile" => "cl",
+    "China" => "cn",
+    "Colombia" => "co",
+    "Comoros" => "km",
+    "Congo (Brazzaville)" => "cg",
+    "Congo (Kinshasa)" => "cd",
+    "Costa Rica" => "cr",
+    "Croatia" => "hr",
+    "Cuba" => "cu",
+    "Cyprus" => "cy",
+    "Czech Republic" => "cz",
+    "Denmark" => "dk",
+    "Djibouti" => "dj",
+    "Dominica" => "dm",
+    "Dominican Republic" => "do",
+    "East Timor" => "tl",
+    "Ecuador" => "ec",
+    "Egypt" => "eg",
+    "El Salvador" => "sv",
+    "Equatorial Guinea" => "gq",
+    "Eritrea" => "er",
+    "Estonia" => "ee",
+    "Ethiopia" => "et",
+    "Fiji" => "fj",
+    "Finland" => "fi",
+    "France" => "fr",
+    "Gabon" => "ga",
+    "Gambia" => "gm",
+    "Georgia" => "ge",
+    "Germany" => "de",
+    "Ghana" => "gh",
+    "Greece" => "gr",
+    "Grenada" => "gd",
+    "Guatemala" => "gt",
+    "Guinea" => "gn",
+    "Guinea-Bissau" => "gw",
+    "Guyana" => "gy",
+    "Haiti" => "ht",
+    "Honduras" => "hn",
+    "Hungary" => "hu",
+    "Iceland" => "is",
+    "India" => "in",
+    "Indonesia" => "id",
+    "Iran" => "ir",
+    "Iraq" => "iq",
+    "Ireland" => "ie",
+    "Israel" => "il",
+    "Italy" => "it",
+    "Ivory Coast" => "ci",
+    "Jamaica" => "jm",
+    "Japan" => "jp",
+    "Jordan" => "jo",
+    "Kazakhstan" => "kz",
+    "Kenya" => "ke",
+    "Kiribati" => "ki",
+    "Kuwait" => "kw",
+    "Kyrgyzstan" => "kg",
+    "Laos" => "la",
+    "Latvia" => "lv",
+    "Lebanon" => "lb",
+    "Lesotho" => "ls",
+    "Liberia" => "lr",
+    "Libya" => "ly",
+    "Liechtenstein" => "li",
+    "Lithuania" => "lt",
+    "Luxembourg" => "lu",
+    "Macedonia" => "mk",
+    "Madagascar" => "mg",
+    "Malawi" => "mw",
+    "Malaysia" => "my",
+    "Maldives" => "mv",
+    "Mali" => "ml",
+    "Malta" => "mt",
+    "Marshall Islands" => "mh",
+    "Mauritania" => "mr",
+    "Mauritius" => "mu",
+    "Mexico" => "mx",
+    "Micronesia" => "fm",
+    "Moldova" => "md",
+    "Monaco" => "mc",
+    "Mongolia" => "mn",
+    "Montenegro" => "me",
+    "Morocco" => "ma",
+    "Mozambique" => "mz",
+    "Myanmar" => "mm",
+    "Namibia" => "na",
+    "Nauru" => "nr",
+    "Nepal" => "np",
+    "Netherlands" => "nl",
+    "New Zealand" => "nz",
+    "Nicaragua" => "ni",
+    "Niger" => "ne",
+    "Nigeria" => "ng",
+    "North Korea" => "kp",
+    "Norway" => "no",
+    "Oman" => "om",
+    "Pakistan" => "pk",
+    "Palau" => "pw",
+    "Panama" => "pa",
+    "Papua New Guinea" => "pg",
+    "Paraguay" => "py",
+    "Peru" => "pe",
+    "Philippines" => "ph",
+    "Poland" => "pl",
+    "Portugal" => "pt",
+    "Qatar" => "qa",
+    "Romania" => "ro",
+    "Russia" => "ru",
+    "Rwanda" => "rw",
+    "Saint Kitts and Nevis" => "kn",
+    // Add more countries as needed
+);
+
+
 
     ?>
 
@@ -3777,6 +3939,8 @@ function courses_grid_shortcode_new() {
                 $course_title = get_the_title();
                 $institute = get_post(get_post_meta(get_the_ID(), 'adsInstitution', true));
 
+
+
                 $domestic_tuition_fees_INT = get_post_meta($institute->ID, 'domestic_tuition_fees' , true);
                 $international_tuition_fees_INT = get_post_meta($institute->ID, 'international_tuition_fees' , true);
 
@@ -3784,6 +3948,12 @@ function courses_grid_shortcode_new() {
                 $international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
 
                 $country = get_post_meta($institute->ID, 'adsIntCountry', true);
+
+                
+
+                $countryCode = getCountryCode($country, $countryCodes);
+
+
                 $currency = get_currency($country);
 
                 $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
@@ -3831,7 +4001,7 @@ function courses_grid_shortcode_new() {
                
 
 
-  
+   
   
   <a style="text-decoration:none;color:inherit !important;" href="<?php  echo $link; ?>">
   <div class='col-md-4  card-container'>
@@ -3854,9 +4024,10 @@ function courses_grid_shortcode_new() {
                             <?php echo esc_html($course_title); ?>
                         </div>
 
-                         <div class="col-md-2">
+                         <div class="col-md-2 country-flag" style="padding-left:10px;padding-right:10px;">
 
-                           <img src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/twemoji_flag-germany.png">
+                           <img src="<?php echo site_url(); ?>/wp-content/themes/Avada-Child-Theme/assets/flags/<?php echo $countryCode; ?>.svg">
+
 
                          </div>
 
