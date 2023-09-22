@@ -4556,6 +4556,16 @@ input[type="submit"] {
     color: #3b8dbd !important;
 }
 
+.gs-institution-social-media-share .social-share-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.gs-institution-social-media-share .social-share-buttons b{
+    font-size: 25px;
+}
+
 /* End NEW Institutions Pages Stylings */
 
 /*Tablet + Desktop*/

@@ -241,6 +241,9 @@
                         
                         <?php // GS Institution Conclusion ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-conclusion.php'; ?>
+                        
+                        <?php // GS Institution Share Media ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-social-media-share.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {

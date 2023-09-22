@@ -1,3 +1,4 @@
+<?php if($number_of_scholarships >= 3 ): ?>
 <div class="gs-institution-addon-box">
     <div class="gs-institution-addon-text">
         <?php if($number_of_scholarships >= 3 && $number_of_scholarships <= 5 ): ?>
@@ -7,3 +8,4 @@
         <?php endif ?>
     </div>
 </div>
+<?php endif; ?>
