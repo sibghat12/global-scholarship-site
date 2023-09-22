@@ -1,6 +1,6 @@
 <?php if (isset($admission_pages) && !empty($admission_pages)) :
 ?>
-    <div class="gs-institution-admissions">
+    <div id="institution-admission" class="gs-institution-admissions">
         <h2 class="gs-institution-admissions-title">
             <?php echo $institution_title;  ?> Admissions
         </h2>

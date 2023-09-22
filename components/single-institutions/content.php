@@ -218,6 +218,9 @@
                         <?php // GS Institution Overview Box ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-overview.php'; ?>
                         
+                        <?php // GS Institution Navigation Panel ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-navigation-panel.php'; ?>
+                        
                         <?php // GS Institution Intro ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-intro.php'; ?>
                         
@@ -233,8 +236,17 @@
                         <?php // GS Institution Scholarships ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-scholarships.php'; ?>
                         
+                        <?php // GS Institution Scholarships ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-addon.php'; ?>
+                        
                         <?php // GS Institution Conclusion ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-conclusion.php'; ?>
+                        
+                        <?php // GS Institution Share Media ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-social-media-share.php'; ?>
+                        
+                        <?php // GS Institution Navigation ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-navigation.php'; ?>
 
                         <?php 
                         if ( comments_open() || get_comments_number() ) {
