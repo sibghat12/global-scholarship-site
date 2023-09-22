@@ -4184,12 +4184,16 @@ input[type="submit"] {
 /* Institution Panel Navigation*/
 
 .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     padding: 15px 28px;
     background: #F9F9F9;
     border-radius: 50px;
     border: 1px solid #ccc;
+    width: 90%;
+    margin: 0 auto;
+    gap: 10px;
 }
 
 .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
@@ -4199,9 +4203,11 @@ input[type="submit"] {
     padding: 6px 20px;
     font-size: 18px;
     font-weight: 700;
-    min-width: 25%;
+    flex: 1 1 0px;
     height: 70px;
     background: transparent !important;
+    width: 25%;
+    max-width: 260px;
     margin-right: 10px;
     border-radius: 50px;
     color: #000 !important;
@@ -4481,6 +4487,54 @@ input[type="submit"] {
 .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-subtext ul{
     margin-left: 30px;
 }
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate{
+    display: flex;
+    background-color: #EAF4FB;
+    padding: 28px;
+    max-width: 100%;
+    justify-content: center;
+    border-radius: 12px;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-content {
+    max-width: 100%;
+    width: 75%;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-content .gs-institution-graduate-text {
+    padding: 0;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-content h1.gs-institution-graduate-title {
+    padding: 0;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-thumbnail-container {
+    max-width: 100%;
+    width: 25%;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-title{
+    font-family: 'Roboto', sans-serif;
+}
+
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-button{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 10px 18px;
+    background-color: #3C76E6;
+    color: #ffffff !important;
+    margin-top: 16px;
+    display: flex;
+    width: max-content;
+    border-radius: 6px;
+}
+
 
 /* End NEW Institutions Pages Stylings */
 
@@ -5923,6 +5977,11 @@ input[type="submit"] {
 
     .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item + .gs-institution-summary-item {
         border-left: none;
+    }
+
+    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
+        width: 100%;
+        max-width: 100%;
     }
 }
 

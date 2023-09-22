@@ -61,6 +61,12 @@
     // If there is scholarships associated with this institution for Graduate Program.
   
     if($graduate_list) { 
+        ?>
+
+        <?php // GS In House Graduate Search Ad ?>
+
+        <?php require get_stylesheet_directory() . '/components/single-institutions/in-house-graduate-ad.php'; ?>
+        <?php
         $degrees = get_field('eligible_degrees');
         ?>
         <div class="gs-institution-scholarships-text">
