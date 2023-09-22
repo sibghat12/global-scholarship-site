@@ -4536,6 +4536,26 @@ input[type="submit"] {
 }
 
 
+.single-institution #main .gs-institution-addon-box {
+    border-left: 7px solid #66A0F6;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.single-institution #main .gs-institution-addon-box .gs-institution-addon-text {
+    background: #F1ECF6;
+    padding: 2px 6px;
+}
+
+.single-institution #main .gs-institution-addon-box .gs-institution-addon-text a{
+    color:#000 !important;
+    font-weight: 700;
+}
+
+.single-institution #main .gs-institution-addon-box .gs-institution-addon-text a:hover{
+    color: #3b8dbd !important;
+}
+
 /* End NEW Institutions Pages Stylings */
 
 /*Tablet + Desktop*/
