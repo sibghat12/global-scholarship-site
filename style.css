@@ -6832,7 +6832,6 @@ justify-content: flex-start;
     font-size: 18px !important;
     font-weight: 300;
     line-height: 22px !important;
-    
     max-width: 100%;  /* Ensures text overflow works as expected */
 }
 
@@ -6903,10 +6902,11 @@ justify-content: flex-start;
 
 
 
-.page-template-template-recent-posts .courses-filter-search , .category .courses-filter-search{
+.page-template-template-recent-posts .courses-filter-search , 
+.category .courses-filter-search , 
+.page-template-template-landing-pages .courses-filter-search {
     display: none !important;
 }
-
 
 
 
@@ -6984,3 +6984,126 @@ justify-content: flex-start;
    box-shadow: 1px 1px 2px 1px #cdcdcd !important;
 
 }
+
+
+
+
+
+
+/* Adjust the links to cover the whole area of the containing div */
+a.d-block.position-relative {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Place the overlay over the image */
+a.d-block.position-relative::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6) !important; /* Darker semi-transparent black */
+    z-index: 1; /* Ensure overlay is above the image but below the text */
+}
+
+/* Style the image */
+a.d-block.position-relative img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Style the text to appear over the overlay */
+a.d-block.position-relative span {
+    z-index: 2; /* Ensure text is above the overlay */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 2px;
+}
+
+/* Add custom gutter */
+.custom-gutter [class*='col-'] {
+    padding-left: 15px; /* Half of 30px for each side of the column */
+    padding-right: 15px;
+}
+
+.custom-gutter {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+
+.custom-gutter  .col-md-6, .custom-gutter  .col-md-4 {
+    margin-top: 20px; /* Space at the top of each column */
+}
+
+  a.d-block.position-relative {
+    border-radius: 15px;
+    font-size:32px;
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    height: 200px; 
+    position: relative;
+}
+
+.custom-gutter  img.img-fluid {
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+
+
+
+a.d-block.position-relative span {
+    bottom:17px;
+    left:20px;
+    padding-right:20px;
+    line-height: 24px;
+    font-size:18px !important;
+}
+
+
+.landing-breadcrumb a {
+    margin-left:5px;
+    margin-right:5px;
+    color:black !important;
+}
+
+/* Elegant Hover Effect */
+a.card-link:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* subtle shadow on hover */
+    transform: scale(1.05);  /* 5% zoom on hover */
+}
+a.card-link:hover img {
+    transform: scale(1.05); /* image zoom */
+}
+a.card-link:hover::before {
+    background-color: rgba(0, 0, 0, 0.7) !important; /* Darker overlay on hover */
+}
+
+
+a.d-block.position-relative, a.d-block.position-relative img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fa-circle {
+    color:#70a3c7;
+    margin-right:5px;
+     font-size:18px !important;
+}
+
+.landing-page-title {
+  margin-top:50px !important;
+  padding-left:20px; 
+  font-size:24px !important;
+ }
