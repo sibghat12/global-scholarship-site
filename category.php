@@ -94,7 +94,7 @@ endif;
         <h2 style="padding-left:0px;">Search thousands of scholarships with GlobalScholarships.com!</h2>
         <p>Go through our scholarship database to find scholarships that best fits you!
 </p>
-        <a href="#" class="cta-button" style="color:white !important;">Search for Scholarships! </a>
+        <a href="<?php echo site_url() ?>/scholarship-search/" class="cta-button" style="color:white !important;">Search for Scholarships! </a>
     </div>
 
 </div>

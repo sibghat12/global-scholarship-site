@@ -426,7 +426,44 @@ function uscollege_custom_post_types() {
     register_post_type( 'city', $args );  
 
 
-    
+   $labels = array(
+    'name'               => __( 'Landing Pages', 'my_theme' ),
+    'singular_name'      => __( 'Landing Page', 'my_theme' ),
+    'add_new'            => __( 'Add New Landing Page', 'my_theme' ),
+    'add_new_item'       => __( 'Add New Landing Page', 'my_theme' ),
+    'edit_item'          => __( 'Edit Landing Page', 'my_theme' ),
+    'new_item'           => __( 'Add New Landing Page', 'my_theme' ),
+    'view_item'          => __( 'View Landing Page', 'my_theme' ),
+    'search_items'       => __( 'Search Landing Page', 'my_theme' ),
+    'not_found'          => __( 'No Landing Pages found', 'my_theme' ),
+    'not_found_in_trash' => __( 'No Landing Pages found in trash', 'my_theme' )
+);
+
+$supports = array(
+    'title',
+    'author',
+    'thumbnail',
+     'editor' // This enables the text editor
+);
+
+$args = array(
+    'labels'             => $labels,
+    'supports'           => $supports,
+    'public'             => true,
+    'capability_type'    => 'post',
+    'rewrite'            => array( 'slug' => 'landing-page' ),
+    'has_archive'        => false,
+    'menu_position'      => 30,
+    'menu_icon'          => 'dashicons-admin-multisite',
+   
+);
+
+register_post_type( 'landing-page', $args );
+
+
+   
+
+
 
      $labels = array(
         'name'              => __( 'Scholarship Recipient Posts' ),
@@ -458,6 +495,7 @@ function uscollege_custom_post_types() {
         'menu_icon'             => 'dashicons-admin-multisite',
         'register_meta_box_cb'  => 'scholarships_blog'
     );
+
     register_post_type( 'scholarship_post', $args );
 
 
@@ -3338,7 +3376,7 @@ function cta_shortcode($atts) {
     $default_link = $link_array["default_value"];
 
 
-    https://env-globalscholarshipsa-sibi.kinsta.cloud/best-fashion-schools-germany/
+
     
     $args = shortcode_atts(array(
         'title' => $default_title,  // Use the ACF default title
