@@ -1,23 +1,23 @@
 <?php if (isset($tuition_fee) && !empty($tuition_fee)) :
 
-    $average_international_bachelors = 0;
-    $average_international_masters = 0;
+    $average_international_bachelors = null;
+    $average_international_masters = null;
 
-    if ($ibl > 0 && $ibu > 0) {
+    if ($ibl > -1 && $ibu > -1) {
         $average_international_bachelors = number_format(roundNearestHundreth(($ibl + $ibu) / 2));
-    } elseif ($ibl > 0) {
+    } elseif ($ibl > -1) {
         $average_international_bachelors = number_format(roundNearestHundreth($ibl));
-    } elseif ($ibu > 0) {
+    } elseif ($ibu > -1) {
         $average_international_bachelors = number_format(roundNearestHundreth($ibu));
     }
 
 
     
-    if ($iml > 0 && $imu > 0) {
+    if ($iml > -1 && $imu > -1) {
         $average_international_masters = number_format(roundNearestHundreth(($iml + $imu) / 2));
-    } elseif ($iml > 0) {
+    } elseif ($iml > -1) {
         $average_international_masters = number_format(roundNearestHundreth($iml));
-    } elseif ($imu > 0) {
+    } elseif ($imu >-1) {
         $average_international_masters = number_format(roundNearestHundreth($imu));
     }
 
@@ -30,7 +30,7 @@
         <?php
                 // Print out tuition fees if it is available
 
-                if ($ibl > -1 && $iml > -1 ) { ?>
+                if ($ibl > -1 || $iml > -1 ) { ?>
 
                 <div class="gs-institution-tuition-fees-for-international-average">
                     <?php if($average_international_bachelors > -1) : ?>
@@ -65,10 +65,10 @@
                 <?php
                 if($ibl == 0 && $iml== 0 && $ibu == 0 && $iml == 0 ) {
                 
-                echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".<b>The tuition fee for both Bachelor’s and Master’s degrees is free. They don’t charge tuition fees to international students.</b></p>"; ?>
+                echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".<b> The tuition fee for both Bachelor’s and Master’s degrees is free. They don’t charge tuition fees to international students.</b></p>"; ?>
 
 
-                <?php }  elseif ($ibl == 0 && $iml > 0 ) { 
+                <?php }  elseif ($ibl == 0 && $iml > -1 ) { 
 
                     echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".<b> The Bachelor's tuition fees for international students at ". $institution_title ."are free.</b></p>"; ?>
 
@@ -80,7 +80,7 @@
                     
 
 
-                <?php }  elseif ($ibl > 0 && $iml == 0 ) { 
+                <?php }  elseif ($ibl > -1 && $iml == 0 ) { 
                     
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
                 <?php if(has_usd_currency($country_name)) : ?>
@@ -171,7 +171,7 @@
 
                 <?php } 
 
-                if( $ibu > 0 && $imu == 0 ){?>  
+                if( $ibu > -1 && $imu == 0 ){?>  
 
 
                 <p><?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Master's degree. This is one of the main reasons why 
