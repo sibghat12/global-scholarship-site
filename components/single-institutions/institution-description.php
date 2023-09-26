@@ -5,14 +5,14 @@
     <?php if($institution_type == 'Public') :
         if($number_of_scholarships > 0) :
         ?>
-        Are you interested in studying at one of <?php echo $country_name; ?>’s public institutions? Check out <?php echo $institution_title; ?> as they offer <?php echo $number_of_scholarships; ?> to international <?php echo $degrees_text; ?> students!
+        Are you interested in studying at one of <?php echo $country_name; ?>’s public institutions? Check out <?php echo $institution_title; ?> as they offer <?php echo $number_of_scholarships; ?> <?php echo ($number_of_scholarships == 1) ? 'Scholarship' : 'Scholarships'; ?> to international <?php echo $degrees_text; ?> students!
         <?php else: ?>
         Are you interested in studying at one of <?php echo $country_name; ?>’s public institutions? Check out <?php echo $institution_title; ?> and learn more about its admission process, tuition fees, and available funding to international <?php echo $degrees_text; ?> students!
         <?php endif; ?>
     <?php else : 
         if($number_of_scholarships > 0) :
         ?>
-        Planning to study at <?php echo $country_name; ?>? Consider enrolling at <?php echo $institution_title; ?>, as they offer <?php echo $number_of_scholarships; ?> to international <?php echo $degrees_text; ?> students!
+        Planning to study at <?php echo $country_name; ?>? Consider enrolling at <?php echo $institution_title; ?>, as they offer <?php echo $number_of_scholarships; ?><?php echo ($number_of_scholarships == 1) ? 'Scholarship' : 'Scholarships'; ?> to international <?php echo $degrees_text; ?> students!
         <?php else: ?>
         Planning to study at <?php echo $country_name; ?>? Consider enrolling at <?php echo $institution_title; ?>! Here, you’ll learn more about its admission process, tuition fees, and available funding to international <?php echo $degrees_text; ?> students!
         <?php endif; ?>
