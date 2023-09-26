@@ -35,7 +35,7 @@
     <p>Being an international student in South Korea is a unique and memorable experience. You get to learn so much, and not just about your program as you’ll be exposed to Korean culture, language, and traditions. Not to mention, the country has a ton of beautiful sites you can explore while studying there.</p>
 
     <p>Thus, if you’ve been thinking about studying at SK, you should go for it! You can choose from many institutions, such as the <?php echo $institution_title; ?> in <?php echo $city_name . ", " . $country_name; ?>. It was established in <?php echo $founded_year; ?> 
-    <?php echo ($total_students > 0) ?  "and welcomes" .$total_students_formatted ." students every year.": "and welcomes many students every year."; ?></p>
+    <?php echo ($total_students > 0) ?  "and welcomes " .$total_students_formatted ." students every year.": "and welcomes many students every year."; ?></p>
     <?php } else if ($country_name == "Australia"){?>
     <p>Have you been wanting to explore the Land Down Under? You can do that while being an international student! </p>
 
@@ -43,7 +43,7 @@
 
     <p>
     As said, there are many highly recognized institutions in Australia, and one of them is the  <?php echo $institution_title; ?> in <?php echo $city_name . ", " . $country_name; ?>. It was founded in <?php echo $founded_year; ?> 
-    <?php echo ($total_students > 0) ?  "and serves as the second home to" .$total_students_formatted ." students.": "and serves as the second home to many students."; ?></p>
+    <?php echo ($total_students > 0) ?  "and serves as the second home to " .$total_students_formatted ." students.": "and serves as the second home to many students."; ?></p>
     <?php } else if ($country_name == "Japan"){?>
     <p>
     In today’s era, Japan is a world-leader in terms of research, technology, education, and overall society. Therefore, there’s no better to go and learn from than a Japanese institution, such as <?php echo $institution_title; ?>.
@@ -175,7 +175,7 @@
 
     <p>There is a growing community of international students in the Philippines. That phenomenon can be attributed to the general population’s fluency in English (which extends to academia), low living costs, premier education, rich culture, and wonderful sights.</p>
 
-    <p>Also, there are many reputed institutions you can go to if you choose to be an international student in the Philippines. One of them is <?php echo $institution_title; ?>, which is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. Simply comply with admission requirements, <?php echo $institution_title; ?>.<?php echo ($total_students > 0) ?  "and you can join its population of " .$total_students_formatted ." students": "and you can join many students that are enrolling annually"; ?>.
+    <p>Also, there are many reputed institutions you can go to if you choose to be an international student in the Philippines. One of them is <?php echo $institution_title; ?>, which is in <?php echo $city_name . ", " . $country_name; ?> and was founded in <?php echo $founded_year; ?>. Simply comply with admission requirements,<?php echo ($total_students > 0) ?  " and you can join its population of " .$total_students_formatted ." students": " and you can join many students that are enrolling annually"; ?>.
     </p>
 
     <?php } else if ($country_name == "Spain"){?>
@@ -255,7 +255,7 @@
 
             <p>Studying abroad is a one-of-a-lifetime opportunity. Aside from experiencing a new culture, meeting a lot of people, and seeing breathtaking places, studying in a foreign country will give you a global perspective in your chosen field. It will surely boost your career opportunities.</p>
 
-            <p>Now, if you’re looking for your next educational destination, you can consider <?php echo $country_name; ?>. This country is home to [institution name], and as an international student here, you’ll have the chance to be a part of a global community.</p>
+            <p>Now, if you’re looking for your next educational destination, you can consider <?php echo $country_name; ?>. This country is home to <?php echo $institution_title; ?>, and as an international student here, you’ll have the chance to be a part of a global community.</p>
 
             <p>Founded in <?php echo $founded_year; ?>, <?php echo $institution_title; ?> is a <?php echo $type; ?> in <?php echo $city_name . ", " . $country_name; ?>. As one of the educational institutions in <?php echo $country_name; ?>, studying here can open many avenues for academic and professional growth.</p>
 <?php } ?>
