@@ -4247,6 +4247,9 @@ input[type="submit"] {
     max-width: 100%;
     margin: auto;
 }
+.single-institution #main .gs-institution-intro-section {
+    margin: 30px 0;
+}
 
 .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses{
     display: flex;

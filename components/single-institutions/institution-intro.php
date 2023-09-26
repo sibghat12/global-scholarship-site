@@ -8,23 +8,27 @@
     <p>If you want to join the throng of learners who make their way to this nation, you’ll need to enroll in a university. In that case, you may want to include the <?php echo $institution_title; ?> in your list of options.</p>
 
     <?php if($total_students > 0) : ?>
-        <p><?php echo $institution_title; ?> is located in <?php echo $city_name . ", " . $country_name; ?> and it was established in <?php echo $founded_year; ?>. It is home to <?php echo $total_students_formatted; ?> students, so you’re sure to find a welcoming community that can give you the boost you need to achieve your academic potential.</p>
+        <p><?php echo $institution_title; ?> is located in <?php echo $city_name . ", " . $country_name; ?>, and it was established in <?php echo $founded_year; ?>. It is home to <?php echo $total_students_formatted; ?> students, so you’re sure to find a welcoming community that can give you the boost you need to achieve your academic potential.</p>
     <?php else: ?>
         <p><?php echo $institution_title; ?> is located in <?php echo $city_name . ", " . $country_name; ?> and it was established in  <?php echo $founded_year; ?>. You’ll surely find a welcoming community that can give you the boost you need to achieve your academic potential.</p>
     <?php endif; ?>
     
     <?php } else if ($country_name == "United States"){?>
 
-    <p>Many American universities have made their education and names synonymous to prestige and excellence. Thus, it is unsurprising that the country and its institutions are among the top choices of aspiring international students when deciding where to study abroad. 
+    <p>Many American institutions have made their education and names synonymous to prestige and excellence. Thus, it is unsurprising that the country and its institutions are among the top choices of aspiring international students when deciding where to study abroad. 
     </p>
 
-    <p>With that said, are you interested in studying in the US, as well? If you are, you might want to consider going to <?php echo $institution_title; ?>, a premier institution in <?php echo $city_name . ", " . $country_name; ?>. <?php echo ($total_students > 0) ?  "You’ll be joining the" .$total_students_formatted ." students who go there every year.": 'You’ll be joining many students who go there every year'; ?></p>
+    <p>With that said, are you interested in studying in the US, as well? If you are, you might want to consider going to <?php echo $institution_title; ?>, a premier institution in <?php echo $city_name . ", " . $country_name; ?>. <?php echo ($total_students > 0) ?  "You’ll be joining the " .$total_students_formatted ." students who go there every year.": 'You’ll be joining many students who go there every year.'; ?></p>
 
     <?php } else if ($country_name == "Canada"){?>
 
-    <p>Canada has joined the group of countries that top the lists of international students. After all, who wouldn’t want to go there when the country has so much to offer, such as high-quality education, picturesque sites, premier healthcare system, and other great benefits</p>
+    <p>Canada has joined the group of countries that top the lists of international students. After all, who wouldn’t want to go there when the country has so much to offer, such as high-quality education, picturesque sites, premier healthcare system, and other great benefits?</p>
 
-    <p>There are also many top-tier institutions to choose from, including the <?php echo $institution_title; ?>. Established in <?php echo $founded_year; ?>, you can study in this university to experience the Canadian dream while expanding your knowledge and skills. This institution offers programs such as <?php echo $degrees_text; ?>.</p>
+        <?php if( !empty($bachelor_courses) || !empty($master_courses)) : ?>
+            <p>There are also many top-tier institutions to choose from, including the <?php echo $institution_title; ?>. Established in <?php echo $founded_year; ?>, you can study in this university to experience the Canadian dream while expanding your knowledge and skills. This institution offers programs such as, <?php echo (isset($bachelor_courses_string) && !empty($bachelor_courses_string)) ? $bachelor_courses_string : ((isset($master_courses_string) && !empty($master_courses_string)) ? $master_courses_string : ''); ?>.</p>
+        <?php else: ?>
+            <p>There are also many top-tier institutions to choose from, including the <?php echo $institution_title; ?>. Established in <?php echo $founded_year; ?>, you can study in this university to experience the Canadian dream while expanding your knowledge and skills.</p>
+        <?php endif; ?>
 
     <?php } else if ($country_name == "South Korea"){?>
 

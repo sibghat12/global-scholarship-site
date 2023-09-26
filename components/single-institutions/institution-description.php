@@ -91,7 +91,7 @@
                 <div class="gs-institution-scholarship-title gs-institution-data-title">
                     <?php echo $number_of_scholarships; ?>
                 </div>
-                <div class="gs-institution-scholarship-tag gs-institution-tag">Number of Scholarship</div>
+                <div class="gs-institution-scholarship-tag gs-institution-tag">Number of <?php echo ($number_of_scholarships == 1) ? 'Scholarship' : 'Scholarships'; ?></div>
             </div>
         </div>
     <?php endif ?>
