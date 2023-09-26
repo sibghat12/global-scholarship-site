@@ -4422,12 +4422,15 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors {
-    padding-left: 40px;
-    padding-right: 20px;
+    padding-left: 0px;
+    padding-right: 10px;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors h2 {
     font-family: inherit !important;
+    margin-bottom: 8px;
+    padding-top: 8px;
+    text-align: center;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-note {
@@ -4435,15 +4438,18 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average > .gs-institution-tuition-fees-bachelors + .gs-institution-tuition-fees-masters {
-    border-left: 1px solid #bbb;
+    border-left: 1px solid #66a0f6;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters {
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters h2 {
     font-family: inherit !important;
+    margin-bottom: 8px;
+    padding-top: 8px;
+    text-align: center;
 }
 
 .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container {
