@@ -4381,6 +4381,10 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-deadlines .gs-institution-deadlines-content ul.gs-institution-deadlines-list li {
+    list-style-type: disc;
+    list-style-position: inside;
+    text-indent: -1.6em;
+    padding-left: 1em;
     font-weight: 700;
 }
 
