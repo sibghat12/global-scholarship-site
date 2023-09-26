@@ -14,7 +14,7 @@
                 <?php
                 echo  "<h2> Undergraduate Scholarships </h2>";
             ?>
-            <p>Are you planning to take up a bachelor’s degree abroad? Then one of the first things you can do is look for scholarship opportunities to apply to. <?php echo $institution_title; ?> is wide-arms open to incoming undergraduate students who want to become international students. The following are the currently available undergraduate scholarships at the institutions:</p>
+            <p>Are you planning to take up a Bachelor’s degree abroad? Then one of the first things you can do is look for scholarship opportunities to apply to. <?php echo $institution_title; ?> is wide-arms open to incoming undergraduate students who want to become international students. The following are the currently available undergraduate scholarships at the institution:</p>
             <?php
         
             if (in_array("Bachelor's", $degrees)) {
@@ -129,13 +129,13 @@
 
     <div id="no-institution-scholarships" class="gs-institution-no-scholarships">
         <h2 class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</h2>
-        <p>Even though <?php echo $institution_title ?> does not offer Scholarships to international students, you can still fund your education in <?php echo $country_name; ?>. As an international student, you are eligible to receive funding from organizations and the government of <?php echo $city_name . ", " . $country_name; ?>. There are plenty of funding opportunities for international students ensuring ample opportunities for financial support; feel free to check out <a href="<?php echo site_url(); ?>/best-government-scholarships/">all available governmental funding opportunities available </a>to international students pursuing a higher education degree abroad.</p>
+        <p>Even though <?php echo $institution_title ?> does not offer scholarships to international students, you can still fund your education in <?php echo $country_name; ?>. As an international student, you are eligible to receive funding from organizations and the government of <?php echo $city_name . ", " . $country_name; ?>. There are plenty of funding opportunities for international students ensuring ample opportunities for financial support; feel free to check out <a href="<?php echo site_url(); ?>/best-government-scholarships/">all available governmental funding opportunities available </a>to international students pursuing a higher education degree abroad.</p>
         
         <h2 class="gs-institution-scholarships-title">External Scholarships for International Students</h2>
         <div class="gs-institution-no-scholarships-scholarship-container">
             <h3>GlobalScholarships.com $1,000 Scholarship for International Students</h3>
             <ul>
-                <li>Scholarship Page</li>
+                <li><a href="<?php echo site_url(); ?>/globalscholarships-com-1000-scholarship-for-international-students/">Scholarship Page</a></li>
                 <li>Scholarship Type: Partial Funding</li>
                 <li>Scholarship Amount: 1,000 USD</li>
                 <li>Degrees Offered : Bachelor's, Master’s, PhD</li>
