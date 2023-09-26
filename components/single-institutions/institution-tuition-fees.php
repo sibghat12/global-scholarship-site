@@ -57,23 +57,43 @@
 
                     echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p><b> The Bachelor's tuition fees for international students at ". $institution_title ."are free.</b>"; ?>
 
-                    <p>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . "($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)"; ?> per year.</b></p> 
-
+                    <?php if(has_usd_currency($country_name)) : ?>
+                        <p>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu  ? number_format($iml) . " " . $currency . " to " . number_format($imu) . " " . $currency : number_format($iml) . " " . $currency; ?> per year.</b></p>
+                    <?php else: ?>
+                        <p>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . "($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)"; ?> per year.</b></p>
+                    <?php endif; ?>
+                    
 
 
                 <?php }  elseif ($ibl > 0 && $iml == 0 ) { 
                     
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
-                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD && $ibuUSD ? number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)"; ?> per year.                
+                <?php if(has_usd_currency($country_name)) : ?>
+                    <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu  ? number_format($ibl) . " " . $currency . " to " . number_format($ibu) . " " . $currency: number_format($ibl) . " " . $currency; ?> per year.                
 
                 Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
+                <?php else: ?>
+                    <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD && $ibuUSD ? number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)"; ?> per year.                
+
+                    Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
+                <?php endif; ?>
+
+                
 
                 <?php } else {
 
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
-                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD != $ibuUSD ? number_format($ibl) . " " . $currency . " ($ibuUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" ; ?> per year.             
+                <?php if(has_usd_currency($country_name)) : ?>
+                    <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu ? number_format($ibl) . " " . $currency . " to " . number_format($ibu) . " " . $currency: number_format($ibl) . " " . $currency; ?> per year.             
 
-                Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p> 
+                    Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu ? number_format($iml) . " " . $currency . " to " . number_format($imu) . " " . $currency : number_format($iml) . " " . $currency; ?> per year.</b></p>
+                <?php else: ?>
+                    <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD != $ibuUSD ? number_format($ibl) . " " . $currency . " ($ibuUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" ; ?> per year.             
+
+                    Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p>
+                <?php endif; ?>
+
+                 
 
 
                 <?php } 
@@ -93,8 +113,15 @@
                 <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> are free.</b></p>
 
                 <?php  } else { ?>
-                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu &&$iblUSD != $ibuUSD ? 
+                <?php if(has_usd_currency($country_name)) : ?>
+                    <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu  ? 
+                    number_format($ibl) . " " . $currency . " to " . number_format($ibu) . " " . $currency  : number_format($ibl) . " " . $currency; ?> per year.</b></p>
+                <?php else: ?>
+                    <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu &&$iblUSD != $ibuUSD ? 
                     number_format($ibl) . " " . $currency  . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency  . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency  . " ($iblUSD $currencyUSD)"; ?> per year.</b></p>
+                <?php endif; ?>
+
+               
 
 
                 
@@ -106,8 +133,12 @@
 
                     <?php } else {
                         ?>
-                    <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency  . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)" : number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p> 
-                
+                    <?php if(has_usd_currency($country_name)) : ?>
+                        <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu? number_format($iml) . " " . $currency . " to " . number_format($imu) . " " . $currency: number_format($iml) . " " . $currency; ?> per year.</b></p>
+                    <?php else: ?>
+                        <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency  . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)" : number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p>
+                    <?php endif; ?>
+
                 <?php } } ?>
                 
                 
