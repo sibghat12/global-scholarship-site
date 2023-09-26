@@ -93,9 +93,14 @@
                     Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
                 <?php endif; ?>
 
-                
-
-                <?php } else {
+                <?php } else if($ibl == -1 && $iml == 0) {
+                    ?>
+                        <p>Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
+                    <?php } else if($iml == -1 && $ibl == 0) {
+                    ?>
+                        <p>Bachelor's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
+                    <?php
+                } else{
 
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
                 <?php if(has_usd_currency($country_name)) : ?>
