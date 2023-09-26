@@ -56,9 +56,8 @@
                 <?php }  elseif ($ibl == 0 && $iml > 0 ) { 
 
                     echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p><b> The Bachelor's tuition fees for international students at ". $institution_title ."are free.</b>"; ?>
-                    <p>             
 
-                Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . "($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)"; ?> per year.</b></p> 
+                    <p>Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . "($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)"; ?> per year.</b></p> 
 
 
 
@@ -116,23 +115,22 @@
 
                 <?php  if($ibu == 0 && $imu == 0  ){ ?>
 
-                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition. This is one of the main reasons why 
-                <?php echo $institution_title;  ?> is a popular choice among international students.  </p>
+                <p><?php echo $institution_title; ?> is one of the few universities in the world offering free tuition. This is one of the main reasons why 
+                <?php echo $institution_title;  ?> is a popular choice among international students.</p>
 
                 <?php } if($ibu == 0 && $imu > 0  ) { ?>
-                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Bachelor's degree. This is one of the main reasons why 
+                <p><?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Bachelor's degree. This is one of the main reasons why 
                 <?php echo $institution_title;  ?> is a popular choice among international students. 
-                However, only students at the Bachelor’s level are granted this offer. Master’s students will still need to pay an amount for tuition.
-                </p> 
+                However, only students at the Bachelor’s level are granted this offer. Master’s students will still need to pay an amount for tuition.</p> 
 
                 <?php } 
 
                 if( $ibu > 0 && $imu == 0 ){?>  
 
 
-                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Master's degree. This is one of the main reasons why 
+                <p><?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Master's degree. This is one of the main reasons why 
                 <?php echo $institution_title;  ?> is a popular choice among international students. 
-                However, only students at the Master’s level are granted this offer. If you are an undergraduate, you will still need to pay an amount for tuition . </p>
+                However, only students at the Master’s level are granted this offer. If you are an undergraduate, you will still need to pay an amount for tuition.</p>
 
 
                 <?php  } if($ibu == 0 && $imu == 0 ) { ?>
@@ -143,8 +141,7 @@
             ?>
 
             
-    <p>When studying abroad, it is best to save as much money as you can. After all, there are other costs to consider besides tuition fees, such as accommodation, meals, transportation, and books.
-    </p>
+    <p>When studying abroad, it is best to save as much money as you can. After all, there are other costs to consider besides tuition fees, such as accommodation, meals, transportation, and books.</p>
 
     <?php if($number_of_scholarships > 0) { ?>
 
