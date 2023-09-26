@@ -50,14 +50,13 @@
                 <?php
                 if($ibl == 0 && $iml== 0 && $ibu == 0 && $iml == 0 ) {
                 
-                echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
-                <b>The tuition fee for both bachelor’s and master’s degrees is free. They don’t charge tuition fees to international students. </b> 
+                echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".<b> The tuition fee for both Bachelor’s and Master’s degrees is free. They don’t charge tuition fees to international students.</b></p>"; ?>
 
 
                 <?php }  elseif ($ibl == 0 && $iml > 0 ) { 
 
-                    echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
-                    <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> are free.             
+                    echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p><b> The Bachelor's tuition fees for international students at ". $institution_title ."are free.</b>"; ?>
+                    <p>             
 
                 Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . "($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . "($imlUSD $currencyUSD)"; ?> per year.</b></p> 
 
@@ -66,14 +65,14 @@
                 <?php }  elseif ($ibl > 0 && $iml == 0 ) { 
                     
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
-                <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD && $ibuUSD ? number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)"; ?> per year.                
+                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD && $ibuUSD ? number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)"; ?> per year.                
 
                 Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
 
                 <?php } else {
 
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".</p>"; ?>
-                <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD != $ibuUSD ? number_format($ibl) . " " . $currency . " ($ibuUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" ; ?> per year.             
+                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu && $iblUSD != $ibuUSD ? number_format($ibl) . " " . $currency . " ($ibuUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency . " ($iblUSD $currencyUSD)" ; ?> per year.             
 
                 Master's tuition fee for international students at <?php echo $institution_title ?> is <?php echo $iml != $imu && $imlUSD != $imuUSD ? number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)" . " to " . number_format($imu) . " " . $currency . " ($imuUSD $currencyUSD)": number_format($iml) . " " . $currency . " ($imlUSD $currencyUSD)"; ?> per year.</b></p> 
 
@@ -92,10 +91,10 @@
 
                     ?>
 
-                <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> are free.</b></p>
+                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> are free.</b></p>
 
                 <?php  } else { ?>
-                <p><b>The bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu &&$iblUSD != $ibuUSD ? 
+                <p><b>The Bachelor's tuition fees for international students at <?php echo $institution_title ?> is <?php echo $ibl != $ibu &&$iblUSD != $ibuUSD ? 
                     number_format($ibl) . " " . $currency  . " ($iblUSD $currencyUSD)" . " to " . number_format($ibu) . " " . $currency  . " ($ibuUSD $currencyUSD)": number_format($ibl) . " " . $currency  . " ($iblUSD $currencyUSD)"; ?> per year.</b></p>
 
 
@@ -121,9 +120,9 @@
                 <?php echo $institution_title;  ?> is a popular choice among international students.  </p>
 
                 <?php } if($ibu == 0 && $imu > 0  ) { ?>
-                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a bachelor's degree. This is one of the main reasons why 
+                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Bachelor's degree. This is one of the main reasons why 
                 <?php echo $institution_title;  ?> is a popular choice among international students. 
-                However, only students at the bachelor’s level are granted this offer. Master’s students will still need to pay an amount for tuition.
+                However, only students at the Bachelor’s level are granted this offer. Master’s students will still need to pay an amount for tuition.
                 </p> 
 
                 <?php } 
@@ -131,9 +130,9 @@
                 if( $ibu > 0 && $imu == 0 ){?>  
 
 
-                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a master's degree. This is one of the main reasons why 
+                <p> <?php echo $institution_title; ?> is one of the few universities in the world offering free tuition for a Master's degree. This is one of the main reasons why 
                 <?php echo $institution_title;  ?> is a popular choice among international students. 
-                However, only students at the master’s level are granted this offer. If you are an undergraduate, you will still need to pay an amount for tuition . </p>
+                However, only students at the Master’s level are granted this offer. If you are an undergraduate, you will still need to pay an amount for tuition . </p>
 
 
                 <?php  } if($ibu == 0 && $imu == 0 ) { ?>
@@ -149,10 +148,12 @@
 
     <?php if($number_of_scholarships > 0) { ?>
 
-
-
+            <?php if($number_of_scholarships > 1) : ?>
             <p>The scholarships at <?php echo $institution_title; ?> can help fund your study expenses. There are currently <?php echo $number_of_scholarships; ?> scholarships being offered to international students at the <?php echo $institution_title; ?>, all with varying requirements, benefits, and application processes. We have compiled them in this list to help you find the scholarship that best fits you.
             </p>
+            <?php elseif($number_of_scholarships == 1) : ?>
+                <p><?php echo $institution_title; ?> offers a great opportunity for students to experience high-quality education at a low cost. Currently,  <?php echo $institution_title; ?> offers 1 scholarship for international students. When applying, always take note of the requirements needed and the application process since most institutions are particular with every application they receive. As a help, we prepared a summary of all the things you need to know about this scholarship offering.</p>
+            <?php endif; ?>
     <?php } ?>
         </div>
     </div>
