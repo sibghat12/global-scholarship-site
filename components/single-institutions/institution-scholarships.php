@@ -124,9 +124,6 @@
             
             
         <?php } ?> 
-
-        <p> With these <?php echo $institution_title; ?> scholarships for international students, you can finally study abroad financially worry-free. If you’re interested, make sure to also check out the <a href="/opencourses/">Open Courses for International Students</a>.</p>  
-
         <?php } 
         ?>
     </div>
