@@ -4502,6 +4502,7 @@ input[type="submit"] {
 .single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container h3 {
     font-size: 2rem;
     font-weight: 700;
+    word-break: break-all;
     margin: 0px !important;
     margin-bottom: 20px !important;
     padding-top: 6px !important;
@@ -6046,6 +6047,41 @@ input[type="submit"] {
 
     /* GS institutions NEW*/
 
+    .single-institution .gs-institution-overview-box .gs-institution-overview-text h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.6rem !important;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.5rem !important;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs {
+        margin-top: 24px;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-icon svg {
+        max-height: 50px !important;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs a {
+        font-size: 1rem !important;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem !important;
+        font-weight: 400;
+        text-align: center;
+        line-height: 1rem;
+        color: #000000 !important;
+        margin: 1.2rem 0;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data .gs-institution-data-title {
+        text-align: left !important;
+        font-size: 1rem;
+    }
+
     .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses {
         flex-direction: column-reverse;
     }
@@ -6055,7 +6091,28 @@ input[type="submit"] {
         width: 100%;
     }
     
+
+
     .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+    .single-institution #main .gs-institution-scholarships .gs-institution-graduate {
+        flex-direction: column-reverse;
+    }
+
+    .single-institution #main .gs-institution-addon-box {
+        width: 94% !important;
+        margin-top: 30px !important;
+    }
+
+    .single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-thumbnail-container {
         max-width: 100%;
         width: 100%;
         margin-bottom: 16px;
@@ -6082,9 +6139,10 @@ input[type="submit"] {
     }
 
     .single-institution .gs-institution-overview-box {
-        padding: 25px 20px 20px 20px;
-        border-radius: 0px;
+        padding: 25px 10px 20px 10px;
+        border-radius: 20px;
     }
+
     .single-institution .gs-institution-overview-box .gs-institution-overview-text h1{
         font-family: 'Roboto', sans-serif;
         font-size: 2.1rem;
@@ -6108,6 +6166,11 @@ input[type="submit"] {
     .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
         width: 100%;
         max-width: 100%;
+    }
+
+    .single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container h3 { 
+        font-size: 1.5rem !important;
+        line-height: 1.6rem !important;
     }
 }
 
