@@ -4719,12 +4719,12 @@ input[type="submit"] {
     font-size:1.7rem !important;}
     
     /*Mobile Sticky*/
-.course-nav {
-        z-index:1000;
-    position:fixed;
-    bottom:0;
-    width: 100%;
-}
+    .course-nav {
+            z-index:1000;
+        position:fixed;
+        bottom:0;
+        width: 100%;
+    }
     
     .course-nav .course-filter .filter-wrapper{
             display:flex;
@@ -4776,6 +4776,11 @@ input[type="submit"] {
     
     #main .card-wide .custom-ad-heading {
     font-size: 1.1rem;
+    }
+
+    [aria-labelledby="awb-to-top-label"].to-top-right #toTop {
+        right: 25px;
+        bottom: 90px;
     }
 }
 
@@ -5628,6 +5633,11 @@ input[type="submit"] {
     color: #fff !important;
 }
 
+[aria-labelledby="awb-to-top-label"].to-top-right #toTop {
+    right: 60px;
+    bottom: 25px;
+}
+
 @media only screen and (min-width: 1540.1px) and  (max-width: 1920.1px) {
     .page-template-template-partner .gs-partner-promote-section .gs-promote-box {
         height: 420px !important;
@@ -5834,6 +5844,11 @@ input[type="submit"] {
     }
 }
 @media only screen and (max-width: 768px) {
+
+    [aria-labelledby="awb-to-top-label"].to-top-right #toTop {
+        right: 25px;
+        bottom: 115px;
+    }
 
     .page-template-template-partner .gs-partner-hero-section {
         display: block;
@@ -7218,3 +7233,17 @@ a.d-block.position-relative, a.d-block.position-relative img {
   padding-left:20px; 
   font-size:24px !important;
  }
+
+@media (min-width: 768px) and (max-width: 1360px) {
+    [aria-labelledby="awb-to-top-label"].to-top-right #toTop {
+        right: 15px;
+        bottom: 25px;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    [aria-labelledby="awb-to-top-label"].to-top-right #toTop {
+        right: 25px;
+        bottom: 90px;
+    }
+}
