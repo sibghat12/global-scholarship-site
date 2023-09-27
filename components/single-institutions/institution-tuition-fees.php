@@ -25,42 +25,45 @@
     <div id="institution-tuition-fees" class="gs-institution-tuition-fees">
 
         <div class="gs-institution-tutition-fees-text">
-        <h2 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at <?php echo $institution_title ?> for International Students</h2>       
+        <h2 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at <?php echo $institution_title ?> for International Students</h2>
+        <?php
+        if ($ibl > -1 || $iml > -1 ) : ?>
+
+        <div class="gs-institution-tuition-fees-for-international-average">
+            <?php if($average_international_bachelors > -1) : ?>
+                <?php if($average_international_bachelors > 0) : ?>
+                    <div class="gs-institution-tuition-fees-bachelors">
+                        <h2><?php echo $average_international_bachelors .' '. $currency; ?></h2>
+                        <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
+                    </div>
+                <?php elseif($average_international_bachelors == 0 ) :  ?>
+                    <div class="gs-institution-tuition-fees-bachelors">
+                        <h2>Free</h2>
+                        <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if($average_international_masters > -1) : ?>
+                <?php if($average_international_masters > 0) : ?>
+            <div class="gs-institution-tuition-fees-masters">
+                <h2><?php echo $average_international_masters .' '. $currency; ?></h2>
+                <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
+            </div>
+            <?php elseif($average_international_bachelors == 0 ) :  ?>
+                <div class="gs-institution-tuition-fees-masters">
+                    <h2>Free</h2>
+                <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
+                </div>
+            <?php endif; ?>
+
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
                   
         <?php
                 // Print out tuition fees if it is available
 
-                if ($ibl > -1 || $iml > -1 ) { ?>
-
-                <div class="gs-institution-tuition-fees-for-international-average">
-                    <?php if($average_international_bachelors > -1) : ?>
-                        <?php if($average_international_bachelors > 0) : ?>
-                            <div class="gs-institution-tuition-fees-bachelors">
-                                <h2><?php echo $average_international_bachelors .' '. $currency; ?></h2>
-                                <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
-                            </div>
-                        <?php elseif($average_international_bachelors == 0 ) :  ?>
-                            <div class="gs-institution-tuition-fees-bachelors">
-                                <h2>Free</h2>
-                                <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    <?php if($average_international_masters > -1) : ?>
-                        <?php if($average_international_masters > 0) : ?>
-                    <div class="gs-institution-tuition-fees-masters">
-                        <h2><?php echo $average_international_masters .' '. $currency; ?></h2>
-                        <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
-                    </div>
-                    <?php elseif($average_international_bachelors == 0 ) :  ?>
-                        <div class="gs-institution-tuition-fees-masters">
-                            <h2>Free</h2>
-                        <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php endif; ?>
-                </div>
+                if ($ibl > -1 && $iml > -1 ) { ?>
 
                 <?php
                 if($ibl == 0 && $iml== 0 && $ibu == 0 && $iml == 0 ) {
@@ -93,12 +96,12 @@
                     Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
                 <?php endif; ?>
 
-                <?php } else if($ibl == -1 && $iml == 0) {
+                <?php } elseif($ibl == -1 && $iml == 0) {
                     ?>
-                        <p>Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
-                    <?php } else if($iml == -1 && $ibl == 0) {
+                    <p><b>Master's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
+                <?php } elseif($iml == -1 && $ibl == 0) {
                     ?>
-                        <p>Bachelor's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
+                    <p><b>Bachelor's tuition fee for international students at <?php echo $institution_title ?> are free.</b></p> 
                     <?php
                 } else{
 
@@ -116,17 +119,12 @@
                  
 
 
-                <?php } 
-                }
-
-
-
-
-                else if ($ibl > -1 )  {   ?>
+                <?php }
+                }  elseif ($ibl > -1 )  {   ?>
                 
                 
 
-                <?php  if($ibl==0) { 
+                <?php  if($ibl==0) {
 
                     ?>
 
@@ -145,7 +143,8 @@
 
 
                 
-                <?php } } else if ($iml > -1 ) { 
+                <?php }
+                } elseif ($iml > -1) { 
 
                     if($iml==0) {
                     ?>
@@ -161,10 +160,7 @@
 
                 <?php } } ?>
                 
-                
-                
-
-                <?php  if($ibu == 0 && $imu == 0  ){ ?>
+                <?php  if($ibu == 0 && $imu == 0 ){ ?>
 
                 <p><?php echo $institution_title; ?> is one of the few universities in the world offering free tuition. This is one of the main reasons why 
                 <?php echo $institution_title;  ?> is a popular choice among international students.</p>
@@ -184,17 +180,12 @@
                 However, only students at the Master’s level are granted this offer. If you are an undergraduate, you will still need to pay an amount for tuition.</p>
 
 
-                <?php  } if($ibu == 0 && $imu == 0 ) { ?>
-
-
-                <?php  }
-
-            ?>
+                <?php  }  ?>
 
             
-    <p>When studying abroad, it is best to save as much money as you can. After all, there are other costs to consider besides tuition fees, such as accommodation, meals, transportation, and books.</p>
+            <p>When studying abroad, it is best to save as much money as you can. After all, there are other costs to consider besides tuition fees, such as accommodation, meals, transportation, and books.</p>
 
-    <?php if($number_of_scholarships > 0) { ?>
+            <?php if($number_of_scholarships > 0) { ?>
 
             <?php if($number_of_scholarships > 1) : ?>
             <p>The scholarships at <?php echo $institution_title; ?> can help fund your study expenses. There are currently <?php echo $number_of_scholarships; ?> scholarships being offered to international students at the <?php echo $institution_title; ?>, all with varying requirements, benefits, and application processes. We have compiled them in this list to help you find the scholarship that best fits you.
