@@ -4435,6 +4435,7 @@ input[type="submit"] {
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-note {
     font-style: italic;
+    text-align: center;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average > .gs-institution-tuition-fees-bachelors + .gs-institution-tuition-fees-masters {
