@@ -49,7 +49,7 @@
                 <?php
             }
         }
-
+                            
         wp_reset_postdata();    
             
 
@@ -104,7 +104,12 @@
                         $count = $count + 1;
                         ?>
                         </div>
+
+                    <?php if($count % 3 == 2 && $program=="graduate") : ?>                    
+                        <?php // GS Institution Addon (For Graduate) ?>
+                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-addon.php'; ?>
                         <?php
+                    endif;
 
                     }
 
@@ -125,7 +130,7 @@
         <?php } 
         ?>
     </div>
-<?php else: ?>
+    <?php else: ?>
 
     <div id="no-institution-scholarships" class="gs-institution-no-scholarships">
         <h2 class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</h2>
