@@ -105,7 +105,7 @@
                         ?>
                         </div>
 
-                    <?php if($count % 3 == 2 && $program=="graduate") : ?>                    
+                    <?php if($count == 2 ) : ?>                    
                         <?php // GS Institution Addon (For Graduate) ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-addon.php'; ?>
                         <?php
