@@ -72,7 +72,7 @@ if($count % 3 == 2 &&  $program =="undergraduate") { ?>
     <b><a href="<?php echo get_permalink($id)?>"><?php  echo  $scholarship_name; ?></a></b>. 
         
             <?php if ($show_eligibility){ ?>
-This is a <?php echo get_adjective_scholarship_amount($scholarship_category);  ?> scholarship for undergraduate students who meet the following eligibility requirements: </p>
+    This is a <?php echo get_adjective_scholarship_amount($scholarship_category);  ?> scholarship for undergraduate students who meet the following eligibility requirements: </p>
     <?php echo  get_scholarship_criteria_coverage($eligibility_criteria, "criteria", get_the_ID()); } ?>
     <p> To get started on your application, check out the list of documents you need to prepare through the scholarship link. Like with other 
     <?php echo $institution_title ?>  scholarships for international students, make sure to prepare and submit your application before the application deadline. The <?php echo  $scholarship_name ?> provides successful applicants with the following awards: </p>
@@ -92,7 +92,7 @@ if($count % 3 == 0 &&  $program =="undergraduate") { ?>
 
 
     <p> Next on the list is <b><a href="<?php echo get_permalink($id)?>"><?php echo  $scholarship_name ?></a></b>.     <?php if ($show_eligibility){ ?>
-It is a <?php echo get_adjective_scholarship_amount($scholarship_category) ?>  undergraduate scholarship at <?php echo $institution_title; ?> that grants funding to international students who meet the following criteria: </p>
+    It is a <?php echo get_adjective_scholarship_amount($scholarship_category) ?>  undergraduate scholarship at <?php echo $institution_title; ?> that grants funding to international students who meet the following criteria: </p>
     <?php echo  get_scholarship_criteria_coverage($eligibility_criteria, "criteria", get_the_ID()); } ?>
     <?php if($scholarship_category == "Full Funding"  || $scholarship_category == 'Full Tuition'){ ?>
     <p> Students who receive this undergraduate scholarship have nothing left to worry about financially while studying at 
@@ -111,7 +111,7 @@ if($count % 3 == 1 && $program == "graduate"){ ?>
 
     <p> <?php echo  $institution_title; ?> also provides financial support to international students in <?php echo  $eligible_degrees ?> programs 
     through <b><a href="<?php echo get_permalink($id)?>"><?php echo  $scholarship_name ?></a></b>.     <?php if ($show_eligibility){ ?>
-Interested applicants for this <?php echo get_adjective_scholarship_amount($scholarship_category) ?> scholarship must meet the following certain eligibility requirements 
+    Interested applicants for this <?php echo get_adjective_scholarship_amount($scholarship_category) ?> scholarship must meet the following certain eligibility requirements 
     to be considered:</p>
     
     <?php echo  get_scholarship_criteria_coverage($eligibility_criteria, "criteria", get_the_ID());  }?>
@@ -143,7 +143,7 @@ if($count % 3 == 2 && $program=="graduate"){ ?>
      you don’t prepare for your expenses. This is why <?php echo  get_adjective_scholarship_amount($scholarship_category); ?> scholarships like <?php echo $scholarship_name ?> are available at the  <?php echo $institution_title; ?> for qualified students. </p>
 
      <?php if ($show_eligibility){ ?>
-  <p>  <b><a href="<?php echo get_permalink($id)?>"><?php echo   $scholarship_name ?></a></b> is open to  <?php echo $eligible_degrees ?> international students who meet the following eligibility requirements: </p>
+        <p>  <b><a href="<?php echo get_permalink($id)?>"><?php echo   $scholarship_name ?></a></b> is open to  <?php echo $eligible_degrees ?> international students who meet the following eligibility requirements: </p>
 
     <?php echo  get_scholarship_criteria_coverage($eligibility_criteria, "criteria", get_the_ID());  }?>
 
@@ -168,8 +168,7 @@ if($count % 3 == 2 && $program=="graduate"){ ?>
 
 if($count % 3 == 0 &&  $program=="graduate") { ?>
 
-    <p>  <b><a href="<?php echo get_permalink($id)?>"><?php echo  $scholarship_name; ?></a></b> is a  <?php echo  get_adjective_scholarship_amount($scholarship_category); ?> scholarship offered to  <?php echo $eligible_degrees; ?> students at <?php  echo $institution_title; ?>.     <?php if ($show_eligibility){ ?>
-Students need to meet the following requirements to be eligible: </p>
+    <p>  <b><a href="<?php echo get_permalink($id)?>"><?php echo  $scholarship_name; ?></a></b> is a  <?php echo  get_adjective_scholarship_amount($scholarship_category); ?> scholarship offered to  <?php echo $eligible_degrees; ?> students at <?php  echo $institution_title; ?>.     <?php if ($show_eligibility){ ?> Students need to meet the following requirements to be eligible: </p>
 
     <?php echo  get_scholarship_criteria_coverage($eligibility_criteria, "criteria", get_the_ID()); } ?>
     

@@ -235,10 +235,7 @@
                         
                         <?php // GS Institution Scholarships ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-scholarships.php'; ?>
-                        
-                        <?php // GS Institution Scholarships ?>
-                        <?php require get_stylesheet_directory() . '/components/single-institutions/institution-addon.php'; ?>
-                        
+
                         <?php // GS Institution Conclusion ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-conclusion.php'; ?>
                         
