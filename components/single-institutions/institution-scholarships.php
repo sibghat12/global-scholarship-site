@@ -144,7 +144,6 @@
                 <li>Scholarship Type: Partial Funding</li>
                 <li>Scholarship Amount: 1,000 USD</li>
                 <li>Degrees Offered : Bachelor's, Master’s, PhD</li>
-                <li>Application Deadline: June 14, 2024</li>
             </ul>
 
             <p>Offered by GlobalScholarships.com, incoming international students at [university name] can apply for this external scholarship. To be considered for this external award, you must meet the following eligibility requirements:</p>
