@@ -32,12 +32,12 @@
         <div class="gs-institution-tuition-fees-for-international-average">
             <?php if($average_international_bachelors > -1) : ?>
                 <?php if($average_international_bachelors > 0) : ?>
-                    <div class="gs-institution-tuition-fees-bachelors">
+                    <div class="gs-institution-tuition-fees-bachelors gs-institution-tuition-fees-item">
                         <h2><?php echo $average_international_bachelors .' '. $currency; ?></h2>
                         <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
                     </div>
                 <?php elseif($average_international_bachelors == 0 ) :  ?>
-                    <div class="gs-institution-tuition-fees-bachelors">
+                    <div class="gs-institution-tuition-fees-bachelors gs-institution-tuition-fees-item">
                         <h2>Free</h2>
                         <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
                     </div>
@@ -45,12 +45,12 @@
             <?php endif; ?>
             <?php if($average_international_masters > -1) : ?>
                 <?php if($average_international_masters > 0) : ?>
-            <div class="gs-institution-tuition-fees-masters">
+            <div class="gs-institution-tuition-fees-masters  gs-institution-tuition-fees-item">
                 <h2><?php echo $average_international_masters .' '. $currency; ?></h2>
                 <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
             </div>
             <?php elseif($average_international_bachelors == 0 ) :  ?>
-                <div class="gs-institution-tuition-fees-masters">
+                <div class="gs-institution-tuition-fees-masters gs-institution-tuition-fees-item">
                     <h2>Free</h2>
                 <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
                 </div>
