@@ -7232,6 +7232,7 @@ a.d-block.position-relative, a.d-block.position-relative img {
   margin-top:50px !important;
   padding-left:20px; 
   font-size:24px !important;
+
  }
 
 @media (min-width: 768px) and (max-width: 1360px) {
@@ -7247,3 +7248,4 @@ a.d-block.position-relative, a.d-block.position-relative img {
         bottom: 90px;
     }
 }
+
