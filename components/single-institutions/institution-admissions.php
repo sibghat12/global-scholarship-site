@@ -6,7 +6,7 @@
         </h2>
 
         <div class="gs-institution-admissions-text">
-            <p>If you’re planning to study at the <?php echo $institution_title; ?>, it’s important to familiarize yourself with the application process and requirements of the institution.<p>
+            <p>If you’re planning to study at the <?php echo $institution_title; ?>, it’s important to familiarize yourself with the application process and requirements of the institution.</p>
         
             <p>Each institution follows a unique application procedure, so you must be alert and updated on their latest announcements. Visit their official website occasionally and only utilize legitimate channels when submitting applications. Moreover, it is crucial to always take note of the essential details related to your admission in order to ensure a seamless application process.</p>
         
@@ -38,15 +38,17 @@
                     <div class="gs-institution-admissions-thumbnail-container">
                         <img class="gs-institution-admissions-thumbnail-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/institution-admissions.png" alt="Institution Admissions">
                     </div>
-                    <div class="gs-institution-admissions-text">
+                    <div class="gs-institution-admissions-box-text">
                     <?php
                     echo '<h2 class="gs-institution-admissions-degree">Bachelor\'s</h2>';
                     echo '<div class="gs-institution-admissions-links">';
+                    echo '<ul>';
                     foreach ($bachelors_links as $link) {
                         if (!empty($link['link'])) {
-                            echo '<a class="gs-institution-admissions-link" href="' . $link['link'] . '">' . $link['type'] . ' Students Admissions Page</a>';
+                            echo '<li><a class="gs-institution-admissions-link" href="' . $link['link'] . '">' . $link['type'] . ' Students Admissions Page</a></li>';
                         }
                     }
+                    echo '</ul>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -58,16 +60,18 @@
                     <div class="gs-institution-admissions-thumbnail-container">
                         <img class="gs-institution-admissions-thumbnail-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/institution-admissions.png" alt="Institution Admissions">
                     </div>
-                    <div class="gs-institution-admissions-text">
+                    <div class="gs-institution-admissions-box-text">
                     <?php
 
                     echo '<h2 class="gs-institution-admissions-degree">Master\'s</h2>';
                     echo '<div class="gs-institution-admissions-links">';
+                    echo '<ul>';
                     foreach ($masters_links as $link) {
                         if (!empty($link['link'])) {
-                            echo '<a class="gs-institution-admissions-link" href="' . $link['link'] . '">' . $link['type']  . ' Students Admissions Page</a>';
+                            echo '<li><a class="gs-institution-admissions-link" href="' . $link['link'] . '">' . $link['type']  . ' Students Admissions Page</a></li>';
                         }
                     }
+                    echo '</ul>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
