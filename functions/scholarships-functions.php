@@ -238,70 +238,7 @@ function convert_array_to_text($array_list ){
 //Get Currency Function
 
 function get_currency($country){
-    $currency_list = array(
-        "South Korea" => "KRW",
-        "Canada" => "CAD",
-        "China" => "RMB",
-        "Japan" => "Yen",
-        "New Zealand" => "NZD",
-        "United Kingdom" => "GBP",
-        "Australia" => "AUD", 
-        "Germany" => "Euros",
-        "Greece" => "Euros",
-        "Norway" => "NOK",
-        "Switzerland" => "CHF",
-        "United States" => "USD",
-        "Netherlands" => "Euros",
-        "France" => "Euros",
-        "Poland" => "PLN",
-        "Italy" => "Euros",
-        "Ireland" => "Euros",
-        "India" => "INR",
-        "Philippines" => "Pesos",
-        "South Africa" => "Rand",
-        "Spain" => "Euros",
-        "Portugal" => "Euros",
-        "Singapore" => "SGD",
-        "Russia" => "RUB",
-        "Czech Republic" => "CZK",
-        "Austria" => "Euros",
-        "Sweden" => "kr",
-        "Finland" => "Euros",
-        "Denmark" => "Danish Krone",
-        "Mexico" => "MXN",
-        "Brazil" => "Brazilian Real",
-        "Ukraine" => "UAH",
-        "Turkey" => "TRY",
-        "Taiwan" => "TWD",
-        "Indonesia" => "Rp",
-        "Belgium" => "Euros",
-        "Croatia" => "Euros",
-        "Romania" => "RON",
-        "Belarus" => "BYN",
-        "Hungary" => "HUF",
-        "Bosnia and Herzegovina" => "BAM",
-        "Albania" => "ALL",
-        "Kosovo" => "Euros",
-        "Estonia" => "Euros",
-        "Iceland" => "ISK",
-        "Slovenia" => "Euros",
-        "Brazil" => "Brazilian Real",
-        "Malta" => "Euros",
-        "Vietnam" => "VND",
-        "Thailand" => "THB",
-        "Sri Lanka" => "LKR",
-        "Nepal" => "NPR",
-        "Vatican City" => "Euros",
-        "Slovakia" => "Euros",
-        "Serbia" => "RSD",
-        "Cyprus" => "Euros",
-        "Lithuania" => "Euros",
-        "Luxembourg" => "Euros",
-        "Bulgaria" => "BGN",
-        "Qatar" => "QAR",
-        "Israel" => "NIS",
-        "Hong Kong" => "HKD",
-    );
+    $currency_list = country_currency_list();
     
     return $currency_list[$country];
 }
@@ -361,32 +298,51 @@ function get_adjective_scholarship_amount($text){
 // Output : Return Course string in such oder  : Course 1, Course 2 and Course 3.
 
 function get_formatted_courses($courses) {
-               
-               $courses_text = ""; $format_courses_text = "";
-               $counter = 0;
+            
+    $courses_text = ""; $format_courses_text = "";
+    $counter = 0;
 
-               if ($courses){
+    if ($courses){
 
-                if(sizeof($courses) > 3 ) {
-                    
-                foreach ($courses as $courses_name) {
-                    if($counter==3){
-                            break;
-                        }
-                    foreach($courses_name as  $val){
-                    $courses_text = $courses_text . $val . ", ";
-                    }
-                    $counter++;
+        if(sizeof($courses) > 3 ) {
+            
+        foreach ($courses as $courses_name) {
+            if($counter==3){
+                    break;
                 }
-                $courses_text = rtrim($courses_text , ' ,');
-                $format_courses_text = substr_replace($courses_text, ', and', strrpos($courses_text, ','), 1);
-                }
+            foreach($courses_name as  $val){
+            $courses_text = $courses_text . $val . ", ";
+            }
+            $counter++;
         }
+        $courses_text = rtrim($courses_text , ' ,');
+        $format_courses_text = substr_replace($courses_text, ', and', strrpos($courses_text, ','), 1);
+        }
+    }
 
-             return $format_courses_text;
+    return $format_courses_text;
         
-        }
+}
 
+// Pass Degrees array
+// Output : Return degree string in such oder  : degree 1, degree 2 and degree 3.
+
+function formatArrayToString($array) {
+    $count = count($array);
+    
+    if ($count === 0) {
+        return '';
+    } elseif ($count === 1) {
+        return $array[0];
+    } elseif ($count === 2) {
+        return $array[0] . ' and ' . $array[1];
+    } else {
+        $lastElement = array_pop($array);
+        $string = implode(', ', $array);
+        $string .= ', and ' . $lastElement;
+        return $string;
+    }
+}
 
 
 /* Deleted this because I would like the all the degrees to show now. 
@@ -4584,3 +4540,80 @@ function institutions_without_scholarships_list( $atts ){
     echo "</ol>";
 }
 add_shortcode( 'institutions-without-scholarships', 'institutions_without_scholarships_list' );
+
+function country_currency_list() {
+    $currency_list = array(
+        "South Korea" => "KRW",
+        "Canada" => "CAD",
+        "China" => "RMB",
+        "Japan" => "Yen",
+        "New Zealand" => "NZD",
+        "United Kingdom" => "GBP",
+        "Australia" => "AUD", 
+        "Germany" => "Euros",
+        "Greece" => "Euros",
+        "Norway" => "NOK",
+        "Switzerland" => "CHF",
+        "United States" => "USD",
+        "Netherlands" => "Euros",
+        "France" => "Euros",
+        "Poland" => "PLN",
+        "Italy" => "Euros",
+        "Ireland" => "Euros",
+        "India" => "INR",
+        "Philippines" => "Pesos",
+        "South Africa" => "Rand",
+        "Spain" => "Euros",
+        "Portugal" => "Euros",
+        "Singapore" => "SGD",
+        "Russia" => "RUB",
+        "Czech Republic" => "CZK",
+        "Austria" => "Euros",
+        "Sweden" => "kr",
+        "Finland" => "Euros",
+        "Denmark" => "Danish Krone",
+        "Mexico" => "MXN",
+        "Brazil" => "Brazilian Real",
+        "Ukraine" => "UAH",
+        "Turkey" => "TRY",
+        "Taiwan" => "TWD",
+        "Indonesia" => "Rp",
+        "Belgium" => "Euros",
+        "Croatia" => "Euros",
+        "Romania" => "RON",
+        "Belarus" => "BYN",
+        "Hungary" => "HUF",
+        "Bosnia and Herzegovina" => "BAM",
+        "Albania" => "ALL",
+        "Kosovo" => "Euros",
+        "Estonia" => "Euros",
+        "Iceland" => "ISK",
+        "Slovenia" => "Euros",
+        "Brazil" => "Brazilian Real",
+        "Malta" => "Euros",
+        "Vietnam" => "VND",
+        "Thailand" => "THB",
+        "Sri Lanka" => "LKR",
+        "Nepal" => "NPR",
+        "Vatican City" => "Euros",
+        "Slovakia" => "Euros",
+        "Serbia" => "RSD",
+        "Cyprus" => "Euros",
+        "Lithuania" => "Euros",
+        "Luxembourg" => "Euros",
+        "Bulgaria" => "BGN",
+        "Qatar" => "QAR",
+        "Israel" => "NIS",
+        "Hong Kong" => "HKD",
+    );
+
+    return $currency_list;
+}
+
+function has_usd_currency($country){
+    $currency_list = country_currency_list();
+
+    $currency = $currency_list[$country] ?? null; // Get the currency for the given country
+
+    return ($currency === "USD"); // Check if the currency is USD
+}
