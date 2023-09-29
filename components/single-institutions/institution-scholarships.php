@@ -129,7 +129,7 @@
     </div>
     <?php else: ?>
 
-    <div id="no-institution-scholarships" class="gs-institution-no-scholarships">
+    <div id="institution-scholarships" class="gs-institution-no-scholarships">
         <h2 class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</h2>
         <p>Even though <?php echo $institution_title ?> does not offer scholarships to international students, you can still fund your education in <?php echo $country_name; ?>. As an international student, you are eligible to receive funding from organizations and the government of <?php echo $city_name . ", " . $country_name; ?>. There are plenty of funding opportunities for international students ensuring ample opportunities for financial support; feel free to check out <a href="<?php echo site_url(); ?>/best-government-scholarships/">all available governmental funding opportunities available </a>to international students pursuing a higher education degree abroad.</p>
         

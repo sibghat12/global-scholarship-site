@@ -252,7 +252,7 @@
             </a>
         <?php endif; ?>
         <?php if (isset($tuition_fee) && !empty($tuition_fee)) : 
-             if($ibl > -1 && $iml > -1 && $imu > -1 && $ibu > -1 ) : ?>
+             if($ibl > -1 || $iml > -1 || $imu > -1 || $ibu > -1 ) : ?>
             <a class="institution-tuition-fees-item institution-panel-item" href="#institution-tuition-fees">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
@@ -322,7 +322,6 @@
             </a>
         <?php endif;
             endif; ?>
-        <?php if( $undergraduate_list ||$graduate_list ) : ?>
             <a class="institution-scholarships-item institution-panel-item" href="#institution-scholarships">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
@@ -610,6 +609,5 @@
                 </svg>
                 Scholarships
             </a>
-        <?php endif; ?>
     </div>
 </nav>
