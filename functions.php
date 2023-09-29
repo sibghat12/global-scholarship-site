@@ -4351,10 +4351,80 @@ function new_update_meta_location() {
 }
 add_action('new_update_meta_location', 'new_update_meta_location');
 
+// Get Page ID by Page Slug (used in set_tags_to_articles_by_topic_posts)
+function get_id_by_slug($page_slug) {
+    $page = get_page_by_path($page_slug);
+    if ($page) {
+        return $page->ID;
+    } else {
+        return null;
+    }
+} 
+
+// Get Articles By Topic and Set posts tags based on those set Article Topics
+function set_tags_to_articles_by_topic_posts() {
+    global $wpdb;
+    
+    $tables_titles = array();
+
+    $tables_urls = array();
+    
+    $articles_by_topic_page_id = get_id_by_slug('articles-by-topic');
+
+    $ArticleTopics = get_field('article_topics', $articles_by_topic_page_id);
+
+    $articlesByTopic = array();
+    
+    foreach($ArticleTopics as $ArticleTopic) {
+
+        foreach($ArticleTopic as $ArticleTopicItem) {
+            $articlesByTopic[$ArticleTopicItem['topic_title']] = $ArticleTopicItem['topic_urls'];
+            
+            array_push($tables_titles, $ArticleTopicItem['topic_title']);
+            array_push($tables_urls, $ArticleTopicItem['topic_urls']);
+        }
+    }
+    foreach ($articlesByTopic as $articleTopicTitle => $articleByTopicURL) {
+        // Extract category slug from URL (if present)
+        $url_path_parts = explode('/', $articleByTopicURL);
+
+        $category_slug = '';
+        if (count($url_path_parts) >= 2 && $url_path_parts[0] == 'category') {
+            $category_slug = $url_path_parts[1];
+            
+            if(!empty($category_slug)) {
+                $category_slugs[] = $category_slug;
+            }
+            $category_slugs = array_unique (array_merge ($category_slugs));
+        }
 
 
+        // Select ID, post_title, date from WordPress database wpdb
+        $query = "SELECT ID, post_title, post_date, post_name FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND (";
+        if ($category_slug) {
+            $query .= "ID IN (SELECT object_id FROM $wpdb->term_relationships WHERE term_taxonomy_id IN (SELECT term_taxonomy_id FROM $wpdb->term_taxonomy WHERE taxonomy = 'category' AND term_id IN (SELECT term_id FROM $wpdb->terms WHERE slug = '$category_slug'))) OR ";
+        }
+        $query .= "post_name LIKE '%" . $articleByTopicURL . "%') ORDER BY post_date DESC";
+    
+        $myposts = $wpdb->get_results($query);
+        $thePosts[$articleTopicTitle] = $myposts;
+    }
 
+    if (!empty($thePosts)) {
+        foreach ($thePosts as $postCollectionTitle => $postIdCollection) {
 
+            foreach($postIdCollection as $post) {
+                 // Check if the post already has tags
+                 $post_tags = wp_get_post_tags($post->ID);
+                 if (empty($post_tags)) {
+                     wp_set_post_tags($post->ID, array($postCollectionTitle), false);
+                 }
+            }
+        }
+    }
+}
+
+add_action('set_tags_to_articles_by_topic_posts', 'set_tags_to_articles_by_topic_posts');
 
 
 
