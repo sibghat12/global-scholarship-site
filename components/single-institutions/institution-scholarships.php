@@ -16,8 +16,6 @@
             ?>
             <p>Are you planning to take up a Bachelor’s degree abroad? Then one of the first things you can do is look for scholarship opportunities to apply to. <?php echo $institution_title; ?> is wide-arms open to incoming undergraduate students who want to become international students. The following are the currently available undergraduate scholarships at the institution:</p>
             <?php
-        
-            if (in_array("Bachelor's", $degrees)) {
                 echo "<ul>";
                     foreach($undergraduate_list as $undergraduate_scholarship) :
                     ?>
@@ -26,7 +24,6 @@
                     <?php
                     endforeach;
                 echo "</ul>";
-            }
             ?>
         </div>
 
