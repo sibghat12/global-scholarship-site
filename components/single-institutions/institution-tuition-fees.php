@@ -49,7 +49,7 @@
                 <h2><?php echo $average_international_masters .' '. $currency; ?></h2>
                 <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
             </div>
-            <?php elseif($average_international_bachelors == 0 ) :  ?>
+            <?php elseif($average_international_masters == 0 ) :  ?>
                 <div class="gs-institution-tuition-fees-masters gs-institution-tuition-fees-item">
                     <h2>Free</h2>
                 <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
