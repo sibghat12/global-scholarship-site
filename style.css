@@ -4087,7 +4087,7 @@ input[type="submit"] {
 
 .single-institution .gs-institution-overview-box {
     background-color: #EAF4FB;
-    padding: 40px 60px 80px 60px;
+    padding: 20px;
     border-radius: 20px;
     margin-bottom: 30px;
 }
@@ -4097,7 +4097,7 @@ input[type="submit"] {
     font-size: 2.6rem;
     font-weight: 700;
     text-align: center;
-    line-height: 2.5rem;
+    line-height: 2.9rem;
 }
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institutions-breadcrumbs {
     text-align: center;
@@ -4417,8 +4417,18 @@ input[type="submit"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
     font-family: 'Roboto', sans-serif;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-item {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+    padding-right: 10px;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors {
@@ -4479,6 +4489,10 @@ input[type="submit"] {
     border-radius: 22px;
     padding: 24px;
     margin: 30px 0px 16px 0px;
+}
+
+.single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container ul {
+    margin-left: 40px;
 }
 
 .single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container ul li {
@@ -4544,7 +4558,7 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container ul {
-    margin-left: 20px !important;
+    margin-left: 46px !important;
 }
 
 
@@ -6093,9 +6107,15 @@ input[type="submit"] {
         margin: 1.2rem 0;
     }
 
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-icon svg {
+        max-height: 30px !important;
+        width: 50px !important;
+    }
+
     .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data .gs-institution-data-title {
         text-align: left !important;
         font-size: 1rem;
+        line-height: 1.2rem !important;
     }
 
     .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses {
@@ -6140,7 +6160,7 @@ input[type="submit"] {
     }
 
     .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box {
-        width: 98% !important;
+        width: 94% !important;
         margin: 0 auto;
         padding: 20px !important;
     }
@@ -6156,7 +6176,7 @@ input[type="submit"] {
     }
 
     .single-institution .gs-institution-overview-box {
-        padding: 25px 10px 20px 10px;
+        padding: 15px 5px 15px 5px;
         border-radius: 20px;
     }
 
@@ -6171,23 +6191,57 @@ input[type="submit"] {
     .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary {
         display: flex;
         justify-content: flex-start;
-        flex-direction: column;
-        align-items: start;
+        flex-direction: row;
+        align-items: center;
         gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        gap: 8px;
+        flex: 1 1 0px;
+        padding: 10px;
     }
 
     .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item + .gs-institution-summary-item {
         border-left: none;
     }
 
+    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
+        padding: 10px !important;
+    }
+
     .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
         width: 100%;
         max-width: 100%;
+        font-size: 1rem !important;
+        padding: 0px 10px;
     }
 
     .single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container h3 { 
         font-size: 1.5rem !important;
         line-height: 1.6rem !important;
+    }
+
+    .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average {
+        max-width: 500px;
+    }
+
+    .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-item h2 {
+        font-size: 1.3rem !important;
+    }
+
+    .single-institution #main .gs-institution-scholarships .gs-institution-graduate {
+        max-width: 94% !important;
+    }
+
+    .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container {
+        margin-right: 15px;
+        margin-left: 15px;
     }
 }
 
@@ -6870,14 +6924,18 @@ justify-content: flex-start;
 
 
 @media (max-width: 600px) {
-#courses-flipcard .col-md-4  {
-    width:92% !important;
-    margin-top:20px !important;
-    margin-right:2%!important;
-    float:left !important;
-    margin-left:0px !important;
-    margin-bottom:40px !important;
-}
+    #courses-flipcard .col-md-4  {
+        width:92% !important;
+        margin-top:20px !important;
+        margin-right:2%!important;
+        float:left !important;
+        margin-left:0px !important;
+        margin-bottom:40px !important;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item {
+        justify-content: center;
+    }
 }
 
 
@@ -7246,6 +7304,17 @@ a.d-block.position-relative, a.d-block.position-relative img {
     [aria-labelledby="awb-to-top-label"].to-top-right #toTop {
         right: 25px;
         bottom: 90px;
+    }
+
+    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
+        flex-direction: column !important;
+    }
+
+    .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary {
+        display: flex;
+        justify-content: center;
+        flex-direction: column !important;
+        align-items: flex-start !important;
     }
 }
 

@@ -10,6 +10,16 @@
     
     $city = get_post(get_field('cities'));
     $city_name = get_the_title($city);
+    // Check if city contains a comma (,)
+    if (strpos($city_name, ',') !== false) {
+        
+        // Split the string by comma
+        $parts = explode(',', $city_name);
+    
+        // Remove the word after the comma
+        $city_name = trim($parts[0]);
+    }
+    
     $country_name = get_post_meta($city->ID, 'country', TRUE);
     $current_currency = get_currency($country_name);
 
