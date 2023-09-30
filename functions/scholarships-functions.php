@@ -3456,36 +3456,42 @@ function update_post_institutions() {
 
 
 function update_open_dates() {
-    // Query all institution custom post types
-    $args = [
-        'post_type' => 'institution', // Replace 'institution' with your custom post type name
-        'posts_per_page' => -1,
-         'post_status' => 'publish'
-    ];
-    $query = new WP_Query($args);
+    $batch_size = 10; // Fetch 100 posts at a time
+    $paged = 1; // Start at the first page
 
-    // Loop through all institution custom post types and update the open dates
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $post_id = get_the_ID();
+    do {
+        $args = array(
+            'post_type' => 'institution',
+            'no_found_rows' => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+            'cache_results' => false,
+            'fields' => 'ids',
+            'posts_per_page' => $batch_size,
+            'paged' => $paged, // This enables the batching
+            'post_status' => 'publish',
+        );
 
+        $query = new WP_Query($args);
+
+        if (!$query->have_posts()) {
+            break; // Exit the loop if there are no posts
+        }
+
+        foreach ($query->posts as $post_id) {
             if (have_rows('admission_deadlines', $post_id)) {
                 $row_index = 1;
                 while (have_rows('admission_deadlines', $post_id)) {
                     the_row();
 
-                    // Get the admission deadlines data from the ACF repeater field row and than update it 
                     $deadline = get_sub_field('deadline');
                     $open_date = get_sub_field('open_date');
 
-                    // Update the open dates if open_date is empty and deadline is not
                     if (empty($open_date) && !empty($deadline)) {
                         $deadline_date = DateTime::createFromFormat('F j, Y', $deadline);
                         $deadline_date->sub(new DateInterval("P3M")); // Subtract 3 months
                         $new_open_date = $deadline_date->format('F j, Y');
 
-                        // Update the row with the new open_date
                         update_row('admission_deadlines', $row_index, [
                             'deadline' => $deadline,
                             'open_date' => $new_open_date
@@ -3495,13 +3501,15 @@ function update_open_dates() {
                 }
             }
         }
-    }
 
-    // Reset the post data
-    wp_reset_postdata();
+        wp_cache_flush(); // Clear the WordPress object cache
+        $paged++; // Move on to the next batch
+
+    } while (true); // Keep running until there are no posts left
 }
 
-//add_action('init', 'update_open_dates');
+
+add_action('init', 'update_open_dates');
 
 
 function calculate_resulted_posts() {
@@ -4617,3 +4625,7 @@ function has_usd_currency($country){
 
     return ($currency === "USD"); // Check if the currency is USD
 }
+
+
+
+
