@@ -68,11 +68,18 @@
                         $varied_text = "";
                     }
 
+                    if(!empty($admission_deadline['label'])) {
+                        $admission_label = " (" . $admission_deadline['label'] . ")";
+                    } else {
+                        $admission_label = "";
+                    }
+                    
+
                     $application_text = '';
                     if ($application_all_year == "Yes"){
                         $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline</a>: Accepts Application All Year" ;
                     } else if ($application_all_year == "No"){
-                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline (" . $admission_deadline['label'] . ")</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
+                        $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline$admission_label</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
                     }
                     
                     ?>

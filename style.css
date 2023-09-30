@@ -3527,7 +3527,7 @@ padding-left:0px !important;
 
 /* Scholarships Page Deadline */
 .single-scholarships .post-content .gs-scholarship-deadline .deadline-item {
-    display: inline-block;
+    display: inline;
     margin-bottom: 10px;
 }
 
