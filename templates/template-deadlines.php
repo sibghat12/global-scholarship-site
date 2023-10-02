@@ -38,6 +38,7 @@ $country = ucwords($country);
             ?>
             <thead>
                 <tr>
+                    <th class="th-title">Opening Date</th>
                     <th class="th-title">Deadline</th>
                     <th class="th-title">Last Updated</th>
                     <th class="th-title">University/Scholarship Name</th>
@@ -65,6 +66,8 @@ $country = ucwords($country);
             if(isset($institution_admissions_deadlines) && !empty($institution_admissions_deadlines)) :
                 foreach($institution_admissions_deadlines as $institution_admissions_deadline) {
                     echo "<tr>";
+                    $institution_accept_all_year = $institution_admissions_deadline['accepts_application_all_year_round'];
+                    $institution_opening_date = $institution_admissions_deadline['open_date'];
                     $institution_deadline = $institution_admissions_deadline['deadline'];
                     $institution_last_updated = get_the_modified_date('', $gs_single_institution);
                     $institution_label = $institution_admissions_deadline['label'];
@@ -78,11 +81,25 @@ $country = ucwords($country);
 
                     $institution_author_name = $author->display_name;
 
-                    if( isset($institution_deadline) && !empty( $institution_deadline) ) :
-                        echo "<td>" . $institution_deadline ."</td>";
-                    else:
-                        echo "<td></td>";
-                    endif;
+                    if($institution_accept_all_year == 'No') {
+                        if(isset($institution_opening_date) && !empty($institution_opening_date)) {
+                            echo "<td>" . $institution_opening_date . "</td>";
+                        } else {
+                            echo "<td></td>";
+                        }
+                    } elseif($institution_accept_all_year == 'Yes') {
+                        echo "<td>" ."OPEN ALL YEAR" . "</td>";
+                    }
+
+                    if($institution_accept_all_year == 'No') {
+                        if(isset($institution_deadline) && !empty($institution_deadline)) {
+                            echo "<td>" . $institution_deadline . "</td>";
+                        } else {
+                            echo "<td></td>";
+                        }
+                    } elseif($institution_accept_all_year == 'Yes') {
+                        echo "<td>" ."OPEN ALL YEAR" . "</td>";
+                    }
                     if( isset($institution_last_updated) && !empty( $institution_last_updated) ) :
                         echo "<td>" . $institution_last_updated ."</td>";
                     else:
@@ -132,6 +149,7 @@ $country = ucwords($country);
 
                         foreach($scholarship_deadlines as $scholarship_deadline) {
 
+                            $the_scholarship_opening_date = $scholarship_deadline['open_date'];
                             $the_scholarship_deadline = $scholarship_deadline['deadline'];
                             $the_scholarship_label = $scholarship_deadline['label'];
                             $the_scholarship_degree = $scholarship_deadline['degree'];
@@ -151,6 +169,11 @@ $country = ucwords($country);
 
                         echo "<tr>";
     
+                        if( isset($the_scholarship_opening_date) && !empty( $the_scholarship_opening_date) ) :
+                            echo "<td>" . $the_scholarship_opening_date ."</td>";
+                        else:
+                            echo "<td></td>";
+                        endif;
                         if( isset($the_scholarship_deadline) && !empty( $the_scholarship_deadline) ) :
                             echo "<td>" . $the_scholarship_deadline ."</td>";
                         else:
