@@ -3509,7 +3509,7 @@ function update_open_dates() {
 }
 
 
-add_action('init', 'update_open_dates');
+add_action('update_open_dates', 'update_open_dates');
 
 
 function calculate_resulted_posts() {

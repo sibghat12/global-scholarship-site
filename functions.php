@@ -3363,61 +3363,52 @@ function get_the_last_modified_user_name($id) {
 }
 
 
-
-
-
-
-
-function cta_shortcode($atts) {
+// function cta_shortcode($atts) {
     
-    // Get the ACF fields
-    $cta_details  = acf_get_fields('group_64ecee859ce7e');
-    $title_array = array_column($cta_details, null, 'name')['title'];
-    $default_title = $title_array["default_value"];
+//     // Get the ACF fields
+//     $cta_details  = acf_get_fields('group_64ecee859ce7e');
+//     $title_array = array_column($cta_details, null, 'name')['title'];
+//     $default_title = $title_array["default_value"];
 
-    $description_array = array_column($cta_details, null, 'name')['description'];
-    $default_description = $description_array["default_value"];
+//     $description_array = array_column($cta_details, null, 'name')['description'];
+//     $default_description = $description_array["default_value"];
 
-    $image_array = array_column($cta_details, null, 'name')['image_link'];
-    $default_image = $image_array["default_value"];
+//     $image_array = array_column($cta_details, null, 'name')['image_link'];
+//     $default_image = $image_array["default_value"];
 
-    $link_array = array_column($cta_details, null, 'name')['link_url'];
-    $default_link = $link_array["default_value"];
+//     $link_array = array_column($cta_details, null, 'name')['link_url'];
+//     $default_link = $link_array["default_value"];
+//     $args = shortcode_atts(array(
+//         'title' => $default_title,  // Use the ACF default title
+//         'desc' => $default_description, // Provide a default description
+//         'img_url' => $default_image, // Provide a default image URL
+//         'link_url' =>  $default_link, // Provide a default link URL for Apply now
+//     ), $atts);
 
-
-
-    
-    $args = shortcode_atts(array(
-        'title' => $default_title,  // Use the ACF default title
-        'desc' => $default_description, // Provide a default description
-        'img_url' => $default_image, // Provide a default image URL
-        'link_url' =>  $default_link, // Provide a default link URL for Apply now
-    ), $atts);
-
-    // Construct the output
-    $output = '<div class="container mt-5 cta-container">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div class="row">
+//     // Construct the output
+//     $output = '<div class="container mt-5 cta-container">
+//     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+//         <div class="row">
           
-            <div class="col-md-4 col-sm-12 text-center ">
-                <img src="' . esc_url($args['img_url']) . '" alt="Description" class="img-fluid cta-image">
+//             <div class="col-md-4 col-sm-12 text-center ">
+//                 <img src="' . esc_url($args['img_url']) . '" alt="Description" class="img-fluid cta-image">
                 
-            </div>
+//             </div>
             
           
-            <div class="col-md-8 col-sm-12">
-                <h2 style="font-size:30px;">' . esc_html($args['title']) . '</h2>
-                <p>' . esc_html($args['desc']) . '</p>
-                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="width:200px;color:#0055F9 !important;">   Apply now   <i style="margin-top:3px;width:20px;margin-left:5px;color:#0055F9 !important;" class="fa fa-long-arrow-right"> </i> </a>
-            </div>
-        </div>
-    </div>';
+//             <div class="col-md-8 col-sm-12">
+//                 <h2 style="font-size:30px;">' . esc_html($args['title']) . '</h2>
+//                 <p>' . esc_html($args['desc']) . '</p>
+//                 <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="width:200px;color:#0055F9 !important;">   Apply now   <i style="margin-top:3px;width:20px;margin-left:5px;color:#0055F9 !important;" class="fa fa-long-arrow-right"> </i> </a>
+//             </div>
+//         </div>
+//     </div>';
 
-    return $output;
-}
+//     return $output;
+// }
 
-// Register the shortcode
-add_shortcode('cta_shortcode', 'cta_shortcode');
+// // Register the shortcode
+// add_shortcode('cta_shortcode', 'cta_shortcode');
 
 
 
@@ -3437,9 +3428,6 @@ function cta_post_shortcode($atts) {
     $link_array = array_column($cta_details, null, 'name')['link_url'];
     $default_link = $link_array["default_value"];
 
-
-    https://env-globalscholarshipsa-sibi.kinsta.cloud/best-fashion-schools-germany/
-    
     $args = shortcode_atts(array(
         'title' => $default_title,  // Use the ACF default title
         'desc' => $default_description, // Provide a default description
@@ -3448,33 +3436,23 @@ function cta_post_shortcode($atts) {
     ), $atts);
 
     // Construct the output
-    $output = '<div class="container mt-5 cta-container">
-    
+    $output = '<div class="post-cta-section">
+               <div class="container mt-5 cta-container">
+               <div class="row">
 
+               <div class="col-md-9 col-sm-12">
+                <h2>' . esc_html($args['title']) . '</h2>
+                <p id="cta-text">' . esc_html($args['desc']) . '</p>
+               </div>
 
-        <div class="row" style="padding:16px;">
-          
-           
-            
-
-
-          
-            <div class="col-md-9 col-sm-12">
-                <h2 style="font-size:22px;padding-left:0px;margin-bottom:0px;">' . esc_html($args['title']) . '</h2>
-                <p style="color:#808080;padding-left:0px;font-size:18px;line-height:23px;">' . esc_html($args['desc']) . '</p>
-                
-            </div>
-
-             <div class="col-md-3 col-sm-12 text-center ">
-
-                <a class="apply-now" href="' . esc_url($args['link_url']) . '" style="color:white !important;
-                width:100% !important;padding-left:40px !important;padding-right:40px !important;float:leftbox-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);width:200px !important;">   Apply now  </a>
-                
-            </div>
+            <div class="col-md-3 col-sm-12 text-center ">
+            <a class="apply-now"  id="cta-apply-now" href="' . esc_url($args['link_url']) . '">   Apply now  </a>
+           </div>
 
 
         </div>
-    </div>';
+       </div> 
+        </div>';
 
     return $output;
 }

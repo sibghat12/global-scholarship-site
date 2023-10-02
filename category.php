@@ -84,17 +84,17 @@ endif;
 
 
 
-<div class="clearfix" style="margin-top:70px;"> </div>
+<div class="clearfix> </div>
 
 <div class="recent-post-cta">
 
     <div class="first-column">
 
     <div class="cta-text">
-        <h2 style="padding-left:0px;">Search thousands of scholarships with GlobalScholarships.com!</h2>
+        <h2 class="heading-text">Search thousands of scholarships with GlobalScholarships.com!</h2>
         <p>Go through our scholarship database to find scholarships that best fits you!
 </p>
-        <a href="<?php echo site_url() ?>/scholarship-search/" class="cta-button" style="color:white !important;">Search for Scholarships! </a>
+        <a href="<?php echo site_url() ?>/scholarship-search/" class="cta-button">Search for Scholarships! </a>
     </div>
 
 </div>

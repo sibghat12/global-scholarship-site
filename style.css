@@ -6581,121 +6581,112 @@ nav .fusion-title-heading {
 }
 
 
+/* === Start: Styling For the CTA button === */
 
 
-
-.cta-container {
+.post-cta-section .cta-container {
     background: #E7F2FE;
-    width:100% !important;
-    margin:40px;
-    margin-left:20px !important;
+    width: 100%;
+    margin: 40px;
+    margin-left: 20px;
     box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.4);
-     border-top-right-radius: 25px;
+    border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-radius: 16px;
-
 }
 
-.cta-container .row {
+
+.post-cta-section .row {
+    padding: 16px;
     display: flex;
-    align-items: center; /* This will vertically center the contents of the flex children */
+    align-items: center;
 }
 
 
-
-
-
-.cta-container .col-md-4{
-    padding-left:0px;
-}
-
- .cta-container .col-md-8 p {
-padding-bottom: 0px !important;
-font-size:16px !important;
-line-height: 22px !important;
- }
-
-.cta-container h2 {
-margin-bottom:5px;
-font-size:40px;
-padding-top:0px ;
-}
-
-.cta-container p {
- color:#858585;
- line-height: 28px;
+.post-cta-section h2 {
+    padding-top: 10px;
+    font-size: 22px;
+    padding-left: 0px;
+    margin-bottom: 0px;
 }
 
 
+.post-cta-section #cta-text {
+    padding-left: 0px;
+    color: #858585;
+    line-height: 28px;
+}
 
-.cta-container .apply-now {
-    padding-left: 15px;
+
+#main .post-cta-section #cta-apply-now {
     font-size: 18px;
-    color:white !important;
-    background: #DD4B39 !important;
-    padding:12px !important;
-    font-weight: 500 !important;
-    border-radius: 25px !important;
-    width:200px !important;
-    text-align: center !important;
-    text-decoration: none !important;
-     
+    font-weight: 500;
+    background: #DD4B39;
+    color: white !important;
+    padding: 12px 40px;
+    width: 200px !important;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), 
+                var(--tw-ring-shadow, 0 0 #0000), 
+                var(--tw-shadow);
 }
 
-.cta-container .apply-now:hover {
-     color:white !important;
-    }
+
+#main .post-cta-section #cta-apply-now:hover {
+    color: white !important;
+}
+
 
 @media (max-width: 1100px) {
-.cta-container {
- width:92% !important; 
- }
+    .post-cta-section .cta-container {
+        width: 92% !important;
+    }
 
- .cta-container .col-md-8 {
-    padding-left:0px;
- }
+    .post-cta-section .cta-container .col-md-8 {
+        padding-left: 0px;
+    }
+}
 
+
+@media (max-width: 1000px) {
+    .post-cta-section .cta-container .row {
+        display: inline;
+        align-items: center;
+    }
+
+    .post-cta-section .cta-container {
+        padding: 0px 20px 0px 25px !important;
+        border-radius: 10px;
+    }
+
+    .post-cta-section .cta-container .col-md-3 {
+        margin: 0px 0px 30px 0px;
+    }
+
+    #main .post-cta-section #cta-apply-now {
+        margin-bottom: 20px;
+    }
 }
 
 
 @media (max-width: 767px) { 
-.cta-container .col-md-4 {
-    display: none !important;
+    .post-cta-section .cta-container {
+        padding: 40px 20px 40px 25px !important;
+        border-radius: 10px;
+    }
 }
 
-.cta-container{
-padding-top:40px;
-padding-bottom:40px;
-padding-right:20px !important;
-padding-left:25px !important;
-
-border-radius: 10px;
-}
-
-}
-
-
-
-@media (max-width: 1000px) {
-.cta-container .row {
-    display: inline;
-    align-items: center; /* This will vertically center the contents of the flex children */
-}
-.cta-container{
-padding-top:0px;
-padding-bottom:0px;
-padding-right:20px !important;
-padding-left:25px !important;
-
-border-radius: 10px;
-}
-}
+/* === End: Styling For the CTA button === */
 
 
 
 
 
-/* Related Courses For Gs  */ 
+
+/* Related Courses  Grid For Gs  */ 
 
 .courses-grid {
     padding-left:20px !important;
@@ -6906,7 +6897,7 @@ justify-content: flex-start;
 }
 
 @media (max-width: 1100px) {
-.cta-container .col-md-3 {
+#courses-flipcard .cta-container .col-md-3 {
     margin-top:30px;
     margin-bottom:20px;
 }
@@ -7169,10 +7160,18 @@ justify-content: flex-start;
 
 }
 
+.recent-divider{
+    margin-top:70px !important;
+}
 
 
+.recent-post-cta .heading-text{
+padding-left:0px;
+}
 
-
+#main  a.cta-button {
+   color:white !important;
+}
 
 /* Adjust the links to cover the whole area of the containing div */
 a.d-block.position-relative {
@@ -7219,6 +7218,7 @@ a.d-block.position-relative span {
 }
 
 .custom-gutter {
+    margin-top:20px;
     margin-left: -15px;
     margin-right: -15px;
 }
@@ -7261,6 +7261,10 @@ a.d-block.position-relative span {
     margin-left:5px;
     margin-right:5px;
     color:black !important;
+}
+
+#main .landing-breadcrumb .item {
+   color:black !important;
 }
 
 /* Elegant Hover Effect */
