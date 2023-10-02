@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-<div class="container mt-4 custom-gutter" style="margin-top:20px">
+<div class="container mt-4 custom-gutter">
 
     <div class="landing-breadcrumb">
-        <a href="" style="color:black !important">Home</a> >
-        <a href="" style="color:black !important">Guides</a>
+        <a href="" class="item" >Home</a> >
+        <a href="" class="item">Guides</a>
     </div>
 
     <div class="row mt-4" style="margin-top:0px;">
