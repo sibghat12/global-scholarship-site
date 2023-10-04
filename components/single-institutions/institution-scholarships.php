@@ -140,7 +140,7 @@
                 <li>Degrees Offered : Bachelor's, Master’s, PhD</li>
             </ul>
 
-            <p>Offered by GlobalScholarships.com, incoming international students at [university name] can apply for this external scholarship. To be considered for this external award, you must meet the following eligibility requirements:</p>
+            <p>Offered by GlobalScholarships.com, incoming international students at <?php echo $institution_title ?> can apply for this external scholarship. To be considered for this external award, you must meet the following eligibility requirements:</p>
 
             <ul>
                 <li>You must be an international student, that is, you cannot be a citizen or a permanent resident of a country that you will be studying in Fall 2024.</li>
