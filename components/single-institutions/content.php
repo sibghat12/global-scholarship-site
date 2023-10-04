@@ -35,10 +35,10 @@
     $currencyUSD = 'USD';
 
     //  the convert from local currency to USD
-    $iblUSD = number_format(roundNearestHundreth(convert_to_usd($ibl, $current_currency)));
-    $ibuUSD = number_format(roundNearestHundreth(convert_to_usd($ibu, $current_currency)));
-    $imuUSD = number_format(roundNearestHundreth(convert_to_usd($imu, $current_currency)));
-    $imlUSD = number_format(roundNearestHundreth(convert_to_usd($iml, $current_currency)));  
+    $iblUSD = ($ibl > 0) ? number_format(roundNearestHundreth(convert_to_usd($ibl, $current_currency))) : 0;
+    $ibuUSD = ($ibu > 0) ? number_format(roundNearestHundreth(convert_to_usd($ibu, $current_currency))) : 0;
+    $imuUSD = ($imu > 0) ? number_format(roundNearestHundreth(convert_to_usd($imu, $current_currency))) : 0;
+    $imlUSD = ($iml > 0) ? number_format(roundNearestHundreth(convert_to_usd($iml, $current_currency))) : 0;  
 
 
     if (get_field("tuition_fee_international_lower") == -1){
