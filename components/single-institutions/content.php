@@ -263,7 +263,7 @@
 
                     </div>
   
-                    <?php // GS Institution Navigation ?>
+                    <?php // GS Institution Newsletter ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/newsletter.php'; ?>
 
                 </div>
