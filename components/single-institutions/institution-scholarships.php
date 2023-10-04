@@ -2,9 +2,9 @@
     $degrees = get_field('eligible_degrees');
 
 ?>
-    <div id="institution-scholarships" class="gs-institution-scholarships">
+    <div id="scholarships" class="gs-institution-scholarships">
 
-        <h2 class="gs-institution-scholarships-title"><?php echo $institution_title ?> Scholarships for International Students</h2>
+        <p class="gs-institution-scholarships-title"><?php echo $institution_title ?> Scholarships for International Students</p>
         <?php if($number_of_scholarships > 0) { ?>
         <div class="gs-institution-scholarships-text">
         <?php
@@ -12,7 +12,7 @@
                 ?>
                 <div class="gs-institution-scholarships-subtext">
                 <?php
-                echo  "<h2> Undergraduate Scholarships </h2>";
+                echo  "<h3 class='gs-institution-scholarships-heading'> Undergraduate Scholarships </h3>";
             ?>
             <p>Are you planning to take up a Bachelor’s degree abroad? Then one of the first things you can do is look for scholarship opportunities to apply to. <?php echo $institution_title; ?> is wide-arms open to incoming undergraduate students who want to become international students. The following are the currently available undergraduate scholarships at the institution:</p>
             <?php
@@ -69,7 +69,7 @@
             <div class="gs-institution-scholarships-text">
                 <div class="gs-institution-scholarships-subtext">
                     <?php
-                    echo  "<h2> Graduate Scholarships </h2>"; 
+                    echo  "<h3 class='gs-institution-scholarships-heading'> Graduate Scholarships </h3>"; 
                     ?>
                     <p>International postgraduate students are eligible to various scholarships being offered at the <?php echo$institution_title; ?>. Make sure to review the requirements and deadlines in each scholarship program before applying. Here are the currently available graduate scholarships at the <?php echo$institution_title; ?>:</p>
                     <?php
@@ -127,10 +127,10 @@
     <?php else: ?>
 
     <div id="institution-scholarships" class="gs-institution-no-scholarships">
-        <h2 class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</h2>
+        <p class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</p>
         <p>Even though <?php echo $institution_title ?> does not offer scholarships to international students, you can still fund your education in <?php echo $country_name; ?>. As an international student, you are eligible to receive funding from organizations and the government of <?php echo $city_name . ", " . $country_name; ?>. There are plenty of funding opportunities for international students ensuring ample opportunities for financial support; feel free to check out <a href="<?php echo site_url(); ?>/best-government-scholarships/">all available governmental funding opportunities available </a>to international students pursuing a higher education degree abroad.</p>
         
-        <h2 class="gs-institution-scholarships-title">External Scholarships for International Students</h2>
+        <p class="gs-institution-scholarships-title">External Scholarships for International Students</p>
         <div class="gs-institution-no-scholarships-scholarship-container">
             <h3>GlobalScholarships.com $1,000 Scholarship for International Students</h3>
             <ul>
@@ -140,7 +140,7 @@
                 <li>Degrees Offered : Bachelor's, Master’s, PhD</li>
             </ul>
 
-            <p>Offered by GlobalScholarships.com, incoming international students at [university name] can apply for this external scholarship. To be considered for this external award, you must meet the following eligibility requirements:</p>
+            <p>Offered by GlobalScholarships.com, incoming international students at <?php echo $institution_title ?> can apply for this external scholarship. To be considered for this external award, you must meet the following eligibility requirements:</p>
 
             <ul>
                 <li>You must be an international student, that is, you cannot be a citizen or a permanent resident of a country that you will be studying in Fall 2024.</li>
