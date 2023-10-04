@@ -6213,13 +6213,14 @@ input[type="submit"] {
 
     .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
         padding: 10px !important;
+        border-radius: 20px !important;
     }
 
     .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
         width: 100%;
         max-width: 100%;
         font-size: 1rem !important;
-        padding: 0px 10px;
+        padding: 6px 10px;
     }
 
     .single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container h3 { 
@@ -6793,6 +6794,26 @@ padding-bottom:40px !important;
     justify-content: flex-start !important;
    }
 
+}
+
+@media only screen and (max-width: 1300px) and (min-width: 768px)  {
+    body.single.single-institution #main #content {
+        width: 88% !important;
+        margin: 0 auto !important;
+    }
+
+    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
+        width: 100% !important;
+    }
+
+    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
+        padding: 6px 10px;
+        font-size: 15px;
+        width: 20%;
+        max-width: 160px;
+        margin-right: 0;
+        border-radius: 50px;
+    }
 }
 
 @media (max-width: 700px) {

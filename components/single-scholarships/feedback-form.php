@@ -1,4 +1,4 @@
- <div class="gs-feedback-form-container">
+ <aside class="gs-feedback-form-container">
    <form id="gs-feedback-form" action="" method="POST" class="gs-feedback-form">
     <h2>Help Us Improve Our Page!</h2>
      <div style="display:none;">
@@ -70,4 +70,4 @@
       <input type="submit" name="submit" value="Send">
     </div>
   </form>
-</div>
+</aside>
