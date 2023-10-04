@@ -4297,7 +4297,10 @@ input[type="submit"] {
     border-radius: 6px;
 }
 
-.single-institution #main .gs-institution-admissions h2.gs-institution-admissions-title{
+.single-institution #main .gs-institution-admissions p.gs-institution-admissions-title{
+    font-size: 1.8rem;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4322,7 +4325,7 @@ input[type="submit"] {
 .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-thumbnail-container {
     width: 60px;
     height: 60px;
-    margin-top: 24px;
+    margin-top: 0px;
     position: absolute;
 }
 
@@ -4344,8 +4347,11 @@ input[type="submit"] {
     margin-top: 16px;
 }
 
-.single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text h2.gs-institution-admissions-degree {
+.single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text p.gs-institution-admissions-degree {
     margin-left: 60px;
+    font-size: 1.8rem;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
 }
 
 .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text a.gs-institution-admissions-link {
@@ -4368,7 +4374,10 @@ input[type="submit"] {
     align-items: center;
 }
 
-.single-institution #main .gs-institution-deadlines h2.gs-institution-deadlines-title {
+.single-institution #main .gs-institution-deadlines p.gs-institution-deadlines-title {
+    font-size: 1.8rem;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4402,11 +4411,14 @@ input[type="submit"] {
 }
 
 
-.single-institution #main .gs-institution-tuition-fees h2.gs-institution-tuition-fees-title{
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p.gs-institution-tuition-fees-title{
+    font-size: 1.8rem;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
-    margin: 16px 0px 20px 0px; 
+    margin: 16px 0px 20px 0px !important;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p{
@@ -4507,7 +4519,10 @@ input[type="submit"] {
     color: #000000 !important;
 }
 
-.single-institution #main .gs-institution-no-scholarships  h2.gs-institution-scholarships-title {
+.single-institution #main .gs-institution-no-scholarships  p.gs-institution-scholarships-title {
+    font-size: 1.8rem;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4542,15 +4557,19 @@ input[type="submit"] {
     background-color: #ffffff;
 }
 
-.single-institution #main .gs-institution-scholarships h2.gs-institution-scholarships-title {
+.single-institution #main .gs-institution-scholarships p.gs-institution-scholarships-title {
+    font-size: 1.8rem;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
     margin: 16px 0px 20px 0px; 
 }
 
-.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container h3 {
-    font-size: 2rem;
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container h4 {
+    font-size: 1.7rem !important;
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
     font-weight: 700;
     margin: 0px !important;
     margin-bottom: 20px !important;
@@ -4576,9 +4595,11 @@ input[type="submit"] {
     margin-top: 40px;
 }
 
-.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text h2 {
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text h3.gs-institution-scholarships-heading {
+    /* font-size: 1.8rem; */
+    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
-    font-size: 28px;
     padding: 16px 12px;
     margin-bottom: 30px;
 }

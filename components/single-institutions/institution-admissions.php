@@ -1,9 +1,9 @@
 <?php if (isset($admission_pages) && !empty($admission_pages)) :
 ?>
-    <div id="institution-admission" class="gs-institution-admissions">
-        <h2 class="gs-institution-admissions-title">
+    <div id="admission" class="gs-institution-admissions">
+        <p class="gs-institution-admissions-title">
             <?php echo $institution_title;  ?> Admissions
-        </h2>
+        </p>
 
         <div class="gs-institution-admissions-text">
             <p>If you’re planning to study at the <?php echo $institution_title; ?>, it’s important to familiarize yourself with the application process and requirements of the institution.</p>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="gs-institution-admissions-box-text">
                     <?php
-                    echo '<h2 class="gs-institution-admissions-degree">Bachelor\'s</h2>';
+                    echo '<p class="gs-institution-admissions-degree">Bachelor\'s</p>';
                     echo '<div class="gs-institution-admissions-links">';
                     echo '<ul>';
                     foreach ($bachelors_links as $link) {
@@ -63,7 +63,7 @@
                     <div class="gs-institution-admissions-box-text">
                     <?php
 
-                    echo '<h2 class="gs-institution-admissions-degree">Master\'s</h2>';
+                    echo '<p class="gs-institution-admissions-degree">Master\'s</p>';
                     echo '<div class="gs-institution-admissions-links">';
                     echo '<ul>';
                     foreach ($masters_links as $link) {

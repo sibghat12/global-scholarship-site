@@ -22,10 +22,10 @@
     }
 
 ?>
-    <div id="institution-tuition-fees" class="gs-institution-tuition-fees">
+    <div id="tuition-fees" class="gs-institution-tuition-fees">
 
         <div class="gs-institution-tutition-fees-text">
-        <h2 class='gs-institution-tuition-fees-title' id='tuition'>Tuition Fees at <?php echo $institution_title ?> for International Students</h2>
+        <p class="gs-institution-tuition-fees-title" id="tuition">Tuition Fees at <?php echo $institution_title ?> for International Students</p>
         <?php
         if ($ibl > -1 || $iml > -1 ) : ?>
 

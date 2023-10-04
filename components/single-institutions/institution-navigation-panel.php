@@ -1,6 +1,6 @@
 <nav class="gs-institution-navigation-panel">
     <div class="gs-institution-items-container">
-            <a class="institution-overview-item institution-panel-item" href="#institution-overview">
+            <a class="institution-overview-item institution-panel-item" href="#overview">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
                     fill="#000000" stroke="none">
@@ -24,7 +24,7 @@
                 Overview
             </a>
         <?php if (isset($admission_pages) && !empty($admission_pages)) : ?>
-            <a class="institution-admission-item institution-panel-item" href="#institution-admission">
+            <a class="institution-admission-item institution-panel-item" href="#admission">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
                     fill="#000000" stroke="none">
@@ -169,7 +169,7 @@
             </a>
         <?php endif; ?>
         <?php if (isset($admission_deadlines) && !empty($admission_deadlines)) :?>
-            <a class="institution-deadline-item institution-panel-item" href="#institution-deadline">
+            <a class="institution-deadline-item institution-panel-item" href="#deadline">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
 
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
@@ -253,7 +253,7 @@
         <?php endif; ?>
         <?php if (isset($tuition_fee) && !empty($tuition_fee)) : 
              if($ibl > -1 || $iml > -1 || $imu > -1 || $ibu > -1 ) : ?>
-            <a class="institution-tuition-fees-item institution-panel-item" href="#institution-tuition-fees">
+            <a class="institution-tuition-fees-item institution-panel-item" href="#tuition-fees">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
                     fill="#000000" stroke="none">
@@ -322,7 +322,7 @@
             </a>
         <?php endif;
             endif; ?>
-            <a class="institution-scholarships-item institution-panel-item" href="#institution-scholarships">
+            <a class="institution-scholarships-item institution-panel-item" href="#scholarships">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
                     fill="#000000" stroke="none">
