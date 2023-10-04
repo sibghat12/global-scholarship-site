@@ -67,10 +67,9 @@
                 if ($ibl > -1 && $iml > -1 ) { ?>
 
                 <?php
-                if($ibl == 0 && $iml== 0 && $ibu == 0 && $iml == 0 ) {
+                if($ibl == 0 && $iml== 0 && $ibu <= 0 && $imu <= 0 ) {
                 
                 echo "<p>In this section, we will be discussing the tuition fees for international students at " . $institution_title . ".<b> The tuition fee for both Bachelor’s and Master’s degrees is free. They don’t charge tuition fees to international students.</b></p>"; ?>
-
 
                 <?php }  elseif ($ibl == 0 && $iml > 0 ) { 
 
