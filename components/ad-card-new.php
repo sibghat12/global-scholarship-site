@@ -40,9 +40,9 @@ $currency = get_currency($country);
 
 
 $image_url = get_the_post_thumbnail_url($institute->ID);
-
-
 $disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
+
+$custom_disclaimer = get_post_meta($institute->ID, 'custom_disclaimer_text', true);
 
 $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
 $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
@@ -164,9 +164,13 @@ echo $des;
                            <span id="disclaimerr" style="width:100% !important;">
                           <?php   if($disclaimer === "1")  {  ?>
                          
+                        <?php if($custom_disclaimer) { ?>
+                            <strong  style="font-weight:600 !important;"> * <?php echo $custom_disclaimer ?>  </strong>
+                        <?php   } else { ?>
+
                          <strong  style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
                        
-                       <?php } ?>
+                       <?php } } ?>
                       
 
                          </span> 
