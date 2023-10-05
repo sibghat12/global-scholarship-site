@@ -84,7 +84,7 @@ endif;
 
 
 
-<div class="clearfix> </div>
+<div class="clearfix"> </div>
 
 <div class="recent-post-cta">
 

@@ -1,4 +1,4 @@
-<div id="institution-overview" class="gs-institution-intro-section">
+<div id="overview" class="gs-institution-intro-section">
 
 <?php
  if ($country_name == "United Kingdom") {?>

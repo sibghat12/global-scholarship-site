@@ -149,6 +149,8 @@
             ?>
 
         </div>
+        <?php // GS Scholarships Newsletter ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/newsletter.php'; ?>
 
     </div>
     </section>

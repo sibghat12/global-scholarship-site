@@ -21,7 +21,7 @@
     };
 ?>
     
-    <h3> <?php echo $count .". ". $scholarship_name; ?> </h3>
+    <h4> <?php echo $count .". ". $scholarship_name; ?> </h4>
 
     <ul>
     	<li> <b><a href="<?php echo get_permalink($id)?>">Scholarship Page</a> </b></li>
