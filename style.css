@@ -7390,13 +7390,14 @@ a.d-block.position-relative, a.d-block.position-relative img {
 
 
 
-
-
-
-
-
+/* About Us Image Css*/
 
 @media only screen and (max-width: 768px) {
+
+.recent-post-cta .cta-text h2 {
+    font-size:24px;
+}
+
 
 .right-img-container  { 
     display: flex;
@@ -7433,5 +7434,29 @@ a.d-block.position-relative, a.d-block.position-relative img {
     margin-top:10px !important;
       margin-bottom:10px !important;
 }
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 480px) {
+
+.fusion-footer .fusion-fullwidth , .fusion-footer .fusion-layout-column {
+background: #559cc6 !important;
+padding:16px !important;
+}
+
+
+.page-template .fusion-footer , .category  .fusion-footer{
+  padding:0px !important;
+}
+
+
+
 
 }
+
+

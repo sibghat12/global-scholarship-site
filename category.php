@@ -7,7 +7,7 @@
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Direct script access denied.' );
+    exit( 'Direct script access denied.' );
 }
 
 get_header();  
@@ -62,7 +62,7 @@ if($query->have_posts()):
 endwhile;
 
     echo '</div>';
-    
+     echo '</div>';
 
    echo '<div class="pagination-container">';
 $big = 999999999;
@@ -76,7 +76,7 @@ echo paginate_links(array(
 
 
 echo '</div>';
-echo '</div>';
+
 
     wp_reset_postdata();
 endif;
@@ -89,25 +89,23 @@ endif;
 <div class="recent-post-cta">
 
     <div class="first-column">
-
     <div class="cta-text">
         <h2 class="heading-text">Search thousands of scholarships with GlobalScholarships.com!</h2>
-        <p>Go through our scholarship database to find scholarships that best fits you!
-</p>
+        <p>Go through our scholarship database to find scholarships that best fits you! </p>
         <a href="<?php echo site_url() ?>/scholarship-search/" class="cta-button">Search for Scholarships! </a>
     </div>
-
-</div>
+   </div>
 
 
  <div class="second-column">
     <div class="cta-image">
-        <img src="<?php echo site_url() ?>/wp-content/uploads/2023/09/Untitled_design__1_-removebg-1-1.png" alt="Description of Image">
+    <img src="<?php echo site_url() ?>/wp-content/uploads/2023/09/Untitled_design__1_-removebg-1-1.png" alt="Description of Image">
     </div>
  </div>
 
 </div>
 
+<div class="clearfix"> </div>
 
 <?php do_action( 'avada_after_content' ); ?>
 <?php
