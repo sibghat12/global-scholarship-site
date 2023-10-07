@@ -23,7 +23,7 @@
     }
 
 ?>
-    <div id="tuition-fees" class="gs-institution-tuition-fees">
+    <div id="tuition" class="gs-institution-tuition-fees">
 
         <div class="gs-institution-tutition-fees-text">
         <p class="gs-institution-tuition-fees-title" id="tuition">Tuition Fees at <?php echo $institution_title ?> for International Students</p>

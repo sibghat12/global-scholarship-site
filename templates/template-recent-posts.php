@@ -89,7 +89,7 @@ endif;
 
  <div class="second-column">
     <div class="cta-image">
-        <img src="<?php echo site_url() ?>/wp-content/uploads/2023/09/Untitled_design__1_-removebg-1-1.png" alt="Description of Image">
+        <img src="<?php echo site_url() ?>/wp-content/uploads/2023/10/categoryimage.png" alt="Description of Image">
     </div>
  </div>
 
