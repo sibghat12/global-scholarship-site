@@ -346,7 +346,9 @@ div#fusion-slider-308 {
 aside#sidebar {
     border-radius: 20px;
 }
-
+.post-template-default #main{
+    margin-left: 25px !important;
+}
 .post-content p{
         line-height: 2em;
         padding-top: 0.25em;
@@ -378,7 +380,9 @@ aside#sidebar {
 .fusion-breadcrumbs {
     display: none !important;
   }
-
+    .post-template-default #main{
+        padding-top: 40px !important;
+    }
 .search .fusion-page-title-bar {
     height: 104px !important;
     background: white;
@@ -414,7 +418,9 @@ text-align:center !important;
         .tab-pane p{
 text-align:center !important;       
     }
-
+    .post-template-default #main{
+    margin-left: 0px !important;
+}
     .fusion-blog-layout-grid.fusion-blog-equal-heights .fusion-post-wrapper .fusion-post-content.post-content {
     margin-bottom: 0px;
  }
@@ -429,6 +435,9 @@ text-align:center !important;
         padding-right: 15px;
     }
 
+    .post-template-default #main{
+        padding-top: 0px !important;
+    }
     .post-template-default .fusion-page-title-wrapper .entry-title{
         margin-top: -51px !important;
     }
@@ -1321,7 +1330,9 @@ li.active.have-children span::after {
 
 .single #main {
     margin:auto !important;
+    padding-top:25px;
 }
+
 
 input[type=text] {
     background:transparent !important;
@@ -1677,6 +1688,9 @@ display: flex !important;
 }
 
 
+.single-institution .post-content {
+    margin-top:40px !important;
+}
 .fusion-page-title-captions h1 {
     padding-bottom:10px !important;
 }
@@ -3129,7 +3143,7 @@ padding-left:0px !important;
     max-width: 100%;
     padding: 20px;
     border-radius: 30px;
-    margin: 0px 15px;
+    margin: 15px;
 }
 
 .single-scholarships .post-content .gs-scholarship-overview-box .gs-scholarship-overview-image {
@@ -3215,7 +3229,7 @@ padding-left:0px !important;
     flex-direction: column;
     gap: 1rem;
     max-width: 1250px;
-    margin: 10px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 .single-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-box {
@@ -3226,7 +3240,7 @@ padding-left:0px !important;
     box-shadow: 0px 6px 6px #7f7e7e;
     border-radius: 20px;
     padding: 20px;
-    margin: 0px 20px;
+    margin: 20px;
     height: max-content;
 }
 
@@ -3299,7 +3313,7 @@ padding-left:0px !important;
 
 .single-scholarships .post-content nav.gs-scholarship-navigation-panel {
     width: 92%;
-    margin: 15px auto 10px auto;
+    margin: 45px auto 10px auto;
 }
 
 .single-scholarships .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container {
@@ -3606,7 +3620,7 @@ padding-left:0px !important;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin-top: 0px;
+        margin-top: 20px;
         max-width: 100%;
         padding: 20px;
         border-radius: 18px;
@@ -3627,7 +3641,7 @@ padding-left:0px !important;
         flex-direction: row;
         gap: 2rem;
         max-width: 1120px;
-        margin: 20px auto 0 auto;
+        margin: 80px auto 0 auto;
     }
 
     .single-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-box {
@@ -3676,10 +3690,8 @@ padding-left:0px !important;
     /* Navigation Panel GS Sections */
 
     .single-scholarships .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         padding: 15px 28px;
         background: #F9F9F9;
         border-radius: 50px;
@@ -3706,7 +3718,7 @@ padding-left:0px !important;
         padding: 6px 20px;
         font-size: 18px;
         font-weight: 700;
-        /* min-width: 25%; */
+        min-width: 25%;
         height: 70px;
         /* text-wrap: nowrap; */
         background: transparent !important;
@@ -4082,6 +4094,7 @@ input[type="submit"] {
 
 .single-institution .gs-institution-overview-box .gs-institution-overview-text h1{
     font-family: 'Roboto', sans-serif;
+    font-size: 2.6rem;
     font-weight: 700;
     text-align: center;
     line-height: 2.9rem;
@@ -4149,7 +4162,7 @@ input[type="submit"] {
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data .gs-institution-data-title {
     font-family: 'Roboto', sans-serif;
     text-align: left;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 700;
     line-height: 2rem;
 }
@@ -4284,10 +4297,7 @@ input[type="submit"] {
     border-radius: 6px;
 }
 
-.single-institution #main .gs-institution-admissions p.gs-institution-admissions-title{
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-admissions h2.gs-institution-admissions-title{
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4312,7 +4322,7 @@ input[type="submit"] {
 .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-thumbnail-container {
     width: 60px;
     height: 60px;
-    margin-top: 0px;
+    margin-top: 24px;
     position: absolute;
 }
 
@@ -4334,11 +4344,8 @@ input[type="submit"] {
     margin-top: 16px;
 }
 
-.single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text p.gs-institution-admissions-degree {
+.single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text h2.gs-institution-admissions-degree {
     margin-left: 60px;
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
 }
 
 .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text a.gs-institution-admissions-link {
@@ -4361,10 +4368,7 @@ input[type="submit"] {
     align-items: center;
 }
 
-.single-institution #main .gs-institution-deadlines p.gs-institution-deadlines-title {
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-deadlines h2.gs-institution-deadlines-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4398,14 +4402,11 @@ input[type="submit"] {
 }
 
 
-.single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p.gs-institution-tuition-fees-title{
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-tuition-fees h2.gs-institution-tuition-fees-title{
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
-    margin: 16px 0px 20px 0px !important;
+    margin: 16px 0px 20px 0px; 
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p{
@@ -4506,10 +4507,7 @@ input[type="submit"] {
     color: #000000 !important;
 }
 
-.single-institution #main .gs-institution-no-scholarships  p.gs-institution-scholarships-title {
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-no-scholarships  h2.gs-institution-scholarships-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4544,19 +4542,15 @@ input[type="submit"] {
     background-color: #ffffff;
 }
 
-.single-institution #main .gs-institution-scholarships p.gs-institution-scholarships-title {
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-scholarships h2.gs-institution-scholarships-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
     margin: 16px 0px 20px 0px; 
 }
 
-.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container h4 {
-    font-size: 1.7rem !important;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container h3 {
+    font-size: 2rem;
     font-weight: 700;
     margin: 0px !important;
     margin-bottom: 20px !important;
@@ -4582,11 +4576,9 @@ input[type="submit"] {
     margin-top: 40px;
 }
 
-.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text h3.gs-institution-scholarships-heading {
-    /* font-size: 1.8rem; */
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text h2 {
     border-left: 2px solid #3C76E6;
+    font-size: 28px;
     padding: 16px 12px;
     margin-bottom: 30px;
 }
@@ -6221,14 +6213,13 @@ input[type="submit"] {
 
     .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
         padding: 10px !important;
-        border-radius: 20px !important;
     }
 
     .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
         width: 100%;
         max-width: 100%;
         font-size: 1rem !important;
-        padding: 6px 10px;
+        padding: 0px 10px;
     }
 
     .single-institution #main .gs-institution-no-scholarships .gs-institution-no-scholarships-scholarship-container h3 { 
@@ -6251,10 +6242,6 @@ input[type="submit"] {
     .single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container {
         margin-right: 15px;
         margin-left: 15px;
-    }
-
-    .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
-        font-size: 14px !important;
     }
 }
 
@@ -6806,31 +6793,6 @@ padding-bottom:40px !important;
     justify-content: flex-start !important;
    }
 
-}
-
-@media only screen and (max-width: 1300px) and (min-width: 768px)  {
-    body.single.single-institution #main #content {
-        width: 88% !important;
-        margin: 0 auto !important;
-    }
-
-    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container {
-        width: 100% !important;
-    }
-
-    .single-institution #main .gs-institution-navigation-panel .gs-institution-items-container a.institution-panel-item {
-        padding: 6px 10px;
-        font-size: 15px;
-        width: 20%;
-        max-width: 160px;
-        margin-right: 0;
-        border-radius: 50px;
-    }
-
-    .single-scholarships #main .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container a {
-        max-width: 250px;
-        font-size: 14px !important;
-    }
 }
 
 @media (max-width: 700px) {
@@ -7435,13 +7397,21 @@ padding:16px !important;
 }
 
 
-.page-template .fusion-footer , .category  .fusion-footer{
+.page-template .fusion-footer, .category  .fusion-footer{
   padding:0px !important;
 }
 
-
-
-
 }
 
 
+.custom-gutter hr {
+ margin-left:20px !important;
+ color:#559cc6;
+ border-color:#559cc6;
+ margin-bottom:30px;
+
+}
+
+.custom-gutter {
+    margin-bottom:50px !important;
+}
