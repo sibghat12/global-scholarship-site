@@ -1,4 +1,9 @@
 <?php
+include ('functions/scholarships-functions.php'); 
+// Added Synchronization Options Page (SAA DB institutions to GS ACF export page )
+include ('scripts/acf-options.php'); 
+include ('scripts/institutions-script.php'); 
+include ('scripts/saa-cities-cpt.php'); 
 
 // filter
 function institutions_where( $where ) {
@@ -8,7 +13,6 @@ function institutions_where( $where ) {
     return $where;
 }
 
-include ('functions/scholarships-functions.php'); 
 
 add_filter('posts_where', 'institutions_where');
 
