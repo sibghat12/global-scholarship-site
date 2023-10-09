@@ -1,4 +1,21 @@
-"New Mo institute",Aalen
+"Atlantis College",Liopetri
+"Madan Bhandari University of Science and Technology",Lalitpur
+"Western Institute of Technology and Higher Education",Tlaquepaque
+"South-Western State University",Kursk
+"Altai State Pedagogical Academy",Barnaul
+"University of Costa Rica","San Jose"
+"Mondragon University",Mondragon
+"Ivanovo State University of Chemistry and Technology",Ivanovo
+"Bryansk State Technical University",Bryansk
+"Medical University-Varna",Varna
+"Nepal Sanskrit University",Beljhundi
+"University Prizren Ukshin Hoti",Prizren
+"University of Gjakova Fehmi Agani",Gjakove
+"Singidunum University",Belgrade
+"University of Novi Sad","Novi Sad"
+"Belgrade Metropolitan University",Belgrade
+"Ecological University of Bucharest",Bucharest
+"Ibero-American University","Mexico City"
 "King Fahd University of Petroleum and Minerals",Dhahran
 "Institute of Modern Knowledge",Minsk
 "Belarusian State Academy of Communications",Minsk
@@ -251,6 +268,8 @@ Intercollege,Nicosia
 "Mahamakut Buddhist University",Bangkok
 "Far Western University",Bhimdatta
 "Madhesh Agricultural University",Saptari
+"LEAD University","San Jose"
+"Costa Rica Institute of Technology",Cartago
 "Nakhon Si Thammarat Rajabhat University","Mueang Nakhon Si Thammarat"
 "Surindra Rajabhat University","Mueang Surin"
 "Phetchaburi Rajabhat University",Phetchabun
@@ -489,7 +508,7 @@ Intercollege,Nicosia
 "Tay Bac University","Son La"
 "Mien Dong Innovative Technology University","Thong Nhat"
 "Mientrung University of Civil Engineering","Tuy Hoa"
-"Vo Truong Toan University","Chau Thanh A"
+c,"Chau Thanh A"
 "University of Technology and Management",Hanoi
 "Hanoi University of Industrial Fine Arts",Hanoi
 "University of Hai Duong","Hai Duong"
@@ -808,6 +827,7 @@ Intercollege,Nicosia
 "European University Kallos Tuzla",Tuzla
 "Sarajevo School of Science and Technology",Sarajevo
 "University of East Sarajevo","East Sarajevo"
+"University of Belgrade",Belgrade
 "Alma Mater Europaea",Salzburg
 "University of Novo Mesto","Novo Mesto"
 "GEA College",Ljubljana
@@ -3653,3 +3673,4380 @@ NorthTec,Whangarei
 "Japan Women&#8217;s College of Physical Education",Tokyo
 "Nippon Bunri University",Oita
 "Mie Prefectural College of Nursing",Tsu
+"Tama University",Tama
+"Tokyo Seitoku University",Kita
+"Hiroshima Kokusai Gakuin University",Hiroshima
+"Showa Pharmaceutical University",Machida
+"Sapporo International University",Sapporo
+"Kobe Shinwa Women&#8217;s University",Kobe
+"Kobe International University",Kobe
+"Biwako Seikei Sport College",Otsu
+"Kansai University of Social Welfare",Ako
+"Aichi Sangyo University",Okazaki
+"Manipal Academy of Higher Education",Udupi
+"Toho Gakuen School of Music",Chofu
+"SRM Institute of Science and Technology",Kattankulathur
+"University of Madras",Chennai
+"University of Mumbai",Mumbai
+"Jawaharlal Nehru University","New Delhi"
+"Indian Institute of Technology Guwahati",Guwahati
+"Matsumoto Dental University",Shiojiri
+"Amrita Vishwa Vidyapeetham",Coimbatore
+"Ahmedabad University",Ahmedabad
+"Aichi Toho University",Nagoya
+"Kanagawa University of Human Services",Yokosuka
+"Delhi Technological University","Delhi, India"
+"Shirayuri University",Chofu
+"Vellore Institute of Technology",Vellore
+"Toyama University of International Studies",Toyama
+"Oita University of Nursing and Health Sciences",Oita
+"Hachinohe Gakuin University",Hachinohe
+"Shokei Gakuin University",Natori
+"University of Delhi","New Delhi"
+"Osaka Jogakuin University",Osaka
+"Komazawa Women&#8217;s University",Inagi
+"Aomori University of Health and Welfare",Aomori
+"Nagoya Zokei University of Art and Design",Komaki
+"Naragakuen University",Sango
+"Gunma Paz University",Takasaki
+"Taisei Gakuin University",Sakai
+"Miyazaki Prefectural Nursing University",Miyazaki
+"Kio University",Koryo
+"Nagano College of Nursing",Komagane
+"Niigata College of Nursing",Joetsu
+"Kanazawa Seiryo University",Kanazawa
+"Seigakuin University",Ageo
+"Chuo Gakuin University",Abiko
+"Osaka Kawasaki Rehabilitation University",Kaizuka
+"Ibaraki Prefectural University of Health Sciences",Ami
+"Bunka Gakuen University",Tokyo
+"Koeki University (Tohoku University of Community Service and Science)",Sakata
+"Hokusho University",Ebetsu
+"Hakuoh University",Oyama
+"Tenri University",Tenri
+"Senzoku Gakuen College of Music",Kawasaki
+"Okinawa International University",Ginowan
+"National Institute of Fitness and Sports in Kanoya",Kanoya
+"Takasaki City University of Economics",Takasaki
+"Nagasaki Junshin Catholic University",Nagasaki
+"Kyushu Dental University",Kitakyushu
+"Wayo Women&#8217;s University",Ichikawa
+"Koriyama Women&#8217;s University",Koriyama
+"Yokkaichi University",Yokkaichi
+"Ashikaga University",Ashikaga
+"International University of Kagoshima",Kagoshima
+"Shimonoseki City University",Shimonoseki
+"Tohoku Fukushi University",Sendai
+"Kinki Health Welfare University",Fukusaki
+"Maebashi Institute of Technology",Maebashi
+"Nagasaki Wesleyan University",Isahaya
+"Yamanashi Eiwa College",Kofu
+"Tenshi College",Sapporo
+"Kurashiki Sakuyo University",Kurashiki
+"Fukushima College",Fukushima
+"Seinan Jo Gakuin University",Kitakyushu
+"Kyushu Institute of Information Sciences",Dazaifu
+"Nakamura Gakuen University",Fukuoka
+"Sakushin Gakuin University",Utsunomiya
+"Advanced Institute of Industrial Technology",Tokyo
+"Japan University of Economics",Dazaifu
+"Nishinippon Institute of Technology",Kitakyushu
+"Seisen Jogakuin College",Nagano
+"Okinawa Christian University",Nishihara
+"Fukuoka Jo Gakuin University",Fukuoka
+"Kyoto Koka Women&#8217;s University",Kyoto
+"Edogawa University",Nagareyama
+"Toyo Gakuen University",Tokyo
+"Kansai University of Welfare Sciences",Kashiwara
+"Seian University of Art and Design",Otsu
+"Meiji University of Integrative Medicine",Nantan
+"Osaka University of Economics",Osaka
+"Takarazuka University",Takarazuka
+"Soai University",Osaka
+"Koyasan University",Koya
+"University of Kochi",Kochi
+"Japanese Red Cross College of Nursing",Tokyo
+"Chikushi Jogakuen University",Dazaifu
+"Kyushu International University",Kitakyushu
+"Kawasaki Medical School",Kurashiki
+"Hachinohe Institute of Technology",Hachinohe
+"Niigata Institute of Technology",Kashiwazaki
+"Gunma Prefectural College of Health Sciences",Maebashi
+"Aichi Bunkyo University",Komaki
+"Tokyo Future University",Tokyo
+"Japanese Red Cross Kyushu International College of Nursing",Munakata
+"Nihon Pharmaceutical University",Ina
+"Hyogo University",Kakogawa
+"Kyoto Saga University of Arts",Kyoto
+"Kamakura Women&#8217;s University",Kamakura
+"Osaka University of Economics and Law",Yao
+"Hoshi University",Shinagawa
+"Toyota Technological Institute",Nagoya
+"Kyoto Pharmaceutical University",Kyoto
+"Nippon Veterinary and Life Science University",Musashino
+"Nagasaki Institute of Applied Science",Nagasaki
+"Nagoya University of the Arts","Kitanagoya Shi"
+"Keiai University",Chiba
+"Tokyo University of Social Welfare",Tokyo
+"Beppu University",Beppu
+"Kyoai Gakuen University",Maebashi
+"Tottori University of Environmental Studies",Tottori
+"Iryo Sosei University",Iwaki
+"Kaetsu University",Kodaira
+"Kibi International University",Takahashi
+"Nishikyushu University",Kanzaki
+"Bunsei University of Art",Utsunomiya
+"Kumamoto Health Science University",Kumamoto
+"Gifu Pharmaceutical University",Gifu
+"Nagasaki International University",Sasebo
+"North Asia University",Akita
+"Shibata Gakuen University",Hirosaki
+"Kyushu Lutheran College",Kumamoto
+"Osaka Dental University",Hirakata
+"Tezukayama Gakuin University",Sakai
+"Morinomiya University of Medical Sciences",Osaka
+"Mimasaka University",Tsuyama
+"Nagoya University of Foreign Studies",Nisshin
+"Shobi University",Kawagoe
+"Hiroshima University of Economics",Hiroshima
+"Osaka Shoin Women&#8217;s University",Higashiosaka
+"Urawa University",Saitama
+"Tsuru University",Tsuru
+"Kobe Pharmaceutical University",Kobe
+"Tokyo College of Music",Tokyo
+"Kunitachi College of Music",Tachikawa
+"Ikueikan University",Wakkanai
+"Shizuoka Institute of Science and Technology",Fukuroi
+"Baika Women&#8217;s University",Ibaraki
+"Kansai University of International Studies",Miki
+"Ohkagakuen University",Toyoake
+"Japanese Red Cross Hokkaido College of Nursing",Kitami
+"Kinjo University",Hakusan
+"University of Kitakyushu",Kitakyushu
+"University of Siena",Siena
+"Cyber University",Fukuoka
+"Nagoya Gakuin University",Nagoya
+"Kobe Shoin Women&#8217;s University",Kobe
+"Daido University",Nagoya
+"Teikyo University of Science and Technology",Uenohara
+"Tokyo Kasei-Gakuin University",Tokyo
+"Aikoku Gakuen University",Yotsukaido
+"International College for Postgraduate Buddhist Studies",Tokyo
+"Okayama Shoka University",Okayama
+"Ferris University",Yokohama
+"Musashino Academia Musicae",Tokyo
+"Saitama Prefectural University",Koshigaya
+"Shujitsu University",Okayama
+"Meio University",Nago
+"Hannan University",Matsubara
+"Notre Dame Seishin University",Okayama
+"Niigata University of Pharmacy and Applied Life Sciences",Niigata
+"Konan Women&#8217;s University",Kobe
+"Chitose Institute of Science and Technology",Chitose
+"Kobe Design University",Kobe
+"Okinawa Prefectural University of Arts",Naha
+"Nagano University",Ueda
+"Keisen University",Tama
+"Suzuka University of Medical Science",Suzuka
+"Kobe City University of Foreign Studies",Kobe
+"Yamanashi Gakuin University",Kofu
+"Fukuyama University",Fukuyama
+"Saitama Institute of Technology",Fukaya
+"Niigata University of Health and Welfare",Niigata
+"Nagasaki University of Foreign Studies",Nagasaki
+"Okinawa University",Naha
+"University of Shimane",Hamada
+"Gifu Shotoku Gakuen University",Gifu
+"Hiroshima International University",Higashihiroshima
+"Kobe Kaisei College",Kobe
+"Minobusan University",Minobu
+"Nagoya College of Music",Nagoya
+"Kyoto University of Education",Kyoto
+"Yamaguchi Prefectural University",Yamaguchi
+"Tsuda University",Kodaira
+"Hiroshima City University",Hiroshima
+"Niigata University of International and Information Studies",Niigata
+"Nishogakusha University",Tokyo
+"Seisen University",Tokyo
+"Kyoto Bunkyo University",Kyoto
+"Showa Academia Musicae",Kawasaki
+"Toyo Eiwa University",Yokohama
+"Shiga University",Hikone
+"Chiba Institute of Technology",Narashino
+"Heisei College of Music",Mifune
+"Osaka University of Tourism",Kumatori
+"Higashiosaka College and Higashiosaka Junior College",Higashiosaka
+"Kansai University of Nursing and Health Sciences",Awaji
+"Hanazono University",Kyoto
+"Shukutoku University",Chiba
+"Mejiro University",Tokyo
+"Aichi Prefectural University",Nagakute
+"Hokusei Gakuen University",Sapporo
+"Meiji Pharmaceutical University",Kiyose
+"Azabu University",Sagamihara
+"Tohoku Medical and Pharmaceutical University",Sendai
+"Seitoku University",Matsudo
+"Toyama Prefectural University",Imizu
+"Sojo University",Kumamoto
+"Prefectural University of Kumamoto",Kumamoto
+"Bunkyo Gakuin University",Bunkyo
+"Gifu Women&#8217;s University",Gifu
+"Kagawa Nutrition University",Sakado
+"Kurume Institute of Technology",Kurume
+"Ibaraki Christian University",Hitachi
+"J. F. Oberlin University",Tokyo
+"Tezukayama University",Nara
+"Himeji Dokkyo University",Himeji
+"Jumonji University",Saitama
+"Teikyo University",Tokyo
+"Kurashiki University of Science and the Arts",Kurashiki
+"Aichi Institute of Technology",Toyota
+"Niigata Seiryo University",Niigata
+"University of Marketing and Distribution Sciences",Kobe
+"Fuji Women&#8217;s University",Sapporo
+"Osaka University of Commerce",Higashiosaka
+"Otsuma Women&#8217;s University",Tokyo
+"Miyagi University",Sendai
+"Tokiwa University",Mito
+"Nagaoka University",Nagaoka
+"Seirei Christopher University",Hamamatsu
+"Roma Tre University",Rome
+"Sugino Fashion College",Tokyo
+"Atomi University",Niiza
+"Sapporo University",Sapporo
+"Tsukuba University of Technology",Tsukuba
+"Hokkaido Information University",Ebetsu
+"Shonan Institute of Technology",Fujisawa
+"Tohoku Institute of Technology",Sendai
+"Momoyama Gakuin University",Izumi
+"Fukui University of Technology",Fukui
+"Yamanashi Prefectural University",Kofu
+"Meikai University",Urayasu
+"Otemae University",Nishinomiya
+"Kinjo Gakuin University",Nagoya
+"Akita Prefectural University",Akita
+"Tokyo Zokei University",Tokyo
+"Tokyo Kasei University",Tokyo
+"Toin University of Yokohama",Yokohama
+"Ryutsu Keizai University",Ryugasaki
+"Joshibi University of Art and Design",Tokyo
+"Tokai Gakuen University",Miyoshi
+"Otaru University of Commerce",Otaru
+"Tokushima Bunri University",Tokushima
+"Kyoto Tachibana University",Kyoto
+"Ube Frontier University",Ube
+"Suwa University of Science",Chino
+"Musashino Gakuin University",Sayama
+"Okayama Gakuin University",Okayama
+"Kobe City College of Nursing",Kobe
+"Kyushu Nutrition Welfare University",Kitakyushu
+"Graduate Institute for Entrepreneurial Studies",Niigata
+"Saniku Gakuin College",Otaki
+"Kyoei University",Kasukabe
+"Yokohama University of Pharmacy",Yokohama
+"Kogakkan University",Ise
+"Chiba Institute of Science",Choshi
+"Institute of Technologists",Gyoda
+"Kanazawa Gakuin University",Kanazawa
+"Hokuriku University",Kanazawa
+"Tohoku Bunka Gakuen University",Sendai
+"Kobe College",Nishinomiya
+"Shikoku University",Tokushima
+"Tsurumi University",Yokohama
+"Kanazawa College of Art",Kanazawa
+"Nagaoka Institute of Design",Nagaoka
+"Kanagawa Institute of Technology",Atsugi
+"Shizuoka University of Art and Culture",Hamamatsu
+"Nara University",Nara
+"Sagami Women&#8217;s University",Sagamihara
+"Osaka International University",Moriguchi
+"International University of Japan",Minamiuonuma
+"Miyagi Gakuin Women&#8217;s University",Sendai
+"Wako University",Machida
+"Kanagawa Dental University",Yokosuka
+"Asahi University",Mizuho
+"Surugadai University",Hanno
+"Iwate Medical University",Morioka
+"Osaka Gakuin University",Suita
+"Kyoto City University of Arts",Kyoto
+"Osaka Aoyama University",Minoh
+"Okinawa Prefectural College of Nursing",Naha
+"Dokkyo University",Soka
+"Japan Women&#8217;s University",Tokyo
+"Kitami Institute of Technology",Kitami
+"Hiroshima Shudo University",Hiroshima
+"Aichi Gakuin University",Nisshin
+"Hiroshima Institute of Technology",Hiroshima
+"Tokyo Dental College",Chiyoda
+"Shumei University",Yachiyo
+"Nara Prefectual University",Nara
+"Japanese Red Cross Toyota College of Nursing",Toyota
+"Nayoro City University",Nayoro
+"Japanese Red Cross Hiroshima College of Nursing",Hatsukaichi
+"Akita University of Nursing and Welfare",Odate
+"Gifu College of Nursing",Hashima
+"Tokyo Junshin University",Hachioji
+"Hokuyo University",Tomakomai
+"Nihon Bunka University",Hachioji
+"University of Teacher Education Fukuoka",Munakata
+"Otemon Gakuin University",Ibaraki
+"Nara University of Education",Nara
+"Musashino University",Tokyo
+"Seinan Gakuin University",Fukuoka
+"University of Fukuchiyama",Fukuchiyama
+"Asahikawa Medical University",Asahikawa
+"Kobe Gakuin University",Kobe
+"Senri Kinran University",Suita
+"Saitama Medical University",Moroyama
+"University of Shizuoka",Shizuoka
+"Nippon Sport Science University",Tokyo
+"Chukyo University",Nagoya
+"Kyoto Prefectural University",Kyoto
+"Musashi University",Tokyo
+"Otani University",Kyoto
+"Kyoto Notre Dame University",Kyoto
+"Nippon Institute of Technology",Miyashiro
+"Bunkyo University",Koshigaya
+"Aichi Shukutoku University",Nagakute
+"University of the Sacred Heart",Tokyo
+"Hyogo University of Teacher Education",Kato
+"Teikyo Heisei University",Toshima
+"Sugiyama Jogakuen University",Nagoya
+"Fukui Prefectural University",Eiheiji
+"Aichi Medical University",Nagakute
+"Kyoritsu Women&#8217;s University",Chiyoda
+"Josai International University",Togane
+"Tamagawa University",Machida
+"Josai University",Sakado
+"Naruto University of Education",Naruto
+"St. Marianna University School of Medicine",Kawasaki
+"Mukogawa Women&#8217;s University",Nishinomiya
+"Nippon Dental University",Tokyo
+"Hamamatsu University School of Medicine",Hamamatsu
+"Graduate University for Advanced Studies",Hayama
+"Kanazawa Medical University",Uchinada
+"Nagoya University of Commerce and Business Administration",Nisshin
+"Digital Hollywood University",Tokyo
+"Wakayama Medical University",Wakayama
+"Setsunan University",Neyagawa
+"Jissen Women&#8217;s University",Hino
+"Kumamoto Gakuen University",Kumamoto
+"Asia University",Musashino
+"Aino University",Osaka
+"Nihon Institute of Medical Science",Moroyama
+"Hamamatsu Gakuin University",Hamamatsu
+"Tokiwakai Gakuen University",Osaka
+"Hokkai School of Commerce",Sapporo
+"Tohto College of Health Sciences",Fukaya
+"Rakuno Gakuen University",Ebetsu
+"Joetsu University of Education",Joetsu
+"Kyoto Seika Daigaku",Kyoto
+"National University of Ireland",Dublin
+"Muroran Institute of Technology",Muroran
+"Matsumoto University",Matsumoto
+"Tohoku Seikatsu Bunka University and Junior College",Sendai
+"Osaka Metropolitan University",Osaka
+"Himeji University",Himeji
+"Tsukuba International University",Tsuchiura
+"Kansai University of Health Sciences",Kumatori
+"Prefectural University of Hiroshima",Hiroshima
+"Seijo University",Tokyo
+"Rikkyo University",Tokyo
+"Dokkyo Medical University",Mibu
+"Tokyo University of Foreign Studies",Fuchu
+"Whitworth University",Spokane
+"University of Trieste",Trieste
+"Wyzsza Szkola Spoleczno-Ekonomiczna w Gdansku",Gdansk
+"Montpellier Business School",Montpellier
+"Sophia University",Tokyo
+"National Graduate Institute for Policy Studies",Minato
+"Nara Women&#8217;s University",Nara
+"Nippon Medical School",Tokyo
+"International University of Health and Welfare",Otawara
+"Fukushima Medical University",Fukushima
+"Utsunomiya University",Utsunomiya
+"Hokkaido University of Science",Sapporo
+"Obihiro University of Agriculture and Veterinary Medicine",Obihiro
+"Doshisha Women&#8217;s College of Liberal Arts",Kyotanabe
+"Ishinomaki Senshu University",Ishinomaki
+"Shitennoji University",Habikino
+"Gakushuin Women&#8217;s College",Tokyo
+"Seikei University",Musashino
+"Osaka University of Arts",Kanan
+"Sapporo Gakuin University",Ebetsu
+"Tokyo University of Information Sciences",Chiba
+"Okayama Prefectural University",Soja
+"Kanazawa University",Kanazawa
+"Health Sciences University of Hokkaido",Tobetsu
+"Kyoto Women&#8217;s University",Kyoto
+"Reitaku University",Kashiwa
+"Iwate University",Morioka
+"Toyohashi University of Technology",Toyohashi
+"Tohoku Gakuin University",Sendai
+"Osaka Electro-Communication University",Neyagawa
+"Future University Hakodate",Hakodate
+"Osaka Medical and Pharmaceutical University",Takatsuki
+"Kyoto University of Foreign Studies",Kyoto
+"Miyagi University of Education",Sendai
+"University of Occupational and Environmental Health, Japan",Kitakyushu
+"Shiga University of Medical Science",Otsu
+"Kyoto Prefectural University of Medicine",Kyoto
+"Aichi University of Education",Kariya
+"Aichi University",Toyohashi
+"Showa Women&#8217;s University",Tokyo
+"Kaichi International University",Chiba
+"Gunma University of Social Welfare",Maebashi
+"Matsuyama University",Matsuyama
+"Hokkaido University of Education",Sapporo
+"Taisho University",Tokyo
+"Komazawa University",Tokyo
+"Aichi Gakusen University",Okazaki
+"Kanda University of International Studies",Chiba
+"Hokkai-Gakuen University",Sapporo
+"Kagoshima Immaculate Heart University",Satsumasendai
+"Chubu Gakuin University",Seki
+"Kansai Gaidai University",Hirakata
+"Takushoku University",Tokyo
+"Tohoku University of Art and Design",Yamagata
+"Osaka Sangyo University",Daito
+"Iwate Prefectural University",Takizawa
+"Kobe Tokiwa University",Kobe
+"Kansai Medical University",Hirakata
+"Kobe Women&#8217;s University",Kobe
+"Tokyo International University",Tokyo
+"Kanagawa University",Yokohama
+"Fukuoka Institute of Technology",Fukuoka
+"Kyorin University",Mitaka
+"John Paul II Catholic University of Lublin",Lublin
+"Institute of Advanced Media Arts and Sciences",Ogaki
+"Chiba University of Commerce",Ichikawa
+"Bukkyo University",Kyoto
+"Fukushima University",Fukushima
+"University of Shiga Prefecture",Hikone
+"Kokushikan University",Tokyo
+"Tokyo Woman&#8217;s Christian University",Tokyo
+"Tokoha University",Shizuoka
+"Kyoto University of Advanced Science",Kyoto
+"Akita International University",Akita
+"Kanto Gakuin University",Yokohama
+"Kagawa Prefectural College of Health Sciences",Takamatsu
+"Bunri University of Hospitality",Sayama
+"Yashima Gakuen University",Yokohama
+"Shinshu University",Matsumoto
+"Kobe University",Kobe
+"University of Tsukuba",Tsukuba
+"University of Tokyo",Tokyo
+"Kitasato University",Tokyo
+"Toyo University",Tokyo
+"University of Tokushima",Tokushima
+"The University of Electro-Communications",Chofu
+"Ehime University",Matsuyama
+"Ibaraki University",Mito
+"Yokkaichi Nursing and Medical Care University",Yokkaichi
+"Tokyo Women&#8217;s Medical University",Tokyo
+"Rissho University",Tokyo
+"Tokyo University of Marine Science and Technology",Tokyo
+"Nihon Fukushi University",Mihama
+"Nara Medical University",Kashihara
+"Osaka Institute of Technology",Osaka
+"Tokyo Keizai University",Tokyo
+"SANNO University",Tokyo
+"Yasuda Women&#8217;s University",Hiroshima
+"Konan University",Kobe
+"Daito Bunka University",Itabashi
+"Fujita Health University",Toyoake
+"University of Miyazaki",Miyazaki
+"Tokyo Polytechnic University",Tokyo
+"Kochi University of Technology",Kami
+"Kurume University",Kurume
+"Tokai University",Tokyo
+"Kindai University",Higashiosaka
+"Korea University, Japan",Kodaira
+"Hosei University",Tokyo
+"University of Aizu",Aizuwakamatsu
+"Seiwa University",Kisarazu
+"Ritsumeikan University",Kyoto
+"Tokyo Union Theological Seminary",Mitaka
+"Bunka Fashion Graduate University",Tokyo
+"Doshisha University",Kyoto
+"Shimane University",Matsue
+"Nihon University",Tokyo
+"Kyushu Sangyo University",Fukuoka
+"Wakayama University",Wakayama
+"Senshu University",Chiyoda
+"Musashino Art University",Kodaira
+"Meiji Gakuin University",Tokyo
+"Gifu University",Gifu
+"Tokyo City University",Tokyo
+"Kobe Institute of Computing",Kobe
+"Jikei University School of Medicine",Tokyo
+"Shiseikan University",Hagi
+"Soka University",Hachioji
+"Fuji University",Hanamaki
+"Meisei University",Hino
+"Tokyo University of Technology",Tokyo
+"Kokugakuin University",Tokyo
+"Akita University",Akita
+"Tokyo Denki University",Tokyo
+"Ryukoku University",Kyoto
+"Shizuoka University of Welfare",Yaizu
+"Tokyo Seiei College",Tokyo
+"Utsunomiya Kyowa University",Nasushiobara
+"Shoin University",Atsugi
+"Tottori University",Tottori
+"University of Computer Sciences and Skills",Lodz
+"Józef Tyszkiewicz International School of Business, Design and Technology in Bielsko-Biala",Bielsko
+"Pawel Wlodkowic University College",Plock
+"Panstwowa Uczelnia Zawodowa im. Ignacego Moscickiego w Ciechanowie",Ciechanow
+"Jan Wyżykowski University",Lublin
+"University of Bielsko-Biala",Bielsko
+"Polonia University",Czestochowa
+"Kotarbinski University of Information Technology and Management",Olsztyn
+"Old Polish University of Applied Sciences",Kielce
+"Gakushuin University",Tokyo
+"Kyoto Sangyo University",Kyoto
+"Hirosaki University",Hirosaki
+"University of Yamanashi",Kofu
+"Kyushu University",Fukuoka
+"Japan Advanced Institute of Science and Technology",Nomi
+"Kumamoto University",Kumamoto
+"Okayama University of Science",Okayama
+"Meiji University",Tokyo
+"Aoyama Gakuin University",Tokyo
+"Shizuoka University",Shizouka
+"Tokyo University of Science",Tokyo
+"Hitotsubashi University",Kunitachi
+"Okayama University",Okayama
+"Nara Institute of Science and Technology",Ikoma
+"Tokyo Medical University",Tokyo
+"Saga University",Saga
+"Mie University",Tsu
+"Kyushu Institute of Technology",Kitakyushu
+"Chiba University",Chiba
+"Nagasaki University",Nagasaki
+"Yokohama City University",Yokohama
+"Kwansei Gakuin University",Nishinomiya
+"Yokohama National University",Yokohama
+"University of Toyama",Toyama
+"Saitama University",Saitama
+"University of the Ryukyus",Okinawa
+"Yamaguchi Gakugei College",Yamaguchi
+"Aichi Mizuho College",Nagoya
+"Tokyo University of Agriculture and Technology",Fuchu
+"Kyoto College of Medical Science",Nantan
+"LEC Tokyo Legal Mind University",Tokyo
+"Nanzan University",Nagoya
+"Tokyo University of the Arts",Tokyo
+"Kansai University",Suita
+"Yamaguchi University",Yamaguchi
+"Waseda University",Tokyo
+"Yamagata University",Yamagata
+"Chuo University",Hachioji
+"Hiroshima University",Higashihiroshima
+"Tokyo Institute of Technology",Tokyo
+"Università per Stranieri &#8220;Dante Alighieri&#8221; di Reggio Calabria","Reggio Calabria"
+"Siena Heights University",Adrian
+"Wesleyan College",Macon
+"Alice Lloyd College","Pippa Passes"
+"College of Mount Saint Vincent","New York City"
+"Oklahoma Panhandle State University",Goodwell
+"Nyack College","New York City"
+"Niigata University",Niigata
+"University of the Potomac","Washington DC"
+"SGH Warsaw School of Economics",Warsaw
+"Katowice Business University",Katowice
+"Kozminski University",Warsaw
+"University of Lodz",Lodz
+"Shibaura Institute of Technology",Tokyo
+"Kagoshima University",Kagoshima
+"Gunma University",Maebashi
+"Military University of Technology",Warsaw
+"Tokyo Medical and Dental University",Tokyo
+"Leon Schiller National Film School",Lodz
+"Nadbuzanska Szkola Wyzsza im. Marka J. Karpia w Siemiatyczach",Siemiatycze
+"Professor Edward Lipinski School of Economics, Law and Medical Sciences",Kielce
+"Feliks Nowowiejski Academy of Music",Bydgoszcz
+"University of Applied Sciences in Wałcz",Walcz
+"Toho University",Tokyo
+"Academy of Physical Education in Katowice",Katowice
+"West Pomeranian Business School",Szczecin
+"Fukuoka University",Fukuoka
+"State School of Higher Education in Chełm",Chelm
+"Keio University",Minato
+"Christian Theological Academy in Warsaw",Warsaw
+"Strzemiński Academy of Fine Arts Łódź",Lodz
+"Kyoto University",Kyoto
+"AST National Academy of Theatre Arts",Wroclaw
+"Academy of Fine Arts and Design in Katowice",Katowice
+"Janusz Korczak Pedagogical University in Warsaw",Warsaw
+"Academy of Music in Gdańsk",Gdansk
+"Supmicrotech &#8211; NSMM",Besancon
+"University of Campania Luigi Vanvitelli",Caserta
+"Marche Polytechnic University",Ancona
+"University of Messina",Messina
+"University of Brescia",Brescia
+"University of Białystok",
+"College of Economics and Computer Science in Cracow Poland",Krakow
+"International University of Logistics and Transport in Wroclaw",Wroclaw
+"Adler University",Chicago
+"Gdansk College of Health",Gdansk
+"University of Eastern Piedmont",Vercelli
+"University of Naples “L’Orientale”",Naples
+"Carlo Cattaneo University",Castellanza
+"Humanitas University",Milan
+"D&#8217;Annunzio University of Chieti–Pescara",Chieti
+"University of Sassari",Sassari
+"University of Cassino and Southern Lazio",Cassino
+"IULM University of Milan",Milan
+"Ochanomizu University",Tokyo
+"Chubu University",Kasugai
+"Kagawa University",Takamatsu
+"Kore University of Enna",Enna
+"UniCamillus &#8211; International Medical University in Rome",Rome
+"Catholic University of the Sacred Heart",Milan
+"Ca&#8217; Foscari University of Venice",Venice
+"University College of Social Sciences in Częstochowa",Czestochowa
+"Polytechnic University of Turin",Turin
+"Stanisław Staszic State University of Applied Sciences in Piła",Pila
+"Gdansk University of Physical Education and Sport",Gdansk
+"Nagoya University",Nagoya
+"Tohoku University",Sendai
+"Academy of Finance and Management in Bialystok",Bialystok
+"Karol Lipinski Academy of Music in Wrocław",Wroclaw
+"Ignacy Jan Paderewski Academy of Music in Poznań",Poznan
+"Warsaw School of Information Technology",Warsaw
+"Academy of Fine Arts in Gdańsk",Sopot
+"University of Basilicata",Potenza
+"University of Teramo",Teramo
+"Parthenope University of Naples",Naples
+"Karol Szymanowski Academy of Music",Katowice
+"Libera Università Maria SS. Assunta",Rome
+"University of Foggia",Foggia
+"Mediterranea University of Reggio Calabria","Reggio Calabria"
+"Polytechnic University of Milan",Milan
+"School of Management and Business in Kraków",Krakow
+"University of Padua",Padua
+"University of Turin",Turin
+"University of Salerno",Fisciano
+"University of Bari Aldo Moro",Bari
+"University of Cagliari",Cagliari
+"University of Verona",Verona
+"Grazyna and Kiejstut Bacewicz University of Music in Lodz",Lodz
+"University of Milano-Bicocca",Milan
+"Uczelnia Medyczna im. Marii Sklodowskiej &#8211; Curie w Warszawie",Warsaw
+"SIGMA Clermont",Aubiere
+"Lomza State University of Applied Sciences",Lomza
+"Poznań University of Physical Education",Poznan
+"Krzysztof Penderecki Academy of Music in Kraków",Krakow
+"Kazimierz Pułaski University of Technology and Humanities in Radom",Radom
+"Jan Matejko Academy of Fine Arts in Kraków",Krakow
+"Eugeniusz Geppert Academy of Art and Design in Wroclaw",Wroclaw
+"University of Physical Education in Cracow",Krakow
+"University of Humanities and Economics in Lodz",Lodz
+"Helena Chodkowska University of Technology and Economics",Warsaw
+"Józef Piłsudski University of Physical Education in Warsaw",Warsaw
+"Pomeranian Medical University in Szczecin",Szczecin
+"Siedlce University of Natural Sciences and Humanities",Siedlce
+"West Pomeranian University of Technology, Szczecin",Szczecin
+"Vistula University",Warsaw
+"Poznan University of Medical Sciences",Poznan
+"Czestochowa University of Technology",Czestochowa
+"Opole University of Technology",Opole
+"Tokyo Metropolitan University",Tokyo
+"University of Parma",Parma
+"Juntendo University",Tokyo
+"Nagoya Institute of Technology",Nagoya
+"LUM University Giuseppe Degennaro",Casamassima
+"University of Life Sciences in Lublin",Lublin
+"Maria Grzegorzewska University",Warsaw
+"School of Business National Louis University","Nowy Sacz"
+"Academy of Fine Arts in Warsaw",Warsaw
+"Maritime University of Szczecin",Szczecin
+"Kielce University of Technology",Kielce
+"Chopin University of Music",Warsaw
+"Magdalena Abakanowicz University of Fine Arts in Poznań",Poznan
+"Bydgoszcz University of Science and Technology",Bydgoszcz
+"Medical University of Lodz",Lodz
+"Jan Kochanowski University of Kielce",Kielce
+"University of Economics and Innovation",Lublin
+"Osaka University",Suita
+"Hokkaido University",Sapporo
+"University of L&#8217;Aquila",L&#8217;Aquila
+"University for Foreigners of Perugia",Perugia
+"University for Foreigners of Siena",Siena
+"University of Sannio",Benevento
+"ATU Galway",Galway
+"ATU Letterkenny",Letterkenny
+"IMT School for Advanced Studies Lucca",Lucca
+"Magna Græcia University of Catanzaro",Catanzaro
+"ESTA School of Business and Technology",Belfort
+"Valence Business School",Valence
+"University of Milan",Milan
+"University of Trento",Trento
+"Sapienza University of Rome",Rome
+"University of Florence",Florence
+"University of Genoa",Genoa
+"MTU Kerry, South Campus",Tralee
+"National College of Art and Design",Dublin
+"National College of Ireland",Dublin
+"Medical University of Bialystok",Bialystok
+"Jan Dlugosz University in Czestochowa",Czestochowa
+"Pomeranian University in Słupsk",Slupsk
+"Università degli Studi di Roma &#8220;Foro Italico&#8221;",Rome
+"IUSS University School for Advanced Studies of Pavia",Pavia
+"ArtEZ University of the Arts",Zwolle
+"Università della Valle d&#8217;Aosta",Aosta
+"Vita-Salute San Raffaele University",Milan
+"Campus Bio-Medico University of Rome",Rome
+"Suor Orsola Benincasa University of Naples",Naples
+"University of Gastronomic Sciences",Bra
+"Link Campus University",Rome
+"University of Molise",Campobasso
+"Polytechnic University of Bari",Bari
+"University of Camerino",Camerino
+"University of Tuscia",Viterbo
+"University of Insubria",Como
+"University of Macerata",Macerata
+"European University of Rome",Rome
+"Università degli Studi Internazionali di Roma",Rome
+"University of Urbino",Urbino
+"Sant’Anna School of Advanced Studies",Pisa
+"University of Bergamo",Bergamo
+"Scuola Normale Superiore",Pisa
+"University of Salento",Lecce
+"University of Calabria",Rende
+"Scuola Internazionale Superiore di Studi Avanzati",Trieste
+"LUISS Guido Carli",Rome
+"Bocconi University",Milan
+"University of Catania",Catania
+"University of Udine",Udine
+"University of Perugia",Perugia
+"University of Rome Tor Vergata",Rome
+"Poznań University of Life Sciences",Poznan
+"Lublin University of Technology",Lublin
+"University of Limerick",Limerick
+"Maria Curie-Skłodowska University",Lublin
+"Medical University of Lublin",Lublin
+"University of Naples Federico II",Naples
+"University of Pisa",Pisa
+"Marino Institute of Education",Dublin
+"University College Dublin",Dublin
+"Technological University Dublin",Dublin
+"South East Technological University Waterford",Waterford
+"Wroclaw University of Environmental and Life Sciences",Wroclaw
+"University of Economics in Katowice",Katowice
+"University of Agriculture in Krakow",Krakow
+"Dublin City University",Dublin
+"Gdynia Maritime University",Gdynia
+"Lazarski University",Warsaw
+"WSB University","Dabrowa Gornicza"
+"Polish-Japanese Academy of Information Technology",Warsaw
+"Wrocław University of Economics",Wroclaw
+"Medical University of Silesia in Katowice",Katowice
+"Wroclaw University of Health and Sport Sciences",Wroclaw
+"University of Szczecin",Szczecin
+"Munster Technological University, Kerry",Tralee
+"Munster Technological University, Cork",Cork
+"National School of Architecture of Nancy",Nancy
+"University of Wrocław",Wroclaw
+"IFP School",Paris
+"ESME Sudria",Paris
+"École d&#8217;Ingénieurs de Purpan",Toulouse
+"ESC Amiens School of Management",Amiens
+"National Institute and School of Applied Sciences of Centre Loire Valley",Blois
+"École de Management Léonard de Vinci",Courbevoie
+"Institute of IT and Engineering of Limoges",Limoges
+"L’Ecole Supérieure Européenne de Management","Saint Jacques"
+"EBI &#8211; The School of Industrial Biology",Cergy
+"ECAM Strasbourg-Europe",Schiltigheim
+"ECAM Rennes",Rennes
+ECAM-EPMI,Cergy
+"SETU Carlow",Carlow
+"TUS Moylish",Limerick
+"TUS Athlone",Athlone
+"ESAIP École d&#8217;Ingénieurs",Angers
+"Carlow College",Carlow
+"St Patrick&#8217;s College, Maynooth",Maynooth
+"Royal Irish Academy of Music",Dublin
+"University College Cork",Cork
+"Dundalk Institute of Technology",Dundalk
+"Maynooth University",Maynooth
+"Trinity College Dublin, University of Dublin",Dublin
+"ICN Business School",Nancy
+"Pau Business School",Pau
+EIGSI,"La Rochelle"
+ESIGELEC,"Saint Etienne du Rouvray"
+ISAE-ENSMA,"Chasseneuil du Poitou"
+"ESITC Caen",Caen
+"National School of Engineers of Tarbes",Tarbes
+"Paris Higher Biotechnology Institute",Lyon
+"French National Library and Information Science School",Villeurbanne
+"L&#8217;Institut Agro Dijon",Dijon
+"ESCE International Business School",Paris
+"VetAgro Sup",Lyon
+"Koszalin University of Technology",Koszalin
+"Poznań University of Economics and Business",Poznan
+"Lodz University of Technology",Lodz
+"Wroclaw Medical University",Wroclaw
+"Institute of Public Administration",Dublin
+"Dún Laoghaire Institute of Art, Design and Technology",Dublin
+"Medical University of Gdańsk",Gdansk
+"Kazimierz Wielki University in Bydgoszcz",Bydgoszcz
+"Bialystok University of Technology",Bialystok
+"University of Rzeszów",Rzeszow
+"University of Opole",Opole
+"Cardinal Stefan Wyszyński University in Warsaw",Warsaw
+"SWPS University",Warsaw
+"Medical University of Warsaw",Warsaw
+"Cracow University of Economics",Cracow
+"Warsaw University of Life Sciences",Warsaw
+"University of Warmia and Mazury in Olsztyn",Olsztyn
+"Chimie ParisTech",Paris
+"Rzeszów University of Technology",Rzeszow
+"Ecole Nationale Supérieure de Chimie de Montpellier",Montpellier
+"ITECH Lyon",Ecully
+"École Supérieure du Bois",Nantes
+"Catholic University of the West",Angers
+"CY Tech",Cergy
+"WSB University",Poznan
+"Institut catholique d&#8217;arts et métiers",Lille
+"École Nationale Supérieure de Chimie de Rennes",Rennes
+"ECAM Lyon",Lyon
+"L&#8217;École de design Nantes Atlantique",Nantes
+"University of Nîmes",Nimes
+ISAE‑Supméca,"Saint Ouen sur Seine"
+ESEO,Angers
+"IPAG Business School",Paris
+"Strate School of Design",Sevres
+ISARA,Lyon
+"ESSCA School of Management",Angers
+"École nationale d&#8217;ingénieurs de Saint-Étienne","Saint Etienne"
+"Institute of Intercultural Management and Communication",Paris
+"EHESP School of Public Health",Rennes
+"National Institute for Applied Sciences, Rouen",Rouen
+"Leonard de Vinci Graduate School of Engineering",Paris
+"ESTIA Institute of Technology",Bidart
+"ICD Business School",Paris
+"École Nationale Vétérinaire, Agroalimentaire et de l&#8217;alimentation de Nantes-Atlantique",Nantes
+"Atlantic Technological University",Sligo
+"Catholic University of Paris",Paris
+"École Nationale Supérieure de Chimie de Lille",Lille
+"National University of Ireland, Galway",Galway
+"University of Technology of Belfort-Montbéliard",Belfort
+"IÉSEG School of Management",Lille
+"ESITC Paris",Paris
+"Emory and Henry College",Emory
+"University of Gdańsk",Gdansk
+"Culver-Stockton College","Canton, Missouri"
+"ESITC Metz",Metz
+"Columbia College","Columbia, MO"
+"Adventist University of France","Collonges sous Saleve"
+"Institut Supérieur du Bâtiment et des Travaux Publics",Marseille
+"Bachelor EGC",Rodez
+"École de Commerce de Valence",Valence
+"Cracow University of Technology",Cracow
+"Silesian University of Technology",Gliwice
+"Wrocław University of Science and Technology",Wroclaw
+"Nicolaus Copernicus University in Toruń",Torun
+"University of Modena and Reggio Emilia",Modena
+"Free University of Bozen-Bolzano",Bolzano
+"University of Palermo",Palermo
+"University of Ferrara",Ferrara
+"University of Pavia",Pavia
+"University of Bologna",Bologna
+UniLaSalle,Beauvais
+"Poznań University of Technology",Poznan
+"University of Silesia in Katowice",Katowice
+"Brest National School of Engineering",Plouzane
+"Bordeaux Sciences Agro",Bordeaux
+"Warsaw University of Technology",Warsaw
+"Adam Mickiewicz University, Poznań",Poznan
+"Graduate School of International Agro-Development",Angers
+"Graduate School of Foundry and Forge",Sevres
+"Higher Institute of Materials and Advanced Mechanics of Le Mans","Le Mans"
+"AGH University of Science and Technology",Krakow
+"Burgundy School of Business",Dijon
+"La Rochelle University","La Rochelle"
+"ESIEE Paris","Noisy le Grand"
+"EM Normandie",Caen
+"ISG Business School",Paris
+"École nationale de la météorologie",Toulouse
+"ENSAE ParisTech",Palaiseau
+"Graduate School of Information Technology, Electronics, Automation",Paris
+"University of Perpignan &#8211; Domitian",Perpignan
+"Sorbonne Paris North University",Paris
+"Toulouse 1 Capitole University",Toulouse
+"Montpellier SupAgro",Montpellier
+"Agrocampus Ouest",Rennes
+"INSA Rennes",Rennes
+"National Veterinary School of Alfort","Maisons Alfort"
+"SKEMA Business School",Paris
+"French National School of Civil Aviation",Toulouse
+"Higher Institute of Aeronautics and Space",Toulouse
+"Paul Valéry University Montpellier 3",Montpellier
+"South Champagne Business School",Troyes
+"Winston-Salem State University","Winston Salem"
+"McNeese State University","Lake Charles"
+"Bay Path University",Longmeadow
+"Southwestern Adventist University","Keene, Texas"
+"Keystone College","La Plume"
+"University of Maine at Machias",Machias
+"Brest Business School",Brest
+"Catholic University of Toulouse",Toulouse
+"Graduate School of Organic and Mineral Chemistry",Compiegne
+"National School of Computer Science for Industry and Business","Evry Courcouronnes"
+"Rennes School of Business",Brittany
+"CESI Graduate School of Engineering",Paris
+"Academy of Art in Szczecin",Szczecin
+"University of Zielona Góra","Zielona Gora"
+"Jagiellonian University",Krakow
+"ESTACA Engineering School","Montigny le Bretonneux"
+"Gdańsk University of Technology",Gdansk
+"Institute of Polytechnic Science and Aeronautics","Ivry sur Seine"
+"Institut Supérieur de l&#8217;Électronique et du Numérique",Lille
+"ECE Paris",Paris
+"Institut d&#8217;Optique Graduate School",Palaiseau
+"Pedagogical University of Krakow",Krakow
+"Institut Supérieur d&#8217;Électronique de Paris",Paris
+"ESTP Paris",Paris
+"University of Warsaw",Warsaw
+"NEOMA Business School",Reims
+"National Institute of Oriental Languages ​​and Civilizations",Paris
+"National Graduate School of Engineering and Research Center",Caen
+EURECOM,"Alpes Maritimes"
+"Toulouse Institute of Technology",Toulouse
+"Champlain College",Burlington
+"York College of Pennsylvania","Spring Garden Township"
+"Arts et Métiers Institute of Technology",Paris
+"Virginia State University",Ettrick
+"National School of Geographic Sciences",Paris
+"San Francisco Art Institute","San Francisco"
+"University of Montpellier",Montpellier
+"University of Technology of Troyes",Troyes
+"EDC Paris Business School",Puteaux
+"Middle Georgia State University",Macon
+"National Graduate School of Textile Engineering",Roubaix
+"College of Saint Mary",Omaha
+"Westminster College &#8211; Utah","Salt Lake City"
+"Engineering School of the City of Paris",Paris
+"Dominican University New York","Orangeburg, New York"
+"National School of Statistics and Information Analysis",Bruz
+"Texas A and M University &#8211; San Antonio","San Antonio"
+"National Graduate School of Agronomy, Toulouse","Auzeville Tolosane"
+"Louisiana State University Health Sciences Center-Shreveport",Shreveport
+"Roseman University of Health Sciences","Henderson, Nevada"
+"HEI Lille",Lille
+"ISC Paris Business School",Paris
+"Graduate School of Civil, Environmental and Urban Engineering","Vaulx en Velin"
+"Walsh College","Troy, Michigan"
+"Limestone University",Gaffney
+"Dickinson State University",Dickinson
+"University of Corsica Pasquale Paoli",Corsica
+"National Veterinary School of Toulouse",Toulouse
+"TBS Education",Toulouse
+"Centrale Marseille",Marseille
+"Telecom SudParis","Evry Courcouronnes"
+"Salus University","Elkins Park"
+"École Centrale de Nantes",Nantes
+"Télécom Paris",Paris
+"The King&#8217;s College","New York City"
+"Centralia College",Centralia
+"Western Nevada College","Carson City"
+"Defiance College",Defiance
+"New Sorbonne University &#8211; Paris III",Paris
+"Beacon College",Leesburg
+"University of Orléans",Orleans
+"Mines Saint-Étienne","Saint Etienne"
+"Aix-Marseille University",Marseille
+"Ohio Wesleyan University","Delaware, Ohio"
+"Hope International University",Fullerton
+"Southern Wesleyan University",Central
+"St. Francis College","New York City"
+"Belmont Abbey College","Belmont, North Carolina"
+"College of Our Lady of the Elms",Chicopee
+"Concordia University Texas",Austin
+"Cleary University",Howell
+"Brevard College",Brevard
+"CPE Lyon",Villeurbanne
+"Graduate School of Management, Chambéry","Le Bourget du Lac"
+"Landmark College",Putney
+"Thomas Edison State University",Trenton
+"William Jessup University",Rocklin
+"William Peace University",Raleigh
+"EPF School of Engineering",Cachan
+"Milwaukee Institute of Art and Design",Milwaukee
+"Granite State College",Concord
+"INSA Strasbourg",Strasbourg
+"University of Northwestern Ohio",Lima
+"Abraham Baldwin Agricultural College",Tifton
+"East Texas Baptist University","Marshall, Texas"
+"University of Alaska Anchorage",Anchorage
+"Union College, Kentucky",Barbourville
+"Metropolitan College of New York","New York City"
+"University of Virginia&#8217;s College at Wise",Wise
+"Indiana University Northwest",Gary
+"Saint Mary&#8217;s College","Notre Dame"
+"Graduate Center, CUNY","New York City"
+"Dillard University","New Orleans"
+"Grambling State University",Grambling
+"Lewis-Clark State College","Lewiston, Idaho"
+"IMT Nord Europe",Lille
+"Graduate School of Agricultural Studies of Angers",Angers
+"National University Institute Jean-Francois Champollion",Albi
+"ENS Rennes",Rennes
+"ENSTA Bretagne",Brest
+"Southwestern Law School","Los Angeles"
+"Centenary College of Louisiana",Shreveport
+"Pacific Northwest College of Art",Portland
+"Warren Wilson College",Swannanoa
+"American International College","Springfield, Massachusetts"
+"Heritage University",Toppenish
+"Louisiana Christian University",Pineville
+"Grand View University","Des Moines"
+"Mount Aloysius College",Cresson
+"Thomas Jefferson School of Law","San Diego"
+"Air Force Institute of Technology",Dayton
+"University of Health Sciences and Pharmacy in St. Louis","St. Louis"
+"Southern University at New Orleans","New Orleans"
+"Wilberforce University",Wilberforce
+"Samuel Merritt University",Oakland
+"Florida National University",Hialeah
+"Sterling College, Vermont",Craftsbury
+"Marymount Manhattan College","New York City"
+"Brewton-Parker College","Mount Vernon, Georgia"
+"Tabor College",Hillsboro
+"Faith Baptist Bible College and Theological Seminary",Ankeny
+"William Penn University",Oskaloosa
+"University of Maine at Presque Isle","Presque Isle"
+"Cheyney University of Pennsylvania",Cheyney
+"University of Arkansas &#8211; Fort Smith","Fort Smith"
+"Oklahoma Baptist University",Shawnee
+"Pacifica Graduate Institute","Santa Barbara"
+"University of Reims Champagne-Ardenne",Reims
+"California Western School of Law","San Diego"
+"Central Penn College",Summerdale
+"Bordeaux Montaigne University",Pessac
+"Polk State College","Winter Haven"
+"LeMoyne-Owen College",Memphis
+"University of Toulouse-Jean Jaurès",Toulouse
+"Fort Valley State University","Fort Valley"
+"Grenoble School of Management",Grenoble
+"Cranbrook Academy of Art","Bloomfield Hills"
+"Notre Dame de Namur University","Belmont, California"
+"Lane College","Jackson, Tennessee"
+"Bordeaux INP",Bordeaux
+"West Virginia Wesleyan College",Buckhannon
+"Vaughn College of Aeronautics and Technology","New York City"
+"IMT Mines Alès",Ales
+"Hilbert College","Hamburg, New York"
+"West Virginia University at Parkersburg",Parkersburg
+"Principia College",Elsah
+"Northwestern Oklahoma State University",Alva
+"William James College",Newton
+"Clarkson College",Omaha
+"Parker University",Dallas
+"Marian University, Wisconsin","Fond du Lac"
+"Indian River State College","Fort Pierce"
+"Ohio Christian University",Circleville
+"Centrale Lille","Villeneuve d&#8217;Ascq"
+"Jean Monnet University","Saint Etienne"
+"Savoy Mont Blanc University",Annecy
+"York University","York, Nebraska"
+"Artois University",Arras
+"ESPCI Paris &#8211; PSL",Paris
+"INSA Toulouse",Toulouse
+"The University of Montana Western",Dillon
+"University of Technology of Compiègne",Compiegne
+"Life Pacific University","San Dimas"
+"Hannibal-LaGrange University",Hannibal
+"University of Rouen Normandy",Rouen
+"Paris 8 University Vincennes-Saint-Denis",Paris
+"University of Clermont Auvergne","Clermont Ferrand"
+"Union Institute and University",Cincinnati
+"CentraleSupélec, Paris-Saclay University",Metz
+"Bushnell University",Eugene
+"University of Bridgeport",Bridgeport
+"Fontbonne University",Clayton
+"Western Colorado University",Gunnison
+"Governors State University","University Park, Illinois"
+"Delta State University","Cleveland, Mississippi"
+"Lourdes University",Sylvania
+"Washington and Jefferson College","Washington, Pennsylvania"
+"Moravian University",Bethlehem
+"Oglethorpe University",Brookhaven
+"Colorado Mesa University","Grand Junction"
+"Ringling College of Art and Design","Sarasota, Florida"
+"University of Wisconsin-Parkside",Somers
+"St. John&#8217;s College",Annapolis
+"College of Staten Island, CUNY","Staten Island"
+"University of Rio Grande and Rio Grande Community College","Rio Grande"
+"Brooklyn College",Brooklyn
+"Catholic University of Lille",Lille
+"Van Hall Larenstein University of Applied Sciences",Leeuwarden
+"Lyon College",Batesville
+"École Nationale Supérieure de l&#8217;Electronique et de ses Applications","Cergy Pontoise"
+"Centenary University",Hackettstown
+"Mount Saint Mary&#8217;s University",Emmitsburg
+"IMT Mines Albi",Albi
+"Lyon Catholic University",Lyon
+"Briar Cliff University","Sioux City"
+"Audencia Business School",Nantes
+"Toccoa Falls College","Toccoa Falls"
+"Montserrat College of Art",Beverly
+"Martin Luther College","New Ulm"
+"University of Western States",Portland
+"Berkeley College","New York City"
+"NewSchool of Architecture and Design","San Diego"
+"Wagner College","Staten Island"
+"William Woods University",Fulton
+"South Texas College of Law",Houston
+"McPherson College",McPherson
+"Louisiana State University of Alexandria",Alexandria
+"Cazenovia College",Cazenovia
+"Alderson Broaddus University",Philippi
+"Mars Hill University","Mars Hill"
+"University of Mobile",Mobile
+"Saint Joseph&#8217;s College of Maine",Standish
+"Paine College",Augusta
+"Kansas Wesleyan University",Salina
+"College of Central Florida",Ocala
+"Holy Family University",Philadelphia
+"The University of Texas at Tyler Health Science Center",Tyler
+"Nebraska Methodist College",Omaha
+"Goodwin University","East Hartford"
+"AdventHealth University",Orlando
+"Columbia Basin College",Pasco
+"Chicago School of Professional Psychology",Chicago
+"Coker University",Hartsville
+"Mount Vernon Nazarene University","Mount Vernon, Ohio"
+"Reinhardt University",Waleska
+"Mount Marty University",Yankton
+"Thiel College","Greenville, Pennsylvania"
+"Charles R. Drew University of Medicine and Science","Los Angeles"
+"University of Saint Francis","Fort Wayne"
+"Corban University",Salem
+"Concordia University Ann Arbor","Ann Arbor"
+"Mississippi Valley State University","Itta Bena"
+"SUNY College of Optometry","New York City"
+"Dean College","Franklin, Massachusetts"
+"TIAS School for Business and Society",Tilburg
+"HZ University of Applied Sciences",Vlissingen
+"Montana State University-Northern",Havre
+"Maryville College","Maryville, Tennessee"
+"Hebrew College",Newton
+"Brescia University",Owensboro
+"The University of Tennessee Southern",Pulaski
+"Covenant College","Dade County"
+"Sul Ross State University",Alpine
+"Sullivan University",Louisville
+"Multnomah University",Portland
+"University of Évry Val d&#8217;Essonne","Evry Courcouronnes"
+"KEDGE Business School",Paris
+"Le Havre Normandy University","Le Havre"
+"EPITA School of Engineering and Computer Science",Lyon
+"Hotelschool The Hague",Hague
+"Aeres University of Applied Sciences",Dronten
+"Wittenborg University of Applied Sciences",Apeldoorn
+"Hogeschool de Kempel",Helmond
+"California University of Pennsylvania","California, Pennsylvania"
+"Hogeschool KPZ",Zwolle
+"Iselinge Hogeschool",Doetinchem
+"University of Humanistic Studies",Utrecht
+"HAS University of Applied Sciences","S Hertogenbosch"
+"Viaa Christian University of Applied Sciences",Zwolle
+"Islamic University of Applied Sciences Rotterdam",Rotterdam
+"Hogeschool iPABO",Amsterdam
+"Avila University","Kansas, MO"
+"Lindsey Wilson College",Columbia
+"Grenoble Alpes University",Grenoble
+"Paris 1 Panthéon-Sorbonne University",Paris
+"New York Medical College",Westchester
+"LIM College","Manhattan, New York"
+"Lakeland University","Plymouth, Wisconsin"
+"Savannah State University",Savannah
+"Huston-Tillotson University",Austin
+"University of South Carolina-Beaufort","Bluffton, South Carolina"
+"Northwestern Health Sciences University","Bloomington, Minnesota"
+"Stephens College","Columbia, MO"
+"Mount Mary University",Milwaukee
+"Roberts Wesleyan College",Rochester
+"Edward Waters College",Jacksonville
+"Kentucky Wesleyan College",Owensboro
+"Coe College","Cedar Rapids"
+"Farmingdale State University","East Farmingdale"
+"Belhaven University",Jackson
+"Lee University","Cleveland, Tennessee"
+"Herzing University",Milwaukee
+"La Roche University",Pittsburgh
+"ENS Paris-Saclay",Essonne
+"ENSTA Paris",Palaiseau
+"Avignon University",Avignon
+"University of Western Brittany",Brest
+"University of the Ozarks","Clarksville, Arkansas"
+"Bismarck State College",Bismarck
+"Midland College","Midland, Texas"
+"Olivet College",Olivet
+"West Liberty University","West Liberty"
+"Wilmington College","Wilmington, Ohio"
+"MGH Institute of Health Professions",Boston
+"Langston University",Langston
+"University of Applied Sciences Leiden",Leiden
+"Gerrit Rietveld Academie",Amsterdam
+"Zuyd University of Applied Sciences",Maastricht
+"Amsterdam University of the Arts",Amsterdam
+"Design Academy Eindhoven",Eindhoven
+"Saint Mary-of-the-Woods College","Vigo County"
+"Royal Academy of Art, The Hague",Hague
+"Vermont Technical College","Randolph Center"
+"The Hague University of Applied Sciences",Hague
+"York College, CUNY","New York City"
+"Eastern Nazarene College","Quincy, Massachusetts"
+"NHL Stenden University of Applied Sciences",Leeuwarden
+"Palo Alto University","Palo Alto"
+"Inholland University of Applied Sciences",Diemen
+"Warner Pacific College",Portland
+"Avans University of Applied Sciences",Breda
+"HKU University of the Arts Utrecht",Utrecht
+"Rotterdam University of Applied Sciences",Rotterdam
+"IHE Delft Institute for Water Education",Delft
+"Wageningen University and Research",Wageningen
+"Breda University of Applied Sciences",Breda
+"Gulf Coast State College","Panama City"
+"Nyenrode Business University",Breukelen
+"Windesheim University of Applied Sciences",Zwolle
+"Columbia College, South Carolina","Columbia, SC"
+"Dakota Wesleyan University",Mitchell
+"Newman University",Wichita
+"Mount Mercy University","Cedar Rapids"
+"Central School of Lyon",Lyon
+"University of Nantes",Nantes
+"Southern Brittany University",Lorient
+"EDHEC Business School",Lille
+"The Institute of World Politics","Washington DC"
+"LaGrange College",LaGrange
+"Valley City State University","Valley City"
+"University of the Littoral Opal Coast",Dunkirk
+"Pine Manor College",Boston
+"University of Upper Alsace",Mulhouse
+"Holy Names University",Oakland
+"Mary Baldwin University",Staunton
+"EMLYON Business School",Paris
+"University of St. Augustine for Health Sciences","San Marcos, California"
+"University of Versailles Saint-Quentin-en-Yvelines",Versailles
+"University of Pikeville",Pikeville
+"Great Basin College",Elko
+"Hodges University","Fort Myers"
+"Bethany College","Bethany, West Virginia"
+"Anna Maria College",Paxton
+"SUNY Delhi",Delhi
+"Southern Virginia University","Buena Vista"
+"McMurry University",Abilene
+"Keuka College","Keuka Park"
+"Midway University",Midway
+"University of Arkansas at Monticello",Monticello
+"Rocky Mountain College of Art and Design",Denver
+"Metropolitan State University","St. Paul"
+"Baker College","Owosso, Michigan"
+"Finlandia University",Hancock
+"New York City College of Technology, CUNY","New York City"
+"Eastern Mennonite University","Harrisonburg, Virginia"
+"Stonehill College","Easton, Massachusetts"
+"Bluefield University",Bluefield
+"Howard Payne University",Brownwood
+"College of Idaho","Caldwell, Idaho"
+"Vanguard University of Southern California","Costa Mesa"
+"Southwest Baptist University",Bolivar
+"Madonna University",Livonia
+"West Coast University &#8211; Los Angeles","Los Angeles"
+"Concordia University, Nebraska",Seward
+"Notre Dame College","South Euclid"
+"Florida Memorial University","Miami Gardens"
+"Hastings College",Hastings
+"Friends University",Wichita
+"Maine College of Art and Design","Portland, Maine"
+"William Jewell College",Liberty
+"Methodist University","Fayetteville, North Carolina"
+"Johnson C. Smith University",Charlotte
+"Peru State College",Peru
+"Elizabeth City State University","Elizabeth City"
+"Randolph-Macon College","Ashland, Virginia"
+"National University of Health Sciences",Chicago
+"Harrisburg University of Science and Technology",Harrisburg
+"Averett University","Danville, Virginia"
+"Thomas College",Waterville
+"Lenoir-Rhyne University",Hickory
+"Waynesburg University",Waynesburg
+"Alcorn State University",Lorman
+"Newberry College",Newberry
+"Saint Augustine&#8217;s University",Raleigh
+"Goldey-Beacom College","New Castle County"
+"Anderson University","Anderson, South Carolina"
+"Randolph College",Lynchburg
+"Millsaps College",Jackson
+"West Virginia State University","Kanawha County"
+"Central State University",Wilberforce
+"Maine Maritime Academy",Castine
+"Saint Peter&#8217;s University","Jersey City"
+"Chamberlain University","Downers Grove"
+"Colorado State University-Pueblo",Pueblo
+"Florida SouthWestern State College","Fort Myers"
+"Minot State University",Minot
+"Shawnee State University","Portsmouth, Ohio"
+"IMT Atlantique",Brest
+"University of Maine at Augusta","Augusta, Maine"
+"Graceland University",Lamoni
+"Delaware Valley University",Doylestown
+"Paris 2 Panthéon-Assas University",Paris
+"Cornish College of the Arts",Seattle
+"National Institute of Applied Sciences of Lyon",Villeurbanne
+"Franciscan University of Steubenville",Steubenville
+"Virginia Wesleyan University","Virginia Beach"
+"South Texas College",Hidalgo
+"Ecole des Ponts ParisTech","Champs sur Marne"
+"Kansas City University","Kansas City"
+"Benedict College","Columbia, SC"
+"Milligan University",Elizabethton
+"Lubbock Christian University",Lubbock
+"Ohio Dominican University",Columbus
+"North Greenville University",Tigerville
+"St. Joseph&#8217;s University, New York",Patchogue
+"George Mason University",Fairfax
+"William Carey University",Hattiesburg
+"Chestnut Hill College",Philadelphia
+"Talladega College",Talladega
+"Wells College","Aurora, New York"
+"Adrian College",Adrian
+"Wilson College",Chambersburg
+"University of Science and Arts of Oklahoma",Chickasha
+"Virginia Union University",Richmond
+"Concord University","Athens, West Virginia"
+"University of Advancing Technology",Tempe
+"HU University of Applied Sciences Utrecht",Utrecht
+"HAN University of Applied Sciences",Arnhem
+"Fontys University of Applied Sciences",Eindhoven
+"Morningside University","Sioux City"
+"Piedmont University",Demorest
+"Colby-Sawyer College","New London, New Hampshire"
+"St. Thomas University","Miami Gardens"
+"Misericordia University",Dallas
+"King University","Bristol, Tennessee"
+"University of Paris-Est Marne-la-Vallée","Marne la Vallee"
+"Columbia International University","Columbia, SC"
+"MINES ParisTech",Paris
+"Grenoble Institute of Technology",Grenoble
+"Medaille University",Buffalo
+"Mansfield University of Pennsylvania",Mansfield
+"University of Mount Union",Alliance
+"University of Houston–Victoria","Victoria, Texas"
+"ESCP Business School",Paris
+"Rennes 2 University",Rennes
+"Des Moines University","Des Moines"
+"Kansas City Art Institute","Kansas, MO"
+"University of Maryland Eastern Shore","Princess Anne"
+"Georgian Court University","Lakewood, New Jersey"
+"Daemen College","Amherst, New York"
+"Missouri Baptist University","Creve Coeur"
+"Heidelberg University",Tiffin
+"Georgia Gwinnett College","Lawrenceville, Georgia"
+"Westminster College, Missouri",Fulton
+"University of Arkansas at Pine Bluff","Pine Bluff"
+"Cleveland Institute of Music",Cleveland
+"Erskine College","Due West"
+"Indiana Institute of Technology","Fort Wayne"
+"Texas Lutheran University",Seguin
+"Bloomfield College",Bloomfield
+"Oakwood University",Huntsville
+"Crown College","St. Bonifacius"
+"Lancaster Bible College","Lancaster, Pennsylvania"
+"Brenau University",Gainesville
+"Loras College",Dubuque
+"Logan University",Chesterfield
+"Barton College",Wilson
+"Rosalind Franklin University of Medicine and Science","North Chicago"
+"Freed-Hardeman University","Henderson, Tennessee"
+"Texas Wesleyan University","Fort Worth"
+"American Jewish University","Los Angeles"
+"Caldwell University",Caldwell
+"École Polytechnique",Paris
+"University of Caen Normandy",Caen
+"Jean Moulin University Lyon 3",Lyon
+"University of Angers",Angers
+"University of Burgundy",Dijon
+"Polytechnic University of Hauts-de-France",Valenciennes
+"University of Picardy Jules Verne",Amiens
+"School for Advanced Studies in the Social Sciences",Paris
+"University of Limoges",Limoges
+"University of Pau and the Adour Region",Pau
+"Paris Dauphine University",Paris
+"Cergy-Pontoise University","Cergy Pontoise"
+"Trinity Christian College","Palos Heights"
+"Massachusetts Maritime Academy",Bourne
+"Thomas More University","Crestview Hills"
+"Tiffin University",Tiffin
+"Albright College","Reading, Pennsylvania"
+"Our Lady of the Lake University","San Antonio"
+"New England Law | Boston",Boston
+"SUNY Cobleskill","Schoharie County"
+"Franklin Pierce University",Rindge
+"Georgia Southwestern State University",Americus
+"University of Franche-Comté",Besancon
+"Bryant and Stratton College",Buffalo
+"Paul Sabatier University",Toulouse
+"Dalton State College",Dalton
+"Northeast Ohio Medical University",Rootstown
+"Castleton University",Castleton
+"University of Alaska Southeast",Juneau
+"Illinois College","Jacksonville, Illinois"
+"Lees-McRae College","Banner Elk"
+"Trevecca Nazarene University",Nashville
+"Montreat College",Montreat
+"Spalding University",Louisville
+"Master&#8217;s University","Santa Clarita"
+"College of the Ozarks","Point Lookout"
+"Missouri Western State University","Saint Joseph, Missouri"
+"Oklahoma Wesleyan University",Bartlesville
+"Moore College of Art and Design",Philadelphia
+"Franklin College","Franklin, Indiana"
+"Trine University",Angola
+"Cabrini University",Radnor
+"La Sierra University",Riverside
+"Huntingdon College",Montgomery
+"Birmingham-Southern College","Birmingham, Alabama"
+"Snow College",Ephraim
+"Southwest Minnesota State University","Marshall, Minnesota"
+"Tusculum University",Tusculum
+"Northwest University",Kirkland
+"Lincoln University, Missouri","Jefferson City"
+"University of Hawaii at Hilo",Hilo
+"Southern California Institute of Architecture","Los Angeles"
+"Black Hills State University",Spearfish
+"Wheeling University",Wheeling
+"Eureka College",Eureka
+"Fairmont State University",Fairmont
+"Rocky Mountain College",Billings
+"University of Silicon Valley","San Jose"
+"University of Charleston","Charleston, West Virginia"
+"United States Sports Academy",Daphne
+"McKendree University",Lebanon
+"University of Dubuque",Dubuque
+"Goddard College",Plainfield
+"Rockhurst University","Kansas, MO"
+"Eindhoven University of Technology",Eindhoven
+"Erasmus University Rotterdam",Rotterdam
+"Tilburg University",Tilburg
+"Cedar Crest College",Allentown
+"Rush University",Chicago
+"College of the Atlantic","Bar Harbor"
+"Carlow University",Pittsburgh
+"Presbyterian College","Clinton, South Carolina"
+"East Central University","Ada, Oklahoma"
+"Southern Arkansas University",Magnolia
+"Meharry Medical College",Nashville
+"Wisconsin Lutheran College",Wauwatosa
+"University of the Cumberlands","Williamsburg, Kentucky"
+"Faulkner University",Montgomery
+"New England Institute of Technology","East Greenwich"
+"Fitchburg State University",Fitchburg
+"Wayland Baptist University",Plainview
+"Southern Nazarene University",Bethany
+"University of Massachusetts Global",Irvine
+"Bard College at Simon&#8217;s Rock",Pittsfield
+"A.T. Still University",Kirksville
+"Amsterdam University of Applied Sciences",Amsterdam
+"University of Northwestern &#8211; St. Paul",Roseville
+"Ave Maria University","Ave Maria"
+"Queens College, City University of New York","New York City"
+"Benedictine College",Atchison
+"Huntington University","Huntington, Indiana"
+"Bryan College","Dayton, Tennessee"
+"Athens State University","Athens, Alabama"
+"Claflin University","Orangeburg, South Carolina"
+"Hardin-Simmons University",Abilene
+"Francis Marion University","Florence, South Carolina"
+"Coppin State University",Baltimore
+"North Carolina Wesleyan College","Rocky Mount"
+"D&#8217;Youville College",Buffalo
+"HEC Paris",Paris
+"Côte d&#8217;Azur University",Nice
+"University of Poitiers",Poitiers
+"Lumière University Lyon 2",Lyon
+"University of Tours",Tours
+"Paris Nanterre University",Nanterre
+"Paris-East Créteil University",Creteil
+"University of Rennes 1",Rennes
+"ENS Lyon",Lyon
+"Claude Bernard University Lyon 1",Lyon
+"École Normale Supérieure",Paris
+"University of Lorraine",Nancy
+"Paris Cité University",Paris
+"Radboud University",Nijmegen
+"Ouachita Baptist University",Arkadelphia
+"Albany Medical College","Albany, New York"
+"University of Saint Joseph","West Hartford"
+"SUNY Maritime College","The Bronx"
+"United States Coast Guard Academy","New London"
+"Immaculata University","East Whiteland Township"
+"Nicholls State University",Thibodaux
+"New College of Florida",Sarasota
+"MidAmerica Nazarene University",Olathe
+"Carroll College",Helena
+"Wayne State College","Wayne, Nebraska"
+"Cornerstone University","Grand Rapids"
+"Marywood University",Scranton
+"Malone University","Canton, Ohio"
+"Boston Architectural College",Boston
+"Delft University of Technology",Delft
+"Leiden University",Leiden
+"Southeastern Oklahoma State University",Durant
+"Judson University",Elgin
+"Fielding Graduate University","Santa Barbara"
+"University of Texas Permian Basin","Odessa, Texas"
+"Monroe College","New Rochelle"
+"Bridgewater College","Rockingham County"
+"Clarke University",Dubuque
+"Palm Beach Atlantic University","West Palm Beach"
+"Nichols College",Dudley
+"Albany Law School","Albany, New York"
+"Northwest Nazarene University",Nampa
+"Menlo College",Atherton
+"Paris Institute of Political Studies",Paris
+"Pfeiffer University",Misenheimer
+"Lasell University",Newton
+"Cardinal Stritch University",Milwaukee
+"Rivier University",Nashua
+"Chaminade University of Honolulu",Honolulu
+"Upper Iowa University","Fayette, Iowa"
+"Columbus College of Art and Design",Columbus
+"SUNY Morrisville State College",Syracuse
+"Shepherd University",Shepherdstown
+"Alaska Pacific University","Anchorage, Arkansas"
+"Edgewood College",Madison
+"Grace College","Kosciusko County"
+"Chadron State College",Chadron
+"Oklahoma Christian University","Oklahoma City"
+"Christian Brothers University",Memphis
+"Morehead State University",Morehead
+"Salve Regina University","Newport, Rhode Island"
+"Concordia University Wisconsin",Mequon
+"Trinity International University","Lake County"
+"Neumann University",Aston
+"University of Twente",Enschede
+"Waldorf University","Forest City"
+"Worcester State University","Worcester, MA"
+"Greenville University","Greenville, Illinois"
+"Converse College",Spartanburg
+"The University of Texas at Tyler",Tyler
+"University of Lynchburg",Lynchburg
+"Northwestern State University of Louisiana",Natchitoches
+"Saint Mary&#8217;s University of Minnesota",Winona
+"Henderson State University",Arkadelphia
+"Thomas Aquinas College","Santa Paula"
+"Alma College",Alma
+"Northern Vermont University",Johnson
+"Massachusetts College of Pharmacy and Health Sciences",Boston
+"SUNY Canton","Canton, New York"
+"Test (test)",
+"Viterbo University","La Crosse"
+"Merrimack College","North Andover"
+"Hollins University",Roanoke
+"Alvernia University","Reading, Pennsylvania"
+"Montana State University Billings",Billings
+"University of Amsterdam",Amsterdam
+"John Jay College of Criminal Justice","New York City"
+"Asbury University",Wilmore
+"Buffalo State College",Buffalo
+"Tougaloo College",Jackson
+"Rogers State University",Claremore
+"Adams State University",Alamosa
+"Houston Baptist University",Houston
+"Catawba College","Salisbury, North Carolina"
+"Mount Saint Mary College",Newburgh
+"Dallas Baptist University",Dallas
+"Cleveland Institute of Art",Cleveland
+"LeTourneau University",Longview
+"Russell Sage College","Albany, New York"
+"Capitol Technology University",Laurel
+"Prescott College",Prescott
+"Concordia University Chicago","River Forest"
+"Northwestern College","Orange City"
+"University of Sioux Falls","Sioux Falls"
+"Mississippi University for Women","Columbus, Mississippi"
+"Northland College","Ashland, Wisconsin"
+"University of Montevallo",Montevallo
+"Ripon College",Ripon
+"Paul Smith&#8217;s College","Paul Smiths"
+"Southern Adventist University","Rhea County"
+"Endicott College",Beverly
+"Anderson University, Indiana",Anderson
+"Rosemont College",Rosemont
+"Mercyhurst University",Erie
+"Alabama State University",Montgomery
+"Scripps College",Claremont
+"Lake Forest College","Lake Forest"
+"Mercy College","Dobbs Ferry"
+"Eastern Oregon University","La Grande"
+"Nazareth College",Rochester
+"Penn State College of Medicine",Hershey
+"Spring Hill College",Mobile
+"Manhattan School of Music","New York City"
+"Cambridge College",Boston
+"Massachusetts College of Liberal Arts","North Adams"
+"Missouri Southern State University",Joplin
+"Albany State University","Albany, Georgia"
+"SUNY College at Old Westbury","Old Westbury"
+"Curry College",Milton
+"Bethel College","North Newton"
+"University of South Carolina Aiken",Aiken
+"Shorter University","Rome, US"
+"San Francisco Conservatory of Music","San Francisco"
+"Geneva College","Beaver Falls"
+"University of St. Francis",Joliet
+"National American University","Rapid City"
+"Campbellsville University",Campbellsville
+"Vincennes University",Vincennes
+"Stevenson University",Stevenson
+"State College of Florida, Manatee-Sarasota",Bradenton
+"Evangel University","Springfield, Missouri"
+"New Mexico Highlands University","Las Vegas, New Mexico"
+"Soka University of America","Aliso Viejo"
+"Nebraska Wesleyan University","Lincoln, Nebraska"
+"Houghton University","Houghton, New York"
+"Daytona State College","Daytona Beach"
+"Elmira College",Elmira
+"California State University Maritime Academy",Vallejo
+"Emmanuel College",Boston
+"Post University",Waterbury
+"Regis College",Weston
+"University of South Carolina-Upstate",Spartanburg
+"Saint Xavier University",Chicago
+"DeSales University","Center Valley"
+"Transylvania University",Lexington
+"Kentucky State University",Frankfort
+"King&#8217;s College","Wilkes Barre"
+"Hiram College","Portage County"
+"ECPI University",Richmond
+"Aquinas College","Grand Rapids"
+"University of North Carolina School of the Arts","Winston Salem"
+"Hampden-Sydney College","Hampden Sydney"
+"Austin College",Sherman
+"Aurora University",Aurora
+"Western New Mexico University","Silver City"
+"Mount St. Joseph University",Cincinnati
+"Mitchell Hamline School of Law","Saint Paul"
+"Moody Bible Institute",Chicago
+"Millikin University","Decatur, Illinois"
+"Southern University and A&amp;M College","Baton Rouge"
+"Walsh University","North Canton"
+"Northwood University","Midland, Michigan"
+"Fresno Pacific University",Fresno
+"Lebanon Valley College",Annville
+"Westminster College, Pennsylvania","New Wilmington"
+"Purdue University Northwest","Hammond, Indiana"
+"Doane University",Crete
+"University of North Texas Health Science Center","Fort Worth"
+"Saint Francis University",Loretto
+"Life University","Marietta, Georgia"
+"Ferrum College",Ferrum
+"Mount St. Mary&#8217;s University",Emmitsburg
+"Unity College","New Gloucester"
+"Alabama Agricultural and Mechanical University",Huntsville
+"Molloy College","Rockville Centre"
+"Southwestern College","Chula Vista"
+"Alfred State College",Alfred
+"University of St. Thomas","St. Paul"
+"City College of New York","New York City"
+"Southwestern Oklahoma State University",Weatherford
+"Dordt University","Sioux Center"
+"University of Mary",Bismarck
+"City University of Seattle",Seattle
+"New England Conservatory",Boston
+"Manhattanville College",Purchase
+"Baruch College, CUNY","New York City"
+"Saint Martin&#8217;s University",Lacey
+"Indiana University South Bend","South Bend"
+"Chicago State University",Chicago
+"Alverno College",Milwaukee
+"Wilmington University","New Castle"
+"Bellevue College","Bellevue, Washington"
+"Lycoming College",Williamsport
+"Southeastern University",Lakeland
+"Western University of Health Sciences",Pomona
+"Eastern Connecticut State University",Windham
+"California Baptist University",Riverside
+"Gwynedd Mercy University","Montgomery, Pennsylvania"
+"Hartwick College",Oneonta
+"Ottawa University","Ottawa, Kansas"
+"Wittenberg University","Springfield, Ohio"
+"Lincoln University","Chester, Pennsylvania"
+"Edinboro University of Pennsylvania",Edinboro
+"Robert Morris University",Pittsburgh
+"Curtis Institute of Music",Philadelphia
+"New York Institute of Technology","Old Westbury"
+"Marietta College",Marietta
+"Kalamazoo College","Kalamazoo, Michigan"
+"Utah Tech University","St. George"
+"Colorado Christian University",Lakewood
+"Yeshiva University","New York City"
+"Texas A&amp;M International University",Laredo
+"Montana Tech",Butte
+"SIT Graduate Institute",Brattleboro
+"Massachusetts College of Art and Design",Boston
+"Brooklyn Law School","New York City"
+"St. Mary&#8217;s College of Maryland","St. Mary&#8217;s City"
+"Concordia University Irvine",Irvine
+"Indiana Wesleyan University",Marion
+"Concordia College",Moorhead
+"Buena Vista University","Storm Lake"
+"Mississippi College","Clinton, Mississippi"
+"Manchester University","North Manchester"
+"Keiser University","Fort Lauderdale"
+"St. Ambrose University",Davenport
+"University of West Alabama",Livingston
+"Pacific Union College",Napa
+"Notre Dame of Maryland University",Baltimore
+"Iona University","New Rochelle"
+"Simpson College",Indianola
+"Walla Walla University","College Place"
+"Trinity Washington University","Washington DC"
+"Framingham State University",Framingham
+"Marian University",Indianapolis
+"Bethune-Cookman University","Daytona Beach"
+"Saint Vincent College",Latrobe
+"Woodbury University","Los Angeles"
+"Taylor University",Upland
+"Gardner-Webb University","Boiling Springs"
+"John Brown University","Siloam Springs"
+"Cameron University",Lawton
+"Seattle Central College",Seattle
+"Quincy University",Quincy
+"College for Creative Studies",Detroit
+"Oklahoma City University","Oklahoma City"
+"Keck Graduate Institute",Claremont
+"McDaniel College",Westminster
+"Spring Arbor University","Spring Arbor"
+"Point Park University",Pittsburgh
+"Park University",Parkville
+"Wentworth Institute of Technology",Boston
+"St. John Fisher College",Pittsford
+AgroParisTech,Paris
+"ESSEC Business School",Paris
+"University of Toulon",Toulon
+"EFREI Engineering School of Information and Digital Technologies",Villejuif
+"University of Bordeaux",Bordeaux
+"Concordia University, St. Paul","Saint Paul"
+"Paris-Saclay University","Gif sur Yvette"
+"University of Lille",Lille
+"Lincoln Memorial University",Harrogate
+"East Stroudsburg University","East Stroudsburg"
+"Saxion University of Applied Sciences",Enschede
+"Marnix Academy",Utrecht
+"Codarts University for the Arts",Rotterdam
+"Eastern New Mexico University",Portales
+"Clayton State University",Morrow
+"Texas A&amp;M University at Galveston",Galveston
+"Voorhees University",
+"North Central College",Naperville
+"Bemidji State University",Bemedji
+"American College of Financial Services","King of Prussia"
+"Meredith College",Raleigh
+"Husson University","Bangor, Maine"
+"Centre College",Danville
+"Prairie View A&amp;M University","Prairie View"
+"Northern State University","Aberdeen, South Dakota"
+"Gannon University",Erie
+"Lindenwood University","St. Charles"
+"Linfield University",McMinnville
+"Otterbein University",Westerville
+"Pennsylvania College of Technology",Williamsport
+"South Carolina State University","Orangeburg, South Carolina"
+"Muskingum University","New Concord"
+"Auburn University at Montgomery",Montgomery
+"Central Methodist University",Fayette
+"Fisk University",Nashville
+"Xavier University of Louisiana","New Orleans"
+"Bowie State University",Bowie
+"Louisiana State University in Shreveport",Shreveport
+"Seminole State College of Florida","Seminole County"
+"Assumption University","Worcester, MA"
+"Dominican University","River Forest"
+"Bennett College",Greensboro
+"College of Saint Rose","Albany, New York"
+"College of St. Scholastica",Duluth
+"SUNY Upstate Medical University",Syracuse
+"American University of Paris",Paris
+"Le Mans University","Le Mans"
+"Queens University of Charlotte",Charlotte
+"Sorbonne University",Paris
+"University of Strasbourg",Strasbourg
+"Morehouse School of Medicine",Atlanta
+"Driestar Christian University",Gouda
+"University of Lousiana at Monroe",Monroe
+"Union University","Jackson, Tennessee"
+"Ede Christian University of Applied Sciences",Ede
+"Hanze University of Applied Sciences",Groningen
+"Maastricht University",Maastricht
+"University of Groningen",Groningen
+"Grove City College","Grove City"
+"Baylor College of Medicine",Houston
+"Susquehanna University",Selinsgrove
+"Utrecht University",Utrecht
+"Free University of Amsterdam",Amsterdam
+"Stephen F. Austin State University",Nacogdoches
+"Otis College of Art and Design","Los Angeles"
+"Purdue University Fort Wayne","Fort Wayne"
+"SUNY Cortland",Cortland
+"Carroll University",Waukesha
+"Lynn University","Boca Raton"
+"Naropa University",Boulder
+"Vermont Law School","South Royalton"
+"Pennsylvania Academy of the Fine Arts",Philadelphia
+"Lawrence Technological University",Southfield
+"Goshen College",Goshen
+"Roanoke College","Salem, Virginia"
+"SUNY Empire State College","Saratoga Springs"
+"Antioch University","Yellow Springs"
+"University of California, Hastings College of the Law","San Francisco"
+"Western New England University","Springfield, Massachusetts"
+"Flagler College","St. Augustine"
+"Wartburg College",Waverly
+"Norfolk State University",Norfolk
+"Bank Street College of Education","New York City"
+"University of Dallas",Irving
+"Washburn University",Topeka
+"St. Norbert College","De Pere"
+"Dakota State University","Madison, South Dakota"
+"Keene State College","Keene, New Hampshire"
+"Saginaw Valley State University","University Center"
+"Marymount University","Arlington, Virginia"
+"Palm Beach State College","Lake Worth"
+"Eastern Virginia Medical School",Norfolk
+"Slippery Rock University of Pennsylvania","Slippery Rock"
+"Manhattan College","New York City"
+"Pennsylvania Western University Clarion",Clarion
+"St. Lawrence University","Canton, New York"
+"Golden Gate University","San Francisco"
+"Westmont College","Santa Barbara"
+"Whittier College",Whittier
+"Midwestern University","Downers Grove"
+"Bennington College",Bennington
+"New York Law School","New York City"
+"Brigham Young University-Hawaii",Laie
+"Albion College",Albion
+"California State University Channel Islands",Camarillo
+"Campbell University","Buies Creek"
+"University of Nebraska at Kearney",Kearney
+"Lander University",Greenwood
+"Central College",Pella
+"California Institute of Integral Studies","San Francisco"
+"Arkansas Tech University",Russellville
+"Providence College",Providence
+"Ursinus College",Collegeville
+"Mayo Clinic College of Medicine and Science","Rochester, Minnesota"
+"Franklin W. Olin College of Engineering",Needham
+"Indiana University Southeast","New Albany"
+"Juniata College",Huntingdon
+"North Park University",Chicago
+"Baker University","Baldwin City"
+"Angelo State University","San Angelo"
+"Tarleton State University","Stephenville, Texas"
+"University of Wisconsin &#8211; Superior",Superior
+"Midwestern State University","Wichita Falls"
+"University of Michigan-Flint",Flint
+"Oregon Institute of Technology","Klamath Falls"
+"SUNY College at Oneonta",Oneonta
+"La Salle University",Philadelphia
+"Bryant University",Smithfield
+"Guilford College",Greensboro
+"The Juilliard School","New York City"
+"Charleston Southern University",Charleston
+"University of Findlay",Findlay
+"Carthage College",Kenosha
+"Lipscomb University",Nashville
+"Dominican University of California","San Rafael"
+"Eastern University","St. Davids"
+"Sterling College",Sterling
+"Hampshire College",Amherst
+"Gordon College",Wenham
+"University of Central Missouri",Warrensburg
+"University of Mary Hardin-Baylor",Belton
+"John Carroll University","University Heights"
+"National Louis University",Chicago
+"Davenport University","Grand Rapids"
+"Florida State College at Jacksonville",Jacksonville
+"Springfield College","Springfield, Massachusetts"
+"Lewis University",Romeoville
+"Texas A&amp;M University-Kingsville",Kingsville
+"Florida Southern College",Lakeland
+"University of the District of Columbia","Washington DC"
+"Utica University",Utica
+"College of Southern Nevada","Las Vegas"
+"Wofford College",Spartanburg
+"Olivet Nazarene University",Bourbonnais
+"Drury University","Springfield, Missouri"
+"New England College",Henniker
+"Niagara University","Lewiston, New York"
+"Augustana University","Sioux Falls"
+"Columbus State University","Columbus, Georgia"
+"University of North Georgia",Dahlonega
+"Chatham University",Pittsburgh
+"University of the Arts",Philadelphia
+"University of Tulsa",Tulsa
+"Bethel University","Arden Hills"
+"Saint Michael&#8217;s College","Colchester, Vermont"
+"Arcadia University",Glenside
+"Franklin University",Columbus
+"St. Mary&#8217;s University","San Antonio"
+"Bellarmine University",Louisville
+"Purchase College, State University of New York",Purchase
+"Cornell College","Mount Vernon, Iowa"
+"Bob Jones University","Greenville, South Carolina"
+"University of Houston-Clear Lake",Houston
+"State University of New York at Fredonia",Fredonia
+"Fort Lewis College",Durango
+"Eckerd College","St. Petersburg"
+"Point Loma Nazarene University","San Diego"
+"United States Merchant Marine Academy","Kings Point"
+"University of North Alabama","Florence, US"
+"Benedictine University",Lisle
+"Berry College","Rome, US"
+"University of Wisconsin-River Falls","River Falls"
+"Allegheny College",Meadville
+"Colorado Technical University","Colorado Springs"
+"Harding University",Searcy
+"George Fox University",Newberg
+"Bastyr University",Kenmore
+"Shenandoah University","Winchester, Virginia"
+"University of the Incarnate Word","San Antonio"
+"Jacksonville University",Jacksonville
+"University of Indianapolis",Indianapolis
+"Winona State University",Winona
+"South University",Savannah
+"Wheaton College, Massachusetts",Norton
+"Knox College",Galesburg
+"Saint Anselm College",Goffstown
+"SUNY Brockport",Brockport
+"Salem State University","Salem, Massachussetts"
+"Augustana College","Rock Island"
+"Kutztown University of Pennsylvania",Kutztown
+"South Dakota School of Mines and Technology","Rapid City"
+"Texas Southern University",Houston
+"Texas A&amp;M University-Commerce",Commerce
+"University of Oklahoma Health Sciences Center","Oklahoma City"
+"Ohio Northern University",Ada
+"Ramapo College of New Jersey",Mahwah
+"Jacksonville State University","Jacksonville, Alabama"
+"Dickinson College","Carlisle, Pennsylvania"
+"University of Houston-Downtown",Houston
+"Southeastern Louisiana University",Hammond
+"Uniformed Services University of the Health Sciences",Bethesda
+"Winthrop University","Rock Hill"
+"Fayetteville State University","Fayetteville, North Carolina"
+"State University of New York at Potsdam","Potsdam, New York"
+"Northeastern State University",Tahlequah
+"State University of New York College at Plattsburgh",Plattsburgh
+"High Point University","High Point"
+"University of Tennessee Health Science Center",Memphis
+"Hood College",Frederick
+"Northwest Missouri State University","Maryville, Missouri"
+"University of Central Oklahoma",Edmond
+"California State University, Bakersfield",Bakersfield
+"University of North Carolina at Pembroke",Pembroke
+"New Jersey City University","Jersey City"
+"Clark Atlanta University",Atlanta
+"University of New Haven","West Haven"
+"Washington College",Chestertown
+"Hawaii Pacific University",Honolulu
+"University of North Carolina at Asheville",Asheville
+"Le Moyne College",Syracuse
+"University of Redlands",Redlands
+"Roger Williams University","Bristol, Rhode Island"
+"Carson–Newman University","Jefferson City"
+"Austin Peay State University","Clarksville, Tennessee"
+"Longwood University",Farmville
+"Canisius College",Buffalo
+"University of Southern Maine","Portland, Maine"
+"University of Wisconsin-Platteville",Platteville
+"Western Connecticut State University",Danbury
+"Wilkes University","Wilkes Barre"
+"Southwestern University","Georgetown, Texas"
+"Mills College",Oakland
+"University of Central Arkansas","Conway, Arkansas"
+"Jackson State University",Jackson
+"University of Detroit Mercy",Detroit
+"Christopher Newport University","Newport News"
+"Southern Connecticut State University","New Haven"
+"University of Texas Health Science Center at San Antonio","San Antonio"
+"Hampton University",Hampton
+"Hendrix College","Conway, Arkansas"
+"Ashland University","Ashland, Ohio"
+"Luther College",Decorah
+"SUNY Polytechnic Institute",Albany
+"Abilene Christian University",Abilene
+"Baldwin Wallace University","Berea, Ohio"
+"Northeastern Illinois University",Chicago
+"Roosevelt University",Chicago
+"University of South Alabama",Mobile
+"Beloit College",Beloit
+"Saint Mary&#8217;s College of California",Moraga
+"Messiah University",Mechanicsburg
+"Kettering University",Flint
+"Santa Fe College",Gainesville
+"Regis University",Denver
+"Barry University",Miami
+"Minnesota State University Moorhead",Moorhead
+"Saint Leo University","St. Leo"
+"Capital University",Bexley
+"Minneapolis College of Art and Design",Minneapolis
+"The Citadel, The Military College of South Carolina",Charleston
+"Bellevue University","Bellevue, Nebraska"
+"Milwaukee School of Engineering",Milwaukee
+"St Petersburg College","St. Petersburg"
+"Elizabethtown College",Elizabethtown
+"University of California, Merced",Merced
+"Lamar University",Beaumont
+"Ferris State University","Big Rapids"
+"Alfred University",Alfred
+"Georgia College and State University",Milledgeville
+"Colorado College","Colorado Springs"
+"The College of New Jersey","Ewing Township"
+"Rhode Island College",Providence
+"Sam Houston State University","Huntsville, Texas"
+"University of North Carolina Wilmington",Wilmington
+"Bloomsburg University",Bloomsburg
+"Cooper Union for the Advancement of Science and Art","New York City"
+"Hunter College, CUNY","Manhattan, New York"
+"St. Bonaventure University","St. Bonaventure"
+"University of Portland",Portland
+"SUNY Downstate Medical Center",Brooklyn
+"Augsburg University",Minneapolis
+"Oral Roberts University",Tulsa
+"Sarah Lawrence College",Yonkers
+"Sacred Heart University","Fairfield, Connecticut"
+"Millersville University of Pennsylvania",Millersville
+"Pittsburg State University",Pittsburg
+"National University","San Diego"
+"Bluffton University",Bluffton
+"University of La Verne","La Verne"
+"Truman State University",Kirksville
+"California College of the Arts","San Francisco"
+"Lake Superior State University","Sault Ste. Marie, Michigan"
+"Johnson and Wales University",Providence
+"Azusa Pacific University",Azusa
+"Trinity College",Hartford
+"California State University, Fresno",Fresno
+"Eastern Kentucky University","Richmond, Kentucky"
+"Florida Institute of Technology","Melbourne, Florida"
+"Earlham College","Richmond, Indiana"
+"Fairfield University","Fairfield, Connecticut"
+"University of Scranton",Scranton
+"Samford University",Homewood
+"Belmont University",Nashville
+"Seattle Pacific University",Seattle
+"Cedarville University",Cedarville
+"University of Mississippi Medical Center",Jackson
+"University of Tennessee at Chattanooga",Chattanooga
+"Long Island University",Brooklyn
+"Denison University",Granville
+"State University of New York at New Paltz","New Paltz"
+"Murray State University",Murray
+"Xavier University",Cincinnati
+"Goucher College",Baltimore
+"Morgan State University",Baltimore
+"North Carolina Central University","Durham, NC"
+"Claremont Graduate University",Claremont
+"Coastal Carolina University",Conway
+"University of West Georgia",Carrollton
+"Icahn School of Medicine at Mount Sinai","New York City"
+"Tennessee State University",Nashville
+"Western Oregon University",Monmouth
+"Plymouth State University","Plymouth, New Hampshire"
+"Bridgewater State University",Bridgewater
+"Academy of Art University","San Francisco"
+"Youngstown State University",Youngstown
+"Widener University","Chester, Pennsylvania"
+"South Dakota State University",Brookings
+"West Texas A and M University",Canyon
+"Adelphi University","Garden City"
+"University of Mary Washington",Fredericksburg
+"Pacific University","Forest Grove"
+"Tuskegee University",Tuskegee
+"Louisiana State University Health Sciences Center","New Orleans"
+"Lesley University","Cambridge, MA"
+"Troy University","Troy, Alabama"
+"University of Hawaii at Mānoa",Honolulu
+"University of Puget Sound",Tacoma
+"Southern Utah University","Cedar City"
+"Salisbury University",Salisbury
+"Columbia College Chicago",Chicago
+"Franklin and Marshall College","Lancaster, Pennsylvania"
+"Mercer University",Macon
+"University of Louisiana at Lafayette",Lafayette
+"Trinity University","San Antonio"
+"Regent University","Virginia Beach"
+"Northern Kentucky University","Highland Heights"
+"Rose-Hulman Institute of Technology","Terre Haute"
+"Stockton University","Galloway Township"
+"Strayer University","Washington DC"
+"Tennessee Tech University",Cookeville
+"Bates College",Lewiston
+"University of Texas Medical Branch at Galveston",Galveston
+"National Defense University","Fort Lesley J. McNair"
+"California Lutheran University","Thousand Oaks"
+"Southern Oregon University",Ashland
+"Culinary Institute of America","Hyde Park"
+"Andrews University","Berrien Springs"
+"Pitzer College",Claremont
+"College of Wooster",Wooster
+"Drake University","Des Moines"
+"William Paterson University",Wayne
+"Rider University","Lawrenceville, New Jersey"
+"Maryland Institute College of Art",Baltimore
+"Muhlenberg College",Allentown
+"University of New Orleans","New Orleans"
+"University of Wisconsin-Whitewater",Whitewater
+"Sewanee: The University of the South",Sewanee
+"Lewis and Clark College",Portland
+"University of Wisconsin-La Crosse","La Crosse"
+"Union College",Schenectady
+"University of Northern Colorado",Greeley
+"Texas Tech University Health Sciences Center",Lubbock
+"Medical College of Wisconsin",Milwaukee
+"University of the Pacific",Stockton
+"North Carolina Agricultural and Technical State University",Greensboro
+"Saint Joseph&#8217;s University",Philadelphia
+"Bradley University",Peoria
+"College of Saint Benedict/Saint John&#8217;s University","Saint Joseph, Minnesota"
+"California State University, East Bay",Hayward
+"Loyola University Maryland",Baltimore
+"Berea College",Berea
+"University of West Florida",Pensacola
+"Connecticut College","New London"
+"Spelman College",Atlanta
+"Texas A&amp;M University-Corpus Christi","Corpus Christi"
+"SUNY College of Environmental Science and Forestry",Syracuse
+"Grinnell College",Grinnell
+"Whitman College","Walla Walla"
+"Lafayette College",Easton
+"St. Cloud State University","St. Cloud"
+"Valparaiso University",Valparaiso
+"California State University, Dominguez Hills",Carson
+"Maryville University","St. Louis"
+"Eastern Washington University",Cheney
+"California State University, Long Beach","Long Beach"
+"Loyola Marymount University","Los Angeles"
+"Virginia Military Institute","Lexington, Virginia"
+"St. Edward&#8217;s University",Austin
+"Southeast Missouri State University","Cape Girardeau"
+"Morehouse College",Atlanta
+"Rhodes College",Memphis
+"Claremont McKenna College",Claremont
+"Willamette University",Salem
+"Wabash College",Crawfordsville
+"Occidental College","Los Angeles"
+"Skidmore College","Saratoga Springs"
+"University of Wisconsin Oshkosh",Oshkosh
+"Hamilton College",Clinton
+"Haverford College",Haverford
+"Hillsdale College",Hillsdale
+"Emerson College",Boston
+"Naval Postgraduate School",Monterey
+"Broward College","Fort Lauderdale"
+"Arkansas State University",Jonesboro
+"Hope College",Holland
+"Shippensburg University of Pennsylvania",Shippensburg
+"University of Evansville",Evansville
+"Hult International Business School","Cambridge, MA"
+"Loyola University New Orleans","New Orleans"
+"California State University, Stanislaus",Turlock
+"DePauw University",Greencastle
+"Augusta University",Augusta
+"Evergreen State College",Olympia
+"Ball State University",Muncie
+"Brigham Young University–Idaho",Rexburg
+"University of Maryland, Baltimore",Baltimore
+"Butler University",Indianapolis
+"Simmons University",Boston
+"California State University, Monterey Bay",Marina
+"Stetson University",DeLand
+"Hobart and William Smith Colleges","Geneva, New York"
+"State University of New York at Oswego",Oswego
+"Drew University","Madison, New Jersey"
+"Western Carolina University",Cullowhee
+"Central Washington University",Ellensburg
+"Georgetown College",Georgetown
+"University of Hawaii-West Oahu",Kapolei
+"Kenyon College",Gambier
+"Gettysburg College",Gettysburg
+"West Chester University of Pennsylvania","West Chester"
+"Indiana State University","Terre Haute"
+"Colorado School of Mines",Golden
+"ArtCenter College of Design",Pasadena
+"Stevens Institute of Technology",Hoboken
+"St. Olaf College","Northfield, Minnesota"
+"University of Wisconsin-Green Bay","Green Bay"
+"University of Arkansas at Little Rock","Little Rock"
+"Pratt Institute",Brooklyn
+"Minnesota State University, Mankato",Mankato
+"Maharishi International University",Fairfield
+"University of Wisconsin-Stout",Menomonie
+"School of the Art Institute of Chicago",Chicago
+"Florida Gulf Coast University","Fort Myers"
+"Indiana University of Pennsylvania","Indiana, Pennsylvania"
+"Eastern Illinois University","Charleston, Illinois"
+"Furman University","Greenville, South Carolina"
+"Gonzaga University",Spokane
+"Lawrence University",Appleton
+"University of Southern Mississippi",Hattiesburg
+"Loma Linda University","Loma Linda"
+"Elon University",Elon
+"Utah Valley University",Orem
+"East Carolina University",Greenville
+"Pace University","New York City"
+"Agnes Scott College",Decatur
+"Grand Canyon University",Phoenix
+"Cleveland State University",Cleveland
+"Wheaton College",Wheaton
+"California State University, Los Angeles","Los Angeles"
+"Seattle University",Seattle
+"Fashion Institute of Technology","New York City"
+"Macalester College","Saint Paul"
+"St. John&#8217;s University","New York City"
+"Clarkson University","Potsdam, New York"
+"University of North Florida",Jacksonville
+"University of Hartford","West Hartford"
+"University of Massachusetts Dartmouth",Dartmouth
+"Central Connecticut State University","New Britain"
+"University of Nebraska Medical Center",Omaha
+"Colby College",Waterville
+"Savannah College of Art and Design",Savannah
+"Qingdao Agricultural University",Qingdao
+"Miami Dade College",Miami
+"Hamline University","Saint Paul"
+"St. Catherine University","Saint Paul"
+"Illinois Wesleyan University","Bloomington, Illinois"
+"Kean University",Union
+"Radford University",Radford
+"California State University San Marcos","San Marcos, California"
+"New Mexico Institute of Mining and Technology",Socorro
+"Northern Michigan University",Marquette
+"Missouri State University","Springfield, Missouri"
+"Colgate University","Hamilton, New York"
+"College of the Holy Cross","Worcester, MA"
+"Missouri University of Science and Technology",Rolla
+"Fairleigh Dickinson University","Madison, New Jersey"
+"Pomona College",Claremont
+"Lock Haven University","Lock Haven"
+"DeVry University",Naperville
+"Wellesley College",Wellesley
+"Bucknell University",Lewisburg
+"Indiana University &#8211; Purdue University Indianapolis",Indianapolis
+"Brandeis University",Waltham
+"Southern New Hampshire University","Manchester, NH"
+"University of Texas Rio Grande Valley",Edinburg
+"United States Naval Academy",Annapolis
+"Rockefeller University","New York City"
+"University of South Dakota",Vermillion
+"University of Illinois at Springfield","Springfield, Illinois"
+"Gallaudet University","Washington DC"
+"Rowan University",Glassboro
+"Weber State University",Ogden
+"Washington and Lee University","Lexington, Virginia"
+"Bentley University",Waltham
+"University of Colorado Colorado Springs","Colorado Springs"
+"University of Wisconsin-Eau Claire","Eau Claire"
+"Marshall University",Huntington
+"Towson University",Towson
+"Oakland University","Auburn Hills"
+"Lehman College, CUNY","New York City"
+"University of North Carolina at Greensboro",Greensboro
+"Ithaca College",Ithaca
+"University of Rhode Island","Kingston, Rhode Island"
+"Southwest Jiaotong University",Chengdu
+"Biola University","La Mirada"
+"Western Illinois University",Macomb
+"Valencia College",Orlando
+"Davidson College",Davidson
+"University of Texas Health Science Center at Houston",Houston
+"Barnard College","New York City"
+"School of Visual Arts","New York City"
+"Hanover College","Hanover, Indiana"
+"Georgia Southern University",Statesboro
+"Webster University","St. Louis"
+"California State Polytechnic University, Humboldt",Arcata
+"Kennesaw State University",Kennesaw
+"Miami University","Oxford, OH"
+"University of Northern Iowa","Cedar Falls"
+"Duquesne University",Pittsburgh
+"Oberlin College",Oberlin
+"Emporia State University",Emporia
+"University of Baltimore",Baltimore
+"Elmhurst University",Elmhurst
+"East Tennessee State University","Johnson City"
+"Seton Hill University",Greensburg
+"Western Washington University",Bellingham
+"Illinois State University",Normal
+"Eastern Michigan University",Ypsilanti
+"California State University, Sacramento",Sacramento
+"University of Massachusetts Lowell",Lowell
+"University of Alabama in Huntsville",Huntsville
+"California State University, Chico",Chico
+"University of St. Thomas, Minnesota","St. Paul"
+"Suffolk University",Boston
+"UMass Chan Medical School","Worcester, MA"
+"Reed College",Portland
+"University of Memphis",Memphis
+"Chapman University",Orange
+"University of Wisconsin-Stevens Point","Stevens Point"
+"University of Maryland, Baltimore County",Catonsville
+"The New School","New York City"
+"UT Southwestern Medical Center",Dallas
+"Bowdoin College","Brunswick, Maine"
+"Sonoma State University","Rohnert Park"
+"Santa Clara University","Santa Clara"
+"Marquette University",Milwaukee
+"Smith College","Northampton, Massachusetts"
+"University of Dayton",Dayton
+"College of Charleston",Charleston
+"California State University, San Bernardino","San Bernardino"
+"University of Colorado Denver",Denver
+"Babson College",Wellesley
+"United States Military Academy","West Point"
+"Bryn Mawr College","Bryn Mawr"
+"Wichita State University",Wichita
+"Wright State University",Fairborn
+"Texas Christian University","Fort Worth"
+"University of Nebraska at Omaha",Omaha
+"Vassar College",Poughkeepsie
+"Southern Illinois University Carbondale",Carbondale
+"University of North Dakota","Grand Forks"
+"Boise State University",Boise
+"Embry-Riddle Aeronautical University","Daytona Beach"
+"University of Massachusetts Boston",Boston
+"Seton Hall University","South Orange"
+"Virginia Commonwealth University",Richmond
+"Central Michigan University","Mount Pleasant"
+"North Dakota State University",Fargo
+"Montclair State University",Montclair
+"Middle Tennessee State University",Murfreesboro
+"University of Michigan-Dearborn",Dearborn
+"Thomas Jefferson University",Philadelphia
+"Wesleyan University",Middletown
+"Mount Holyoke College","South Hadley"
+"Pepperdine University",Malibu
+"Villanova University",Villanova
+"Calvin University","Grand Rapids"
+"Berklee College of Music",Boston
+"Marist College",Poughkeepsie
+"Harvey Mudd College",Claremont
+"Clark University","Worcester, MA"
+"Southern Illinois University Edwardsville",Edwardsville
+"University of North Carolina at Charlotte",Charlotte
+"Howard University","Washington DC"
+"Williams College",Williamstown
+"Grand Valley State University",Allendale
+"Western Michigan University",Kalamazoo
+"California State Polytechnic University, Pomona",Pomona
+"University of San Diego","San Diego"
+"Catholic University of America","Washington DC"
+"University of Texas at El Paso","El Paso"
+"Creighton University",Omaha
+"Hofstra University",Hempstead
+"University of Akron",Akron
+"University of Arkansas",Fayetteville
+"University of Missouri-St. Louis","St. Louis"
+"Western Kentucky University","Bowling Green, Kentucky"
+"Saint Louis University","St. Louis"
+"Lehigh University",Bethlehem
+"Touro University","New York City"
+"University of Nevada, Reno",Reno
+"Kansas State University",Manhattan
+"New York University","New York City"
+"Florida Agricultural and Mechanical University",Tallahassee
+"Valdosta State University",Valdosta
+"Ohio University","Athens, GA"
+"Bowling Green State University","Bowling Green"
+"California Institute of the Arts","Santa Clarita"
+"University of New England",Biddeford
+"United States Air Force Academy","Colorado Springs"
+"SUNY Geneseo",Geneseo
+"University of Maine",Orono
+"University of Toledo",Toledo
+"Monmouth University","West Long Branch"
+"Amherst College",Amherst
+"Texas State University","San Marcos"
+"Nova Southeastern University","Fort Lauderdale"
+"Purdue University","West Lafayette"
+"Oregon Health and Science University",Portland
+"University of Michigan","Ann Arbor"
+"DePaul University",Chicago
+"Wayne State University",Detroit
+"University of Montana",Missoula
+"University of North Texas",Denton
+"California Polytechnic State University, San Luis Obispo","San Luis Obispo"
+"Loyola University Chicago",Chicago
+"Quinnipiac University",Hamden
+"University of Alaska Fairbanks",Fairbanks
+"Middlebury College",Middlebury
+"Case Western Reserve University",Cleveland
+"Constructor University",Bremen
+"University of Mississippi","Oxford, MS"
+"University of Wyoming",Laramie
+"University of Cincinnati",Cincinnati
+"University of Missouri-Kansas City","Kansas, MO"
+"University of Louisville",Louisville
+"Carleton College",Northfield
+"New Jersey Institute of Technology",Newark
+"Worcester Polytechnic Institute","Worcester, MA"
+"Sweet Briar College","Sweet Briar"
+"Gustavus Adolphus College","St. Peter"
+"University of San Francisco","San Francisco"
+"James Madison University",Harrisonburg
+"University of Arkansas for Medical Sciences","Little Rock"
+"Texas Woman&#8217;s University",Denton
+"Binghamton University, State University of New York",Binghamton
+"University of Pennsylvania",Philadelphia
+"University of Washington",Seattle
+"University of Alabama at Birmingham","Birmingham, Alabama"
+"Northern Arizona University",Flagstaff
+"University of South Carolina","Columbia, SC"
+"Appalachian State University",Boone
+"Swarthmore College",Swarthmore
+"San Francisco State University","San Francisco"
+"Utah State University",Logan
+"University of Denver",Denver
+"University of Texas at Dallas",Richardson
+"University of Wisconsin-Milwaukee",Milwaukee
+"West Virginia University",Morgantown
+"University of Texas MD Anderson Cancer Center",Houston
+"University of Nevada, Las Vegas","Las Vegas"
+"University of Idaho","Moscow, Idaho"
+"University of Texas at San Antonio","San Antonio"
+"Fort Hays State University",Hays
+"Rollins College",Winterpark
+"California State University, Fullerton",Fullerton
+"University of Tampa",Tampa
+"New Mexico State University","Las Cruces"
+"San José State University","San Jose"
+"California State University, Northridge","Los Angeles"
+"Boston College",Boston
+"Rochester Institute of Technology",Rochester
+"Dartmouth College",Hanover
+"University of California, Riverside",Riverside
+"University of Delaware",Newark
+"University of California, Santa Barbara","Santa Barbara"
+"University of California, Los Angeles","Los Angeles"
+"University of Texas at Arlington",Arlington
+"Mississippi State University",Starkville
+"Montana State University",Bozeman
+"Northern Illinois University",DeKalb
+"University at Albany",Albany
+"Michigan Technological University",Houghton
+"Stony Brook University","Stony Brook"
+"Rensselaer Polytechnic Institute","Troy, Alabama"
+"Clemson University",Clemson
+"University of Tennessee at Martin",Martin
+"Arizona State University",Phoenix
+"University of Arizona",Tucson
+"University of Vermont",Burlington
+"American University","Washington DC"
+"Indiana University Bloomington",Bloomington
+"Louisiana Tech University",Ruston
+"Georgia Institute of Technology",Atlanta
+"University of Colorado Boulder",Boulder
+"University of Utah","Salt Lake City"
+"University of Tennessee, Knoxville",Knoxville
+"Kent State University",Kent
+"Emory University",Atlanta
+"ETH Zürich",Zurich
+"George Washington University","Washington DC"
+"University of Illinois Chicago",Chicago
+"Liberty University",Lynchburg
+"Norwich University",Northfield
+"Metropolitan State University of Denver",Denver
+"Louisiana State University","Baton Rouge"
+"Auburn University",Auburn
+"University at Buffalo, The State University of New York",Buffalo
+"University of Rochester",Rochester
+"Oklahoma State University",Stillwater
+"Baylor University",Waco
+"San Diego State University","San Diego"
+"University of California, San Francisco","San Francisco"
+"Portland State University",Portland
+"Delaware State University",Dover
+"University of Kansas",Lawrence
+"University of Virginia",Charlottesville
+"Illinois Institute of Technology",Chicago
+"Frostburg State University",Frostburg
+"College of William and Mary",Williamsburg
+"SRH Fernhochschule &#8211; The Mobile University",Riedlingen
+"University of Southern Indiana",Evansville
+"Southern Methodist University",Dallas
+"Georgetown University","Washington DC"
+"University of Alabama",Tuscaloosa
+"University of Massachusetts Amherst",Amherst
+"Florida Atlantic University","Boca Raton"
+"University of Miami","Coral Gables"
+"Oregon State University",Corvallis
+"University of South Florida",Tampa
+"Iowa State University",Ames
+"University of Georgia","Athens, GA"
+"University of New Hampshire","Durham, NH"
+"Florida State University",Tallahassee
+"University of Houston",Houston
+"University of New Mexico",Albuquerque
+"University of California, Santa Cruz","Santa Cruz"
+"Fordham University","New York City"
+"University of Oklahoma",Norman
+"Florida International University",Miami
+"University of Kentucky",Lexington
+"University of California, San Diego","San Diego"
+"Texas A&amp;M University","College Station"
+"Karlsruhe University of Education",Karlsruhe
+"Pacific Lutheran University",Tacoma
+"University of Chicago",Chicago
+"Carnegie Mellon University",Pittsburgh
+"Zurich University of Applied Sciences",Zurich
+"University of Basel",Basel
+"University of Applied Sciences and Arts of Southern Switzerland",Manno
+"Lovisenberg Diaconal University College",Oslo
+"Western Norway University of Applied Sciences",Bergen
+"NHH Norwegian School of Economics",Bergen
+"University of South-Eastern Norway",Notodden
+"University of Stavanger",Stavanger
+"Oslo Metropolitan University",Oslo
+"VID Specialized University",Oslo
+"Norwegian University of Life Sciences",As
+"Sámi University of Applied Sciences",Kautokeino
+"Queen Maud University College of Early Childhood Education",Trondheim
+"NLA University College",Bergen
+"MF Norwegian School of Theology, Religion and Society",Oslo
+"Molde University College &#8211; Specialized University in Logistics",Molde
+"Kristiania University College",Oslo
+"Oslo National Academy of the Arts",Oslo
+"Oslo School of Architecture and Design",Oslo
+"Norwegian School of Sport Sciences",Oslo
+"Volda University College",Volda
+"Ostfold University College",Halden
+"Siena College",Loudonville
+"FHO University of Applied Sciences","St. Gallen"
+"Webster University Geneva",Bellevue
+"Kalaidos University of Applied Sciences Switzerland",Zurich
+"Glion Institute of Higher Education",Montreux
+"University of Applied Sciences and Arts of Western Switzerland",Delemont
+"University of Lucerne",Lucerne
+"University of Central Florida",Orlando
+"University of Lausanne",Lausanne
+"University of Missouri","Columbia, MO"
+"University of Geneva",Geneva
+"University of Finance Rhineland-Palatinate",Edenkoben
+"University of Finance North Rhine-Westphalia",Nordkirchen
+"University of Applied Sciences of the Deutsche Bundesbank",Hachenburg
+"IB University for Health and Social Affairs",Berlin
+"Fachhochschule Dresden",Dresden
+"Touro College Berlin",Berlin
+"Weserbergland University of Applied Sciences",Hamelin
+"Catholic University of Applied Sciences Mainz",Mainz
+"Medical School Hamburg",Hamburg
+"University of Applied Sciences and Arts in Ottersberg",Ottersburg
+"Bard College Berlin",Berlin
+"SRH University in North Rhine-Westphalia",Hamm
+"EBZ Business School",Bochum
+"University of the Savings Banks Finance Group",Bonn
+"University of Applied Sciences for the Administration of Justice North Rhine-Westphalia","Bad Munstereifel"
+"Hochschule 21",Buxtehude
+"International Psychoanalytic University Berlin",Berlin
+"Mannheim University of Music and Performing Arts",Mannheim
+"Nordhausen University of Applied Sciences",Nordhausen
+"RFH &#8211; University of Applied Science Cologne",Cologne
+"University of Applied Sciences (FHDW)",Paderborn
+"Berlin University of the Arts",Berlin
+"Brandenburg University of Applied Sciences","Brandenburg an der Havel"
+"German University of Administrative Sciences Speyer",Speyer
+"Lucerne University of Applied Sciences and Arts",Lucerne
+"University of Italian Switzerland",Lugano
+"Bern University of Applied Sciences",Bern
+"University of Applied Sciences and Arts Northwestern Switzerland",Windisch
+"University of Fribourg",Fribourg
+"University of Zurich",Zurich
+"Geneva Graduate Institute",Geneva
+"North Carolina State University",Raleigh
+"Texas Tech University",Lubbock
+"Colorado State University","Fort Collins"
+"Temple University",Philadelphia
+"University of Connecticut",Storrs
+"University of Notre Dame","Notre Dame"
+"Washington State University",Pullman
+"Brown University",Providence
+"Virginia Tech",Blacksburg
+"University of Nebraska-Lincoln","Lincoln, Nebraska"
+"Rutgers University","New Brunswick. New Jersey"
+"University of Maryland","College Park"
+"University of Illinois at Urbana-Champaign",Champaign
+"University of California, Davis",Davis
+"University of North Carolina at Chapel Hill","Chapel Hill"
+"University of Wisconsin-Madison",Madison
+"Medical University of South Carolina",Charleston
+"University of Richmond",Richmond
+"Old Dominion University",Norfolk
+"Wake Forest University","Winston Salem"
+"Tulane University","New Orleans"
+"Drexel University",Philadelphia
+"Northeastern University",Boston
+"Syracuse University",Syracuse
+"Vanderbilt University",Nashville
+"Rice University",Houston
+"University of Iowa","Iowa City"
+"Brigham Young University",Provo
+"Tufts University",Medford
+"Washington University in St. Louis","St. Louis"
+"University of Pittsburgh",Pittsburgh
+"Boston University",Boston
+"University of Florida",Gainesville
+"Michigan State University","East Lansing"
+"Northwestern University",Chicago
+"Pennsylvania State University","State College"
+"Johns Hopkins University",Baltimore
+"University of Minnesota-Twin Cities",Minneapolis
+"Hochschule für Bildende Künste-Städelschule","Frankfurt am Main"
+"University of Applied Health Sciences, Bochum",Bochum
+"Hof University",Hof
+"Stuttgart Technology University of Applied Sciences",Stuttgart
+"Merseburg University of Applied Sciences",Merseburg
+"University of Oregon",Eugene
+"Rhode Island School of Design",Providence
+"Idaho State University",Pocatello
+"Ohio State University",Columbus
+"University of California, Irvine",Irvine
+"Duke University","Durham, NC"
+"University of Southern California","Los Angeles"
+"University of Texas at Austin",Austin
+"Cornell University",Ithaca
+"Inland Norway University of Applied Sciences",Hamar
+"University of Neuchâtel",Neuchatel
+"Princeton University",Princeton
+"University of St. Gallen","St. Gallen"
+"Columbia University","New York City"
+"Stanford University",Stanford
+"Harvard University","Cambridge, MA"
+"Swiss Federal Institute of Technology in Lausanne",Lausanne
+"University of Bern",Bern
+"Wismar University of Applied Sciences",Wismar
+"University of Applied Sciences Emden/Leer",Emden
+"Karlsruhe Institute of Technology",Karlsruhe
+"University of Fine Arts of Hamburg",Hamburg
+"Alanus University of Arts and Social Sciences",Alfter
+"Protestant University of Applied Sciences Rhineland-Westphalia-Lippe",Bochum
+"Stralsund University of Applied Science",Stralsund
+"University of Hildesheim",Hildesheim
+"University of Applied Sciences &#8211; Public Administration and Finance Ludwigsburg",Ludwigsburg
+"Federal University of Applied Administrative Sciences",Bruhl
+"VWA Academy of Occupational Studies",Stuttgart
+"Allensbach University of Applied Sciences",Konstanz
+"Kehl School of Public Administration",Kehl
+"Saar College of Fine Arts",Saarbrucken
+"University of Applied Sciences for Medium-Sized Companies",Bielefeld
+"Coburg University of Applied Sciences",Coburg
+"Lutheran Theological College",Oberursel
+"Cologne University of Catholic Theology","Sankt Augustin"
+"IUBH School of Business and Management","Bad Honnef"
+"University for Protestant Church Music in Bavaria",Bayreuth
+"College of Church Music Herford-Witten",Herford
+"Schwetzingen University of Applied Sciences for the Administration of Justice",Schwetzingen
+"Bard College","Annandale on Hudson"
+"California Institute of Technology",Pasadena
+"Yale University","New Haven"
+"University of California, Berkeley",Berkeley
+"Massachusetts Institute of Technology","Cambridge, MA"
+"Zittau/Görlitz University of Applied Sciences",Zittau
+"South Westphalia University of Applied Sciences",Iserlohn
+"Zhengzhou Shengda University",Zhengzhou
+"Guilin University of Electronic Technology",Guilin
+"Norwegian Academy of Music",Oslo
+"Nord University",Bodo
+"University Centre in Svalbard",Longyearbyen
+"MD.H Mediadesign University of Applied Sciences",Berlin
+"University of Applied Management Studies",Mannheim
+"Saarland University of Applied Sciences (HTW Saar)",Saarbrucken
+"IU International University of Applied Sciences","Bad Honnef"
+"PFH Private University of Applied Sciences",Gottingen
+"Frankfurt University of Music and Performing Arts","Frankfurt am Main"
+"Merz Akademie",Stuttgart
+"AMD Academy of Fashion and Design",Hamburg
+"University of Flensburg",Flensburg
+"Schwäbisch Gmünd University of Design","Schwabisch Gmund"
+"Cologne University of Music",Cologne
+"Ulm University of Applied Sciences",Ulm
+"Weihenstephan-Triesdorf University of Applied Science",Freising
+"UiT The Arctic University of Norway",Tromso
+"Norwegian University of Science and Technology",Trondheim
+"Shandong University of Political Science and Law",Jinan
+"Guangxi University of Foreign Languages",Nanning
+"BI Norwegian Business School",Oslo
+"University of Bergen",Bergen
+"University of Agder",Kristiansand
+"University of Oslo",Oslo
+"Steinbeis University",Berlin
+"FHDW Hannover",Hannover
+"Berlin Psychological University",Berlin
+"University of Philosophy and Theology in Münster",Munster
+"University of Music Saar",Saarbrucken
+"Wilhelm Löhe University of Applied Sciences",Furth
+"Protestant University of Applied Sciences for Social Work and Deaconry",Hamburg
+"Brand University of Applied Sciences",Hamburg
+"Brandenburg Medical School Theodor Fontane",Neuruppin
+"Fliedner University of Applied Sciences of Düsseldorf",Dusseldorf
+"Ludwigsburg Protestant University of Applied Science",Ludwigsburg
+Leibniz-Fachhochschule,Hannover
+"Biberach University of Applied Sciences",Biberach
+"Dresden University of Fine Arts",Dresden
+"Giessen School of Theology",Giessen
+"Protestant University of Applied Sciences in Darmstadt",Darmstadt
+"Academy of Catholic Church Music and Music Education",Regensburg
+"Diakonie University of Applied Sciences",Bielefeld
+"Gera-Eisenach University of Applied Sciences",Gera
+"Vinzenz Pallotti University",Vallendar
+"Karlshochschule International University",Karlsruhe
+"Ruhr West University of Applied Sciences",Mulheim
+"Muthesius University of Fine Arts and Design",Kiel
+"University of Applied Forest Sciences Rottenburg",Tubingen
+"Akkon University of Human Sciences",Berlin
+"Guilin Tourism University",Guilin
+"Friedensau Adventist University",Mockern
+"Guizhou University of Commerce",Guiyang
+"MSB Medical School Berlin",Berlin
+"VICTORIA International University of Applied Sciences",Berlin
+"Karlsruhe University of Music",Karlsruhe
+"HafenCity University Hamburg",Hamburg
+"University of Public Administration Rhineland-Palatinate",Mayen
+"Hochschule für Öffentliche Verwaltung Bremen",Bremen
+"Quadriga Hochschule Berlin",Berlin
+"German Graduate School of Management and Law",Heilbronn
+"Academy of Fine Arts Leipzig",Leipzig
+"College for Sport and Management Potsdam",Potsdam
+"Augustana Divinity School",Neuendettelsau
+"Witten/Herdecke University",Witten
+"bbw Hochschule &#8211; University of Applied Sciences",Berlin
+"Tianjin Sino-German University of Applied Sciences",Tianjin
+"Sanming University",Sanming
+"Shenyang Institute of Science and Technology",Shenyang
+"Shangrao Normal University",Shangrao
+"Reutlingen School of Theology",Reutlingen
+"BSP Business and Law School",Berlin
+"Harbin Huade University",Harbin
+"Deutsche Hochschule für Gesundheit und Sport",Berlin
+"EBS University of Business and Law",Wiesbaden
+"University of Applied Labour Studies",Mannheim
+"City University of Applied Sciences",Bremen
+"Natural Science and Technical Academy","Isny im Allgau"
+"Hunan Institute of Traffic Engineering",Hengyang
+"Evangelische Hochschule für Kirchenmusik",Halle
+"Hebei Foreign Studies University",Shijiazhuang
+"Shenyang City University",Shenyang
+"Harbin Guangxia University",Harbin
+"Huanghe Jiaotong University",Zhengzhou
+"Inner Mongolia Arts University",Hohhot
+"University of Fine Arts Münster",Munster
+"Zhengzhou Chenggong University of Finance and Economics",Zhengzhou
+"Hunan University of Finance and Economics",Changsha
+"Hebei College of Science and Technology",Baoding
+"Zhaotong University",Zhaotong
+"Catholic University of Applied Sciences Freiburg",Freiburg
+"Catholic University of Applied Social Sciences Berlin",Berlin
+"Lutheran University of Applied Sciences Nuremberg",Nuremberg
+"Minnan University of Science and Technology",Quanzhou
+"Xinghai Conservatory of Music",Guangzhou
+"Tianjin Foreign Studies University",Tianjin
+"Shougang Institute of Technology",Beijing
+"Tianjin Conservatory of Music",Tianjin
+"Inner Mongolia University for the Nationalities",Tongliao
+"University of Music and Performing Arts Munich",Munich
+"Tianjin Tianshi College",Tianjin
+"Changzhi Medical College",Changzhi
+"Xinjiang Institute of Engineering",Urumqi
+"West Yunnan University",Lincang
+"Guangdong University of Education",Guangzhou
+"Jining Normal University",Jining
+"Pingxiang University",Pingxiang
+"Protestant University of Applied Sciences Berlin",Berlin
+"Kühne Logistics University",Hamburg
+"University of Music Würzburg",Wurzburg
+"Sankt Georgen Graduate School of Philosophy and Theology","Frankfurt am Main"
+"Shanxi College of Applied Science and Technology",Taiyuan
+"Hubei University of Science and Technology",Xianning
+"Sichuan Film and Television University",Chengdu
+"Shaanxi Institute of Technology",
+"Chengdu Neusoft University",Chengdu
+"Catholic University of Applied Sciences Munich",Munich
+"Lishui University",Lishui
+"Nuremberg University of Music",Nuremberg
+"Harbin Institute of Physical Education",Harbin
+"Hamburg School of Business Administration",Hamburg
+"Protestant University of Applied Sciences Freiburg","Freiburg im Breisgau"
+"Xinyu University",Xinyu
+"Alice Salomon University of Applied Sciences Berlin",Berlin
+"Hochschule für Musik Detmold",Detmold
+"International School of Management",Dortmund
+"University of Applied Sciences Bremerhaven",Bremen
+"Technical University of Applied Sciences Wildau",Wildau
+"University of Applied Sciences Amberg-Weiden",Amberg
+"Bundeswehr University Munich",Munich
+"IST University of Applied Sciences",Dusseldorf
+"FH Aachen",Aachen
+"European University of Applied Sciences",Bruhl
+"Protestant University of Applied Sciences Dresden",Dresden
+"Wuhan College",Wuhan
+"Moutai Institute",Renhuai
+"Fuzhou Institute of Technology",Fuzhou
+"Wuhan Qingchuan University",Wuhan
+"Qiqihar Institute of Engineering",Qiqihar
+"Wuhan Institute of Design and Sciences",Wuhan
+"Berlin-Weissensee Art Academy",Berlin
+"University of Applied Sciences Kaiserslautern",Kaiserslautern
+"Koblenz University of Applied Sciences",Koblenz
+"University of the Arts Bremen",Bremen
+"Ansbach University of Applied Sciences",Ansbach
+"Aschaffenburg University of Applied Sciences",Aschaffenburg
+"West Coast University of Applied Sciences",Heide
+"Dresden University of Applied Sciences",Dresden
+"Ostfalia University of Applied Sciences",Wolfenbuttel
+"SRH University of Applied Health Sciences, Gera",Gera
+"EBC University of Applied Sciences",Hamburg
+"Center for Jewish Studies Heidelberg",Heidelberg
+"Staatliche Hochschule für Musik Trossingen",Trossingen
+"Zhengzhou Technology and Business University",Zhengzhou
+"Palucca University of Dance Dresden",Dresden
+"Xinyang University",Xinyang
+"Jingdezhen University",Jingdezhen
+"HMKW University of Applied Sciences for Media, Communication and Management",Berlin
+"Liaoning University of International Business and Economics",Dalian
+"Hochschule für Telekommunikation Leipzig",Leipzig
+"Cangzhou Normal University",Cangzhou
+"Bozhou University",Shengzhou
+"Inner Mongolia Nationality College",Hohhot
+"Hebei Normal University for Nationalities",Chengde
+"North Sichuan Medical College",Nanchong
+"Dresden College of Music",Dresden
+"Shenyang Urban Construction University",Shenyang
+"Ordos Institute of Technology",Ordos
+"Sichuan Institute of Industrial Technology",Deyang
+"Wuhan Huaxia University of Technology",Wuhan
+"Liaoning Finance and Trade College",Huludao
+"Heilongjiang University of Technology",Jixi
+"University of Music and Theatre &#8220;Felix Mendelssohn Bartholdy&#8221; Leipzig",Leipzig
+"Ludwigsburg University of Education",Ludwigsburg
+"University of Education Freiburg",Freiburg
+"Albstadt-Sigmaringen University",Albstadt
+"Heilongjiang College of Business and Technology",Harbin
+"Dalian University of Science and Technology",Dalian
+"Hunan University of Medicine",Huaihua
+"Yingkou Institute of Technology",Yingkou
+"Hunan Applied Technology University",Changde
+"Rostock University of Music and Drama",Rostock
+"Eberswalde University for Sustainable Development",Eberswalde
+"Harbin Far East Institute of Technology",Harbin
+"Shenyang Institute of Technology",Fushun
+"Flensburg University of Applied Sciences",Flensburg
+"Chongqing College of Humanities, Science and Technology",Chongqing
+"Zeppelin University",Friedrichshafen
+"Potsdam University of Applied Sciences",Potsdam
+"Nuertingen-Geislingen University",Nuertingen
+"Esslingen University of Applied Sciences",Esslingen
+"Folkwang University of the Arts",Essen
+"University of Greifswald",Greifswald
+"Stuttgart Media University",Stuttgart
+"Ingolstadt University of Applied Sciences",Ingolstadt
+"University of Lübeck",Lubeck
+"Qiqihar University",Qiqihar
+"Hochschule für angewandtes Management",Ismaning
+"Georg Agricola University of Applied Sciences",Bochum
+"Academy of Fine Arts, Nuremberg",Nuremberg
+"Westphalian University of Applied Sciences",Gelsenkirchen
+"Euro-FH University of Applied Sciences",Hamburg
+"Pingdingshan University",Pingdingshan
+"University of Music Lübeck",Lubeck
+"State Academy of Fine Arts Karlsruhe",Karlsruhe
+"University of Applied Sciences in Neubrandenburg",Neubrandenburg
+"Shanxi Technology and Business College",Taiyuan
+"Aba Teachers University",Aba
+"Ernst Busch Academy of Dramatic Arts",Berlin
+"Hankou University",Wuhan
+"Yunnan Technology and Business University",Kunming
+"Harbin Cambridge University",Harbin
+"Tibetan Traditional Medical College",Lhasa
+"Quzhou University",Quzhou
+"Yichun University",Yichun
+"Qingdao Institute of Technology",Qingdao
+"Chongqing Institute of Engineering",Chongqing
+"Qilu Institute of Technology",Jinan
+"Neusoft Institute, Guangdong",Foshan
+"Wuchang Shouyi University",Wuhan
+"Shanghai University of Medicine and Health Sciences",Shanghai
+"Henan Institute of Technology",Xinxiang
+"Hannover University of Applied Sciences and Arts",Hannover
+"Munich Business School",Munich
+"Technical University Dortmund",Dortmund
+"Shandong Jiaotong University",Jinan
+"University of Veterinary Medicine Hannover",Hannover
+"Mainz University of Applied Sciences",Mainz
+"Reutlingen University",Reutlingen
+"University of Television and Film Munich",Munich
+"Magdeburg-Stendal University of Applied Sciences",Magdeburg
+"HHL Leipzig Graduate School of Management",Leipzig
+"TH Bingen University of Applied Sciences","Bingen am Rhein"
+"Niederrhein University of Applied Sciences",Krefeld
+"Konrad Wolf Film University of Babelsberg",Potsdam
+"Geisenheim University",Geisenheim
+"Guizhou Institute of Technology",Guiyang
+"Karlsruhe University of Applied Sciences",Karlsruhe
+"Nordakademie University of Applied Sciences",Elmshorn
+"Dalian University of Finance and Economics",Dalian
+"He University",Shenyang
+"Harbin Finance University",Harbin
+"Academy of Fine Arts Munich",Munich
+"Baoding University",Baoding
+"Zhengzhou College of Finance and Economics",Zhengzhou
+"Wuhan Technology and Business University",Wuhan
+"Ludwigshafen University of Business and Society",Ludwigshafen
+"Yunnan University of Business Management",Kunming
+"Hubei Business College",Wuhan
+"Sichuan Tourism University",Chengdu
+"Wuhan Business University",Wuhan
+"Sichuan University for Nationalities",Kangding
+"Hangzhou Medical College",Hangzhou
+"Guizhou University of Engineering Science",Bijie
+"Harbin Institute of Petroleum",Harbin
+"Offenbach University of Art and Design",Offenbach
+"Xi&#8217;an Traffic Engineering Institute",Xian
+"Xichang College",Xichang
+"Clausthal University of Technology","Clausthal Zellerfeld"
+"Frankfurt University of Applied Sciences","Frankfurt am Main"
+"Heilongjiang University of Finance and Economics",Harbin
+"Nanning University",Nanning
+"Shandong Management University",Jinan
+"Osnabrück University of Applied Sciences",Osnabruck
+"Wuhan Donghu University",Wuhan
+"Shandong Women&#8217;s University",Jinan
+"Heilbronn University of Applied Sciences",Heilbronn
+"Lanzhou City University",Lanzhou
+"Chengdu Technological University",Chengdu
+"Sichuan University of Culture and Arts",Mianyang
+"Neu-Ulm University of Applied Sciences","Neu Ulm"
+"University of Education Schwäbisch Gmünd","Schwabisch Gmund"
+"Qingdao Hengxing University of Science and Technology",Qingdao
+"Guiyang University Traditional Chinese Medicine",Guiyang
+"University of Siegen",Siegen
+"Friedrich Schiller University Jena",Jena
+"Bielefeld University",Bielefeld
+"Tianshui Normal University",Tianshui
+"Sanjiang University",Nanjing
+"Guangzhou College of Commerce",Guangzhou
+"Wenzhou Business College",Wenzhou
+"University of Applied Sciences Landshut",Landshut
+"University of Education Weingarten",Weingarten
+"Düsseldorf Art Academy",Dusseldorf
+"Communication University of Shanxi",Jinzhong
+"Jilin Agricultural Science and Technology College","Jilin City"
+"CBS International Business School",Cologne
+"Kempten University of Applied Sciences",Kempten
+"Civil Aviation Flight University of China",Guanghan
+"Fresenius University of Applied Sciences",Idstein
+"Nanjing Xiaozhuang University",Nanjing
+"Mudanjiang Medical University",Mudanjiang
+"Hebei Academy of Fine Arts",Shijiazhuang
+"Munich University of Applied Sciences",Munich
+"Hanjiang Normal University",Shiyan
+"Shijiazhuang University",Shijiazhuang
+"Changzhi University",Changzhi
+"Harz University of Applied Sciences",Wernigerode
+"Technical University of Applied Sciences Lübeck",Lubeck
+"Anshun University",Anshun
+"Chizhou University",Chizhou
+"University of Erfurt",Erfurt
+"Shanghai Xingwei College",Shanghai
+"Ningxia Medical University",Yinchuan
+"Hunan University of Chinese Medicine",Changsha
+"Hannover Medical School",Hannover
+"Jacobs University Bremen",Bremen
+"Nanchang Institute of Science and Technology",Nanchang
+"Fujian Jiangxia University",Fuzhou
+"Sichuan University of Arts and Science",Dazhou
+"Hunan Institute of Technology",Hengyang
+"Changsha Medical University",Changsha
+"Hezhou University",Hezhou
+"Fujian Business University",Fuzhou
+"Shandong Youth University of Political Science",Jinan
+"Guangdong Peizheng College",Guangzhou
+"Heilongjiang International University",Harbin
+"Ningde Normal University",Ningde
+"Taiyuan Institute of Technology",Taiyuan
+"West Yunnan University of Applied Sciences",Dali
+"Shangluo University",Shangluo
+"Harbin Conservatory of Music",Harbin
+"Hochschule für Musik und Theater Hamburg",Hamburg
+"Wuchang University of Technology",Wuhan
+"SRH University Heidelberg",Heidelberg
+"Hanns Eisler School of Music Berlin",Berlin
+"Jiangsu Second Normal University",Nanjing
+"Hubei University of Education",Wuhan
+"Lanzhou Institute of Technology",Lanzhou
+"Kunming University",Kunming
+"Freiburg University of Music",Freiburg
+"Inner Mongolia University of Finance and Economics",Hohhot
+"West Anhui University",Lu&#8217;an
+"Xinjiang Agricultural University",Urumqi
+"Nanjing University of Chinese Medicine",Nanjing
+"HFH Hamburger Fern-Hochschule",Hamburg
+"Offenburg University of Applied Sciences",Offenburg
+"Hanover University of Music, Drama and Media",Hannover
+"Bucerius Law School",Hamburg
+"University of Music Franz Liszt Weimar",Weimar
+"Catholic University of Applied Sciences of North Rhine-Westphalia",Cologne
+"Heidelberg University of Education",Heidelberg
+"Liaoning Institute of Science and Technology",Benxi
+"Ravensburg-Weingarten University of Applied Sciences",Weingarten
+"Wuhan University of Engineering Science",Wuhan
+"Lanzhou University of Arts and Science",Lanzhou
+"Tongren University",Tongren
+"Liupanshui Normal University",Liupanshui
+"Puer University",Pu&#8217;er
+"Kaili University",Kaili
+"Liaoning Communication University",Shenyang
+"Xinjiang University of Finance and Economics",Urumqi
+"Taishan University",Tai&#8217;an
+"Yuzhang Normal University",Nanchang
+"Shaanxi Fashion Engineering University",Xianyang
+"Henan University of Animal Husbandry and Economy",Zhengzhou
+"Anyang Institute of Technology",Anyang
+"Guangzhou Maritime University",Guangzhou
+"Xianyang Normal University",Xiangyang
+"Rosenheim University of Applied Sciences",Rosenheim
+"Schmalkalden University of Applied Sciences",Schmalkalden
+"Braunschweig University of Art",Brunswick
+"State Academy of Fine Arts Stuttgart",Stuttgart
+"University of Applied Sciences Erfurt",Erfurt
+"University of Europe for Applied Sciences",Iserlohn
+"SRH University of Applied Sciences Berlin",Berlin
+"Regensburg University of Applied Sciences",Regensburg
+"Beibu Gulf University",Qinzhou
+"Wuyi University",Wuyishan
+"Zhengzhou University of Science and Technology",Zhengzhou
+"Shaanxi Xueqian Normal University",Xian
+"University of Vechta",Vechta
+"Bochum University of Applied Sciences",Bochum
+"Chongqing University of Education",Chongqing
+"Heilongjiang Institute of Technology",Harbin
+"Jiamusi University",Jiamusi
+"Guiyang University",Guiyang
+"Chengdu Normal University",Chengdu
+"Huaibei Normal University",Huaibei
+"Qiannan Normal College for Nationalities",Duyun
+"Hebei University of Environmental Engineering",Qinhuangdao
+"Lanzhou University of Technology",Lanzhou
+"Hengshui University",Hengshui
+"Jiaying University",Meizhou
+"Wuzhou University",Wuzhou
+"People&#8217;s Public Security University of China",Beijing
+"North China University of Science and Technology",Tangshan
+"Hebei Institute of Communication",Shijiazhuang
+"Bohai University",Jinzhou
+"Binzhou University",Binzhou
+"Chengdu Sport University",Chengdu
+"Xi&#8217;An Conservatory of Music",Xian
+"Hunan Women&#8217;s University",Changsha
+"Fulda University of Applied Science",Fulda
+"Xi&#8217;An International University",
+"Hefei University",Hefei
+"Zhengzhou Normal University",Zhengzhou
+"Korea National University of Arts",Seoul
+"Handan University",Handan
+"Catholic University of Eichstätt-Ingolstadt",Eichstatt
+"HAWK University of Applied Sciences and Arts",Hildesheim
+"Leipzig University of Applied Sciences",Leipzig
+"Hunan University of Science and Engineering",Yongzhou
+"Henan University of Economics and Law",Zhengzhou
+"Hebei Finance University",Baoding
+"Yulin University",Yulin
+"Wuhan Institute of Technology",Wuhan
+"Shenyang University",Shenyang
+"University of Applied Sciences Jena",Jena
+"Macromedia University of Applied Sciences",Stuttgart
+"State University of Music and Performing Arts Stuttgart",Stuttgart
+"Chaohu University",Chaohu
+"Shanghai Business School",Shanghai
+"Guangxi University of Chinese Medicine",Nanning
+"Huzhou University",Huzhou
+"Xi&#8217;an Medical University",Xian
+"Technische Hochschule Mittelhessen University of Applied Sciences",Giessen
+"Anhalt University of Applied Sciences",Kothen
+"Brandenburg University of Technology Cottbus–Senftenberg",Cottbus
+"University of Applied Sciences Würzburg-Schweinfurt",Wurzburg
+"Humboldt University of Berlin",Berlin
+"Pforzheim University",Pforzheim
+"Xinjiang Arts University",Urumqi
+"Yangtze Normal University",Chongqing
+"Hamm-Lippstadt University of Applied Sciences",Hamm
+"University of Münster",Munster
+"Aalen University of Applied Sciences",Aalen
+"Hubei Engineering University",Xiaogan
+"Guizhou Minzu University",Guiyang
+"North China Institute of Aerospace Engineering",Langfang
+"Shanxi Datong University",Datong
+"East China Jiaotong University",Nanchang
+"Shandong Agriculture and Engineering University",Jinan
+"Kashi University",Kashgar
+"Hebei University of Architecture",Zhangjiakou
+"Hunan First Normal University",Changsha
+"Heihe University",Heihe
+"Xinxiang University",Xinxiang
+"Guangdong University of Finance",Guangzhou
+"Anshan Normal University",Anshan
+"Hubei University of Medicine",Shiyan
+"University of Science and Technology Liaoning",Anshan
+"Yanching Institute of Technology",Langfang
+"Ruhr University Bochum",Bochum
+"RheinMain University of Applied Sciences",Wiesbaden
+"Hefei Normal University",Hefei
+"Heilongjiang Bayi Agricultural University",Daqing
+"Munich School of Philosophy",Munich
+"Zhejiang Chinese Medical University",Hangzhou
+"Mannheim University of Applied Sciences",Mannheim
+"Weifang University of Science and Technology",Shouguang
+"Chongqing University of Art and Sciences",Chongqing
+"Hochschule Mittweida University of Applied Sciences",Mittweida
+"Hamburg University of Applied Sciences",Hamburg
+"Weifang Medical University",Weifang
+"Burg Giebichenstein University of Art and Design Halle",Halle
+"Hochschule Bonn-Rhein-Sieg, University of Applied Sciences","Sankt Augustin"
+"Hainan Medical University",Haikou
+"Wuhan Sports University",Wuhan
+"Westsächsische Hochschule Zwickau &#8211; University of Applied Sciences Zwickau",Zwickau
+"Shenyang Normal University",Shenyang
+"HTWG Konstanz &#8211; University of Applied Sciences",Konstanz
+"Xi&#8217;an Jiaotong-Liverpool University",Suzhou
+"Zhengzhou Institute of Technology",Zhengzhou
+"Leuphana University of Lüneburg",Luneburg
+"Qujing Normal University",Qujing
+"Dalian Jiaotong University",Dalian
+"Shangqiu University",Shangqiu
+"Tianjin University of Sport",Tianjin
+"Qinghai Minzu University",Xining
+"Harbin Institute of Information Technology",Harbin
+"Guangdong Technion-Israel Institute of Technology",Shantou
+"Changchun Institute of Technology",Changchun
+"Hengyang Normal University",Hengyang
+"Yunnan University of Traditional Chinese Medicine",Kunming
+"Changshu Institute of Technology",Changshu
+"Hulunbeier University",Hulunbuir
+"FOM University of Applied Sciences for Economics and Management",Essen
+"Helmut Schmidt University",Hamburg
+"Nuremberg Institute of Technology Georg Simon Ohm",Nuremberg
+"Berlin School of Economics and Law",Berlin
+"European University Viadrina Frankfurt (Oder)","Frankfurt am Main"
+"Jiangxi Institute of Fashion Technology",Nanchang
+"Zaozhuang University",Zaozhuang
+"Rhine-Waal University of Applied Sciences",Kleve
+"Darmstadt University of Applied Sciences",Darmstadt
+"Hunan International Economics University",Changsha
+"Shandong Xiandai University",Jinan
+"Baoji University of Arts and Sciences",Baoji
+"Guangxi Normal University for Nationalities",Chongzuo
+"Qiongtai Normal University",Haikou
+"Shaanxi University of Technology",Hanzhong
+"University of Mannheim",Mannheim
+"Qilu Normal University",Jinan
+"Tonghua Normal University",Tonghua
+"Xi&#8217;an Technological University",Xian
+"Frankfurt School of Finance and Management","Frankfurt am Main"
+"Xizang Minzu University",Xianyang
+"Hebei Polytechnic Institute",Shijiazhuang
+"Paderborn University",Paderborn
+"China West Normal University",Nanchong
+"Shangqiu Institute of Technology",Shangqiu
+"Hunan University of Technology",Zhuzhou
+"Carl von Ossietzky University of Oldenburg",Oldenburg
+"Wuxi Taihu University",Wuxi
+"Bengbu University",Bengbu
+"Xinyang Agriculture and Forestry University",Xinyang
+"Saarland University",Saarbrucken
+"Xi&#8217;an Aeronautical Institute",Xian
+"Jiangsu Normal University",Xuzhou
+"Technical University of Kaiserslautern",Kaiserslautern
+"Wuhan Polytechnic University",Wuhan
+"Taiyuan Normal University",Taiyuan
+"Duke Kunshan University",Kunshan
+"Chongqing University of Posts and Telecommunications",Chongqing
+"Heinrich Heine University Düsseldorf",Dusseldorf
+"Shanghai University of International Business and Economics",Shanghai
+"Technical University of Darmstadt",Darmstadt
+"Shenyang Aerospace University",Shenyang
+"University of Würzburg",Wurzburg
+"Christian-Albrecht University of Kiel",Kiel
+"Beijing Information Science and Technology University",Beijing
+"Dezhou University",Dezhou
+"University of Stuttgart",Stuttgart
+"Ningbo University of Technology",Ningbo
+"Zhaoqing University",Zhaoqing
+"Ningxia Institute of Science and Technology",Shizuishan
+"Changsha University",Changsha
+"Jiangxi University of Technology",Nanchang
+"Suqian College",Suqian
+"Yibin University",Yibin
+"Chuxiong Normal University",Chuxiong
+"Minnan Normal University",Zhangzhou
+"Xinjiang Medical University",Urumqi
+"Jiangsu University of Technology",Changzhou
+"Jiangxi University of Traditional Chinese Medicine",Nanchang
+"Jilin University of Arts",Changchun
+"Henan Finance University",Zhengzhou
+"Bielefeld University of Applied Sciences",Bielefeld
+"WHU &#8211; Otto Beisheim School of Management",Vallendar
+"Hochschule Worms University of Applied Sciences",Worms
+"Xi&#8217;an Fanyi University",Xian
+"Hebei University of Chinese Medicine",Shijiazhuang
+"Luoyang Normal University",Luoyang
+"Wuhan Institute of Bioengineering",Wuhan
+"Hertie School",Berlin
+"SanQuan Medical College",Xinxiang
+"Chemnitz University of Technology",Chemnitz
+"Academy of Media Arts Cologne",Cologne
+"University of Applied Sciences Düsseldorf",Dusseldorf
+"Honghe University",Mengzi
+"Hubei University of Arts and Science",Xiangyang
+"Suihua University",Suihua
+"Eastern Liaoning University","Dandong City"
+"Changchun Architecture and Civil Engineering College",Changchun
+"Jade University of Applied Sciences",Wilhelmshaven
+"FH Wedel University of Applied Sciences",Wedel
+"Yunnan Arts University",Kunming
+"Hunan University of Art and Science",Changde
+"Chengdu University of Information Technology",Chengdu
+"Sanya University",Sanya
+"Shangqiu Normal University",Shangqiu
+"Chongqing Three Gorges University",Chongqing
+"Northwest University of Politics and Law",Xian
+"Weinan Normal University",Weinan
+"Guangdong Baiyun University",Guangzhou
+"Gansu Medical College",Pingliang
+"Yuxi Normal University",Yuxi
+"Qinghai University",Xining
+"Shandong Xiehe University",Jinan
+"Gansu University of Chinese Medicine",Lanzhou
+"Southwest Medical University",Luzhou
+"Putian University",Putian
+"Panzhihua University",Panzhihua
+"Shaanxi University of Chinese Medicine",Xiangyang
+"Jilin Animation Institute",Changchun
+"Huaqiao University",Xiamen
+"Guangxi Science and Technology Normal University",Laibin
+"Chongqing University of Technology",Chongqing
+"Jilin Engineering Normal University",Changchun
+"Changsha Normal University",Changsha
+"Sanda University",Shanghai
+"Kunming Medical University",Kunming
+"Shenzhen MSU-BIT University",Shenzhen
+"Zhengzhou University of Industrial Technology",Zhengzhou
+"Chengdu Medical College",Chengdu
+"Xiangnan University",Chenzhou
+"Hunan University of Humanities, Science and Technology",Loudi
+"Shandong Yingcai University",Jinan
+"Hanshan Normal University",Chaozhou
+"Anhui Xinhua University",Hefei
+"Hunan University of Science and Technology",Xiangtan
+"Shenyang Medical College",Shenyang
+"Sichuan University of Media and Communications",Chengdu
+"FH Münster",Munster
+"Freiberg University of Mining and Technology",Freiberg
+"Berliner Hochschule für Technik",Berlin
+"Furtwangen University",Furtwangen
+"University of Applied Sciences for Police and Public Administration in North Rhine-Westphalia",Gelsenkirchen
+"Hubei University for Nationalities",Enshi
+"Hebei North University",Zhangjiakou
+"North China Institute of Science and Technology",Sanhe
+"Wenzhou-Kean University",Wenzhou
+"Hamburg University of Technology",Hamburg
+"University of Hohenheim",Stuttgart
+"Karlsruhe University of Arts and Design",Karlsruhe
+"Robert Schumann Conservatory",Dusseldorf
+"Technical University of Braunschweig",Brunswick
+"University of Rostock",Rostock
+"University of Wuppertal",Wuppertal
+"University of Hagen",Hagen
+"Deggendorf Institute of Technology",Deggendorf
+"University of Augsburg",Augsburg
+"University of Koblenz and Landau",Koblenz
+"HTW Berlin &#8211; University of Applied Sciences",Berlin
+"German Sport University Cologne",Cologne
+"Zheijang Conservatory of Music",Hangzhou
+"Fachhochschule Dortmund &#8211; University of Applied Sciences and Arts",Dortmund
+"University of Passau",Passau
+"Augsburg University of Applied Sciences",Augsburg
+"Cologne University of Applied Sciences",Cologne
+"Ilmenau University of Technology",Ilmenau
+"Yinchuan University of Energy",Yinchuan
+"Shenyang University of Chemical Technology",Shenyang
+"Jilin International Studies University",Changchun
+"Hubei Polytechnic University",Huangshi
+"Anhui International Studies University",Hefei
+"Guangxi University of Finance and Economics",Nanning
+"Changchun University",Changchun
+"Shanxi University of Traditional Chinese Medicine",Taiyuan
+"University of Bamberg",Bamberg
+"University of Bayreuth",Bayreuth
+"University of Potsdam",Potsdam
+"University of Kassel",Kassel
+"Charity-University Medicine Berlin",Berlin
+"University of Duisburg-Essen",Duisburg
+"University of Regensburg",Regensburg
+"Osnabrück University",Osnabruck
+"Goethe University Frankfurt","Frankfurt am Main"
+"Georg August University of Göttingen",Gottingen
+"University of Cologne",Cologne
+"Guilin University of Aerospace Technology",Guilin
+"Harbin University",Harbin
+"Beijing Electronic Science and Technology Institute",Beijing
+"Jilin University of Finance and Economics",Changchun
+"Hunan Institute of Information Technology",Changsha
+"Linyi University",Linyi
+"Yunnan Minzu University",Kunming
+"Guangzhou Sport University",Guangzhou
+"Haikou University of Economics",Haikou
+"Changchun Normal University",Changchun
+"Hubei University of Chinese Medicine",Wuhan
+"Xi&#8217;an University",
+"Xi&#8217;an University of Finance and Economics",
+"University of Trier",Trier
+"University of Giessen",Giessen
+"Kiel University of Applied Sciences",Kiel
+"Trier University of Applied Sciences",Trier
+"OWL University of Applied Sciences and Arts",Lemgo
+"Philipps University of Marburg",Marburg
+"Ludong University",Yantai
+"Huaihua University",Huaihua
+"Guizhou Education University",Guiyang
+"Hebei Institute of Physical Education",Shijiazhuang
+"China University of Labor Relations",Beijing
+"Guangdong Ocean University",Zhanjiang
+"Guangxi Medical University",Nanning
+"Fuyang Normal University",Fuyang
+"Bauhaus University, Weimar",Weimar
+"Inner Mongolia Agricultural University",Hohhot
+"Shanxi Medical University",Taiyuan
+"Guangdong University of Petrochemical Technology",Maoming
+"Anqing Normal University",Anqing
+"Northeast Petroleum University",Daqing
+"Shandong Technology and Business University",Yantai
+"Inner Mongolia Normal University",Hohhot
+"Henan University of Technology",Zhengzhou
+"Hainan Tropical Ocean University",Sanya
+"Huanghe Science and Technology College",Zhengzhou
+"Gansu University of Political Science and Law",Lanzhou
+"Chengdu College of Arts and Sciences",Chengdu
+"Inner Mongolia Medical University",Hohhot
+"Guizhou Medical University",Guiyang
+"Shanghai Institute of Technology",Shanghai
+"University of Ulm",Ulm
+"University of Konstanz",Konstanz
+"University of Bremen",Bremen
+"Rhenish Friedrich Wilhelm University of Bonn",Bonn
+"Technical University of Berlin",Berlin
+"Friedrich Alexander University of Erlangen-Nuremberg",Erlangen
+"University of Hamburg",Hamburg
+"North China University of Water Resources and Electricity",Zhengzhou
+"Johannes Gutenberg University of Mainz",Mainz
+"Qiqihar Medical University",Qiqihar
+"Tarim University",Alar
+"Leibniz University Hannover",Hannover
+"Zunyi Medical University",Zunyi
+"Shihezi University",Shihezi
+"Xinyang Normal University",Xinyang
+"Qingdao University of Technology",Qingdao
+"Central South University of Forestry and Technology",Changsha
+"Beijing Union University",Beijing
+"Jiangsu Ocean University",Lianyungang
+"Qilu Medical University",Zibo
+"Jingchu University of Technology",Jingmen
+"Huanggang Normal University",Huanggang
+"Technical University of Munich",Munich
+"Luliang University",Luliang
+"Zhengzhou University of Aeronautics",Zhengzhou
+"Guizhou University of Finance and Economics",Guiyang
+"Guangdong Medical University",Zhanjiang
+"Guangzhou Medical University",Guangzhou
+"Shandong First Medical University and Shandong Academy of Medical Sciences",Tai&#8217;an
+"Inner Mongolia University of Technology",Hohhot
+"Xiamen Huaxia University",Xiamen
+"Hunan Institute of Engineering",Xiangtan
+"Jiangxi University of Science and Technology",Ganzhou
+"Shenyang Pharmaceutical University",Shenyang
+"Heze University",Heze
+"Dalian Ocean University",Dalian
+"Hainan Normal University",Haikou
+"Shanghai Theatre Academy",Shanghai
+"Hebei GEO University",Shijiazhuang
+"Xijing University",Xian
+"Minzu University of China",Beijing
+"Shanghai University of Sports",Shanghai
+"Zhejiang International Studies University",Hangzhou
+"Baoshan University",Baoshan
+"China Pharmaceutical University",Nanjing
+"Wenhua College",Wuhan
+"China Youth University for Political Sciences",Beijing
+"Anhui Science and Technology University",Fengyang
+"Xiamen Institute of Technology",Xiamen
+"Wuchang Institute of Technology",Wuhan
+"Xuchang University",Xuchang
+"Lanzhou University of Finance and Economics",Lanzhou
+"Shandong Sport University",Jinan
+"Capital University of Physical Education and Sports",Beijing
+"Guangdong Pharmaceutical University",Guangzhou
+"Guangxi Arts University",Nanning
+"Shanghai University of Electric Power",Shanghai
+"Tianjin University of Finance and Economics",Tianjin
+"Tianjin Chengjian University",Tianjin
+"Guangdong Polytechnic Normal University",Guangzhou
+"Taizhou University",Taizhou
+"Shenyang Ligong University",Shenyang
+"Beijing Wuzi University",Beijing
+"Zhejiang Shuren University",Hangzhou
+"Nanjing University of Finance and Economics",Nanjing
+"Northwest Minzu University",Lanzhou
+"Xi&#8217;an Peihua University",Xian
+"Southwest University for Nationalities",Chengdu
+"Guangzhou University of Chinese Medicine",Guangzhou
+"Neijiang Normal University",Neijiang
+"Henan Institute of Engineering",Zhengzhou
+"Shanghai Second Polytechnic University",Shanghai
+"Yunnan University of Finance and Economics",Kunming
+"Jilin Normal University",Siping
+"Liaoning Shihua University",Fushun
+"Nanjing Sport Institute",Nanjing
+"Otto von Guericke University Magdeburg",Magdeburg
+"Albert Ludwig University of Freiburg",Freiburg
+"Eberhard Karl University of Tübingen",Tubingen
+"Leipzig University",Leipzig
+"Jiangxi Normal University",Nanchang
+"Shanghai Dianji University",Shanghai
+"Anhui Jianzhu University",Hefei
+"Communication University of Zhejiang",Hangzhou
+"Xi&#8217;an Physical Education University",Xian
+"Anhui Sanlian University",Hefei
+"Yulin Normal University",Yulin
+"Anhui Polytechnic University",Wuhu
+"Hechi University",Hechi
+"Qingdao Binhai University",Qingdao
+"The Central Academy of Drama",Beijing
+"Guilin University of Technology",Guilin
+"Zhengzhou University of Light Industry",Zhengzhou
+"Northeast Electric Power University","Jilin City"
+"Guangxi University of Science and Technology",Liuzhou
+"East China University of Technology",Nanchang
+"Tianjin Agricultural University",Tianjin
+"Anhui University of Finance and Economics",Bengbu
+"Chongqing University of Science and Technology",Chongqing
+"Xi&#8217;an Shiyou University",Xian
+"Ningbo University of Finance and Economics",Ningbo
+"Xinjiang University",Urumqi
+"Tongling University",Tongling
+"Yuncheng University",Yuncheng
+"Tianjin University of Traditional Chinese Medicine",Tianjin
+"Huizhou University",Huizhou
+"Shenyang Conservatory of Music",Shenyang
+"Jiaxing University",Jiaxing
+"Lu Xun Academy of Fine Arts",Shenyang
+"Yang-En University",Quanzhou
+"Nanjing University of the Arts",Nanjing
+"Beijing Institute of Fashion Technology",Beijing
+"Southwest University of Political Science and Law",Chongqing
+"Chongqing Jiaotong University",Chongqing
+"Chongqing Technology and Business University",Chongqing
+"Beijing Geely University",Beijing
+"North University of China",Taiyuan
+"Shenyang Jianzhu University",Shenyang
+"Liaoning University of Traditional Chinese Medicine",Shenyang
+"Ruprecht Karl University of Heidelberg",Heidelberg
+"Guangzhou University",Guangzhou
+"RWTH Aachen University",Aachen
+"University of the Chinese Academy of Sciences",Beijing
+"Northeastern University, China",Shenyang
+"Shijiazhuang Tiedao University",Shaoxing
+"Shenyang Sport University",Shenyang
+"Shaoguan University",Shaoguan
+"Shandong Jianzhu University",Jinan
+"Changchun University of Science and Technology",Changchun
+"Shenyang Institute of Engineering",Shenyang
+"Tianjin Medical University",Tianjin
+"Wuyi University, Guangdong",Jiangmen
+"Xiamen University of Technology",Xiamen
+"Quanzhou University of Information Engineering",Quanzhou
+"Sichuan University of Science and Engineering",Zigong
+"Shanghai Institute of Visual Art",Shanghai
+"China Three Gorges University",Yichang
+"Yunnan Agricultural University",Kunming
+"Southwest University of Science and Technology",Mainyang
+"Wuhan College of Media and Communications",Wuhan
+"Liaoning University of Technology",Jinzhou
+"Huangshan University",Huangshan
+"University of South China",Hengyang
+"Beihua University","Jilin City"
+"Beijing Film Academy",Beijing
+"Wenzhou University",Wenzhou
+"Zhejiang Sci-Tech University",Hangzhou
+"Hubei University of Automotive Technology",Shiyan
+"Heilongjiang University of Chinese Medicine",Harbin
+"Xuzhou Medical University",Xuzhou
+"Zhejiang Yuexiu University of Foreign Languages",Shaoxing
+"Shanghai Jian Qiao University",Shanghai
+"Henan Polytechnic University",Jiaozuo
+"Baicheng Normal University",Baicheng
+"Shanghai Conservatory of Music",Shanghai
+"Ankang University",Ankang
+"Shaoyang University",Shaoyang
+"Tianjin University of Science and Technology",Tianjin
+"Beihai University of Art and Design",Beihai
+"Zhoukou Normal University",Zhoukou
+"Shanghai University of Traditional Chinese Medicine",Shanghai
+"Huaiyin Institute of Technology",Huai&#8217;an
+"Hebei University of Engineering",Handan
+"Liaocheng University",Liaocheng
+"Huainan Normal University",Huainan
+"Xingtai University",Xingtai
+"Zunyi Normal College",Zunyi
+"Dalian Medical University",Dalian
+"Changchun University of Chinese Medicine",Changchun
+"Chifeng University",Chifeng
+"Anhui Wonder University of Information Engineering",Hefei
+"Xinjiang Normal University",Urumqi
+"Beijing University of Agriculture",Beijing
+"Mianyang Normal University",Mianyang
+"Xuzhou University of Technology",Xuzhou
+"Zhongkai University of Agriculture and Engineering",Guangzhou
+"Ludwig Maximilian University of Munich",Munich
+"Zhejiang University of Water Resources and Electric Power",Hangzhou
+"Yancheng Institute of Technology",Yancheng
+"Shaanxi Institute of International Trade and Commerce",Xian
+"Shenyang University of Technology",Shenyang
+"Tangshan Normal University",Tangshan
+"Jishou University",Jishou
+"Fujian University of Traditional Chinese Medicine",Fuzhou
+"Zhejiang University of Science and Technology",Hangzhou
+"Zhejiang Wanli University",Ningbo
+"Xi&#8217;an Siyuan University",Xian
+"Fujian Agriculture and Forestry University",Fuzhou
+"Ningxia Normal University",Guyuan
+"Chengdu University of Technology",Chengdu
+"Qilu University of Technology",Jinan
+"Sichuan Agricultural University",Ya&#8217;an
+"Xi&#8217;an University of Posts and Telecommunications",Xian
+"Xihua University",Chengdu
+"Xi&#8217;an University of Science and Technology",Xian
+"Hexi University",Zhangye
+"Free University of Berlin",Berlin
+"Heilongjiang University of Science and Technology",Harbin
+"Xian Eurasia University",Xian
+"Qingdao Huanghai University",Qingdao
+"Suzhou University of Science and Technology",Suzhou
+"Huaiyin Normal University",Huai&#8217;an
+"Mudanjiang Normal University",Mudanjiang
+"Wenzhou Medical University",Wenzhou
+"Shanghai Tech University",Shanghai
+"Hangzhou Normal University",Hangzhou
+"Shanxi University",Taiyuan
+"Henan Institute of Science and Technology",Xinxiang
+"Capital University of Economics and Business",Beijing
+"Chongqing Normal University",Chongqing
+"Zhejiang Agriculture and Forestry University",Hangzhou
+"Changzhou University",Changzhou
+"Shandong Agricultural University",Tai&#8217;an
+"Zhejiang Ocean University",Zhoushan
+"Fujian University of Technology",Fuzhou
+"Yantai Nanshan University",Yantai
+"Dalian University",Dalian
+"Jinzhou Medical University",Jinzhou
+"Shanxi University of Finance and Economics",Taiyuan
+"Jinling Institute of Technology",Jiangning
+"Chengde Medical University",Chengde
+"Huanghuai University",Zhumadian
+"Henan Normal University",Xinxiang
+"Jining University",Jining
+"Dalian Neusoft University of Information",Dalian
+"Beijing Sport University",Beijing
+"China Foreign Affairs University",Beijing
+"Shanghai Lixin University of Accounting and Finance",Shanghai
+"Shanxi Normal University",Linfen
+"Nanchang Institute of Technology",Nanchang
+"Xi&#8217;an Polytechnic University",Xian
+"Inje University",Gimhae
+"Longyan University",Longyan
+"Ningbo University",Ningbo
+"Jinggangshan University",Ji&#8217;an
+"Chuzhou University",Chuzhou
+"Anhui University of Science and Technology",Huainan
+"Beijing International Studies University",Beijing
+"Shandong University of Art and Design",Jinan
+"China Women&#8217;s University",Beijing
+"Nanyang Institute of Technology",Nanyang
+"Henan University of Chinese Medicine",Zhengzhou
+"Dalian Polytechnic University",Dalian
+"Hunan Agricultural University",Changsha
+"Harbin University of Science and Technology",Harbin
+"Nantong University",Nantong
+"Hunan Institute of Science and Technology",Yueyang
+"Wuhan Textile University",Wuhan
+"Beijing University of Technology",Beijing
+"Shandong University of Finance and Economics",Jinan
+"Taiyuan University of Science and Technology",Taiyuan
+"Anyang Normal University",Anyang
+"Zhongnan University of Economics and Law",Wuhan
+"Bengbu Medical College",Bengbu
+"Tianjin Academy of Fine Arts",Tianjin
+"Jining Medical University",Jining
+"Harbin University of Commerce",Harbin
+"Daqing Normal University",Daqing
+"Wuhan Conservatory of Music",Wuhan
+"Southwest Petroleum University",Nanchong
+"The Chinese University of Hong Kong, Shenzhen",Shenzhen
+"South-Central University for Nationalities",Wuhan
+"Nanjing Institute of Technology",Nanjing
+"Shandong University of Traditional Chinese Medicine",Jinan
+"Beijing University of Posts and Telecommunications",Beijing
+"Beijing City University",Beijing
+"Shaanxi University of Science and Technology",Xian
+"Luoyang Institute of Science and Technology",Luoyang
+"Inner Mongolia University",Hohhot
+"Northeast Agricultural University",Harbin
+"Hainan University",Haikou
+"Beijing Institute of Petrochemical Technology",Beijing
+"Yangzhou University",Yangzhou
+"Tianjin University of Technology and Education",Tianjin
+"Jiangsu University of Science and Technology",Zhenjiang
+"Wannan Medical College",Wuhu
+"Hebei Normal University of Science and Technology",Qinhuangdao
+"Liaoning Normal University",Dalian
+"Dali University",Dali
+"Tiangong University",Tianjin
+"Shantou University",Shantou
+"United International College",Zhuhai
+"Yunnan Normal University",Kunming
+"Henan University of Urban Construction",Pingdingshan
+"Nanning Normal University",Nanning
+"Xinxiang Medical University",Xinxiang
+"Hubei University of Economics",Wuhan
+"Shanghai University of Political Science and Law",Shanghai
+"Swinburne University of Technology",Melbourne
+"Zhejiang University of Finance and Economics",Hangzhou
+"Tangshan College",Tangshan
+"Shaoxing University",Shaoxing
+"Weifang University",Weifang
+"Shenyang Agricultural University",Shenyang
+"Minjiang University",Fuzhou
+"Shanghai Maritime University",Shanghai
+"Liaoning Technical University",Fuxin
+"Yunnan University",Kunming
+"Yangtze University",Jingzhou
+"Quanzhou Normal University",Quanzhou
+"Queensland University of Technology",Brisbane
+"Jiujiang University",Jiujiang
+"Southern Cross University","Gold Coast"
+"China Central Academy of Fine Arts",Beijing
+"Guilin Medical University",Guilin
+"Hunan City University",Yiyang
+"National Academy of Chinese Theatre Arts",Beijing
+"Shandong University of Arts",Jinan
+"Zhejiang Normal University",Jinhua
+"Shanghai Ocean University",Shanghai
+"Sichuan Conservatory of Music",Chengdu
+"Communication University of China",Beijing
+"Donghua University",Shanghai
+"Beijing Jiaotong University",Beijing
+"University of International Relations",Beijing
+"Anhui Medical University",Hefei
+"Anhui Normal University",Wuhu
+"Dongguan University of Technology",Dongguan
+"Southern Medical University",Guangzhou
+"Hubei Normal University",Huangshi
+"Changchun University of Technology",Changchun
+"Anhui University of Technology",Ma&#8217;anshan
+"Changsha University of Science and Technology",Changsha
+"Changzhou Institute of Technology",Changzhou
+"Anhui University of Chinese Medicine",Hefei
+"University of Jinan",Jinan
+"Chengdu University of Traditional Chinese Medicine",Chengdu
+"Hebei University of Economics and Business",Shijiazhuang
+"National University of Defense Technology",Changsha
+"Henan Agricultural University",Zhengzhou
+"Yan&#8217;an University",Yan&#8217;an
+"Harbin Normal University",Harbin
+"Nanchang HangKong University",Nanchang
+"China Europe International Business School",Shanghai
+"Guizhou Normal University",Guiyang
+"Guangdong University of Finance and Economics",Guangzhou
+"Binzhou Medical University",Yantai
+"Guangxi University for Nationalities",Nanning
+"Capital Medical University",Beijing
+"Guangzhou Academy of Fine Arts",Guangzhou
+"Tianjin University of Commerce",Tianjin
+"Jianghan University",Wuhan
+"Nanjing Audit University",Nanjing
+"Hubei Institute of Fine Arts",Wuhan
+"Beijing University of Civil Engineering and Architecture",Beijing
+"Shanxi Agricultural University",Taigu
+"Tianjin Normal University",Tianjin
+"Jiangxi University of Finance and Economics",Nanchang
+"Sichuan Normal University",Chengdu
+"Hebei Medical University",Shijiazhuang
+"Qinghai Normal University",Xining
+"Dalian Nationalities University",Dalian
+"China Conservatory of Music",Beijing
+"Sichuan International Studies University",Chongqing
+"Yantai University",Yantai
+"Heilongjiang University",Harbin
+"Civil Aviation University of China",Tianjin
+"Jiangxi Agricultural University",Nanchang
+"Qufu Normal University",Qufu
+"Shandong Normal University",Jinan
+"Shanghai Normal University",Shanghai
+"Jiangnan University",Wuxi
+"Beijing University of Chinese Medicine",Beijing
+"China Jiliang University",Hangzhou
+"Xi&#8217;an University of Technology",Xian
+"Xi&#8217;an University of Architecture and Technology",Xian
+"Beijing Technology and Business University",Beijing
+"Hebei University of Science and Technology",Shijiazhuang
+"Xi&#8217;an International Studies University",Xian
+"Western Sydney University",Sydney
+"Zhejiang Gongshang University",Hangzhou
+"Tianjin University of Technology",Tianjin
+"China Medical University",Shenyang
+"Henan University",Kaifeng
+"Shanghai University of Engineering Science",Shanghai
+"Harbin Medical University",Harbin
+"University of Western Australia",Perth
+"Hubei University of Technology",Wuhan
+"Hubei University",Wuhan
+"Guangxi University",Nanning
+"University of Wollongong",Wollongong
+"China University of Geosciences, Beijing",Beijing
+"Chongqing Medical Center",Chongqing
+"Nanjing University of Aeronautics and Astronautics",Nanjing
+"Peking Union Medical College",Beijing
+"Hebei University",Baoding
+"Agricultural University of Hebei",Baoding
+"Gansu Agricultural University",Lanzhou
+"Anhui Agricultural University",Hefei
+"Nanjing Forestry University",Nanjing
+"Lanzhou Jiaotong University",Lanzhou
+"Hangzhou Dianzi University",Hangzhou
+"Jilin Agricultural University",Changchun
+"Nanjing Tech University",Nanjing
+"Beijing Dance Academy",Beijing
+"Xi&#8217;an Academy of Fine Arts",Xian
+"Chengdu University",Chengdu
+"Technical University of Dresden",Dresden
+"ESMT Berlin",Berlin
+"Martin Luther University Halle-Wittenberg",Halle
+"Hebei University of Technology",Tianjin
+"Henan University of Science and Technology",Luoyang
+"China University of Political Science and Law",Beijing
+"Shandong University of Technology",Zibo
+"Fujian Medical University",Fuzhou
+"Anhui University",Hefei
+"Taiyuan University of Technology",Taiyuan
+"Zhejiang University of Technology",Hangzhou
+"Liaoning University",Shenyang
+"Kunming University of Science and Technology",Kunming
+"Shandong University of Science and Technology",Qingdao
+"University of International Business and Economics",Beijing
+"Northwest Normal University",Lanzhou
+"Ningxia University",Yinchuan
+"University of Shanghai for Science and Technology",Shanghai
+"Wuhan University of Science and Technology",Wuhan
+"Nanchang University",Nanchang
+"Northeast Forestry University",Harbin
+"Hebei Normal University",Shijiazhuang
+"Guizhou University",Guiyang
+"Nanjing University of Information Science and Technology",Nanjing
+"Dalian University of Foreign Languages",Dalian
+"Hohai University",Nanjing
+"Qingdao University of Science and Technology",Qingdao
+"Yanshan University",Qinhuangdao
+"University of Nottingham Ningbo China",Ningbo
+"Chongqing University",Chongqing
+"University of Science and Technology Beijing",Beijing
+"Northwestern Polytechnical University",Xian
+"Jinan University",Guangzhou
+"Shenzhen University",Shenzhen
+"Sichuan University",Chengdu
+"Southwest University",Chongqing
+"Beijing Institute of Graphic Communication",Beijing
+"Victoria University",Melbourne
+"University of Technology Sydney",Sydney
+"University of Sydney",Sydney
+"University of the Sunshine Coast","Sunshine Coast"
+"University of Adelaide",Adelaide
+"Monash University",Melbourne
+"University of Queensland",Brisbane
+"University of South Australia",Adelaide
+"University of Notre Dame Australia",Fremantle
+"Torrens University Australia",Adelaide
+"University of Newcastle","Newcastle, Australia"
+"University of New South Wales",Sydney
+"University of New England",Armidale
+"University of Melbourne",Melbourne
+"University of Divinity",Melbourne
+"University of Tasmania",Hobart
+"University of Southern Queensland",Toowoomba
+"University of Canberra",Canberra
+"Xiangtan University",Xiangtan
+"Central Conservatory of Music",Beijing
+"Beijing Forestry University",Beijing
+"Qingdao University",Qingdao
+"Dongbei University of Finance and Economics",Dalian
+"China Academy of Art",Hangzhou
+"China University of Petroleum",Beijing
+"Murdoch University",Perth
+"East China University of Political Science and Law",Shanghai
+"Central University of Finance and Economics",Beijing
+"Guangxi Normal University",Guilin
+"Nanjing Medical University",Nanjing
+"Northeast Normal University",Changchun
+"Beijing University of Chemical Technology",Beijing
+"Xidian University",Xian
+"Zhengzhou University",Zhengzhou
+"Hefei University of Technology",Hefei
+"Beijing Foreign Studies University",Beijing
+"Zhongyuan University of Technology",Zhengzhou
+"Nanjing Normal University",Nanjing
+"Fujian Normal University",Fuzhou
+"Nanjing University of Posts and Telecommunications",Nanjing
+"Fuzhou University",Fuzhou
+"Dalian University of Technology",Dalian
+"Northwest A and F University",Xianyang
+"East China University of Science and Technology",Shanghai
+"Guangdong University of Foreign Studies",Guangzhou
+"Southern University of Science and Technology",Shenzhen
+"South China Agricultural University",Guangzhou
+"Soochow University",Suzhou
+"Dalian Maritime University",Dalian
+"Foshan University",Foshan
+"Hunan University",Changsha
+"Guangdong University of Technology",Guangzhou
+"North China University of Technology",Beijing
+"China University of Mining and Technology",Xuzhou
+"Nanjing Agricultural University",Nanjing
+"Nanjing University",Nanjing
+"Renmin University of China",Beijing
+"South China Normal University",Guangzhou
+"Shaanxi Normal University",Xian
+"Southwestern University of Finance and Economics",Chengdu
+"Shanghai International Studies University",Shanghai
+"Huazhong Agricultural University",Wuhan
+"Harbin Engineering University",Harbin
+"Jilin University",Changchun
+"Capital Normal University",Beijing
+"Wuhan University of Technology",Wuhan
+"La Trobe University",Melbourne
+"Curtin University",Perth
+"Charles Sturt University",Bathurst
+"Macquarie University",Sydney
+"Nanjing University of Science and Technology",Nanjing
+"Wuhan University",Wuhan
+"Zhejiang University",Hangzhou
+"Fudan University",Shanghai
+"Charles Darwin University",Darwin
+"Seowon University",Cheongju
+"Xi&#8217;an Jiaotong University",Xian
+"Huazhong University of Science and Technology",Wuhan
+"Sun Yat-Sen University",Guangzhou
+"Tianjin University",Tianjin
+"South China University of Technology",Guangzhou
+"Central South University",Changsha
+"Nankai University",Tianjin
+"Chang&#8217;an University",Xian
+"Shanghai University",Shanghai
+"Beijing Normal University",Beijing
+"Ocean University of China",Qingdao
+"University of Electronic Science and Technology of China",Chengdu
+"Jiangsu University",Zhenjiang
+"Shanghai University of Finance and Economics",Shanghai
+"Hunan Normal University",Changsha
+"Northwest University, China",Xian
+"North China Electric Power University",Beijing
+"Beijing Language and Culture University",Beijing
+"Lanzhou University",Lanzhou
+"Australian National University",Canberra
+"Avondale University",Cooranbong
+"Bond University","Gold Coast"
+"China University of Geosciences Wuhan",Wuhan
+"Tongji University",Shanghai
+"East China Normal University",Shanghai
+"Beihang University",Beijing
+"University of Science and Technology of China",Hefei
+"Shanghai Jiao Tong University",Shanghai
+"Peking University",Beijing
+"Tsinghua University",Beijing
+"Youngnam Theological University and Seminary",Gyeongsan
+"Central China Normal University",Wuhan
+"Harbin Institute of Technology",Harbin
+"Xiamen University",Xiamen
+"Southeast University",Nanjing
+"Beijing Institute of Technology",Beijing
+"China Agricultural University",Beijing
+"Shandong University",Jinan
+"Jimei University",Xiamen
+"Sichuan Fine Arts Institute",Chongqing
+"Kwangju Women&#8217;s University",Gwangju
+"Gimcheon University",Gimcheon
+"Daegu Arts University",Daegu
+"James Cook University",Townsville
+"Flinders University",Adelaide
+"Federation University Australia",Ballarat
+"Australian Catholic University",Sydney
+"Central Queensland University",Rockhampton
+"Edith Cowan University",Perth
+"Griffith University",Brisbane
+"Shingyeong University",Hwaseong
+"Joongang Sangha University",Gunpo
+"Gwangju Catholic University",Naju
+"Catholic University of Daejeon","Yeongi Gun"
+"Hanlyo University",Gwangyang
+"Kosin University",Busan
+"Deakin University",Melbourne
+"RMIT University",Melbourne
+"CHA University",Pocheon
+"Halla University",Wonju
+"Holy City University",Cheonan
+"Seoul Christian University",Seoul
+"Chinju National University of Education",Jinju
+"Gwangju National University of Education",Gwangju
+"Busan National University of Education",Busan
+"U1 University","Yeongdong Gun"
+"Pyeongtaek University",Pyeongtaek
+"Daeshin University",Gyeongsan
+"International University of Korea",Jinju
+"Chuncheon National University of Education",Chuncheon
+"Daegu National University of Education",Daegu
+"Jeju International University",Jeju
+"Chodang University",Muan
+"Calvin University",Yongin
+"Mokpo Catholic University",Mokpo
+"Kyungwoon University",Gumi
+"Seoul Jangsin University",Gwangju
+"Far East University, Korea","Gamgok Myeon"
+"Jeonju National University of Education",Jeonju
+"Luther University",Yongin
+"Kwangshin University",Gwangju
+"Jungwon University","Goesan Gun"
+"Busan Presbyterian University",Gimhae
+"Yewon Arts University","Imsil Gun"
+"Suwon Catholic University",Hwaseong
+"Hyupsung University",Hwaseong
+"Kkottongnae University",Cheongju
+"Korea National Sport University",Seoul
+"Catholic University of Busan",Busan
+"Tongmyong University",Busan
+"Mokpo National Maritime University",Mokpo
+"Algoma University","Sault Ste. Marie"
+"Gyeongju University",Gyeongju
+"Daejeon University",Daejeon
+"Presbyterian University and Theological Seminary",Seoul
+"Norwich University of the Arts",Norwich
+"Northern School of Contemporary Dance",Leeds
+"Rose Bruford College",London
+"Newman University, Birmingham","Birmingham, UK"
+"European School of Economics",London
+"Writtle University College",Chelmsford
+"Plymouth College of Art",Plymouth
+"Royal Northern College of Music",Manchester
+"University of Suffolk",Ipswich
+"University of Wales",Cardiff
+"London Institute of Banking and Finance",London
+"Royal Central School of Speech and Drama, University of London",London
+"Liverpool Institute for Performing Arts",Liverpool
+"Arts University Bournemouth",Poole
+"Harper Adams University",Newport
+"Ravensbourne University London",London
+"Buckinghamshire New University","High Wycombe"
+"Trinity Laban Conservatoire of Music and Dance",London
+"University of Chichester",Chichester
+"University of Law",Guildford
+"Queen Margaret University",Edinburgh
+"Wrexham Glyndwr University",Wrexham
+"University of West London",London
+"Guildhall School of Music and Drama",London
+"University of Winchester",Winchester
+"Royal Academy of Music",London
+"Cardiff Metropolitan University",Cardiff
+"Solent University",Southampton
+"Anyang University",Anyang
+"Namseoul University",Cheonan
+"University of Suwon",Hwaseong
+"Leeds Trinity University",Leeds
+"University College Birmingham","Birmingham, UK"
+"Royal Agricultural University",Cirencester
+"Hartpury University and Hartpury College",Gloucester
+"Bishop Grosseteste University",Lincoln
+"Plymouth Marjon University",Plymouth
+"Richmond, The American International University in London",London
+"Leeds Conservatoire",Leeds
+"Leeds Arts University",Leeds
+"Royal Conservatoire of Scotland",Glasgow
+"Korean Bible University",Seoul
+"Chungwoon University",Hongseong
+"Howon University",Gunsan
+"Liverpool School of Tropical Medicine",Liverpool
+"University of Gloucestershire",Cheltenham
+"York St John University",York
+"Regent&#8217;s University London",London
+"Falmouth University",Falmouth
+"St Mary&#8217;s University, Twickenham",Twickenham
+"Hanshin University",Osan
+"University of Worcester","Worcester, UK"
+"Glasgow School of Art",Glasgow
+"Scotland&#8217;s Rural College",Edinburgh
+"University for the Creative Arts",Farnham
+"University of Cumbria",Carlisle
+"Uiduk University",Gyeongju
+"Catholic University of Daegu",Daegu
+"Cheongju National University of Education",Cheongju
+"Liverpool Hope University",Liverpool
+"University of Bolton",Bolton
+"University of Buckingham",Buckingham
+"St George&#8217;s, University of London",London
+"University of the West of Scotland",Paisley
+"University of Wales Trinity Saint David",Carmarthen
+"Canterbury Christ Church University",Canterbury
+"Edge Hill University",Ormskirk
+"Royal Veterinary College University of London",London
+"Robert Gordon University",Aberdeen
+"Sungkyul University",Anyang
+"Geumgang University",Nonsan
+"Korea Nazarene University",Cheonan
+"University of Huddersfield",Huddersfield
+"University of South Wales",Pontypridd
+"Courtauld Institute of Art",London
+"University of Derby",Derby
+"University of Bradford",Bradford
+"University of Plymouth",Plymouth
+"Ulster University",Coleraine
+"Royal College of Music",London
+"School of Advanced Study",London
+"Brunel University London",London
+"Chongshin University",Seoul
+"Catholic Kwandong University",Gangneung
+"Seoul National University of Education",Seoul
+"Dongshin University",Naju
+"Dongyang University",Yeongju
+"Hannam University",Daejeon
+"Kaya University",Gimhae
+"Sehan University",Yeongnam
+"Daegu Haany University",Gyeongsan
+"Staffordshire University","Stoke On Trent"
+"Bath Spa University",Bath
+"Glasgow Caledonian University",Glasgow
+"Teesside University",Middlesbrough
+"University of Wolverhampton",Wolverhampton
+"University of Northampton",Northampton
+"University of Roehampton",London
+"University of Bedfordshire",Luton
+"Royal College of Art",London
+"University of East London",London
+"London South Bank University",London
+"Abertay University",Dundee
+"University of Sunderland",Sunderland
+"University of London",London
+"University of Westminster",London
+"University of Chester",Chester
+"Kingston University","Kingston upon Thames"
+"University of Central Lancashire",Preston
+"Bournemouth University",Poole
+"City, University of London",London
+"SOAS, University of London",London
+"Manchester Metropolitan University",Manchester
+"Kyungdong University",Goseong
+"Queen&#8217;s University Belfast",Belfast
+"University of Leicester",Leicester
+"Incheon Catholic University",Incheon
+"Gongju National University of Education",Gongju
+"Liverpool John Moores University",Liverpool
+"Aston University","Birmingham, UK"
+"University of Greenwich",London
+"London School of Hygiene and Tropical Medicine",London
+"London Business School",London
+"University of Brighton",Brighton
+"University of Hull",Hull
+"Cranfield University",Cranfield
+"Northumbria University","Newcastle upon Tyne"
+"University of Lincoln",Lincoln
+"London Metropolitan University",London
+"University of the Highlands and Islands",Inverness
+"Bangor University",Bangor
+"Royal Holloway, University of London",Egham
+"Birmingham City University","Birmingham, UK"
+"Busan Women&#8217;s College",Busan
+"University of Salford",Salford
+"Hankyong National University",Anseong
+"University of the West of England",Bristol
+"Anglia Ruskin University","Cambridge, UK"
+"Keele University",Keele
+"Birkbeck, University of London",London
+"Gyeongsang National University",Jinju
+"University of Hertfordshire",Hatfield
+"Edinburgh Napier University",Edinburgh
+"University of Stirling",Stirling
+"Leeds Beckett University",Leeds
+"Oxford Brookes University",Oxford
+"Goldsmiths, University of London",London
+"Coventry University",Coventry
+"Nottingham Trent University",Nottingham
+"Aberystwyth University",Aberystwyth
+"University of East Anglia",Norwich
+"De Montfort University",Leicester
+"Sheffield Hallam University",Sheffield
+"University of Bath",Bath
+"University of the Arts London",London
+"University of Reading",Reading
+"Gangneung-Wonju National University",Gangneung
+"Swansea University",Swansea
+"Loughborough University",Loughborough
+"University of Essex",Colchester
+"University of Exeter",Exeter
+"University of Bristol",Bristol
+"University of Dundee",Dundee
+"University of Strathclyde",Glasgow
+"University of Birmingham","Birmingham, UK"
+"University of Nottingham",Nottingham
+"Imperial College London",London
+"University of College London",London
+"University of Edinburgh",Edinburgh
+"University of Surrey",Guildford
+"Durham University","Durham, UK"
+"University of Leeds",Leeds
+"University of Portsmouth",Portsmouth
+"Kangnam University",Yongin
+"University of Glasgow",Glasgow
+"University of York",York
+"University of Sussex",Brighton
+"University of Warwick",Coventry
+"Seoul Theological University",Bucheon
+"London School of Economics and Political Science",London
+"Lancaster University",Lancaster
+"Cardiff University",Cardiff
+"Middlesex University",London
+"University of Aberdeen",Aberdeen
+"University of St Andrews","St Andrews"
+"Heriot-Watt University",Edinburgh
+"University of Sheffield",Sheffield
+"Queen Mary University of London",London
+"University of Cambridge","Cambridge, UK"
+"University of Liverpool",Liverpool
+"University of Manchester",Manchester
+"Baekseok University",Cheonan
+"University of Kent",Canterbury
+"King&#8217;s College London",London
+"Newcastle University","Newcastle upon Tyne"
+"University of Southampton",Southampton
+"Korea National University of Transportation",Chungju
+"University of Oxford",Oxford
+"Chungnam National University",Daejeon
+"Hansei University",Gunpo
+"Gyeongin National University of Education",Incheon
+"Jeonju University",Jeonju
+"Chugye University for the Arts",Seoul
+"Dongduk Women&#8217;s University",Seoul
+"Daejin University",Pocheon
+"University of Ulsan",Ulsan
+"Sungkonghoe University",Seoul
+"Hanbat National University",Daejeon
+"Seokyeong University",Seoul
+"Dong Eui University",Busan
+"Yong In University",Yongin
+"Korea National University of Education",Cheongju
+"Mokpo National University",Mokpo
+"Duksung Womens University",Seoul
+"Sahmyook University",Seoul
+"Hoseo University",Asan
+"Kumoh National University of Technology",Gumi
+"University of Science and Technology Korea",Daejeon
+"Korea Baptist Theological University",Daejeon
+"Gangseo University",Seoul
+"Sunchon National University",Suncheon
+"Korea Aerospace University",Goyang
+"Silla University",Busan
+"Sun Moon University",Asan
+"Sangji University",Wonju
+"Busan University of Foreign Studies",Busan
+"Ulsan National Institute of Science and Technology",Ulsan
+"Semyung University",Jecheon
+"Korea University of Technology and Education",Cheonan
+"Hanseo University",Seosan
+"Konyang University",Nonsan
+"Cheongju University",Cheongju
+"Mokwon University",Daejeon
+"Hansung University",Seoul
+"Nambu University",Gwangju
+"Hongik University",Seoul
+"Kyungsung University",Busan
+"Kyungnam University",Masan
+"University of Seoul",Seoul
+"Hallym University",Chuncheon
+"Incheon National University",Incheon
+"Changwon National University",Masan
+"Soonchunhyang University",Asan
+"Kunsan National University",Gunsan
+"Andong National University",Andong
+"Korea Polytechnic University",Siheung
+"Gwangju University",Gwangju
+"Sangmyung University",Seoul
+"Seoul Womens University",Seoul
+"Pukyong National University",Busan
+"Pohang University of Science and Technology",Pohang
+"Kwangwoon University",Seoul
+"Woosuk University","Wanju Gun"
+"Sungshin Women&#8217;s University",Seoul
+"Dongguk University",Seoul
+"Pai Chai University",Daejeon
+"Daegu University",Gyeongsan
+"Kyungpook National University",Daegu
+"Pusan National University",Busan
+"Korea Advanced Institute of Science and Technology",Daejeon
+"Konkuk University",Seoul
+"Chung-Ang University",Seoul
+"Kyonggi University",Suwon
+"Chosun University",Gwangju
+"Chonnam National University",Gwangju
+"Yonsei University",Seoul
+"Hanyang University",Seoul
+"Wonkwang University",Iksan
+"Seoul National University of Science and Technology",Seoul
+"Dongseo University",Busan
+"Kyung Hee University",Seoul
+"Ewha Womans University",Seoul
+"Kongju National University",Gongju
+"Sungkyunkwan University",Seoul
+"Kangwon National University",Chuncheon
+"Kookmin University",Seoul
+"Hankuk University of Foreign Studies",Seoul
+"Korea Maritime and Ocean University",Busan
+"Inha University",Incheon
+"Ajou University",Suwon
+"Jeonbuk National University",Jeonju
+"Yeungnam University",Gyeongsan
+"Dankook University",Yongin
+"Sookmyung Women&#8217;s University",Seoul
+"Chungbuk National University",Cheongju
+"Handong Global University",Pohang
+"Dong-A University",Busan
+"Keimyung University",Daegu
+"Jeju National University",Jeju
+"Sejong University",Seoul
+"Woosong University",Daejeon
+"Korea University",Seoul
+"Canadore College","North Bay"
+"Loyalist College",Belleville
+"Catholic University of Korea",Seoul
+"Soongsil University",Seoul
+"Fanshawe College","London, CA"
+"George Brown College",Toronto
+"Assiniboine Community College",Brandon
+"Georgian College",Barrie
+"Lambton College",Sarnia
+"Cambrian College",Sudbury
+"Humber College",Toronto
+"Centennial College",Toronto
+"LaSalle College Vancouver",Vancouver
+"Myongji University",Yongin
+"Seoul National University",Seoul
+"Sogang University",Seoul
+"Holland College",Charlottetown
+"Gachon University",Seongnam
+"Université de Montréal",Montreal
+"Crandall University",Moncton
+"Red River College Polytechnic",Winnipeg
+"Southeast College",Whitewood
+"Saskatchewan Polytechnic",Saskatoon
+"Mohawk College",Hamilton
+"Niagara College",Welland
+"College of the North Atlantic",Stephenville
+"Fleming College",Peterborough
+"British Columbia Institute of Technology",Burnaby
+"University Canada West",Vancouver
+"Langara College",Vancouver
+"Booth University College",Winnipeg
+"St. Mary&#8217;s University",Calgary
+"Ambrose University",Calgary
+"University of Saskatchewan",Saskatoon
+"University of Regina",Regina
+"Polytechnique Montréal",Montreal
+"Université du Québec",Montreal
+"Royal Military College of Canada",Kingston
+"Universite Laval","Quebec City"
+"Université de Sherbrooke",Sherbrooke
+"University of Prince Edward Island",Charlottetown
+"Alberta University of the Arts",Calgary
+"Bow Valley College",Calgary
+"Lethbridge College",Lethbridge
+"McGill University",Montreal
+"HEC Montréal University",Montreal
+"Concordia University",Montreal
+"Bishop’s University",Sherbrooke
+"University of King’s College",Halifax
+"University of Guelph",Guelph
+"Université Sainte-Anne","Pointe de l&#8217;eglise"
+"University of Ottawa",Ottawa
+"Wilfrid Laurier University",Waterloo
+"York University",Toronto
+"Carleton University",Ottawa
+"Brock University","St. Catharines"
+"Brescia University College","London, CA"
+"University of Waterloo",Waterloo
+"University of Windsor",Windsor
+"Western University","London, CA"
+"Nipissing University","North Bay"
+"OCAD University",Toronto
+"Trent University",Peterborough
+"Dalhousie University",Halifax
+"Cape Breton University","Sydney, Canada"
+"NSCAD University",Halifax
+"Saint Mary’s University",Halifax
+"St. Francis Xavier University",Antigonish
+"University of Toronto",Toronto
+"McMaster University",Hamilton
+"Laurentian University",Sudbury
+"Lakehead University","Thunder Bay"
+"Toronto Metropolitan University",Toronto
+"Redeemer University",Ancester
+"Queen’s University",Kingston
+"Ontario Tech University",Oshawa
+"University of Sudbury",Sudbury
+"Mount Saint Vincent University",Halifax
+"Brandon University",Brandon
+"Canadian Mennonite University",Winnipeg
+"University of Winnipeg",Winnipeg
+"Université de Saint-Boniface",Winnipeg
+"University of Manitoba",Winnipeg
+"Université de Moncton",Moncton
+"Memorial University of Newfoundland","St. John&#8217;s"
+"Mount Allison University",Sackville
+"St. Thomas University",Fredericton
+"University of New Brunswick",Fredericton
+"Acadia University",Wolfville
+"University of Alberta",Edmonton
+"Kwantlen Polytechnic University",Surrey
+"Thompson Rivers University",Kamloops
+"Royal Roads University","Victoria, Canada"
+"Trinity Western University",Langley
+"Simon Fraser University",Burnaby
+"University of Northern British Columbia","Prince George"
+"University of British Columbia",Vancouver
+"University of the Fraser Valley",Abbotsford
+"University of Victoria","Victoria, Canada"
+"Vancouver Island University",Nanaimo
+"Capilano University","North Vancouver"
+"University of Calgary",Calgary
+"University of Lethbridge",Lethbridge
+"Emily Carr University of Art and Design",Vancouver
+"Concordia University of Edmonton",Edmonton
+"MacEwan University",Edmonton
+"King’s University",Edmonton
+"Mount Royal University",Calgary
+"Athabasca University",Athabasca
