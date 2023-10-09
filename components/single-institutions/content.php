@@ -230,25 +230,33 @@
                         
                         <?php // GS Institution Navigation Panel ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-navigation-panel.php'; ?>
+
+                        <?php if (function_exists ('adinserter')) echo adinserter (7); ?>
                         
                         <?php // GS Institution Intro ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-intro.php'; ?>
                         
+                        <?php if (function_exists ('adinserter')) echo adinserter (8); ?>
+
                         <?php // GS Institution Admissions ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-admissions.php'; ?>
-                        
+                        <?php if (function_exists ('adinserter')) echo adinserter (9); ?>
+
                         <?php // GS Institution Deadlines ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-deadlines.php'; ?>
-                        
+                        <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
+
                         <?php // GS Institution Tuition Fees ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-tuition-fees.php'; ?>
-                        
+                        <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
+
                         <?php // GS Institution Scholarships ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-scholarships.php'; ?>
 
                         <?php // GS Institution Conclusion ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-conclusion.php'; ?>
-                        
+                        <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
+
                         <?php // GS Institution Share Media ?>
                         <?php require get_stylesheet_directory() . '/components/single-institutions/institution-social-media-share.php'; ?>
                         

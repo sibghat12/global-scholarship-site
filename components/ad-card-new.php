@@ -272,12 +272,21 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
 
+                        
+                         
                           <?php   if($disclaimer === "1")  {  ?>
                          
-                         <strong style="font-weight:600 !important;" > *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                        <?php if($custom_disclaimer) { ?>
+                            <strong  style="font-weight:600 !important;"> * <?php echo $custom_disclaimer ?>  </strong>
+                        <?php   } else { ?>
+
+                         <strong  style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
                        
-                       <?php } ?>
-                           
+                       <?php } } ?>
+
+                        
+
+                                                   
                         </p>
                     </div>
 
