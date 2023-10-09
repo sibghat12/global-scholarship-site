@@ -24,7 +24,6 @@ $today_date = strtotime(date("F j, Y"));
 
         <?php
         foreach($countries_list as $country) :
-            $country = ucwords($country);
 
             $gs_institutions_scholarships = get_scholarships_by_country($country);
 
@@ -143,83 +142,83 @@ $today_date = strtotime(date("F j, Y"));
 
                 // Scholarships Rows
 
-                foreach($the_scholarships as $key => $scholarship) {
+                // foreach($the_scholarships as $key => $scholarship) {
 
-                    $scholarship_deadlines = get_field('scholarship_deadlines', $scholarship);
+                //     $scholarship_deadlines = get_field('scholarship_deadlines', $scholarship);
 
-                    if(isset($scholarship_deadlines) && !empty($scholarship_deadlines)) {
+                //     if(isset($scholarship_deadlines) && !empty($scholarship_deadlines)) {
 
-                        foreach($scholarship_deadlines as $scholarship_deadline) {
+                //         foreach($scholarship_deadlines as $scholarship_deadline) {
 
-                            $the_scholarship_opening_date = $scholarship_deadline['open_date'];
-                            $the_scholarship_deadline = $scholarship_deadline['deadline'];
-                            $the_scholarship_label = $scholarship_deadline['label'];
-                            $the_scholarship_degree = $scholarship_deadline['degree'];
-                            $scholarship_target_date = strtotime($the_scholarship_deadline);
+                //             $the_scholarship_opening_date = $scholarship_deadline['open_date'];
+                //             $the_scholarship_deadline = $scholarship_deadline['deadline'];
+                //             $the_scholarship_label = $scholarship_deadline['label'];
+                //             $the_scholarship_degree = $scholarship_deadline['degree'];
+                //             $scholarship_target_date = strtotime($the_scholarship_deadline);
 
-                        }
+                //         }
 
-                        $the_scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
-                        $scholarship_title = get_the_title($scholarship);
-                        $scholarship_permalink = get_the_permalink($scholarship);
-                        $scholarship_last_author = get_the_last_modified_user_name($scholarship);
+                //         $the_scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
+                //         $scholarship_title = get_the_title($scholarship);
+                //         $scholarship_permalink = get_the_permalink($scholarship);
+                //         $scholarship_last_author = get_the_last_modified_user_name($scholarship);
 
-                        $scholarship_author_id = get_post_field('post_author', $scholarship); // Get the author ID of the post
-                        $scholarship_author = get_user_by('id', $scholarship_author_id); // Get the user object for the author ID
+                //         $scholarship_author_id = get_post_field('post_author', $scholarship); // Get the author ID of the post
+                //         $scholarship_author = get_user_by('id', $scholarship_author_id); // Get the user object for the author ID
 
-                        $scholarship_author_name = $scholarship_author->display_name;
+                //         $scholarship_author_name = $scholarship_author->display_name;
 
-                        echo "<tr>";
+                //         echo "<tr>";
 
-                        if(isset($the_scholarship_opening_date) && !empty($the_scholarship_opening_date)) :
-                            echo "<td>" . $the_scholarship_opening_date . "</td>";
-                        else:
-                            echo "<td></td>";
-                        endif;
-                        if(isset($the_scholarship_deadline) && !empty($the_scholarship_deadline)) :
-                            echo "<td>" . $the_scholarship_deadline . "</td>";
-                        else:
-                            echo "<td></td>";
-                        endif;
-                        if(isset($the_scholarship_last_updated) && !empty($the_scholarship_last_updated)) :
-                            echo "<td>" . $the_scholarship_last_updated . "</td>";
-                        else:
-                            echo "<td></td>";
-                        endif;
-                        if(isset($scholarship_title) && !empty($scholarship_title)) :
-                            echo "<td><a href=" . $scholarship_permalink . ">" . $scholarship_title . "</a></td>";
-                        else:
-                            echo "<td></td>";
-                        endif;
-                        if(isset($the_scholarship_degree) && !empty($the_scholarship_degree)) :
-                            echo "<td>" . $the_scholarship_degree . "</td>";
-                        else:
-                            echo "<td>Master's and PhD</td>";
-                        endif;
-                        if(isset($the_scholarship_label) && !empty($the_scholarship_label)) :
-                            echo "<td>" . $the_scholarship_label . "</td>";
-                        else:
-                            echo "<td></td>";
-                        endif;
-                        if(isset($scholarship_target_date) && !empty($scholarship_target_date)) :
-                            if($today_date < $scholarship_target_date) :
-                                echo "<td data-status='open'>OPEN</td>";
-                            else:
-                                echo "<td data-status='closed'>CLOSED</td>";
-                            endif;
-                        else:
-                            echo "<td data-status='empty'></td>";
-                        endif;
-                        if(isset($scholarship_last_author) && !empty($scholarship_last_author)) :
-                            echo "<td>" . $scholarship_last_author . "</td>";
-                        else:
-                            echo "<td>" . $scholarship_author_name . "</td>";
-                        endif;
+                //         if(isset($the_scholarship_opening_date) && !empty($the_scholarship_opening_date)) :
+                //             echo "<td>" . $the_scholarship_opening_date . "</td>";
+                //         else:
+                //             echo "<td></td>";
+                //         endif;
+                //         if(isset($the_scholarship_deadline) && !empty($the_scholarship_deadline)) :
+                //             echo "<td>" . $the_scholarship_deadline . "</td>";
+                //         else:
+                //             echo "<td></td>";
+                //         endif;
+                //         if(isset($the_scholarship_last_updated) && !empty($the_scholarship_last_updated)) :
+                //             echo "<td>" . $the_scholarship_last_updated . "</td>";
+                //         else:
+                //             echo "<td></td>";
+                //         endif;
+                //         if(isset($scholarship_title) && !empty($scholarship_title)) :
+                //             echo "<td><a href=" . $scholarship_permalink . ">" . $scholarship_title . "</a></td>";
+                //         else:
+                //             echo "<td></td>";
+                //         endif;
+                //         if(isset($the_scholarship_degree) && !empty($the_scholarship_degree)) :
+                //             echo "<td>" . $the_scholarship_degree . "</td>";
+                //         else:
+                //             echo "<td>Master's and PhD</td>";
+                //         endif;
+                //         if(isset($the_scholarship_label) && !empty($the_scholarship_label)) :
+                //             echo "<td>" . $the_scholarship_label . "</td>";
+                //         else:
+                //             echo "<td></td>";
+                //         endif;
+                //         if(isset($scholarship_target_date) && !empty($scholarship_target_date)) :
+                //             if($today_date < $scholarship_target_date) :
+                //                 echo "<td data-status='open'>OPEN</td>";
+                //             else:
+                //                 echo "<td data-status='closed'>CLOSED</td>";
+                //             endif;
+                //         else:
+                //             echo "<td data-status='empty'></td>";
+                //         endif;
+                //         if(isset($scholarship_last_author) && !empty($scholarship_last_author)) :
+                //             echo "<td>" . $scholarship_last_author . "</td>";
+                //         else:
+                //             echo "<td>" . $scholarship_author_name . "</td>";
+                //         endif;
 
-                        echo "</tr>";
-                    }
+                //         echo "</tr>";
+                //     }
 
-                }
+                // }
 
             endforeach;
             echo "</tbody>";
