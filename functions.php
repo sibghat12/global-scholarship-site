@@ -3941,6 +3941,8 @@ $countryCodes = array(
     $new_loop = new WP_Query($args);
     ?>
   <div class="clearfix"> </div>
+
+
     <div id="courses-flipcard" >
        
         <?php 
@@ -4017,9 +4019,9 @@ $countryCodes = array(
                
 
 
-   
-  
+
   <a style="text-decoration:none;color:inherit !important;" href="<?php  echo $link; ?>">
+
   <div class='col-md-4  card-container'>
     <div class='front'>
          
@@ -4220,7 +4222,7 @@ echo $des;
         endif;
         ?>
         </div>
-    
+ 
 
     <?php
     return ob_get_clean(); // Return buffered output

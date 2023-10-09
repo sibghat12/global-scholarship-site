@@ -51,7 +51,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
     // Location
-    $location = $country_code;    
+    $location = $country_code;
+
+    echo $location;
+    exit;    
 
     //List of institutions in that country
     $institute_ids_country = get_institution_ids($country);
