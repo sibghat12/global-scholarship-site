@@ -1,4 +1,9 @@
 <?php
+include ('functions/scholarships-functions.php'); 
+// Added Synchronization Options Page (SAA DB institutions to GS ACF export page )
+include ('scripts/acf-options.php'); 
+include ('scripts/institutions-script.php'); 
+include ('scripts/saa-cities-cpt.php'); 
 
 // filter
 function institutions_where( $where ) {
@@ -8,7 +13,6 @@ function institutions_where( $where ) {
     return $where;
 }
 
-include ('functions/scholarships-functions.php'); 
 
 add_filter('posts_where', 'institutions_where');
 
@@ -3941,6 +3945,8 @@ $countryCodes = array(
     $new_loop = new WP_Query($args);
     ?>
   <div class="clearfix"> </div>
+
+
     <div id="courses-flipcard" >
        
         <?php 
@@ -4017,9 +4023,9 @@ $countryCodes = array(
                
 
 
-   
-  
+
   <a style="text-decoration:none;color:inherit !important;" href="<?php  echo $link; ?>">
+
   <div class='col-md-4  card-container'>
     <div class='front'>
          
@@ -4220,7 +4226,7 @@ echo $des;
         endif;
         ?>
         </div>
-    
+ 
 
     <?php
     return ob_get_clean(); // Return buffered output
