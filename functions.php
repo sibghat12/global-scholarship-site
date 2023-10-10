@@ -3924,9 +3924,31 @@ $countryCodes = array(
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+   <?php 
    
+    $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
+    // Get Current Device Data
+    $ip_api = file_get_contents('https://pro.ip-api.com/json/'.$_SERVER['REMOTE_ADDR'] . '?key='.$pro_ip_api_key);
 
-    <?php 
+    // Data Decoded
+    $data = json_decode($ip_api);
+ 
+    // Turn Object into Associative Array
+    $data_array = get_object_vars($data);
+   
+    // Get Country Code to use to get other related content (Courses)
+    if($data_array) {
+        $country_code = $data_array['countryCode'];
+    } else {
+        // In case IP API is not working
+        $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
+    }
+
+
+    // Location
+    $location = $country_code;
+
+    
    
    $args = array(
     'post_type'      => 'ads',
