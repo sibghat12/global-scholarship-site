@@ -4405,7 +4405,7 @@ input[type="submit"] {
 }
 
 
-.single-institution #main .gs-institution-tuition-fees p.gs-institution-tuition-fees-title{
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p.gs-institution-tuition-fees-title{
     font-size: 1.8rem;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 700;
@@ -4416,7 +4416,7 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tutition-fees-text p{
-    margin-bottom: 20px !important;
+    margin-bottom: 0px !important;
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average {
