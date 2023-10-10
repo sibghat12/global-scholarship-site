@@ -4405,7 +4405,10 @@ input[type="submit"] {
 }
 
 
-.single-institution #main .gs-institution-tuition-fees h2.gs-institution-tuition-fees-title{
+.single-institution #main .gs-institution-tuition-fees p.gs-institution-tuition-fees-title{
+    font-size: 1.8rem;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4550,9 +4553,6 @@ input[type="submit"] {
 }
 
 .single-institution #main .gs-institution-scholarships h2.gs-institution-scholarships-title {
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
