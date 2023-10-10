@@ -36,9 +36,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <div class="clearfix"></div>
                 <h2 class="landing-page-title">
-                    <span><i  class="fa fa-circle"></i></span>
+                    
                     <?php echo $main_title; ?>
                 </h2>
+                <hr>
 
                 <?php
                 // Check if there are any rows in the "posts" repeater of the current topic

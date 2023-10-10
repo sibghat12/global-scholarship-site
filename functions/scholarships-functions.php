@@ -382,51 +382,50 @@ function to_number($number){
 
 // Convert to USD
 function convert_to_usd($amount, $currency){
-   $list = array(
-    "KRW" => 0.00077,
-    "CAD" => 0.78,
-    "RMB" => 0.15,
-    "GBP" => 1.21,
-    "AUD" => 0.71, 
-    "Euros" => 1.03,
-    "NOK" => 0.10 ,
-    "CHF" => 1.06 ,
-    "USD" => 1,
-    "NZD" => 0.63,
-    "PLN" => 0.22,
-    "INR" => 0.012,
-    "Pesos" => 0.018,
-    "Rand" => 0.055,
-    "SGD" => 0.75,
-    "Yen" => 0.0075,
-    "RUB" =>  0.013,
-    "CZK" => 0.045,
-    "kr" => 0.096,
-    "Danish Krone" => 0.14,
-    "MXN" => 0.054,
-    "UAH" => 0.027,
-    "TRY" => 0.053,
-    "TWD" => 0.033,
-    "Rp" => 0.000066,
-    "SAR" => 0.27,
-    "MYR" => 0.23,
-    "RON" => 0.22,
-    "BYN" => 0.40,
-    "HUF" => 0.0028,
-    "BAM" => 0.55,
-    "ALL" => 0.010,
-    "ISK" => 0.0075,
-    "Brazilian Real" => 0.20,
-    "VND" => 0.000041,
-    "THB" => 0.028,
-    "LKR" => 0.0031,
-    "NPR" => 0.0075,
-    "RSD" => 0.0092,
-    "BGN" => 0.55,
-    "QAR" => 0.27,
-    "NIS" => 0.26,
-    "HKD" => 0.13
-    );
+$list = array(
+"KRW" => 0.00074,
+"CAD" => 0.73,
+"RMB" => 0.14,
+"Yen" => 0.0067,
+"NZD" => 0.60,
+"GBP" => 1.22,
+"AUD" => 0.64,
+"Euros" => 1.06,
+"NOK" => 0.092,
+"CHF" => 1.10,
+"USD" => 1,
+"PLN" => 0.23,
+"INR" => 0.012,
+"Pesos" => 0.018,
+"Rand" => 0.052,
+"SGD" => 0.73,
+"RUB" => 0.0099,
+"CZK" => 0.043,
+"kr" => 0.091,
+"Danish Krone" => 0.14,
+"MXN" => 0.054,
+"Brazilian Real" => 0.19,
+"UAH" => 0.027,
+"TRY" => 0.036,
+"TWD" => 0.031,
+"Rp" => 0.000064,
+"RON" => 0.21,
+"BYN" => 0.30,
+"HUF" => 0.0027,
+"BAM" => 0.54,
+"ALL" =>0.01 ,
+"ISK" => 0.0073,
+"VND" => 0.000041,
+"THB" => 0.027,
+"LKR" => 0.0031,
+"PKR" => 0.0036,
+"NPR" => 0.0075,
+"QAR" => 0.27,
+"RSD" => 0.0090,
+"MYR" => 0.21,
+"SAR" => 0.27,
+        
+  );
 
     return (float)$amount * (float)$list[$currency];
 
@@ -4035,17 +4034,6 @@ function get_all_scholarships() {
     return $scholarships_array;
 }
 
-
-if( function_exists('acf_add_options_page') ) {
-    
-    acf_add_options_sub_page(array(
-        'page_title'     => 'Update Institutions Deadlines',
-        'menu_title'    => 'Update Institutions Deadlines',
-        'parent_slug'    => 'edit.php?post_type=institution',
-        'capability'     => 'edit_posts',
-    ));
-
-}
 /**
  * 
  * Update Deadlines for Institutions based on Conditions Looping through all posts and change deadlines that matches the conditions 
@@ -4613,6 +4601,9 @@ function country_currency_list() {
         "Qatar" => "QAR",
         "Israel" => "NIS",
         "Hong Kong" => "HKD",
+        "Pakistan" => "PKR",
+          "Malaysia" => "MYR",
+           "Saudi Arabia" => "SAR",
     );
 
     return $currency_list;

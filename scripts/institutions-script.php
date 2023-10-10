@@ -223,18 +223,28 @@ Class InstitutionsScripts {
                 
                 // $the_post_id = wp_insert_post($array_posts_arg);
 
-                update_field('cities', $array_item->cities, $the_post_id);
-                update_field('founded_year', $array_item->founded, $the_post_id);
-                update_field('university_website', $array_item->website, $the_post_id);
-                update_field('type', $array_item->institution_type, $the_post_id);
+                if(isset($array_item->cities) && !empty($array_item->cities)) {
+                    update_field('cities', $array_item->cities, $the_post_id);
+                }
+                if(isset($array_item->founded) && !empty($array_item->founded)) {
+                    update_field('founded_year', $array_item->founded, $the_post_id);
+                }
+                if(isset($array_item->website) && !empty($array_item->website)) {
+                    update_field('university_website', $array_item->website, $the_post_id);
+                }
+                if(isset($array_item->institution_type) && !empty($array_item->institution_type)) {
+                    update_field('type', $array_item->institution_type, $the_post_id);
+                }
 
                 //GRoup Field
                 $group_enrollment = array(
                     'total' => $array_item->enrollment->total,
                     'international' => $array_item->enrollment->international,
                 );
-                update_field('enrollment', $group_enrollment, $the_post_id);
 
+                if(isset($group_enrollment) && !empty($group_enrollment)) {
+                    update_field('enrollment', $group_enrollment, $the_post_id);
+                }
                 //field_62651bc4a34a5 = admissions_pages (Repeater)
                 $admissions_pages = array();
                 if($array_item->admissions_pages) {
@@ -246,8 +256,9 @@ Class InstitutionsScripts {
                         );
                     }
                 }
-                update_field('admissions_pages', $admissions_pages, $the_post_id);
-
+                if(isset($admissions_pages) && !empty($admissions_pages)) {
+                    update_field('admissions_pages', $admissions_pages, $the_post_id);
+                }
                 //field_626c492cd2dc4 = tuition_fee_pages (Repeater)
                 $tuition_fee_pages = array();
                 if($array_item->tuition_fee_pages) {
@@ -259,7 +270,9 @@ Class InstitutionsScripts {
                         );
                     }
                 }
-                update_field('tuition_fee_pages', $tuition_fee_pages, $the_post_id);
+                if(isset($tuition_fee_pages) && !empty($tuition_fee_pages)) {
+                    update_field('tuition_fee_pages', $tuition_fee_pages, $the_post_id);
+                }
 
                 // Bachelors Tuition fees (Group)
                 if($array_item->tuition_fee) {
@@ -270,6 +283,9 @@ Class InstitutionsScripts {
                         'upper_tuition_fee' => $array_item->tuition_fee->upper_tuition_fee,
                     );
                     update_field('tuition_fee', $group_bachelor_tuition_fee, $the_post_id);
+                    if(isset($group_bachelor_tuition_fee) && !empty($group_bachelor_tuition_fee)) {
+                        update_field('masters_tuition_fee', $group_bachelor_tuition_fee, $the_post_id);
+                    }
                 }
 
                 // Masters Tuition fees (Group)
@@ -280,7 +296,10 @@ Class InstitutionsScripts {
                         'international_lower' => $array_item->tuition_fee_master->international_lower,
                         'upper_tuition_fee' => $array_item->tuition_fee_master->upper_tuition_fee,
                     );
-                    update_field('masters_tuition_fee', $group_masters_tuition_fee, $the_post_id);
+                    if(isset($group_masters_tuition_fee) && !empty($group_masters_tuition_fee)) {
+
+                        update_field('masters_tuition_fee', $group_masters_tuition_fee, $the_post_id);
+                    }
                 }
 
                 // Language Pages (Repeater)
@@ -294,9 +313,9 @@ Class InstitutionsScripts {
                         );
                     }
                 }
-
-                update_field('language_pages', $language_pages, $the_post_id);
-
+                if(isset($language_pages) && !empty($language_pages)) {
+                    update_field('language_pages', $language_pages, $the_post_id);
+                }
                 // English Language Requirements (Repeater)
                 $english_language_requirements = array();
                 if($array_item->english_language_requirements) {
@@ -309,7 +328,9 @@ Class InstitutionsScripts {
                     }
                 }
 
-                update_field('english_language_requirements', $english_language_requirements, $the_post_id);
+                if(isset($english_language_requirements) && !empty($english_language_requirements)) {
+                    update_field('english_language_requirements', $english_language_requirements, $the_post_id);
+                }
                 
                 
                 // Rankings (Group)
@@ -321,8 +342,9 @@ Class InstitutionsScripts {
                     '4icu' => $array_item->rankings->{'4icu'}
                 );
 
-                update_field('rankings', $group_rankings, $the_post_id);
-
+                if(isset($group_rankings) && !empty($group_rankings)) {
+                    update_field('rankings', $group_rankings, $the_post_id);
+                }
                 $bachelors_courses_array = array();
                 if($array_item->bachelors_courses->bachelors_courses_courses) {
                     foreach($array_item->bachelors_courses->bachelors_courses_courses as $course) {
@@ -358,8 +380,10 @@ Class InstitutionsScripts {
                     'link' => $array_item->bachelors_courses->bachelors_courses_link,
                     'courses' => $courses_names
                 );
-
-                update_field('bachelors_courses', $group_bachelors_courses, $the_post_id);
+                
+                if(isset($group_bachelors_courses) && !empty($group_bachelors_courses)) {
+                    update_field('bachelors_courses', $group_bachelors_courses, $the_post_id);
+                }
 
                 // Update Master's Courses (Group with nested repeater and url field)
                 //GRoup Field
@@ -368,8 +392,9 @@ Class InstitutionsScripts {
                     'courses' => $masters_courses_names
                 );
 
-                update_field('masters_courses', $group_masters_courses, $the_post_id);
-
+                if(isset($group_masters_courses) && !empty($group_masters_courses)) {
+                    update_field('masters_courses', $group_masters_courses, $the_post_id);
+                }
 
             }
             if ( $false > 0 ) {

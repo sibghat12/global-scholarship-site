@@ -4,7 +4,7 @@
 ?>
     <div id="scholarships" class="gs-institution-scholarships">
 
-        <p class="gs-institution-scholarships-title"><?php echo $institution_title ?> Scholarships for International Students</p>
+        <h2 class="gs-institution-scholarships-title"><?php echo $institution_title ?> Scholarships for International Students</h2>
         <?php if($number_of_scholarships > 0) { ?>
         <div class="gs-institution-scholarships-text">
         <?php
@@ -126,11 +126,12 @@
     </div>
     <?php else: ?>
 
-    <div id="institution-scholarships" class="gs-institution-no-scholarships">
-        <p class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</p>
-        <p>Even though <?php echo $institution_title ?> does not offer scholarships to international students, you can still fund your education in <?php echo $country_name; ?>. As an international student, you are eligible to receive funding from organizations and the government of <?php echo $city_name . ", " . $country_name; ?>. There are plenty of funding opportunities for international students ensuring ample opportunities for financial support; feel free to check out <a href="<?php echo site_url(); ?>/best-government-scholarships/">all available governmental funding opportunities available </a>to international students pursuing a higher education degree abroad.</p>
+    <div id="scholarships" class="gs-institution-no-scholarships">
+        <h2 class="gs-institution-scholarships-title">Funding your studies at <?php echo $institution_title ?> for International Students</h2>
+
+        <p>Even though <?php echo $institution_title ?> itself does not offer scholarships to international students, you can still receive scholarships that can be applied to <?php echo $institution_title ?> from external organizations. Feel free to check out all available external funding opportunities in <a href="<?php echo site_url('category/external-scholarships/'); ?>">our external scholarship database</a>.</p>
         
-        <p class="gs-institution-scholarships-title">External Scholarships for International Students</p>
+        <h2 class="gs-institution-scholarships-title">External Scholarships available at <?php echo $institution_title ?></h2>
         <div class="gs-institution-no-scholarships-scholarship-container">
             <h3>GlobalScholarships.com $1,000 Scholarship for International Students</h3>
             <ul>
