@@ -4513,10 +4513,7 @@ input[type="submit"] {
     color: #000000 !important;
 }
 
-.single-institution #main .gs-institution-no-scholarships  p.gs-institution-scholarships-title {
-    font-size: 1.8rem;
-    font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-    font-weight: 700;
+.single-institution #main .gs-institution-no-scholarships h2.gs-institution-scholarships-title {
     border-left: 2px solid #3C76E6;
     padding: 16px 12px;
     background-color: #EAF4FB;
@@ -4551,7 +4548,7 @@ input[type="submit"] {
     background-color: #ffffff;
 }
 
-.single-institution #main .gs-institution-scholarships p.gs-institution-scholarships-title {
+.single-institution #main .gs-institution-scholarships h2.gs-institution-scholarships-title {
     font-size: 1.8rem;
     font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
     font-weight: 700;
