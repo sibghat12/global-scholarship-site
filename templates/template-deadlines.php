@@ -81,29 +81,43 @@ $country = ucwords($country);
 
                     $institution_author_name = $author->display_name;
 
+                    $institution_deadline_sort_date = $institution_deadline;
+                    $timestampinstitutedeadline = strtotime($institution_deadline_sort_date);
+                    $formattedDateInstituteDeadline = date("Ymd", $timestampinstitutedeadline);
+
+                    $institution_opening_date_sort_date = $institution_opening_date;
+                    $timestampinstituteopening = strtotime($institution_opening_date_sort_date);
+                    $formattedDateInstituteOpening = date("Ymd", $timestampinstituteopening);
+
+                    $institution_last_updated_sort_date = $institution_last_updated;
+                    $timestampinstitutelastupdated = strtotime($institution_last_updated_sort_date);
+                    $formattedDateInstituteLastUpdated = date("Ymd", $timestampinstitutelastupdated);
+
+                    
+
                     if($institution_accept_all_year == 'No') {
                         if(isset($institution_opening_date) && !empty($institution_opening_date)) {
-                            echo "<td>" . $institution_opening_date . "</td>";
+                            echo "<td data-order=".$formattedDateInstituteOpening.">" . $institution_opening_date . "</td>";
                         } else {
-                            echo "<td></td>";
+                            echo "<td data-order=".$formattedDateInstituteOpening."></td>";
                         }
                     } elseif($institution_accept_all_year == 'Yes') {
-                        echo "<td>" ."OPEN ALL YEAR" . "</td>";
+                        echo "<td data-order=".$formattedDateInstituteOpening.">" ."OPEN ALL YEAR" . "</td>";
                     }
 
                     if($institution_accept_all_year == 'No') {
                         if(isset($institution_deadline) && !empty($institution_deadline)) {
-                            echo "<td>" . $institution_deadline . "</td>";
+                            echo "<td data-order=".$formattedDateInstituteDeadline.">" . $institution_deadline . "</td>";
                         } else {
-                            echo "<td></td>";
+                            echo "<td data-order=".$formattedDateInstituteDeadline."></td>";
                         }
                     } elseif($institution_accept_all_year == 'Yes') {
-                        echo "<td>" ."OPEN ALL YEAR" . "</td>";
+                        echo "<td data-order=".$formattedDateInstituteDeadline.">" ."OPEN ALL YEAR" . "</td>";
                     }
                     if( isset($institution_last_updated) && !empty( $institution_last_updated) ) :
-                        echo "<td>" . $institution_last_updated ."</td>";
+                        echo "<td data-order=".$formattedDateInstituteLastUpdated.">". $institution_last_updated ."</td>";
                     else:
-                        echo "<td></td>";
+                        echo "<td data-order=".$formattedDateInstituteLastUpdated."></td>";
                     endif;
                     if( isset($institution_title) && !empty( $institution_title) ) :
                         echo "<td><a href=". $institution_permalink .">" . $institution_title ."</a></td>";
@@ -155,9 +169,19 @@ $country = ucwords($country);
                             $the_scholarship_degree = $scholarship_deadline['degree'];
                             $scholarship_target_date = strtotime($the_scholarship_deadline);
 
+                            $the_scholarship_deadline_sort_date = $the_scholarship_deadline;
+                            $timestampscholarshipsdeadline = strtotime($the_scholarship_deadline_sort_date);
+                            $formattedDateScholarshipsDeadline = date("Ymd", $timestampscholarshipsdeadline);
+
+                            
+                            $the_scholarship_opening_date_sort_date = $the_scholarship_opening_date;
+                            $timestampscholarshipsopening = strtotime($the_scholarship_opening_date_sort_date);
+                            $formattedDateScholarshipsOpening = date("Ymd", $timestampscholarshipsopening);
+
+
                         }
                         
-                        $the_scholarship_last_updated = get_the_modified_date('Y-m-d', $scholarship);
+                        $the_scholarship_last_updated = get_the_modified_date('', $scholarship);
                         $scholarship_title = get_the_title($scholarship);
                         $scholarship_permalink = get_the_permalink($scholarship);
                         $scholarship_last_author = get_the_last_modified_user_name($scholarship);
@@ -167,22 +191,27 @@ $country = ucwords($country);
     
                         $scholarship_author_name = $scholarship_author->display_name;
 
+                        
+                        $scholarship_last_updated_sort_date = $the_scholarship_last_updated;
+                        $timestampscholarshiplastupdated = strtotime($scholarship_last_updated_sort_date);
+                        $formattedDateScholarshipLastUpdated = date("Ymd", $timestampscholarshiplastupdated);
+
                         echo "<tr>";
     
                         if( isset($the_scholarship_opening_date) && !empty( $the_scholarship_opening_date) ) :
-                            echo "<td>" . $the_scholarship_opening_date ."</td>";
+                            echo "<td data-order=".$formattedDateScholarshipsOpening.">" . $the_scholarship_opening_date ."</td>";
                         else:
-                            echo "<td></td>";
+                            echo "<td data-order=".$formattedDateScholarshipsOpening."></td>";
                         endif;
                         if( isset($the_scholarship_deadline) && !empty( $the_scholarship_deadline) ) :
-                            echo "<td>" . $the_scholarship_deadline ."</td>";
+                            echo "<td data-order=".$formattedDateScholarshipsDeadline.">" . $the_scholarship_deadline ."</td>";
                         else:
-                            echo "<td></td>";
+                            echo "<td data-order=".$formattedDateScholarshipsDeadline."></td>";
                         endif;
                         if( isset($the_scholarship_last_updated) && !empty( $the_scholarship_last_updated) ) :
-                            echo "<td>" . $the_scholarship_last_updated ."</td>";
+                            echo "<td data-order=".$formattedDateScholarshipLastUpdated.">" . $the_scholarship_last_updated ."</td>";
                         else:
-                            echo "<td></td>";
+                            echo "<td data-order=".$formattedDateScholarshipLastUpdated."></td>";
                         endif;
                         if( isset($scholarship_title) && !empty( $scholarship_title) ) :
                             echo "<td><a href=". $scholarship_permalink .">" . $scholarship_title ."</a></td>";
