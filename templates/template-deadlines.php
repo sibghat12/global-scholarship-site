@@ -33,7 +33,7 @@ $country = ucwords($country);
             $gs_country = $gs_institutions_scholarships['country'];
             $gs_institutions = $gs_institutions_scholarships['institutions'];
             $available_institutions_country_count = count($gs_institutions);
-            echo "<h2>(" . $gs_country . ")  Institutions Number: $available_institutions_country_count"."</h2>";
+            echo "<h2>(" . $gs_country . ")  Institutions Count: $available_institutions_country_count"."</h2>";
 
             echo '<table class="table table-bordered data-table" style="width:100%">';
             ?>
