@@ -23,7 +23,7 @@
     }
 
 ?>
-    <div id="tuition" class="gs-institution-tuition-fees">
+    <div id="tuition-fees" class="gs-institution-tuition-fees">
 
         <div class="gs-institution-tutition-fees-text">
         <p class="gs-institution-tuition-fees-title" id="tuition">Tuition Fees at <?php echo $institution_title ?> for International Students</p>
@@ -34,12 +34,12 @@
             <?php if($average_international_bachelors > -1) : ?>
                 <?php if($average_international_bachelors > 0) : ?>
                     <div class="gs-institution-tuition-fees-bachelors gs-institution-tuition-fees-item">
-                        <h2><?php echo $average_international_bachelors .' '. $currency; ?></h2>
+                        <p><?php echo $average_international_bachelors .' '. $currency; ?></p>
                         <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
                     </div>
                 <?php elseif($average_international_bachelors == 0 ) :  ?>
                     <div class="gs-institution-tuition-fees-bachelors gs-institution-tuition-fees-item">
-                        <h2>Free</h2>
+                        <p>Free</p>
                         <div class="gs-institution-tuition-fees-note">Average Bachelor’s tuition fees</div>
                     </div>
                 <?php endif; ?>
@@ -47,19 +47,19 @@
             <?php if($average_international_masters > -1) : ?>
                 <?php if($average_international_masters > 0) : ?>
             <div class="gs-institution-tuition-fees-masters  gs-institution-tuition-fees-item">
-                <h2><?php echo $average_international_masters .' '. $currency; ?></h2>
+                <p><?php echo $average_international_masters .' '. $currency; ?></p>
                 <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
             </div>
             <?php elseif($average_international_masters == 0 ) :  ?>
                 <div class="gs-institution-tuition-fees-masters gs-institution-tuition-fees-item">
-                    <h2>Free</h2>
+                    <p>Free</p>
                 <div class="gs-institution-tuition-fees-note">Average Master’s tuition fees</div>
                 </div>
             <?php endif; ?>
 
             <?php endif; ?>
         </div>
-    <?php endif; ?>
+        <?php endif; ?>
                   
         <?php
                 // Print out tuition fees if it is available

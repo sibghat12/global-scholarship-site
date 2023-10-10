@@ -4258,8 +4258,11 @@ input[type="submit"] {
     padding: 0;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content h1.gs-institution-explore-courses-title {
+.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content p.gs-institution-explore-courses-title {
     padding: 0;
+    font-size: 1.8rem;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 700;
 }
 
 .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
@@ -4435,9 +4438,11 @@ input[type="submit"] {
     padding-right: 10px;
 }
 
-.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors h2 {
-    font-family: inherit !important;
-    margin-bottom: 8px;
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors p {
+    font-size: 1.8rem;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px !important;
     padding-top: 8px;
     text-align: center;
 }
@@ -4455,9 +4460,11 @@ input[type="submit"] {
     padding-left: 10px;
 }
 
-.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters h2 {
-    font-family: inherit !important;
-    margin-bottom: 8px;
+.single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters p {
+    font-size: 1.8rem;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px !important;
     padding-top: 8px;
     text-align: center;
 }
@@ -4616,8 +4623,11 @@ input[type="submit"] {
     padding: 0;
 }
 
-.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-content h1.gs-institution-graduate-title {
+.single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-content p.gs-institution-graduate-title {
     padding: 0;
+    font-size: 1.8rem;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 700;
 }
 
 .single-institution #main .gs-institution-scholarships .gs-institution-graduate .gs-institution-graduate-thumbnail-container {
