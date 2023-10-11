@@ -73,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div>
 
 
-<?php echo do_shortcode('[courses_grid_shortcode_new]'); ?>
+
 
 
 <?php do_action( 'avada_after_content' ); ?>
