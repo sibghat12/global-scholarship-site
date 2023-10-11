@@ -380,56 +380,6 @@ function to_number($number){
 }        
 
 
-// Convert to USD
-function convert_to_usd($amount, $currency){
-$list = array(
-"KRW" => 0.00074,
-"CAD" => 0.73,
-"RMB" => 0.14,
-"Yen" => 0.0067,
-"NZD" => 0.60,
-"GBP" => 1.22,
-"AUD" => 0.64,
-"Euros" => 1.06,
-"NOK" => 0.092,
-"CHF" => 1.10,
-"USD" => 1,
-"PLN" => 0.23,
-"INR" => 0.012,
-"Pesos" => 0.018,
-"Rand" => 0.052,
-"SGD" => 0.73,
-"RUB" => 0.0099,
-"CZK" => 0.043,
-"kr" => 0.091,
-"Danish Krone" => 0.14,
-"MXN" => 0.054,
-"Brazilian Real" => 0.19,
-"UAH" => 0.027,
-"TRY" => 0.036,
-"TWD" => 0.031,
-"Rp" => 0.000064,
-"RON" => 0.21,
-"BYN" => 0.30,
-"HUF" => 0.0027,
-"BAM" => 0.54,
-"ALL" =>0.01 ,
-"ISK" => 0.0073,
-"VND" => 0.000041,
-"THB" => 0.027,
-"LKR" => 0.0031,
-"PKR" => 0.0036,
-"NPR" => 0.0075,
-"QAR" => 0.27,
-"RSD" => 0.0090,
-"MYR" => 0.21,
-"SAR" => 0.27,
-        
-  );
-
-    return (float)$amount * (float)$list[$currency];
-
-}
 
 function convert_to_usd($amount, $currency){
 
@@ -4601,7 +4551,7 @@ function institutions_without_scholarships_list( $atts ){
 add_shortcode( 'institutions-without-scholarships', 'institutions_without_scholarships_list' );
 
 function country_currency_list() {
-    
+
        $currency_list = array(
        "South Korea" => "KRW",
        "Canada" => "CAD",
