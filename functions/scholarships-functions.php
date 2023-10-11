@@ -2487,62 +2487,10 @@ function custom_rankmath_title($title) {
         $title  =  $title .' '. date("Y").' - '.date('Y', strtotime('+1 year'));
     } elseif ($post->post_type == 'institution') {
         $institution_title = get_the_title( $post->ID );
-            $ibl = get_field("tuition_fee_international_lower" , $post->ID);
-            $ibu = get_field("tuition_fee_upper_tuition_fee" , $post->ID );
-            $iml = get_field("masters_tuition_fee_international_lower",  $post->ID);
-            $imu = get_field("masters_tuition_fee_upper_tuition_fee",  $post->ID);
 
 
-            $city = get_field('cities' , $post->ID);
-            $city = get_post($city->ID);
-            $country = get_post_meta($city->ID, 'country', TRUE);
-            $current_currency = get_currency($country); 
-
-        
-             $ibl = roundNearestHundreth(convert_to_usd($ibl, $current_currency));
-             $ibu = roundNearestHundreth(convert_to_usd($ibu, $current_currency));
-             $imu = roundNearestHundreth(convert_to_usd($imu, $current_currency));
-             $iml = roundNearestHundreth(convert_to_usd($iml, $current_currency)); 
-
-             if (get_field("tuition_fee_international_lower" , $post->ID) == -1){
-                $ibl = -1; 
-            }
-            
-            if (get_field("tuition_fee_upper_tuition_fee", $post->ID) == -1){
-                $ibu = -1; 
-            }
-            
-            if (get_field("masters_tuition_fee_international_lower" , $post->ID) == -1){
-                $iml = -1; 
-            }
-            
-            if (get_field("masters_tuition_fee_upper_tuition_fee" , $post->ID) == -1){
-                $imu = -1; 
-            }
-            
-            
-            //Checks if there are tuition information. This is used for titles
-            if ($ibl == -1 && $ibu == -1 && $iml == -1 && $imu == -1){
-                $is_tuition_information = false;
-            } else {
-                $is_tuition_information = true;
-            }
-
-
-
-       $scholarships_query = get_scholarships( $post->ID);
-       $number_of_scholarships  = $scholarships_query->post_count;
-
-            if ($number_of_scholarships > 0) {
-                $title = $institution_title . " " . " Scholarships for International Students";            
-            } elseif ($is_tuition_information) {
-                $title = $institution_title . " " . " Tuition for International Students"; 
-            } else {
-                $title = $institution_title ." ". "Background Information ";     
-            }
-
-            $title = $title .' '. date("Y").' - '.date('Y', strtotime('+1 year'));
-    } 
+        $title = $institution_title ." " . " Scholarships for International Students" .' '. date("Y").' - '.date('Y', strtotime('+1 year'));
+    }
 
     
 
