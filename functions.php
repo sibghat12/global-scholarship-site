@@ -3768,7 +3768,8 @@ function getCountryCode($countryName, $countryCodes) {
 
 add_shortcode('courses_grid_shortcode_new', 'courses_grid_shortcode_new');
 function courses_grid_shortcode_new() {
-    ob_start(); // Start output buffering
+
+ob_start(); // Start output buffering
 
 $countryCodes = array(
     "Afghanistan" => "af",
@@ -3781,7 +3782,7 @@ $countryCodes = array(
     "Armenia" => "am",
     "Australia" => "au",
     "Austria" => "at",
-    "Azerbaijan" => "az",
+    "Azerbaijan" =>   "az",
     "Bahamas" => "bs",
     "Bahrain" => "bh",
     "Bangladesh" => "bd",
@@ -3914,6 +3915,7 @@ $countryCodes = array(
     "Romania" => "ro",
     "Russia" => "ru",
     "Rwanda" => "rw",
+    "United States" => "us",
     "Saint Kitts and Nevis" => "kn",
     // Add more countries as needed
 );
@@ -3932,13 +3934,15 @@ $countryCodes = array(
 
     // Data Decoded
     $data = json_decode($ip_api);
- 
+     
     // Turn Object into Associative Array
     $data_array = get_object_vars($data);
+
    
+    
     // Get Country Code to use to get other related content (Courses)
     if($data_array) {
-        $country_code = $data_array['countryCode'];
+        $country_code = $data_array['country'];
     } else {
         // In case IP API is not working
         $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
@@ -3947,24 +3951,22 @@ $countryCodes = array(
 
     // Location
     $location = $country_code;
-
     
+    
+
    
    $args = array(
     'post_type'      => 'ads',
     'post_status'    => 'publish',
     'posts_per_page' => 3,
     'order'          => 'DESC',
-    'meta_query'     => array(
-        array(
-            'key'     => 'related_course',
-            'value'   => 'Yes',
-            'compare' => '='
-        )
-    )
+ 
 );
 
     $new_loop = new WP_Query($args);
+
+ 
+
     ?>
   <div class="clearfix"> </div>
 
@@ -3993,9 +3995,10 @@ $countryCodes = array(
 
                 $country = get_post_meta($institute->ID, 'adsIntCountry', true);
 
-                
+
 
                 $countryCode = getCountryCode($country, $countryCodes);
+                
 
 
                 $currency = get_currency($country);
@@ -4028,7 +4031,7 @@ $countryCodes = array(
               if($image_url) {
     // Do something if $image_url is set
 } else {
-    $image_url = "https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/08/c7eb49b396dc06f16c576792f2086aa9.jpeg";
+    $image_url = site_url() . '/wp-content/uploads/2023/10/berlin_germany.width-550.format-webp-11-1.png';
 }
 
 
@@ -4078,9 +4081,11 @@ $countryCodes = array(
                         
                     </div>
 
-                    <div class="course-text heading-section" style="min-height:80px;margin-top:0px !important;">
+                    <div class="clearfix"> </div>
+
+                    <div class="course-text heading-section" style="margin-top:0px !important;">
                    
-                   <p style="height:60px;text-align:left;font-weight:600;padding-left:15px;padding-right:15px;font-size:16px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
+                   <p style="padding-bottom:8px;text-align:left;width:100%;font-weight:600;padding-left:15px;padding-right:15px;font-size:16px;"> <?php echo $institute->post_title; ?></p>
 
 
                   </div>
@@ -4162,7 +4167,7 @@ $countryCodes = array(
          <div class="course-text" style="min-height: 90px;margin-top:0px;">
                         
                         <div class="col-md-3 course-logo">
-                            <img  style="width:60px;height: 60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
+                            <img  style="width:60px;" src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
                         </div>
                         
                         <div class="col-md-9 course-title" style="padding-right:10px;padding-left:3px;font-size:16px;
@@ -4176,7 +4181,7 @@ $countryCodes = array(
 
                   <div class="course-text institution-title" style="margin-top:0px !important;">
                    
-                   <p style="height:60px;font-weight:600;padding-left:15px;padding-right:15px;font-size:18px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
+                   <p style="font-weight:600;padding-left:15px;padding-right:15px;font-size:18px;line-height: 22px;"> <?php echo $institute->post_title; ?></p>
 
 
                   </div>
@@ -4199,13 +4204,13 @@ echo $des;
 
                   </div>
 
-                    <div class="course-text" style="min-height:84px;margin-top:-5px !important;">
+                    <div class="course-text" style="margin-top:-5px !important;">
                    
-                   <p style="line-height: 18px;">   
+                   <p style="line-height: 18px;padding-left:15px !important;">   
                       
                       <?php   if($disclaimer === "1")  {  ?>
                          
-                         <strong style="line-height:16px;padding-left:0px;font-size:12px;padding-right:10px;font-weight:700 !important;" > *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                         <strong style=" line-height:16px;padding-left:0px;font-size:12px;padding-right:10px;font-weight:700 !important;" > *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
 
                      <?php } ?>
                      
