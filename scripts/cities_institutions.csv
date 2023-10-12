@@ -1,9 +1,33 @@
+"Northern Alberta Institute of Technology",Edmonton
+"North Island College",Vancouver
+"New York Institute of Technology Vancouver",Vancouver
+"Northern College",Timmins
+"LaSalle College Montreal",Montreal
+"Musitechnic College",Montreal
+"College National of Science and Technology",Montreal
+"Herzing College",Toronto
+"Yorkville University",Fredericton
+"University of Fredericton",Fredericton
+"Luxembourg School of Business",Luxembourg
+"Tyndale University",Toronto
+"St. Stephen&#8217;s University","St. Stephen"
+"St. Mary&#8217;s University, Calgary",Calgary
+"Redeemer University",Hamilton
+"Providence University College and Theological Seminary",Otterburne
+"Kingswood University",Sussex
+"Burman University",Lacombe
+"Yukon University",Whitehorse
+"Université de l&#8217;Ontario français",Toronto
+"Université de Hearst",Hearst
+"Saint Francis Xavier University",Antigonish
+"Nova Scotia College of Art and Design University",Halifax
+"University College of the North","The Pas"
 "Atlantis College",Liopetri
 "Madan Bhandari University of Science and Technology",Lalitpur
 "Western Institute of Technology and Higher Education",Tlaquepaque
 "South-Western State University",Kursk
 "Altai State Pedagogical Academy",Barnaul
-"University of Costa Rica","San Jose"
+"University of Costa Rica","San Jose, CR"
 "Mondragon University",Mondragon
 "Ivanovo State University of Chemistry and Technology",Ivanovo
 "Bryansk State Technical University",Bryansk
@@ -21,7 +45,7 @@
 "Belarusian State Academy of Communications",Minsk
 "Academy of the Ministry of Internal Affairs",Minsk
 "Philips College",Nicosia
-"Hong Kong Baptist University","Hong Kong"
+"Hong Kong Baptist University",
 "Belarusian State Academy of Aviation",Minsk
 "Gomel State Medical University",Gomel
 "Belarusian State Academy of Music",Minsk
@@ -32,7 +56,7 @@
 "Hadassah Academic College",Jerusalem
 "Western Galilee College",Acre
 "College of Law and Business","Ramat Gan"
-"University of Hong Kong","Hong Kong"
+"University of Hong Kong",
 "College of Hospitality and Tourism Management Bled",Bled
 "Achva Academic College","Beer Tuvia"
 "International University – Vietnam National University Ho Chi Minh City","Ho Chi Minh City"
@@ -99,7 +123,7 @@
 "Phnom Penh International University","Phnom Penh"
 "Ben-Gurion University of the Negev",Beersheba
 "Alexander College",Larnaca
-"Cyprus Health and Social Sciences University",Morphou
+"Cyprus Health and Social Sciences University",
 "Pannasastra University of Cambodia","Phnom Penh"
 "Bangkokthonburi University",Bangkok
 "Thonburi University",Bangkok
@@ -268,7 +292,7 @@ Intercollege,Nicosia
 "Mahamakut Buddhist University",Bangkok
 "Far Western University",Bhimdatta
 "Madhesh Agricultural University",Saptari
-"LEAD University","San Jose"
+"LEAD University","San Jose, CR"
 "Costa Rica Institute of Technology",Cartago
 "Nakhon Si Thammarat Rajabhat University","Mueang Nakhon Si Thammarat"
 "Surindra Rajabhat University","Mueang Surin"
@@ -302,7 +326,7 @@ Intercollege,Nicosia
 "Nakhon Sawan Rajabhat University","Nakhon Sawan"
 "Nakhon Pathom Rajabhat University","Nakhon Pathom"
 "Phetchabun Rajabhat University",Phetchabun
-"Rajamangala University of Technology Srivijaya",Songkhla
+"Rajamangala University of Technology Srivijaya",
 "Sripatum University",Bangkok
 "Srinakharinwirot University",Bangkok
 "King Mongkut&#8217;s Institute of Technology Ladkrabang",Bangkok
@@ -329,7 +353,7 @@ Intercollege,Nicosia
 "Sakon Nakhon Rajabhat University","Sakon Nakhon"
 "Rajamangala University of Technology Tawan-ok",Chonburi
 "Fatoni University",Pattani
-"Thaksin University",Songkhla
+"Thaksin University",
 "Mahachulalongkornrajavidyalaya University","Phra Nakhon Si Ayutthaya"
 "Bowen University",Iwo
 "Bansomdejchaopraya Rajabhat University",Bangkok
@@ -361,7 +385,7 @@ Intercollege,Nicosia
 "KES College",Nicosia
 "City Unity College Nicosia",Nicosia
 "Rauf Denktas University",Lefkosa
-"Crown Hill University",Ilorin
+"Crown Hill University",
 "Gombe State University of Science and Technology",Kumo
 "Borno State University",Maiduguri
 "Clifford University",Ihie
@@ -371,7 +395,7 @@ Intercollege,Nicosia
 "Mahanakorn University of Technology",Bangkok
 "University of Phayao",Phayao
 "Rajamangala University of Technology Lanna","Chiang Mai"
-"Songkhla Rajabhat University",Songkhla
+"Songkhla Rajabhat University",
 "Federal University, Gusau",Gusau
 "KolaDaisi University",Ibadan
 "Bauchi State University",Gadau
@@ -384,7 +408,7 @@ Intercollege,Nicosia
 "Atiba University",Oyo
 "Coal City University",Enugu
 "Michael and Cecilia Ibru University","Agbara Otor"
-"PAMO University of Medical Sciences","Port Harcourt"
+"PAMO University of Medical Sciences",
 "Nha Trang University","Nha Trang"
 "National Academy of Theatre and Film Arts Krastyo Sarafov",Sofia
 "Glorious Vision University",Ogwa
@@ -406,7 +430,7 @@ Intercollege,Nicosia
 "Chandrakasem Rajabhat University",Bangkok
 "Admiralty University Of Nigeria",Sapele
 "Lampang Rajabhat University",Lampang
-"Salem University",Salem
+"Salem University","Salem, Nigeria"
 "University of the Thai Chamber of Commerce",Bangkok
 "Buriram Rajabhat University",Naimuang
 "Federal University Gashua",Gashua
@@ -431,7 +455,7 @@ Intercollege,Nicosia
 "Cyprus International University",Nicosia
 "Frederick University",Nicosia
 "Kings University",Odeomu
-"Adekunle Ajasin University","Akungba Akoko"
+"Adekunle Ajasin University",
 "Edo State University Uzairue",Iyamho
 "Lusail University",Lusail
 "Van Lang University","Ho Chi Minh City"
@@ -468,14 +492,14 @@ Intercollege,Nicosia
 "Hanoi University of Pharmacy",Hanoi
 "Bac Lieu University","Bac Lieu"
 "Anchor University",Lagos
-"Southwestern University, Nigeria",Okun-Owa
+"Southwestern University, Nigeria","Okun Owa"
 "Sokoto State University",Sokoto
 "Thai Binh University of Medicine and Pharmacy","Thai Binh"
 "Dong Nai University of Technology","Bien Hoa"
 "Limassol College",Limassol
 "InterNapa College",Sotira
 "Imo State University",Owerri
-"Rivers State University","Port Harcourt"
+"Rivers State University",
 "University of Jos",Jos
 "Ho Chi Minh City University of Law","Ho Chi Minh"
 "Vinh University",Vinh
@@ -483,23 +507,23 @@ Intercollege,Nicosia
 "Hanoi National University of Education",Hanoi
 "Kano University of Science and Technology",Wudil
 "Igbinedion University Okada",Okada
-"Ignatius Ajuru University of Education","Port Harcourt"
+"Ignatius Ajuru University of Education",
 "Gombe State University",Gombe
 "Federal University, Otuoke",Otuoke
 "University of Medical Sciences",Ondo
 "Achievers University, Owo",Owo
 "Mountain Top University","Makogi Oba"
 "Chrisland University",Abeokuta
-"Joseph Ayo Babalola University",Ikeji-Arakeji
+"Joseph Ayo Babalola University","Ikeji Arakeji"
 "Nigeria Maritime University",Okerenkoko
 "Gregory University Uturu",Uturu
 "Dominican University Ibadan",Ibadan
 "University of Africa","Toru Orua"
 "Kwara State University",Ilorin
-"Caritas University","Amorji Nike"
+"Caritas University",
 "Madonna University Nigeria",Elele
 "African University of Science and Technology",Abuja
-"Redeemer&#8217;s University",Ede
+"Redeemer&#8217;s University",
 "Lagos State University",Ojo
 "Federal University of Technology Akure",Akure
 "University of Benin",Benin
@@ -535,7 +559,7 @@ c,"Chau Thanh A"
 "Hung Vuong University","Viet Tri"
 "Hanoi Industrial Textile Garment University",Hanoi
 "Hanoi University of Industry",Hanoi
-"Bells University of Technology, Ota",Ota
+"Bells University of Technology, Ota","Ota, Nigeria"
 "Niger Delta University",Amassoma
 "Akwa Ibom State University",Uyo
 "Federal University, Dutse",Dutse
@@ -559,7 +583,7 @@ c,"Chau Thanh A"
 "Al-Hikmah University",Ilorin
 "Kaduna State University",Kaduna
 "Ambrose Alli University",Ekpoma
-"Elizade University",Ilara-Mokin
+"Elizade University","Ilara Mokin"
 "Ho Chi Minh City University of Foreign Languages and Information Technology","Ho Chi Minh City"
 "University of Economics and Law","Ho Chi Minh City"
 "University of Medicine and Pharmacy at Ho Chi Minh City","Ho Chi Minh City"
@@ -598,7 +622,7 @@ c,"Chau Thanh A"
 "Belarusian State University of Transport",Gomel
 "Ibrahim Badamasi Babangida University",Lapai
 "Lead City University, Ibadan",Ibadan
-"Rhema University",Aba
+"Rhema University","Aba, Nigeria"
 "Delta State University, Abraka",Abraka
 "Ebonyi State University",Abakaliki
 "Bayero University Kano",Kano
@@ -619,7 +643,7 @@ c,"Chau Thanh A"
 "Medical University Sofia",Sofia
 "South-West University Neofit Rilski",Blagoevgrad
 "Godfrey Okoye University",Enugu
-"Babcock University","Ilishan Remo"
+"Babcock University",
 "Academy of Music, Dance and Fine Arts, Plovdiv",Plovdiv
 "Konstantin Preslavsky University of Shumen",Shumen
 "Trakia University","Stara Zagora"
@@ -648,7 +672,7 @@ c,"Chau Thanh A"
 "Grodno State Agrarian University",Grodno
 "Slovak Medical University",Bratislava
 "Alexander Dubcek University of Trencin",Trencin
-"University of Veterinary Medicine and Pharmacy in Kosice",Kosice
+"University of Veterinary Medicine and Pharmacy in Kosice",
 "University of Ss. Cyril and Methodius in Trnava",Trnava
 "Hue University",Hue
 "Nguyen Tat Thanh University","Ho Chi Minh"
@@ -661,7 +685,7 @@ c,"Chau Thanh A"
 "University of Presov",Presov
 "Vitebsk State Technological University",Vitebsk
 "Belarusian State Agrarian Technical University",Minsk
-"Brest State A. S. Pushkin University",Brest
+"Brest State A. S. Pushkin University","Brest, Belarus"
 "Belarusian State Agricultural Academy",Gorki
 "International University of Gorazde",Gorazde
 "Polessky State University",Pinsk
@@ -679,12 +703,12 @@ c,"Chau Thanh A"
 "University of Cyprus",Nicosia
 "Obafemi Awolowo University","Ile Ife"
 "University of Lagos",Lagos
-"Adeleke University",Ede
+"Adeleke University","Ede, Nigeria"
 "University of Ibadan",Ibadan
 "Belarusian State Pedagogical University named after Maxim Tank",Minsk
 "Grodno State Medical University",Grodno
 "Francisk Skorina Gomel State University",Gomel
-"Brest State Technical University",Brest
+"Brest State Technical University","Brest, Belarus"
 "Vitebsk State Medical University",Vitebsk
 "DOBA Business School",Maribor
 "Faculty of Law and Business Studies",Ljubljana
@@ -692,7 +716,7 @@ c,"Chau Thanh A"
 "Jozef Stefan International Postgraduate School",Ljubljana
 "School of Advanced Social Studies in Nova Gorica","Nova Gorica"
 "Matej Bel University","Banska Bystrica"
-"Constantine the Philosopher University in Nitra",Nitra
+"Constantine the Philosopher University in Nitra",
 "Ravne College","Ravne na Koroskem"
 "New University","Nova Gorica"
 "IEDC-Bled School of Management",Bled
@@ -711,7 +735,7 @@ c,"Chau Thanh A"
 "University of Port Harcourt","Port Harcourt"
 "Osun State University",Osogbo
 "American University of Nigeria",Yola
-"Covenant University",Ota
+"Covenant University","Ota, Nigeria"
 "University of Nigeria",Nsukka
 "Kolping University of Applied Sciences",Kaunas
 "Vilnius Co-operative College",Vilnius
@@ -761,8 +785,6 @@ c,"Chau Thanh A"
 "University for Human Sciences in the Principality of Liechtenstein",Triesen
 "International Academy of Philosophy",Bendern
 "University of Montenegro",Podgorica
-"International University of Monaco",Monaco
-"University of San Marino","San Marino"
 "University of Andorra","Sant Julia de Loria"
 "University for Business Studies Banja Luka","Banja Luka"
 "University of Travnik",Travnik
@@ -4291,7 +4313,7 @@ NorthTec,Whangarei
 "Adler University",Chicago
 "Gdansk College of Health",Gdansk
 "University of Eastern Piedmont",Vercelli
-"University of Naples “L’Orientale”",Naples
+"University of Naples “L&#8217;Orientale”",Naples
 "Carlo Cattaneo University",Castellanza
 "Humanitas University",Milan
 "D&#8217;Annunzio University of Chieti–Pescara",Chieti
@@ -4410,7 +4432,7 @@ NorthTec,Whangarei
 "European University of Rome",Rome
 "Università degli Studi Internazionali di Roma",Rome
 "University of Urbino",Urbino
-"Sant’Anna School of Advanced Studies",Pisa
+"Sant&#8217;Anna School of Advanced Studies",Pisa
 "University of Bergamo",Bergamo
 "Scuola Normale Superiore",Pisa
 "University of Salento",Lecce
@@ -4456,7 +4478,7 @@ NorthTec,Whangarei
 "National Institute and School of Applied Sciences of Centre Loire Valley",Blois
 "École de Management Léonard de Vinci",Courbevoie
 "Institute of IT and Engineering of Limoges",Limoges
-"L’Ecole Supérieure Européenne de Management","Saint Jacques"
+"L&#8217;Ecole Supérieure Européenne de Management","Saint Jacques"
 "EBI &#8211; The School of Industrial Biology",Cergy
 "ECAM Strasbourg-Europe",Schiltigheim
 "ECAM Rennes",Rennes
@@ -4802,7 +4824,6 @@ EURECOM,"Alpes Maritimes"
 "South Texas College of Law",Houston
 "McPherson College",McPherson
 "Louisiana State University of Alexandria",Alexandria
-"Cazenovia College",Cazenovia
 "Alderson Broaddus University",Philippi
 "Mars Hill University","Mars Hill"
 "University of Mobile",Mobile
@@ -4928,7 +4949,6 @@ EURECOM,"Alpes Maritimes"
 "University of the Littoral Opal Coast",Dunkirk
 "Pine Manor College",Boston
 "University of Upper Alsace",Mulhouse
-"Holy Names University",Oakland
 "Mary Baldwin University",Staunton
 "EMLYON Business School",Paris
 "University of St. Augustine for Health Sciences","San Marcos, California"
@@ -7988,8 +8008,8 @@ Leibniz-Fachhochschule,Hannover
 "McGill University",Montreal
 "HEC Montréal University",Montreal
 "Concordia University",Montreal
-"Bishop’s University",Sherbrooke
-"University of King’s College",Halifax
+"Bishop&#8217;s University",Sherbrooke
+"University of King&#8217;s College",Halifax
 "University of Guelph",Guelph
 "Université Sainte-Anne","Pointe de l&#8217;eglise"
 "University of Ottawa",Ottawa
@@ -8007,7 +8027,7 @@ Leibniz-Fachhochschule,Hannover
 "Dalhousie University",Halifax
 "Cape Breton University","Sydney, Canada"
 "NSCAD University",Halifax
-"Saint Mary’s University",Halifax
+"Saint Mary&#8217;s University",Halifax
 "St. Francis Xavier University",Antigonish
 "University of Toronto",Toronto
 "McMaster University",Hamilton
@@ -8015,7 +8035,7 @@ Leibniz-Fachhochschule,Hannover
 "Lakehead University","Thunder Bay"
 "Toronto Metropolitan University",Toronto
 "Redeemer University",Ancester
-"Queen’s University",Kingston
+"Queen&#8217;s University",Kingston
 "Ontario Tech University",Oshawa
 "University of Sudbury",Sudbury
 "Mount Saint Vincent University",Halifax
@@ -8047,6 +8067,6 @@ Leibniz-Fachhochschule,Hannover
 "Emily Carr University of Art and Design",Vancouver
 "Concordia University of Edmonton",Edmonton
 "MacEwan University",Edmonton
-"King’s University",Edmonton
+"King&#8217;s University",Edmonton
 "Mount Royal University",Calgary
 "Athabasca University",Athabasca
