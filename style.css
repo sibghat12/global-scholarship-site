@@ -1330,7 +1330,6 @@ li.active.have-children span::after {
 
 .single #main {
     margin:auto !important;
-    padding-top:25px;
 }
 
 
@@ -1688,9 +1687,9 @@ display: flex !important;
 }
 
 
-.single-institution .post-content {
+/* .single-institution .post-content {
     margin-top:40px !important;
-}
+} */
 .fusion-page-title-captions h1 {
     padding-bottom:10px !important;
 }
@@ -4094,7 +4093,6 @@ input[type="submit"] {
 
 .single-institution .gs-institution-overview-box .gs-institution-overview-text h1{
     font-family: 'Roboto', sans-serif;
-    font-size: 2.6rem;
     font-weight: 700;
     text-align: center;
     line-height: 2.9rem;
@@ -4162,7 +4160,7 @@ input[type="submit"] {
 .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item .gs-institution-data .gs-institution-data-title {
     font-family: 'Roboto', sans-serif;
     text-align: left;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 2rem;
 }
