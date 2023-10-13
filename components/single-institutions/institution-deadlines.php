@@ -1,9 +1,9 @@
 <?php if (isset($admission_deadlines) && !empty($admission_deadlines)) :
 ?>
     <div id="deadline" class="gs-institution-deadlines">
-        <p class="gs-institution-deadlines-title">
+        <h2 class="gs-institution-deadlines-title">
             <?php echo $institution_title;  ?> Application Deadlines
-        </p>
+        </h2>
 
         <div class="gs-institution-deadlines-container">
             <div class="gs-institution-deadlines-content">
