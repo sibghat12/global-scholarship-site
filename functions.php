@@ -3653,7 +3653,7 @@ define('COUNTRY_CODES', serialize(array(
     "United States" => "us",
     "United Kingdom" => "gb",
     "Saint Kitts and Nevis" => "kn",
-    // Add more countries as needed
+    "Spain" => "es",
 )));
 
 
@@ -3704,6 +3704,8 @@ function courses_grid_shortcode_new() {
     $active_institutions = get_active_institutions_related_posts();
     $excluded = exclude_institutions_related_courses($location);
 
+    
+
     $args = array(
     'post_type'      => 'ads',
     'post_status'    => 'publish',
@@ -3743,6 +3745,9 @@ function courses_grid_shortcode_new() {
                 $country = get_post_meta($institute->ID, 'adsIntCountry', true);
                 $countryCodes = unserialize(COUNTRY_CODES);
                 $countryCode = getCountryCode($country, $countryCodes);
+
+                
+
                 $currency = get_currency($country);
                 $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
                 $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);

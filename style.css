@@ -6824,8 +6824,8 @@ justify-content: flex-start;
     display: block !important;
 }
 #courses-flipcard .col-md-4 {
-    margin-left:10px !important;
-    margin-right:10px !important;
+    margin-left:0px !important;
+    margin-right:16px !important;
     width:31% !important;
 }
 
@@ -7432,7 +7432,7 @@ color:inherit !important;
 
 
 #courses-flipcard .heading-section {
-   margin-top:10px;
+   margin-top:14px;
    
 }
 
@@ -7464,8 +7464,12 @@ padding-right:10px;
     padding-left:15px;
     padding-right:15px;
     font-size:16px !important;
+    padding-top:10px;
+    padding-bottom:10px;
 
-    padding-bottom:0px;
+    line-height: 24px !important;
+    
+
 }
 
 #courses-flipcard #annaual-text {
@@ -7652,3 +7656,4 @@ margin-left:5px;
 .fusion-footer {
     margin-top:40px !important;
 }
+
