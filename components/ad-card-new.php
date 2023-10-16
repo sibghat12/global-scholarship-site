@@ -153,7 +153,7 @@ echo $des;
                     <div class="row funded-line" style="">
                       
                      <p  style="font-size:12px;line-height: 18px;color:black;margin-bottom:0px !important;
-                     line-height: 22px !important;">
+                     line-height: 18px !important;">
                        
                        
 
@@ -161,14 +161,14 @@ echo $des;
                        <span title="We work closely with these partner universities to match you with the best possible courses"  style="font-size:14px; font-weight: 600; display: block;"> Partner University  
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
-                           <span id="disclaimerr" style="width:100% !important;">
+                           <span id="disclaimerr" style="padding-top:5px !important;width:100% !important;">
                           <?php   if($disclaimer === "1")  {  ?>
                          
                         <?php if($custom_disclaimer) { ?>
-                            <strong  style="font-weight:600 !important;"> * <?php echo $custom_disclaimer ?>  </strong>
+                            <strong  style="font-weight:600 !important;line-height: 14px !important;padding-top:10px;"> * <?php echo $custom_disclaimer ?>  </strong>
                         <?php   } else { ?>
 
-                         <strong  style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                         <strong  style="padding-top:5px !important;font-weight:600 !important; "> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
                        
                        <?php } } ?>
                       

@@ -74,6 +74,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     $excluded = exclude_institutions ($location);
 
+    
+
     $excluded_by_tier = exclude_institutions_by_tier($location);
 
     $excluded = array_merge($excluded, $excluded_by_tier);
@@ -92,6 +94,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         ),
     );
 
+    $loop = new WP_Query($ad_args);
+
+    
     if(isset($subject) && $subject){
         $ad_args['meta_query'][] = array('key' => 'ads_subject', 'value' => $subject, 'compare' => 'LIKE');
     }
@@ -105,6 +110,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
 
     $loop = new WP_Query($ad_args);
+     
+
+   
+
 
     $first = "Open " . ucwords($degrees) . " ". ucwords($subject) . " Courses ";
     $second = "in " . ucwords($country) . " ";
@@ -338,8 +347,8 @@ function adjustHeight() {
             var max_height = Math.max(height_col_md_4, height_col_md_8);
 
             // Add 15px extra height to the col-md-8 div
-            jQuery('.col-md-4').height(max_height-10);
-            jQuery('.col-md-8').height(max_height - 10);
+            jQuery('.col-md-4').height(max_height+10);
+            jQuery('.col-md-8').height(max_height + 10);
         } else {
             console.log('The element does not have text or is empty.');
             var max_height = Math.max(height_col_md_4, height_col_md_8);
@@ -423,28 +432,28 @@ document.querySelectorAll('.read-more').forEach((span) => {
       // If the height of the full div is more than 100px
       if (fullHeight > 140) {
         console.log("150");
-        colMd8.height('350');
-        colMd4.height('350');
+        colMd8.height('370');
+        colMd4.height('370');
       } 
 
         else if (fullHeight > 100) {
             console.log("100");
-        colMd8.height('300');
-        colMd4.height('290');
+        colMd8.height('320');
+        colMd4.height('320');
       } 
 
 
       // If the height of the full div is more than 70px
       else if (fullHeight > 70) {
         console.log("70");
+        colMd8.height('280');
+        colMd4.height('280');
+      } else {
         colMd8.height('250');
         colMd4.height('250');
-      } else {
-        colMd8.height('230');
-        colMd4.height('230');
       }
     jQuery('.funded-line').css('position' , 'absolute');
-    jQuery('.funded-line').css('bottom' , '0px');
+    jQuery('.funded-line').css('bottom' , '10px');
      
 
       // Add a border to the left side of the .col-md-4 element
