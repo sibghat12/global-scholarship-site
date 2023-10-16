@@ -1919,7 +1919,8 @@ function check_opening_soon($institute_id) {
 
 
 function add_custom_js() {
-    
+      include dirname(__FILE__) . "/countries_list.php"; 
+
 
     ?>
 
@@ -1965,32 +1966,278 @@ function add_custom_js() {
 
 
 
+// Include Regions
+
+const include_regions_related_posts = document.getElementById('acf-field_65246f98a2abe-All-Countries');
+const include_regions_related_posts_ul = include_regions_related_posts.closest('ul');
+include_regions_related_posts_ul.classList.add('include_region_related_class');
+    
+// Exclude Regions
+
+const exclude_regions_checkbox_related_posts = document.getElementById('acf-field_65246fc1a2abf-All-Countries');
+const regons_related_posts_ul = exclude_regions_checkbox_related_posts.closest('ul');
+regons_related_posts_ul.classList.add('exclude_related_posts_regions_class');
+
+// Excluded Countries
+
+const exclude_countries_related_posts = document.getElementById('acf-field_65246ff2a2ac0-Afghanistan');
+const exclude_countries_related_posts_ul = exclude_countries_related_posts.closest('ul');
+exclude_countries_related_posts_ul.classList.add('exclude_countries_related_class');
+
+
+$("#acf-field_65246fc1a2abf-All-Countries").change(function() {
+if($(this).is(":checked")) {
+      $(".exclude_related_posts_regions_class li input").not($(this)).prop("checked", false);
+    }else {
+   $(".exclude_related_posts_regions_class li input").not("#acf-field_65246fc1a2abf-All-Countries").change(function() {
+    if($(this).is(":checked")) {
+      $("#acf-field_65246fc1a2abf-All-Countries").prop("checked", false);
+     }
+    });
+}
+});
+
+    
+
+$(document).on('change', '.include_region_related_class li input', function () {
+    const checkedValues = $('.include_region_related_class li input:checked').map(function () {
+        return this.value;
+    }).get();
+
+    $('.exclude_related_posts_regions_class li input').prop('checked', false);
+
+    $('.exclude_related_posts_regions_class li input').each(function () {
+        if (!checkedValues.includes($(this).val())) {
+            $(this).prop('checked', true);
+        }
+    });
+    check_excluded_countries();
+});
+
+$(".exclude_related_posts_regions_class li input").change(function () {
+    const checkedValues = $('.exclude_related_posts_regions_class li input:checked').map(function () {
+        return this.value;
+    }).get();
+
+    $('.include_region_related_class li input').prop('checked', false);
+
+    $('.include_region_related_class li input').each(function () {
+        if (!checkedValues.includes($(this).val())) {
+            $(this).prop('checked', true);
+        }
+    });
+});
+
+
+
+
+$(".exclude_related_posts_regions_class li input").change(function() {
+
+  if ($(this).is(":checked")) {
+
+    console.log($(this).val());
+
+    if ($(this).val() === "All Countries") {
+      $(".exclude_countries_related_class li input").prop("checked", true);
+    } else {
+      $(".exclude_countries_related_class li input").prop("checked", false);
+      let exclude_related_posts_selected_array = $('.exclude_related_posts_regions_class li input[type=checkbox]:checked').map(function() {
+        return this.value;
+      }).get();
+
+      var new_array = [];
+
+      // loop through each region
+      for (var i = 0; i < exclude_related_posts_selected_array.length; i++) {
+
+        // if the region is "Africa", add all the African countries to the new array
+      if (exclude_related_posts_selected_array[i] == "Africa") {
+       new_array = new_array.concat(<?php echo json_encode($africa); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Asia") {
+        new_array = new_array.concat(<?php echo json_encode($asia); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Caribbean") {
+        new_array = new_array.concat(<?php echo json_encode($caribbean); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Commonwealth") {
+        new_array = new_array.concat(<?php echo json_encode($commonwealth_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Europe") {
+        new_array = new_array.concat(<?php echo json_encode($Europe); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "European Economic Area") {
+        new_array = new_array.concat(<?php echo json_encode($EuropeanEconomicArea); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "European Union") {
+        new_array = new_array.concat(<?php echo json_encode($EuropeanUnion); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Latin America") {
+        new_array = new_array.concat(<?php echo json_encode($latinAmerica); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Middle East") {
+        new_array = new_array.concat(<?php echo json_encode($middleEast_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "North America") {
+        new_array = new_array.concat(<?php echo json_encode($northAmerica_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Oceania") {
+        new_array = new_array.concat(<?php echo json_encode($oceania_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Pacific Island") {
+        new_array = new_array.concat(<?php echo json_encode($pacific); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Southeast Asia") {
+        new_array = new_array.concat(<?php echo json_encode($southeastAsia); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Western Hemisphere") {
+        new_array = new_array.concat(<?php echo json_encode($westernHemisphere); ?>);
+      } 
+      if (exclude_related_posts_selected_array[i] == "South Asia") {
+        new_array = new_array.concat(<?php echo json_encode($southAsia_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "East Asia") {
+        new_array = new_array.concat(<?php echo json_encode($eastAsia_list); ?>);
+      }
+
+      }
+
+      // remove duplicates from the new array
+      new_array = Array.from(new Set(new_array));
+      console.log(new_array);
+
+      $('.exclude_countries_related_class li input[type="checkbox"]').each(function() {
+        const checkboxValue = $(this).val();
+        if (new_array.includes(checkboxValue)) {
+          $(this).prop('checked', true);
+        }
+      });
+    }
+
+  } else {
+
+    const uncheckedRegion = $(this).val();
+    const countriesToUncheck = getRegionCountries(uncheckedRegion); // Ensure getRegionCountries function is defined
+    $('.exclude_countries_related_class li input[type="checkbox"]').each(function() {
+      const checkboxValue = $(this).val();
+      if (countriesToUncheck.includes(checkboxValue)) {
+        $(this).prop('checked', false);
+      }
+    });
+
+    if (uncheckedRegion === "All Countries") {
+      $(".exclude_countries_related_class li input").prop("checked", false);
+    }
+  }
+
+
+
+});
+
+
+
     
 });
 
 
+function check_excluded_countries() {
+
+    
+
+    let exclude_related_posts_selected_array = jQuery('.exclude_related_posts_regions_class li input[type=checkbox]:checked').map(function() {
+        return this.value;
+      }).get();
+      
+      jQuery(".exclude_countries_related_class li input").prop("checked", false);
+      console.log(exclude_related_posts_selected_array);
+
+      var new_array = [];
+
+      // loop through each region
+      for (var i = 0; i < exclude_related_posts_selected_array.length; i++) {
+
+        // if the region is "Africa", add all the African countries to the new array
+      if (exclude_related_posts_selected_array[i] == "Africa") {
+       new_array = new_array.concat(<?php echo json_encode($africa); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Asia") {
+        new_array = new_array.concat(<?php echo json_encode($asia); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Caribbean") {
+        new_array = new_array.concat(<?php echo json_encode($caribbean); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Commonwealth") {
+        new_array = new_array.concat(<?php echo json_encode($commonwealth_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Europe") {
+        new_array = new_array.concat(<?php echo json_encode($Europe); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "European Economic Area") {
+        new_array = new_array.concat(<?php echo json_encode($EuropeanEconomicArea); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "European Union") {
+        new_array = new_array.concat(<?php echo json_encode($EuropeanUnion); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Latin America") {
+        new_array = new_array.concat(<?php echo json_encode($latinAmerica); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Middle East") {
+        new_array = new_array.concat(<?php echo json_encode($middleEast_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "North America") {
+        new_array = new_array.concat(<?php echo json_encode($northAmerica_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Oceania") {
+        new_array = new_array.concat(<?php echo json_encode($oceania_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Pacific Island") {
+        new_array = new_array.concat(<?php echo json_encode($pacific); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Southeast Asia") {
+        new_array = new_array.concat(<?php echo json_encode($southeastAsia); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "Western Hemisphere") {
+        new_array = new_array.concat(<?php echo json_encode($westernHemisphere); ?>);
+      } 
+      if (exclude_related_posts_selected_array[i] == "South Asia") {
+        new_array = new_array.concat(<?php echo json_encode($southAsia_list); ?>);
+      }
+      if (exclude_related_posts_selected_array[i] == "East Asia") {
+        new_array = new_array.concat(<?php echo json_encode($eastAsia_list); ?>);
+      }
+
+      }
+
+      // remove duplicates from the new array
+      new_array = Array.from(new Set(new_array));
+      
+
+      jQuery('.exclude_countries_related_class li input[type="checkbox"]').each(function() {
+        const checkboxValue = jQuery(this).val();
+        if (new_array.includes(checkboxValue)) {
+          jQuery(this).prop('checked', true);
+        }
+      });
+
+
+    
+}
+
 </script>
+
 <?php 
   if (get_post_type() == 'scholarships') {
 
-   include dirname(__FILE__) . "/countries_list.php"; 
+   
 ?>
-    <script type="text/javascript">
+    
 
-
-
-
-
-
-
-      jQuery(document).ready(function($) {
-     
- 
+<script type="text/javascript">
+jQuery(document).ready(function($) {
 // get the checkbox element by its ID
+
 const checkbox = document.getElementById('acf-field_62ca6ed806bc6-All-Nationalities');
-
 const ul = checkbox.closest('ul');
-
 // add a custom class to the ul element
 ul.classList.add('my-custom-class');
     
@@ -2093,7 +2340,7 @@ ul_exclude_nationalities.classList.add('exclude_nationalities');
         // add a custom class to the ul element
         regons_ul.classList.add('include_regions_class');
 
-        $(".include_regions_class li input").change(function() {
+     $(".include_regions_class li input").change(function() {
       if($(this).is(":checked")) {
         $("#acf-field_62ca6ed806bc6-All-Nationalities").prop("checked", false);
         let regions_selected_array = $('.include_regions_class li input[type=checkbox]:checked').map(function() {
@@ -2158,7 +2405,7 @@ ul_exclude_nationalities.classList.add('exclude_nationalities');
 
 // remove duplicates from the new array
 new_array = Array.from(new Set(new_array));
- console.log(new_array);
+
     $('.my-custom-class li input[type="checkbox"]').each(function() {
       const checkboxValue = $(this).val();
      if (new_array.includes(checkboxValue)) {
@@ -2242,9 +2489,20 @@ $(".exclude_regions_class li input").change(function() {
 });
 
 
+
+
 });
 
 
+
+
+
+    </script>
+    <?php
+  }
+?>
+
+<script>
 
 function getRegionCountries(region) {
   switch (region) {
@@ -2286,9 +2544,10 @@ function getRegionCountries(region) {
 }
 
 
+
     </script>
-    <?php
-  }
+<?php
+
 
 }
 add_action('admin_head', 'add_custom_js');

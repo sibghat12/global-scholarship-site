@@ -2376,9 +2376,11 @@ padding-top:24px !important;
 .opencourse-title p {
 font-size:15px !important;
 }
+
 .funded-line-moble{ 
     display: none !important;
 }
+
 .domestic , .international {
     width:33% !important;
 }
@@ -7421,4 +7423,232 @@ padding:16px !important;
 #courses-flipcard {
     max-width:1140px;
     margin:auto;
+}
+
+#main #courses-flipcard #related-courses-link{
+text-decoration:none;
+color:inherit !important;
+} 
+
+
+#courses-flipcard .heading-section {
+   margin-top:10px;
+   
+}
+
+#courses-flipcard .course-logo img {
+    width:60px;
+    height: 60px;
+}
+
+#courses-flipcard .course-title {
+padding-right:10px;
+padding-left:3px;
+font-size:15px; 
+line-height:20px !important;
+font-weight: 700 !important;
+text-align: left;
+}
+
+#courses-flipcard .country-flag {
+padding-left:10px;
+padding-right:10px;
+}
+
+
+#courses-flipcard .institute-title {
+    padding-bottom:8px;
+    text-align:left;
+    width:100%;
+    font-weight:600;
+    padding-left:15px;
+    padding-right:15px;
+    font-size:16px !important;
+
+    padding-bottom:0px;
+}
+
+#courses-flipcard #annaual-text {
+font-weight:700;
+text-align:center !important;
+padding-left:15px;
+padding-right:15px;font-size:15px;
+line-height: 22px;
+}
+
+
+ #courses-flipcard .annual-section {
+min-height:90px;
+padding-top:0px;
+margin-top:0px;
+border-radius:8px;
+width:86% !important;
+margin:auto;
+background:#F2F8FF;
+padding-left:0px;
+padding-right:0px;
+
+}
+
+#courses-flipcard .tuition-fee-div {
+    border-right:2px solid #cdcdcd;
+    width:100% !important;
+}
+#courses-flipcard .tuition-fee-div-second {
+   
+    width:100% !important;
+}
+
+#courses-flipcard .tuition-fee-text {
+    text-align: center;
+    font-size:13px !important;
+    line-height: 23px !important;
+    padding-bottom:0px !important;
+}
+
+#courses-flipcard .tuition-fee-text span {
+line-height:16px;
+font-weight: 700 !important;
+font-size:13px !important;
+text-align:center;
+}
+
+#courses-flipcard .language-section {
+    margin-bottom:20px !important;
+    margin-top:20px;
+    float:right;
+}
+
+#courses-flipcard .language-section  p{
+    float:right;
+    padding-left:15px;
+    padding-right:15px;
+    font-size:15px !important;
+    line-height: 22px;
+ }
+
+ #courses-flipcard .language-section .language-icon {
+    width:32px;
+ }
+
+#courses-flipcard .language-section img {
+ width:24px;
+ height: 24px;
+ margin-right:4px;
+}
+
+#courses-flipcard .language-text {
+color:gray;
+width: calc(100% - 32px) !important; 
+line-height: 24px;
+}
+
+
+#courses-flipcard  .back #short {
+    text-align:left;
+    padding-left:15px;
+    padding-right:15px;
+    font-size:13px;
+    line-height: 22px;
+    margin-top:-15px;
+}
+
+#courses-flipcard .disclaimer-div {
+    margin-top:-5px !important;
+}
+
+#courses-flipcard .disclaimer-text {
+line-height: 14px !important;
+
+padding-left:15px !important;
+}
+
+#courses-flipcard .disclaimer-strong {
+   line-height:14px !important;
+   padding-left:0px;
+   font-size:12px;
+   padding-right:10px;
+   font-weight:700 !important;
+}
+
+#courses-flipcard .learn-more-div {
+    margin-bottom:20px !important;
+    float:left;
+}
+
+#courses-flipcard .learn-more-div p{
+float:right;
+padding-left:15px;
+padding-right:15px;
+font-size:15px;
+line-height: 22px;
+
+margin-top:-15px !important;
+
+}
+
+#courses-flipcard .learn-more-div a {
+font-weight:500;
+font-size:16px;
+
+text-decoration:none;
+color:black !important;
+}
+
+#courses-flipcard .learn-more-div i {
+font-size:16px !important;
+color:black;
+margin-left:5px;
+}
+
+
+#courses-flipcard .disclaimer-strong {
+    line-height: 26px;
+}
+
+#disclaimerr {
+    line-height: 14 px !important;
+    margin-top:5px;
+}
+
+
+
+.footer-part-inner {
+    margin-bottom:50px !important;
+} 
+
+.footer-part-social {
+    margin-top:30px !important;
+}
+
+.line::before {
+    top:3px !important;
+}
+
+@media only screen and (max-width: 700px){
+#main .footer-part-social a {
+    margin-bottom:0px !important;
+}
+.footer-part-social {
+    margin-top:0px !important;
+}
+
+.footer-part-2 {
+    padding-top:0px !important;
+}
+.footer-part-social {
+    margin-bottom:10px !important;
+}
+.page .fusion_builder_column_1_1.footer-part-inner {
+   background: #c6d4e0 !important;
+}
+
+}
+
+.footer-part {
+    margin-bottom:100px !important;
+}
+
+.fusion-footer {
+    margin-top:40px !important;
 }
