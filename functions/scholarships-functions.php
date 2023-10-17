@@ -3731,6 +3731,65 @@ function update_open_dates() {
 add_action('update_open_dates', 'update_open_dates');
 
 
+
+
+function update_open_dates_scholarships() {
+    $batch_size = 10; // Fetch 100 posts at a time
+    $paged = 1; // Start at the first page
+
+    do {
+        $args = array(
+            'post_type' => 'scholarships',
+            'no_found_rows' => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+            'cache_results' => false,
+            'fields' => 'ids',
+            'posts_per_page' => $batch_size,
+            'paged' => $paged, // This enables the batching
+            'post_status' => 'publish',
+        );
+
+        $query = new WP_Query($args);
+
+        if (!$query->have_posts()) {
+            break; // Exit the loop if there are no posts
+        }
+
+        foreach ($query->posts as $post_id) {
+            if (have_rows('scholarship_deadlines', $post_id)) {
+                $row_index = 1;
+                while (have_rows('scholarship_deadlines', $post_id)) {
+                    the_row();
+
+                    $deadline = get_sub_field('deadline');
+                    $open_date = get_sub_field('open_date');
+
+                    if (empty($open_date) && !empty($deadline)) {
+                        $deadline_date = DateTime::createFromFormat('F j, Y', $deadline);
+                        $deadline_date->sub(new DateInterval("P3M")); // Subtract 3 months
+                        $new_open_date = $deadline_date->format('F j, Y');
+
+                        update_row('scholarship_deadlines', $row_index, [
+                            'deadline' => $deadline,
+                            'open_date' => $new_open_date
+                        ], $post_id);
+                    }
+                    $row_index++;
+                }
+            }
+        }
+
+        wp_cache_flush(); // Clear the WordPress object cache
+        $paged++; // Move on to the next batch
+
+    } while (true); // Keep running until there are no posts left
+}
+
+
+add_action('init', 'update_open_dates_scholarships');
+
+
 function calculate_resulted_posts() {
     // Custom WP_Query for institution custom post type
     $args = array(

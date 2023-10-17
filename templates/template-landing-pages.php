@@ -6,18 +6,16 @@
  */
 
 // Do not allow directly accessing this file.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Direct script access denied.' );
+if (!defined('ABSPATH')) {
+    exit('Direct script access denied.');
 }
 ?>
 <?php get_header();  ?>
 
-
-
 <div class="container mt-4 custom-gutter">
 
     <div class="landing-breadcrumb">
-        <a href="" class="item" >Home</a> >
+        <a href="" class="item">Home</a> >
         <a href="" class="item">Guides</a>
     </div>
 
@@ -28,25 +26,27 @@ if ( ! defined( 'ABSPATH' ) ) {
         if (have_rows('topic')) :
 
             // Loop through each row in "topic" repeater
+            $topicCounter = 0;
             while (have_rows('topic')) : the_row();
 
-                // Fetch the topic_title
-                $main_title = get_sub_field('topic_title'); ?>
+                $topicCounter++;
+                $main_title = get_sub_field('topic_title');
+                $counter = 0; // Initialize a counter for the posts within each topic
+                ?>
 
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <div class="clearfix"></div>
                 <h2 class="landing-page-title">
-                    
                     <?php echo $main_title; ?>
                 </h2>
-                <hr>
 
                 <?php
-                // Check if there are any rows in the "posts" repeater of the current topic
+                $buttonCounter = 0;
                 if (have_rows('posts')) :
 
-                    // Loop through each row in "posts" repeater of the current topic
                     while (have_rows('posts')) : the_row();
+
+                        $buttonCounter++;
 
                         $post_object = get_sub_field('post_type');
                         $post_image = get_sub_field('image');
@@ -54,30 +54,64 @@ if ( ! defined( 'ABSPATH' ) ) {
                         if ($post_object) :
                             $post_title = $post_object->post_title;
                             $post_link = get_permalink($post_object->ID);
-                        endif; ?>
+                        endif;
 
-                        <div class="col-md-4">
-                            <a href="<?php echo $post_link; ?>" class="d-block position-relative card-link">
-                                <img src="<?php echo $post_image; ?>" alt="<?php echo $post_title; ?>" class="img-fluid">
-                                <span class="position-absolute bottom-0 start-0 p-2"><?php echo $post_title; ?></span>
-                            </a>
-                        </div>
+                        $counter++;
 
-                    <?php endwhile; // End of "posts" repeater loop
-                endif; // End of "posts" repeater check
+                        // Display only the first 4 posts, and hide the rest initially
+                        if ($counter <= 9) { ?>
 
-            endwhile; // End of "topic" repeater loop
-        endif; // End of "topic" repeater check
+                            <div class="col-md-4">
+                                <a href="<?php echo $post_link; ?>" class="d-block position-relative card-link">
+                                    <img src="<?php echo $post_image; ?>" alt="<?php echo $post_title; ?>" class="img-fluid">
+                                    <span class="position-absolute bottom-0 start-0 p-2"><?php echo $post_title; ?></span>
+                                </a>
+                            </div>
+
+                        <?php } else { ?>
+
+                            <div class="col-md-4 more-posts-<?php echo $topicCounter; ?> more-posts" style="display: none;">
+                                <a href="<?php echo $post_link; ?>" class="d-block position-relative card-link">
+                                    <img src="<?php echo $post_image; ?>" alt="<?php echo $post_title; ?>" class="img-fluid">
+                                    <span class="position-absolute bottom-0 start-0 p-2"><?php echo $post_title; ?></span>
+                                </a>
+                            </div>
+
+                        <?php }
+
+                    endwhile;
+
+                endif;
+
+                // Add a "More" button to show hidden posts
+                if ($counter > 9) { ?>
+
+                    <button class="btn btn-primary mt-3 more-button load-more-topics" data-topic="<?php echo $topicCounter; ?>">Load More</button>
+
+                <?php }
+
+            endwhile;
+
+        endif;
         ?>
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let moreButtons = document.querySelectorAll('.more-button');
+        moreButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                let topicNum = button.getAttribute('data-topic');
+                let morePosts = document.querySelectorAll('.more-posts-' + topicNum);
+                morePosts.forEach(function (post) {
+                    post.style.display = 'block';
+                });
+                button.style.display = 'none';
+            });
+        });
+    });
+</script>
 
-
-
-
-<?php do_action( 'avada_after_content' ); ?>
-<?php
-get_footer();
-
-/* Omit closing PHP tag to avoid "Headers already sent" issues. */
+<?php do_action('avada_after_content'); ?>
+<?php get_footer(); ?>
