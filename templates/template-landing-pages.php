@@ -58,7 +58,7 @@ if (!defined('ABSPATH')) {
 
                         $counter++;
 
-                        // Display only the first 4 posts, and hide the rest initially
+                        // Display only the first 9 posts, and hide the rest initially
                         if ($counter <= 9) { ?>
 
                             <div class="col-md-4">
@@ -98,20 +98,34 @@ if (!defined('ABSPATH')) {
 </div>
 
 <script>
+
+
     document.addEventListener('DOMContentLoaded', function () {
         let moreButtons = document.querySelectorAll('.more-button');
         moreButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 let topicNum = button.getAttribute('data-topic');
-                let morePosts = document.querySelectorAll('.more-posts-' + topicNum);
+                let morePosts = document.querySelectorAll('.more-posts-' + topicNum + ':not([style*="display: block"])');
+                let postCounter = 0;
                 morePosts.forEach(function (post) {
-                    post.style.display = 'block';
+                    if (postCounter < 9) {
+                        post.style.display = 'block';
+                        postCounter++;
+                        console.log(postCounter);
+                    }
                 });
-                button.style.display = 'none';
+
+                // Check if there are still hidden posts
+                let hiddenPosts = document.querySelectorAll('.more-posts-' + topicNum + ':not([style*="display: block"])');
+                if (hiddenPosts.length === 0) {
+                    button.style.display = 'none';
+                }
             });
         });
     });
 </script>
+
+
 
 <?php do_action('avada_after_content'); ?>
 <?php get_footer(); ?>
