@@ -1327,7 +1327,6 @@ li.active.have-children span::after {
 
 .single #main {
     margin:auto !important;
-    padding-top:25px;
 }
 
 
@@ -1685,9 +1684,9 @@ display: flex !important;
 }
 
 
-.single-institution .post-content {
+/* .single-institution .post-content {
     margin-top:40px !important;
-}
+} */
 .fusion-page-title-captions h1 {
     padding-bottom:10px !important;
 }
