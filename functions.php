@@ -3487,7 +3487,7 @@ function cta_post_shortcode($atts) {
                <div class="row">
 
                <div class="col-md-9 col-sm-12">
-                <h2>' . esc_html($args['title']) . '</h2>
+                <p class="cta_description">' . esc_html($args['title']) . '</p>
                 <p id="cta-text">' . esc_html($args['desc']) . '</p>
                </div>
 
