@@ -98,8 +98,6 @@ if (!defined('ABSPATH')) {
 </div>
 
 <script>
-
-
     document.addEventListener('DOMContentLoaded', function () {
         let moreButtons = document.querySelectorAll('.more-button');
         moreButtons.forEach(function (button) {
@@ -114,6 +112,11 @@ if (!defined('ABSPATH')) {
                         console.log(postCounter);
                     }
                 });
+
+                // Scroll 100 pixels down from the top of the new posts
+                let topOfNewPosts = morePosts[0].offsetTop;
+                let scrollPosition = topOfNewPosts - 100; // Adjusted value to scroll 100 pixels down
+                window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
 
                 // Check if there are still hidden posts
                 let hiddenPosts = document.querySelectorAll('.more-posts-' + topicNum + ':not([style*="display: block"])');

@@ -267,9 +267,9 @@ body.single.single-institution #main #content {
     background: white !important;
     color: black;
 }
-.fusion-page-title-bar{
-    height: 250px !important;
-}
+
+
+
 div.fusion-logo{
     width: 15% !important;
     margin-top: 11px !important;
@@ -926,10 +926,7 @@ text-align:center !important;
         padding-right:3px !important;
 }
 
-.single .fusion-page-title-bar {
-    height: 130px !important;
-        margin-top:25px;
-}
+
 
 
 
@@ -2864,20 +2861,28 @@ height: 30px !important;
   }
 }
 
+
+
+
+
 @media screen and (max-width: 767px) {
   body:not(.page-template-template-filters)  #main p:not(.page-template-template-filters) {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 32px;
     font-weight: 300;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
   }
 
   body:not(.page-template-template-filters)  #main li:not(.page-template-template-filters) {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 30px;
     font-weight: 300;
+    margin-bottom: 10px;
   }
 }
+
+
+
 
 .single-post strong {
     font-weight: bold !important;
@@ -4912,9 +4917,7 @@ input[type="submit"] {
         padding-right:3px !important;
 }
 
-.single .fusion-page-title-bar {
-    height: 130px !important;
-}
+
 
 /*Transfer for new development*/
 
@@ -6620,6 +6623,8 @@ nav .fusion-title-heading {
 }
 
 
+
+
 #main .post-cta-section #cta-apply-now {
     font-size: 18px;
     font-weight: 500;
@@ -6630,11 +6635,12 @@ nav .fusion-title-heading {
     border-radius: 25px;
     text-align: center;
     text-decoration: none;
-    float: left;
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), 
-                var(--tw-ring-shadow, 0 0 #0000), 
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                var(--tw-ring-shadow, 0 0 #0000),
                 var(--tw-shadow);
 }
+
+
 
 
 #main .post-cta-section #cta-apply-now:hover {
@@ -6668,16 +6674,17 @@ nav .fusion-title-heading {
         margin: 0px 0px 30px 0px;
     }
 
-    #main .post-cta-section #cta-apply-now {
-        margin-bottom: 20px;
+   #main .post-cta-section #cta-apply-now {
+        margin-bottom: 5px;
     }
 }
 
 
 @media (max-width: 767px) { 
     .post-cta-section .cta-container {
-        padding: 40px 20px 40px 25px !important;
+        padding: 10px !important;
         border-radius: 10px;
+        text-align: center;
     }
 }
 
@@ -7676,7 +7683,7 @@ margin-left:5px;
     padding:10px;
     color:white;
     width:150px;
-    background-color:#77a6c9;
+    background-color:#3b8dbd;
     font-size:16px;
     border:none;
     margin-right:20px !important;
