@@ -57,7 +57,7 @@
 
                     $application_all_year =  $admission_deadline["accepts_application_all_year_round"];
 
-                    $degree = $admission_deadline['degree'];
+                    $degree = $admission_deadline['degree'];                    
                     if (!$degree){
                         $degree = "Bachelor's and Master's";
                     
@@ -80,6 +80,12 @@
                         $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline</a>: Accepts Application All Year" ;
                     } else if ($application_all_year == "No"){
                         $application_text .= "<a href='" . $admission_deadline['deadline_link'] . "'>" . $degree . " Deadline$admission_label</a>: " . $admission_deadline['deadline'] . " ". $varied_text;
+                    }
+
+                    // Get only deadlines info for the scholarship specific degree, not all institutes deadlines data.
+
+                    if(!in_array($degree, $degrees)) {
+                        continue;
                     }
                     
                     ?>
