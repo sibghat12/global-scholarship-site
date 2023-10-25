@@ -1,7 +1,7 @@
 <section id="scholarship-outro" class="gs-scholarship-outro">
     <h2><?php echo $scholarship_title; ?> Page</h2>
 
-    <p>Want to learn more about <?php echo $institution_name; ?>, <?php echo $scholarship_title; ?>, requirements, application process, and other related information? Check the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> page</a>!</p>
+    <p>Want to learn more about <?php echo $institution_name; ?>, <?php echo $scholarship_title; ?>, scholarship requirements, deadlines, application process, and other related information?  Check the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> page</a>!</p>
 
     
     <h2>Popular Scholarships in  <?php echo $country_name; ?></h2> 
