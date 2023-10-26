@@ -6,7 +6,7 @@
 
     <div class="gs-scholarship-application-procedure-note">
         <p>
-        <strong>Remember to apply for admission to <?php echo $institution_name ?> first before applying for <?php echo $scholarship_title; ?>.</strong> You can visit the official website found in <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> Admissions Section</a> to see the admissions application process.
+        <strong>Remember to apply for admission to <?php echo $institution_name ?> first before applying for <?php echo $scholarship_title; ?>.</strong> You can visit the official website found in <a href="<?php echo get_permalink($institution->ID); ?>#admission"><?php echo $institution_name; ?> Admissions Section</a> to see the admissions application process.
         </p>
     </div>
     <div class="gs-scholarship-application-procedure-separate-application">
