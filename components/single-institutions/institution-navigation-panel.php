@@ -24,7 +24,7 @@
                 Overview
             </a>
         <?php if (isset($admission_pages) && !empty($admission_pages)) : ?>
-            <a class="institution-admission-item institution-panel-item" href="#admission">
+            <a class="institution-admission-item institution-panel-item" href="#admissions">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="60px" height="45px" viewBox="0 0 940.000000 788.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,788.000000) scale(0.100000,-0.100000)"
                     fill="#000000" stroke="none">
