@@ -141,7 +141,7 @@
                     
                     ?>
 
-                    <p>The great news is that there is no specific deadline to apply for <?php echo $scholarship_title; ?>! While there is no fixed deadline to apply for <insert scholarships name>, you do need to apply for Ph.D. admissions at <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?></a> . It’s important to note that Ph.D. admissions timeline can be different by department or project, so, you should visit your interested department's website to find the deadlines specific to you.</p>
+                    <p>The great news is that there is no specific deadline to apply for <?php echo $scholarship_title; ?>! While there is no fixed deadline to apply for <?php echo $scholarship_title; ?>, you do need to apply for Ph.D. admissions at <a href="<?php echo get_permalink($institution->ID) . '#admissions'; ?>"><?php echo $institution_name; ?></a>. It’s important to note that Ph.D. admissions timeline can be different by department or project, so, you should visit your interested department's website to find the deadlines specific to you.</p>
                     
                     <?php  // PhD and Other Degrees ?>
                 <?php else: ?>
