@@ -16,9 +16,9 @@
 
     $separate_application = get_field('separate_application');
 
-    $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-    $country_array_original = $scholarship_details[13]['choices'];
+    $countries_field = get_field_object('field_62ca6ed806bc6');
 
+    $country_array_original = $countries_field['choices'];
 
 
     $countries = get_field('eligible_nationality');
