@@ -43,7 +43,7 @@
 
         // Available Degrees Degrees
         $PhDString = 'PhD';
-        $BachelorString = 'Bachlor\'s';
+        $BachelorString = 'Bachelor\'s';
         $MasterString = 'Master\'s';
 
         
