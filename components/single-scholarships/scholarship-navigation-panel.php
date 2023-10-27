@@ -33,6 +33,8 @@ Eligibility Criteria</a>
 </g>
 </svg>
 Application Procedure</a>
+    <?php if((isset($scholarship_deadlines) && !empty($scholarship_deadlines)) || (isset($institution_admissions_deadlines) && !empty($institution_admissions_deadlines) ) ) : ?>
+
             <a class="scholarship-deadline-item"  href="#scholarship-deadline">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.0" preserveAspectRatio="xMidYMid meet" viewBox="228 142.16 529.85 516.11">
 
@@ -49,5 +51,6 @@ Application Procedure</a>
 </g>
 </svg>
 Deadline</a>
+        <?php endif; ?>
     </div>
 </nav>
