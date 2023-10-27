@@ -94,6 +94,11 @@
     $degrees_formatted_array[] = strtolower(str_replace("'", "", $value));
     }
 
+    // Scholarship Overview Wyswig
+    $scholarship_overview_text = get_field('scholarship_overview');
+
+    // Scholarship Disclaimer Wyswig
+    $scholarship_disclaimer_text = get_field('scholarship_disclaimer');
 
 ?>
     
@@ -118,10 +123,20 @@
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-navigation-panel.php'; ?>
 
             <?php if (function_exists ('adinserter')) echo adinserter (8); ?>
-            
+
+            <?php // GS Scholarship Overview Text (Wysiwig) ?>
+            <?php if(isset($scholarship_overview_text) && !empty($scholarship_overview_text)) : ?>
+                <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-overview-text.php'; ?>
+            <?php endif ?>
+
             <?php // GS Scholarship Coverage ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-coverage.php'; ?>
-
+            
+            <?php // GS Scholarship Disclaimer (Wysiwig) ?>
+           <?php if(isset($scholarship_disclaimer_text) && !empty($scholarship_disclaimer_text)) : ?>
+                <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-disclaimer.php'; ?>
+            <?php endif ?>
+            
             <?php // GS Scholarship Eligibility Criteria ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
 
