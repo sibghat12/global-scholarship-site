@@ -46,6 +46,8 @@
 
     //Get Associated Institute Object
     $institution = get_field("scholarship_institution");
+
+    $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
     
     $scholarships_query = get_scholarships($institution->ID);
     $number_of_scholarships  = $scholarships_query->post_count;
@@ -129,9 +131,12 @@
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
 
 
+            <?php // Check if there are any deadlines for scholarship either in the scholarship or in the institution admission deadlines ?>
 
-            <?php // GS Scholarship Deadline ?>
-            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
+            <?php if((isset($scholarship_deadlines) && !empty($scholarship_deadlines)) || (isset($institution_admissions_deadlines) && !empty($institution_admissions_deadlines) ) ) : ?>
+                <?php // GS Scholarship Deadline ?>
+                <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
+            <?php endif; ?>
 
             <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
 

@@ -55,9 +55,6 @@
 
             <ul>
             <?php
-                $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
-
-
                 $hasPhD = false; // Variable to check if $PhDString is present in $degrees
 
                 if (!empty($institution_admissions_deadlines)) :
@@ -153,8 +150,6 @@
 
                     <ul>
                     <?php
-                        $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
-
 
                         $hasPhD = false; // Variable to check if $PhDString is present in $degrees
 
