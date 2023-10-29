@@ -3696,12 +3696,16 @@ padding-left:0px !important;
     /* Navigation Panel GS Sections */
 
     .single-scholarships .post-content nav.gs-scholarship-navigation-panel .gs-scholarship-items-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
         padding: 15px 28px;
         background: #F9F9F9;
         border-radius: 50px;
         border: 1px solid #ccc;
+        /* width: 90%; */
+        margin: 0 auto;
+        gap: 10px;
     }
     
 
@@ -3724,10 +3728,11 @@ padding-left:0px !important;
         padding: 6px 20px;
         font-size: 18px;
         font-weight: 700;
-        min-width: 25%;
+        flex: 1 1 0px;
         height: 70px;
-        /* text-wrap: nowrap; */
         background: transparent !important;
+        width: 25%;
+        max-width: 260px;
         margin-right: 10px;
         border-radius: 50px;
         color: #000 !important;
@@ -7724,4 +7729,10 @@ margin-left:5px;
     font-size:16px;
     border:none;
     margin-right:20px !important;
+}
+
+/* Bold Paragraph Text in GS scholarships Wyswig */
+
+#main .post-content strong {
+    font-weight: 700!important;
 }
