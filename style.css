@@ -291,12 +291,12 @@ a.fusion-logo-link{
 .fusion-header.fusion-header-backface{
     height: 82px !important;
 }
-#main a{
+/* #main a{
     color: #008fc5 !important;
 }
 #main a:hover{
     color: #9e9e9e !important;
-}
+} */
  .fusion-footer-widget-area ul li a:hover {
     color: #008fc5;
 }
@@ -6267,6 +6267,38 @@ input[type="submit"] {
         margin-right: 15px;
         margin-left: 15px;
     }
+
+    /* Email Subscription Page */
+
+    #main .post-content .gs-email-subscription-hero-container {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 20px !important;
+    }
+    #main .post-content .fusion-title.gs-email-subscription-heading h1 {
+        font-size: 30px !important;
+    }
+    #main .post-content .fusion-title.gs-email-subscription-heading h1 span{
+        font-weight: bolder !important;
+    }
+
+    #main .post-content .fusion-text.gs-email-subscription-text{
+        margin-top: 20px !important;
+    }
+
+    #main .post-content .fusion-text.gs-email-subscription-text p {
+        padding:0 !important;
+    }
+
+    /* #main .post-content .gs-wts-column .fusion-column-wrapper {
+        margin-bottom: 100px !important;
+    } */
+
+    #main .post-content .wts-row .fusion-builder-row {
+        margin-top: -10px !important;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -7735,4 +7767,50 @@ margin-left:5px;
 
 #main .post-content strong {
     font-weight: 700!important;
+}
+
+/* GS Email Subscription Page */
+
+#main .post-content .fusion-text.gs-email-subscription-text p{
+    padding-left: 0!important;
+}
+#main .post-content .equal-height .fusion-builder-row {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+  
+#main .post-content .equal-height .fusion-builder-row .fusion-column-wrapper {
+    height: 100%;
+}
+
+.gs-wts-column .fusion-image-element {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.gs-wts-image-item {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.gs-wts-image-item.fusion-imageframe img {
+    min-height: 230px;
+    object-fit: contain;
+}
+
+/* What They Say about us Section */
+.wts-row .fusion-builder-row {
+    margin-top: 78px !important
+}
+.gs-wts-column .fusion-content-layout-column {
+    z-index: 1001 !important;
+    overflow: visible !important;
+}
+
+.gs-wts-image-item {
+    overflow: visible !important;
+    z-index: 1000 !important;
+    margin-bottom: 6px !important;
 }
