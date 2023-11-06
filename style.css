@@ -7828,10 +7828,14 @@ margin-left:5px;
     margin: 10px 0 !important;
     padding: 0 16px !important;
     font-family: 'Open Sans' !important;
+    font-size: 25px !important;
+    font-weight: 700;
 }
 
 .gs-wts-item-footer p {
     padding: 0 16px !important;
     text-transform: uppercase !important;
     margin: 0 !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
 }
