@@ -5645,12 +5645,16 @@ function update_posts_inputted() {
 }
 
 
+// Shortcode for get Scholarship Counts
+
 function scholarship_count_shortcode() {
     $scholarship_count = wp_count_posts('scholarships')->publish;
     return $scholarship_count;
 }
 add_shortcode('scholarship_count', 'scholarship_count_shortcode');
 
+
+// Shortcode for get Institutions Counts
 
 function institution_count_shortcode() {
     $institution_count = wp_count_posts('institution')->publish;
@@ -5659,12 +5663,14 @@ function institution_count_shortcode() {
 add_shortcode('institution_count', 'institution_count_shortcode');
 
 
+// Shortcode Get Current Year
 function current_year_shortcode() {
     $current_year = date('Y');
     return $current_year;
 }
 add_shortcode('current_year', 'current_year_shortcode');
 
+// Shortcode get Current Year
 function current_month_shortcode() {
     $current_month = date('F');
     return $current_month;
