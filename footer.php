@@ -70,5 +70,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<?php get_template_part( 'templates/to-top' ); ?>
+
+<script>
+	 $('#runtool').on('click', function() {
+        event.preventDefault(); 
+
+        var customPostID = $(this).parent().siblings('.acf-fields').find('#acf-field_653f97c2da5db').val();
+        console.log("dd:" + customPostID);
+        alert(customPostID);
+        
+    var link = "<?php echo  admin_url("admin-ajax.php"); ?>";
+
+       $.ajax({
+        type: 'POST',
+        url: link, // This should point to admin-ajax.php
+        data: {
+            action: 'your_php_function', // Replace with your actual PHP function name
+            customPostID: customPostID
+        },
+        success: function(response) {
+            // Handle the response from the server
+            console.log('AJAX request successful.');
+        },
+        error: function(error) {
+            // Handle any errors that occur during the AJAX request
+            console.error('Error in AJAX request:', error);
+        }
+    });
+        
+
+    });
+</script>
+
+
 	</body>
 </html>

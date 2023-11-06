@@ -611,7 +611,7 @@ function get_institution_ids ($country){
 
 function code_to_country($code){
 
-    $code = strtoupper($code);
+$code = strtoupper($code);
 
 $countryList = array(
 'AF' => 'Afghanistan',
@@ -3693,6 +3693,29 @@ function get_location_from_api(){
     return $location;
 }
 
+function get_country_code_from_api() {
+    
+    $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
+    // Get Current Device Data
+    $ip_api = file_get_contents('https://pro.ip-api.com/json/'.$_SERVER['REMOTE_ADDR'] . '?key='.$pro_ip_api_key);
+
+    // Data Decoded
+    $data = json_decode($ip_api);
+     
+    // Turn Object into Associative Array
+    $data_array = get_object_vars($data);
+
+    // Get Country Code to use to get other related content (Courses)
+    if($data_array) {
+        $country_code = $data_array['countryCode'];
+    } else {
+       $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
+    }
+
+    $countryCode = $country_code;
+
+    return $countryCode;
+}
 
 add_shortcode('courses_grid_shortcode_new', 'courses_grid_shortcode_new');
 
@@ -3710,6 +3733,9 @@ function courses_grid_shortcode_new() {
     'post_type'      => 'ads',
     'post_status'    => 'publish',
     'posts_per_page' =>  3,
+    'meta_key' => 'priority',
+    'orderby' => "meta_value_num",
+    'order' => "DESC",    
     'meta_query'     => array(
         'relation' => 'AND',
         array(
@@ -3743,11 +3769,12 @@ function courses_grid_shortcode_new() {
                 $domestic_tuition_fees = get_post_meta($ad_id, 'domestic_tuition_fees' , true);
                 $international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
                 $country = get_post_meta($institute->ID, 'adsIntCountry', true);
+                
                 $countryCodes = unserialize(COUNTRY_CODES);
                 $countryCode = getCountryCode($country, $countryCodes);
 
+                //$countryCode = get_country_code_from_api();
                 
-
                 $currency = get_currency($country);
                 $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
                 $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
@@ -4080,8 +4107,6 @@ function set_tags_to_articles_by_topic_posts() {
 }
 
 add_action('set_tags_to_articles_by_topic_posts', 'set_tags_to_articles_by_topic_posts');
-
-
 
 
 
