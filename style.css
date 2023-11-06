@@ -7814,3 +7814,24 @@ margin-left:5px;
     z-index: 1000 !important;
     margin-bottom: 6px !important;
 }
+
+.gs-wts-item-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-bottom: 30px;
+}
+
+.gs-wts-item-footer h3 {
+    margin: 10px 0 !important;
+    padding: 0 16px !important;
+    font-family: 'Open Sans' !important;
+}
+
+.gs-wts-item-footer p {
+    padding: 0 16px !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+}
