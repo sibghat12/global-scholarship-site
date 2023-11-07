@@ -291,12 +291,12 @@ a.fusion-logo-link{
 .fusion-header.fusion-header-backface{
     height: 82px !important;
 }
-/* #main a{
+#main a{
     color: #008fc5 !important;
 }
 #main a:hover{
     color: #9e9e9e !important;
-} */
+}
  .fusion-footer-widget-area ul li a:hover {
     color: #008fc5;
 }
