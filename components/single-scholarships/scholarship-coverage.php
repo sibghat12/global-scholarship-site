@@ -13,4 +13,6 @@
             <?php endforeach; ?>
             </ul>
         <?php endif; ?>
+        <!-- Sibi Shortcode -->
+        <aside><?php echo do_shortcode('[cta_post_shortcode title="Apply for 2024 Intake!" desc="Applications for 2024 Intake are open. Search through the degrees around the world!" link_url="/opencourses/" id="scholarship_opencourses_cta"]'); ?></aside>
 </section>
