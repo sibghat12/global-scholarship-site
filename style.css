@@ -6141,18 +6141,18 @@ input[type="submit"] {
         line-height: 1.2rem !important;
     }
 
-    .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses {
+    #main .gs-institution-explore-courses {
         flex-direction: column-reverse;
     }
     
-    .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content {
+    #main .gs-institution-explore-courses .gs-institution-explore-courses-content {
         max-width: 100%;
         width: 100%;
     }
     
 
 
-    .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
+    #main .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
         max-width: 100%;
         width: 100%;
         margin-bottom: 16px;
