@@ -60,7 +60,7 @@
         <?php endif; ?>
     </div>
 
-    <aside class="gs-scholarships-ad">
+    <!-- <aside class="gs-scholarships-ad">
         <div class="gs-scholarship-ad-image">
         <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Looking-For-Scholarships-image.png'; ?>" alt="Scholarship Image" srcset="">
         </div>
@@ -74,6 +74,10 @@
                 <a href="<?php echo site_url(); ?>/scholarship-search/">&rarr;</a>
             </div>
         </div>
-    </aside>
+    </aside> -->
+
+    <!-- Replace Still looking for Scholarships with Explore Courses from institutions -->
+    <?php require get_stylesheet_directory() . '/components/single-institutions/explore-courses.php'; ?>
+
 
 </section>

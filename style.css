@@ -4261,7 +4261,7 @@ input[type="submit"] {
     margin: 30px 0;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses{
+#main .gs-institution-explore-courses{
     display: flex;
     background-color: #EAF4FB;
     padding: 28px;
@@ -4272,32 +4272,32 @@ input[type="submit"] {
     margin: 0 auto;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content {
+#main .gs-institution-explore-courses .gs-institution-explore-courses-content {
     max-width: 100%;
     width: 75%;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content .gs-institution-explore-courses-text {
+#main .gs-institution-explore-courses .gs-institution-explore-courses-content .gs-institution-explore-courses-text {
     padding: 0;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content p.gs-institution-explore-courses-title {
+#main .gs-institution-explore-courses .gs-institution-explore-courses-content p.gs-institution-explore-courses-title {
     padding: 0;
     font-size: 1.8rem;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
+#main .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
     max-width: 100%;
     width: 25%;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-title{
+#main .gs-institution-explore-courses .gs-institution-explore-courses-title{
     font-family: 'Roboto', sans-serif;
 }
 
-.single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-button{
+#main .gs-institution-explore-courses .gs-institution-explore-courses-button{
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 1rem;
@@ -6141,18 +6141,18 @@ input[type="submit"] {
         line-height: 1.2rem !important;
     }
 
-    .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses {
+    #main .gs-institution-explore-courses {
         flex-direction: column-reverse;
     }
     
-    .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-content {
+    #main .gs-institution-explore-courses .gs-institution-explore-courses-content {
         max-width: 100%;
         width: 100%;
     }
     
 
 
-    .single-institution #main .gs-institution-intro-section .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
+    #main .gs-institution-explore-courses .gs-institution-explore-courses-thumbnail-container {
         max-width: 100%;
         width: 100%;
         margin-bottom: 16px;
