@@ -49,12 +49,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
     }
 
-
     // Location
     $location = $country_code;
-
-        
-
+    
     //List of institutions in that country
     $institute_ids_country = get_institution_ids($country);
 
@@ -63,6 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
 
     $location = code_to_country($location);
+
 
     if ($location == FALSE){
         $location_string = "around the World";
@@ -94,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         ),
     );
 
-    $loop = new WP_Query($ad_args);
+ 
 
     
     if(isset($subject) && $subject){

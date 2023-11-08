@@ -3674,26 +3674,23 @@ function get_location_from_api(){
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
     $ip_api = file_get_contents('https://pro.ip-api.com/json/'.$_SERVER['REMOTE_ADDR'] . '?key='.$pro_ip_api_key);
-
     // Data Decoded
     $data = json_decode($ip_api);
-     
     // Turn Object into Associative Array
     $data_array = get_object_vars($data);
-
     // Get Country Code to use to get other related content (Courses)
     if($data_array) {
-        $country_code = $data_array['country'];
+        $country_code = $data_array['countryCode'];
     } else {
        $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
     }
-
     $location = $country_code;
-
     return $location;
 }
 
-function get_country_code_from_api() {
+
+
+function get_country_from_api(){
     
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
@@ -3707,55 +3704,93 @@ function get_country_code_from_api() {
 
     // Get Country Code to use to get other related content (Courses)
     if($data_array) {
-        $country_code = $data_array['countryCode'];
+        $country = $data_array['country'];
     } else {
-       $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
+       $country = $_SERVER['GEOIP_COUNTRY_CODE'];
     }
 
-    $countryCode = $country_code;
-
-    return $countryCode;
+    return $country;
 }
+
+
+
+
 
 add_shortcode('courses_grid_shortcode_new', 'courses_grid_shortcode_new');
 
-function courses_grid_shortcode_new() {
-    
-    ob_start(); 
+function courses_grid_shortcode_new($atts) {
+   ob_start();
+
+    $atts = shortcode_atts(array(
+        'title' => 'Feature Courses',
+    ), $atts);
+
+    $title = $atts['title'];
+
+    if (empty($title)) {
+        $title = 'Feature Courses';
+    }
 
     $location =  get_location_from_api();
-    $active_institutions = get_active_institutions_related_posts();
-    $excluded = exclude_institutions_related_courses($location);
+    $location = code_to_country($location);
+    $geo_country =  get_country_from_api();
 
+
+     
+    $active_institutions = get_active_institutions_related_posts();
+    //$excluded_by_tier = exclude_institutions_by_tier($location);
+    $excluded = exclude_institutions_related_courses($location);
+    //$excluded = array_merge($excluded, $excluded_by_tier);
     
+    $institute_ids_country = get_institution_ids($geo_country);
+
+    if ($geo_country == "europe"){
+        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
+    }
 
     $args = array(
-    'post_type'      => 'ads',
-    'post_status'    => 'publish',
-    'posts_per_page' =>  3,
-    'meta_key' => 'priority',
-    'orderby' => "meta_value_num",
-    'order' => "DESC",    
-    'meta_query'     => array(
-        'relation' => 'AND',
-        array(
-            'key'     => 'adsInstitution',
-            'value'   => $active_institutions,
-            'compare' => 'IN'
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 3,
+        'meta_key' => 'priority',
+        'orderby' => "meta_value_num",
+        'order' => "DESC",
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
         ),
-        array(
-            'key'     => 'adsInstitution',
-            'value'   => $excluded,
-            'compare' => 'NOT IN'
-        )
-    )
-);
-    
+    );
+
+
+     if(isset($geo_country) && $geo_country){
+        $args['meta_query'][] = array('key' => 'adsInstitution', 'value' => $institute_ids_country, 'compare' => "IN");
+     }
+
     $new_loop = new WP_Query($args); ?>
+
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
        <div class="clearfix"> </div>
        <div id="courses-flipcard" >
        
+       <div class="row title-div mobile-row">
+        <div class="col-md-12 feature-title">
+            <h2>  <?php echo $title; ?> </h2> 
+        </div>
+       </div>
+
+      <div class="row title-div desktop-row">
+        
+        <div class="col-md-6 feature-title">
+            <h2>  <?php echo $title; ?> </h2> 
+        </div>
+
+        <div class="col-md-6 browse-courses-btn">
+          <a id="browse-courses-link" href="<?php  echo site_url() . "/opencourses"; ?>"> <button class="fusion-button fusion-button-default fusion-button-default-size"> Browse All Courses </button> </a> 
+        </div>
+
+      </div>
+
         <?php 
         if ($new_loop->have_posts()) : 
             while ($new_loop->have_posts()) : $new_loop->the_post();
@@ -3768,13 +3803,11 @@ function courses_grid_shortcode_new() {
                 $international_tuition_fees_INT = get_post_meta($institute->ID, 'international_tuition_fees' , true);
                 $domestic_tuition_fees = get_post_meta($ad_id, 'domestic_tuition_fees' , true);
                 $international_tuition_fees = get_post_meta($ad_id, 'international_tuition_fees' , true);
-                $country = get_post_meta($institute->ID, 'adsIntCountry', true);
                 
+                $country = get_post_meta($institute->ID, 'adsIntCountry', true);
                 $countryCodes = unserialize(COUNTRY_CODES);
                 $countryCode = getCountryCode($country, $countryCodes);
-
-                //$countryCode = get_country_code_from_api();
-                
+                 
                 $currency = get_currency($country);
                 $language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
                 $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
@@ -3808,6 +3841,8 @@ function courses_grid_shortcode_new() {
              $logo_url = get_the_post_thumbnail_url($institute->ID);
              $flag_url = get_post_meta(get_the_ID(), 'flag_key', true); ?>
     
+
+
     <a id="related-courses-link" href="<?php echo $link; ?>">
     <div class='col-md-4 card-container'>
         <div class='front'>
@@ -3925,6 +3960,13 @@ function courses_grid_shortcode_new() {
         endwhile;
         endif;
         ?>
+       
+        <div class="row mobile-row">
+         <div class="col-md-12 browse-courses-btn">
+           <center><a id="browse-courses-link" href="<?php  echo site_url() . "/opencourses"; ?>"> <button class="fusion-button fusion-button-default fusion-button-default-size"> Browse All Courses </button> </a> </center>
+        </div>
+       </div>
+       
         </div>
         <?php
     return ob_get_clean(); // Return buffered output
