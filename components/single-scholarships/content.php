@@ -16,9 +16,9 @@
 
     $separate_application = get_field('separate_application');
 
-    $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-    $country_array_original = $scholarship_details[13]['choices'];
+    $countries_field = get_field_object('field_62ca6ed806bc6');
 
+    $country_array_original = $countries_field['choices'];
 
 
     $countries = get_field('eligible_nationality');
@@ -46,6 +46,8 @@
 
     //Get Associated Institute Object
     $institution = get_field("scholarship_institution");
+
+    $institution_admissions_deadlines = get_field('admission_deadlines', $institution->ID);
     
     $scholarships_query = get_scholarships($institution->ID);
     $number_of_scholarships  = $scholarships_query->post_count;
@@ -92,6 +94,11 @@
     $degrees_formatted_array[] = strtolower(str_replace("'", "", $value));
     }
 
+    // Scholarship Overview Wyswig
+    $scholarship_overview_text = get_field('scholarship_overview');
+
+    // Scholarship Disclaimer Wyswig
+    $scholarship_disclaimer_text = get_field('scholarship_disclaimer');
 
 ?>
     
@@ -116,10 +123,20 @@
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-navigation-panel.php'; ?>
 
             <?php if (function_exists ('adinserter')) echo adinserter (8); ?>
-            
+
+            <?php // GS Scholarship Overview Text (Wysiwig) ?>
+            <?php if(isset($scholarship_overview_text) && !empty($scholarship_overview_text)) : ?>
+                <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-overview-text.php'; ?>
+            <?php endif ?>
+
             <?php // GS Scholarship Coverage ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-coverage.php'; ?>
-
+            
+            <?php // GS Scholarship Disclaimer (Wysiwig) ?>
+           <?php if(isset($scholarship_disclaimer_text) && !empty($scholarship_disclaimer_text)) : ?>
+                <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-disclaimer.php'; ?>
+            <?php endif ?>
+            
             <?php // GS Scholarship Eligibility Criteria ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
 
@@ -129,9 +146,12 @@
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-procedure.php'; ?>
 
 
+            <?php // Check if there are any deadlines for scholarship either in the scholarship or in the institution admission deadlines ?>
 
-            <?php // GS Scholarship Deadline ?>
-            <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
+            <?php if((isset($scholarship_deadlines) && !empty($scholarship_deadlines)) || (isset($institution_admissions_deadlines) && !empty($institution_admissions_deadlines) ) ) : ?>
+                <?php // GS Scholarship Deadline ?>
+                <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-deadline.php'; ?>
+            <?php endif; ?>
 
             <?php if (function_exists ('adinserter')) echo adinserter (10); ?>
 

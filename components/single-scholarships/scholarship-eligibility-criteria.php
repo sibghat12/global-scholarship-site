@@ -21,7 +21,7 @@
         <h3><?php echo $institution_name; ?> Eligibility Criteria</h3>
     
         <div class="gs-scholarship-eligibility-criteria-institution-content">
-            <p>Before applying for <?php echo $scholarship_title; ?> for international students, you need to apply for admissions at the <?php echo $institution_name; ?> first. Find the <?php echo $institution_name; ?>’s admission eligibility criteria <a href="<?php echo get_permalink($institution->ID); ?>#admission">here</a>.</p>
+            <p>Before applying for <?php echo $scholarship_title; ?> for international students, you need to apply for admissions at the <?php echo $institution_name; ?> first. Find the <?php echo $institution_name; ?>’s admission eligibility criteria <a href="<?php echo get_permalink($institution->ID); ?>#admissions">here</a>.</p>
             
         </div>
     </div>
@@ -61,5 +61,5 @@
             </div>
         </div>
 
-        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admission"><?php echo $institution_name; ?> admissions pages</a> and the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> pages</a> for more information!</p>
+        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> admissions pages</a> and the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> pages</a> for more information!</p>
 </section>

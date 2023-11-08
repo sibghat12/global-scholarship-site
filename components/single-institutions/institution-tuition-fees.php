@@ -310,6 +310,8 @@
             <?php endif; ?>
     <?php } ?>
         </div>
+        <!-- Sibi Shortcode -->
+        <aside><?php echo do_shortcode('[cta_post_shortcode title="Apply for 2024 Intake!" desc="Applications for 2024 Intake are open. Search through the degrees around the world!" link_url="/opencourses/" id="scholarship_opencourses_cta"]'); ?></aside>
     </div>
     <?php endif; ?>
 <?php endif; ?>

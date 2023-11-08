@@ -1,0 +1,1 @@
+<?php echo $scholarship_disclaimer_text; ?>
