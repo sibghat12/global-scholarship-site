@@ -7725,3 +7725,50 @@ margin-left:5px;
     border:none;
     margin-right:20px !important;
 }
+
+
+
+
+
+
+
+@media only screen and (min-width: 1000px) {
+.mobile-row {
+    display: none;
+}
+.feature-title h2{
+    padding-top:0px;
+    text-align: left;
+}
+.browse-courses-btn button {
+    float:right;
+}
+.browse-courses-btn{
+    padding-right:40px !important;
+}
+.title-div{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+}
+
+@media only screen and (max-width: 1000px) {
+#courses-flipcard .mobile-row {
+    display: block;
+}
+#courses-flipcard .desktop-row{
+    display:none;
+}
+.browse-courses-btn button {
+    float:center;
+}
+.feature-title h2{
+    font-size:23px !important;
+    padding-top:0px;
+    text-align: center;
+}
+.browse-courses-btn {
+margin-top:20px;
+margin-bottom:40px }
+
+}

@@ -3915,11 +3915,14 @@ function update_post_institutions($specific_post_id = null) {
     } else {
         $post_data = $wpdb->get_results("SELECT ID, post_content FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' ORDER BY ID ASC");
     } 
-
+  
     // Loop through the specific post
     foreach ($post_data as $post) {
-        
+         
         $post_id = $post->ID;
+
+        
+
         $post_content = $post->post_content;
 
         $current_institutions = get_field('generated_institutions', $post_id);
@@ -3957,7 +3960,6 @@ function update_post_institutions($specific_post_id = null) {
     }
 }
 
-//update_post_institutions();
 
 
 function generate_posts_by_keywords($specific_post_id = null) {
@@ -3975,7 +3977,7 @@ function generate_posts_by_keywords($specific_post_id = null) {
     }
 
     // Fetch the first 100 published posts
-    $post_data = $wpdb->get_results("SELECT ID, post_content, post_title FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' ORDER BY ID ASC LIMIT 50");
+    $post_data = $wpdb->get_results("SELECT ID, post_content, post_title FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' ORDER BY ID ASC LIMIT 500");
 
     // Delete all existing rows in the generated posts for posts repeater field
     delete_field('generated_posts_for_posts', $specific_post_id);
@@ -4026,8 +4028,109 @@ function generate_posts_by_keywords($specific_post_id = null) {
 }
 
 
+function generate_posts_by_keywords_for_all_posts() {
+    global $wpdb;
+
+    $post_data = $wpdb->get_results(
+        "SELECT ID, post_content, post_title 
+         FROM {$wpdb->posts} 
+         WHERE post_type = 'post' 
+         AND post_status = 'publish'"
+    );
+
+    foreach ($post_data as $post) {
+        $specific_post_id = $post->ID;
+        generate_posts_by_keywords($specific_post_id);
+
+     delete_field('resultant_posts_for_posts', $specific_post_id);
+     $generated_institutions = get_field('generated_posts_for_posts', $specific_post_id);
+
+    if ($generated_institutions) {
+        foreach ($generated_institutions as $generated_institution) {
+            if ($generated_institution['inputted'] === 'No') {
+                $new_row = array(
+                    'post_name' => $generated_institution['post_name'],
+                    'post_link' => $generated_institution['post_link'],
+                    'inputted' => ''
+                );
+                add_row('resultant_posts_for_posts', $new_row, $specific_post_id);
+            }
+        }
+    }
 
 
+    }
+}
+
+add_action('generate_posts_by_keywords_for_all_posts' , 'generate_posts_by_keywords_for_all_posts');
+
+function calculate_posts_for_all_posts() {
+    global $wpdb;
+
+    $post_data = $wpdb->get_results(
+        "SELECT ID 
+         FROM {$wpdb->posts} 
+         WHERE post_type = 'post' 
+         AND post_status = 'publish'"
+    );
+
+    foreach ($post_data as $post) {
+    $specific_post_id = $post->ID;
+        
+    $post_id = $specific_post_id;
+    $resulted_institutions = get_field('resultant_posts_for_posts', $post_id);
+    $generated_institutions = get_field('generated_posts_for_posts', $post_id);
+
+    if ($resulted_institutions && $generated_institutions) {
+        foreach ($resulted_institutions as $resulted_institution) {
+            if ($resulted_institution['inputted']) {
+                $institution_name = $resulted_institution['post_name'];
+                foreach ($generated_institutions as &$generated_institution) {
+                    if ($generated_institution['post_name'] === $institution_name) {
+                        $generated_institution['inputted'] = 'Yes';
+                    }
+                }
+            }
+        }
+      update_field('generated_posts_for_posts', $generated_institutions, $post_id);
+    }
+
+    
+    delete_field('resultant_posts_for_posts', $post_id);
+    
+    // Add Rows for Resultant
+    $generated_institutions = get_field('generated_posts_for_posts', $post_id);
+    if ($generated_institutions) {
+        foreach ($generated_institutions as $generated_institution) {
+            if ($generated_institution['inputted'] === 'No') {
+                $new_row = array(
+                    'post_name' => $generated_institution['post_name'],
+                    'post_link' => $generated_institution['post_link'],
+                    'inputted' => ''
+                );
+                add_row('resultant_posts_for_posts', $new_row, $post_id);
+            }
+        }
+    }
+
+
+    // Count Number
+    $resulted_posts = get_field('resultant_posts_for_posts', $post_id);
+    if (is_array($resulted_posts) && !empty($resulted_posts)) {
+        $resulted_posts_count = count($resulted_posts);
+        update_field('count_resulted_posts', $resulted_posts_count, $post_id);
+        } else {
+        update_field('count_resulted_posts', 0, $post_id);
+    }
+
+
+
+    }
+
+
+}
+
+add_action('calculate_posts_for_all_posts' , 'calculate_posts_for_all_posts');
 
 function update_open_dates() {
     $batch_size = 10; // Fetch 100 posts at a time
@@ -4275,22 +4378,119 @@ function update_number_of_resulted_posts() {
 //add_action('init', 'update_number_of_resulted_posts');
 
 
-function calculate_resulted_institutions($specific_post_id = null) {
-    // Custom WP_Query for post type post
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-        'no_found_rows' => true, 
-        'update_post_meta_cache' => false,
-        'update_post_term_cache' => false,
-        'cache_results' => false,
-        'fields' => 'ids'
-    );
+function update_all_post_institutions() {
+    
+     global $wpdb;
 
-    if ($specific_post_id) {
-        $args['p'] = $specific_post_id; // Include the specific post ID if provided
+    // Fetch all institution names 
+    $institutions = $wpdb->get_results("SELECT ID, post_title, post_type FROM {$wpdb->posts} WHERE post_type = 'institution' AND post_status = 'publish'");
+
+    // Fetch the first 100 published posts
+    //$post_data = $wpdb->get_results("SELECT ID, post_content FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' ORDER BY ID ASC");
+    $post_data = $wpdb->get_results("SELECT ID, post_content FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' ORDER BY ID DESC");
+    
+   
+  
+    // Loop through the specific post
+    foreach ($post_data as $post) {
+         
+        $post_id = $post->ID;
+        $post_content = $post->post_content;
+        
+        $current_institutions = get_field('generated_institutions', $post_id);
+        if (!is_array($current_institutions)) {
+            $current_institutions = array();
+        }
+
+
+        // Delete all existing rows in the institutions repeater field
+        delete_field('generated_institutions', $post_id);
+
+        // Loop through all institutions
+        foreach ($institutions as $institution) {
+            $institution_id = $institution->ID;
+            $institution_name = $institution->post_title;
+            $institution_permalink = get_permalink($institution_id);
+
+            if (preg_match('/[[:<:]]' . preg_quote($institution_name, '/') . '[[:>:]]/', $post_content)) {
+                if (!empty($institution_name) && !empty($institution_permalink) && !in_array($institution_name, array_column($current_institutions, 'institution_title'))) {
+                    $current_institutions[] = array(
+                        'institution_title' => $institution_name,
+                        'institution_link' => $institution_permalink
+                    );
+                }
+            }
+        }
+
+        // Add a new row for each institution with non-empty title and link
+        foreach ($current_institutions as $institution) {
+            // Only add the row if the title and link are not empty
+            if (!empty($institution['institution_title']) && !empty($institution['institution_link'])) {
+                add_row('generated_institutions', $institution, $post_id);
+            }
+        }
+
+    // Add Generated Institutions to the Institutions Posts    
+
+    delete_field('resulted_institutions', $post_id);
+    $generated_institutions = get_field('generated_institutions', $post_id);
+    if ($generated_institutions) {
+        foreach ($generated_institutions as $generated_institution) {
+            if ($generated_institution['inputted'] === 'No') {
+                $new_row = array(
+                    'institution_name' => $generated_institution['institution_title'],
+                    'institution_link' => $generated_institution['institution_link'],
+                    'inputted' => ''
+                );
+                add_row('resulted_institutions', $new_row, $post_id);
+            }
+        }
     }
+
+    // Count Resultant Institutions
+
+    $resulted_posts = get_field('resulted_institutions', $post_id);
+    if (is_array($resulted_posts) && !empty($resulted_posts)) {
+        $resulted_posts_count = count($resulted_posts);
+        update_field('number_of_resulted_institutions', $resulted_posts_count, $post_id);
+        //return true; // Return true on successful update
+    } else {
+        // If there are no posts, set the count to 0
+        update_field('number_of_resulted_institutions', 0, $post_id);
+        //return true; // Return true on successful update
+    }
+
+    
+
+}
+
+    
+}
+
+// Work as Run Tool Button
+add_action('update_all_post_institutions', 'update_all_post_institutions');
+
+
+
+function calculate_resulted_institutions() {
+    // Custom WP_Query for post type post
+   $args = array(
+    'post_type' => 'post',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'no_found_rows' => true, 
+    'update_post_meta_cache' => false,
+    'update_post_term_cache' => false,
+    'cache_results' => false,
+    'orderby' => 'ID',
+    'order' => 'DESC',
+    'fields' => 'ids'
+);
+
+
+    // if ($specific_post_id) {
+    //     $args['p'] = $specific_post_id; // Include the specific post ID if provided
+    // }
 
     $query = new WP_Query($args);
 
@@ -4301,53 +4501,62 @@ function calculate_resulted_institutions($specific_post_id = null) {
 
            
             $post_id = get_the_ID();
-            $institutions = get_field('generated_institutions', $post_id);
-            $inputted_institutions = get_field('inputted_institutions', $post_id);
 
-            
-                //new logic
-                if (is_array($institutions)) {
-                    // Calculate the resulted institutions after considering inputted institutions
-                $resulted_institutions = array();
+    $resulted_institutions = get_field('resulted_institutions', $post_id);
+    $generated_institutions = get_field('generated_institutions', $post_id);
 
-                foreach ($institutions as $institution) {
-                    $institution_title = $institution['institution_title'];
-                    $institution_link = $institution['institution_link'];
-
-                    $is_in_inputted_institutions = false;
-
-                    foreach ($inputted_institutions as $inputted_institution) {
-                        $inputted_institution_id = $inputted_institution['institution_name'];
-                        $inputted_institution_title = get_the_title($inputted_institution_id);
-                        $inputted_institution_link = get_permalink($inputted_institution_id);
-
-                        if ($institution_title === $inputted_institution_title) {
-                            $is_in_inputted_institutions = true;
-                            break;
-                        }
-                    }
-
-                    if (!$is_in_inputted_institutions) {
-                        $resulted_institutions[] = array(
-                            'institution_name' => $institution_title,
-                            'institution_link' => $institution_link
-                        );
-                    }
-                }
-
-                // Delete all rows from the resulted_institutions repeater before adding more
-                $resulted_institutions_count = get_field('resulted_institutions', $post_id) ? count(get_field('resulted_institutions', $post_id)) : 0;
-                for ($i = $resulted_institutions_count; $i >= 1; $i--) {
-                    delete_row('resulted_institutions', $i, $post_id);
-                }
-
-                // Update the resulted_institutions repeater with the resulted institutions using add_row() function
-                if (!empty($resulted_institutions)) {
-                    foreach ($resulted_institutions as $resulted_institution) {
-                        add_row('resulted_institutions', $resulted_institution, $post_id);
+    if ($resulted_institutions && $generated_institutions) {
+        foreach ($resulted_institutions as $resulted_institution) {
+            if ($resulted_institution['inputted']) {
+                $institution_name = $resulted_institution['institution_name'];
+                foreach ($generated_institutions as &$generated_institution) {
+                    if ($generated_institution['institution_title'] === $institution_name) {
+                        $generated_institution['inputted'] = 'Yes';
                     }
                 }
             }
+        }
+      update_field('generated_institutions', $generated_institutions, $post_id);
+    }
+    
+    // if ($resulted_institutions) {
+    // while (have_rows('resulted_institutions', $post_id)) {
+    //     the_row();
+    //     delete_row('resulted_institutions', 0, $post_id);
+    // }
+    // }
+
+    // Update the Generted No to the Resultant
+   delete_field('resulted_institutions', $post_id);
+     $generated_institutions = get_field('generated_institutions', $post_id);
+    if ($generated_institutions) {
+        foreach ($generated_institutions as $generated_institution) {
+            if ($generated_institution['inputted'] === 'No') {
+                $new_row = array(
+                    'institution_name' => $generated_institution['institution_title'],
+                    'institution_link' => $generated_institution['institution_link'],
+                    'inputted' => ''
+                );
+                add_row('resulted_institutions', $new_row, $post_id);
+            }
+        }
+    }
+    
+    // Count the Resultant
+     $resulted_posts = get_field('resulted_institutions', $post_id);
+
+    if (is_array($resulted_posts) && !empty($resulted_posts)) {
+        $resulted_posts_count = count($resulted_posts);
+        update_field('number_of_resulted_institutions', $resulted_posts_count, $post_id);
+       
+    } else {
+        // If there are no posts, set the count to 0
+        update_field('number_of_resulted_institutions', 0, $post_id);
+        
+    }       
+
+            
+             
         }
 
         // Restore original post data
@@ -4356,8 +4565,8 @@ function calculate_resulted_institutions($specific_post_id = null) {
 }
 
 
-// Call the function to perform the calculation
-//add_action('init', 'calculate_resulted_institutions');
+// Work as Calculate Institutions For All Posts
+add_action('calculate_resulted_institutions', 'calculate_resulted_institutions');
 
 
 
@@ -5350,6 +5559,27 @@ function update_custom_post_id_field_for_all_posts() {
 //add_action('init', 'update_custom_post_id_field_for_all_posts');
 
 
+function update_custom_post_id_field_on_publish($post_id) {
+    // Check if this is just a revision or autosave
+    if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) {
+        return;
+    }
+
+    $post_type = get_post_type($post_id);
+
+    // Replace 'your_custom_post_type' with the name of your custom post type
+    if ($post_type === 'post') {
+        $custom_post_id = get_field('custom_post_id', $post_id);
+
+        // Update the custom field only if it's empty
+        if (empty($custom_post_id)) {
+            update_field('custom_post_id', $post_id, $post_id);
+        }
+    }
+}
+add_action('save_post', 'update_custom_post_id_field_on_publish');
+
+
 
 function process_resulted_institutions($specific_post_id) {
     $post_id = $specific_post_id;
@@ -5547,7 +5777,7 @@ function calculate_institutions() {
         
         process_resulted_institutions($custom_post_id);
         add_generated_to_resulted($custom_post_id);
-        update_number_of_resulted_institutions($custom_post_id);
+        count_resulted_institutions($custom_post_id);
         //add_generated_to_inputted($custom_post_id);
     }
     
@@ -5669,6 +5899,7 @@ function current_year_shortcode() {
     return $current_year;
 }
 add_shortcode('current_year', 'current_year_shortcode');
+
 
 // Shortcode get Current Year
 function current_month_shortcode() {
