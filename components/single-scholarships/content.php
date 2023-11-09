@@ -137,6 +137,9 @@
                 <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-disclaimer.php'; ?>
             <?php endif ?>
             
+            <!-- Sibi Shortcode -->
+            <aside><?php echo do_shortcode('[cta_post_shortcode title="Apply for 2024 Intake!" desc="Applications for 2024 Intake are open. Search through the degrees around the world!" link_url="/opencourses/" id="scholarship_opencourses_cta"]'); ?></aside>
+
             <?php // GS Scholarship Eligibility Criteria ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-eligibility-criteria.php'; ?>
 
