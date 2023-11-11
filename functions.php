@@ -17,23 +17,15 @@ function add_datatables_scripts() {
     if ($page_template_slug != 'templates/template-deadlines.php') {
         return;
     }
-
-
-
-    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
-   
-    wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
-    wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
-
-    wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
+    
+   wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+   wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+   wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+   wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
          
 }
 
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
-
-
-
-
 
 
 // BOOTSTRAP For Accordion in Articles By Topics
@@ -45,7 +37,6 @@ function enqueue_bootstrap_scripts() {
     
     // Check if Current Page is template articles by topic
         wp_enqueue_script( 'bootstrap_javascript',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true );
-
         wp_enqueue_style('bootstrap_css',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
@@ -54,9 +45,6 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
-
-
-
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {
         wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
@@ -117,11 +105,117 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 
 function my_deregister_scripts(){
-  wp_dequeue_script('wp-embed');
+   wp_dequeue_script('wp-embed');
    wp_dequeue_script('comment-reply');
 }
 
 add_action( 'wp_footer', 'my_deregister_scripts' );
+
+
+add_action( 'wp_enqueue_scripts', 'custom_disable_theme_js' );
+
+function custom_disable_theme_js() {
+
+    Fusion_Dynamic_JS::deregister_script('avada-comments');
+    Fusion_Dynamic_JS::deregister_script('avada-general-footer');
+    Fusion_Dynamic_JS::deregister_script('avada-mobile-image-hover');
+    Fusion_Dynamic_JS::deregister_script('avada-quantity');
+    Fusion_Dynamic_JS::deregister_script('avada-scrollspy');
+    Fusion_Dynamic_JS::deregister_script('avada-select');
+    Fusion_Dynamic_JS::deregister_script('avada-sidebars');
+    Fusion_Dynamic_JS::deregister_script('avada-tabs-widget');
+
+    Fusion_Dynamic_JS::deregister_script('bootstrap-collapse');
+    Fusion_Dynamic_JS::deregister_script('bootstrap-modal');
+    Fusion_Dynamic_JS::deregister_script('bootstrap-popover');
+    Fusion_Dynamic_JS::deregister_script('bootstrap-scrollspy');
+    //Fusion_Dynamic_JS::deregister_script('bootstrap-tab'); //Helps with tabs
+    Fusion_Dynamic_JS::deregister_script('bootstrap-tooltip');
+    //Fusion_Dynamic_JS::deregister_script('bootstrap-transition'); //Helps with transition in the tabs
+    
+    //Fusion_Dynamic_JS::deregister_script('cssua'); /Helps with flexslider
+
+
+    
+    Fusion_Dynamic_JS::deregister_script('fusion-alert');
+    //Fusion_Dynamic_JS::deregister_script('fusion-blog'); // !
+    //Fusion_Dynamic_JS::deregister_script('fusion-button'); // !
+    Fusion_Dynamic_JS::deregister_script('fusion-carousel');
+    Fusion_Dynamic_JS::deregister_script('fusion-chartjs');
+    Fusion_Dynamic_JS::deregister_script('fusion-column-bg-image');
+    Fusion_Dynamic_JS::deregister_script('fusion-count-down');
+    Fusion_Dynamic_JS::deregister_script('fusion-equal-heights');
+
+    //Fusion_Dynamic_JS::deregister_script('fusion-flexslider');
+    Fusion_Dynamic_JS::deregister_script('fusion-image-before-after');
+    //Fusion_Dynamic_JS::deregister_script('fusion-lightbox'); //Helps with the alignment of posts and loading
+    Fusion_Dynamic_JS::deregister_script('fusion-parallax'); // !
+    Fusion_Dynamic_JS::deregister_script('fusion-popover');
+
+
+    Fusion_Dynamic_JS::deregister_script('fusion-recent-posts');
+    Fusion_Dynamic_JS::deregister_script('fusion-sharing-box');
+    Fusion_Dynamic_JS::deregister_script('fusion-syntax-highlighter');
+
+
+    //Fusion_Dynamic_JS::deregister_script('fusion-title');
+    Fusion_Dynamic_JS::deregister_script('fusion-tooltip');
+    //Fusion_Dynamic_JS::deregister_script('fusion-video-bg'); These both help with the loading for index page
+    //Fusion_Dynamic_JS::deregister_script('fusion-video-general');
+    //Fusion_Dynamic_JS::deregister_script('fusion-waypoints'); Needed for tabs
+    
+
+
+    
+    //Fusion_Dynamic_JS::deregister_script('images-loaded'); // ! Helps with infinite scroll
+    //Fusion_Dynamic_JS::deregister_script('isotope'); // !! Helps with infinite scroll
+
+
+    
+    Fusion_Dynamic_JS::deregister_script('jquery-appear');
+    Fusion_Dynamic_JS::deregister_script('jquery-caroufredsel');
+    Fusion_Dynamic_JS::deregister_script('jquery-count-down');
+    Fusion_Dynamic_JS::deregister_script('jquery-count-to');
+    Fusion_Dynamic_JS::deregister_script('jquery-easy-pie-chart');
+    Fusion_Dynamic_JS::deregister_script('jquery-event-move');
+
+
+    Fusion_Dynamic_JS::deregister_script('jquery-fade'); // !!
+    //Fusion_Dynamic_JS::deregister_script('jquery-fitvids'); Helps with homepage video
+    Fusion_Dynamic_JS::deregister_script('jquery-fusion-maps');
+
+
+
+    Fusion_Dynamic_JS::deregister_script('jquery-hover-flow');
+    Fusion_Dynamic_JS::deregister_script('jquery-hover-intent');
+
+    //Fusion_Dynamic_JS::deregister_script('jquery-infinite-scroll'); // !
+    //Fusion_Dynamic_JS::deregister_script('jquery-lightbox'); Helps with infinite scroll and image loading
+
+    //Fusion_Dynamic_JS::deregister_script('jquery-mousewheel'); // ! Helps with infinite scroll and image loading
+    Fusion_Dynamic_JS::deregister_script('jquery-placeholder');
+    Fusion_Dynamic_JS::deregister_script('jquery-request-animation-frame');
+
+
+    Fusion_Dynamic_JS::deregister_script('jquery-sticky-kit');
+    Fusion_Dynamic_JS::deregister_script('jquery-to-top');
+    Fusion_Dynamic_JS::deregister_script('jquery-touch-swipe'); // !
+    Fusion_Dynamic_JS::deregister_script('jquery-waypoints'); // !
+
+
+                                                Fusion_Dynamic_JS::deregister_script('lazysizes');
+    //Fusion_Dynamic_JS::deregister_script('packery'); // !! Helps with loading images
+    Fusion_Dynamic_JS::deregister_script('vimeo-player');  
+
+
+
+    //Fusion_Dynamic_JS::deregister_script('jquery-easing');   Helps with image loading homepage
+    //Fusion_Dynamic_JS::deregister_script('modernizr'); Helps with image loading homepage
+    Fusion_Dynamic_JS::deregister_script('fusion-testimonials');
+    Fusion_Dynamic_JS::deregister_script('jquery-cycle'); // !    
+//     Fusion_Dynamic_JS::deregister_script('jquery-flexslider'); // !
+
+}
 
 
 function dequeue_jquery_migrate( $scripts ) {
@@ -172,10 +266,6 @@ function disable_emojis_tinymce( $plugins ) {
 
 
 // }
-
-
-
-
 
 
 function uscollege_custom_post_types() {
