@@ -7800,7 +7800,8 @@ margin-left:5px;
 }
 .browse-courses-btn {
 margin-top:20px;
-margin-bottom:40px }
+margin-bottom:40px; }
+  
 }
 
 #main .post-content strong {
@@ -7876,4 +7877,19 @@ margin-bottom:40px }
     margin: 0 !important;
     font-weight: 400 !important;
     font-size: 20px !important;
+}
+
+#main .post-cta-section .apply-now {
+    font-size: 18px;
+    font-weight: 500;
+    background: #DD4B39;
+    color: white !important;
+    padding: 12px 40px;
+    width: 200px !important;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                var(--tw-ring-shadow, 0 0 #0000),
+                var(--tw-shadow);
 }
