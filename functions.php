@@ -17,23 +17,15 @@ function add_datatables_scripts() {
     if ($page_template_slug != 'templates/template-deadlines.php') {
         return;
     }
-
-
-
-    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
-   
-    wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
-    wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
-
-    wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
+    
+   wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+   wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+   wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+   wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
          
 }
 
 add_action( 'wp_enqueue_scripts', 'add_datatables_scripts' );
-
-
-
-
 
 
 // BOOTSTRAP For Accordion in Articles By Topics
@@ -45,7 +37,6 @@ function enqueue_bootstrap_scripts() {
     
     // Check if Current Page is template articles by topic
         wp_enqueue_script( 'bootstrap_javascript',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true );
-
         wp_enqueue_style('bootstrap_css',  get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
@@ -54,9 +45,6 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
-
-
-
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {
         wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
@@ -117,7 +105,7 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 
 function my_deregister_scripts(){
-  wp_dequeue_script('wp-embed');
+   wp_dequeue_script('wp-embed');
    wp_dequeue_script('comment-reply');
 }
 
@@ -127,7 +115,6 @@ add_action( 'wp_enqueue_scripts', 'custom_disable_theme_js' );
 
 function custom_disable_theme_js() {
 
-    
     Fusion_Dynamic_JS::deregister_script('avada-comments');
     Fusion_Dynamic_JS::deregister_script('avada-general-footer');
     Fusion_Dynamic_JS::deregister_script('avada-mobile-image-hover');
@@ -137,8 +124,6 @@ function custom_disable_theme_js() {
     Fusion_Dynamic_JS::deregister_script('avada-sidebars');
     Fusion_Dynamic_JS::deregister_script('avada-tabs-widget');
 
-
-    
     Fusion_Dynamic_JS::deregister_script('bootstrap-collapse');
     Fusion_Dynamic_JS::deregister_script('bootstrap-modal');
     Fusion_Dynamic_JS::deregister_script('bootstrap-popover');
@@ -279,10 +264,6 @@ function disable_emojis_tinymce( $plugins ) {
 
 
 // }
-
-
-
-
 
 
 function uscollege_custom_post_types() {
