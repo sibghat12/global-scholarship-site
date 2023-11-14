@@ -99,9 +99,10 @@
 
 
                         // Get only deadlines info for the scholarship specific degree, not all institutes deadlines data.
-                        if (!in_array($theDegree, $degrees)) {
+                        if (!in_array($theDegree, $degrees) && $theDegree != $BachelorString. " and " . $MasterString) {
                             continue;
                         }
+
 
                         ?>
 
@@ -111,6 +112,7 @@
                             </div>
                         </li>
                         <?php
+                        
 
                     endforeach;
 
@@ -195,7 +197,7 @@
                                 }
 
                                 // Get only deadlines info for the scholarship specific degree, not all institutes deadlines data.
-                                if (!in_array($theDegree, $degrees)) {
+                                if (!in_array($theDegree, $degrees) && $theDegree != $BachelorString. " and " . $MasterString) {
                                     continue;
                                 }
 
