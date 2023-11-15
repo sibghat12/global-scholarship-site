@@ -291,12 +291,12 @@ a.fusion-logo-link{
 .fusion-header.fusion-header-backface{
     height: 82px !important;
 }
-/* #main a{
+#main a{
     color: #008fc5 !important;
 }
 #main a:hover{
     color: #9e9e9e !important;
-} */
+}
  .fusion-footer-widget-area ul li a:hover {
     color: #008fc5;
 }
@@ -7896,38 +7896,6 @@ margin-bottom:40px; }
                 var(--tw-shadow);
 }
 
-/* Homepage Stylings */
-
-/* Homepage Search Stylings */
-.gs-homepage-search-form {
-    display: flex;
-    border-radius: 10px;
-    box-shadow: 15px 23px 14px 0px rgba(188,188,188,0.25);
-    -webkit-box-shadow: 15px 23px 14px 0px rgba(188,188,188,0.25);
-    -moz-box-shadow: 15px 23px 14px 0px rgba(188,188,188,0.25);
-}
-
-.gs-homepage-search-form .search_container {
-    width: 100%;
-    padding-bottom: 0;
-    height: 70px;
-}
-
-.gs-homepage-search-form .search_container input#search {
-    font-size: 20px;
-    height: 76px !important;
-    border: none !important;
-}
-
-.gs-homepage-search-form button.search-submit-search {
-    height: 76px;
-    padding: 4px 24px;
-    border-radius: 46% 10px 10px 46%;
-    border: none !important;
-    background: #3E8CBF;
-}
-
-
 /* Default styles for both mobile and desktop */
 .related-courses-mobile {
     display: none; /* Hide on desktop by default */
@@ -7987,3 +7955,72 @@ padding-left:15px !important;
  .related-courses-mobile {
     margin-bottom:10px !important;
  }
+
+ 
+/* Homepage Stylings */
+
+/* Homepage Width */
+.page-template-page-homepage #main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0;
+}
+.page-template-page-homepage #main .post-content {
+    width: 100% !important;
+    margin: auto;
+    max-width: 100% !important;
+    padding: 0 !important;
+
+}
+/* Homepage Search Stylings */
+.page-template-page-homepage .gs-homepage-search-form {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 15px 23px 14px 0px rgba(188,188,188,0.25);
+    -webkit-box-shadow: 15px 23px 14px 0px rgba(188,188,188,0.25);
+    -moz-box-shadow: 15px 23px 14px 0px rgba(188,188,188,0.25);
+}
+
+.page-template-page-homepage .gs-homepage-search-form .search_container {
+    width: 100%;
+    padding-bottom: 0;
+    height: 70px;
+}
+
+.page-template-page-homepage .gs-homepage-search-form .search_container input#search {
+    font-size: 20px;
+    height: 76px !important;
+    border: none !important;
+}
+
+.page-template-page-homepage .gs-homepage-search-form button.search-submit-search {
+    height: 76px;
+    padding: 4px 24px;
+    border-radius: 46% 10px 10px 46%;
+    border: none !important;
+    background: #3E8CBF;
+}
+
+
+.page-template-page-homepage #main .fusion-builder-row {
+    max-width: 1400px !important;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button {
+    padding: 20px 0 !important;
+    width: 250px !important;
+    min-height: 60px !important;
+    border: 2px solid #3E8CBF;
+    background-color: #3E8CBF !important;
+}
+
+.page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button:hover {
+    background-color: #fff !important;
+    border: 2px solid #3E8CBF;
+}
+.page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button:hover span.fusion-button-text {
+    color: #000 !important;
+}
