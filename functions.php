@@ -112,110 +112,110 @@ function my_deregister_scripts(){
 add_action( 'wp_footer', 'my_deregister_scripts' );
 
 
-add_action( 'wp_enqueue_scripts', 'custom_disable_theme_js' );
+// add_action( 'wp_enqueue_scripts', 'custom_disable_theme_js' );
 
-function custom_disable_theme_js() {
+// function custom_disable_theme_js() {
 
-    Fusion_Dynamic_JS::deregister_script('avada-comments');
-    Fusion_Dynamic_JS::deregister_script('avada-general-footer');
-    Fusion_Dynamic_JS::deregister_script('avada-mobile-image-hover');
-    Fusion_Dynamic_JS::deregister_script('avada-quantity');
-    Fusion_Dynamic_JS::deregister_script('avada-scrollspy');
-    Fusion_Dynamic_JS::deregister_script('avada-select');
-    Fusion_Dynamic_JS::deregister_script('avada-sidebars');
-    Fusion_Dynamic_JS::deregister_script('avada-tabs-widget');
+//     Fusion_Dynamic_JS::deregister_script('avada-comments');
+//     Fusion_Dynamic_JS::deregister_script('avada-general-footer');
+//     Fusion_Dynamic_JS::deregister_script('avada-mobile-image-hover');
+//     Fusion_Dynamic_JS::deregister_script('avada-quantity');
+//     Fusion_Dynamic_JS::deregister_script('avada-scrollspy');
+//     Fusion_Dynamic_JS::deregister_script('avada-select');
+//     Fusion_Dynamic_JS::deregister_script('avada-sidebars');
+//     Fusion_Dynamic_JS::deregister_script('avada-tabs-widget');
 
-    Fusion_Dynamic_JS::deregister_script('bootstrap-collapse');
-    Fusion_Dynamic_JS::deregister_script('bootstrap-modal');
-    Fusion_Dynamic_JS::deregister_script('bootstrap-popover');
-    Fusion_Dynamic_JS::deregister_script('bootstrap-scrollspy');
-    //Fusion_Dynamic_JS::deregister_script('bootstrap-tab'); //Helps with tabs
-    Fusion_Dynamic_JS::deregister_script('bootstrap-tooltip');
-    //Fusion_Dynamic_JS::deregister_script('bootstrap-transition'); //Helps with transition in the tabs
+//     Fusion_Dynamic_JS::deregister_script('bootstrap-collapse');
+//     Fusion_Dynamic_JS::deregister_script('bootstrap-modal');
+//     Fusion_Dynamic_JS::deregister_script('bootstrap-popover');
+//     Fusion_Dynamic_JS::deregister_script('bootstrap-scrollspy');
+//     //Fusion_Dynamic_JS::deregister_script('bootstrap-tab'); //Helps with tabs
+//     Fusion_Dynamic_JS::deregister_script('bootstrap-tooltip');
+//     //Fusion_Dynamic_JS::deregister_script('bootstrap-transition'); //Helps with transition in the tabs
     
-    //Fusion_Dynamic_JS::deregister_script('cssua'); /Helps with flexslider
-
-
-    
-    Fusion_Dynamic_JS::deregister_script('fusion-alert');
-    //Fusion_Dynamic_JS::deregister_script('fusion-blog'); // !
-    //Fusion_Dynamic_JS::deregister_script('fusion-button'); // !
-    Fusion_Dynamic_JS::deregister_script('fusion-carousel');
-    Fusion_Dynamic_JS::deregister_script('fusion-chartjs');
-    Fusion_Dynamic_JS::deregister_script('fusion-column-bg-image');
-    Fusion_Dynamic_JS::deregister_script('fusion-count-down');
-    Fusion_Dynamic_JS::deregister_script('fusion-equal-heights');
-
-    //Fusion_Dynamic_JS::deregister_script('fusion-flexslider');
-    Fusion_Dynamic_JS::deregister_script('fusion-image-before-after');
-    //Fusion_Dynamic_JS::deregister_script('fusion-lightbox'); //Helps with the alignment of posts and loading
-    Fusion_Dynamic_JS::deregister_script('fusion-parallax'); // !
-    Fusion_Dynamic_JS::deregister_script('fusion-popover');
-
-
-    Fusion_Dynamic_JS::deregister_script('fusion-recent-posts');
-    Fusion_Dynamic_JS::deregister_script('fusion-sharing-box');
-    Fusion_Dynamic_JS::deregister_script('fusion-syntax-highlighter');
-
-
-    //Fusion_Dynamic_JS::deregister_script('fusion-title');
-    Fusion_Dynamic_JS::deregister_script('fusion-tooltip');
-    //Fusion_Dynamic_JS::deregister_script('fusion-video-bg'); These both help with the loading for index page
-    //Fusion_Dynamic_JS::deregister_script('fusion-video-general');
-    //Fusion_Dynamic_JS::deregister_script('fusion-waypoints'); Needed for tabs
-    
+//     //Fusion_Dynamic_JS::deregister_script('cssua'); /Helps with flexslider
 
 
     
-    //Fusion_Dynamic_JS::deregister_script('images-loaded'); // ! Helps with infinite scroll
-    //Fusion_Dynamic_JS::deregister_script('isotope'); // !! Helps with infinite scroll
+//     Fusion_Dynamic_JS::deregister_script('fusion-alert');
+//     //Fusion_Dynamic_JS::deregister_script('fusion-blog'); // !
+//     //Fusion_Dynamic_JS::deregister_script('fusion-button'); // !
+//     Fusion_Dynamic_JS::deregister_script('fusion-carousel');
+//     Fusion_Dynamic_JS::deregister_script('fusion-chartjs');
+//     Fusion_Dynamic_JS::deregister_script('fusion-column-bg-image');
+//     Fusion_Dynamic_JS::deregister_script('fusion-count-down');
+//     Fusion_Dynamic_JS::deregister_script('fusion-equal-heights');
+
+//     //Fusion_Dynamic_JS::deregister_script('fusion-flexslider');
+//     Fusion_Dynamic_JS::deregister_script('fusion-image-before-after');
+//     //Fusion_Dynamic_JS::deregister_script('fusion-lightbox'); //Helps with the alignment of posts and loading
+//     Fusion_Dynamic_JS::deregister_script('fusion-parallax'); // !
+//     Fusion_Dynamic_JS::deregister_script('fusion-popover');
+
+
+//     Fusion_Dynamic_JS::deregister_script('fusion-recent-posts');
+//     Fusion_Dynamic_JS::deregister_script('fusion-sharing-box');
+//     Fusion_Dynamic_JS::deregister_script('fusion-syntax-highlighter');
+
+
+//     //Fusion_Dynamic_JS::deregister_script('fusion-title');
+//     Fusion_Dynamic_JS::deregister_script('fusion-tooltip');
+//     //Fusion_Dynamic_JS::deregister_script('fusion-video-bg'); These both help with the loading for index page
+//     //Fusion_Dynamic_JS::deregister_script('fusion-video-general');
+//     //Fusion_Dynamic_JS::deregister_script('fusion-waypoints'); Needed for tabs
+    
 
 
     
-    Fusion_Dynamic_JS::deregister_script('jquery-appear');
-    Fusion_Dynamic_JS::deregister_script('jquery-caroufredsel');
-    Fusion_Dynamic_JS::deregister_script('jquery-count-down');
-    Fusion_Dynamic_JS::deregister_script('jquery-count-to');
-    Fusion_Dynamic_JS::deregister_script('jquery-easy-pie-chart');
-    Fusion_Dynamic_JS::deregister_script('jquery-event-move');
+//     //Fusion_Dynamic_JS::deregister_script('images-loaded'); // ! Helps with infinite scroll
+//     //Fusion_Dynamic_JS::deregister_script('isotope'); // !! Helps with infinite scroll
 
 
-    Fusion_Dynamic_JS::deregister_script('jquery-fade'); // !!
-    //Fusion_Dynamic_JS::deregister_script('jquery-fitvids'); Helps with homepage video
-    Fusion_Dynamic_JS::deregister_script('jquery-fusion-maps');
+    
+//     Fusion_Dynamic_JS::deregister_script('jquery-appear');
+//     Fusion_Dynamic_JS::deregister_script('jquery-caroufredsel');
+//     Fusion_Dynamic_JS::deregister_script('jquery-count-down');
+//     Fusion_Dynamic_JS::deregister_script('jquery-count-to');
+//     Fusion_Dynamic_JS::deregister_script('jquery-easy-pie-chart');
+//     Fusion_Dynamic_JS::deregister_script('jquery-event-move');
 
 
-
-    Fusion_Dynamic_JS::deregister_script('jquery-hover-flow');
-    Fusion_Dynamic_JS::deregister_script('jquery-hover-intent');
-
-    //Fusion_Dynamic_JS::deregister_script('jquery-infinite-scroll'); // !
-    //Fusion_Dynamic_JS::deregister_script('jquery-lightbox'); Helps with infinite scroll and image loading
-
-    //Fusion_Dynamic_JS::deregister_script('jquery-mousewheel'); // ! Helps with infinite scroll and image loading
-    Fusion_Dynamic_JS::deregister_script('jquery-placeholder');
-    Fusion_Dynamic_JS::deregister_script('jquery-request-animation-frame');
-
-
-    Fusion_Dynamic_JS::deregister_script('jquery-sticky-kit');
-    Fusion_Dynamic_JS::deregister_script('jquery-to-top');
-    Fusion_Dynamic_JS::deregister_script('jquery-touch-swipe'); // !
-    Fusion_Dynamic_JS::deregister_script('jquery-waypoints'); // !
-
-
-                                                Fusion_Dynamic_JS::deregister_script('lazysizes');
-    //Fusion_Dynamic_JS::deregister_script('packery'); // !! Helps with loading images
-    Fusion_Dynamic_JS::deregister_script('vimeo-player');  
+//     Fusion_Dynamic_JS::deregister_script('jquery-fade'); // !!
+//     //Fusion_Dynamic_JS::deregister_script('jquery-fitvids'); Helps with homepage video
+//     Fusion_Dynamic_JS::deregister_script('jquery-fusion-maps');
 
 
 
-    //Fusion_Dynamic_JS::deregister_script('jquery-easing');   Helps with image loading homepage
-    //Fusion_Dynamic_JS::deregister_script('modernizr'); Helps with image loading homepage
-    Fusion_Dynamic_JS::deregister_script('fusion-testimonials');
-    Fusion_Dynamic_JS::deregister_script('jquery-cycle'); // !    
-//     Fusion_Dynamic_JS::deregister_script('jquery-flexslider'); // !
+//     Fusion_Dynamic_JS::deregister_script('jquery-hover-flow');
+//     Fusion_Dynamic_JS::deregister_script('jquery-hover-intent');
 
-}
+//     //Fusion_Dynamic_JS::deregister_script('jquery-infinite-scroll'); // !
+//     //Fusion_Dynamic_JS::deregister_script('jquery-lightbox'); Helps with infinite scroll and image loading
+
+//     //Fusion_Dynamic_JS::deregister_script('jquery-mousewheel'); // ! Helps with infinite scroll and image loading
+//     Fusion_Dynamic_JS::deregister_script('jquery-placeholder');
+//     Fusion_Dynamic_JS::deregister_script('jquery-request-animation-frame');
+
+
+//     Fusion_Dynamic_JS::deregister_script('jquery-sticky-kit');
+//     Fusion_Dynamic_JS::deregister_script('jquery-to-top');
+//     Fusion_Dynamic_JS::deregister_script('jquery-touch-swipe'); // !
+//     Fusion_Dynamic_JS::deregister_script('jquery-waypoints'); // !
+
+
+//                                                 Fusion_Dynamic_JS::deregister_script('lazysizes');
+//     //Fusion_Dynamic_JS::deregister_script('packery'); // !! Helps with loading images
+//     Fusion_Dynamic_JS::deregister_script('vimeo-player');  
+
+
+
+//     //Fusion_Dynamic_JS::deregister_script('jquery-easing');   Helps with image loading homepage
+//     //Fusion_Dynamic_JS::deregister_script('modernizr'); Helps with image loading homepage
+//     Fusion_Dynamic_JS::deregister_script('fusion-testimonials');
+//     Fusion_Dynamic_JS::deregister_script('jquery-cycle'); // !    
+// //     Fusion_Dynamic_JS::deregister_script('jquery-flexslider'); // !
+
+// }
 
 
 function dequeue_jquery_migrate( $scripts ) {
@@ -3822,7 +3822,7 @@ function courses_grid_shortcode_new($atts) {
  
  
      <a id="related-courses-link" href="<?php echo $link; ?>">
-     <div class='col-md-4 card-container'>
+     <div class='col-md-4 card-container related-courses-desktop'>
          <div class='front'>
              <div class="course-image">
                  <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
@@ -3933,6 +3933,89 @@ function courses_grid_shortcode_new($atts) {
              </div>
             </div>
            </div> 
+       
+         <div class='col-md-4 card-container related-courses-mobile'>
+         <div class='front'>
+             <div class="course-image">
+                 <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
+             </div>
+             <div class="course-text heading-section" >
+                 <div class="col-md-3 course-logo">
+                     <img src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
+                 </div>
+                 <div class="col-md-7 course-title" >
+                     <?php echo esc_html($course_title); ?>
+                 </div>
+                 <div class="col-md-2 country-flag">
+                     <img src="<?php echo site_url(); ?>/wp-content/themes/Avada-Child-Theme/assets/flags/<?php echo $countryCode; ?>.svg">
+                 </div>
+             </div>
+             <div class="clearfix"> </div>
+             <div class="course-text heading-section">
+                 <p class="institute-title">
+                     <?php echo $institute->post_title; ?>
+                 </p>
+             </div>
+             <div>
+                 <p id="annaual-text">Annual Tuition Fee</p>
+             </div>
+             <div class="course-text annual-section">
+                 <div class="tuition-fee-div">
+                     <p class="tuition-fee-text">
+                         <span>Domestic</span><br>
+                         <?php
+                         if ($domestic_tuition_fees) {
+                             echo number_format($domestic_tuition_fees) . " " . $currency;
+                         } elseif ($domestic_tuition_fees_INT) {
+                             echo number_format($domestic_tuition_fees_INT) . " " . $currency;
+                         } else {
+                             echo "N/A";
+                         }
+                         ?>
+                     </p>
+                 </div>
+                 <div class="tuition-fee-div-second">
+                      <p class="tuition-fee-text">
+                         <span>International</span><br>
+                         <?php
+                         if ($international_tuition_fees) {
+                             echo number_format($international_tuition_fees) . " " . $currency;
+                         } elseif ($international_tuition_fees_INT) {
+                             echo number_format($international_tuition_fees_INT) . " " . $currency;
+                         } else {
+                             echo "N/A";
+                         }
+                         ?>
+                     </p>
+                 </div>
+             </div>
+             <div class="course-text language-section" >
+                 
+                  <p class="learn-more-mobile-para">
+                     <a  href="<?php echo $link; ?>">
+                         Learn more 
+                         <i   
+                         class="fa fa-arrow-right">  </i></a>
+                 </p>
+
+                 <p class="language-section-div">
+                     <span class="language-icon">
+                         <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
+                     </span>
+                     <span class="language-text"><?php echo $language_of_instruction; ?></span>
+                 </p>
+
+                
+
+             </div>
+
+             
+
+
+         </div>
+         
+           </div> 
+
           </a>
           <?php 
          endwhile;
