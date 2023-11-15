@@ -6940,11 +6940,11 @@ justify-content: flex-start;
    
     
 }
-.col-md-4:hover .front {
+.related-courses-desktop:hover .front {
     -webkit-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
 }
-.col-md-4:hover .back {
+.related-courses-desktop:hover .back {
     -webkit-transform: rotateY(0deg);
             transform: rotateY(0deg);
 }
@@ -7004,7 +7004,7 @@ justify-content: flex-start;
         margin-right:2%!important;
         float:left !important;
         margin-left:0px !important;
-        margin-bottom:40px !important;
+        margin-bottom:20px !important;
     }
 
     .single-institution #main .gs-institution-overview-box .gs-institution-overview-text .gs-institution-summary .gs-institution-summary-item {
@@ -7598,13 +7598,15 @@ font-size:13px !important;
 text-align:center;
 }
 
-#courses-flipcard .language-section {
+#courses-flipcard .related-courses-desktop .language-section {
     margin-bottom:20px !important;
     margin-top:20px;
     float:right;
+   
 }
 
-#courses-flipcard .language-section  p{
+
+#courses-flipcard .related-courses-desktop .language-section  p{
     float:right;
     padding-left:15px;
     padding-right:15px;
@@ -7893,3 +7895,65 @@ margin-bottom:40px; }
                 var(--tw-ring-shadow, 0 0 #0000),
                 var(--tw-shadow);
 }
+
+
+
+/* Default styles for both mobile and desktop */
+.related-courses-mobile {
+    display: none; /* Hide on desktop by default */
+}
+
+.related-courses-desktop {
+    display: block; /* Show on desktop by default */
+}
+
+/* Media query for screens with a width of 1000px or less (mobile) */
+@media (max-width: 1000px) {
+    .related-courses-mobile {
+        display: block; /* Show on mobile */
+    }
+
+    .related-courses-desktop {
+        display: none; /* Hide on mobile */
+    }
+}
+
+
+.related-courses-mobile .language-section {
+    float:none;
+}
+.learn-more-mobile-para {
+    float:left;
+    color:black;
+   width:50%;
+   text-align: left;
+}
+
+#main .learn-more-mobile-para a ,
+#main .related-courses-mobile  span {
+    font-size: 16px !important;
+}
+
+#main .learn-more-mobile-para a , #main .learn-more-mobile-para i{
+    color:black  !important;
+}
+
+.related-courses-mobile .language-section-div { 
+ float: right;
+ width:50%;
+ text-align: right;
+}
+
+.related-courses-mobile .language-section {
+padding-left:15px !important;
+    padding-right:15px !important;
+    margin-top:20px;
+    }
+
+ #main .related-courses-mobile .institute-title {
+    margin-bottom:10px !important;
+ }
+
+ .related-courses-mobile {
+    margin-bottom:10px !important;
+ }

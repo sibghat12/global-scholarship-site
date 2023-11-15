@@ -1926,6 +1926,19 @@ function add_custom_js() {
 
 <script type="text/javascript">
 
+   
+        jQuery(document).ready(function () {
+           
+            jQuery('input').on('click', function () {
+                var link = jQuery(this).val();
+                var urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+                if (urlRegex.test(link)) {
+                   window.open(link, '_blank');
+                } 
+            });
+
+        });
+
     
 document.addEventListener("DOMContentLoaded", function() {
     // Find and process input fields inside the first ACF group
@@ -1975,7 +1988,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         success: function(response) {
             console.log('AJAX request successful.');
-            location.reload();
+           location.reload();
         },
         error: function(error) {
             console.error('Error in AJAX request:', error);
@@ -3850,11 +3863,12 @@ function update_post_institutions($specific_post_id = null) {
 
             if (strpos($institution_permalink, '?p=') !== false) {
             $base_url = get_site_url(); // Retrieves the base URL of your WordPress site
-            $institution_permalink = trailingslashit($base_url) . $institution_slug; // Constructs the full SEO-friendly URL
+            $institution_permalink = trailingslashit($base_url) . 'institutions/' . $institution_slug . '/'; // Constructs the full SEO-friendly URL
             }
 
             
             if (preg_match('/[[:<:]]' . preg_quote($institution_name, '/') . '[[:>:]]/', $post_content)) {
+
                 if (!empty($institution_name) && !in_array($institution_name, $existing_institutions)) {
                     $current_institutions[] = array(
                         'institution_title' => $institution_name,
@@ -3864,19 +3878,29 @@ function update_post_institutions($specific_post_id = null) {
                 } elseif (in_array($institution_name, $existing_institutions)) {
                     foreach ($current_institutions as &$inst) {
                         
-                
-                        $url_id = url_to_postid($inst['institution_link']);
-                        
+            
+              if(site_url() == "https://globalscholarships.com") {
+              $inst['institution_link'] = str_replace('https://env-globalscholarshipsa-sibi.kinsta.cloud', 'https://globalscholarships.com', $inst['institution_link']);
+                  }
 
-                        if ($url_id) {
+              
+                  
+                     
+                if (strpos($inst['institution_link'], '?p=') !== false) {
+                          $url_id = url_to_postid($inst['institution_link']);
+                          
+                         if ($url_id) {
                         $existing_institutue = get_post($url_id); // Retrieve the post object
                         $existing_institution_slug = $existing_institutue->post_name; // Extract the post slug
                         $base_url = get_site_url(); // Retrieve the base URL of your WordPress site
-                        $institution_permalink = trailingslashit($base_url) . $existing_institution_slug; 
+                        $institution_permalink = trailingslashit($base_url) . 'institutions/' .$existing_institution_slug . '/'; 
                         $inst['institution_link'] = $institution_permalink;
-                       
+
                         
-                        }
+                       }
+                    }
+
+                       
 
                         if ($inst['institution_title'] === $institution_name && $inst['inputted'] === 'Yes') {
                             break; // Skip adding the institution if it already exists and is marked as 'Yes'
@@ -4318,7 +4342,7 @@ function update_all_post_institutions() {
 
              if (strpos($institution_permalink, '?p=') !== false) {
             $base_url = get_site_url(); // Retrieves the base URL of your WordPress site
-            $institution_permalink = trailingslashit($base_url) . $institution_slug; // Constructs the full SEO-friendly URL
+            $institution_permalink = trailingslashit($base_url) . 'institutions/' . $institution_slug . '/'; // Constructs the full SEO-friendly URL
              }
   
     
@@ -4331,6 +4355,25 @@ function update_all_post_institutions() {
                     );
                 } elseif (in_array($institution_name, $existing_institutions)) {
                     foreach ($current_institutions as &$inst) {
+                        
+              if(site_url() == "https://globalscholarships.com") {
+              $inst['institution_link'] = str_replace('https://env-globalscholarshipsa-sibi.kinsta.cloud', 'https://globalscholarships.com', $inst['institution_link']);
+                  }
+                    
+                if (strpos($inst['institution_link'], '?p=') !== false) {
+                          $url_id = url_to_postid($inst['institution_link']);
+                          
+                         if ($url_id) {
+                        $existing_institutue = get_post($url_id); // Retrieve the post object
+                        $existing_institution_slug = $existing_institutue->post_name; // Extract the post slug
+                        $base_url = get_site_url(); // Retrieve the base URL of your WordPress site
+                        $institution_permalink = trailingslashit($base_url) . 'institutions/' .$existing_institution_slug . '/'; 
+                        $inst['institution_link'] = $institution_permalink;
+
+                        
+                       }
+                    }
+
                         if ($inst['institution_title'] === $institution_name && $inst['inputted'] === 'Yes') {
                             break; // Skip adding the institution if it already exists and is marked as 'Yes'
                         } elseif ($inst['institution_title'] === $institution_name && $inst['inputted'] === 'No') {
@@ -4342,6 +4385,10 @@ function update_all_post_institutions() {
         }
          
      update_field('generated_institutions', $current_institutions, $post_id);
+
+    
+    update_generated_institutions_new_inputted_field($post_id);
+
 
     // Add Generated Institutions to the Institutions Posts    
 
@@ -4379,8 +4426,8 @@ $paged++;
 }
 
 // Work as Run Tool Button
-//add_action('update_all_post_institutions', 'update_all_post_institutions');
-
+add_action('update_all_post_institutions', 'update_all_post_institutions');
+//add_action('init', 'update_all_post_institutions');
 
 function calculate_resulted_institutions() {
     $posts_per_batch = 100;
@@ -4468,7 +4515,9 @@ function calculate_resulted_institutions() {
 
 
 // Work as Calculate Institutions For All Posts
-//add_action('calculate_resulted_institutions', 'calculate_resulted_institutions');
+add_action('calculate_resulted_institutions', 'calculate_resulted_institutions');
+//add_action('init', 'calculate_resulted_institutions');
+
 
 
 
@@ -5493,12 +5542,13 @@ function process_resulted_institutions($specific_post_id) {
 function make_generated_posts_to_inputted($specific_post_id) {
     $post_id = $specific_post_id;
     $resulted_institutions = get_field('resultant_posts_for_posts', $post_id);
-    $generated_institutionss = get_field('generated_posts_for_posts', $post_id);
+    $generated_institutions = get_field('generated_posts_for_posts', $post_id);
 
      
    if ($resulted_institutions && $generated_institutions) {
     foreach ($resulted_institutions as $resulted_institution) {
         if ($resulted_institution['inputted']) {
+            
             $institution_name = $resulted_institution['post_name'];
             foreach ($generated_institutions as &$inner_generated_institution) {
                 if ($inner_generated_institution['post_name'] === $institution_name) {
@@ -5640,10 +5690,10 @@ add_action('wp_ajax_run_interlinking_tool', 'run_interlinking_tool');
 add_action('wp_ajax_nopriv_run_interlinking_tool', 'run_interlinking_tool');
 
 function run_interlinking_tool() {
+    
     if (isset($_POST['customPostID'])) {
         
         $custom_post_id = $_POST['customPostID'];
-        
         update_post_institutions($custom_post_id);
         //update_generated_institutions_new_inputted_field($custom_post_id);
         add_generated_to_resulted($custom_post_id);
@@ -5728,7 +5778,7 @@ function calculate_posts() {
     
     if (isset($_POST['customPostID'])) {
         $custom_post_id = $_POST['customPostID'];
-       
+
         make_generated_posts_to_inputted($custom_post_id);
         add_generated_posts_to_resulted_posts($custom_post_id); 
        count_resulted_posts($custom_post_id);
@@ -5798,7 +5848,3 @@ function current_month_shortcode() {
     return $current_month;
 }
 add_shortcode('current_month', 'current_month_shortcode');
-
-
-
-

@@ -3822,7 +3822,7 @@ function courses_grid_shortcode_new($atts) {
  
  
      <a id="related-courses-link" href="<?php echo $link; ?>">
-     <div class='col-md-4 card-container'>
+     <div class='col-md-4 card-container related-courses-desktop'>
          <div class='front'>
              <div class="course-image">
                  <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
@@ -3933,6 +3933,89 @@ function courses_grid_shortcode_new($atts) {
              </div>
             </div>
            </div> 
+       
+         <div class='col-md-4 card-container related-courses-mobile'>
+         <div class='front'>
+             <div class="course-image">
+                 <img src="<?php echo esc_url($image_url); ?>" alt="Course Image">
+             </div>
+             <div class="course-text heading-section" >
+                 <div class="col-md-3 course-logo">
+                     <img src="<?php echo esc_url($logo_url); ?>" alt="Course Logo">
+                 </div>
+                 <div class="col-md-7 course-title" >
+                     <?php echo esc_html($course_title); ?>
+                 </div>
+                 <div class="col-md-2 country-flag">
+                     <img src="<?php echo site_url(); ?>/wp-content/themes/Avada-Child-Theme/assets/flags/<?php echo $countryCode; ?>.svg">
+                 </div>
+             </div>
+             <div class="clearfix"> </div>
+             <div class="course-text heading-section">
+                 <p class="institute-title">
+                     <?php echo $institute->post_title; ?>
+                 </p>
+             </div>
+             <div>
+                 <p id="annaual-text">Annual Tuition Fee</p>
+             </div>
+             <div class="course-text annual-section">
+                 <div class="tuition-fee-div">
+                     <p class="tuition-fee-text">
+                         <span>Domestic</span><br>
+                         <?php
+                         if ($domestic_tuition_fees) {
+                             echo number_format($domestic_tuition_fees) . " " . $currency;
+                         } elseif ($domestic_tuition_fees_INT) {
+                             echo number_format($domestic_tuition_fees_INT) . " " . $currency;
+                         } else {
+                             echo "N/A";
+                         }
+                         ?>
+                     </p>
+                 </div>
+                 <div class="tuition-fee-div-second">
+                      <p class="tuition-fee-text">
+                         <span>International</span><br>
+                         <?php
+                         if ($international_tuition_fees) {
+                             echo number_format($international_tuition_fees) . " " . $currency;
+                         } elseif ($international_tuition_fees_INT) {
+                             echo number_format($international_tuition_fees_INT) . " " . $currency;
+                         } else {
+                             echo "N/A";
+                         }
+                         ?>
+                     </p>
+                 </div>
+             </div>
+             <div class="course-text language-section" >
+                 
+                  <p class="learn-more-mobile-para">
+                     <a  href="<?php echo $link; ?>">
+                         Learn more 
+                         <i   
+                         class="fa fa-arrow-right">  </i></a>
+                 </p>
+
+                 <p class="language-section-div">
+                     <span class="language-icon">
+                         <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
+                     </span>
+                     <span class="language-text"><?php echo $language_of_instruction; ?></span>
+                 </p>
+
+                
+
+             </div>
+
+             
+
+
+         </div>
+         
+           </div> 
+
           </a>
           <?php 
          endwhile;
