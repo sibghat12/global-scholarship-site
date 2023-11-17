@@ -54,42 +54,43 @@ $scholarships_array = get_all_scholarships();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 
-<div class="fusion-row f" style="margin-top: 30px;width:80%;">
-  <div class="sticky-wrapper"  style="margin:auto !important;">
+<div class="fusion-row f filter-row">
+
+<div class="sticky-wrapper" >
+
 <div class="mobile-sticky-div">
+
 <div class="card-section-mobile">
-<h1 class="mobile-title" style='font-size:24px !important;font-weight:700;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'>   <?php echo $scholarships_count; ?> Scholarships for International Students </h1> 
-<div id="sp"> <span class="temp" style='font-size:16px;padding-bottom:10px;padding-left:7px;
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results:  <b> 1-20 of  <?php echo  $scholarships_count; ?>  </b></span>  </div>
+<h1 class="mobile-title">   <?php echo $scholarships_count; ?> Scholarships for International Students </h1> 
+<div id="sp"> <span class="temp" > | Results:  <b> 1-20 of  <?php echo  $scholarships_count; ?>  </b></span>  </div>
 </div>
 
+<div class="filter-toggle-btn"> 
+  <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png"> Filter     
+</div> 
 
-
- <div class="filter-toggle-btn" style=" font-size:18px;" > 
-  <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png"
- style="padding-right:0px;text-align: center;height: 22px;"> Filter     
- </div> 
 </div>
 </div>
 
-<div style="width:24%;float:left;" id="filter-panell">
+<div  id="filter-panell">
     <form  action="<?php echo admin_url('admin-ajax.php'); ?>" method="POST"  id="filter-form">
     <div class="clearfix"> </div>
-    <div class="div-mobile" style="padding-top:25px;padding-bottom:45px !important;padding-left:20px;padding-right:20px;"> 
-      <p id="previous-btnn" style="width:20%;float:left;min-width: 20%;"> <img src="<?php  echo site_url(); ?>/wp-content/uploads/2023/04/previous.png"> </p>
-     <p style="width:60%;float:left;text-align: center;color:black;font-weight: 600;font-size:15px;"> Filter by </p> 
-      <p   class="reset_class" style="cursor:pointer;width:20%;float:right;text-align: right;color:#5590BC;font-weight: 600;font-size:15px;"> Reset </p>
+    <div class="div-mobile" > 
+      <p id="previous-btnn"> <img src="<?php  echo site_url(); ?>/wp-content/uploads/2023/04/previous.png"> </p>
+      <p id="filter-by"> Filter by </p> 
+      <p   class="reset_class" > Reset </p>
     </div>
     <div class="clearfix"> </div>
-    <hr style="margin-top:0px;">
+    
 
-     <p class="text-desktop" style="color:#77A6C9;margin-top: 20px;padding-left: 0px;font-size:24px; font-weight: 600;">Filter by:  </p>
+     <p class="text-desktop">Filter by:  </p>
      
-<ul class="sidebar-menu" style="">
+<ul class="sidebar-menu" >
     
 <div class="screen-one">
-<p style="font-weight:600;margin-top: 10px;margin-bottom:0px !important;"> Degrees: </p>
-  <select class="selectpicker check-class degree_checkbox" name="degree_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+<p class="select-label degree-label"> Degrees: </p>
+  <select class="selectpicker check-class degree_checkbox" name="degree_checkbox" 
+   data-live-search="true" >
        <option  value=""> All Degrees </option>
        <?php foreach ($degrees_array as $key => $degree) { ?>
         <option  value="<?php echo $degree; ?>"> <?php echo  $degree; ?> </option>
@@ -98,8 +99,8 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
 
 <br>
 
-<p style="font-weight:600;margin-bottom:0px !important;"> Locations: </p>
-  <select class="selectpicker check-class location_checkbox" name="location_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+<p class="select-label"> Locations: </p>
+  <select class="selectpicker check-class location_checkbox" name="location_checkbox"  data-live-search="true" >
         <option value="">  All Locations </option>
        <?php foreach ($country_list as $key => $country) { ?>
         <option  value="<?php if ($country != "All Nationalities"){ echo $country; } ?>"> <?php echo  $country ?> </option>
@@ -107,16 +108,16 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
  </select>
 
 
-<p style="font-weight:600;margin-bottom:0px !important;"> Scholarship Type: </p>
-  <select class="selectpicker check-class scholarship_type" name="scholarship_type"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+<p class="select-label"> Scholarship Type: </p>
+<select class="selectpicker check-class scholarship_type" name="scholarship_type"  data-live-search="true">
     <option value="">  All Types </option>
        <option value="Full Funding">  Full Funding </option>
        <option value="Full Tuition">  Full Tuition </option>
        <option value="Partial Funding">  Partial Funding </option>
 </select>
 
-<p style="font-weight:600;margin-bottom:0px !important;"> Scholarship Deadline: </p>
-  <select class="selectpicker check-class application_checkbox" name="application_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+<p class="select-label"> Scholarship Deadline: </p>
+  <select class="selectpicker check-class application_checkbox" name="application_checkbox"  data-live-search="true">
        <option value=""> All Deadlines   </option>
         <option value="open"> <b>Currently Open  </b> </option>
         <option  value="one-month"> Within 1 month </option>
@@ -130,8 +131,8 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
 </select>
     </div>
    <div class="screen-two" >
-   <p style="font-weight:600;margin-bottom:0px !important;"> Subjects: </p>
-  <select class="selectpicker check-class subject_checkbox" name="subject_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+   <p class="select-label"> Subjects: </p>
+  <select class="selectpicker check-class subject_checkbox" name="subject_checkbox"  data-live-search="true">
        
        <?php foreach ($subject_array as $key => $subject) { ?>
         <option  value="<?php if ($subject != "All Subjects"){echo $subject;} ?>"> <?php echo  $subject ?> </option>
@@ -141,8 +142,8 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
 
 
     
- <p style="font-weight:600;margin-bottom:0px !important;"> Nationalities: </p>
-  <select class="selectpicker check-class nationality_checkbox" name="nationality_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+ <p class="select-label"> Nationalities: </p>
+  <select class="selectpicker check-class nationality_checkbox" name="nationality_checkbox"  data-live-search="true">
        
        <?php foreach ($country_array as $key => $country) { ?>
         <option  value="<?php if ($country != "All Nationalities"){echo $country;} ?>"> <?php echo  $country ?> </option>
@@ -159,8 +160,8 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
     $institutes = new WP_Query($args);
     $institute_ids = $institutes->posts; // Get all post IDs
 
-    echo '<p style="font-weight:600;margin-bottom:0px !important;"> Institutions: </p>
-      <select class="selectpicker check-class institution_checkbox" name="institution_checkbox"  data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+    echo '<p class="select-label"> Institutions: </p>
+      <select class="selectpicker check-class institution_checkbox" name="institution_checkbox"  data-live-search="true" >
             <option value="">  All Institutions </option>';
 
     // Loop through each post ID and get the title
@@ -172,8 +173,8 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
     echo '</select>';
 ?>
 
-<p style="font-weight:600;margin-bottom:0px !important;"> Scholarships: </p>
- <select class="selectpicker check-class scholarship_checkbox" name="scholarship_checkbox" data-live-search="true" style="width:400px !important;margin-top:0px;margin-bottom:10px;">
+<p class="select-label"> Scholarships: </p>
+ <select class="selectpicker check-class scholarship_checkbox" name="scholarship_checkbox" data-live-search="true" >
     <option value="">All Scholarships</option>
     <?php foreach ($scholarships_array as $id => $title) {  ?>
         <option value="<?php echo $title; ?>"><?php echo $title; ?></option>
@@ -186,10 +187,9 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;'> | Results
 
 </div>
 
-<hr style="margin-top:3px;margin-bottom:3px;border:1px solid #cdcdcd;" class="hide-hr">
+<hr class="filter-hr hide-hr">
 
- <center><p  id="reset" class="reset-desktop" style="cursor:pointer;text-align:center !important; margin-top: 20px; font-size: 15px; letter-spacing: 0.7px !important; padding-top:7px;
-  width:94% !important;    border:none !important; background:#77A6C9 !important; margin-right: 20px !important;margin-left: 10px !important;color:white !important; padding-bottom:7px; margin-bottom:10px;"> RESET FILTERS </p>  <br></center>
+ <center><p  id="reset" class="reset-desktop" > RESET FILTERS </p>  <br></center>
 
 </ul>
 </form>
@@ -210,9 +210,9 @@ $loop = new WP_Query($ad_args);
 ?>
 
 
-<center><button class="show-only-mobile" style="display: none;margin-top:10px;width:100%;">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> </center>
+<center><button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> </center>
 
-<div style="width:75%;float:left;margin-top:-20px;padding-left:30px;" id="scholarship-cards">
+<div  id="scholarship-cards">
 
 <div id="preloader" style="display: none;">
 <img src="https://globalscholarships.com/wp-content/uploads/2023/03/Curve-Loading.gif"> </center>
@@ -222,7 +222,7 @@ $loop = new WP_Query($ad_args);
 
 
 <div class="card-section">
-<h1 class="title-textt" style="padding-bottom: 10px !important;">Search Scholarships for International Students </h1>
+<h1 class="title-textt">Search Scholarships for International Students </h1>
 </div>
 <center>
 <?php
@@ -242,7 +242,7 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 ?>
 
 
-<a  href="<?php echo $modifiedURL_pre; ?>"  style='background:#f7f7f7;color:white !important;width:160px !important;border:1px solid #cdcdcd; padding:10px;padding-left:30px;padding-right:30px;font-size:18px !important;color:white;' class="prev-page"  id='prev_posts'> Prev Page </a>
+<a  href="<?php echo $modifiedURL_pre; ?>"   class="prev-page"  id='prev_posts'> Prev Page </a>
 
 
 <?php
@@ -258,7 +258,7 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 ?>
 
 
-<a href="<?php echo $modifiedURL; ?>" style='background:#f7f7f7;width:160px !important;border:1px solid #cdcdcd; padding:10px;padding-left:30px;padding-right:30px;font-size:18px !important;color:white !important;'  class="next-page"  id='more_posts'> Next Page </a> 
+<a href="<?php echo $modifiedURL; ?>"   class="next-page"  id='more_posts'> Next Page </a> 
 
 
 </center>
