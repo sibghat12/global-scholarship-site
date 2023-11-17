@@ -8032,6 +8032,10 @@ padding-left:15px !important;
     padding: 4px 0px;
 }
 
+.page-template-page-homepage #main .fusion-post-wrapper {
+    box-shadow: 0px 4px 6px #72717121;
+}
+
 .gs-courses-boxes-container {
     display: flex;
     justify-content: center;
