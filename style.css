@@ -291,12 +291,12 @@ a.fusion-logo-link{
 .fusion-header.fusion-header-backface{
     height: 82px !important;
 }
-/* #main a{
+#main a{
     color: #008fc5 !important;
 }
 #main a:hover{
     color: #9e9e9e !important;
-} */
+}
  .fusion-footer-widget-area ul li a:hover {
     color: #008fc5;
 }
@@ -8030,6 +8030,35 @@ padding-left:15px !important;
 }
 .page-template-page-homepage #main .gs-homepage-courses-text p {
     padding: 4px 0px;
+}
+
+.page-template-page-homepage #main .gs-homepage-about-title h1::before{
+    display: inline-block;
+    margin: 0 20px 8px 0;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #3E8CBF;
+    width: 78px;
+}
+
+.page-template-page-homepage #main .gs-homepage-about-url a {
+    display: inline-block;
+    background-image: url('./assets/images/underline.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -5px 90%;
+    height: 38px;
+}
+
+.page-template-page-homepage #main .gs-homepage-about-title h1::after{
+    display: inline-block;
+    margin: 0 0 8px 20px;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #3E8CBF;
+    width: 78px;
 }
 
 .page-template-page-homepage #main .fusion-post-wrapper {
