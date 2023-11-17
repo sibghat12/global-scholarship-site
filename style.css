@@ -7983,3 +7983,157 @@ padding-left:15px !important;
         margin-left:00px;
     }
  }
+
+ /* Filter Tempate Css */
+
+.filter-row {
+    margin-top: 30px;
+    width:80%;
+}
+
+.filter-row .sticky-wrapper{
+    margin:auto !important;
+}
+
+.mobile-title {
+    font-size:24px !important;
+    font-weight:700;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+.filter-row .temp{
+font-size:16px;
+padding-bottom:10px;
+padding-left:7px;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+.filter-row.filter-toggle-btn {
+     font-size:18px;
+}
+
+.filter-row .filter-toggle-btn img {
+    padding-right:0px;
+    text-align: center;
+    height: 22px;
+}
+
+.filter-row #filter-panell {
+    width:24%;float:left;
+}
+
+.filter-row .div-mobile{
+    padding-top:25px;
+    padding-bottom:45px !important;
+    padding-left:20px;
+    padding-right:20px;
+}
+.filter-row #previous-btnn {
+    width:20%;
+    float:left;
+    min-width: 20%;
+}
+.filter-row #filter-by{
+    width:60%;
+    float:left;
+    text-align: center;
+    color:black;
+    font-weight: 600;
+    font-size:15px;
+}
+
+.filter-row .reset_class{
+    cursor:pointer;
+    width:20%;float:right;
+    text-align: right;
+    color:#5590BC;
+    font-weight: 600;
+    font-size:15px;
+}
+
+.filter-row .filter-row hr{
+    margin-top:0px;
+}
+
+.filter-row .text-desktop {
+    color:#77A6C9;
+    margin-top: 20px;
+    padding-left: 0px;
+    font-size:24px !important; 
+    font-weight: 600;
+}
+
+.filter-row .select-label 
+{
+    font-weight:600;
+    margin-bottom:0px !important;
+}
+
+.filter-row .degree-label {
+    margin-top: 10px;
+}
+
+.filter-row .check-class {
+    
+    margin-top:0px;
+    margin-bottom:10px;
+}
+
+.filter-row .filter-hr{
+    margin-top:3px;
+    margin-bottom:3px;
+    border:1px solid #cdcdcd;
+}
+
+.filter-row .reset-desktop {
+    cursor:pointer;
+    text-align:center !important;
+    margin-top: 20px;
+    font-size: 15px;
+    letter-spacing: 0.7px !important;
+    padding-top:7px;
+    width:94% !important; 
+    border:none !important;
+    background:#77A6C9 !important;
+    margin-right: 20px !important;
+    margin-left: 10px !important;
+    color:white !important;
+    padding-bottom:7px; 
+    margin-bottom:10px;
+}
+
+.filter-row .show-only-mobile {
+  display: none;
+  margin-top:10px;
+  width:100%;
+}
+
+.filter-row #scholarship-cards{
+    width:75%;float:left;margin-top:-20px;padding-left:30px;
+}
+
+.filter-row .card-section {
+padding-bottom: 10px !important;
+}
+
+#main .filter-row #prev_posts {
+    background:#f7f7f7;
+    color:white !important;
+    width:160px !important;
+    border:1px solid #cdcdcd; 
+    padding:10px;
+    padding-left:30px;
+    padding-right:30px;
+    font-size:18px !important;
+    color:white !important;
+}
+
+#main #more_posts   {
+    background:#f7f7f7;
+    width:160px !important;
+    border:1px solid #cdcdcd; 
+    padding:10px;
+    padding-left:30px;
+    padding-right:30px;
+    font-size:18px !important;
+    color:white !important;
+}
