@@ -4,6 +4,7 @@ include ('functions/scholarships-functions.php');
 include ('scripts/acf-options.php'); 
 include ('scripts/institutions-script.php'); 
 include ('scripts/saa-cities-cpt.php'); 
+include ('ajax-search.php'); 
 
 // filter
 function institutions_where( $where ) {
@@ -41,7 +42,13 @@ function enqueue_bootstrap_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
-
+// function serach_script_enqueue() {
+//     if (!is_page_template('page-homepage.php')) {
+//         return;
+//     }
+//     wp_enqueue_script('search_js', get_stylesheet_directory_uri() . '/assets/search.js', array('jquery'), '1.0.0', true);
+// }
+// add_action('wp_enqueue_scripts', 'serach_script_enqueue');
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
