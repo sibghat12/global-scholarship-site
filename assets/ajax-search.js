@@ -155,8 +155,8 @@ jQuery(document).ready(function ($) {
     function toggleSearchResultsBox(item, input) {
       $(item).parent().hide();
         $(input).on('click', () => {
-            if($(item).children().length > 0) {
-            $(item).parent().show();
+            if($(input).val().length >= 3 && $(item).children().length > 0) {
+              $(item).parent().show();
             }
         })
     }
@@ -167,7 +167,7 @@ jQuery(document).ready(function ($) {
           if (!$(event.target).closest(parentElement).length) {
           $(item).parent().hide();
           } else if($(event.target).closest(parentElement).length) {
-          if($(event.target).hasClass(inputClass) ) {
+          if($(event.target).hasClass(inputClass) && $(inputClass).val()?.length >= 3 ) {
               $(item).parent().show();
           } 
           }
