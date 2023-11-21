@@ -2240,15 +2240,52 @@ add_rewrite_rule(
 });
 
 
-// Add Rewrite Rule for Best Universities Template.
-add_action( 'init',  function() {
+// // Add Rewrite Rule for Best Universities Template.
+// add_action( 'init',  function() {
+//     add_rewrite_rule(
+//         '^deadlines-by-country-([^/]*)?',
+//         'index.php?pagename=deadlines-by-country&country=$matches[1]',
+//         'top'
+//     );
+// } );
+    
+
+// add_action('init', function () {
+//     add_rewrite_rule(
+//         '^scholarship-search(?:/([^/]+))?(?:/page/(\d+))?/?$',
+//         'index.php?pagename=scholarship-search&page=$matches[1]&page_number=$matches[2]',
+//         'top'
+//     );
+// });
+
+add_action('init', function () {
     add_rewrite_rule(
-        '^deadlines-by-country-([^/]*)?',
-        'index.php?pagename=deadlines-by-country&country=$matches[1]',
+        '^scholarship-search(?:/page/(\d+))?/?$',
+        'index.php?pagename=scholarship-search&page_number=$matches[1]',
         'top'
     );
-} );
-    
+});
+
+
+// Add a filter to modify the main query
+add_filter('pre_get_posts', function ($query) {
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    // Check if we're on the scholarship-search page and have the custom_page parameter
+    if (is_page('scholarship-search') && ($custom_page = get_query_var('custom_page'))) {
+        $query->set('paged', max(1, $custom_page)); // Use custom_page as the page number
+    }
+});
+
+// Add the custom parameter to the list of query variables
+add_filter('query_vars', function ($vars) {
+    $vars[] = 'custom_page';
+    return $vars;
+});
+
+
 
 
 // $url = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];

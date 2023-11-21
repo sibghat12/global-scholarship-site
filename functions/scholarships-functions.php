@@ -3383,6 +3383,14 @@ $nationalites_array = $nationalites_array['choices'];
         $location_value = ucwords(strtolower($location_value));
 
         $subject_array = $scholarship_details[12]['choices'];
+        
+
+         
+        $subject_array = array_column($scholarship_details, null, 'name')['eligible_programs'];
+        $subject_array = $subject_array['choices'];
+
+        
+
         foreach ($subject_array as $key => $subject_value) {
             $subject_value = strtolower($subject_value);
             $subject_value = str_replace(' ', '-', $subject_value);
