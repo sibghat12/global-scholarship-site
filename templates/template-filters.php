@@ -222,7 +222,7 @@ $loop = new WP_Query($ad_args);
 
 
 <div class="card-section">
-<h1 class="title-textt">Search Scholarships for International Students </h1>
+<h1 class="title-textt" style="display: none;">Search Scholarships for International Students </h1>
 </div>
 <center>
 <?php
@@ -242,7 +242,7 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 ?>
 
 
-<a  href="<?php echo $modifiedURL_pre; ?>"   class="prev-page"  id='prev_posts'> Prev Page </a>
+<a  href="<?php echo $modifiedURL_pre; ?>"  style="display:none;" class="prev-page"  id='prev_posts'> Prev Page </a>
 
 
 <?php
@@ -258,7 +258,7 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 ?>
 
 
-<a href="<?php echo $modifiedURL; ?>"   class="next-page"  id='more_posts'> Next Page </a> 
+<a href="<?php echo $modifiedURL; ?>"  style="display: none;" class="next-page"  id='more_posts'> Next Page </a> 
 
 
 </center>
@@ -395,17 +395,33 @@ var ppp = 20;  // Post per page
 var page = 1;
 
 $(document).ready(function(){
-
 reload_data();
 });
 
 function reload_data(){
+
+
 
 $('.next-page').css("display" , "none");
 $('#preloader').css("display" , "block");
 $('.card-section').css("display" , "none");
 $('.prev-page').css("display" , "none");
 $('#prev-posts').css("display" , "none");
+
+var current_page_number = "";
+
+// Extract page number from the URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+const pageParam = urlParams.get('page_number');
+
+console.log("Full URL: " + window.location.href);
+console.log("Page Parameter: " + pageParam);
+
+if (pageParam && !isNaN(pageParam)) {
+    current_page_number = parseInt(pageParam, 10);
+}
+
+
 
 
 var degree_label_array = ['masters' , 'bachelors' , 'phd'];
@@ -447,6 +463,7 @@ var scholarship_type_label_array = ['Full Funding' , 'Full Tuition' , 'Partial F
 
 pathname_string = window.location.pathname;
 
+
 var result = pathname_string.substring(1, pathname_string.length-1);
 
 var pathArray = result.split('/');
@@ -456,7 +473,10 @@ var removeItem = "scholarship-search";
 });
 
 
-var current_page_number = "";
+
+if(current_page_number) {
+
+}else {
 for (let i = 0; i < pathArray.length; i++) {
   if (typeof pathArray[i] === "string" && isNaN(pathArray[i]) === false) {
      current_page_number = pathArray[i];
@@ -464,6 +484,7 @@ for (let i = 0; i < pathArray.length; i++) {
   }
 }
 
+}
 
 // Get Data from The URL Pathname and filter records accordingly.  
 // Degress: Get degree name from the url path
@@ -685,6 +706,7 @@ formData.append("ppp" , ppp);
 formData.append("checkk" , true);
 formData.append("reload" , true);
 
+var check_call = true;
 
 let isEmpty = val => val === "";
 
@@ -708,7 +730,8 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
     } else if (pathArray.length > 0) {
         console.log("pagenotfound");
         // Redirect to '/page-not-found'
-       window.location.href = '/page-not-found';
+        check_call = false;
+      window.location.href = '/page-not-found';
     }
 } else {
     // If pathArray has more than one value
@@ -720,6 +743,7 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
                 !(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1]))) {
                 console.log("pagenotfound due to invalid value in pathArray");
                 // Redirect to '/page-not-found'
+             check_call = false;
                 window.location.href = '/page-not-found';
                 break;
             }
@@ -733,8 +757,10 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
 }
 
 
+
 $('.prev-page').css("display" , "none");
 
+if(check_call) {
 $.ajax({
     url : link,
     data: formData, 
@@ -742,6 +768,8 @@ $.ajax({
     contentType: false,
     type : 'post',
       success:function(response){
+
+        $('.title-textt').css("display" , "block");
  
           $('#prev-posts').css("display" , "none");
 
@@ -846,6 +874,7 @@ $.ajax({
     }
   }
     });
+}
 
 }
 
@@ -1350,13 +1379,13 @@ pathname_string = window.location.pathname;
 var updatedString = $.trim(pathname_string.replace("/scholarship-search", ""));
 console.log("sibi+ " + updatedString);
 
+
 var updatedUrl = updatedString.replace(/\/page\/\d+/, "");
 
 if (updatedUrl.endsWith("/")) {
  updatedUrl = updatedUrl.slice(0, -1);
 }
 
-console.log(updatedUrl);
 
  $.ajax({
     url : link,
@@ -1378,7 +1407,7 @@ console.log(updatedUrl);
          
          $('.next-page').show();
          }else {
-         changeurl("scholarship-search" + updatedUrl + "/page/" + pagee , "Welcome");
+         changeurl("scholarship-search" + updatedUrl + "/?page_number=" + pagee , "Welcome");
          $('.prev-page').show();
          $('.next-page').show(); 
          }
@@ -1572,12 +1601,12 @@ jQuery(document).ready(function() {
 
 
 
-  // Check if the URL contains '/page/' followed by a number
-  if (url.match(/\/page\/\d+/)) {
+  // Check if the URL contains '?page=' followed by a number
+if (url.match(/\?page=\d+/)) {
     jQuery('.prev-page').show(); // Show the link with class '.prev-page'
-  } else {
+} else {
     jQuery('.prev-page').hide(); // Hide the link with class '.prev-page'
-  }
+}
 
 
 });
@@ -1593,11 +1622,14 @@ function show_pre_or_not(){
   //   jQuery('.prev-page, .next-page').hide(); // Hide the buttons with classes '.prev-page' and '.next-page'
   // }
   // Check if the URL contains '/page/' followed by a number
-  if (url.match(/\/page\/\d+/)) {
+
+ // Check if the URL contains '?page=' followed by a number
+if (url.match(/\?page=\d+/)) {
     jQuery('.prev-page').show(); // Show the link with class '.prev-page'
-  } else {
+} else {
     jQuery('.prev-page').hide(); // Hide the link with class '.prev-page'
-  }
+}
+
 }
 
         function updateFilterPanelMarginTop() {
