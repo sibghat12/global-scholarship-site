@@ -8065,9 +8065,13 @@ padding-left:15px !important;
     box-shadow: 0px 4px 6px #72717121;
 }
 
+.page-template-page-homepage #main .gs-featured-in-section {
+    z-index: 1;
+}
+
 /* Homepage Search */
 .page-template-page-homepage #main .gs-homepage-hero{
-    z-index: 999;
+    z-index: 10;
 }
 
 .page-template-page-homepage #main .search-results-container .type-heading {

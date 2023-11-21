@@ -5,95 +5,98 @@ jQuery(document).ready(function ($) {
     let debounceTimer;
 
     $(".search-input").on('keyup',function () {
-        let textInput = $(this).val().toLowerCase().trim();
-        
-        clearTimeout(debounceTimer);
-        if (textInput.length >= 3) {
-          debounceTimer = setTimeout(function() {
-        let $url = my_ajax_object.script_url + 'search-data.json';
+        let textInput = $(this).val().toLowerCase();
         let $searchResultsElement = $('#search-results');
         let $searchInput = $('.search-input');
-        var results = [];
-        var matchedResults = [];
-        $.getJSON($url, function(json) {
 
-        if (json) {
-            let  keys = Object.keys(json);
-            let remainingResults = 5; // Change according to how many results we want
-            $.each(keys, function (index, key) {
-              let matchedResults = $.grep(json[key], function (value) {
-                  return value.title && value.title.toLowerCase().indexOf(textInput) !== -1;
+        checkSearchIsActive($searchResultsElement, $searchInput);
+
+        // clearTimeout(debounceTimer);
+          if (textInput.length >= 2) {
+            // debounceTimer = setTimeout(function() {
+            let $url = my_ajax_object.script_url + 'search-data.json';
+
+            var results = [];
+            var matchedResults = [];
+            $.getJSON($url, function(json) {
+
+            if (json) {
+                let  keys = Object.keys(json);
+                let remainingResults = 5; // Change according to how many results we want
+                $.each(keys, function (index, key) {
+                  let matchedResults = $.grep(json[key], function (value) {
+                      return value.title && value.title.toLowerCase().indexOf(textInput) !== -1;
+                  });
+
+                  if (matchedResults.length > 0 && remainingResults > 0) {
+                      let result = {};
+                      result[key] = matchedResults.slice(0, remainingResults);
+                      results.push(result);
+                      remainingResults -= matchedResults.length;
+                  }
               });
 
-              if (matchedResults.length > 0 && remainingResults > 0) {
-                  let result = {};
-                  result[key] = matchedResults.slice(0, remainingResults);
-                  results.push(result);
-                  remainingResults -= matchedResults.length;
-              }
-          });
+            }
+              var resultsHtml = '';
+              toggleSearchResultsBoxOutside($searchResultsElement, '.gs-homepage-search-form', 'search-input');
+              setInputValues();
+              $.each(results, function (index, result) {
+                let key = Object.keys(result)[0]; // Get the key from the result object
+                let items = result[key]; // Get the items array corresponding to the key
+                    
+                // Mapping keys to headings
+                const typeHeadings = {
+                  gs_country: 'Country',
+                  gs_subject: 'Subject',
+                  gs_institutions: 'Institutions',
+                  gs_scholarships: 'Scholarships',
+                  // Add more keys and their respective headings if needed
+              };
 
-        }
-          console.log("results", results)
-          var resultsHtml = '';
-          checkSearchIsActive($searchResultsElement, $searchInput);
-          toggleSearchResultsBoxOutside($searchResultsElement, '.gs-homepage-search-form', 'search-input');
-          setInputValues();
-          $.each(results, function (index, result) {
-            let key = Object.keys(result)[0]; // Get the key from the result object
-            let items = result[key]; // Get the items array corresponding to the key
+                // Get the heading for the current key (type)
+                let heading = typeHeadings[key] || 'Other'; // Default heading if not found in typeHeadings
+
+                // Add the heading before the items
+                resultsHtml += `<h3 class="list-group-item type-heading">${heading}</h3>`;
+
+
+                $.each(items, function (itemIndex, item) {
+                    let title = item.title; // Get the title dynamically
+                    let permalink = item.permalink; // Get the permalink dynamically
+                    let dataInstitute = ''; // Initialize the data-institute attribute
+
+                    // Check if item.id exists and is not empty or undefined
+                    if (item.id) {
+                        dataInstitute = `data-institute="${item.id}"`; // Set data-institute attribute
+                    }
                 
-            // Mapping keys to headings
-            const typeHeadings = {
-              gs_country: 'Country',
-              gs_subject: 'Subject',
-              gs_institutions: 'Institutions',
-              gs_scholarships: 'Scholarships',
-              // Add more keys and their respective headings if needed
-          };
-
-            // Get the heading for the current key (type)
-            let heading = typeHeadings[key] || 'Other'; // Default heading if not found in typeHeadings
-
-            // Add the heading before the items
-            resultsHtml += `<h3 class="list-group-item type-heading">${heading}</h3>`;
-
-
-            $.each(items, function (itemIndex, item) {
-                let title = item.title; // Get the title dynamically
-                let permalink = item.permalink; // Get the permalink dynamically
-                let dataInstitute = ''; // Initialize the data-institute attribute
-
-                // Check if item.id exists and is not empty or undefined
-                if (item.id) {
-                    dataInstitute = `data-institute="${item.id}"`; // Set data-institute attribute
-                }
-            
-                resultsHtml += `<li class="list-group-item" id="${key}_${itemIndex}">
-                    <a href="${permalink}" class="list_result_item list_result_item_${key}_${itemIndex}" 
-                    data-link="${permalink}" data-title="${title}" ${dataInstitute}>
-                    ${title}</a>
-                </li>`;
+                    resultsHtml += `<li class="list-group-item" id="${key}_${itemIndex}">
+                        <a href="${permalink}" class="list_result_item list_result_item_${key}_${itemIndex}" 
+                        data-link="${permalink}" data-title="${title}" ${dataInstitute}>
+                        ${title}</a>
+                    </li>`;
+                });
             });
-        });
 
-          $searchResultsElement.empty();
+              $searchResultsElement.empty();
 
-          $searchResultsElement.css({
-            'background': 'rgb(237 237 237)',
-            'z-index': '99999999999999999999999999999999999999999',
-            'position': 'absolute',
-            'width': '88%',
-            'margin': '0',
-            'border-top': '1px solid #ccc',
-            'padding': '0px',
-            'box-shadow': '0px 4px 9px rgba(0, 0, 0, 0.1)',
-            'list-style': 'none',
-        });
-          $searchResultsElement.html(resultsHtml);
-        });
-      }, 300); // Adjust the delay time (in milliseconds) according to your needs
-    }
+              $searchResultsElement.css({
+                'background': 'rgb(237 237 237)',
+                'z-index': '99999999999999999999999999999999999999999',
+                'position': 'absolute',
+                'width': '88%',
+                'margin': '0',
+                'border-top': '1px solid #ccc',
+                'padding': '0px',
+                'box-shadow': '0px 4px 9px rgba(0, 0, 0, 0.1)',
+                'list-style': 'none',
+            });
+              $searchResultsElement.html(resultsHtml);
+            });
+          // }, 300); // Adjust the delay time (in milliseconds) according to your needs
+        } else {
+          return;
+        }
     });
 
 
@@ -124,9 +127,9 @@ jQuery(document).ready(function ($) {
           
     function checkSearchIsActive(element, input) {
 
-        if(input.val().length > 0 && element.children().length > 0) {
-          element.parent().show();
+        if(input.val().length > 2 && element.children().length > 0) {
           element.parent().addClass('active_search');
+          element.parent().show();
         } else {
           element.parent().hide();
           element.parent().removeClass('active_search');
@@ -150,12 +153,12 @@ jQuery(document).ready(function ($) {
     }
     // Toggle Search Results box when item is selected  
     function toggleSearchResultsBox(item, input) {
-    $(item).parent().hide();
-    $(input).on('click', () => {
-        if($(item).children().length > 0) {
-        $(item).parent().show();
-        }
-    })
+      $(item).parent().hide();
+        $(input).on('click', () => {
+            if($(item).children().length > 0) {
+            $(item).parent().show();
+            }
+        })
     }
 
     // Toggle Search Results box when clicking outside the search section
