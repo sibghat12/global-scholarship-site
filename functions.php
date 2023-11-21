@@ -4,6 +4,7 @@ include ('functions/scholarships-functions.php');
 include ('scripts/acf-options.php'); 
 include ('scripts/institutions-script.php'); 
 include ('scripts/saa-cities-cpt.php'); 
+include ('ajax-search.php'); 
 
 // filter
 function institutions_where( $where ) {
@@ -41,7 +42,13 @@ function enqueue_bootstrap_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
-
+// function serach_script_enqueue() {
+//     if (!is_page_template('page-homepage.php')) {
+//         return;
+//     }
+//     wp_enqueue_script('search_js', get_stylesheet_directory_uri() . '/assets/search.js', array('jquery'), '1.0.0', true);
+// }
+// add_action('wp_enqueue_scripts', 'serach_script_enqueue');
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
@@ -4213,6 +4220,82 @@ function set_tags_to_articles_by_topic_posts() {
 
 add_action('set_tags_to_articles_by_topic_posts', 'set_tags_to_articles_by_topic_posts');
 
+// Creating a shortcode to render HTML content
+function gs_courses_boxs() {
+    ob_start(); // Start output buffering
+    ?>
+    <div class="gs-courses-boxes-container">
+        <a href="/opencourses/?subject=marketing" target="_blank" class="gs-course-box-item">
+            <div class="gs-course-image">
+                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/marketing.png'; ?>" alt="" srcset="">
+            </div>
+            <div class="gs-course-text-container">
+                <div class="gs-course-title">
+                    <h2>Marketing</h2>
+                </div>
+                <div class="gs-course-info">
+                    <p>05 Courses</p>
+                </div>
+            </div>
+        </a>
+        <a href="/opencourses/?subject=data-science" target="_blank" class="gs-course-box-item">
+            <div class="gs-course-image">
+                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/data-science.png'; ?>" alt="" srcset="">
+            </div>
+            <div class="gs-course-text-container">
+                <div class="gs-course-title">
+                    <h2>Data Science</h2>
+                </div>
+                <div class="gs-course-info">
+                    <p>07 Courses </p>
+                </div>
+            </div>
+        </a>
+        <a href="/opencourses/?subject=design" target="_blank" class="gs-course-box-item">
+            <div class="gs-course-image">
+                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/design.png'; ?>" alt="" srcset="">
+            </div>
+            <div class="gs-course-text-container">
+                <div class="gs-course-title">
+                    <h2>Design</h2>
+                </div>
+                <div class="gs-course-info">
+                    <p>12 Courses </p>
+                </div>
+            </div>
+        </a>
+        <a href="/opencourses/?subject=business" target="_blank" class="gs-course-box-item">
+            <div class="gs-course-image">
+                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/business.png'; ?>" alt="" srcset="">
+            </div>
+            <div class="gs-course-text-container">
+                <div class="gs-course-title">
+                    <h2>Business</h2>
+                </div>
+                <div class="gs-course-info">
+                    <p>38 Courses</p>
+                </div>
+            </div>
+        </a>
+        <a href="/opencourses/?subject=computer-science" target="_blank" class="gs-course-box-item">
+            <div class="gs-course-image">
+                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/computer-science.png'; ?>" alt="" srcset="">
+            </div>
+            <div class="gs-course-text-container">
+                <div class="gs-course-title">
+                    <h2>Computer Science</h2>
+                </div>
+                <div class="gs-course-info">
+                    <p>11 Courses</p>
+                </div>
+            </div>
+        </a>        
+    </div>
+    
+    <?php
+    return ob_get_clean(); // Return the buffered content
+}
+add_shortcode('gs-courses', 'gs_courses_boxs'); // Registering the shortcode
 
 
 
