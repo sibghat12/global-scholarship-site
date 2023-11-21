@@ -18,35 +18,78 @@ jQuery(document).ready(function ($) {
         $.getJSON($url, function(json) {
 
         if (json) {
-            var keys = Object.keys(json);
+            let  keys = Object.keys(json);
+            let remainingResults = 5; // Change according to how many results we want
             $.each(keys, function (index, key) {
-                var matchedResults = [];
-                $.each(json[key], function (index, value) {
-                  if (value.title && value.title.toLowerCase().indexOf(textInput) !== -1) {
-                      console.log("value", value)
-                        matchedResults.push(value);
-                    }
-                });
-                if (matchedResults.length > 0) {
-                    var result = {};
-                    result[key] = matchedResults;
-                    results.push(result);
-                }
-            });
+              let matchedResults = $.grep(json[key], function (value) {
+                  return value.title && value.title.toLowerCase().indexOf(textInput) !== -1;
+              });
+
+              if (matchedResults.length > 0 && remainingResults > 0) {
+                  let result = {};
+                  result[key] = matchedResults.slice(0, remainingResults);
+                  results.push(result);
+                  remainingResults -= matchedResults.length;
+              }
+          });
+
         }
-          var resultsFiveElements = results.slice(0, 5);
-          console.log("resultsFiveElements", resultsFiveElements)
+          console.log("results", results)
           var resultsHtml = '';
           checkSearchIsActive($searchResultsElement, $searchInput);
           toggleSearchResultsBoxOutside($searchResultsElement, '.gs-homepage-search-form', 'search-input');
           setInputValues();
-          $.each(resultsFiveElements, function(index, item) {
-            console.log('ITEM', item)
-            resultsHtml += `<li class="list-group-item" id="institution_${item.id}">
-            <a href="${item.permalink}" class="list_result_item list_result_item_${item.id}" data-institute-link="${item.permalink}" data-institute-title="${item.title}" data-institute="${item.id}">${item.title}</a>
-          </li>`;
-          });
+          $.each(results, function (index, result) {
+            let key = Object.keys(result)[0]; // Get the key from the result object
+            let items = result[key]; // Get the items array corresponding to the key
+                
+            // Mapping keys to headings
+            const typeHeadings = {
+              gs_country: 'Country',
+              gs_subject: 'Subject',
+              gs_institutions: 'Institutions',
+              gs_scholarships: 'Scholarships',
+              // Add more keys and their respective headings if needed
+          };
+
+            // Get the heading for the current key (type)
+            let heading = typeHeadings[key] || 'Other'; // Default heading if not found in typeHeadings
+
+            // Add the heading before the items
+            resultsHtml += `<h3 class="list-group-item type-heading">${heading}</h3>`;
+
+
+            $.each(items, function (itemIndex, item) {
+                let title = item.title; // Get the title dynamically
+                let permalink = item.permalink; // Get the permalink dynamically
+                let dataInstitute = ''; // Initialize the data-institute attribute
+
+                // Check if item.id exists and is not empty or undefined
+                if (item.id) {
+                    dataInstitute = `data-institute="${item.id}"`; // Set data-institute attribute
+                }
+            
+                resultsHtml += `<li class="list-group-item" id="${key}_${itemIndex}">
+                    <a href="${permalink}" class="list_result_item list_result_item_${key}_${itemIndex}" 
+                    data-link="${permalink}" data-title="${title}" ${dataInstitute}>
+                    ${title}</a>
+                </li>`;
+            });
+        });
+
           $searchResultsElement.empty();
+
+          $searchResultsElement.css({
+            'background': 'rgb(237 237 237)',
+            'z-index': '99999999999999999999999999999999999999999',
+            'position': 'absolute',
+            'width': '88%',
+            'margin': '0',
+            'border-top': '1px solid #ccc',
+            'padding': '0px',
+            'box-shadow': '0px 4px 9px rgba(0, 0, 0, 0.1)',
+            'list-style': 'none',
+        });
           $searchResultsElement.html(resultsHtml);
         });
       }, 300); // Adjust the delay time (in milliseconds) according to your needs
@@ -57,19 +100,24 @@ jQuery(document).ready(function ($) {
     
           // Add Text to input on click
           function setInputValues() {
-            jQuery(document).on('click','.search-results-container .list_result_item', function(event) {
+            jQuery(document).on('click','.search-results-container .list-group-item', function(event) {
               // event.preventDefault();
-              let currentItem = getCurrentItemValues(this, 'institute');
+              let theLink = $(this).find('a');
+              console.log("this", this)
+              // console.log("theLink", theLink)
+              let currentItem = getCurrentItemValues(theLink);
+              console.log("currentItem", currentItem)
               $('.search-input').val(currentItem.item_title);
-              $('.search-input').data('institute-link',currentItem.item_link);
+              $('.search-input').data('link',currentItem.item_link);
               $('.search-input').data('institute',currentItem.item_id);
-              $('.search-input').data('institute-title',currentItem.item_title);
+              $('.search-input').data('title',currentItem.item_title);
               $('.search-input').focus();
               let $searchResultsElement = $('#search-results');
               let $searchInput = $('.search-input')
               checkSearchIsActive($searchResultsElement, $searchInput);
               toggleSearchResultsBox($searchResultsElement, $searchInput);
-              triggerRedirect('institute');
+              triggerRedirect();
+              window.location.href = currentItem.item_link;
             })
           } 
 
@@ -87,10 +135,18 @@ jQuery(document).ready(function ($) {
     }
 
      // Trigger redirect on click
-     const triggerRedirect = (searchType)  => {
+     const triggerRedirect = ()  => {
         jQuery('.search-submit-search').off().on('click',() => {
-          redirectTo(searchType);
+          redirectTo();
         })
+    }
+
+
+    function redirectTo() {
+        let link = $('.search-input').data('link');
+        if(link) {
+          window.location.href = link;
+        }
     }
     // Toggle Search Results box when item is selected  
     function toggleSearchResultsBox(item, input) {
@@ -104,14 +160,33 @@ jQuery(document).ready(function ($) {
 
     // Toggle Search Results box when clicking outside the search section
     function toggleSearchResultsBoxOutside(item, parentElement, inputClass) {
-    $(document).on('click', function(event) {
-        if (!$(event.target).closest(parentElement).length) {
-        $(item).parent().hide();
-        } else if($(event.target).closest(parentElement).length) {
-        if($(event.target).hasClass(inputClass) ) {
-            $(item).parent().show();
-        } 
-        }
-    });
+      $(document).on('click', function(event) {
+          if (!$(event.target).closest(parentElement).length) {
+          $(item).parent().hide();
+          } else if($(event.target).closest(parentElement).length) {
+          if($(event.target).hasClass(inputClass) ) {
+              $(item).parent().show();
+          } 
+          }
+      });
+    }
+
+    function getCurrentItemValues(item) {
+      const item_link = $(item).data(`link`);
+      const item_id = $(item).data(`id`);
+      const item_title = $(item).data(`title`);
+
+      return {
+        ...item_id && {
+          item_id,
+        },
+        ...item_link && {
+          item_link,
+        },
+        ...item_title && {
+          item_title,
+        },
+      }
+
     }
 });
