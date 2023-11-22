@@ -349,269 +349,236 @@ echo '</li>'; }
 
 
 
-//Scholarship Deadline
-wp_reset_postdata();   
+
+
+
+// Scholarship Deadline
+wp_reset_postdata();
 if (have_rows("scholarship_deadlines")) {
-  
- $bachelors_deadline = "";
- $masters_deadline = "";
- $bachelors_deadline_label = "";
- $masters_deadline_label = "";
- $bachelor_accpet_all_year = "";
- $master_accept_all_year  ="";
 
- $has_found_bachelor= false;
- $has_found_master = false;
- $no_degree_selected = false;
- $current_date_date = date('F j, Y');
- $current_date = time();
-
- $deadline_without_degree = "";
-
-     $bachelor_open_date = "";
-     $master_open_date = "";
-
-while (have_rows("scholarship_deadlines")) {
-the_row();
-
-$degree = get_sub_field('degree');
-
-if ($degree == "Bachelor's") {
-$current_bachelors_deadline = get_sub_field("deadline");
-
-if (empty($bachelors_deadline) ||
-(strtotime($current_bachelors_deadline) > $current_date && strtotime($current_bachelors_deadline) < strtotime($bachelors_deadline)) ||
-(strtotime($current_bachelors_deadline) < $current_date && strtotime($current_bachelors_deadline) > strtotime($bachelors_deadline))) {
-  $bachelors_deadline = $current_bachelors_deadline;
-  $bachelors_deadline_label = get_sub_field("label");
-  
-    $deadline_date_scholarship = get_sub_field('deadline');
-     $open_date_scholarship = get_sub_field('open_date');
-
-     // Convert deadline and open dates to Unix timestamps
-$deadline_date_scholarship = strtotime($deadline_date_scholarship);
-$open_date_scholarship = strtotime($open_date_scholarship);
-
-// Check if open_date is less than the current date and deadline is greater than the current date
-if ($open_date_scholarship < $current_date && $deadline_date_scholarship > $current_date) {
-
-$bachelor_open_date= "Yes";
-
-}
-}
-}
-
-if ($degree == "Master's") {
-$current_masters_deadline = get_sub_field("deadline");
-
-if (empty($masters_deadline) ||
-(strtotime($current_masters_deadline) > $current_date && strtotime($current_masters_deadline) < strtotime($masters_deadline)) ||
-(strtotime($current_masters_deadline) < $current_date && strtotime($current_masters_deadline) > strtotime($masters_deadline))) {
-  $masters_deadline = $current_masters_deadline;
-  $masters_deadline_label = get_sub_field("label");
-
-  $deadline_date_scholarship = get_sub_field('deadline');
-     $open_date_scholarship = get_sub_field('open_date');
-
-     // Convert deadline and open dates to Unix timestamps
-$deadline_date_scholarship = strtotime($deadline_date_scholarship);
-$open_date_scholarship = strtotime($open_date_scholarship);
-
-// Check if open_date is less than the current date and deadline is greater than the current date
-if ($open_date_scholarship < $current_date && $deadline_date_scholarship > $current_date) {
-
-$master_open_date= "Yes";
-
-}
-
-
-}
-}
-}
-
-if (empty($masters_deadline) || empty($bachelors_deadline)) {
-
-while (have_rows("scholarship_deadlines")) {
-the_row();
-
-$current_deadline_without_degree = get_sub_field("deadline");
-
-if (empty($deadline_without_degree) ||
-(strtotime($current_deadline_without_degree) > $current_date && strtotime($current_deadline_without_degree) < strtotime($deadline_without_degree)) ||
-(strtotime($current_deadline_without_degree) < $current_date && strtotime($current_deadline_without_degree) > strtotime($deadline_without_degree))) {
-  
-  $deadline_without_degree = $current_deadline_without_degree;
-  $label_without_degree = get_sub_field("label");
-
-  $deadline_date_scholarship = get_sub_field('deadline');
-     $open_date_scholarship = get_sub_field('open_date');
-
-     // Convert deadline and open dates to Unix timestamps
-$deadline_date_scholarship = strtotime($deadline_date_scholarship);
-$open_date_scholarship = strtotime($open_date_scholarship);
-
-
-
-// Check if open_date is less than the current date and deadline is greater than the current date
-if ($open_date_scholarship < $current_date && $deadline_date_scholarship > $current_date) {
-
-$bachelor_open_date= "Yes";
-$master_open_date="Yes";
-
-
-}
-
-  $no_degree_selected = true;
-}
-}
-}
-
-
-
-
-if (in_array("PhD", $degrees) && count($degrees) == 1) {
-// Do nothing
-} else {
-
-
-
-if($no_degree_selected) {
-
-if ($master_accept_all_year=="Yes" ||  $bachelor_accpet_all_year =="Yes") { 
-echo '<li> </b> Scholarship Deadline: ';
-echo "<b>";
-echo " Currently Open"; 
-echo "</b>"; } else {
-
-if($deadline_without_degree) {
-echo '<li> </b> Scholarship Deadline: ';
-echo "<b>";
-echo  $deadline_without_degree;
-
-if ($bachelor_open_date == "Yes" || $master_open_date== "Yes") {
-echo "<i>  (Currently Open)</i>";
-} else {
-if (strtotime($deadline_without_degree) < strtotime($current_date_date)) {
-echo "<i> (Past Deadline)</i>";
-} 
-}
-
-
-} }
-
-} else {
-
-echo '<li> </b>Scholarship Deadline: ';
-
-if (in_array("Bachelor's", $degrees) && in_array("Master's", $degrees)) {
-
-if($masters_deadline === $bachelors_deadline) {
-echo "<b>";  
-if($bachelor_accpet_all_year=="Yes"){ echo "Currently Open"; } else {
-
-echo  $bachelors_deadline;
-
-if ($bachelor_open_date == "Yes" || $master_open_date == "Yes") {
-echo "<i>  (Currently Open)</i>";
-} else {
-if (strtotime($bachelors_deadline) < strtotime($current_date_date)) {
-echo "<i> (Past Deadline)</i>";
-} 
-}
-echo " </b>";
-}
-
-} else {
-
-
-
-// Both Bachelor's and Master's degrees are in the array
-echo " <ul style='padding-left:100px;font-weight:700;margin-top:0px;line-height:28px;font-size:17px;'>"; 
-
-if($bachelors_deadline) {
-echo "<li> Bachelor's: ";
-if ($bachelor_accpet_all_year=="Yes") { echo ": Currently Open";} else {
-echo  $bachelors_deadline;
-
-
-if ($bachelor_open_date == "Yes") {
-echo "<i> (Currently Open)</i>";
-} else {
-if (strtotime($bachelors_deadline) < strtotime($current_date_date)) {
-echo "<i> (Past Deadline)</i>";
-} 
-}
-
-
-}
-echo "</li>";
-}
-
-if($masters_deadline) {
-
-echo "<li> Master's: "; 
-if ($master_accept_all_year=="Yes") { echo ": Currently Open";} else {
-
-echo $masters_deadline;
-if ($master_open_date == "Yes") {
-echo "<i>  (Currently Open)</i>";
-} else {
-if (strtotime($masters_deadline) < strtotime($current_date_date)) {
-echo "<i> (Past Deadline)</i>";
-} 
-}
-}
-
-
-echo " </li>"; 
-}  
-
-
-echo "</ul>"; 
-}
-
-} elseif (in_array("Bachelor's", $degrees)) {
-// Only Bachelor's degree is in the array
-echo "<b>";  
-if($bachelor_accpet_all_year=="Yes"){ echo "Currently Open"; } else {
-
-echo  $bachelors_deadline;
-if ($bachelor_open_date == "Yes") {
-echo "<i> (Currently Open)</i>";
-} else {
-if (strtotime($bachelors_deadline) < strtotime($current_date_date)) {
-echo "<i> (Past Deadline)</i>";
-} 
-}
-
-}
-echo " </b>";
-
-} elseif (in_array("Master's", $degrees)) {
-echo "<b>"; 
-if($master_accept_all_year=="Yes"){ echo "Currently Open"; } else {
-// Only Master's degree is in the array
-
-echo  $masters_deadline;
-
-if ($master_open_date == "Yes") {
-echo "<i> (Currently Open)</i>";
-} else {
-if (strtotime($masters_deadline) < strtotime($current_date_date)) {
-echo "<i> (Past Deadline)</i>";
-} 
-}
-
-} 
-echo "</b>";
-}
-
-
-echo '</li>'; }
-}
-
-
-
+    $bachelors_deadline = "";
+    $masters_deadline = "";
+    $bachelors_deadline_label = "";
+    $masters_deadline_label = "";
+    $bachelor_accpet_all_year = "";
+    $master_accept_all_year = "";
+
+    $has_found_bachelor = false;
+    $has_found_master = false;
+    $no_degree_selected = false;
+    $current_date_date = date('F j, Y');
+    $current_date = time();
+    $deadline_without_degree = "";
+
+    $bachelor_open_date = "";
+    $master_open_date = "";
+
+    while (have_rows("scholarship_deadlines")) {
+        the_row();
+
+        $degree = get_sub_field('degree');
+        $current_deadline = get_sub_field("deadline");
+
+        if (empty($bachelors_deadline) || strtotime($current_deadline) > strtotime($bachelors_deadline)) {
+            $bachelors_deadline = $current_deadline;
+            $bachelors_deadline_label = get_sub_field("label");
+
+            $deadline_date_scholarship = get_sub_field('deadline');
+            $open_date_scholarship = get_sub_field('open_date');
+
+            // Convert deadline and open dates to Unix timestamps
+            $deadline_date_scholarship = strtotime($deadline_date_scholarship);
+            $open_date_scholarship = strtotime($open_date_scholarship);
+
+            // Check if open_date is less than the current date and deadline is greater than the current date
+            if ($open_date_scholarship < $current_date && $deadline_date_scholarship > $current_date) {
+                $bachelor_open_date = "Yes";
+            }
+        }
+
+        if (empty($masters_deadline) || strtotime($current_deadline) > strtotime($masters_deadline)) {
+            $masters_deadline = $current_deadline;
+            $masters_deadline_label = get_sub_field("label");
+
+            $deadline_date_scholarship = get_sub_field('deadline');
+            $open_date_scholarship = get_sub_field('open_date');
+
+            // Convert deadline and open dates to Unix timestamps
+            $deadline_date_scholarship = strtotime($deadline_date_scholarship);
+            $open_date_scholarship = strtotime($open_date_scholarship);
+
+            // Check if open_date is less than the current date and deadline is greater than the current date
+            if ($open_date_scholarship < $current_date && $deadline_date_scholarship > $current_date) {
+                $master_open_date = "Yes";
+            }
+        }
+    }
+
+    if (empty($masters_deadline) || empty($bachelors_deadline)) {
+
+        while (have_rows("scholarship_deadlines")) {
+            the_row();
+
+            $current_deadline_without_degree = get_sub_field("deadline");
+
+            if (empty($deadline_without_degree) ||
+                (strtotime($current_deadline_without_degree) > $current_date && strtotime($current_deadline_without_degree) < strtotime($deadline_without_degree)) ||
+                (strtotime($current_deadline_without_degree) < $current_date && strtotime($current_deadline_without_degree) > strtotime($deadline_without_degree))) {
+
+                $deadline_without_degree = $current_deadline_without_degree;
+                $label_without_degree = get_sub_field("label");
+
+                $deadline_date_scholarship = get_sub_field('deadline');
+                $open_date_scholarship = get_sub_field('open_date');
+
+                // Convert deadline and open dates to Unix timestamps
+                $deadline_date_scholarship = strtotime($deadline_date_scholarship);
+                $open_date_scholarship = strtotime($open_date_scholarship);
+
+                // Check if open_date is less than the current date and deadline is greater than the current date
+                if ($open_date_scholarship < $current_date && $deadline_date_scholarship > $current_date) {
+                    $bachelor_open_date = "Yes";
+                    $master_open_date = "Yes";
+                }
+
+                $no_degree_selected = true;
+            }
+        }
+    }
+
+    if (in_array("PhD", $degrees) && count($degrees) == 1) {
+        // Do nothing
+    } else {
+
+        if ($no_degree_selected) {
+
+            if ($master_accept_all_year == "Yes" ||  $bachelor_accpet_all_year == "Yes") {
+                echo '<li> </b> Scholarship Deadline: ';
+                echo "<b>";
+                echo " Currently Open";
+                echo "</b>";
+            } else {
+
+                if ($deadline_without_degree) {
+                    echo '<li> </b> Scholarship Deadline: ';
+                    echo "<b>";
+                    echo  $deadline_without_degree;
+
+                    if ($bachelor_open_date == "Yes" || $master_open_date == "Yes") {
+                        echo "<i>  (Currently Open)</i>";
+                    } else {
+                        if (strtotime($deadline_without_degree) < strtotime($current_date_date)) {
+                            echo "<i> (Past Deadline)</i>";
+                        }
+                    }
+                }
+            }
+        } else {
+
+            echo '<li> </b>Scholarship Deadline: ';
+
+            if (in_array("Bachelor's", $degrees) && in_array("Master's", $degrees)) {
+
+                if ($masters_deadline === $bachelors_deadline) {
+                    echo "<b>";
+                    if ($bachelor_accpet_all_year == "Yes") {
+                        echo "Currently Open";
+                    } else {
+
+                        echo  $bachelors_deadline;
+
+                        if ($bachelor_open_date == "Yes") {
+                            echo "<i> (Currently Open)</i>";
+                        } else {
+                            if (strtotime($bachelors_deadline) < strtotime($current_date_date)) {
+                                echo "<i> (Past Deadline)</i>";
+                            }
+                        }
+                    }
+                    echo " </b>";
+                } else {
+
+                    // Both Bachelor's and Master's degrees are in the array
+                    echo " <ul style='padding-left:100px;font-weight:700;margin-top:0px;line-height:28px;font-size:17px;'>";
+
+                    if ($bachelors_deadline) {
+                        echo "<li> Bachelor's: ";
+                        if ($bachelor_accpet_all_year == "Yes") {
+                            echo ": Currently Open";
+                        } else {
+                            echo  $bachelors_deadline;
+
+                            if ($bachelor_open_date == "Yes") {
+                                echo "<i> (Currently Open)</i>";
+                            } else {
+                                if (strtotime($bachelors_deadline) < strtotime($current_date_date)) {
+                                    echo "<i> (Past Deadline)</i>";
+                                }
+                            }
+                        }
+                        echo "</li>";
+                    }
+
+                    if ($masters_deadline) {
+                        echo "<li> Master's: ";
+                        if ($master_accept_all_year == "Yes") {
+                            echo ": Currently Open";
+                        } else {
+
+                            echo $masters_deadline;
+                            if ($master_open_date == "Yes") {
+                                echo "<i>  (Currently Open)</i>";
+                            } else {
+                                if (strtotime($masters_deadline) < strtotime($current_date_date)) {
+                                    echo "<i> (Past Deadline)</i>";
+                                }
+                            }
+                        }
+                        echo " </li>";
+                    }
+
+                    echo "</ul>";
+                }
+            } elseif (in_array("Bachelor's", $degrees)) {
+                // Only Bachelor's degree is in the array
+                echo "<b>";
+                if ($bachelor_accpet_all_year == "Yes") {
+                    echo "Currently Open";
+                } else {
+
+                    echo  $bachelors_deadline;
+                    if ($bachelor_open_date == "Yes") {
+                        echo "<i> (Currently Open)</i>";
+                    } else {
+                        if (strtotime($bachelors_deadline) < strtotime($current_date_date)) {
+                            echo "<i> (Past Deadline)</i>";
+                        }
+                    }
+                }
+                echo " </b>";
+            } elseif (in_array("Master's", $degrees)) {
+                echo "<b>";
+                if ($master_accept_all_year == "Yes") {
+                    echo "Currently Open";
+                } else {
+                    // Only Master's degree is in the array
+
+                    echo  $masters_deadline;
+
+                    if ($master_open_date == "Yes") {
+                        echo "<i> (Currently Open)</i>";
+                    } else {
+                        if (strtotime($masters_deadline) < strtotime($current_date_date)) {
+                            echo "<i> (Past Deadline)</i>";
+                        }
+                    }
+                }
+                echo "</b>";
+            }
+
+            echo '</li>';
+        }
+    }
 }
 
 
