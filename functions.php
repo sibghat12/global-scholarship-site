@@ -4262,71 +4262,46 @@ function gs_courses_boxs() {
     ob_start(); // Start output buffering
     ?>
     <div class="gs-courses-boxes-container">
-        <a href="/opencourses/?subject=marketing" target="_blank" class="gs-course-box-item">
-            <div class="gs-course-image">
-                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/marketing.png'; ?>" alt="" srcset="">
-            </div>
-            <div class="gs-course-text-container">
-                <div class="gs-course-title">
-                    <h2>Marketing</h2>
-                </div>
-                <div class="gs-course-info">
-                    <p>05 Courses</p>
-                </div>
-            </div>
-        </a>
-        <a href="/opencourses/?subject=data-science" target="_blank" class="gs-course-box-item">
-            <div class="gs-course-image">
-                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/data-science.png'; ?>" alt="" srcset="">
-            </div>
-            <div class="gs-course-text-container">
-                <div class="gs-course-title">
-                    <h2>Data Science</h2>
-                </div>
-                <div class="gs-course-info">
-                    <p>07 Courses </p>
-                </div>
-            </div>
-        </a>
-        <a href="/opencourses/?subject=design" target="_blank" class="gs-course-box-item">
-            <div class="gs-course-image">
-                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/design.png'; ?>" alt="" srcset="">
-            </div>
-            <div class="gs-course-text-container">
-                <div class="gs-course-title">
-                    <h2>Design</h2>
-                </div>
-                <div class="gs-course-info">
-                    <p>12 Courses </p>
-                </div>
-            </div>
-        </a>
-        <a href="/opencourses/?subject=business" target="_blank" class="gs-course-box-item">
-            <div class="gs-course-image">
-                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/business.png'; ?>" alt="" srcset="">
-            </div>
-            <div class="gs-course-text-container">
-                <div class="gs-course-title">
-                    <h2>Business</h2>
-                </div>
-                <div class="gs-course-info">
-                    <p>38 Courses</p>
-                </div>
-            </div>
-        </a>
-        <a href="/opencourses/?subject=computer-science" target="_blank" class="gs-course-box-item">
-            <div class="gs-course-image">
-                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/computer-science.png'; ?>" alt="" srcset="">
-            </div>
-            <div class="gs-course-text-container">
-                <div class="gs-course-title">
-                    <h2>Computer Science</h2>
-                </div>
-                <div class="gs-course-info">
-                    <p>11 Courses</p>
-                </div>
-            </div>
-        </a>        
+        <?php 
+        
+        $homepage_subjects = ['marketing', 'data science', 'design', 'business', 'computer science'];
+
+        foreach ($homepage_subjects as $subject) {
+            $subject_url = str_replace(' ', '-', $subject); // Replace spaces with dashes for the URL
+            
+            $ad_args = array(
+                'post_type'      => 'ads',
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,
+                'meta_query'     => array(
+                    array(
+                        'key'     => 'ads_subject',
+                        'value'   => $subject,
+                        'compare' => 'LIKE' // Using 'LIKE' for partial matching
+                    )
+                )
+            );
+
+            $posts_subject = get_posts($ad_args);
+            $count = count($posts_subject);
+
+            // Render HTML for each subject
+            echo '<a href="/opencourses/?subject=' . $subject_url . '" target="_blank" class="gs-course-box-item">';
+            echo '<div class="gs-course-image">';
+            echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/' . $subject_url . '.png" alt="" srcset="">';
+            echo '</div>';
+            echo '<div class="gs-course-text-container">';
+            echo '<div class="gs-course-title">';
+            echo '<h2>' . ucfirst($subject) . '</h2>'; // Capitalize the subject name
+            echo '</div>';
+            echo '<div class="gs-course-info">';
+            echo '<p>' . $count . ' Courses</p>'; // Display the count
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+        }
+
+        ?>
     </div>
     
     <?php
