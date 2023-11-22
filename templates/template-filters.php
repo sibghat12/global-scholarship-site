@@ -412,7 +412,7 @@ var current_page_number = "";
 
 // Extract page number from the URL query parameters
 const urlParams = new URLSearchParams(window.location.search);
-const pageParam = urlParams.get('page_number');
+const pageParam = urlParams.get('pages');
 
 console.log("Full URL: " + window.location.href);
 console.log("Page Parameter: " + pageParam);
@@ -474,17 +474,11 @@ var removeItem = "scholarship-search";
 
 
 
-if(current_page_number) {
 
-}else {
-for (let i = 0; i < pathArray.length; i++) {
-  if (typeof pathArray[i] === "string" && isNaN(pathArray[i]) === false) {
-     current_page_number = pathArray[i];
-    break;
-  }
-}
 
-}
+
+
+
 
 // Get Data from The URL Pathname and filter records accordingly.  
 // Degress: Get degree name from the url path
@@ -726,7 +720,8 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
 
     // Additional check for ["page", "2"] or ["page", any_number]
     if (pathArray.length === 2 && pathArray[0] === 'page' && !isNaN(pathArray[1])) {
-        // This is a valid path, your code continues...
+       check_call = false;
+       window.location.href = '/page-not-found';
     } else if (pathArray.length > 0) {
         console.log("pagenotfound");
         // Redirect to '/page-not-found'
@@ -736,7 +731,7 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
 } else {
     // If pathArray has more than one value
     if (pathArray.length > 1) {
-        // Check if there's any value in pathArray (ignoring the first one) that doesn't match any of the valid values
+        
         for(let i = 1; i < pathArray.length; i++) {
             // If it's not a valid value and not a page number
             if (!validValues.includes(pathArray[i]) && 
@@ -749,6 +744,9 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
             }
             // If current path is 'page' and next is a number, skip next path
             if(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1])) {
+                 check_call = false;
+                window.location.href = '/page-not-found';
+                break;
                 i++;
             }
         }
@@ -1407,7 +1405,7 @@ if (updatedUrl.endsWith("/")) {
          
          $('.next-page').show();
          }else {
-         changeurl("scholarship-search" + updatedUrl + "/?page_number=" + pagee , "Welcome");
+         changeurl("scholarship-search" + updatedUrl + "/?pages=" + pagee , "Welcome");
          $('.prev-page').show();
          $('.next-page').show(); 
          }
