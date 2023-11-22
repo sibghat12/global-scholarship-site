@@ -72,7 +72,7 @@ $scholarships_array = get_all_scholarships();
 </div>
 </div>
 
-<div  id="filter-panell">
+<div  id="filter-panell" style="display: none;">
     <form  action="<?php echo admin_url('admin-ajax.php'); ?>" method="POST"  id="filter-form">
     <div class="clearfix"> </div>
     <div class="div-mobile" > 
@@ -401,7 +401,7 @@ reload_data();
 function reload_data(){
 
 
-
+$('#filter-panell').css("display" , "none");
 $('.next-page').css("display" , "none");
 $('#preloader').css("display" , "block");
 $('.card-section').css("display" , "none");
@@ -766,7 +766,7 @@ $.ajax({
     contentType: false,
     type : 'post',
       success:function(response){
-
+        $('#filter-panell').css("display" , "block");
         $('.title-textt').css("display" , "block");
  
           $('#prev-posts').css("display" , "none");
@@ -1045,6 +1045,7 @@ $.ajax({
     type : 'post',
    success:function(response){
        
+        $('#filter-panell').css("display" , "block");
         $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
         $('.card-section').css("display" , "block");
@@ -1393,6 +1394,7 @@ if (updatedUrl.endsWith("/")) {
     type : 'post',
     success:function(response){
         page++;
+         $('#filter-panell').css("display" , "block");
         $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
         $('.card-section').css("display" , "block");
