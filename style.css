@@ -8052,10 +8052,13 @@ padding-left:15px !important;
 
 /* GS Homepage Smaller Screens Stylings */ 
 @media only screen and (max-width: 768px) {
+    .page-template-page-homepage #main .gs-homepage-hero {
+        margin-top: 30px !important;
+    }
+    
     .page-template-page-homepage #main .gs-homepage-title h1{
         font-size: 2.4rem !important;
         font-weight: 800 !important;
-        word-break: break-all;
 
     }
     
@@ -8144,6 +8147,14 @@ padding-left:15px !important;
         height: 40px !important;
     }
 
+    .page-template-page-homepage .gs-homepage-search-form button.search-submit-search {
+        height: 60px;
+        padding: 4px 24px;
+        border-radius: 46% 10px 10px 46%;
+        border: none !important;
+        background: #3E8CBF;
+    }
+
     .page-template-page-homepage .gs-homepage-search-form .search_container input#search {
         font-size: 20px;
         height: 60px !important;
@@ -8152,6 +8163,7 @@ padding-left:15px !important;
 
     .page-template-page-homepage .gs-homepage-search-form #search-results {
         width: 95% !important;
+        padding: 0 8px !important;
     }
 
     .page-template-page-homepage #main .search-results-container li.list-group-item {
@@ -8190,7 +8202,7 @@ padding-left:15px !important;
     padding: 4px 0px;
 }
 
-.page-template-page-homepage #main .gs-homepage-about-title h1::before{
+.page-template-page-homepage #main .gs-homepage-about-founder h1::before{
     display: inline-block;
     margin: 0 20px 8px 0;
     height: 3px;
@@ -8209,7 +8221,7 @@ padding-left:15px !important;
     height: 38px;
 }
 
-.page-template-page-homepage #main .gs-homepage-about-title h1::after{
+.page-template-page-homepage #main .gs-homepage-about-founder h1::after{
     display: inline-block;
     margin: 0 0 8px 20px;
     height: 3px;
