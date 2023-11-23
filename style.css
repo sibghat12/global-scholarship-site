@@ -8002,12 +8002,97 @@ padding-left:15px !important;
     background: #3E8CBF;
 }
 
+/* .page-template-page-homepage #main {
+    padding: 0 14px !important;
+} */
+
+
 
 .page-template-page-homepage #main .fusion-builder-row {
     max-width: 1400px !important;
-    margin: auto;
-    padding: 0 20px;
+    margin: auto !important;
+    padding: 0 0 !important;
 }
+
+.page-template-page-homepage #main .gs-homepage-hero .fusion-builder-row .gs-homepage-hero-text p{
+    padding: 0px !important;
+}
+
+.page-template-page-homepage #main .gs-homepage-hero {
+    padding-top: 30px !important;
+}
+
+.page-template-page-homepage #main .gs-homepage-title.gs-homepage-connect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-template-page-homepage #main .gs-homepage-title.gs-homepage-connect h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid;
+    max-width: max-content;
+}
+
+.page-template-page-homepage #main .gs-homepage-featured-in-images .fusion-column-wrapper .fusion-image-element {
+    margin: 12px 12px 0 12px;
+}
+
+
+.page-template-page-homepage #main .gs-homepage-connect-images .fusion-column-wrapper {
+    gap: 3rem;
+    padding: 12px;
+}
+
+/* GS Homepage Smaller Screens Stylings */ 
+@media only screen and (max-width: 768px) {
+    .page-template-page-homepage #main .gs-homepage-title h1{
+        font-size: 2.3rem !important;
+        font-weight: 800 !important;
+    }
+    
+    .page-template-page-homepage #main .gs-homepage-title h2{
+        font-size: 1.7rem !important;
+        font-weight: 700 !important;
+    }
+
+    .page-template-page-homepage #main .gs-homepage-featured-in-images .fusion-column-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+        padding: 12px;
+    }
+
+    .page-template-page-homepage #main .gs-homepage-our-partners-images .fusion-column-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+        padding: 12px;
+    }
+
+    .page-template-page-homepage #main .gs-homepage-connect-images .fusion-column-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 1rem;
+        padding: 12px;
+    }
+
+    .page-template-page-homepage  #main .gs-homepage-connect-container {
+        background-color: #fcfcfc !important;
+    }
+
+    .page-template-page-homepage #main .gs-homepage-scholarships {
+        margin-top: 40px !important;
+    }
+    
+    .page-template-page-homepage #main .gs-homepage-courses {
+        margin-top: 40px !important;
+    }
+
+}
+
 
 .page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button {
     color: #000 !important;
