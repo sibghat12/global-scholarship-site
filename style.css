@@ -8040,6 +8040,10 @@ padding-left:15px !important;
     margin: 12px 12px 0 12px;
 }
 
+.page-template-page-homepage #main .search-submit-search svg {
+    width: 40px !important;
+    height: 40px !important;
+}
 
 .page-template-page-homepage #main .gs-homepage-connect-images .fusion-column-wrapper {
     gap: 3rem;
@@ -8049,13 +8053,16 @@ padding-left:15px !important;
 /* GS Homepage Smaller Screens Stylings */ 
 @media only screen and (max-width: 768px) {
     .page-template-page-homepage #main .gs-homepage-title h1{
-        font-size: 2.3rem !important;
+        font-size: 2.4rem !important;
         font-weight: 800 !important;
+        word-break: break-all;
+
     }
     
     .page-template-page-homepage #main .gs-homepage-title h2{
-        font-size: 1.7rem !important;
+        font-size: 2rem !important;
         font-weight: 700 !important;
+        word-break: break-all;
     }
 
     .page-template-page-homepage #main .gs-homepage-featured-in-images .fusion-column-wrapper {
@@ -8079,22 +8086,77 @@ padding-left:15px !important;
         padding: 12px;
     }
 
+    .page-template-page-homepage #main .gs-homepage-about {
+        padding: 0 20px !important;
+    }
+
     .page-template-page-homepage  #main .gs-homepage-connect-container {
         background-color: #fcfcfc !important;
+    }
+
+    
+    .page-template-page-homepage  #main .gs-homepage-connect-container .fusion_builder_column_1_1{
+        background-color: inherit !important;
     }
 
     .page-template-page-homepage  #main .gs-featured-in-section {
         background-color: #f9f9f9 !important;
     }
 
+    .page-template-page-homepage  #main .gs-featured-in-section .fusion_builder_column_1_1{
+        background-color: inherit !important;
+    }
+
     .page-template-page-homepage #main .gs-homepage-scholarships {
         margin-top: 40px !important;
+        padding: 0 20px !important;
+    }
+
+    .page-template-page-homepage #main .gs-homepage-hero{
+        padding: 0 20px !important;
     }
 
     .page-template-page-homepage #main .gs-homepage-courses {
         margin-top: 40px !important;
+        padding: 0 20px !important;
     }
 
+    .page-template-page-homepage #main .fusion-blog-layout-grid .fusion-post-grid {
+        padding: 0px !important;
+    }
+
+    /* Homepage Search Responsive */
+
+    .page-template-page-homepage .gs-homepage-search-form .search_container {
+        width: 100%;
+        padding-bottom: 0;
+        height: 56px;
+    }
+
+    .page-template-page-homepage .gs-homepage-search-form .search_container {
+        width: 100%;
+        padding-bottom: 0;
+        height: 60px;
+    }
+
+    .page-template-page-homepage #main .search-submit-search svg {
+        width: 22px !important;
+        height: 40px !important;
+    }
+
+    .page-template-page-homepage .gs-homepage-search-form .search_container input#search {
+        font-size: 20px;
+        height: 60px !important;
+        border: none !important;
+    }
+
+    .page-template-page-homepage .gs-homepage-search-form #search-results {
+        width: 95% !important;
+    }
+
+    .page-template-page-homepage #main .search-results-container li.list-group-item {
+        font-size: 16px !important;
+    }
 }
 
 
