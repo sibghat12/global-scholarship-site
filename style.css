@@ -8010,19 +8010,26 @@ padding-left:15px !important;
 }
 
 .page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button {
+    color: #000 !important;
+    background-color: #fff !important;
+    border: 1px solid #3E8CBF;
     padding: 20px 0 !important;
-    width: 250px !important;
+    width: 230px !important;
     min-height: 60px !important;
-    border: 2px solid #3E8CBF;
-    background-color: #3E8CBF !important;
+}
+
+.page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button span.fusion-button-text {
+    color: #000 !important;
 }
 
 .page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button:hover {
-    background-color: #fff !important;
-    border: 2px solid #3E8CBF;
+
+    border: 1px solid #3E8CBF;
+    background-color: #3E8CBF !important;
 }
+
 .page-template-page-homepage #main .gs-homepage-navigation-button a.gs-homepage-navigation-button:hover span.fusion-button-text {
-    color: #000 !important;
+    color: #fff !important;
 }
 
 .page-template-page-homepage #main .gs-homepage-about-text p {
@@ -8072,6 +8079,13 @@ padding-left:15px !important;
 /* Homepage Search */
 .page-template-page-homepage #main .gs-homepage-hero{
     z-index: 10;
+}
+
+.page-template-page-homepage #main .search-input::placeholder {
+    font-size: 20px !important;
+    font-weight: bold;
+    /* opacity: 1;
+    color: red; */
 }
 
 .page-template-page-homepage #main .search-results-container .type-heading {
