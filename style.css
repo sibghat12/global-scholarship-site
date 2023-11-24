@@ -541,16 +541,16 @@ text-align:center !important;
         padding-left:3% !important;
         padding-right:3% !important
     }
-    
+/*     
     .home .fusion-column-wrapper {
         padding-left:3% !important;
         padding-right:3% !important
 }
-    
-            .page .fusion_builder_column_1_1 {
+     */
+            /* .page .fusion_builder_column_1_1 {
     padding:0px !important;
     background-color:white !important;
-    }
+    } */
     
     .page .fusion-fullwidth {
         padding:0px !important;
@@ -7966,6 +7966,11 @@ padding-left:15px !important;
     padding: 0 !important;
     margin: 0;
 }
+
+.page-template-page-homepage #main .fusion-fullwidth {
+    margin-bottom: 30px !important;
+}
+
 .page-template-page-homepage #main .post-content {
     width: 100% !important;
     margin: auto;
@@ -8050,6 +8055,15 @@ padding-left:15px !important;
     padding: 12px;
 }
 
+.page-template-page-homepage #main .gs-homepage-title h1{
+    font-size: 3.6rem !important;
+}
+
+.page-template-page-homepage #main .gs-homepage-title h2{
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+}
+
 /* GS Homepage Smaller Screens Stylings */ 
 @media only screen and (max-width: 768px) {
     .page-template-page-homepage #main .gs-homepage-hero {
@@ -8057,15 +8071,14 @@ padding-left:15px !important;
     }
     
     .page-template-page-homepage #main .gs-homepage-title h1{
-        font-size: 2.4rem !important;
+        font-size: 2.5rem !important;
         font-weight: 800 !important;
 
     }
     
     .page-template-page-homepage #main .gs-homepage-title h2{
-        font-size: 2rem !important;
+        font-size: 2.4rem !important;
         font-weight: 700 !important;
-        word-break: break-all;
     }
 
     .page-template-page-homepage #main .gs-homepage-featured-in-images .fusion-column-wrapper {
@@ -8156,7 +8169,7 @@ padding-left:15px !important;
     }
 
     .page-template-page-homepage .gs-homepage-search-form .search_container input#search {
-        font-size: 20px;
+        font-size: 18px;
         height: 60px !important;
         border: none !important;
     }
@@ -8168,6 +8181,12 @@ padding-left:15px !important;
 
     .page-template-page-homepage #main .search-results-container li.list-group-item {
         font-size: 16px !important;
+    }
+
+    
+    .page-template-page-homepage .gs-homepage-search-form .search_container input#search::placeholder {
+        font-size: 14px !important;
+        font-weight: 400 !important;
     }
 }
 
@@ -8248,8 +8267,6 @@ padding-left:15px !important;
 .page-template-page-homepage #main .search-input::placeholder {
     font-size: 20px !important;
     font-weight: bold;
-    /* opacity: 1;
-    color: red; */
 }
 
 .page-template-page-homepage #main .search-results-container .type-heading {
