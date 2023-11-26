@@ -4310,5 +4310,26 @@ function gs_courses_boxs() {
 add_shortcode('gs-courses', 'gs_courses_boxs'); // Registering the shortcode
 
 
+// Memberpress Extend Nav items
+function mepr_add_some_tabs($user) {
+    ?>
+        <span class="mepr-nav-item gs-suggested-scholarships <?php MeprAccountHelper::active_nav('suggested-scholarships'); ?>">
+            <a href="/account/?action=suggested-scholarships">Suggested Scholarships</a>
+        </span>
+        <span class="mepr-nav-item gs-monthly-scholarships <?php MeprAccountHelper::active_nav('monthly-scholarships'); ?>">
+            <a href="/account/?action=monthly-scholarships">Monthly Scholarships</a>
+        </span>
+    <?php
+}
+add_action('mepr_account_nav', 'mepr_add_some_tabs');
 
-
+function mepr_add_tabs_content($action) {
+    //Listens for the "test" action on the account page, before rendering the contact form shortcode.
+    if($action == 'suggested-scholarships') {
+        include 'gs-memberpress-templates/suggested-scholarships.php';
+    }
+    if($action == 'monthly-scholarships') {
+        include 'gs-memberpress-templates/monthly-scholarships.php';
+    }
+}
+add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
