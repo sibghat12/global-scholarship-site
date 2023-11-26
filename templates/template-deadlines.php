@@ -18,6 +18,8 @@ $params = get_query_info();
 $country        = $params["country"];
 $country = ucwords($country);
 
+
+
 ?>
 
 <?php get_header();  ?>
