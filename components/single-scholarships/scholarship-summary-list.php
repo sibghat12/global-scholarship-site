@@ -488,7 +488,7 @@ if (!empty($nearest_future_master_date)) {
 
 
 
-if (empty($masters_deadline) && empty($bachelors_deadline)) {
+if (empty($masters_deadline) || empty($bachelors_deadline)) {
 
 while (have_rows("scholarship_deadlines")) {
 the_row();
