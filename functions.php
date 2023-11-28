@@ -4310,6 +4310,7 @@ function gs_courses_boxs() {
 add_shortcode('gs-courses', 'gs_courses_boxs'); // Registering the shortcode
 
 
+
 // Memberpress Extend Nav items
 function mepr_add_some_tabs($user) {
     ?>
@@ -4333,3 +4334,4 @@ function mepr_add_tabs_content($action) {
     }
 }
 add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
+
