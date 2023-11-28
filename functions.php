@@ -4310,5 +4310,3 @@ function gs_courses_boxs() {
 add_shortcode('gs-courses', 'gs_courses_boxs'); // Registering the shortcode
 
 
-
-
