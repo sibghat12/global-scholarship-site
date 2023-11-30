@@ -3775,6 +3775,80 @@ padding-left:0px !important;
         width: 500px;
         max-width: 100%;
     }
+
+    /* External Scholarships Box Overview */
+
+    .single-ext-scholarships .post-content .gs-scholarship-overview-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 18px;
+        background-color: #e8f1f8;
+    }
+
+    .single-ext-scholarships .post-content .gs-scholarship-overview-box .gs-scholarship-overview-image img.attachment-post-thumbnail.size-post-thumbnail.wp-post-image {
+        height: 90%;
+        object-fit: cover;
+        border-radius: inherit;
+    } 
+
+    /* Single Scholarships Summary Box */
+    
+    .single-ext-scholarships .post-content .gs-scholarship-summary {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        max-width: 1120px;
+        margin: 80px auto 0 auto;
+    }
+
+    .single-ext-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        min-width: 50%;
+        background-color: #FFFCFC;
+        box-shadow: 0px 6px 6px #7f7e7e;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 0 0 0 20px;
+    }
+    .single-ext-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-info-boxes {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: start;
+        justify-content: flex-start;
+        height: 80%;
+        width: 100%;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    .single-ext-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-info-boxes .gs-summary-box {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 200px;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFFCFC;
+        box-shadow: 0px 3px 6px #7f7e7e;
+        border-radius: 20px;
+    }
+
+    .single-ext-scholarships .post-content .gs-scholarship-summary .gs-scholarship-summary-info-boxes .gs-summary-box p.gs-scholarship-summary-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.3rem !important;
+        padding: 0;
+        text-align: center;
+    }
 }
 
 .collapse.show {
