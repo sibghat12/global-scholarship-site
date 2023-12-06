@@ -222,7 +222,18 @@ if ( ! defined( 'ABSPATH' ) ) {
             
             <div class="clearfix"> </div> 
             
+
+
             <div class="card-section-new" style="max-width:1000px;margin:auto;padding-top:45px;"> 
+            
+            <div class="sort-by-fee" style="margin-bottom:20px;">
+    <span class="fee-text" style="font-size:14px;font-weight:600;"> Sort by: Tuition Fee 
+        <img id="flipImage"  style="margin-left:5px;border-radius:3px;background: white !important; padding:5px; width:auto;height:20px;box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);" 
+             src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/11/Vector.png" 
+             onclick="flipImage()">
+    </span>
+    <br>
+</div>
             
             
                 <?php
@@ -265,6 +276,23 @@ if ($loop->have_posts()) {
 ?>
 
                 <?php wp_reset_postdata(); ?>
+
+            
+            <div class="opencourse-pagination">
+                 <p style="margin-bottom:20px;">Page 
+                    <span class="number-bold">1</span> to 
+                    <span class="number-bold">10 </span> of 
+                    <span class="number-bold">100 </span> 
+                 Courses </p>
+               
+               <a style="border:1px solid #008ec5;background:transparent;color:blue;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
+               width:40px;"> Prev </a>
+
+                <a style="border:1px solid #008ec5;background:#008ec5;color:white !important;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
+               width:40px;"> Next </a>
+
+            </div>
+
 
             </div><!-- .card-section -->
                
@@ -502,11 +530,22 @@ function readLess(){
 }
 
 
+
+
 </script>
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-            
+        
+        <script>
+    function flipImage() {
+
+        var image = document.getElementById('flipImage');
+        
+        image.classList.toggle('flipped');
+    }
+</script>      
 
 <?php do_action( 'avada_after_content' ); ?>
 
