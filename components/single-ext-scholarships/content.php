@@ -40,6 +40,13 @@
     $nationality_array_original = $nationalities_field['choices'];
 
     $eligible_nationalities = get_field('eligible_nationality');
+
+    $programs = get_field('eligible_programs');
+
+    $programs_field = get_field_object('field_654dad4dd4a9a');
+
+    $programs_array_original = $programs_field['choices'];
+    
     
 
     // $eligible_nationalities = convert_array_to_text($eligible_nationalities);

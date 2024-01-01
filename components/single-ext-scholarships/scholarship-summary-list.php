@@ -40,8 +40,6 @@ if (count($diffArray) < 20) {
 
 $eligible_nationalities_string = '';
 asort($eligible_nationalities);
-// $eligible_nationalities = get_field('eligible_nationality');
-
 
 $eligible_nationalities = explode(",", str_replace("\'", "", implode(",", $eligible_nationalities)));
 
@@ -76,9 +74,45 @@ if(count($diff_eligible_nationalities_array) < 20) {
 }
 
 
+
+
 // Eligible Programs (Subjects)
 
-$programs = get_field('eligible_programs');
+$programs_string = '';
+asort($programs);
+
+$programs = explode(",", str_replace("\'", "", implode(",", $programs)));
+
+$programs_array_original = explode(",", str_replace("'", "", implode(",", $programs_array_original)));
+
+
+if($programs) {
+    $programs_array = array_combine($programs, $programs);
+}
+
+if($programs_array) {
+    $diff_programs_array = array_diff($programs_array_original, $programs_array);
+}
+
+if(count($diff_programs_array) < 20) {
+
+    if(in_array("All Subjects", $programs)) {
+        $programs_string .= "All Programs";
+    } else {
+        array_shift($diff_programs_array);
+        $programs_string .= "All Programs except " . convert_array_to_text($diff_programs_array);
+    }
+
+} else {
+
+    if(in_array("All Subjects", $programs)) {
+        $programs_string .= "All Programs";
+    } else {
+        $programs_string .= convert_array_to_text($programs);
+    }
+
+}
+
 
 
 
@@ -113,7 +147,15 @@ $programs = get_field('eligible_programs');
             <?php endif; ?>
         </div>
     </li>
-    <li>Eligible Programs: <b>Bachelor's and Master's</b></li>
+    <input type="hidden" class="gs-ext-scholarship-eligible-programs" value="<?php echo $programs_string; ?>" />
+    <li>  Eligible Programs:  
+        <div class="gs-ext-scholarship-programs-container">
+            <b class="gs-ext-scholarship-programs"></b>
+            <?php if($programs_string != 'All Programs' && ((count($programs_array) > 3 && count($diff_programs_array) > 3))) : ?>
+                <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+            <?php endif; ?>
+        </div>
+    </li>
     <li>Eligible Universities: <b>Harvard University and Yale University</b></li>
     <li>Number of Recipients: <b>80 students</b></li>
     <li>Scholarship Type: <b>Partial Funding</b></li>
