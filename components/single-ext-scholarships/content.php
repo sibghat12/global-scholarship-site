@@ -21,12 +21,8 @@
     $countries_field = get_field_object('field_6554776731838');
     $country_array_original = $countries_field['choices'];
 
-    // echo '<pre>';
-    // print_r($country_array_original);
-    // echo '</pre>';
+    $scholarship_funded_by = get_field('funded_by');
     
-
-     
     $scholarship_type = get_field('amount_category');
     $scholarship_amount = get_field('amount_in_numbers');
     $scholarship_deadline = get_field('scholarship_deadline');
@@ -39,15 +35,14 @@
 
     $separate_application = get_field('separate_application');
 
-    $countries_field = get_field_object('field_62ca6ed806bc6');
+    $nationalities_field = get_field_object('field_654dad4dd4ad4');
 
-    $country_array_original = $countries_field['choices'];
+    $nationality_array_original = $nationalities_field['choices'];
 
-
-    $countries = get_field('eligible_nationality');
+    $eligible_nationalities = get_field('eligible_nationality');
     
 
-    $countries = convert_array_to_text($countries);
+    // $eligible_nationalities = convert_array_to_text($eligible_nationalities);
     $coverage = get_field('scholarship_coverage');
     $eligibility_criteria = get_field('eligibility_criteria');
     

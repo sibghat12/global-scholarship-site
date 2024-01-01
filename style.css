@@ -8646,3 +8646,7 @@ padding-bottom: 10px !important;
 .single-ext-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-ext-scholarship-hosting-country-container {
     display: inline;
 }
+        
+.single-ext-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-ext-scholarship-nationalities-container {
+    display: inline;
+}

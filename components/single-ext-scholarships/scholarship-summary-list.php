@@ -1,9 +1,7 @@
 <?php
 
+// Host Countries
 $host_countries = '';
-// echo '<pre>';
-// print_r($countries);
-// echo '</pre>';
 
 asort($scholarship_host_countries);
 
@@ -37,19 +35,54 @@ if (count($diffArray) < 20) {
     }
 }
 
+
+// Eligible Nationalities (Countries)
+
+$eligible_nationalities_string = '';
+asort($eligible_nationalities);
+// $eligible_nationalities = get_field('eligible_nationality');
+
+
+$eligible_nationalities = explode(",", str_replace("\'", "", implode(",", $eligible_nationalities)));
+
+$nationality_array_original = explode(",", str_replace("'", "", implode(",", $nationality_array_original)));
+
+
+if($eligible_nationalities) {
+    $eligible_nationalities_array = array_combine($eligible_nationalities, $eligible_nationalities);
+}
+
+if($eligible_nationalities_array) {
+    $diff_eligible_nationalities_array = array_diff($nationality_array_original, $eligible_nationalities_array);
+}
+
+if(count($diff_eligible_nationalities_array) < 20) {
+
+    if(in_array("All Nationalities", $eligible_nationalities)) {
+        $eligible_nationalities_string .= "All Nationalities";
+    } else {
+        array_shift($diff_eligible_nationalities_array);
+        $eligible_nationalities_string .= "All Nationalities except " . convert_array_to_text($diff_eligible_nationalities_array);
+    }
+
+} else {
+
+    if(in_array("All Nationalities", $eligible_nationalities)) {
+        $eligible_nationalities_string .= "All Nationalities";
+    } else {
+        $eligible_nationalities_string .= convert_array_to_text($eligible_nationalities);
+    }
+
+}
+
+
 // Eligible Programs (Subjects)
 
 $programs = get_field('eligible_programs');
 
-// $programs_text = '';
 
 
-
-// if (in_array("All Subjects", $programs)){
-//   $programs_text .= "All Subjects offered at " . get_the_title(get_field("scholarship_institution"));
-// } else {
-//   $programs_text .= convert_array_to_text($programs);
-// }           
+ 
 
 ?>
 <ul>
@@ -59,7 +92,7 @@ $programs = get_field('eligible_programs');
     <!-- TODO:  replace static content -->
     <?php if($scholarship_host_countries) : ?>
         <input type="hidden" class="gs-ext-scholarship-hosting-countries" value="<?php echo $host_countries; ?>" />
-        <li>Host Country: 
+        <li>Host Country:
         <div class="gs-ext-scholarship-hosting-country-container">
             <b class="gs-ext-scholarship-hosting-country"></b>
             <?php if ($host_countries != 'All Countries' && ((count($newArray) > 3 && count($diffArray) > 3))) : ?>
@@ -68,8 +101,18 @@ $programs = get_field('eligible_programs');
         </div>
         </li>
     <?php endif; ?>
-    <li>Offered By: <b>United States </b></li>
-    <li>Eligible Countries: <b>United States, France, Germay, and United Kingdom</b></li>
+    <?php if($scholarship_funded_by): ?>
+        <li>Offered By: <b><?php echo $scholarship_funded_by ?></b></li>
+    <?php endif; ?>
+    <input type="hidden" class="gs-ext-scholarship-eligible-nationalities" value="<?php echo $eligible_nationalities_string; ?>" />
+    <li>  Eligible Countries:  
+        <div class="gs-ext-scholarship-nationalities-container">
+            <b class="gs-ext-scholarship-nationalities"></b>
+            <?php if($eligible_nationalities_string != 'All Nationalities' && ((count($eligible_nationalities_array) > 3 && count($diff_eligible_nationalities_array) > 3))) : ?>
+                <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+            <?php endif; ?>
+        </div>
+    </li>
     <li>Eligible Programs: <b>Bachelor's and Master's</b></li>
     <li>Eligible Universities: <b>Harvard University and Yale University</b></li>
     <li>Number of Recipients: <b>80 students</b></li>
