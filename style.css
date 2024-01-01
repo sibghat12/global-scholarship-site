@@ -8506,7 +8506,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
     font-size:15px;
 }
 
-.filter-row .reset_class{
+.filter-row .reset_class {
     cursor:pointer;
     width:20%;float:right;
     text-align: right;
@@ -8538,7 +8538,6 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
 .filter-row .check-class {
-    
     margin-top:0px;
     margin-bottom:10px;
 }
@@ -8602,3 +8601,36 @@ padding-bottom: 10px !important;
     font-size:18px !important;
     color:white !important;
 }
+
+#main .sort-by-fee {
+    float:right !important;
+    max-width:1000px !important;
+    margin-bottom:20px !important;
+}
+
+#main .fee-text {
+    font-weight: 700px !important;
+    color:black !important;
+    font-size: 14px !important;
+}
+
+.flipped {
+            transform: rotate(180deg) !important;
+            transition: transform 0.3s ease !important; /* Add a smooth transition effect */
+        }
+
+        #flipImage {
+            cursor: pointer !important; /* Change cursor to a pointer */
+        }
+
+
+        .opencourse-pagination {
+            text-align: center !important;
+            margin:auto;
+            padding-top:30px;
+            padding-bottom:30px;
+        }
+
+        .number-bold {
+            font-weight:600 !important;
+        }
