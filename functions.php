@@ -58,8 +58,14 @@ function theme_enqueue_styles() {
         wp_localize_script( 'single-scholarship', 'frontendajax', array( 
             'ajaxurl' => admin_url( 'admin-ajax.php' )
         ));
-
-        
+    }
+    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
+    // Enqueue single-scholarship.js file in assets folder
+    if(is_singular('ext-scholarships')) {
+        wp_enqueue_script('single-ext-scholarship',  get_stylesheet_directory_uri() . '/assets/single-ext-scholarship.js', array('jquery'), '1.0.0', true);
+        wp_localize_script( 'single-ext-scholarship', 'frontendajax', array( 
+            'ajaxurl' => admin_url( 'admin-ajax.php' )
+        ));
     }
     // Enqueue single-institution.js file in assets folder
     if(is_singular('institution')) {

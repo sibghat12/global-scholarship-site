@@ -1,0 +1,41 @@
+jQuery(document).ready(function($) {
+    // Get the value of the hidden input
+    if($('.gs-ext-scholarship-hosting-countries')) {
+
+      const hostingCountries = $('.gs-ext-scholarship-hosting-countries').val();
+    
+      // Split the list of countries into an array
+      if(hostingCountries){
+
+        const countries = hostingCountries.trim().split(', ');
+      
+        // Display the first 3 countries
+        const firstThreeCountries = countries.slice(0, 3);
+        $('.gs-ext-scholarship-hosting-country').text(firstThreeCountries.join(', '));
+      
+        // Add a click event listener to the toggle link
+        $('.gs-ext-scholarship-hosting-country-container #toggle-link').click(function(event) {
+          event.preventDefault();
+    
+        // Check whether to show more or show less
+        if ($(this).text() === 'Show more') {
+            // Display all the countries
+            $('.gs-ext-scholarship-hosting-country').text(countries.join(', '));
+      
+            // Update the link text
+            $(this).text('Show less');
+            $(this).parent().find('.ellipsis').removeClass('show');
+            $(this).parent().find('.ellipsis').addClass('hide');
+        } else {
+            // Display only the first 3 countries
+            $('.gs-ext-scholarship-hosting-country').text(firstThreeCountries.join(', '));
+      
+            // Update the link text
+            $(this).text('Show more');
+            $(this).parent().find('.ellipsis').removeClass('hide');
+            $(this).parent().find('.ellipsis').addClass('show');
+          }
+        });
+      }
+    }
+});

@@ -1,17 +1,19 @@
 <?php
 
-$eligible_countries = '';
-$countries = get_field('eligible_nationality');
+$host_countries = '';
+// echo '<pre>';
+// print_r($countries);
+// echo '</pre>';
 
-asort($countries);
+asort($scholarship_host_countries);
 
-$countries = explode(",", str_replace("\'", "", implode(",", $countries)));
+$scholarship_host_countries = explode(",", str_replace("\'", "", implode(",", $scholarship_host_countries)));
 
 $country_array_original = explode(",", str_replace("'",   "",    implode(",", $country_array_original)));
 
 
-if ($countries) {
-    $newArray = array_combine($countries, $countries);
+if ($scholarship_host_countries) {
+    $newArray = array_combine($scholarship_host_countries, $scholarship_host_countries);
 }
 
 if ($newArray) {
@@ -20,18 +22,18 @@ if ($newArray) {
 
 if (count($diffArray) < 20) {
 
-    if (in_array("All Nationalities", $countries)) {
-        $eligible_countries .= "All Nationalities";
+    if (in_array("All Countries", $scholarship_host_countries)) {
+        $host_countries .= "All Countries";
     } else {
         array_shift($diffArray);
-        $eligible_countries .= "All Nationalities except " . convert_array_to_text($diffArray);
+        $host_countries .= "All Countries except " . convert_array_to_text($diffArray);
     }
 } else {
 
-    if (in_array("All Nationalities", $countries)) {
-        $eligible_countries .= "All Nationalities";
+    if (in_array("All Countries", $scholarship_host_countries)) {
+        $host_countries .= "All Countries";
     } else {
-        $eligible_countries .= convert_array_to_text($countries);
+        $host_countries .= convert_array_to_text($scholarship_host_countries);
     }
 }
 
@@ -55,7 +57,17 @@ $programs = get_field('eligible_programs');
     <li>Level of Study: <b><?php echo $degrees_text; ?></b></li>
 
     <!-- TODO:  replace static content -->
-    <li>Host Country: <b>United States</b></li>
+    <?php if($scholarship_host_countries) : ?>
+        <input type="hidden" class="gs-ext-scholarship-hosting-countries" value="<?php echo $host_countries; ?>" />
+        <li>Host Country: 
+        <div class="gs-ext-scholarship-hosting-country-container">
+            <b class="gs-ext-scholarship-hosting-country"></b>
+            <?php if ($host_countries != 'All Countries' && ((count($newArray) > 3 && count($diffArray) > 3))) : ?>
+                <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+            <?php endif; ?>
+        </div>
+        </li>
+    <?php endif; ?>
     <li>Offered By: <b>United States </b></li>
     <li>Eligible Countries: <b>United States, France, Germay, and United Kingdom</b></li>
     <li>Eligible Programs: <b>Bachelor's and Master's</b></li>

@@ -17,8 +17,15 @@
     $degrees_text = convert_array_to_text($degrees);
 
     $scholarship_host_countries = get_field('host_country');
+    
+    $countries_field = get_field_object('field_6554776731838');
+    $country_array_original = $countries_field['choices'];
 
-    $host_countries = '';
+    // echo '<pre>';
+    // print_r($country_array_original);
+    // echo '</pre>';
+    
+
      
     $scholarship_type = get_field('amount_category');
     $scholarship_amount = get_field('amount_in_numbers');

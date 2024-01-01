@@ -209,27 +209,23 @@ function convert_array_to_text($array_list ){
     
     if(isset($array_list)){
 
- if (count($array_list) == 1) {
-     return $array_list[0];
- }
-    
-    if (count($array_list) == 2) {
-      return $array_list[0] . " and " . $array_list[1];
-      }
+        if (count($array_list) == 1) {
+            return $array_list[0];
+        }
+            
+        if (count($array_list) == 2) {
+        return $array_list[0] . " and " . $array_list[1];
+        }
 
-    
-     
- $format_text = implode(', ' ,  $array_list);
- 
- $format_text = substr_replace($format_text, ', and', strrpos($format_text, ','), 1);
- 
- return $format_text;
+        $format_text = implode(', ' ,  $array_list);
+        
+        $format_text = substr_replace($format_text, ', and', strrpos($format_text, ','), 1);
+        
+        return $format_text;
 
-} else {
-     return "";
-}
-
-    
+    } else {
+        return "";
+    }
 }
 
 

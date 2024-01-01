@@ -1,4 +1,3 @@
-
 jQuery(document).ready(function($) {
     // Get the value of the hidden input
     if($('.gs-scholarship-eligible-countries')) {
@@ -39,8 +38,7 @@ jQuery(document).ready(function($) {
         });
       }
     }
-
-  });
+});
 
 jQuery(document).ready(function($) {
     // Get the value of the hidden input
