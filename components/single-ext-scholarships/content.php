@@ -13,8 +13,8 @@
     
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
-
-    $scholarship_host_countries = get_field('host_country');
+    // This should be changed into Radio Button instead of checkbox since we only show one option
+    $scholarship_host_country = get_field('host_country');
     
     $countries_field = get_field_object('field_6554776731838');
     $country_array_original = $countries_field['choices'];
@@ -106,15 +106,15 @@
         
     }
 
-    echo '<pre>';
-    print_r($eligible_institutions);
-    echo '</pre>';
-    echo '<pre>';
-    print_r($eligible_institution_countries);
-    echo '</pre>';
-    echo '<pre>';
-    print_r($institution_countries_array_original);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($eligible_institutions);
+    // echo '</pre>';
+    // echo '<pre>';
+    // print_r($eligible_institution_countries);
+    // echo '</pre>';
+    // echo '<pre>';
+    // print_r($institution_countries_array_original);
+    // echo '</pre>';
     
 
 

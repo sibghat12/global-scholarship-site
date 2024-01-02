@@ -1,41 +1,5 @@
 <?php
 
-// Host Countries
-$host_countries = '';
-
-asort($scholarship_host_countries);
-
-$scholarship_host_countries = explode(",", str_replace("\'", "", implode(",", $scholarship_host_countries)));
-
-$country_array_original = explode(",", str_replace("'",   "",    implode(",", $country_array_original)));
-
-
-if ($scholarship_host_countries) {
-    $newArray = array_combine($scholarship_host_countries, $scholarship_host_countries);
-}
-
-if ($newArray) {
-    $diffArray = array_diff($country_array_original, $newArray);
-}
-
-if (count($diffArray) < 20) {
-
-    if (in_array("All Countries", $scholarship_host_countries)) {
-        $host_countries .= "All Countries";
-    } else {
-        array_shift($diffArray);
-        $host_countries .= "All Countries except " . convert_array_to_text($diffArray);
-    }
-} else {
-
-    if (in_array("All Countries", $scholarship_host_countries)) {
-        $host_countries .= "All Countries";
-    } else {
-        $host_countries .= convert_array_to_text($scholarship_host_countries);
-    }
-}
-
-
 // Eligible Nationalities (Countries)
 
 $eligible_nationalities_string = '';
@@ -115,9 +79,9 @@ if(count($diff_programs_array) < 20) {
 
 // Eligible Institutions (&& ||) Eligible Country's Institutions
 asort($eligible_institution_countries);
-echo '<pre>';
-print_r($eligible_institution_countries);
-echo '</pre>';
+// echo '<pre>';
+// print_r($eligible_institution_countries);
+// echo '</pre>';
 
 // $eligible_countries = explode(",", str_replace("\'", "", implode(",", $eligible_countries)));
 
@@ -126,13 +90,30 @@ echo '</pre>';
 // }
 $gs_eligible_places = '';
 
-if($eligible_institution_countries) {
-    $gs_eligible_places .= convert_array_to_text($eligible_institution_countries);
-}
+// echo '<pre>';
+// print_r($eligible_institution_countries);
+// echo '</pre>';
 
-if($eligible_institutions) {
+// if($eligible_institution_countries) {
+//     $gs_eligible_places .= generate_countries_universities_text($eligible_institution_countries);
+// }
+
+// if($eligible_institutions) {
+//     $gs_eligible_places .= convert_array_to_text($eligible_institutions);
+// } 
+$gs_eligible_places = '';
+
+if ($eligible_institution_countries && $eligible_institutions) {
+    $countries_text = generate_countries_universities_text($eligible_institution_countries);
+    $institutions_text = convert_array_to_text($eligible_institutions);
+
+    // Adding a space between texts
+    $gs_eligible_places .= $countries_text . ', and ' . $institutions_text;
+} elseif ($eligible_institution_countries) {
+    $gs_eligible_places .= generate_countries_universities_text($eligible_institution_countries);
+} elseif ($eligible_institutions) {
     $gs_eligible_places .= convert_array_to_text($eligible_institutions);
-} 
+}
 // elseif($eligible_countries) {
 //     $gs_eligible_places .= 
 // }
@@ -140,27 +121,17 @@ if($eligible_institutions) {
 // print_r($eligible_countries);
 // echo '</pre>';
 
- echo '<pre>';
- print_r($gs_eligible_places);
- echo '</pre>';
+//  echo '<pre>';
+//  print_r($gs_eligible_places);
+//  echo '</pre>';
  
 
 ?>
 <ul>
 
     <li>Level of Study: <b><?php echo $degrees_text; ?></b></li>
-
-    <!-- TODO:  replace static content -->
-    <?php if($scholarship_host_countries) : ?>
-        <input type="hidden" class="gs-ext-scholarship-hosting-countries" value="<?php echo $host_countries; ?>" />
-        <li>Host Country:
-        <div class="gs-ext-scholarship-hosting-country-container">
-            <b class="gs-ext-scholarship-hosting-country"></b>
-            <?php if ($host_countries != 'All Countries' && ((count($newArray) > 3 && count($diffArray) > 3))) : ?>
-                <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
-            <?php endif; ?>
-        </div>
-        </li>
+    <?php if($scholarship_host_country) : ?>
+        <li>Host Country: <b><?php echo $scholarship_host_country; ?></b></li>
     <?php endif; ?>
     <?php if($scholarship_funded_by): ?>
         <li>Offered By: <b><?php echo $scholarship_funded_by ?></b></li>
@@ -183,7 +154,7 @@ if($eligible_institutions) {
             <?php endif; ?>
         </div>
     </li>
-    <li>Eligible Universities: <b>Harvard University and Yale University</b></li>
+    <li>Eligible Universities: <b><?php echo $gs_eligible_places; ?></b></li>
     <?php if($number_of_recipients) : ?>
         <li>Number of Recipients: <b><?php echo $number_of_recipients; ?></b></li>
     <?php endif; ?>
