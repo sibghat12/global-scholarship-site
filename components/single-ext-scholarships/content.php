@@ -10,8 +10,6 @@
     // Scholarship Disclaimer Wyswig
     $scholarship_disclaimer_text = get_field('disclaimer');
 
-    // Scholarship Eligible Institutions
-    $scholarship_eligible_institutions = get_field('eligible_institutions');
     
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
@@ -23,7 +21,9 @@
 
     $scholarship_funded_by = get_field('funded_by');
     
-    $scholarship_type = get_field('amount_category');
+    $scholarship_category = get_field('scholarship_category');
+    $scholarship_type = get_field('scholarship_type');
+
     $scholarship_amount = get_field('amount_in_numbers');
     $scholarship_deadline = get_field('scholarship_deadline');
     $degrees = get_field('eligible_degrees');
@@ -47,9 +47,14 @@
 
     $programs_array_original = $programs_field['choices'];
     
+
+    $eligible_institution_countries = get_field('eligible_institution_countries');
+
+    $institution_countries_field = get_field_object('field_654db13f699f5');
+
+    $institution_countries_array_original = $institution_countries_field['choices'];
     
 
-    // $eligible_nationalities = convert_array_to_text($eligible_nationalities);
     $coverage = get_field('scholarship_coverage');
     $eligibility_criteria = get_field('eligibility_criteria');
     
@@ -68,10 +73,10 @@
     
     $scholarship_deadlines = get_field('scholarship_deadlines');
     
-
-    // echo '<pre>';
-    // print_r($scholarship_eligible_institutions);
-    // echo '</pre>';
+    // Institutions and Country's Institutions
+    
+    // Scholarship Eligible Institutions
+    $scholarship_eligible_institutions = get_field('eligible_institutions');
     $eligible_institutions = [];
     
     foreach($scholarship_eligible_institutions as $institution) {
@@ -100,6 +105,17 @@
         wp_reset_postdata();
         
     }
+
+    echo '<pre>';
+    print_r($eligible_institutions);
+    echo '</pre>';
+    echo '<pre>';
+    print_r($eligible_institution_countries);
+    echo '</pre>';
+    echo '<pre>';
+    print_r($institution_countries_array_original);
+    echo '</pre>';
+    
 
 
 ?>

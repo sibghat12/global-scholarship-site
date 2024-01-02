@@ -113,9 +113,36 @@ if(count($diff_programs_array) < 20) {
 
 }
 
+// Eligible Institutions (&& ||) Eligible Country's Institutions
+asort($eligible_institution_countries);
+echo '<pre>';
+print_r($eligible_institution_countries);
+echo '</pre>';
 
+// $eligible_countries = explode(",", str_replace("\'", "", implode(",", $eligible_countries)));
 
+// if($eligible_countries) {
+//     $eligible_countries_array = array_combine($eligible_countries, $eligible_countries);
+// }
+$gs_eligible_places = '';
 
+if($eligible_institution_countries) {
+    $gs_eligible_places .= convert_array_to_text($eligible_institution_countries);
+}
+
+if($eligible_institutions) {
+    $gs_eligible_places .= convert_array_to_text($eligible_institutions);
+} 
+// elseif($eligible_countries) {
+//     $gs_eligible_places .= 
+// }
+// echo '<pre>';
+// print_r($eligible_countries);
+// echo '</pre>';
+
+ echo '<pre>';
+ print_r($gs_eligible_places);
+ echo '</pre>';
  
 
 ?>
@@ -157,20 +184,20 @@ if(count($diff_programs_array) < 20) {
         </div>
     </li>
     <li>Eligible Universities: <b>Harvard University and Yale University</b></li>
-    <li>Number of Recipients: <b>80 students</b></li>
-    <li>Scholarship Type: <b>Partial Funding</b></li>
-    <li>Scholarship Amount: <b>4000 USD</b></li>
-    <li>Scholarship Duration: <b>1 Year</b></li>
-    <li>Application Deadline: <b>January 24, 2024</b></li>
-    
+    <?php if($number_of_recipients) : ?>
+        <li>Number of Recipients: <b><?php echo $number_of_recipients; ?></b></li>
+    <?php endif; ?>
+    <li>Scholarship Type: <b><?php echo $scholarship_category; ?> </b></li>
     <?php if ($scholarship_amount > 0) { ?>
 
-        <li>
-            Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
-                <?php echo $currency; ?></b></li>
+        <li>Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
+        <?php echo $currency; ?></b></li>
 
 
-    <?php    }  ?>
+<?php    }  ?>    <li>Scholarship Duration: <b>1 Year</b></li>
+    <li>Application Deadline: <b>January 24, 2024</b></li>
+    
+
 
     <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
 
