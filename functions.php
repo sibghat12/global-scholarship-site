@@ -4335,3 +4335,282 @@ function mepr_add_tabs_content($action) {
 }
 add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
 
+
+
+function init_curl_session($url) {
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+    ]);
+    return $curl;
+}
+
+function get_currency_conversion($fromCurrency, $toCurrency, $amount) {
+    $apiUrl = "https://api.fxratesapi.com/convert?from=$fromCurrency&to=$toCurrency&amount=$amount&api_key=fxr_live_c26ae8c14971ba9e361e44017e494e33635f";
+    $curl = init_curl_session($apiUrl);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+        return 0;
+    } else {
+        $response_data = json_decode($response, true);
+        return $response_data['result'] ?? 0;
+    }
+}
+
+function process_ads() {
+    $args = ['post_type' => 'ads', 'posts_per_page' => -1]; // Adjust query as needed
+    $ads = new WP_Query($args);
+
+    while ($ads->have_posts()) {
+        $ads->the_post();
+        $ad_id = get_the_ID();
+
+        $institute_id = get_post_meta($ad_id, 'adsInstitution', true);
+        
+        $country = get_post_meta($institute_id, 'adsIntCountry', true);
+        $currency = get_currency($country);
+       
+
+        $international_tuition_fees = get_field('international_tuition_fees'); 
+
+       if($international_tuition_fees){
+         $converted_amount = get_currency_conversion($currency, 'USD', $international_tuition_fees);
+        }
+       
+
+       if ($converted_amount) {
+            $rounded_amount = round($converted_amount);
+            update_post_meta($ad_id, 'tuition_USD', $rounded_amount);
+          }
+    }
+}
+
+//process_ads();
+
+
+
+add_action('wp_ajax_toggle_order', 'handle_toggle_order');
+add_action('wp_ajax_nopriv_toggle_order', 'handle_toggle_order');
+
+function handle_toggle_order() {
+
+     $courses_details  = acf_get_fields('group_64c9f01dd1837');
+    $courses_subject = array_column($courses_details, null, 'name')['subjects'];
+    $ads_subject = $courses_subject['choices'];
+
+    $courses_countries = array_column($courses_details, null, 'name')['countries'];
+    $courses_countries = $courses_countries['choices'];
+
+    $params = get_query_info();
+
+    $subject = $params["subject"];
+    //$location = $params["location"];
+    $degrees = $params["degrees"];
+    $country = $params["country"];
+
+    $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
+    // Get Current Device Data
+    $ip_api = file_get_contents('https://pro.ip-api.com/json/'.$_SERVER['REMOTE_ADDR'] . '?key='.$pro_ip_api_key);
+
+    // Data Decoded
+    $data = json_decode($ip_api);
+ 
+    // Turn Object into Associative Array
+    $data_array = get_object_vars($data);
+   
+    // Get Country Code to use to get other related content (Courses)
+    if($data_array) {
+        $country_code = $data_array['countryCode'];
+    } else {
+        // In case IP API is not working
+        $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
+    }
+
+    // Location
+    $location = $country_code;
+    
+    //List of institutions in that country
+    $institute_ids_country = get_institution_ids($country);
+
+    if ($country == "europe"){
+        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
+    }
+
+    $location = code_to_country($location);
+
+
+    if ($location == FALSE){
+        $location_string = "around the World";
+    } else {
+        $location_string = "from " . $location; 
+    }
+
+    $active_institutions = get_active_institutions();
+
+    $excluded = exclude_institutions ($location);
+
+    
+
+    $excluded_by_tier = exclude_institutions_by_tier($location);
+
+    $excluded = array_merge($excluded, $excluded_by_tier);
+
+
+
+
+    $order = $_POST['order'];
+  
+    // Prepare your query arguments based on the order
+    $ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        'meta_key' => 'tuition_USD',
+        'orderby' => "meta_value_num",
+        'order' => $order,
+        // 'meta_query' => array(
+        //     'relation' => 'AND',
+        //     array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+        //     array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
+        // ),
+    );
+
+    $loop = new WP_Query($ad_args);
+
+    if ($loop->have_posts()) {
+        while ($loop->have_posts()) {
+            $loop->the_post();
+            $ad_id = get_the_ID();
+            
+            show_ads_card_new($ad_id); // Adjust this to your function for displaying a card
+        }
+    } else {
+        echo 'No courses found.';
+    }
+
+    wp_die();
+}
+
+
+
+
+
+
+add_action('wp_ajax_load_ads', 'load_ads_ajax_handler');
+add_action('wp_ajax_nopriv_load_ads', 'load_ads_ajax_handler');
+
+
+function load_ads_ajax_handler() {
+
+
+    $courses_details  = acf_get_fields('group_64c9f01dd1837');
+    $courses_subject = array_column($courses_details, null, 'name')['subjects'];
+    $ads_subject = $courses_subject['choices'];
+
+    $courses_countries = array_column($courses_details, null, 'name')['countries'];
+    $courses_countries = $courses_countries['choices'];
+
+    $params = get_query_info();
+
+    $subject = $params["subject"];
+    //$location = $params["location"];
+    $degrees = $params["degrees"];
+    $country = $params["country"];
+
+    $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
+    // Get Current Device Data
+    $ip_api = file_get_contents('https://pro.ip-api.com/json/'.$_SERVER['REMOTE_ADDR'] . '?key='.$pro_ip_api_key);
+
+    // Data Decoded
+    $data = json_decode($ip_api);
+ 
+    // Turn Object into Associative Array
+    $data_array = get_object_vars($data);
+   
+    // Get Country Code to use to get other related content (Courses)
+    if($data_array) {
+        $country_code = $data_array['countryCode'];
+    } else {
+        // In case IP API is not working
+        $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
+    }
+
+    // Location
+    $location = $country_code;
+    
+    //List of institutions in that country
+    $institute_ids_country = get_institution_ids($country);
+
+    if ($country == "europe"){
+        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
+    }
+
+    $location = code_to_country($location);
+
+
+    if ($location == FALSE){
+        $location_string = "around the World";
+    } else {
+        $location_string = "from " . $location; 
+    }
+
+    $active_institutions = get_active_institutions();
+
+    $excluded = exclude_institutions ($location);
+
+    
+
+    $excluded_by_tier = exclude_institutions_by_tier($location);
+
+    $excluded = array_merge($excluded, $excluded_by_tier);
+
+
+
+    $page = $_POST['page'] ?? 1;
+    $order = $_POST['order'] ?? 'DESC';
+    $adsPerPage = 10;
+   $offset = ($page - 1) * $adsPerPage;
+    // Prepare your query arguments based on the order
+    $ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        'offset' => $offset, 
+        'meta_key' => 'tuition_USD',
+        'orderby' => "meta_value_num",
+        'order' => 'DESC',
+        // 'meta_query' => array(
+        //     'relation' => 'AND',
+        //     array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+        //     array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
+        // ),
+    );
+
+    $loop = new WP_Query($ad_args);
+
+    if ($loop->have_posts()) {
+        while ($loop->have_posts()) {
+            $loop->the_post();
+            $ad_id = get_the_ID();
+            show_ads_card_new($ad_id); // Ensure this function outputs the correct HTML for an ad
+        }
+    } else {
+        echo 'No courses found.';
+    }
+
+    wp_die(); // Always include this in your AJAX handlers
+}
+

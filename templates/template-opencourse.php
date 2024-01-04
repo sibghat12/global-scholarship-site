@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $location = code_to_country($location);
 
 
-    if ($location == FALSE){
+    if ($location == FALSE) {
         $location_string = "around the World";
     } else {
         $location_string = "from " . $location; 
@@ -75,24 +75,23 @@ if ( ! defined( 'ABSPATH' ) ) {
     
 
     $excluded_by_tier = exclude_institutions_by_tier($location);
-
     $excluded = array_merge($excluded, $excluded_by_tier);
 
     $ad_args = array(
         'post_type' => 'ads',
         'post_status' => 'publish',
-        'posts_per_page' => -1,
-        'meta_key' => 'priority',
+        'posts_per_page' => 10,
+        'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
         'order' => "DESC",
-        'meta_query' => array(
-            'relation' => 'AND',
-            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
-            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
-        ),
+        // 'meta_query' => array(
+        //     'relation' => 'AND',
+        //     array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+        //     array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
+        // ),
     );
 
- 
+
 
     
     if(isset($subject) && $subject){
@@ -107,8 +106,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         $ad_args['meta_query'][] = array('key' => 'adsInstitution', 'value' => $institute_ids_country, 'compare' => "IN");
     }
 
-    $loop = new WP_Query($ad_args);
-     
+
+        $loop = new WP_Query($ad_args);
+        $total_count = $loop->found_posts;
 
    
 
@@ -137,11 +137,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 <section id="content" class="small-text opencourse-template"   style="width:100% !important;">
-		<div id="openCourses" >
+		<div id="openCourses" style="max-width: 1000px;margin: auto;">
 			<div class="post-content" style="max-width:100%;">
     <div class="toggle-filter"  >           
  <center>
-<aside style="width:60%;max-width:1000px;">            
+<aside style="width:75%;max-width:1000px;">            
 <div class="course-filter"> 
     
     <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>"  style="margin-top:10px;width:100%;" method="POST" class="filter-wrapper">
@@ -222,21 +222,31 @@ if ( ! defined( 'ABSPATH' ) ) {
             
             <div class="clearfix"> </div> 
             
-
-
-            <div class="card-section-new" style="max-width:1000px;margin:auto;padding-top:45px;"> 
-            
-            <div class="sort-by-fee" style="margin-bottom:20px;">
+ <div class="sort-by-fee" style="margin-top:40px;margin-bottom:40px;display:block;margin-bottom:20px;">
     <span class="fee-text" style="font-size:14px;font-weight:600;"> Sort by: Tuition Fee 
-        <img id="flipImage"  style="margin-left:5px;border-radius:3px;background: white !important; padding:5px; width:auto;height:20px;box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);" 
+        <img id="flipImage"  style="margin-left:5px;border-radius:3px;background: white !important; padding:5px; width:auto;height:27px; box-shadow: 0 0 10px rgba(128, 128, 128, 0.5); " 
              src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/11/Vector.png" 
              onclick="flipImage()">
     </span>
     <br>
 </div>
+
+<div id="preloader" style="display: none; margin:auto !important;max-width:600px !important;">
+<img src="https://globalscholarships.com/wp-content/uploads/2023/03/Curve-Loading.gif"> </center>
+</div>
+
+
+ 
+            <div class="card-section-new" style="max-width:1000px;margin:auto;padding-top:45px;"> 
+            
+          
             
             
-                <?php
+<?php
+
+
+
+
 if ($loop->have_posts()) {
     while ($loop->have_posts()) {
         $loop->the_post();
@@ -278,26 +288,26 @@ if ($loop->have_posts()) {
                 <?php wp_reset_postdata(); ?>
 
             
-            <div class="opencourse-pagination">
+           
+
+
+            </div><!-- .card-section -->
+               
+                
+ <div class="opencourse-pagination">
                  <p style="margin-bottom:20px;">Page 
                     <span class="number-bold">1</span> to 
                     <span class="number-bold">10 </span> of 
                     <span class="number-bold">100 </span> 
                  Courses </p>
                
-               <a style="border:1px solid #008ec5;background:transparent;color:blue;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
+               <a  class="pagination-button pag-pre"  style="border:1px solid #008ec5;background:transparent;color:blue;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
                width:40px;"> Prev </a>
 
-                <a style="border:1px solid #008ec5;background:#008ec5;color:white !important;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
+                <a  class="pagination-button pag-next"  style="border:1px solid #559cc6;background:#559cc6;color:white !important;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
                width:40px;"> Next </a>
 
             </div>
-
-
-            </div><!-- .card-section -->
-               
-                
-
 
     
 	<?php wp_reset_postdata(); ?>
@@ -539,17 +549,108 @@ function readLess(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         
         <script>
-    function flipImage() {
+  function flipImage() {
+    var image = document.getElementById('flipImage');
+    image.classList.toggle('flipped');
 
-        var image = document.getElementById('flipImage');
-        
-        image.classList.toggle('flipped');
-    }
+    var order = image.classList.contains('flipped') ? 'ASC' : 'DESC';
+     jQuery('.card-section-new').css("display" , "none");
+    jQuery('#preloader').css("display" , "block");
+    jQuery.ajax({
+        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+        type: 'POST',
+        data: {
+            'action': 'toggle_order',
+            'order': order
+        },
+        success: function(response) {
+            jQuery('#preloader').css("display" , "none");
+            // Replace the content of your cards section with the response
+            jQuery('.card-section-new').css("display" , "block");
+            jQuery('.card-section-new').html(response);
+        }
+    });
+}
+
 </script>      
+
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    var currentPage = 1;
+    var totalAds = <?php echo $total_count; ?>;
+    var adsPerPage = 10;
+    var totalPages = Math.ceil(totalAds / adsPerPage);
+    var currentOrder = 'DESC'; // Default order
+
+    function getCurrentOrder() {
+        // Check if the flipImage has the class 'flipped'
+        return jQuery('#flipImage').hasClass('flipped') ? 'ASC' : 'DESC';
+    }
+
+    function updatePaginationText() {
+        jQuery('.opencourse-pagination .number-bold').first().text(currentPage);
+        jQuery('.opencourse-pagination .number-bold').eq(1).text(totalPages);
+        jQuery('.opencourse-pagination .number-bold').last().text(totalAds);
+    }
+
+    function loadAds(pageNumber, order) {
+        jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
+     jQuery('#preloader').css("display" , "block");
+     jQuery('.card-section-new').css("display", "none");
+        jQuery.ajax({
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            type: 'POST',
+            data: {
+                'action': 'load_ads',
+                'page': pageNumber,
+                'order': order
+            },
+            success: function(response) {
+                 jQuery('.card-section-new').css("display", "block");
+                jQuery('.card-section-new').html(response);
+
+                currentPage = pageNumber;
+                updatePaginationText();
+                  
+                jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
+                jQuery('#preloader').css("display" , "none");
+
+            }
+        });
+    }
+
+    jQuery('.opencourse-pagination a').click(function(e) {
+        e.preventDefault();
+        var direction = jQuery(this).text().trim();
+        currentOrder = getCurrentOrder(); // Get current order based on the image class
+        if (direction === 'Next' && currentPage < totalPages) {
+             
+            loadAds(currentPage + 1, currentOrder);
+        } else if (direction === 'Prev' && currentPage > 1) {
+            
+            loadAds(currentPage - 1, currentOrder);
+        }
+    });
+
+    // Flip image function
+    // jQuery('#flipImage').click(function() {
+    //     alert("dd");
+    //     var image = jQuery(this);
+    //     image.toggleClass('flipped');
+    //     currentOrder = getCurrentOrder(); // Update the order based on the flipped state
+    //     loadAds(currentPage, currentOrder);
+    // });
+
+    updatePaginationText(); // Initialize pagination text
+    //loadAds(1, currentOrder); // Load first page initially
+});
+</script>
+
 
 <?php do_action( 'avada_after_content' ); ?>
 
 <?php
 get_footer();
 
-/* Omit closing PHP tag to avoid "Headers already sent" issues. */
+
