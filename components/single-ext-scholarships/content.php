@@ -26,9 +26,6 @@
 
     $scholarship_amount = get_field('amount_in_numbers');
     $scholarship_deadlines = get_field('scholarship_deadlines');
-    echo '<pre>';
-    print_r($scholarship_deadlines);
-    echo '</pre>';
     
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
@@ -92,37 +89,13 @@
 
             array_push($eligible_institutions, $institution_name);
 
-            
-            // $founded_year = get_field('founded_year');
-            // $institution_type = get_field('type');
-            
-            
-    
-            // $institution_description =  get_field('description');
-            // $rankings =  get_field('rankings');
-            // $ranking_array = get_ranking_with_name($rankings);
         }
         
         wp_reset_postdata();
         
     }
 
-    // echo '<pre>';
-    // print_r($eligible_institutions);
-    // echo '</pre>';
-    // echo '<pre>';
-    // print_r($eligible_institution_countries);
-    // echo '</pre>';
-    // echo '<pre>';
-    // print_r($institution_countries_array_original);
-    // echo '</pre>';
-    
-
-
 ?>
-    
-<main id="main">
-    <div class="fusion-row">
 
     <section id="content" style="<?php esc_attr_e(apply_filters('awb_content_tag_style', '')); ?>">
     <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -151,6 +124,3 @@
 
     </div>
     </section>
-
-    </div>
-</main>
