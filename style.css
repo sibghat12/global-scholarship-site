@@ -8659,3 +8659,10 @@ padding-bottom: 10px !important;
 .single-ext-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-ext-scholarship-eligible-universities-container {
     display: inline;
 }
+.single-ext-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-ext-scholarships-duration {
+    padding-left: 100px;
+    font-weight: 700;
+    margin-top: 0px;
+    line-height: 28px;
+    font-size: 17px;
+}

@@ -32,6 +32,10 @@
     $number_of_recipients = get_field('number_of_recipients');
     $scholarship_duration = get_field('scholarship_duration');
 
+    echo '<pre>';
+    print_r($scholarship_duration);
+    echo '</pre>';
+    
 
 
     $nationalities_field = get_field_object('field_654dad4dd4ad4');

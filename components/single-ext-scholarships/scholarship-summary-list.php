@@ -158,12 +158,40 @@
 
     <li>Scholarship Type: <b><?php echo $scholarship_category; ?> </b></li>
     <?php if ($scholarship_amount > 0) { ?>
-
         <li>Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
         <?php echo $currency; ?></b></li>
+    <?php    }  ?>    
 
-
-<?php    }  ?>    <li>Scholarship Duration: <b>1 Year</b></li>
+    <?php
+    $scholarship_duration_html='';
+    if ($scholarship_duration) {
+        $duration_text = '';
+        $similar_duration = true;
+        $same_number = $scholarship_duration[0]['number'];
+        $same_label = $scholarship_duration[0]['label'];
+    
+        foreach ($scholarship_duration as $duration) {
+            $duration_text .= '<li>' . $duration['degrees'] . ': ' . $duration['number'] . ' ' . $duration['label'] . '</li>';
+            if ($duration['number'] !== $same_number || $duration['label'] !== $same_label) {
+                $similar_duration = false;
+            }
+        }
+    
+        if ($similar_duration) {
+            $duration_text = '<li>';
+            foreach ($scholarship_duration as $key => $duration) {
+                $duration_text .= $duration['degrees'];
+                if ($key !== count($scholarship_duration) - 1) {
+                    $duration_text .= ' and ';
+                }
+            }
+            $duration_text .= ': '. $same_number . ' ' . $same_label . '</li>';
+        }
+    
+        $scholarship_duration_html .= '<ul class="gs-ext-scholarships-duration">' . $duration_text . '</ul>';
+    } 
+    ?>
+    <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
     <li>Application Deadline: <b>January 24, 2024</b></li>
     
 
