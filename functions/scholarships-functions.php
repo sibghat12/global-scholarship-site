@@ -5905,18 +5905,7 @@ function convert_country_to_nationality($country_name) {
 }
 
 
-// // Function to generate the desired text
-// function generate_universities_text($country_name) {
-//     $nationality = convert_country_to_nationality($country_name);
-
-//     if ($nationality) {
-//         return "All $nationality Universities";
-//     } else {
-//         return "No nationality found for the provided country.";
-//     }
-// }
-
-// Function to generate the desired text
+// Function to generate the countries list text
 function generate_countries_universities_text($countries) {
     $texts = [];
 
