@@ -33,7 +33,6 @@
     $scholarship_duration = get_field('scholarship_duration');
 
 
-    $separate_application = get_field('separate_application');
 
     $nationalities_field = get_field_object('field_654dad4dd4ad4');
 

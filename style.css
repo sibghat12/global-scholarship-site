@@ -8655,3 +8655,7 @@ padding-bottom: 10px !important;
 .single-ext-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-ext-scholarship-programs-container {
     display: inline;
 }
+/* External Scholarships Eligible Universities (Summary List Box) */
+.single-ext-scholarships #main .post-content .gs-scholarship-summary .gs-scholarship-summary-box .gs-ext-scholarship-eligible-universities-container {
+    display: inline;
+}

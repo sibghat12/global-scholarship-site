@@ -1,130 +1,105 @@
 <?php
 
-// Eligible Nationalities (Countries)
+    // Eligible Nationalities (Countries)
 
-$eligible_nationalities_string = '';
-asort($eligible_nationalities);
+    $eligible_nationalities_string = '';
+    asort($eligible_nationalities);
 
-$eligible_nationalities = explode(",", str_replace("\'", "", implode(",", $eligible_nationalities)));
+    $eligible_nationalities = explode(",", str_replace("\'", "", implode(",", $eligible_nationalities)));
 
-$nationality_array_original = explode(",", str_replace("'", "", implode(",", $nationality_array_original)));
+    $nationality_array_original = explode(",", str_replace("'", "", implode(",", $nationality_array_original)));
 
 
-if($eligible_nationalities) {
-    $eligible_nationalities_array = array_combine($eligible_nationalities, $eligible_nationalities);
-}
-
-if($eligible_nationalities_array) {
-    $diff_eligible_nationalities_array = array_diff($nationality_array_original, $eligible_nationalities_array);
-}
-
-if(count($diff_eligible_nationalities_array) < 20) {
-
-    if(in_array("All Nationalities", $eligible_nationalities)) {
-        $eligible_nationalities_string .= "All Nationalities";
-    } else {
-        array_shift($diff_eligible_nationalities_array);
-        $eligible_nationalities_string .= "All Nationalities except " . convert_array_to_text($diff_eligible_nationalities_array);
+    if($eligible_nationalities) {
+        $eligible_nationalities_array = array_combine($eligible_nationalities, $eligible_nationalities);
     }
 
-} else {
-
-    if(in_array("All Nationalities", $eligible_nationalities)) {
-        $eligible_nationalities_string .= "All Nationalities";
-    } else {
-        $eligible_nationalities_string .= convert_array_to_text($eligible_nationalities);
+    if($eligible_nationalities_array) {
+        $diff_eligible_nationalities_array = array_diff($nationality_array_original, $eligible_nationalities_array);
     }
 
-}
+    if(count($diff_eligible_nationalities_array) < 20) {
 
+        if(in_array("All Nationalities", $eligible_nationalities)) {
+            $eligible_nationalities_string .= "All Nationalities";
+        } else {
+            array_shift($diff_eligible_nationalities_array);
+            $eligible_nationalities_string .= "All Nationalities except " . convert_array_to_text($diff_eligible_nationalities_array);
+        }
 
-
-
-// Eligible Programs (Subjects)
-
-$programs_string = '';
-asort($programs);
-
-$programs = explode(",", str_replace("\'", "", implode(",", $programs)));
-
-$programs_array_original = explode(",", str_replace("'", "", implode(",", $programs_array_original)));
-
-
-if($programs) {
-    $programs_array = array_combine($programs, $programs);
-}
-
-if($programs_array) {
-    $diff_programs_array = array_diff($programs_array_original, $programs_array);
-}
-
-if(count($diff_programs_array) < 20) {
-
-    if(in_array("All Subjects", $programs)) {
-        $programs_string .= "All Programs";
     } else {
-        array_shift($diff_programs_array);
-        $programs_string .= "All Programs except " . convert_array_to_text($diff_programs_array);
+
+        if(in_array("All Nationalities", $eligible_nationalities)) {
+            $eligible_nationalities_string .= "All Nationalities";
+        } else {
+            $eligible_nationalities_string .= convert_array_to_text($eligible_nationalities);
+        }
+
     }
 
-} else {
 
-    if(in_array("All Subjects", $programs)) {
-        $programs_string .= "All Programs";
-    } else {
-        $programs_string .= convert_array_to_text($programs);
+
+
+    // Eligible Programs (Subjects)
+
+    $programs_string = '';
+    asort($programs);
+
+    $programs = explode(",", str_replace("\'", "", implode(",", $programs)));
+
+    $programs_array_original = explode(",", str_replace("'", "", implode(",", $programs_array_original)));
+
+
+    if($programs) {
+        $programs_array = array_combine($programs, $programs);
     }
 
+    if($programs_array) {
+        $diff_programs_array = array_diff($programs_array_original, $programs_array);
+    }
+
+    if(count($diff_programs_array) < 20) {
+
+        if(in_array("All Subjects", $programs)) {
+            $programs_string .= "All Programs";
+        } else {
+            array_shift($diff_programs_array);
+            $programs_string .= "All Programs except " . convert_array_to_text($diff_programs_array);
+        }
+
+    } else {
+
+        if(in_array("All Subjects", $programs)) {
+            $programs_string .= "All Programs";
+        } else {
+            $programs_string .= convert_array_to_text($programs);
+        }
+
+    }
+
+    // Eligible Institutions (||) Eligible Country's Institutions
+    $gs_eligible_places = '';
+
+    asort($eligible_institution_countries);
+    asort($eligible_institutions);
+
+
+    if($eligible_institution_countries) {
+        $eligible_institution_countries_array = array_combine($eligible_institution_countries, $eligible_institution_countries);
+    }
+
+    if($eligible_institutions) {
+        $eligible_institutions_array = array_combine($eligible_institutions, $eligible_institutions);
+    }
+    $gs_eligible_institutions = convert_array_to_text($eligible_institutions);
+    $gs_eligible_countries = generate_countries_universities_text($eligible_institution_countries);
+
+    if ($eligible_institution_countries) {
+        $gs_eligible_places .= $gs_eligible_countries;
+    } elseif ($eligible_institutions) {
+        $gs_eligible_places .= $gs_eligible_institutions;
 }
 
-// Eligible Institutions (&& ||) Eligible Country's Institutions
-asort($eligible_institution_countries);
-// echo '<pre>';
-// print_r($eligible_institution_countries);
-// echo '</pre>';
-
-// $eligible_countries = explode(",", str_replace("\'", "", implode(",", $eligible_countries)));
-
-// if($eligible_countries) {
-//     $eligible_countries_array = array_combine($eligible_countries, $eligible_countries);
-// }
-$gs_eligible_places = '';
-
-// echo '<pre>';
-// print_r($eligible_institution_countries);
-// echo '</pre>';
-
-// if($eligible_institution_countries) {
-//     $gs_eligible_places .= generate_countries_universities_text($eligible_institution_countries);
-// }
-
-// if($eligible_institutions) {
-//     $gs_eligible_places .= convert_array_to_text($eligible_institutions);
-// } 
-$gs_eligible_places = '';
-
-if ($eligible_institution_countries && $eligible_institutions) {
-    $countries_text = generate_countries_universities_text($eligible_institution_countries);
-    $institutions_text = convert_array_to_text($eligible_institutions);
-
-    // Adding a space between texts
-    $gs_eligible_places .= $countries_text . ', and ' . $institutions_text;
-} elseif ($eligible_institution_countries) {
-    $gs_eligible_places .= generate_countries_universities_text($eligible_institution_countries);
-} elseif ($eligible_institutions) {
-    $gs_eligible_places .= convert_array_to_text($eligible_institutions);
-}
-// elseif($eligible_countries) {
-//     $gs_eligible_places .= 
-// }
-// echo '<pre>';
-// print_r($eligible_countries);
-// echo '</pre>';
-
-//  echo '<pre>';
-//  print_r($gs_eligible_places);
-//  echo '</pre>';
- 
 
 ?>
 <ul>
@@ -154,10 +129,29 @@ if ($eligible_institution_countries && $eligible_institutions) {
             <?php endif; ?>
         </div>
     </li>
-    <li>Eligible Universities: <b><?php echo $gs_eligible_places; ?></b></li>
-    <?php if($number_of_recipients) : ?>
-        <li>Number of Recipients: <b><?php echo $number_of_recipients; ?></b></li>
-    <?php endif; ?>
+    <input type="hidden" class="gs-ext-scholarship-eligible-institutions" value="<?php echo $gs_eligible_places; ?>" />
+    <li>Eligible Universities: 
+        <div class="gs-ext-scholarship-eligible-universities-container">
+                <b class="gs-ext-scholarship-eligible-universities"></b>
+                <?php  if($eligible_institution_countries) : ?>
+                    <?php if($gs_eligible_places != 'All Universities Worldwide' && (count($eligible_institution_countries_array) > 3 )) : ?>
+                        <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+                    <?php endif; ?>
+                <?php elseif($eligible_institutions): ?>
+                    <?php if (count($eligible_institutions_array) > 3 ) : ?>
+                        <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+        </div>
+    </li>
+    
+    <?php if ($number_of_recipients > 0) { ?>
+        <li> Number of Recipients: <b> <?php echo $number_of_recipients; ?> </b> </li>
+    <?php } else {
+
+        echo "<li>Number of Recipients: <b>Not Specified</b> </li>";
+    } ?>
+
     <li>Scholarship Type: <b><?php echo $scholarship_category; ?> </b></li>
     <?php if ($scholarship_amount > 0) { ?>
 
@@ -172,35 +166,8 @@ if ($eligible_institution_countries && $eligible_institutions) {
 
     <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
 
-    <input type="hidden" class="gs-scholarship-eligible-countries" value="<?php echo $eligible_countries; ?>" />
-    <li> Eligible Nationalities:
-        <div class="gs-scholarship-nationalities-container">
-            <b class="gs-scholarship-nationalities"></b>
-            <?php if ($eligible_countries != 'All Nationalities' && ((count($newArray) > 3 && count($diffArray) > 3))) : ?>
-                <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
-            <?php endif; ?>
-        </div>
-    </li>
-    <input type="hidden" class="gs-scholarship-eligible-subjects" data-institution-title="<?php echo get_the_title(get_field("scholarship_institution")); ?>" value="<?php echo htmlspecialchars(json_encode($programs)); ?>" />
-    <?php if ($programs) {
-    ?><li> Eligible Subjects:
-            <div class="gs-scholarship-subjects-container">
-                <b class="gs-scholarship-subjects"></b>
-                <?php if (count($programs) > 3 && !in_array("All Subjects", $programs)) : ?>
-                    <span class="show_more"><span class="ellipsis">...</span> <a href="#" id="toggle-link">Show more</a></span>
-                <?php endif; ?>
-            </div>
-        </li>
-    <?php
-    } ?>
-    <?php if ($number_of_recipients > 0) { ?>
-        <li> Number of Recipients: <b> <?php echo $number_of_recipients; ?> </b> </li>
-    <?php } else {
 
-        echo "<li>Number of Recipients: <b>Not Specified</b> </li>";
-    } ?>
 
-    <li> Additional Scholarships Materials Required? <b><?php echo $separate_application; ?></b> </li>
 
 
     <?php
