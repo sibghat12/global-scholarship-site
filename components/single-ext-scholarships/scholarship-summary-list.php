@@ -95,7 +95,11 @@
     $gs_eligible_countries = generate_countries_universities_text($eligible_institution_countries);
 
     if ($eligible_institution_countries) {
-        $gs_eligible_places .= $gs_eligible_countries;
+        if(in_array("All Universities Worldwide", $eligible_institution_countries_array)) {
+            $gs_eligible_places .= "All Universities Worldwide";
+        } else {
+            $gs_eligible_places .= $gs_eligible_countries;
+        }
     } elseif ($eligible_institutions) {
         $gs_eligible_places .= $gs_eligible_institutions;
 }
