@@ -25,19 +25,17 @@
     $scholarship_type = get_field('scholarship_type');
 
     $scholarship_amount = get_field('amount_in_numbers');
-    $scholarship_deadline = get_field('scholarship_deadline');
+    $scholarship_deadlines = get_field('scholarship_deadlines');
+    echo '<pre>';
+    print_r($scholarship_deadlines);
+    echo '</pre>';
+    
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
 
     $number_of_recipients = get_field('number_of_recipients');
     $scholarship_duration = get_field('scholarship_duration');
-
-    echo '<pre>';
-    print_r($scholarship_duration);
-    echo '</pre>';
     
-
-
     $nationalities_field = get_field_object('field_654dad4dd4ad4');
 
     $nationality_array_original = $nationalities_field['choices'];
