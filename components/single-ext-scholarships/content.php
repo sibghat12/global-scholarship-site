@@ -27,6 +27,10 @@
     $scholarship_amount = get_field('amount_in_numbers');
     $scholarship_deadlines = get_field('scholarship_deadlines');
     
+    echo '<pre>';
+    print_r($scholarship_deadlines);
+    echo '</pre>';
+    
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
 
@@ -56,16 +60,16 @@
     $coverage = get_field('scholarship_coverage');
     $eligibility_criteria = get_field('eligibility_criteria');
     
-    echo '<pre>';
-    print_r($eligibility_criteria);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($eligibility_criteria);
+    // echo '</pre>';
     
 
     $application_procedure = get_field('application_procedure');
 
-    echo '<pre>';
-    print_r($application_procedure);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($application_procedure);
+    // echo '</pre>';
     
     $additional_scholarship_requirements = get_field('additional_scholarship_requirements');
     $helpful_links = get_field('helpful_links');
