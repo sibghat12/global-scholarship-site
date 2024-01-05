@@ -194,32 +194,35 @@
     <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
     
     
-    
     <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
+    <li>Application Deadline: 
+
     <?php
         //Scholarship Deadline
         $current_date = strtotime(date("Y-m-d")); // Get current date
-
-        echo '<li>Application Deadline: <ul>';
+        $deadline_text = '';
+        echo '<ul>';
 
         foreach ($scholarship_deadlines as $deadline) {
             $deadline_date = strtotime($deadline['deadline']);
             $formatted_deadline = date("F j, Y", $deadline_date);
 
-            echo '<li>' . $deadline['degree'] . ': ';
 
             if ($deadline['accepts_application_all_year_round'] === 'Yes') {
-                echo 'Accept Application All Year</li>';
+                $deadline_text = 'Accept Application All Year';
             } else {
                 if ($current_date >= $deadline_date) {
-                    echo $formatted_deadline . ' (Past Deadline)</li>';
+                    $deadline_text = $formatted_deadline . ' (Past Deadline)';
                 } else {
-                    echo $formatted_deadline . ' (Open)</li>';
+                    $deadline_text = $formatted_deadline . ' (Open)';
                 }
             }
+            echo '<li>' . $deadline['degree'] . ': '. $deadline_text .'</li>';
+
+
         }
 
-        echo '</ul></li>';
+        echo '</ul>';
     ?>
-
+    </li>
 </ul>
