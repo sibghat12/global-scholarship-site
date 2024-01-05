@@ -27,10 +27,6 @@
     $scholarship_amount = get_field('amount_in_numbers');
     $scholarship_deadlines = get_field('scholarship_deadlines');
     
-    echo '<pre>';
-    print_r($scholarship_deadlines);
-    echo '</pre>';
-    
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
 
