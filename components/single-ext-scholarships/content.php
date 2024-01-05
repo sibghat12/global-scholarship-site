@@ -56,9 +56,17 @@
     $coverage = get_field('scholarship_coverage');
     $eligibility_criteria = get_field('eligibility_criteria');
     
+    echo '<pre>';
+    print_r($eligibility_criteria);
+    echo '</pre>';
     
 
     $application_procedure = get_field('application_procedure');
+
+    echo '<pre>';
+    print_r($application_procedure);
+    echo '</pre>';
+    
     $additional_scholarship_requirements = get_field('additional_scholarship_requirements');
     $helpful_links = get_field('helpful_links');
 
@@ -111,7 +119,20 @@
             <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-summary.php'; ?>
 
 
+            <?php // GS External Scholarship Coverage ?>
 
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-coverage.php'; ?>
+            <!-- Sibi Shortcode -->
+            <aside><?php echo do_shortcode('[cta_post_shortcode title="Apply for 2024 Intake!" desc="Applications for 2024 Intake are open. Search through the degrees around the world!" link_url="/opencourses/" id="institution_opencourses_cta"]'); ?></aside>
+           
+            <?php // GS External Scholarship Eligibility Criteria ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-eligibility-criteria.php'; ?>
+           
+            <?php // GS External Scholarship Application Process ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-application-process.php'; ?>
+            
             <?php 
             if ( comments_open() || get_comments_number() ) {
                 comments_template();
