@@ -196,33 +196,30 @@
     
     
     <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
-    <li>Application Deadline: 
-<?php
-    //Scholarship Deadline
-    $current_date = strtotime(date("Y-m-d")); // Get current date
+    <?php
+        //Scholarship Deadline
+        $current_date = strtotime(date("Y-m-d")); // Get current date
 
-    echo '<li>Application Deadline: <ul>';
+        echo '<li>Application Deadline: <ul>';
 
-    foreach ($scholarship_deadlines as $deadline) {
-        $deadline_date = strtotime($deadline['deadline']);
-        $formatted_deadline = date("F j, Y", $deadline_date);
+        foreach ($scholarship_deadlines as $deadline) {
+            $deadline_date = strtotime($deadline['deadline']);
+            $formatted_deadline = date("F j, Y", $deadline_date);
 
-        echo '<li>' . $deadline['degree'] . ': ';
+            echo '<li>' . $deadline['degree'] . ': ';
 
-        if ($deadline['accepts_application_all_year_round'] === 'Yes') {
-            echo 'Accept Application All Year</li>';
-        } else {
-            if ($current_date >= $deadline_date) {
-                echo $formatted_deadline . ' (Past)</li>';
+            if ($deadline['accepts_application_all_year_round'] === 'Yes') {
+                echo 'Accept Application All Year</li>';
             } else {
-                echo $formatted_deadline . ' (Open)</li>';
+                if ($current_date >= $deadline_date) {
+                    echo $formatted_deadline . ' (Past)</li>';
+                } else {
+                    echo $formatted_deadline . ' (Open)</li>';
+                }
             }
         }
-    }
 
-    echo '</ul></li>';
-    
-?>
-</li>
+        echo '</ul></li>';
+    ?>
 
 </ul>
