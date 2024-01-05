@@ -212,7 +212,7 @@
                 echo 'Accept Application All Year</li>';
             } else {
                 if ($current_date >= $deadline_date) {
-                    echo $formatted_deadline . ' (Past)</li>';
+                    echo $formatted_deadline . ' (Past Deadline)</li>';
                 } else {
                     echo $formatted_deadline . ' (Open)</li>';
                 }
