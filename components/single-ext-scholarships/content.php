@@ -61,13 +61,13 @@
     // echo '</pre>';
     
 
-    $application_procedure = get_field('application_procedure');
+    $application_procedures = get_field('application_procedure');
 
     // echo '<pre>';
     // print_r($application_procedure);
     // echo '</pre>';
     
-    $additional_scholarship_requirements = get_field('additional_scholarship_requirements');
+    $application_steps = get_field('application_steps');
     $helpful_links = get_field('helpful_links');
 
     $links = get_field('links');

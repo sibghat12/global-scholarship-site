@@ -8669,12 +8669,30 @@ padding-bottom: 10px !important;
 .single-ext-scholarships .post-content .gs-ext-scholarship-disclaimer {
     background-color: #E8F1F8;
     padding: 20px 7px;
-    box-shadow: 0 4px 4px rgba(0,0,0,.25);
+    box-shadow: 0 4px 4px 0px rgba(0,0,0,.25);
     border-radius: 22px;
     margin-top: 1.5rem;
 }
-
-
+.gs-ext-schoalrship-application-requirements {
+    background-color: #E8F1F8;
+    padding: 12px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0px rgba(0,0,0,.25);
+    margin: 1.5rem 0;
+}
+.gs-ext-schoalrship-application-requirements h3 {
+    margin: 0;
+}
+.gs-ext-schoalrship-application-procedures {
+    background-color: #FFFCFC;
+    padding: 12px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0px rgba(0,0,0,.25);
+    margin: 1.5rem 0;
+}
+.gs-ext-schoalrship-application-procedures h3 {
+    margin: 0;
+}
 @media only screen and (min-width: 768px){
 
     /* External Scholarships Box Overview */
