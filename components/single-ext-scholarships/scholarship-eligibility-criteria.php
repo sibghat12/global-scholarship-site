@@ -4,56 +4,35 @@
     <div class="gs-scholarship-eligibility-criteria-intro">
         <h2><?php echo $scholarship_title; ?> Eligibility Criteria</h2>
         <p>To be eligible for <?php echo $scholarship_title; ?>, you need to meet the following criteria:</p>
-
-       
-        <p class="criteria-note">These criteria vary per institution and scholarship so be sure to take note of these before preparing your application.</p>
-
-    </div>
-    
-    <div class="gs-scholarship-eligibility-criteria-institution">
-        
-        <h3><?php echo $institution_name; ?> Eligibility Criteria</h3>
-    
-        <div class="gs-scholarship-eligibility-criteria-institution-content">
-            <p>Before applying for <?php echo $scholarship_title; ?> for international students, you need to apply for admissions at the <?php echo $institution_name; ?> first. Find the <?php echo $institution_name; ?>’s admission eligibility criteria <a href="<?php echo get_permalink($institution->ID); ?>#admissions">here</a>.</p>
-            
-        </div>
     </div>
     
     <div class="gs-scholarship-eligibility-criteria-scholarship">
-        <h3><?php echo $scholarship_title; ?> Specific Eligibility Criteria</h3>
-        
+
             <div class="gs-scholarship-eligibility-criteria-scholarship-content">
             <?php if($eligibility_criteria) : ?>
 
-                <?php
-                
-                    if(count($eligibility_criteria) >= 2) :
+            <?php
+                if(count($eligibility_criteria) >= 1) :
                     ?>
-                        <p>
-                        Did you meet the admissions criteria? If yes, you’re now ready to apply for a scholarship. Here are the additional criteria or requirements you must meet to apply for <?php echo $scholarship_title; ?>: </p>
-
+                       
                         <ul>
                             <?php 
                             foreach($eligibility_criteria as $criteria) : ?>
-                            <li><b><?php echo $criteria['criteria']; ?></b></li>
+                                <li><b><?php echo $criteria['criteria']; ?></b></li>
                             <?php
                             endforeach;
                             ?>
                         </ul>
-                    <?php
-                    elseif(count($eligibility_criteria) == 1) : ?>
-                        <p>
-                        Did you meet the admissions criteria? If yes, you’re now ready to apply for a scholarship. <b>Applicants must be <?php echo $eligibility_criteria[0]['criteria'] ?>.</b>
-                        </p>
-                    <?php endif; ?>
-            
-                
-                <?php else : ?>
-                    <p>There are no specific eligibility criteria for this scholarship. <b>You just need to be an international <?php echo ( str_contains($degrees_text, 'PhD') ) ? str_replace('PhD', 'Ph.D.', $degrees_text) : $degrees_text; ?> student or applicant of <?php echo $institution_name; ?>.</b></p>
-                <?php endif; ?>
+                <?php  endif; ?>
+            <?php  endif; ?>
+            <p>Please refer to the Eligibility Page for detailed information on the eligibility requirements for the <?php echo $scholarship_title; ?></p>
             </div>
         </div>
 
-        <p>Make sure to check out the <a href="<?php echo get_permalink($institution->ID); ?>#admissions"><?php echo $institution_name; ?> admissions pages</a> and the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> pages</a> for more information!</p>
+        
+        <?php // GS External Scholarship Disclaimer (Wysiwig) ?>
+           <?php if(isset($scholarship_disclaimer_text) && !empty($scholarship_disclaimer_text)) : ?>
+                <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-disclaimer.php'; ?>
+            <?php endif ?>
+
 </section>
