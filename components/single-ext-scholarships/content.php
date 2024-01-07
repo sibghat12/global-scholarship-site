@@ -132,7 +132,23 @@
             <?php // GS External Scholarship Application Process ?>
 
             <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-application-process.php'; ?>
-            
+
+            <?php // GS Explore Available Courses Worldwide ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-institutions/explore-courses.php'; ?>
+                       
+            <?php // GS External Scholarship Deadline ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-deadline.php'; ?>
+                       
+            <?php // GS External Scholarship Official (Page) ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-official.php'; ?>
+                       
+            <?php // GS External Scholarship Outro ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-outro.php'; ?>
+
             <?php 
             if ( comments_open() || get_comments_number() ) {
                 comments_template();

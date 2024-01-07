@@ -8693,6 +8693,20 @@ padding-bottom: 10px !important;
 .gs-ext-schoalrship-application-procedures h3 {
     margin: 0;
 }
+.gs-ext-schoalrship-official-container {
+    background-color: #E8F1F8;
+    padding: 12px;
+    border-radius: 22px;
+    box-shadow: 0 4px 4px 0px rgba(0,0,0,.25);
+    margin: 1.5rem 0;
+}
+.gs-ext-schoalrship-official-container h2 {
+    margin: 0;
+    padding-top: 12px;
+    font-size: 1.8rem;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
 @media only screen and (min-width: 768px){
 
     /* External Scholarships Box Overview */
