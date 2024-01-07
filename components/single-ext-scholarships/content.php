@@ -56,17 +56,8 @@
     $coverage = get_field('scholarship_coverage');
     $eligibility_criteria = get_field('eligibility_criteria');
     
-    // echo '<pre>';
-    // print_r($eligibility_criteria);
-    // echo '</pre>';
-    
-
     $application_procedures = get_field('application_procedure');
 
-    // echo '<pre>';
-    // print_r($application_procedure);
-    // echo '</pre>';
-    
     $application_steps = get_field('application_steps');
     $helpful_links = get_field('helpful_links');
 

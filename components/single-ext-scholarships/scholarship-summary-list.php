@@ -224,30 +224,5 @@
         }
         echo '</ul></li>';
     }
-    // // Extracting unique deadlines and checking if all 'accepts_application_all_year_round' are 'Yes' or 'No'
-    // $unique_deadlines = array_unique(array_column($scholarship_deadlines, 'deadline'));
-    // $unique_acceptance = array_unique(array_column($scholarship_deadlines, 'accepts_application_all_year_round'));
-    
-    // // Check conditions
-    // if (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
-    //     echo '<li>Application Deadline: Accept Application All Year</li>';
-    // } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'No') {
-    //     if (count($unique_deadlines) === 1) {
-    //         echo '<li>Application Deadline: ' . reset($unique_deadlines) . '</li>';
-    //     } else {
-    //         echo '<li>Application Deadline:<ul>';
-    //         foreach ($scholarship_deadlines as $deadline) {
-    //             echo '<li>' . $deadline['degree'] . ': ' . ($deadline['accepts_application_all_year_round'] === 'Yes' ? 'Accept Application All Year' : $deadline['deadline']) . '</li>';
-    //         }
-    //         echo '</ul></li>';
-    //     }
-    // } else {
-    //     echo '<li>Application Deadline:<ul>';
-    //     foreach ($scholarship_deadlines as $deadline) {
-    //         echo '<li>' . $deadline['degree'] . ': ' . ($deadline['accepts_application_all_year_round'] === 'Yes' ? 'Accept Application All Year' : $deadline['deadline']) . '</li>';
-    //     }
-    //     echo '</ul></li>';
-    // }
-    
   ?>
 </ul>
