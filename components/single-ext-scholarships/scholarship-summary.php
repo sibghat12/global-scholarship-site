@@ -30,17 +30,33 @@
             <p class="gs-scholarship-summary-title"><?php echo $degrees_text; ?></p>
         </div>
         <?php endif; ?>
-
-        <?php if( !empty($deadline_text) && isset($deadline_text) ) : ?>
         <div class="gs-scholarship-summary-separate-application-box gs-summary-box">
             <div class="gs-scholarship-summary-insitute-image">
                 <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/Deadline.png'); ?>" alt="">
             </div>
             <p class="gs-scholarship-summary-title">
-                <?php echo $deadline_text; ?>
+                <?php 
+                    
+                    // Find the first non-"Accept Application All Year" deadline
+                    $first_non_year_round_deadline = '';
+                    foreach ($scholarship_deadlines as $deadline) {
+                        if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
+                            $first_non_year_round_deadline = $deadline['deadline'];
+                            break;
+                        }
+                    }
+
+                    // Display the appropriate deadline or "Accept Application All Year"
+                    if (!empty($first_non_year_round_deadline)) {
+                        echo strip_tags($first_non_year_round_deadline); // Output the text without HTML tags
+                    } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
+                        echo 'Accept Application All Year';
+                    } else {
+                        echo 'No Deadlines!';
+                    }
+                ?>
             </p>
         </div>  
-        <?php endif; ?>
     </div>
 
 </div>

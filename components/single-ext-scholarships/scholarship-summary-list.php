@@ -197,163 +197,57 @@
     <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
 
     <?php
-    // echo '<pre>';
-    // print_r($scholarship_deadlines);
-    // echo '</pre>';
-    
-    $current_date = strtotime(date("Y-m-d")); // Get current date
-    $deadline_text = '';
-    $all_accepts_application_all_year_round = true;
-    $all_deadlines_same_date = true;
-    $common_deadline = null;
+    $current_date = date('Y-m-d'); // Current date in 'Y-m-d' format
 
-    $first_deadline = strtotime($scholarship_deadlines[0]['deadline']); // Store the first deadline
+    // Extracting unique deadlines and checking if all 'accepts_application_all_year_round' are 'Yes' or 'No'
+    $unique_deadlines = array_unique(array_column($scholarship_deadlines, 'deadline'));
+    $unique_acceptance = array_unique(array_column($scholarship_deadlines, 'accepts_application_all_year_round'));
 
-    foreach ($scholarship_deadlines as $index => $deadline) {
-        $deadline_date_val = strtotime($deadline['deadline']);
-            if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
-                $all_accepts_application_all_year_round = false;
-            }
-            if ($deadline_date_val !== $first_deadline) {
-                $all_deadlines_same_date = false; // If any deadline is different, set the flag to false
-                break; // No need to continue checking, as we already found a different deadline
-            }
-        
-        
-    }
-
-    if ($all_accepts_application_all_year_round) {
-        $deadline_text = 'Accept Application All Year';
-        echo '<li>Application Deadline: <b>' . $deadline_text . '</b></li>';
-
-    } else {
-        // Check if all deadlines have 'accepts_application_all_year_round' as 'No'
-        if (!$all_deadlines_same_date) {
-            
-            $formatted_common_deadline = date("F j, Y", $deadline_date_val);
-            if ($current_date >= $deadline_date_val) {
-                $deadline_text = "$formatted_common_deadline (Past Deadline)";
-            } else {
-                $deadline_text = "$formatted_common_deadline (Current Deadline)";
-            }
-            echo '<li>Application Deadline: <b>' . $deadline_text . '</b></li>';
+    // Check conditions
+    if (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
+        echo '<li>Application Deadline: <b>Accept Application All Year</b></li>';
+    } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'No') {
+        if (count($unique_deadlines) === 1) {
+            $deadline = reset($unique_deadlines);
+            echo '<li>Application Deadline: <b>' . (strtotime($deadline) >= strtotime($current_date) ? $deadline . ' (Open)' : $deadline .' (Past Deadline)') . '</b></li>';
         } else {
-            
-
-            echo '<li>Application Deadline: <ul>';
-            
+            echo '<li>Application Deadline:<ul>';
             foreach ($scholarship_deadlines as $deadline) {
-                $deadline_date = strtotime($deadline['deadline']);
-                $formatted_deadline = date("F j, Y", $deadline_date);
-
-                if ($deadline['accepts_application_all_year_round'] === 'Yes') {
-                    $deadline_text = 'Accept Application All Year';
-                } else {
-                    if ($current_date >= $deadline_date) {
-                        $deadline_text = $formatted_deadline . ' (Past Deadline)';
-                    } else {
-                        $deadline_text = $formatted_deadline . ' (Open)';
-                    }
-                }
-                echo '<li>' . $deadline['degree'] . ': <b>'. $deadline_text .'</b></li>';
+                echo '<li>' . $deadline['degree'] . ': <b>' . ($deadline['accepts_application_all_year_round'] === 'Yes' ? 'Accept Application All Year' : (strtotime($deadline['deadline']) >= strtotime($current_date) ? $deadline['deadline'] . ' (Open)' :  $deadline['deadline'] . ' (Past Deadline)')) . '</b></li>';
             }
-
             echo '</ul></li>';
         }
+    } else {
+        echo '<li>Application Deadline:<ul>';
+        foreach ($scholarship_deadlines as $deadline) {
+            echo '<li>' . $deadline['degree'] . ': <b>' . ($deadline['accepts_application_all_year_round'] === 'Yes' ? 'Accept Application All Year' : (strtotime($deadline['deadline']) >= strtotime($current_date) ? $deadline['deadline'] . ' (Open)' :  $deadline['deadline'] . ' (Past Deadline)')) . '</b></li>';
+        }
+        echo '</ul></li>';
     }
-    ?>
-
-    <?php
-    // $current_date = strtotime(date("Y-m-d")); // Get current date
-    // $deadline_text = '';
-
-    // // Variables to track criteria for common deadline display
-    // $all_accepts_application_all_year_round = false;
-    // $all_deadlines_same_date = false;
-    // $common_deadline = null;
-
-    // foreach ($scholarship_deadlines as $index => $deadline) {
-    //     $deadline_date = strtotime($deadline['deadline']);
-
-    //     if ($index === 0) {
-    //         $common_deadline = $deadline_date;
+    // // Extracting unique deadlines and checking if all 'accepts_application_all_year_round' are 'Yes' or 'No'
+    // $unique_deadlines = array_unique(array_column($scholarship_deadlines, 'deadline'));
+    // $unique_acceptance = array_unique(array_column($scholarship_deadlines, 'accepts_application_all_year_round'));
+    
+    // // Check conditions
+    // if (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
+    //     echo '<li>Application Deadline: Accept Application All Year</li>';
+    // } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'No') {
+    //     if (count($unique_deadlines) === 1) {
+    //         echo '<li>Application Deadline: ' . reset($unique_deadlines) . '</li>';
     //     } else {
-    //         if ($deadline['accepts_application_all_year_round'] == $scholarship_deadlines[$index - 1]['accepts_application_all_year_round']) {
-    //             $all_accepts_application_all_year_round = true;
+    //         echo '<li>Application Deadline:<ul>';
+    //         foreach ($scholarship_deadlines as $deadline) {
+    //             echo '<li>' . $deadline['degree'] . ': ' . ($deadline['accepts_application_all_year_round'] === 'Yes' ? 'Accept Application All Year' : $deadline['deadline']) . '</li>';
     //         }
-    //         if ($deadline_date == $common_deadline) {
-    //             $all_deadlines_same_date = true;
-    //         }
+    //         echo '</ul></li>';
     //     }
-
-    // }
-
-    // if ($all_accepts_application_all_year_round && $all_deadlines_same_date) {
-    //     if ($all_accepts_application_all_year_round) {
-    //         $deadline_text = 'Accept Application All Year';
-    //     } elseif ($all_deadlines_same_date && $common_deadline !== null) {
-    //         $formatted_common_deadline = date("F j, Y", $common_deadline);
-    //         if ($current_date >= $common_deadline) {
-    //             $deadline_text = "$formatted_common_deadline (Past Deadline)";
-    //         } else {
-    //             $deadline_text = "$formatted_common_deadline (Current Deadline)";
-    //         }
-    //     }
-
-    //     echo '<li>Application Deadline: <b>' . $deadline_text . '</b></li>';
     // } else {
-    //     // Display individual deadlines if they don't meet the common criteria
-    //     echo '<li>Application Deadline: <ul>';
-
+    //     echo '<li>Application Deadline:<ul>';
     //     foreach ($scholarship_deadlines as $deadline) {
-    //         $deadline_date = strtotime($deadline['deadline']);
-    //         $formatted_deadline = date("F j, Y", $deadline_date);
-
-    //         if ($deadline['accepts_application_all_year_round'] === 'Yes') {
-    //             $deadline_text = 'Accept Application All Year';
-    //         } else {
-    //             if ($current_date >= $deadline_date) {
-    //                 $deadline_text = $formatted_deadline . ' (Past Deadline)';
-    //             } else {
-    //                 $deadline_text = $formatted_deadline . ' (Open)';
-    //             }
-    //         }
-    //         echo '<li>' . $deadline['degree'] . ': <b>'. $deadline_text .'</b></li>';
+    //         echo '<li>' . $deadline['degree'] . ': ' . ($deadline['accepts_application_all_year_round'] === 'Yes' ? 'Accept Application All Year' : $deadline['deadline']) . '</li>';
     //     }
-
     //     echo '</ul></li>';
     // }
-?>
-
-
-    <!-- <li>Application Deadline:  -->
-
-    <?php
-        // //Scholarship Deadline
-        // $current_date = strtotime(date("Y-m-d")); // Get current date
-        // $deadline_text = '';
-        // echo '<ul>';
-
-        // foreach ($scholarship_deadlines as $deadline) {
-        //     $deadline_date = strtotime($deadline['deadline']);
-        //     $formatted_deadline = date("F j, Y", $deadline_date);
-
-
-        //     if ($deadline['accepts_application_all_year_round'] === 'Yes') {
-        //         $deadline_text = 'Accept Application All Year';
-        //     } else {
-        //         if ($current_date >= $deadline_date) {
-        //             $deadline_text = $formatted_deadline . ' (Past Deadline)';
-        //         } else {
-        //             $deadline_text = $formatted_deadline . ' (Open)';
-        //         }
-        //     }
-        //     echo '<li>' . $deadline['degree'] . ': '. $deadline_text .'</li>';
-
-
-        // }
-
-        // echo '</ul>';
-    ?>
-    <!-- </li> -->
+    
+  ?>
 </ul>
