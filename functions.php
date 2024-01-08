@@ -4517,11 +4517,13 @@ function handle_toggle_order() {
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
         'order' => $order,
+       
         // 'meta_query' => array(
         //     'relation' => 'AND',
         //     array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
         //     array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
         // ),
+        
     );
 
     $loop = new WP_Query($ad_args);
