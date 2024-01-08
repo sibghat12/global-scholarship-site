@@ -68,7 +68,6 @@
     $scholarship_application_procedure_link = $links['scholarship_application_procedure_link'];
     $scholarship_deadline_link = $links['scholarship_deadline_link'];
     
-    $scholarship_deadlines = get_field('scholarship_deadlines');
     
     // Institutions and Country's Institutions
     
@@ -93,6 +92,9 @@
         wp_reset_postdata();
         
     }
+
+    $currency = get_currency($scholarship_host_country);
+
 
 ?>
 
