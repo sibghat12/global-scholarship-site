@@ -58,8 +58,14 @@ function theme_enqueue_styles() {
         wp_localize_script( 'single-scholarship', 'frontendajax', array( 
             'ajaxurl' => admin_url( 'admin-ajax.php' )
         ));
-
-        
+    }
+    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
+    // Enqueue single-scholarship.js file in assets folder
+    if(is_singular('ext-scholarships')) {
+        wp_enqueue_script('single-ext-scholarship',  get_stylesheet_directory_uri() . '/assets/single-ext-scholarship.js', array('jquery'), '1.0.0', true);
+        wp_localize_script( 'single-ext-scholarship', 'frontendajax', array( 
+            'ajaxurl' => admin_url( 'admin-ajax.php' )
+        ));
     }
     // Enqueue single-institution.js file in assets folder
     if(is_singular('institution')) {
@@ -372,7 +378,39 @@ function uscollege_custom_post_types() {
     );
     register_post_type( 'scholarships', $args );  
     
-    
+    $labels = array(
+        'name'              => __( 'External Scholarships' ),
+        'singular_name'     => __( 'External Scholarships' ),
+        'add_new'           => __( 'Add New External Scholarships' ),
+        'add_new_item'      => __( 'Add New External Scholarships' ),
+        'edit_item'         => __( 'Edit External Scholarships' ),
+        'new_item'          => __( 'Add New External Scholarships' ),
+        'view_item'         => __( 'View External Scholarships' ),
+        'search_items'      => __( 'Search External Scholarships' ),
+        'not_found'         => __( 'No External Scholarships found' ),
+        'not_found_in_trash' => __( 'No External Scholarships found in trash' ),
+
+    );
+    $supports = array(
+        'title',
+        'author',
+        'thumbnail',
+        'comments'
+    );
+    $args = array(
+        'labels'                => $labels,
+        'supports'              => $supports,
+        'public'                => true,
+        'capability_type'       => 'page',
+        'rewrite'               => array( 'slug' => 'ext-scholarships' ),
+        'has_archive'           => false,
+        'menu_position'         => 30,
+        'show_ui '              => true,  
+        'menu_icon'             => 'dashicons-admin-multisite',
+       
+    );
+    register_post_type( 'ext-scholarships', $args );  
+
     $labels = array(
         'name'              => __( 'Institutions' ),
         'singular_name'     => __( 'institutions' ),
@@ -4308,8 +4346,6 @@ function gs_courses_boxs() {
     return ob_get_clean(); // Return the buffered content
 }
 add_shortcode('gs-courses', 'gs_courses_boxs'); // Registering the shortcode
-
-
 
 // Memberpress Extend Nav items
 function mepr_add_some_tabs($user) {

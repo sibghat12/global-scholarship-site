@@ -209,27 +209,23 @@ function convert_array_to_text($array_list ){
     
     if(isset($array_list)){
 
- if (count($array_list) == 1) {
-     return $array_list[0];
- }
-    
-    if (count($array_list) == 2) {
-      return $array_list[0] . " and " . $array_list[1];
-      }
+        if (count($array_list) == 1) {
+            return $array_list[0];
+        }
+            
+        if (count($array_list) == 2) {
+        return $array_list[0] . " and " . $array_list[1];
+        }
 
-    
-     
- $format_text = implode(', ' ,  $array_list);
- 
- $format_text = substr_replace($format_text, ', and', strrpos($format_text, ','), 1);
- 
- return $format_text;
+        $format_text = implode(', ' ,  $array_list);
+        
+        $format_text = substr_replace($format_text, ', and', strrpos($format_text, ','), 1);
+        
+        return $format_text;
 
-} else {
-     return "";
-}
-
-    
+    } else {
+        return "";
+    }
 }
 
 
@@ -5856,3 +5852,80 @@ function current_month_shortcode() {
     return $current_month;
 }
 add_shortcode('current_month', 'current_month_shortcode');
+
+
+function convert_country_to_nationality($country_name) {
+    $nationalities = array(
+        'Australia' => 'Australian',
+        'Austria' => 'Austrian',
+        'Belgium' => 'Belgian',
+        'Canada' => 'Canadian',
+        'China' => 'Chinese',
+        'Denmark' => 'Danish',
+        'Estonia' => 'Estonian',
+        'Finland' => 'Finnish',
+        'France' => 'French',
+        'Germany' => 'German',
+        'Hong Kong' => 'Hong Kong',
+        'Hungary' => 'Hungarian',
+        'Iceland' => 'Icelandic',
+        'India' => 'Indian',
+        'Ireland' => 'Irish',
+        'Israel' => 'Israeli',
+        'Italy' => 'Italian',
+        'Japan' => 'Japanese',
+        'Malaysia' => 'Malaysian',
+        'Mexico' => 'Mexican',
+        'Netherlands' => 'Dutch',
+        'New Zealand' => 'New Zealand',
+        'Norway' => 'Norwegian',
+        'Philippines' => 'Filipino',
+        'Poland' => 'Polish',
+        'Portugal' => 'Portuguese',
+        'Qatar' => 'Qatari',
+        'Russia' => 'Russian',
+        'Saudi Arabia' => 'Saudi Arabian',
+        'Singapore' => 'Singaporean',
+        'South Africa' => 'South African',
+        'South Korea' => 'South Korean',
+        'Spain' => 'Spanish',
+        'Sweden' => 'Swedish',
+        'Switzerland' => 'Swiss',
+        'Taiwan' => 'Taiwanese',
+        'Turkey' => 'Turkish',
+        'United Kingdom' => 'British',
+        'United States' => 'American'
+    );
+
+    if (array_key_exists($country_name, $nationalities)) {
+        return $nationalities[$country_name];
+    } else {
+        return '';
+    }
+}
+
+
+// Function to generate the countries list text
+function generate_countries_universities_text($countries) {
+    $texts = [];
+
+    foreach ($countries as $country) {
+        $nationality = convert_country_to_nationality($country);
+
+        if ($nationality) {
+            $texts[] = "All $nationality Universities";
+        }
+    }
+
+    $count = count($texts);
+    if ($count === 1) {
+        return $texts[0];
+    } elseif ($count === 2) {
+        return implode(' and ', $texts);
+    } elseif ($count > 2) {
+        $lastText = array_pop($texts);
+        return implode(', ', $texts) . ", and " . $lastText;
+    } else {
+        return "";
+    }
+}
