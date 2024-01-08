@@ -1,5 +1,5 @@
 <?php // Coverage Section ?>
-<section id="ext-scholarship-coverage" class="gs-ext-scholarship-coverage">
+<section id="scholarship-coverage" class="gs-ext-scholarship-coverage">
     <h2><?php echo  $scholarship_title; ?> Coverage</h2>
     <?php
         if(count($coverage) == 1 ) : ?>

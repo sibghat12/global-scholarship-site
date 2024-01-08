@@ -1,4 +1,4 @@
-<section id="scholarship-application-process" class="gs-scholarship-application-process">
+<section id="scholarship-application-procedure" class="gs-scholarship-application-process">
 
     <h2><?php echo $scholarship_title; ?> Application Process</h2>
 

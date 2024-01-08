@@ -109,6 +109,10 @@
             <?php // GS External Scholarship Summary Box ?>
             <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-summary.php'; ?>
 
+                       
+            <?php // GS External Scholarship Navigation Panel ?>
+
+            <?php require get_stylesheet_directory() . '/components/single-ext-scholarships/scholarship-navigation-panel.php'; ?>
 
             <?php // GS External Scholarship Coverage ?>
 

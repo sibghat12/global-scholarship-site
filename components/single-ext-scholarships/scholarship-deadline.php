@@ -1,4 +1,4 @@
-<section id="ext-scholarship-deadline" class="gs-ext-scholarship-deadline">
+<section id="scholarship-deadline" class="gs-ext-scholarship-deadline">
 
     <h2>When to Apply for <?php echo $scholarship_title; ?> (Deadlines)</h2>
 
