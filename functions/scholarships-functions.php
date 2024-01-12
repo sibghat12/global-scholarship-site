@@ -5906,25 +5906,25 @@ function convert_country_to_nationality($country_name) {
 
 
 // Function to generate the countries list text
-function generate_countries_universities_text($countries) {
+function generate_countries_institutions_text($countries) {
     $texts = [];
 
     foreach ($countries as $country) {
         $nationality = convert_country_to_nationality($country);
 
         if ($nationality) {
-            $texts[] = "All $nationality Universities";
+            $texts[] = $nationality;
         }
     }
 
     $count = count($texts);
     if ($count === 1) {
-        return $texts[0];
+        return $texts[0] . ' Institutions';
     } elseif ($count === 2) {
-        return implode(' and ', $texts);
+        return implode(' and ', $texts) . ' Institutions';
     } elseif ($count > 2) {
         $lastText = array_pop($texts);
-        return implode(', ', $texts) . ", and " . $lastText;
+        return implode(', ', $texts) . ", and " . $lastText . ' Institutions';
     } else {
         return "";
     }

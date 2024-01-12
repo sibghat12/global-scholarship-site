@@ -92,7 +92,7 @@
         $eligible_institutions_array = array_combine($eligible_institutions, $eligible_institutions);
     }
     $gs_eligible_institutions = convert_array_to_text($eligible_institutions);
-    $gs_eligible_countries = generate_countries_universities_text($eligible_institution_countries);
+    $gs_eligible_countries = generate_countries_institutions_text($eligible_institution_countries);
 
     if ($eligible_institution_countries) {
         if(in_array("All Universities Worldwide", $eligible_institution_countries_array)) {
@@ -140,7 +140,7 @@ if($scholarship_funded_by) {
         </div>
     </li>
     <input type="hidden" class="gs-ext-scholarship-eligible-institutions" value="<?php echo $gs_eligible_places; ?>" />
-    <li>Eligible Universities: 
+    <li>Eligible Institutions: 
         <div class="gs-ext-scholarship-eligible-universities-container">
                 <b class="gs-ext-scholarship-eligible-universities"></b>
                 <?php  if($eligible_institution_countries) : ?>
