@@ -12,7 +12,7 @@
             <div class="gs-scholarship-summary-insitute-image">
                 <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/institute-icon.png'); ?>" alt="">
             </div>
-            <p class="gs-scholarship-summary-title"><?php echo $scholarship_funded_by; ?></p>
+            <p class="gs-scholarship-summary-title"><?php echo $scholarship_funded_by[0]['offered_by']; ?></p>
         </div>
         <?php endif; ?>
         <div class="gs-scholarship-summary-scholarship-amount-box gs-summary-box">
