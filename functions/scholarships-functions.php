@@ -5900,7 +5900,7 @@ function convert_country_to_nationality($country_name) {
     if (array_key_exists($country_name, $nationalities)) {
         return $nationalities[$country_name];
     } else {
-        return '';
+        return $country_name;
     }
 }
 

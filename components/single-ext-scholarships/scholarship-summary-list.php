@@ -177,24 +177,32 @@ if($scholarship_funded_by) {
         $same_label = $scholarship_duration[0]['label'];
     
         foreach ($scholarship_duration as $duration) {
-            $duration_text .= '<li>' . $duration['degrees'] . ': ' . $duration['number'] . ' ' . $duration['label'] . '</li>';
+            $label = ($duration['number'] == 1) ? rtrim($duration['label'], 's') : $duration['label'];
+
+            $duration_text .= '<li>' . $duration['degrees'] . ': <b>' . $duration['number'] . ' ' . $label . '</b></li>';
             if ($duration['number'] !== $same_number || $duration['label'] !== $same_label) {
                 $similar_duration = false;
             }
         }
     
         if ($similar_duration) {
-            $duration_text = '<li>';
-            foreach ($scholarship_duration as $key => $duration) {
-                $duration_text .= $duration['degrees'];
-                if ($key !== count($scholarship_duration) - 1) {
-                    $duration_text .= ' and ';
-                }
-            }
-            $duration_text .= ': '. $same_number . ' ' . $same_label . '</li>';
+            // $degrees_count = count($scholarship_duration);
+            $duration_text = '<span>';
+            // foreach ($scholarship_duration as $key => $duration) {
+            //     // $duration_text .= $duration['degrees'];
+            //     // if ($key === $degrees_count - 2) {
+            //     //     $duration_text .= ', and '; // Add a comma before the last degree
+            //     // } elseif ($key !== $degrees_count - 1) {
+            //     //     $duration_text .= ', ';
+            //     // }
+            // }
+            $duration_text .= ': '. $same_number . ' ' . $label . '</span>';
+            $scholarship_duration_html .= '<span class="gs-ext-scholarships-single-duration"><b>' . $duration_text . '</b></span>';
+
+        } else {
+            $scholarship_duration_html .= '<ul class="gs-ext-scholarships-duration">' . $duration_text . '</ul>';
         }
     
-        $scholarship_duration_html .= '<ul class="gs-ext-scholarships-duration">' . $duration_text . '</ul>';
     } 
     ?>
     <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
