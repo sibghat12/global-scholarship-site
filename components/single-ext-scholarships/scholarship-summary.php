@@ -40,9 +40,7 @@
                     
                     // Find the first non-"Accept Application All Year" deadline
                     $first_non_year_round_deadline = '';
-                    if($varied_deadlines) {
-                        echo 'Varied Deadlines';
-                    } else {
+                    if(!$varied_deadlines) {
                         foreach ($scholarship_deadlines as $deadline) {
                             if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
                                 $first_non_year_round_deadline = $deadline['deadline'];
@@ -58,6 +56,8 @@
                         } else {
                             echo 'No Deadlines!';
                         }
+                    } else {
+                        echo "Varied Deadlines";
                     }
                 ?>
             </p>

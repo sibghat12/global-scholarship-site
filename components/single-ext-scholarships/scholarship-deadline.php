@@ -8,24 +8,36 @@
 
     <ul>
         <?php 
-         //Scholarship Deadline
+         //Scholarship Deadline(s)
         $deadline_text = '';
 
-        foreach ($scholarship_deadlines as $deadline) {
-            $deadline_date = strtotime($deadline['deadline']);
-            $formatted_deadline = date("F j, Y", $deadline_date);
+        if(!$varied_deadlines) :
+            foreach ($scholarship_deadlines as $deadline) {
+                $deadline_date = strtotime($deadline['deadline']);
+                $formatted_deadline = date("F j, Y", $deadline_date);
 
 
-            if ($deadline['accepts_application_all_year_round'] === 'Yes') {
-                $deadline_text = 'Accept Application All Year';
+                if ($deadline['accepts_application_all_year_round'] === 'Yes') {
+                    $deadline_text = 'Accept Application All Year';
+                }
+                else {
+                    $deadline_text = $formatted_deadline;
+                }
+                echo '<li>' . $deadline['degree'] . ' Scholarship Application Deadline: '. $deadline_text .'</li>';
+
             }
-             else {
+            ?>
+        <?php else :
+            foreach ($scholarship_deadlines_country_institution as $deadline) {
+
+                $deadline_date = strtotime($deadline['deadline']);
+                $formatted_deadline = date("F j, Y", $deadline_date);
                 $deadline_text = $formatted_deadline;
+
+                echo '<li>' . $deadline['country_institution'] . ' Scholarship Application Deadline: '. $deadline_text .'</li>';
             }
-            echo '<li>' . $deadline['degree'] . ' Scholarship Application Deadline: '. $deadline_text .'</li>';
-
-        }
-
+            ?>
+    <?php endif;
     ?>
     </ul>
     <p>Please see <a href="<?php echo $scholarship_page_link; ?>" target="_blank">Official Scholarship Page</a> for complete details on the application dates.</p>
