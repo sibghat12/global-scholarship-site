@@ -60,6 +60,8 @@
 
     $application_steps = get_field('application_steps');
     $helpful_links = get_field('helpful_links');
+    $varied_deadlines = get_field('varied_deadlines');
+
 
     $links = get_field('links');
     $creteria_page_link  = $links['eligible_criteria_link'];

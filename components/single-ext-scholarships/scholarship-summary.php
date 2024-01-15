@@ -40,20 +40,24 @@
                     
                     // Find the first non-"Accept Application All Year" deadline
                     $first_non_year_round_deadline = '';
-                    foreach ($scholarship_deadlines as $deadline) {
-                        if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
-                            $first_non_year_round_deadline = $deadline['deadline'];
-                            break;
-                        }
-                    }
-
-                    // Display the appropriate deadline or "Accept Application All Year"
-                    if (!empty($first_non_year_round_deadline)) {
-                        echo strip_tags($first_non_year_round_deadline); // Output the text without HTML tags
-                    } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
-                        echo 'Accept Application All Year';
+                    if($varied_deadlines) {
+                        echo 'Varied Deadlines';
                     } else {
-                        echo 'No Deadlines!';
+                        foreach ($scholarship_deadlines as $deadline) {
+                            if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
+                                $first_non_year_round_deadline = $deadline['deadline'];
+                                break;
+                            }
+                        }
+    
+                        // Display the appropriate deadline or "Accept Application All Year"
+                        if (!empty($first_non_year_round_deadline)) {
+                            echo strip_tags($first_non_year_round_deadline); // Output the text without HTML tags
+                        } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
+                            echo 'Accept Application All Year';
+                        } else {
+                            echo 'No Deadlines!';
+                        }
                     }
                 ?>
             </p>
