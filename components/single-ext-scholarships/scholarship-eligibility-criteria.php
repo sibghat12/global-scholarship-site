@@ -25,7 +25,7 @@
                         </ul>
                 <?php  endif; ?>
             <?php  endif; ?>
-            <p>Please refer to the <a href="<?php echo $creteria_page_link; ?>">Eligibility Page</a> for detailed information on the eligibility requirements for the <?php echo $scholarship_title; ?>.</p>
+            <p>Please refer to the <a href="<?php echo ($creteria_page_link) ? $creteria_page_link: $scholarship_page_link; ?>">Eligibility Page</a> for detailed information on the eligibility requirements for the <?php echo $scholarship_title; ?>.</p>
             </div>
         </div>
 
