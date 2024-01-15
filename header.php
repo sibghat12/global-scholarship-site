@@ -65,6 +65,21 @@ window.snigelPubConf = {
 	 */
 	echo apply_filters( 'avada_space_head', Avada()->settings->get( 'space_head' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 	?>
+
+	<script>
+
+		jQuery('.new-table-of-contents .toc-wrapper').hide();
+		
+		jQuery(document).ready(function($) {
+    jQuery('.toc-icon').click(function() {
+     
+        
+        jQuery('.new-table-of-contents .toc-wrapper').toggle();
+
+        
+    });
+});
+	</script>
 	
 
 </head>

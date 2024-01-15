@@ -16,214 +16,142 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php get_header(); 
 
-
-$scholarships_count = get_published_scholarships_count();
-
-$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+$scholarships_count = get_published_scholarships_count();$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
 $degrees_array = $scholarship_details[1]['choices'];
 $country_array = $scholarship_details[13]['choices'];
 $subject_array = $scholarship_details[12]['choices'];
-    
-   
-
 $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
 $country_list_for_url = $published_countries['choices'];
 $country_list = $country_list_for_url;
-
 $nationalites_array = array_column($scholarship_details, null, 'name')['eligible_nationality'];
 $nationalites_array = $nationalites_array['choices'];
-   
-$scholarships_array = get_all_scholarships();  
-
-
-
-?>  
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+$scholarships_array = get_all_scholarships();   ?>  
 
 
 <div class="fusion-row f filter-row">
 
-<div class="sticky-wrapper" >
-
-<div class="mobile-sticky-div">
-
-<div class="card-section-mobile">
-<h1 class="mobile-title">   <?php echo $scholarships_count; ?> Scholarships for International Students </h1> 
-<div id="sp"> <span class="temp" > | Results:  <b> 1-20 of  <?php echo  $scholarships_count; ?>  </b></span>  </div>
+ <!-- Title and BreadCrumb Goes here by jS  -->
+<div class="title-wrapper-scholarship-search" style="display:none;">
+<h1 class="title-textt title-text-new" >Search Scholarships for International Students </h1>
 </div>
 
-<div class="filter-toggle-btn"> 
-  <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png"> Filter     
-</div> 
-
-</div>
-</div>
-
-<div  id="filter-panell" style="display: none;">
-    <form  action="<?php echo admin_url('admin-ajax.php'); ?>" method="POST"  id="filter-form">
-    <div class="clearfix"> </div>
-    <div class="div-mobile" > 
-      <p id="previous-btnn"> <img src="<?php  echo site_url(); ?>/wp-content/uploads/2023/04/previous.png"> </p>
-      <p id="filter-by"> Filter by </p> 
-      <p   class="reset_class" > Reset </p>
-    </div>
-    <div class="clearfix"> </div>
-    
-
-     <p class="text-desktop">Filter by:  </p>
-     
-<ul class="sidebar-menu" >
-    
-<div class="screen-one">
-<p class="select-label degree-label"> Degrees: </p>
-  <select class="selectpicker check-class degree_checkbox" name="degree_checkbox" 
-   data-live-search="true" >
-       <option  value=""> All Degrees </option>
-       <?php foreach ($degrees_array as $key => $degree) { ?>
-        <option  value="<?php echo $degree; ?>"> <?php echo  $degree; ?> </option>
-        <?php  } ?>
- </select>
-
-<br>
-
-<p class="select-label"> Locations: </p>
-  <select class="selectpicker check-class location_checkbox" name="location_checkbox"  data-live-search="true" >
-        <option value="">  All Locations </option>
-       <?php foreach ($country_list as $key => $country) { ?>
-        <option  value="<?php if ($country != "All Nationalities"){ echo $country; } ?>"> <?php echo  $country ?> </option>
-        <?php  } ?>
- </select>
-
-
-<p class="select-label"> Scholarship Type: </p>
-<select class="selectpicker check-class scholarship_type" name="scholarship_type"  data-live-search="true">
-    <option value="">  All Types </option>
-       <option value="Full Funding">  Full Funding </option>
-       <option value="Full Tuition">  Full Tuition </option>
-       <option value="Partial Funding">  Partial Funding </option>
-</select>
-
-<p class="select-label"> Scholarship Deadline: </p>
-  <select class="selectpicker check-class application_checkbox" name="application_checkbox"  data-live-search="true">
-       <option value=""> All Deadlines   </option>
-        <option value="open"> <b>Currently Open  </b> </option>
-        <option  value="one-month"> Within 1 month </option>
-        <option  value="two-month"> Within 2 months </option>
-        <option  value="three-month"> Within 3 months </option>
-        <option  value="four-month"> Within 4 months </option>
-
-        <option  value="five-month">Within 5 months</option>
-        <option   value="six-month"> Within 6 months </option>
-        <option  value="twelve-month"> Within 12 months </option>
-</select>
-    </div>
-   <div class="screen-two" >
-   <p class="select-label"> Subjects: </p>
-  <select class="selectpicker check-class subject_checkbox" name="subject_checkbox"  data-live-search="true">
-       
-       <?php foreach ($subject_array as $key => $subject) { ?>
-        <option  value="<?php if ($subject != "All Subjects"){echo $subject;} ?>"> <?php echo  $subject ?> </option>
-        <?php  } ?>
- </select>
-    
-
-
-    
- <p class="select-label"> Nationalities: </p>
-  <select class="selectpicker check-class nationality_checkbox" name="nationality_checkbox"  data-live-search="true">
-       
-       <?php foreach ($country_array as $key => $country) { ?>
-        <option  value="<?php if ($country != "All Nationalities"){echo $country;} ?>"> <?php echo  $country ?> </option>
-        <?php  } ?>
- </select>
-    
-<?php 
-    $args = array(
-        'post_type' => 'institution',
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-        'fields' => 'ids',
-    );
-    $institutes = new WP_Query($args);
-    $institute_ids = $institutes->posts; // Get all post IDs
-
-    echo '<p class="select-label"> Institutions: </p>
-      <select class="selectpicker check-class institution_checkbox" name="institution_checkbox"  data-live-search="true" >
-            <option value="">  All Institutions </option>';
-
-    // Loop through each post ID and get the title
-    foreach ($institute_ids as $institute_id) {
-        $title = get_the_title($institute_id);
-        echo "<option  value='{$institute_id}'> {$title} </option>";
-    }
-    
-    echo '</select>';
-?>
-
-<p class="select-label"> Scholarships: </p>
- <select class="selectpicker check-class scholarship_checkbox" name="scholarship_checkbox" data-live-search="true" >
-    <option value="">All Scholarships</option>
-    <?php foreach ($scholarships_array as $id => $title) {  ?>
-        <option value="<?php echo $title; ?>"><?php echo $title; ?></option>
-    <?php } ?>
-</select>
 
 
 
 
 
+
+<!-- Filter Button for Mobile -->
+<div class="sticky-wrapper">
+  <div class="mobile-sticky-div">
+    <div class="filter-toggle-btn"> 
+      <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png" alt="Filter"> Filter     
+    </div> 
+  </div>
 </div>
 
-<hr class="filter-hr hide-hr">
 
- <center><p  id="reset" class="reset-desktop" > RESET FILTERS </p>  <br></center>
 
-</ul>
-</form>
-
+ <!-- Side Bar For Filters -->
+ 
+<div id="filter-panell" style="display: none;">
+    <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="POST" id="filter-form">
+        <div class="clearfix"></div>
+        <div class="div-mobile"> 
+            <p id="previous-btnn">
+                <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/previous.png" alt="Previous">
+            </p>
+            <p id="filter-by">Filter by</p>
+            <p class="reset_class">Reset</p>
+        </div>
+        <div class="clearfix"></div>
+        <p class="text-desktop">Filter by:</p>
+        <ul class="sidebar-menu">
+            <div class="screen-one">
+                <p class="select-label degree-label">Degrees:</p>
+                <select class="selectpicker check-class degree_checkbox" name="degree_checkbox" data-live-search="true">
+                    <option value="">All Degrees</option>
+                    <?php foreach ($degrees_array as $key => $degree) { ?>
+                        <option value="<?php echo $degree; ?>"><?php echo $degree; ?></option>
+                    <?php } ?>
+                </select>
+                <br>
+                <p class="select-label">Locations:</p>
+                <select class="selectpicker check-class location_checkbox" name="location_checkbox" data-live-search="true">
+                    <option value="">All Locations</option>
+                    <?php foreach ($country_list as $key => $country) { ?>
+                        <option value="<?php if ($country != "All Nationalities"){ echo $country; } ?>"><?php echo $country ?></option>
+                    <?php } ?>
+                </select>
+                <p class="select-label">Scholarship Type:</p>
+                <select class="selectpicker check-class scholarship_type" name="scholarship_type" data-live-search="true">
+                    <option value="">All Types</option>
+                    <option value="Full Funding">Full Funding</option>
+                    <option value="Full Tuition">Full Tuition</option>
+                    <option value="Partial Funding">Partial Funding</option>
+                </select>
+                <p class="select-label">Scholarship Deadline:</p>
+                <select class="selectpicker check-class application_checkbox" name="application_checkbox" data-live-search="true">
+                    <option value="">All Deadlines</option>
+                    <option value="open"><b>Currently Open</b></option>
+                    <option value="one-month">Within 1 month</option>
+                    <option value="two-month">Within 2 months</option>
+                    <option value="three-month">Within 3 months</option>
+                    <option value="four-month">Within 4 months</option>
+                    <option value="five-month">Within 5 months</option>
+                    <option value="six-month">Within 6 months</option>
+                    <option value="twelve-month">Within 12 months</option>
+                </select>
+            </div>
+            <div class="screen-two">
+                <p class="select-label">Subjects:</p>
+                <select class="selectpicker check-class subject_checkbox" name="subject_checkbox" data-live-search="true">
+                    <?php foreach ($subject_array as $key => $subject) { ?>
+                        <option value="<?php if ($subject != "All Subjects"){ echo $subject; } ?>"><?php echo $subject ?></option>
+                    <?php } ?>
+                </select>
+                <p class="select-label">Nationalities:</p>
+                <select class="selectpicker check-class nationality_checkbox" name="nationality_checkbox" data-live-search="true">
+                    <?php foreach ($country_array as $key => $country) { ?>
+                        <option value="<?php if ($country != "All Nationalities"){ echo $country; } ?>"><?php echo $country ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <hr class="filter-hr hide-hr">
+            <center>
+                <p id="reset" class="reset-desktop">RESET FILTERS</p>
+            </center>
+            <br>
+        </ul>
+    </form>
 </div>
 
-<br>
-
-<?php 
-$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-    $ad_args = array(
-        'post_type' => 'scholarships',
-        'posts_per_page' => 20,
-        'post_status' => 'publish',
-         //'paged' => $paged
-    );
-$loop = new WP_Query($ad_args);
-?>
 
 
-<center><button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> </center>
+
+<!-- Content Start to display Cards -->
+<button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
 
 <div  id="scholarship-cards">
 
+<!-- Search Box For Desktop   -->
+<div id="scholarship-search-box-wrapper"></div>
+
+
+
+<!-- Preloader  -->
 <div id="preloader" style="display: none;">
 <img src="https://globalscholarships.com/wp-content/uploads/2023/03/Curve-Loading.gif"> </center>
 </div>
 
 
-
-
+<!-- Response Data load here Dynamic From Ajax Response  -->
 <div class="card-section">
 <h1 class="title-textt" style="display: none;">Search Scholarships for International Students </h1>
 </div>
+
+
+
 <center>
 <?php
 $currentURL = $_SERVER['REQUEST_URI'];
@@ -241,9 +169,7 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 }
 ?>
 
-
 <a  href="<?php echo $modifiedURL_pre; ?>"  style="display:none;" class="prev-page"  id='prev_posts'> Prev Page </a>
-
 
 <?php
 $currentURL = $_SERVER['REQUEST_URI'];
@@ -256,14 +182,11 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
     $modifiedURL = rtrim($currentURL, '/') . '/page/2';
 }
 ?>
-
-
 <a href="<?php echo $modifiedURL; ?>"  style="display: none;" class="next-page"  id='more_posts'> Next Page </a> 
-
-
 </center>
 
 </div>
+
 
 <ul class="project-tiles"></ul>
 <section id="content" class="col-lg-9"> </section>
@@ -272,21 +195,21 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 
 
 
-
-
-
-<!-- <script type="text/javascript"> var ajaxurl = "";  </script> -->
+<!-- Ajax jS Start Here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
 
+
+//Update Pagination Previous Button
+
 function updatePrevPageLink() {
   var currentURL = window.location.href;
   var modifiedURL;
-
   if (currentURL.match(/\/page\/\d+/)) {
     modifiedURL = currentURL.replace(/(\/page\/)(\d+)/, function(match, prefix, number) {
       var newNumber = parseInt(number) - 1;
+      
       if (newNumber === 1) {
         return '';
       } else {
@@ -298,21 +221,22 @@ function updatePrevPageLink() {
     if (modifiedURL.endsWith('/page/1')) {
       modifiedURL = modifiedURL.replace(/\/page\/1$/, '');
     }
-
   } else {
     modifiedURL = currentURL;
   }
-
+  
   jQuery(".prev-page").attr("href", modifiedURL);
 }
 
 
 
- function updateNextPageLink() {
+//Update Pagination Previous Button
+
+function updateNextPageLink() {
   console.log("aa_from_function");
   var currentURL = window.location.href;
   var modifiedURL;
-
+  
   if (currentURL.match(/\/page\/\d+/)) {
     modifiedURL = currentURL.replace(/(\/page\/)(\d+)/, function(match, prefix, number) {
       var newNumber = parseInt(number) + 1;
@@ -321,71 +245,69 @@ function updatePrevPageLink() {
   } else {
     modifiedURL = currentURL.replace(/\/$/, '') + '/page/2';
   }
-
+  
   jQuery(".next-page").attr("href", modifiedURL);
 }
 
 
-$('#reset').on('click' , function(){
-   
-changeurl('scholarship-search' , "Welcome");
-location.reload();
+// Reset Button Code
 
+$('#reset').on('click', function(){
+    changeurl('scholarship-search', "Welcome");
+    location.reload();
 });
 
 
-$('.reset_class').on('click' , function(){
-   
-changeurl('scholarship-search' , "Welcome");
-$('#filter-panell').hide();
-$('#preloader').css("display" , "block");
-$('.card-section').css("display" , "none");
-location.reload();
-
+$('.reset_class').on('click', function(){
+    changeurl('scholarship-search', "Welcome");
+    $('#filter-panell').hide();
+    $('#preloader').css("display", "block");
+    $('.card-section').css("display", "none");
+    location.reload();
 });
 
+
+
+
+// Function to Remove the Comma
 
 function removeLastComma(str) {
-   return str.replace(/,(\s+)?$/, '');   
+   return str.replace(/,(\s+)?$/, '');
 }
-
 // Check for Degree Item
-function findValueInArray(value,arr){
-  var result = "Doesn't exist";
-  for(var i=0; i<arr.length; i++){
-    var name = arr[i];
-    if(name == value){
-      result = 'Exist';
-      break;
-    }
-  }
-  return result;
+function findValueInArray(value, arr) {
+   var result = "Doesn't exist";
+   for (var i = 0; i < arr.length; i++) {
+      var name = arr[i];
+      if (name == value) {
+         result = 'Exist';
+         break;
+      }
+   }
+   return result;
 }
 
-
-
-function findValueInArray_withformat(value,arr){
-  var result = "Doesn't exist";
-
-  console.log(arr);
+function findValueInArray_withformat(value, arr) {
+   var result = "Doesn't exist";
+   console.log(arr);
 
    value = value.replace(/-/g, ' ');
- 
-  value = value.charAt(0).toUpperCase() + value.slice(1);
-  value = value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-  return letter.toUpperCase();
-});
 
-    console.log(value);
+   value = value.charAt(0).toUpperCase() + value.slice(1);
+   value = value.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+      return letter.toUpperCase();
+   });
 
-for(var i=0; i<arr.length; i++){
-    var name = arr[i];
-    if(name == value){
-      result = 'Exist';
-      break;
-    }
-  }
-  return result;
+   console.log(value);
+
+   for (var i = 0; i < arr.length; i++) {
+      var name = arr[i];
+      if (name == value) {
+         result = 'Exist';
+         break;
+      }
+   }
+   return result;
 
 }
 
@@ -398,8 +320,7 @@ $(document).ready(function(){
 reload_data();
 });
 
-function reload_data(){
-
+function reload_data() {
 
 $('#filter-panell').css("display" , "none");
 $('.next-page').css("display" , "none");
@@ -420,9 +341,6 @@ console.log("Page Parameter: " + pageParam);
 if (pageParam && !isNaN(pageParam)) {
     current_page_number = parseInt(pageParam, 10);
 }
-
-
-
 
 var degree_label_array = ['masters' , 'bachelors' , 'phd'];
 var currently_open_label_array = ['open' , 'one-month' , 'two-month' , 'three-month' , 
@@ -449,9 +367,6 @@ var nationalities_php_array = <?php echo json_encode($nationalites_array); ?>;
 });
 
 
-
-
-
 var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
 // Converting JS object to an array
     var location_label_array = $.map(location_label_array, function(value, index){
@@ -460,12 +375,8 @@ var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
 
 var scholarship_type_label_array = ['Full Funding' , 'Full Tuition' , 'Partial Funding'];
 
-
 pathname_string = window.location.pathname;
-
-
 var result = pathname_string.substring(1, pathname_string.length-1);
-
 var pathArray = result.split('/');
 var removeItem = "scholarship-search";
   pathArray = jQuery.grep(pathArray, function(value) {
@@ -473,15 +384,6 @@ var removeItem = "scholarship-search";
 });
 
 
-
-
-
-
-
-
-
-// Get Data from The URL Pathname and filter records accordingly.  
-// Degress: Get degree name from the url path
 var degree_value = "";
 for (let i = 0; i < pathArray.length; i++) {
   result =   findValueInArray(pathArray[i], degree_label_array);
@@ -569,40 +471,24 @@ subject_value = subject_value.replace(/-/g, ' ');
     return letter.toUpperCase();
 });
     
+
 // Nationalities: Get Nationality from the url path
 var nationality_value = "";
 if (pathArray.some(item => item.includes('nationality-'))) {
-   
-
    nationalities_label_array = nationalities_label_array.map(item => 
     "Nationality " + item
    );
-
-
-    // Using find() method to get the first item that includes "nationality-"
+     // Using find() method to get the first item that includes "nationality-"
      nationality_value = pathArray.find(item => item.includes('nationality-'));
-    
-    console.log("English" + nationality_value);
-   
     if (nationality_value) {
         const result = findValueInArray_withformat(nationality_value, nationalities_label_array);
-
-        
-
-        if (result == "Exist") {
+          if (result == "Exist") {
             console.log("hashim sibi");
             console.log("final " + nationality_value);
-            
         }
     }
-
     pathArray = pathArray.map(item => item.replace(/nationality-/g, ''));
-
-
-
 }
-
-
 
 nationality_value = nationality_value.replace(/-/g, ' ');
     nationality_value = nationality_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
@@ -611,12 +497,6 @@ nationality_value = nationality_value.replace(/-/g, ' ');
 
 
 nationality_value = nationality_value.replace("Nationality ", "");
-
-
-
-
-
-
 if(degree_value=="masters"){
     degree_value = "Master's";
 }if(degree_value=="bachelors"){
@@ -694,7 +574,6 @@ if(page === 1){
 }
 
 
-
 formData.append("page_count" , page);
 formData.append("ppp" , ppp);
 formData.append("checkk" , true);
@@ -712,8 +591,6 @@ validValues = validValues.map(value =>
         .replace(/ /g, '-') // Replace spaces with dashes
         .replace(/'/g, '') // Remove apostrophes
 );
-
-
 
 if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value) 
     && isEmpty(type_value) && isEmpty(currenty_open_array) && isEmpty(nationality_value)) {
@@ -751,7 +628,7 @@ if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value)
             }
         }
     }
-    // Your code continues...
+  
 }
 
 
@@ -768,7 +645,9 @@ $.ajax({
       success:function(response){
         $('#filter-panell').css("display" , "block");
         $('.title-textt').css("display" , "block");
- 
+        $('.title-wrapper-scholarship-search').css("display" , "block");
+        $('.scholarship-search-container').css("display" , "block");
+       
           $('#prev-posts').css("display" , "none");
 
     if (response.includes('No Scholarships Available')) {
@@ -779,14 +658,30 @@ $.ajax({
 
         $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
+
         $('.card-section').css("height" , "0px");
-        $('.card-section').html(response);
+        
+         var $response = $('<div>').html(response); 
+        
+         var title = $response.find('h1').html(); 
+         $response.find('h1').remove(); 
+        
+        var $spans = $response.find('span.ss').clone();
+        $response.find('span.ss').remove();
+       $('h1.title-text-new').nextAll('span.ss').remove();
+
+
+        $('.card-section').html($response.html()); 
+        $('.title-text-new').html(title);
+        $('h1.title-text-new').after($spans);
+
 
         
         //changeurl('scholarship-search'+url_update , "Welcome");
 
         show_pre_or_not();
         var title_text = $('.title-textt').text();
+       
         var numberOnly = parseInt(title_text.match(/\d+/));
         
         if(numberOnly==0){
@@ -1049,7 +944,21 @@ $.ajax({
         $("#more_posts").attr("disabled",false);
         $('#preloader').css("display" , "none");
         $('.card-section').css("display" , "block");
-        $('.card-section').html(response);
+        
+          var $response = $('<div>').html(response); 
+        
+         var title = $response.find('h1').html(); 
+         $response.find('h1').remove(); 
+        
+        var $spans = $response.find('span.ss').clone();
+        $response.find('span.ss').remove();
+       $('h1.title-text-new').nextAll('span.ss').remove();
+
+
+        $('.card-section').html($response.html()); 
+        $('.title-text-new').html(title);
+        $('h1.title-text-new').after($spans);
+
 
         changeurl('scholarship-search'+url_update  , "Welcome");
 
@@ -1143,6 +1052,7 @@ $(".sidebar-menu li ul").slideUp();
         }
     });
 });   
+
 
 
 (function($){
@@ -1261,403 +1171,329 @@ load_more_button();
 });
 
 
+function load_more_button() {
+    var check = $(this).is(":checked");
+    var link = "<?php echo admin_url('admin-ajax.php'); ?>";
 
+    // Display a preloader while loading data
+    $('#preloader').css("display", "block");
+    // Hide certain elements during the loading process
+    $('.card-section').css("display", "none");
+    $('.prev-page').css("display", "none");
+    $('.next-page').css("display", "none");
 
+    // Create arrays to store selected values from various dropdowns
+    var locationArr = new Array();
+    var loc = $('select.location_checkbox').find(":selected").val();
+    locationArr.push(loc);
 
+    var degreeArr = new Array();
+    var deg = $('select.degree_checkbox').find(":selected").val();
+    degreeArr.push(deg);
 
-function load_more_button(){
+    var typeArr = new Array();
+    var typee = $('select.scholarship_type').find(":selected").val();
+    typeArr.push(typee);
 
-   
-var check = $(this).is(":checked");
-var link = "<?php echo  admin_url("admin-ajax.php"); ?>";
+    var applicationArr = new Array();
+    var app = $('select.application_checkbox').find(":selected").val();
+    applicationArr.push(app);
 
-$('#preloader').css("display" , "block");
-$('.card-section').css("display" , "none");
-$('.prev-page').css("display" , "none");
-$('.next-page').css("display" , "none");
+    var subjectArr = new Array();
+    var sub = $('select.subject_checkbox').find(":selected").val();
+    subjectArr.push(sub);
 
-$('#preloader').css("display" , "block");
-$('.card-section').css("display" , "none");
+    var institutionArr = new Array();
+    var inst = $('select.institution_checkbox').find(":selected").val();
+    institutionArr.push(inst);
 
-var locationArr = new Array();
-var loc = $('select.location_checkbox').find(":selected").val();
-locationArr.push(loc);
+    // Check if institutionArr is empty and reset locationArr accordingly
+    if (institutionArr[0] == '') {
+        locationArr = new Array();
+    }
 
-var degreeArr = new Array();
-var deg = $('select.degree_checkbox').find(":selected").val();
-degreeArr.push(deg);
+    // Create an array for nationality
+    var nationalityArr = new Array();
+    var national = $('select.nationality_checkbox').find(":selected").val();
+    nationalityArr.push(national);
 
-var typeArr = new Array(); 
-var typee = $('select.scholarship_type').find(":selected").val();
-typeArr.push(typee);
+    // Create a FormData object to send data via AJAX
+    var formData = new FormData();
+    formData.append("action", "get_data");
+    formData.append("degrees", degreeArr);
+    formData.append("subjects", subjectArr);
+    formData.append("locations", locationArr);
+    formData.append("scholarship_type", typeArr);
+    formData.append("applications", applicationArr);
+    formData.append("institutions", institutionArr);
+    formData.append("nationality", nationalityArr);
 
-var applicationArr = new Array(); 
-var app = $('select.application_checkbox').find(":selected").val();
-applicationArr.push(app);
+    // Append offset, page_count, and ppp to formData
+    if (page === 1) {
+        formData.append("offset", 0);
+    } else {
+        formData.append("offset", (page - 1) * ppp);
+    }
+    formData.append("page_count", page);
+    formData.append("ppp", ppp);
 
+    // Modify arrays and strings for specific formatting
+    degreeArr = degreeArr.toString().replaceAll(",", '-');
+    degreeArr = degreeArr.toString().replaceAll("'", "");
+    degreeArr = degreeArr.toLowerCase();
 
-var subjectArr = new Array();
-var sub = $('select.subject_checkbox').find(":selected").val();
-subjectArr.push(sub);
+    locationArr = locationArr.toString().replaceAll(" ", "-");
+    locationArr = locationArr.toLowerCase();
 
+    subjectArr = subjectArr.toString().replaceAll(" ", "-");
+    subjectArr = subjectArr.toString().replaceAll(",", "-");
+    subjectArr = subjectArr.toLowerCase();
 
+    typeArr = typeArr.toString().replaceAll(" ", "-");
+    typeArr = typeArr.toLowerCase();
 
-var institutionArr = new Array();
-var inst = $('select.institution_checkbox').find(":selected").val();
-
-institutionArr.push(inst);
-if(institutionArr[0]==''){
-    
-       
-}else {
-     locationArr =  new Array();
-}
-
-
-console.log(institutionArr);
-
-var nationalityArr = new Array();
-var national = $('select.nationality_checkbox').find(":selected").val();
-nationalityArr.push(national);
-
-
-var formData = new FormData;
-
-formData.append("action" ,"get_data");
-formData.append("degrees" , degreeArr);
-formData.append("subjects" , subjectArr);
-formData.append("locations" , locationArr);
-formData.append("scholarship_type" , typeArr);
-formData.append("applications" , applicationArr);
-formData.append("institutions" , institutionArr);
-formData.append("nationality" , nationalityArr);
-
-
-if(page === 1){
-   formData.append("offset", 0);
-}else {
-   formData.append("offset", (page - 1) * ppp);
-}
-
-
-
-
-formData.append("page_count" , page);
-formData.append("ppp" , ppp);
-
-
-degreeArr = degreeArr.toString().replaceAll(",", '-');
-degreeArr = degreeArr.toString().replaceAll("'", "");
-degreeArr = degreeArr.toLowerCase();
-
-locationArr = locationArr.toString().replaceAll(" ", "-");
-locationArr = locationArr.toLowerCase();
-
-subjectArr = subjectArr.toString().replaceAll(" ", "-");
-subjectArr = subjectArr.toString().replaceAll(",", "-");
-subjectArr = subjectArr.toLowerCase();
-
-typeArr = typeArr.toString().replaceAll(" ", "-");
-typeArr = typeArr.toLowerCase();
-
+    // Initialize an empty URL string
     var url_update = "";
-    
-    // if(degreeArr){
-    // url_update += "/" + degreeArr;
-    // }
-    // if(locationArr){
-    // url_update += "/" + locationArr;
-    // }
-    // if(subjectArr){
-    // url_update += "/" + subjectArr;
-    // }
 
-  
-pathname_string = window.location.pathname;
+    // Get the current URL and update it
+    var pathname_string = window.location.pathname;
+    var updatedString = $.trim(pathname_string.replace("/scholarship-search", ""));
+    console.log("sibi+ " + updatedString);
 
-var updatedString = $.trim(pathname_string.replace("/scholarship-search", ""));
-console.log("sibi+ " + updatedString);
+    var updatedUrl = updatedString.replace(/\/page\/\d+/, "");
+    if (updatedUrl.endsWith("/")) {
+        updatedUrl = updatedUrl.slice(0, -1);
+    }
 
+    // Make an AJAX request to fetch scholarship data
+    $.ajax({
+        url: link,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'post',
+        success: function (response) {
+            page++;
+            // Show filter panel and enable the "Load More" button
+            $('#filter-panell').css("display", "block");
+            $("#more_posts").attr("disabled", false);
+            $('#preloader').css("display", "none");
+            $('.card-section').css("display", "block");
 
-var updatedUrl = updatedString.replace(/\/page\/\d+/, "");
+            var $response = $('<div>').html(response);
 
-if (updatedUrl.endsWith("/")) {
- updatedUrl = updatedUrl.slice(0, -1);
-}
+            var title = $response.find('h1').html();
+            $response.find('h1').remove();
 
+            var $spans = $response.find('span.ss').clone();
+            $response.find('span.ss').remove();
+            $('h1.title-text-new').nextAll('span.ss').remove();
 
- $.ajax({
-    url : link,
-    data: formData, 
-    processData: false,
-    contentType: false,
-    type : 'post',
-    success:function(response){
-        page++;
-         $('#filter-panell').css("display" , "block");
-        $("#more_posts").attr("disabled",false);
-        $('#preloader').css("display" , "none");
-        $('.card-section').css("display" , "block");
-        $('.card-section').html(response);
-         $(window).scrollTop(0);
-         pagee = page - 1;
-         
-         if(pagee < 2) {
-        changeurl("scholarship-search" + updatedUrl, "Welcome"); 
-         
-         $('.next-page').show();
-         }else {
-         changeurl("scholarship-search" + updatedUrl + "/?pages=" + pagee , "Welcome");
-         $('.prev-page').show();
-         $('.next-page').show(); 
-         }
-         
-         
-        updateNextPageLink();
-        updatePrevPageLink();
-          
-        var title_text = $('.card-section .title-textt').text();
-         
-          $('.mobile-title').text(title_text);
-          var numberOnly = parseInt(title_text.match(/\d+/));
+            // Update the content on the page with the fetched data
+            $('.card-section').html($response.html());
+            $('.title-text-new').html(title);
+            $('h1.title-text-new').after($spans);
 
-            
-            let page_number = Math.ceil(numberOnly / 20);
+            $(window).scrollTop(0);
+            pagee = page - 1;
 
-         console.log("page_number" + page_number + "  - Page:" + page );
-         page = page -1 ;
-          if(page_number == page || page_number < page) {
-            console.log("shamima");
-            $('.next-page').hide();
-            $('#more_posts').hide();
-          }
-           page= page+1;
-
-
-           console.log("Page" + page);
-         
-
-           if (is_numeric(numberOnly)) { 
-              if (numberOnly==0) {
-              $('#more_posts').hide();
-              $('.next-page').hide();
-              }
-            }else {
-            
-           }
-
-      
-            if(numberOnly <= 20){
-              $('#more_posts').hide();
-              $('.desktop_page_count').hide();
-              $('.mobile_page_count').hide();
-            }else {
-                
+            // Update the URL based on page number
+            if (pagee < 2) {
+                changeurl("scholarship-search" + updatedUrl, "Welcome");
+                $('.next-page').show();
+            } else {
+                changeurl("scholarship-search" + updatedUrl + "/?pages=" + pagee, "Welcome");
+                $('.prev-page').show();
+                $('.next-page').show();
             }
 
+            // Update pagination links
+            updateNextPageLink();
+            updatePrevPageLink();
 
+            var title_text = $('.card-section .title-textt').text();
 
+            $('.mobile-title').text(title_text);
+            var numberOnly = parseInt(title_text.match(/\d+/));
 
-          $('#show_number').text(numberOnly);
-          $('.temp').hide();
-         var  spanElements = $('.ss');
-         var targetDiv = $('#sp');
+            // Calculate the number of pages based on the fetched data
+            let page_number = Math.ceil(numberOnly / 20);
 
-  targetDiv.empty();
-  spanElements.each((index, element) => {
-    const content = $(element).html();
-    targetDiv.append(content + '<br>'); // Add a line break between each content
-  });
+            console.log("page_number" + page_number + "  - Page:" + page);
+            page = page - 1;
 
-         
-           
-    // const filterPanel = $('.title-textt');
-    // if (window.innerWidth <= 767) {
-    //   filterPanel.style.display = 'none';
-    // } else {
-    //   filterPanel.style.display = 'block';
-    // }
+            // Hide "Load More" button if there are no more pages to load
+            if (page_number == page || page_number < page) {
+                console.log("shamima");
+                $('.next-page').hide();
+                $('#more_posts').hide();
+            }
+            page = page + 1;
 
-    
-    document.querySelectorAll('meta[property="og:title"]').forEach(function(el) {
-          el.setAttribute("content", title_text);
-    });   
+            console.log("Page" + page);
 
-    }
+            if (is_numeric(numberOnly)) {
+                if (numberOnly == 0) {
+                    $('#more_posts').hide();
+                    $('.next-page').hide();
+                }
+            } else {
+
+            }
+
+            if (numberOnly <= 20) {
+                $('#more_posts').hide();
+                $('.desktop_page_count').hide();
+                $('.mobile_page_count').hide();
+            } else {
+
+            }
+
+            $('#show_number').text(numberOnly);
+            $('.temp').hide();
+            var spanElements = $('.ss');
+            var targetDiv = $('#sp');
+
+            targetDiv.empty();
+            spanElements.each((index, element) => {
+                const content = $(element).html();
+                targetDiv.append(content + '<br>'); // Add a line break between each content
+            });
+
+            document.querySelectorAll('meta[property="og:title"]').forEach(function (el) {
+                el.setAttribute("content", title_text);
+            });
+        }
     });
-
 }
+
 
 </script>
 
 <script type="text/javascript">
-  $('select').selectpicker();
+    $('select').selectpicker();
 </script>
 
 <script>
+    $(document).ready(function() {
+        var filterToggleBtn = $('.filter-toggle-btn');
+        var filterPanel = $('#filter-panell');
 
- $(document).ready(function() {
-  var filterToggleBtn = $('.filter-toggle-btn');
-  var filterPanel = $('#filter-panell');
+        $(window).on('resize', function() {
+            if ($(this).width() <= 767) {
+                filterToggleBtn.show();
+            } else {
+                filterToggleBtn.hide();
+            }
+        }).trigger('resize');
 
-  $(window).on('resize', function() {
-    if ($(this).width() <= 767) {
-      filterToggleBtn.show();
-    } else {
-      filterToggleBtn.hide();
-    }
-  }).trigger('resize');
+        filterToggleBtn.on('click', function() {
+            // Scroll to the top of the page
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
-  filterToggleBtn.on('click', function() {
-    // Scroll to the top of the page
-    $('html, body').animate({ scrollTop: 0 }, 'slow');
+            // Toggle filter panel and other elements
+            $('#filter-panell').toggle();
+            $('.show-only-mobile').toggle();
+            $('#scholarship-cards').toggle();
+        });
 
-    // Toggle filter panel and other elements
-    $('#filter-panell').toggle(); // Replace 'filter-panel' with the actual ID of your filter panel
-    $('.show-only-mobile').toggle();
-    $('#scholarship-cards').toggle();
-});
+        $('.show-only-mobile').on('click', function() {
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+            $('#scholarship-cards').show();
+            $('.show-only-mobile').hide();
+            filterPanel.toggle();
+        });
+    });
 
- $('.show-only-mobile').on('click', function() {
-  $('html, body').animate({ scrollTop: 0 }, 'slow');
-  $('#scholarship-cards').show();
-  $('.show-only-mobile').hide();
-   filterPanel.toggle();
-  });
+    document.getElementById('previous-btnn').addEventListener('click', (function() {
+        let rotationDegrees = 0;
 
-});
+        return function() {
+            rotationDegrees = (rotationDegrees + 180) % 360;
+            $("#previous-btnn img").css("transform", "rotate(" + rotationDegrees + "deg)");
 
+            $('.screen-one').toggle();
+            $('.screen-two').toggle();
+        };
+    })());
 
-document.getElementById('previous-btnn').addEventListener('click', (function() {
-    let rotationDegrees = 0;
+    jQuery(document).ready(function() {
+        var url = window.location.href;
 
-    return function() {
-        //jQuery('#filter-panell').hide();
-
-        rotationDegrees = (rotationDegrees + 180) % 360;
-        $("#previous-btnn img").css("transform", "rotate(" + rotationDegrees + "deg)");
-
-        $('.screen-one').toggle();
-        $('.screen-two').toggle();
-        
-        //$('#scholarship-cards').show();
-    };
-})());
-
-
-
-
-
-
-// // Update the next page link when the page loads
-// jQuery(document).ready(function() {
-//   updateNextPageLink();
-// });
-
-// // Update the next page link whenever the browser's URL changes without a page reload
-// window.addEventListener("popstate", function() {
-//   updateNextPageLink();
-// });
-
-
-
-//  jQuery(document).ready(function() {
-//   var currentURL = window.location.href;
-//   var modifiedURL;
-
-//   if (currentURL.match(/\/page\/\d+/)) {
-//     modifiedURL = currentURL.replace(/(\/page\/)(\d+)/, function(match, prefix, number) {
-//       var newNumber = parseInt(number) - 1;
-//       if (newNumber === 1) {
-//         return '';
-//       } else {
-//         return prefix + newNumber;
-//       }
-//     });
-
-//     if (modifiedURL.endsWith('/page/1')) {
-//       modifiedURL = modifiedURL.replace(/\/page\/1$/, '');
-//     }
-//   } else {
-//     modifiedURL = currentURL;
-//   }
-
-//   jQuery(".prev-page").attr("href", modifiedURL);
-// });
-  
-
-  // Update the prev page link when the page loads
-jQuery(document).ready(function() {
-  // jQuery('.prev-page, .next-page').hide();
-  var url = window.location.href;
-  
-
-    // Check if the card section is not empty
-  // if (jQuery('.card-section').html().trim() !== '') {
-  //   jQuery('.prev-page, .next-page').show(); // Show the buttons with classes '.prev-page' and '.next-page'
-  // } else {
-  //   jQuery('.prev-page, .next-page').hide(); // Hide the buttons with classes '.prev-page' and '.next-page'
-  // }
-
-
-
-  // Check if the URL contains '?page=' followed by a number
-if (url.match(/\?page=\d+/)) {
-    jQuery('.prev-page').show(); // Show the link with class '.prev-page'
-} else {
-    jQuery('.prev-page').hide(); // Hide the link with class '.prev-page'
-}
-
-
-});
-
-function show_pre_or_not(){
-  var url = window.location.href;
-  
-
-    // Check if the card section is not empty
-  // if (jQuery('.card-section').html().trim() !== '') {
-  //   jQuery('.prev-page, .next-page').show(); // Show the buttons with classes '.prev-page' and '.next-page'
-  // } else {
-  //   jQuery('.prev-page, .next-page').hide(); // Hide the buttons with classes '.prev-page' and '.next-page'
-  // }
-  // Check if the URL contains '/page/' followed by a number
-
- // Check if the URL contains '?page=' followed by a number
-if (url.match(/\?page=\d+/)) {
-    jQuery('.prev-page').show(); // Show the link with class '.prev-page'
-} else {
-    jQuery('.prev-page').hide(); // Hide the link with class '.prev-page'
-}
-
-}
-
-        function updateFilterPanelMarginTop() {
-            const mobileStickyDiv = document.getElementById('mobile-sticky-div');
-            const filterPanel = document.getElementById('filter-panell');
-
-            // Get the height of the mobile-sticky-div
-            const mobileStickyDivHeight = mobileStickyDiv.offsetHeight;
-
-            // Set the margin-top of the filter panel based on the height of the mobile-sticky-div
-            filterPanel.style.marginTop = mobileStickyDivHeight + 'px';
+        if (url.match(/\?page=\d+/)) {
+            jQuery('.prev-page').show(); 
+        } else {
+            jQuery('.prev-page').hide(); 
         }
+    });
 
-        // Call the function initially to set the margin-top
-        updateFilterPanelMarginTop();
+    function show_pre_or_not() {
+        var url = window.location.href;
 
-        // Update the filter panel margin-top when the window is resized
-        window.addEventListener('resize', updateFilterPanelMarginTop);
-    </script>
+        if (url.match(/\?page=\d+/)) {
+            jQuery('.prev-page').show(); 
+        } else {
+            jQuery('.prev-page').hide(); 
+        }
+    }
 
+    function updateFilterPanelMarginTop() {
+        const mobileStickyDiv = document.getElementById('mobile-sticky-div');
+        const filterPanel = document.getElementById('filter-panell');
+        const mobileStickyDivHeight = mobileStickyDiv.offsetHeight;
+        filterPanel.style.marginTop = mobileStickyDivHeight + 'px';
+    }
+
+    updateFilterPanelMarginTop();
+    window.addEventListener('resize', updateFilterPanelMarginTop);
+</script>
 
 <script type="text/javascript">
-  function setSelectedValue(selector, value) {
-  // Get the select element
-  var selectElement = document.querySelector(selector);
-  // Set the value of the select element to the desired value
-  selectElement.value = value;
-}
+    function setSelectedValue(selector, value) {
+        var selectElement = document.querySelector(selector);
+        selectElement.value = value;
+    }
+
+
+// Gs ScholarsHIP Search Box
+
+$(document).ready(function() {
+
+     function getDomainUrl() {
+        return window.location.origin; 
+    }
+
+    function getSearchBoxHtml(isMobile) {
+        var imageUrl = getDomainUrl() + '/wp-content/uploads/2024/01/search.png';
+        return '<div class="scholarship-search-container">' +
+               '<form id="scholarship-search-form" action="#" method="get">' +
+               '<input type="text" id="scholarship-search-input" class="scholarship-search-field" placeholder="Search for scholarships or institutions" />' +
+               (isMobile ? '<button   class="scholarship-search-submit"><img src="' + imageUrl + '" alt="Search"></button>' :
+                           '<button class="scholarship-search-submit">Search</button>') +
+               '</form>' +
+               '</div>';
+    }
+
+    function injectSearchBox() {
+        var isMobile = $(window).width() <= 767;
+        var searchBoxHtml = getSearchBoxHtml(isMobile);
+
+        if (isMobile) {
+            $(".title-wrapper-scholarship-search").after(searchBoxHtml);
+        } else {
+            $("#scholarship-search-box-wrapper").append(searchBoxHtml);
+        }
+    }
+
+    function adjustSearchBox() {
+        $('.scholarship-search-container').remove();
+        injectSearchBox();
+    }
+
+    injectSearchBox();
+    $(window).resize(adjustSearchBox);
+});
+
 </script>
 
 

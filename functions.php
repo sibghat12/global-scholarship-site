@@ -117,6 +117,19 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 
 
+function scholarship_search_enqueue_scripts() {
+    wp_enqueue_style( 'scholarship-search-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' );
+    wp_enqueue_style( 'scholarship-search-bootstrap-select-css', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css' );
+    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'scholarship-search-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), null, true );
+    wp_enqueue_script( 'scholarship-search-bootstrap-select-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), null, true );
+    wp_enqueue_script( 'scholarship-search-bootstrap-select-i18n-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js', array('jquery', 'scholarship-search-bootstrap-select-js'), null, true );
+}
+add_action( 'wp_footer', 'scholarship_search_enqueue_scripts' );
+
+
+
+
 function my_deregister_scripts(){
    wp_dequeue_script('wp-embed');
    wp_dequeue_script('comment-reply');
@@ -4418,19 +4431,34 @@ function process_ads() {
         
         $country = get_post_meta($institute_id, 'adsIntCountry', true);
         $currency = get_currency($country);
-       
-
-        $international_tuition_fees = get_field('international_tuition_fees'); 
-
-       if($international_tuition_fees){
-         $converted_amount = get_currency_conversion($currency, 'USD', $international_tuition_fees);
+        
+        if($currency == "Euros") {
+            $currency = "EUR";
+        }
+        
+        if($currency== "Yen") {
+             $currency = "JPY";
         }
        
+        
+        $international_tuition_fees_INT = get_post_meta($institute_id, 'international_tuition_fees' , true);
+        $international_tuition_fees = get_field('international_tuition_fees');
 
-       if ($converted_amount) {
-            $rounded_amount = round($converted_amount);
-            update_post_meta($ad_id, 'tuition_USD', $rounded_amount);
-          }
+        // Initialize converted_amount to 0
+        $converted_amount = 0;
+
+        // Check if international tuition fees are set and not empty
+        if (!empty($international_tuition_fees)) {
+            $converted_amount = get_currency_conversion($currency, 'USD', $international_tuition_fees);
+        } else {
+            if($international_tuition_fees_INT) {
+                 $converted_amount = get_currency_conversion($currency, 'USD', $international_tuition_fees_INT);
+            }
+        }
+
+        // Update post meta with either the converted amount or 0
+        $rounded_amount = round($converted_amount);
+        update_post_meta($ad_id, 'tuition_USD', $rounded_amount);
     }
 }
 
@@ -4518,11 +4546,11 @@ function handle_toggle_order() {
         'orderby' => "meta_value_num",
         'order' => $order,
        
-        // 'meta_query' => array(
-        //     'relation' => 'AND',
-        //     array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
-        //     array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
-        // ),
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
+        ),
         
     );
 
@@ -4630,11 +4658,11 @@ function load_ads_ajax_handler() {
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
         'order' => 'DESC',
-        // 'meta_query' => array(
-        //     'relation' => 'AND',
-        //     array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
-        //     array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
-        // ),
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
+        ),
     );
 
     $loop = new WP_Query($ad_args);
@@ -4652,3 +4680,39 @@ function load_ads_ajax_handler() {
     wp_die(); // Always include this in your AJAX handlers
 }
 
+
+
+
+function display_post_categories_as_bubbles() {
+    // Check if we are in a single post view
+    if (is_single()) {
+        // Get the current post ID
+        $current_post_id = get_the_ID();
+
+        // Get the standard categories for the current post
+        $categories = get_the_terms($current_post_id, 'category');
+
+        if ($categories && !is_wp_error($categories)) {
+            // Start the output buffer
+            ob_start();
+            ?>
+            <div class="post_categories">
+                <?php foreach ($categories as $category) {
+                    // Get the link for the category
+                    $category_link = get_term_link($category);
+                    ?>
+                    <a href="<?php echo esc_url($category_link); ?>" class="post_category_link" style="color:black !important;">
+                        <?php echo esc_html($category->name); ?>
+                    </a>
+                    <?php
+                } ?>
+            </div>
+            <?php
+            // Return the buffered content
+            return ob_get_clean();
+        }
+    }
+    return '';
+}
+
+add_shortcode('post_categories_bubbles', 'display_post_categories_as_bubbles');
