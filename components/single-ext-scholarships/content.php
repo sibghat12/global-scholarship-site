@@ -25,7 +25,9 @@
     $scholarship_type = get_field('scholarship_type');
 
     $scholarship_amount = get_field('amount_in_numbers');
+    $varied_deadlines = get_field('varied_deadlines');
     $scholarship_deadlines = get_field('scholarship_deadlines');
+    $scholarship_deadlines_country_institution = get_field('scholarship_deadlines_country_institution');
     
     $degrees = get_field('eligible_degrees');
     $degrees_text = convert_array_to_text($degrees);
@@ -60,7 +62,6 @@
 
     $application_steps = get_field('application_steps');
     $helpful_links = get_field('helpful_links');
-    $varied_deadlines = get_field('varied_deadlines');
 
 
     $links = get_field('links');
