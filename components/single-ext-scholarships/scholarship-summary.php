@@ -33,7 +33,7 @@
         <?php if($scholarship_deadlines) : ?>
         <div class="gs-scholarship-summary-separate-application-box gs-summary-box">
             <div class="gs-scholarship-summary-insitute-image">
-                <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/Deadline.png'); ?>" alt="">
+                <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/Deadline-black.png'); ?>" alt="">
             </div>
             <p class="gs-scholarship-summary-title">
                 <?php 
