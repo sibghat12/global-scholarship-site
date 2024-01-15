@@ -12,7 +12,7 @@
             <div class="gs-scholarship-summary-insitute-image">
                 <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/institute-icon.png'); ?>" alt="">
             </div>
-            <p class="gs-scholarship-summary-title"><?php echo $scholarship_funded_by; ?></p>
+            <p class="gs-scholarship-summary-title"><?php echo $scholarship_funded_by[0]['offered_by']; ?></p>
         </div>
         <?php endif; ?>
         <div class="gs-scholarship-summary-scholarship-amount-box gs-summary-box">
@@ -33,27 +33,31 @@
         <?php if($scholarship_deadlines) : ?>
         <div class="gs-scholarship-summary-separate-application-box gs-summary-box">
             <div class="gs-scholarship-summary-insitute-image">
-                <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/Deadline.png'); ?>" alt="">
+                <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/Deadline-black.png'); ?>" alt="">
             </div>
             <p class="gs-scholarship-summary-title">
                 <?php 
                     
                     // Find the first non-"Accept Application All Year" deadline
                     $first_non_year_round_deadline = '';
-                    foreach ($scholarship_deadlines as $deadline) {
-                        if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
-                            $first_non_year_round_deadline = $deadline['deadline'];
-                            break;
-                        }
-                    }
-
-                    // Display the appropriate deadline or "Accept Application All Year"
-                    if (!empty($first_non_year_round_deadline)) {
-                        echo strip_tags($first_non_year_round_deadline); // Output the text without HTML tags
-                    } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
-                        echo 'Accept Application All Year';
+                    if($varied_deadlines) {
+                        echo 'Varied Deadlines';
                     } else {
-                        echo 'No Deadlines!';
+                        foreach ($scholarship_deadlines as $deadline) {
+                            if ($deadline['accepts_application_all_year_round'] !== 'Yes') {
+                                $first_non_year_round_deadline = $deadline['deadline'];
+                                break;
+                            }
+                        }
+    
+                        // Display the appropriate deadline or "Accept Application All Year"
+                        if (!empty($first_non_year_round_deadline)) {
+                            echo strip_tags($first_non_year_round_deadline); // Output the text without HTML tags
+                        } elseif (count($unique_acceptance) === 1 && reset($unique_acceptance) === 'Yes') {
+                            echo 'Accept Application All Year';
+                        } else {
+                            echo 'No Deadlines!';
+                        }
                     }
                 ?>
             </p>

@@ -38,7 +38,7 @@
 
     <div class="gs-scholarship-application-process-outro">
     <p>
-    <b>Important Note</b>: The application procedures and required documents for <?php echo $scholarship_title; ?> may vary depending on your degree, program, nationality and other factors. For specific details regarding the requirements, kindly visit the <a href="<?php echo $scholarship_application_procedure_link; ?>">official website of <?php echo $scholarship_title; ?></a>.
+    <b>Important Note</b>: The application procedures and required documents for <?php echo $scholarship_title; ?> may vary depending on your degree, program, nationality and other factors. For specific details regarding the requirements, kindly visit the <a href="<?php echo ($scholarship_application_procedure_link) ? $scholarship_application_procedure_link: $scholarship_page_link; ?>">official website of <?php echo $scholarship_title; ?></a>.
     </p>
     </div>
 </section>

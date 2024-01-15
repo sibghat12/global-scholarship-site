@@ -92,7 +92,7 @@
         $eligible_institutions_array = array_combine($eligible_institutions, $eligible_institutions);
     }
     $gs_eligible_institutions = convert_array_to_text($eligible_institutions);
-    $gs_eligible_countries = generate_countries_universities_text($eligible_institution_countries);
+    $gs_eligible_countries = generate_countries_institutions_text($eligible_institution_countries);
 
     if ($eligible_institution_countries) {
         if(in_array("All Universities Worldwide", $eligible_institution_countries_array)) {
@@ -104,6 +104,12 @@
         $gs_eligible_places .= $gs_eligible_institutions;
 }
 
+$offered_by_orgs = [];
+if($scholarship_funded_by) {
+    foreach($scholarship_funded_by as $scholarship_offered_org) {
+        array_push($offered_by_orgs, $scholarship_offered_org['offered_by']);
+    }
+}
 
 ?>
 <ul>
@@ -113,7 +119,7 @@
         <li>Host Country: <b><?php echo $scholarship_host_country; ?></b></li>
     <?php endif; ?>
     <?php if($scholarship_funded_by): ?>
-        <li>Offered By: <b><?php echo $scholarship_funded_by ?></b></li>
+        <li>Offered By: <b><?php echo convert_array_to_text($offered_by_orgs); ?></b></li>
     <?php endif; ?>
     <input type="hidden" class="gs-ext-scholarship-eligible-nationalities" value="<?php echo $eligible_nationalities_string; ?>" />
     <li>  Eligible Countries:  
@@ -134,7 +140,7 @@
         </div>
     </li>
     <input type="hidden" class="gs-ext-scholarship-eligible-institutions" value="<?php echo $gs_eligible_places; ?>" />
-    <li>Eligible Universities: 
+    <li>Eligible Institutions: 
         <div class="gs-ext-scholarship-eligible-universities-container">
                 <b class="gs-ext-scholarship-eligible-universities"></b>
                 <?php  if($eligible_institution_countries) : ?>
@@ -171,24 +177,32 @@
         $same_label = $scholarship_duration[0]['label'];
     
         foreach ($scholarship_duration as $duration) {
-            $duration_text .= '<li>' . $duration['degrees'] . ': ' . $duration['number'] . ' ' . $duration['label'] . '</li>';
+            $label = ($duration['number'] == 1) ? rtrim($duration['label'], 's') : $duration['label'];
+
+            $duration_text .= '<li>' . $duration['degrees'] . ': <b>' . $duration['number'] . ' ' . $label . '</b></li>';
             if ($duration['number'] !== $same_number || $duration['label'] !== $same_label) {
                 $similar_duration = false;
             }
         }
     
         if ($similar_duration) {
-            $duration_text = '<li>';
-            foreach ($scholarship_duration as $key => $duration) {
-                $duration_text .= $duration['degrees'];
-                if ($key !== count($scholarship_duration) - 1) {
-                    $duration_text .= ' and ';
-                }
-            }
-            $duration_text .= ': '. $same_number . ' ' . $same_label . '</li>';
+            // $degrees_count = count($scholarship_duration);
+            $duration_text = '<span>';
+            // foreach ($scholarship_duration as $key => $duration) {
+            //     // $duration_text .= $duration['degrees'];
+            //     // if ($key === $degrees_count - 2) {
+            //     //     $duration_text .= ', and '; // Add a comma before the last degree
+            //     // } elseif ($key !== $degrees_count - 1) {
+            //     //     $duration_text .= ', ';
+            //     // }
+            // }
+            $duration_text .= ': '. $same_number . ' ' . $label . '</span>';
+            $scholarship_duration_html .= '<span class="gs-ext-scholarships-single-duration"><b>' . $duration_text . '</b></span>';
+
+        } else {
+            $scholarship_duration_html .= '<ul class="gs-ext-scholarships-duration">' . $duration_text . '</ul>';
         }
     
-        $scholarship_duration_html .= '<ul class="gs-ext-scholarships-duration">' . $duration_text . '</ul>';
     } 
     ?>
     <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
