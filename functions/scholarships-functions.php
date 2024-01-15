@@ -1922,6 +1922,8 @@ function add_custom_js() {
 
 <script type="text/javascript">
 
+
+
    
         jQuery(document).ready(function () {
            
@@ -2865,10 +2867,16 @@ function newt_toc_shortcode($atts, $content = null) {
     $matches = array();
     preg_match_all('/<a href="([^"]+)"(?: substep)?>([^<]+)<\/a>/is', $content, $matches, PREG_SET_ORDER);
 
-    $output = '<div class="new-table-of-contents">';
-    $output .= '<h2>' . esc_html($a['heading']) . '</h2>';
-    $output .= '<hr>';
+   $output = '<div class="new-table-of-contents">';
+ $output .= '<h2>' . esc_html($a['heading']) . ' <span class="toc-icon" > <img src="' . site_url() . '/wp-content/uploads/2024/01/list.png">  <svg style="padding-left:2px;fill: black;color:black" class="arrow-unsorted-368013" xmlns="http://www.w3.org/2000/svg" width="17px" height="17px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny"><path d="M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z"></path></svg> </span> </h2>';
+
+   
+   
+   
+    $output .= '<div class="toc-wrapper" style="padding-top:20px;">';
+    $output .= '<hr style="width:96%;margin:auto;">';
     $output .= '<div class="toc-columns">';
+    
     $step_count = 0;
     $steps = array();
 
@@ -2916,6 +2924,7 @@ function newt_toc_shortcode($atts, $content = null) {
         $output .= '</ol>';
     }
     $output .= '</div>'; // Close .toc-columns
+    $output .= '</div>';
     $output .= '</div>'; // Close .new-table-of-contents
     return $output;
 }
