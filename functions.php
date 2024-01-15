@@ -92,6 +92,10 @@ function theme_enqueue_styles() {
       )
     );
 
+     wp_localize_script('mytheme-script', 'myThemeParams', array(
+        'themeBaseUrl' => get_template_directory_uri()
+    ));
+
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
 
@@ -114,6 +118,12 @@ function avada_lang_setup() {
 
 
 add_action( 'after_setup_theme', 'avada_lang_setup' );
+
+
+
+
+
+
 
 
 
