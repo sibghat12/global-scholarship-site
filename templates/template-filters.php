@@ -1464,8 +1464,8 @@ $(document).ready(function() {
     }
 
     function getSearchBoxHtml(isMobile) {
-        var imageUrl = getDomainUrl() + '/wp-content/uploads/2024/01/search.png';
-        return '<div class="scholarship-search-container">' +
+        var imageUrl = "<?php bloginfo('stylesheet_directory'); ?>" + '/assets/images/scholarship-search-icon.png';
+        return '<div class="scholarship-search-container" style="display:none;">' +
                '<form id="scholarship-search-form" action="#" method="get">' +
                '<input type="text" id="scholarship-search-input" class="scholarship-search-field" placeholder="Search for scholarships or institutions" />' +
                (isMobile ? '<button   class="scholarship-search-submit"><img src="' + imageUrl + '" alt="Search"></button>' :
@@ -1498,9 +1498,7 @@ $(document).ready(function() {
 
 
 
-
 <?php do_action( 'avada_after_content' ); ?>
-
 <?php
 get_footer();
 
