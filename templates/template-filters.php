@@ -1459,10 +1459,6 @@ function load_more_button() {
 
 $(document).ready(function() {
 
-     function getDomainUrl() {
-        return window.location.origin; 
-    }
-
     function getSearchBoxHtml(isMobile) {
         var imageUrl = "<?php bloginfo('stylesheet_directory'); ?>" + '/assets/images/scholarship-search-icon.png';
         return '<div class="scholarship-search-container" style="display:none;">' +

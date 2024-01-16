@@ -16,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php get_header(); 
 
+
+  //$countries_array_Ads_INT  = acf_get_fields('group_64c9f01dd1837');
+   // $courses_subject = array_column($courses_details, null, 'name')['subjects'];
+   // $ads_subject = $courses_subject['choices'];   
+    
     
     $courses_details  = acf_get_fields('group_64c9f01dd1837');
     $courses_subject = array_column($courses_details, null, 'name')['subjects'];
@@ -30,6 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     //$location = $params["location"];
     $degrees = $params["degrees"];
     $country = $params["country"];
+    
 
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
@@ -645,6 +651,82 @@ jQuery(document).ready(function($) {
     updatePaginationText(); // Initialize pagination text
     //loadAds(1, currentOrder); // Load first page initially
 });
+
+
+// Function to Remove the Comma
+
+function removeLastComma(str) {
+   return str.replace(/,(\s+)?$/, '');
+}
+// Check for Degree Item
+function findValueInArray(value, arr) {
+   var result = "Doesn't exist";
+   for (var i = 0; i < arr.length; i++) {
+      var name = arr[i];
+      if (name == value) {
+         result = 'Exist';
+         break;
+      }
+   }
+   return result;
+}
+
+function findValueInArray_withformat(value, arr) {
+   var result = "Doesn't exist";
+   console.log(arr);
+
+   value = value.replace(/-/g, ' ');
+
+   value = value.charAt(0).toUpperCase() + value.slice(1);
+   value = value.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+      return letter.toUpperCase();
+   });
+
+   console.log(value);
+
+   for (var i = 0; i < arr.length; i++) {
+      var name = arr[i];
+      if (name == value) {
+         result = 'Exist';
+         break;
+      }
+   }
+   return result;
+
+}
+
+
+jQuery(document).ready(function(){
+  // reload_data();
+});
+
+function reload_data() {
+
+pathname_string = window.location.pathname;
+var result = pathname_string.substring(1, pathname_string.length-1);
+var pathArray = result.split('/');
+var removeItem = "opencourses";
+  pathArray = jQuery.grep(pathArray, function(value) {
+  return value != removeItem;
+});
+
+
+var countries_php_array = <?php echo json_encode($scholarships_array); ?>;
+var countries_array = $.map(countries_php_array, function(value, index){
+        return [value];
+});
+
+ 
+
+
+
+}
+
+
+
+
+
+
 </script>
 
 
