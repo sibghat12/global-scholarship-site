@@ -2308,6 +2308,15 @@ add_rewrite_rule(
 });
 
 
+add_action( 'init', function() {
+
+add_rewrite_rule(
+        '^opencourses/.*?$',
+        'index.php?pagename=opencourses',
+        'top'
+    );
+});
+
 // // Add Rewrite Rule for Best Universities Template.
 // add_action( 'init',  function() {
 //     add_rewrite_rule(
@@ -2330,6 +2339,15 @@ add_action('init', function () {
     add_rewrite_rule(
         '^scholarship-search(?:/page/(\d+))?/?$',
         'index.php?pagename=scholarship-search&page_number=$matches[1]',
+        'top'
+    );
+});
+
+
+add_action('init', function () {
+    add_rewrite_rule(
+        '^opencourses(?:/page/(\d+))?/?$',
+        'index.php?pagename=opencourses&page_number=$matches[1]',
         'top'
     );
 });
