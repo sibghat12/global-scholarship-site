@@ -107,6 +107,11 @@ if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
  <?php
 echo do_shortcode('[latest_scholarships]');
 ?>
+    <?php 
+        if ( comments_open() || get_comments_number() ) {
+            comments_template();
+        }
+        ?>
 </section>
 
 
