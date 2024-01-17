@@ -1,18 +1,17 @@
 <?php
 
 /**
- * search input institutions with ajax
+ * search input scholarships or institutions with ajax
  */
-class GS_Search_Ajax {
+class GS_Scholarship_Search_Ajax {
 
-    public $slug = 'gs_search_ajax';
+    public $slug = 'gs_scholarship_search_ajax';
     
     public function __construct() {
         // Generate Json File Replace with init hook to run again
 
-        // For Home Page Search
+        // For Scholarship Search Page
         add_action('generate_data', array($this, 'generate_data'));
-        // add_action('generate_locations', array($this, 'generate_locations'));
 
         // enqueue scripts
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
@@ -23,41 +22,41 @@ class GS_Search_Ajax {
     public function generate_data() {
 
         
-        $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+        // $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
         
-        // Get subjects and their choices
-        $subjects = array_column($scholarship_details, null, 'name')['eligible_programs'];
-        $subjects = $subjects['choices'];
+        // // Get subjects and their choices
+        // $subjects = array_column($scholarship_details, null, 'name')['eligible_programs'];
+        // $subjects = $subjects['choices'];
 
-        // Get countries and their choices
-        $countries = array_column($scholarship_details, null, 'name')['published_countries'];
-        $countries = $countries['choices'];
+        // // Get countries and their choices
+        // $countries = array_column($scholarship_details, null, 'name')['published_countries'];
+        // $countries = $countries['choices'];
 
-        $data = array();
+        // $data = array();
                 
-        if($countries) :
-            foreach($countries as $country) :
+        // if($countries) :
+        //     foreach($countries as $country) :
 
-                $country_slug = strtolower(str_replace(' ', '-', $country));
+        //         $country_slug = strtolower(str_replace(' ', '-', $country));
 
-                $data['gs_country'][] = array(
-                    'title' => $country,
-                    'permalink' => get_site_url() .'/scholarship-search/'. $country_slug,
-                );
-            endforeach;
-        endif; 
+        //         $data['gs_country'][] = array(
+        //             'title' => $country,
+        //             'permalink' => get_site_url() .'/scholarship-search/'. $country_slug,
+        //         );
+        //     endforeach;
+        // endif; 
         
-        if($subjects) :
-            foreach($subjects as $subject) :
+        // if($subjects) :
+        //     foreach($subjects as $subject) :
 
-                $subject_slug = strtolower(str_replace(' ', '-', $subject));
+        //         $subject_slug = strtolower(str_replace(' ', '-', $subject));
 
-                $data['gs_subject'][] = array(
-                    'title' => $subject,
-                    'permalink' => get_site_url() .'/scholarship-search/'. $subject_slug,
-                );
-            endforeach;
-        endif; 
+        //         $data['gs_subject'][] = array(
+        //             'title' => $subject,
+        //             'permalink' => get_site_url() .'/scholarship-search/'. $subject_slug,
+        //         );
+        //     endforeach;
+        // endif; 
         
         // Institutions
         $institutions_args = array(
@@ -94,11 +93,12 @@ class GS_Search_Ajax {
         if($institutions_posts_ids) :
             foreach($institutions_posts_ids as $id) :
                 $university_url_slug = get_post_field('post_name', $id);
-
-                $data['gs_institutions'][] = array(
+                $institutions_scholarships_count = count(get_scholarships($id)->posts);
+                $data['gs_scholarship_institutions'][] = array(
                     'id' => $id,
                     'title' => get_the_title($id),
                     'permalink' => get_site_url() .'/institutions/'. $university_url_slug,
+                    'institution_scholarships' => $institutions_scholarships_count,
                 );
             endforeach;
         endif; 
@@ -106,11 +106,15 @@ class GS_Search_Ajax {
         if($scholarships_posts_ids) :
             foreach($scholarships_posts_ids as $id) :
                 $scholarship_url_slug = get_post_field('post_name', $id);
+                $scholarship_host_institution = get_field('scholarship_institution', $id);
+                $scholarship_type = get_field('amount_category', $id);
 
-                $data['gs_scholarships'][] = array(
+                $data['gs_scholarship_scholarships'][] = array(
                     'id' => $id,
                     'title' => get_the_title($id),
                     'permalink' => get_site_url() .'/scholarships/'. $scholarship_url_slug,
+                    'institution_scholarship' => $scholarship_host_institution->post_title,
+                    'scholarship_type' => $scholarship_type,
                 );
             endforeach;
         endif; 
@@ -118,7 +122,7 @@ class GS_Search_Ajax {
         $json_file = json_encode($data);
 
         
-        $file = fopen( get_stylesheet_directory() . '/scripts/search-data.json', 'w');
+        $file = fopen( get_stylesheet_directory() . '/scripts/search-scholarship-data.json', 'w');
         fwrite($file, $json_file);
         fclose($file);
         
@@ -140,12 +144,12 @@ class GS_Search_Ajax {
 			$version = '1.0.0';
 		}
 
-        if (!is_page_template('page-homepage.php')) {
+        if (!is_page_template('templates/template-filters.php')) {
             return;
         }
 		wp_enqueue_script(
 			$this->slug,
-			get_stylesheet_directory_uri() . '/assets/ajax-search.js',
+			get_stylesheet_directory_uri() . '/assets/ajax-scholarship-search.js',
 			array( 'jquery' ),
 			$version,
 			true
@@ -164,4 +168,4 @@ class GS_Search_Ajax {
 
 }
 
-new GS_Search_Ajax();
+new GS_Scholarship_Search_Ajax();
