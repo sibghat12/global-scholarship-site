@@ -11,7 +11,7 @@ class GS_Search_Ajax {
         // Generate Json File Replace with init hook to run again
 
         // For Home Page Search
-        add_action('generate_data', array($this, 'generate_data'));
+        add_action('init', array($this, 'generate_data'));
         // add_action('generate_locations', array($this, 'generate_locations'));
 
         // enqueue scripts
