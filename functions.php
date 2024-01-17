@@ -119,25 +119,23 @@ function avada_lang_setup() {
 
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
-
-
-
-
-
-
-
-
 function scholarship_search_enqueue_scripts() {
-    wp_enqueue_style( 'scholarship-search-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' );
-    wp_enqueue_style( 'scholarship-search-bootstrap-select-css', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css' );
-    wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'scholarship-search-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), null, true );
-    wp_enqueue_script( 'scholarship-search-bootstrap-select-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), null, true );
-    wp_enqueue_script( 'scholarship-search-bootstrap-select-i18n-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js', array('jquery', 'scholarship-search-bootstrap-select-js'), null, true );
+    if (is_page('scholarship-search')) {
+        wp_enqueue_style( 'scholarship-search-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' );
+        wp_enqueue_style( 'scholarship-search-bootstrap-select-css', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css' );
+        
+        // Enqueue jQuery if it's not already included
+        if (!wp_script_is('jquery', 'enqueued')) {
+            wp_enqueue_script( 'jquery' );
+        }
+
+        // Set the last parameter to true to load it in the footer
+        wp_enqueue_script( 'scholarship-search-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), null, true );
+        wp_enqueue_script( 'scholarship-search-bootstrap-select-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), null, true );
+        wp_enqueue_script( 'scholarship-search-bootstrap-select-i18n-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js', array('jquery', 'scholarship-search-bootstrap-select-js'), null, true );
+    }
 }
 add_action( 'wp_footer', 'scholarship_search_enqueue_scripts' );
-
-
 
 
 function my_deregister_scripts(){
@@ -4499,7 +4497,7 @@ add_action('wp_ajax_nopriv_toggle_order', 'handle_toggle_order');
 
 function handle_toggle_order() {
 
-     $courses_details  = acf_get_fields('group_64c9f01dd1837');
+    $courses_details  = acf_get_fields('group_64c9f01dd1837');
     $courses_subject = array_column($courses_details, null, 'name')['subjects'];
     $ads_subject = $courses_subject['choices'];
 
