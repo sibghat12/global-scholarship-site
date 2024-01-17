@@ -550,6 +550,7 @@ register_post_type( 'landing-page', $args );
         'editor',
         'author',
         'thumbnail',
+        'comments'
     );
     
     $args = array(
@@ -2895,7 +2896,7 @@ add_action('enable_comments_on_all_posts', 'enable_comments_on_all_posts');
 function enable_comments_on_custom_posts() {
     $args = array(
         'post_status' => 'publish',
-        'post_type' => ['scholarships', 'institution'], // Added custom post types
+        'post_type' => ['scholarships', 'institution', 'scholarship_post'], // Added custom post types
         'fields' => 'ids' // Only get post IDs
     );
 
@@ -2925,7 +2926,34 @@ function enable_comments_on_custom_posts() {
 
 add_action('enable_comments_on_custom_posts', 'enable_comments_on_custom_posts');
 
+// Enable comments for all existing "scholarship_post" posts
+function enable_comments_for_existing_posts() {
+    $args = array(
+        'post_type'      => 'scholarship_post',
+        'posts_per_page' => -1,
+    );
 
+    $query = new WP_Query( $args );
+
+    if ( $query->have_posts() ) {
+        while ( $query->have_posts() ) {
+            $query->the_post();
+
+            // Enable comments for each post
+            $post_id = get_the_ID();
+            $post_data = array(
+                'ID'             => $post_id,
+                'comment_status' => 'open',
+            );
+            wp_update_post( $post_data );
+        }
+
+        wp_reset_postdata();
+    }
+}
+
+// Run the function once
+// enable_comments_for_existing_posts();
 
 // Override comment form fields structure and remove url field from comment form at this path wp-content/plugins/fusion-builder/shortcodes/components/templates/fusion-tb-comments.php
 add_filter('comment_form_default_fields', 'unset_url_field');
