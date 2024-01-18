@@ -131,10 +131,6 @@ $scholarships_array = get_all_scholarships();   ?>
 
 <!-- Content Start to display Cards -->
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
-
-<div  id="scholarship-cards">
-
-<!-- Search Box For Desktop   -->
 <div id="scholarship-search-box-wrapper" class="gs-scholarship-search-form">
   <div class="scholarship-search-container">
   <input type="text" name="search" id="search" placeholder="Search for Scholarships or Institutions" class="search-input scholarship-search-field form-control">
@@ -144,6 +140,10 @@ $scholarships_array = get_all_scholarships();   ?>
   </div>
   <button type="submit" class="scholarship-search-submit">search <span class="screen-reader-text">Search</span></button>
 </div>
+<div  id="scholarship-cards">
+
+<!-- Search Box For Desktop   -->
+
 <!-- <div id="scholarship-search-box-wrapper">
   <div class="scholarship-search-container" style="display: block;">
     <form id="scholarship-search-form" action="#" method="get">

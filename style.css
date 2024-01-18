@@ -9084,7 +9084,15 @@ padding-bottom: 10px !important;
 /* GS Scholarship Css style */
 #scholarship-search-box-wrapper {
     display: flex;
+    margin-top: 0px;
+    padding-left: 40px;
 }
+
+.gs-scholarship-search-form .list-group-item:hover {
+    background-color: #559cc625;
+    cursor: pointer;
+}
+
 .scholarship-search-container::placeholder {
   font-style: italic;
 }
@@ -9133,6 +9141,9 @@ padding-bottom: 10px !important;
 }
 
 @media (max-width: 767px) {
+    #scholarship-search-box-wrapper {
+        padding-left: 1px;
+    }
   .scholarship-search-submit {
     padding-left: 15px;
     padding-right: 15px;

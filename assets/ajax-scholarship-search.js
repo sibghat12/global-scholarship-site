@@ -92,7 +92,8 @@ jQuery(document).ready(function ($) {
             background: "rgb(237 237 237)",
             "z-index": "99999999999999999999999999999999999999999",
             position: "absolute",
-            width: "88%",
+            top: "-30px",
+            width: "100%",
             margin: "0",
             "border-top": "1px solid #ccc",
             padding: "0px",
@@ -106,20 +107,6 @@ jQuery(document).ready(function ($) {
         return;
       }
     });
-  
-    const searchInput = document.querySelector('.search-input');
-    const searchTerms = ['Business', 'Nursing', 'Belt and Road Scholarship','University of Oxford', 'Finland', 'United Kingdom', 'France']; 
-  
-    let termIndex = 0;
-  
-    function autoType() {
-      const searchTerm = searchTerms[termIndex];
-      searchInput.setAttribute('placeholder', `What are you looking for? ${searchTerm}`);
-      termIndex = (termIndex + 1) % searchTerms.length;
-    }
-  
-    setInterval(autoType, 2000); 
-  
   
     // Add Text to input on click
     function setInputValues() {
