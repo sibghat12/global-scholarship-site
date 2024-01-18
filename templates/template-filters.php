@@ -133,7 +133,7 @@ $scholarships_array = get_all_scholarships();   ?>
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
 <div id="scholarship-search-box-wrapper" class="gs-scholarship-search-form">
   <div class="scholarship-search-container">
-  <input type="text" name="search" id="search" placeholder="Search for Scholarships or Institutions" class="search-input scholarship-search-field form-control">
+  <input type="text" name="search" id="search" placeholder="Search for scholarships or institutions" class="search-input scholarship-search-field form-control">
   <div class="search-results-container">
     <ul class="list-group" id="search-results"></ul>
   </div>

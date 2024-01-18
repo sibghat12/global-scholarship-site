@@ -11,53 +11,16 @@ class GS_Scholarship_Search_Ajax {
         // Generate Json File Replace with init hook to run again
 
         // For Scholarship Search Page
-        add_action('generate_data', array($this, 'generate_data'));
+        add_action('generate_scholarship_search_data', array($this, 'generate_scholarship_search_data'));
 
         // enqueue scripts
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
     }
 
     
-    // Generate Json File for all published institutions in institution post type using wp ajax and cron job
-    public function generate_data() {
+    // Generate Json File for all published institutions in institution Or scholarship post type using wp ajax and cron job
+    public function generate_scholarship_search_data() {
 
-        
-        // $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-        
-        // // Get subjects and their choices
-        // $subjects = array_column($scholarship_details, null, 'name')['eligible_programs'];
-        // $subjects = $subjects['choices'];
-
-        // // Get countries and their choices
-        // $countries = array_column($scholarship_details, null, 'name')['published_countries'];
-        // $countries = $countries['choices'];
-
-        // $data = array();
-                
-        // if($countries) :
-        //     foreach($countries as $country) :
-
-        //         $country_slug = strtolower(str_replace(' ', '-', $country));
-
-        //         $data['gs_country'][] = array(
-        //             'title' => $country,
-        //             'permalink' => get_site_url() .'/scholarship-search/'. $country_slug,
-        //         );
-        //     endforeach;
-        // endif; 
-        
-        // if($subjects) :
-        //     foreach($subjects as $subject) :
-
-        //         $subject_slug = strtolower(str_replace(' ', '-', $subject));
-
-        //         $data['gs_subject'][] = array(
-        //             'title' => $subject,
-        //             'permalink' => get_site_url() .'/scholarship-search/'. $subject_slug,
-        //         );
-        //     endforeach;
-        // endif; 
-        
         // Institutions
         $institutions_args = array(
             'post_type' => 'institution',
