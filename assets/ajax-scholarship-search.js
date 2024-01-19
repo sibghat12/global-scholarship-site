@@ -1,12 +1,12 @@
 jQuery(document).ready(function ($) {
-    console.log("TESTING Scholarship SEARCH");
-    let debounceTimer;
+
   
-    $(".search-input").on("keyup", function () {
+    function handleSearch() {
       let textInput = $(this).val().toLowerCase();
       let $searchResultsElement = $("#search-results");
       let $searchInput = $(".search-input");
-  
+      console.log("TESTING Scholarship SEARCH");
+      let debounceTimer;
       checkSearchIsActive($searchResultsElement, $searchInput);
   
       // clearTimeout(debounceTimer);
@@ -14,14 +14,14 @@ jQuery(document).ready(function ($) {
         // debounceTimer = setTimeout(function() {
         let $url = my_ajax_object.script_url + "search-scholarship-data.json";
   
-        var results = [];
-        var matchedResults = [];
+        let results = [];
+        let matchedResults = [];
         $.getJSON($url, function (json) {
           if (json) {
             let keys = Object.keys(json);
             let remainingResults = 5; // Change according to how many results we want
             $.each(keys, function (index, key) {
-              let matchedResults = $.grep(json[key], function (value) {
+              matchedResults = $.grep(json[key], function (value) {
                 return (
                   value.title &&
                   value.title.toLowerCase().indexOf(textInput) !== -1
@@ -46,22 +46,7 @@ jQuery(document).ready(function ($) {
           $.each(results, function (index, result) {
             let key = Object.keys(result)[0]; // Get the key from the result object
             let items = result[key]; // Get the items array corresponding to the key
-  
-            // Mapping keys to headings
-            // const typeHeadings = {
-            // //   gs_country: "Country",
-            // //   gs_subject: "Subject",
-            //   gs_scholarship_institutions: "Institutions",
-            //   gs_scholarship_scholarships: "Scholarships",
-            //   // Add more keys and their respective headings if needed
-            // };
-  
-            // Get the heading for the current key (type)
-            // let heading = typeHeadings[key] || "Other"; // Default heading if not found in typeHeadings
-  
-            // Add the heading before the items
-            // resultsHtml += `<h3 class="list-group-item type-heading">${heading}</h3>`;
-  
+
             $.each(items, function (itemIndex, item) {
               let title = item.title; // Get the title dynamically
               let permalink = item.permalink; // Get the permalink dynamically
@@ -106,7 +91,9 @@ jQuery(document).ready(function ($) {
       } else {
         return;
       }
-    });
+    }
+    $(".search-input").on("keyup", handleSearch);
+    $(".search-input").on("focus", handleSearch);
   
     // Add Text to input on click
     function setInputValues() {
