@@ -27,11 +27,11 @@
         <?php // Scholarship Application procedures ?>
 
         <?php if($application_procedures) : ?>
-        <ul>
+        <ol>
             <?php foreach($application_procedures as $procedure) : ?>
                 <li><?php echo $procedure['steps']; ?></li>
             <?php endforeach; ?>
-        </ul>
+        </ol>
         <?php endif; ?>
 
     </div>
