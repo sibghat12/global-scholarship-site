@@ -20,6 +20,7 @@
     $country_array_original = $countries_field['choices'];
 
     $scholarship_funded_by = get_field('funded_by');
+    $scholarship_providers = get_field('providers');
     
     $scholarship_category = get_field('scholarship_category');
     $scholarship_type = get_field('scholarship_type');

@@ -493,6 +493,36 @@ function uscollege_custom_post_types() {
         'register_meta_box_cb'  => 'cities'
     );
     register_post_type( 'city', $args );  
+    
+    $labels = array(
+        'name'              => __( 'Provider' ),
+        'singular_name'     => __( 'provider' ),
+        'add_new'           => __( 'Add New Provider' ),
+        'add_new_item'      => __( 'Add New Provider' ),
+        'edit_item'         => __( 'Edit Provider' ),
+        'new_item'          => __( 'Add New Provider' ),
+        'view_item'         => __( 'View Provider' ),
+        'search_items'      => __( 'Search Provider' ),
+        'not_found'         => __( 'No Provider found' ),
+        'not_found_in_trash' => __( 'No Provider found in trash' )
+    );
+    $supports = array(
+        'title',
+        'author',
+        'thumbnail',
+    );
+    $args = array(
+        'labels'                => $labels,
+        'supports'              => $supports,
+        'public'                => true,
+        'capability_type'       => 'post',
+        'rewrite'               => array( 'slug' => 'providers' ),
+        'has_archive'           => false,
+        'menu_position'         => 30,
+        'menu_icon'             => 'dashicons-admin-multisite',
+        'register_meta_box_cb'  => 'providers'
+    );
+    register_post_type( 'provider', $args );  
 
 
    $labels = array(

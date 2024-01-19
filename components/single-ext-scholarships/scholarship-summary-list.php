@@ -111,6 +111,14 @@ if($scholarship_funded_by) {
     }
 }
 
+// Scholarship Providers Using Providers CPT
+$scholarship_providers_list = [];
+if($scholarship_providers) {
+    foreach($scholarship_providers as $scholarship_provider) {
+        $scholarship_providers_list[] = $scholarship_provider->post_title;
+    }
+}
+
 ?>
 <ul>
 
@@ -119,7 +127,7 @@ if($scholarship_funded_by) {
         <li>Host Country: <b><?php echo $scholarship_host_country; ?></b></li>
     <?php endif; ?>
     <?php if($scholarship_funded_by): ?>
-        <li>Offered By: <b><?php echo convert_array_to_text($offered_by_orgs); ?></b></li>
+        <li>Offered By: <b><?php echo convert_array_to_text($scholarship_providers_list); ?></b></li>
     <?php endif; ?>
     <?php if(isset($eligible_nationalities_string)) : ?>
     <input type="hidden" class="gs-ext-scholarship-eligible-nationalities" value="<?php echo $eligible_nationalities_string; ?>" />
