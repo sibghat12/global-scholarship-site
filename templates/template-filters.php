@@ -131,11 +131,27 @@ $scholarships_array = get_all_scholarships();   ?>
 
 <!-- Content Start to display Cards -->
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
-
+<div id="scholarship-search-box-wrapper" class="gs-scholarship-search-form">
+  <div class="scholarship-search-container">
+  <input type="text" name="search" id="search" placeholder="Search for scholarships or institutions" class="search-input scholarship-search-field form-control">
+  <div class="search-results-container">
+    <ul class="list-group" id="search-results"></ul>
+  </div>
+  </div>
+  <button type="submit" class="scholarship-search-submit">search <span class="screen-reader-text">Search</span></button>
+</div>
 <div  id="scholarship-cards">
 
 <!-- Search Box For Desktop   -->
-<div id="scholarship-search-box-wrapper"></div>
+
+<!-- <div id="scholarship-search-box-wrapper">
+  <div class="scholarship-search-container" style="display: block;">
+    <form id="scholarship-search-form" action="#" method="get">
+      <input type="text" id="scholarship-search-input" class="scholarship-search-field" placeholder="Search for scholarships or institutions">
+      <button class="scholarship-search-submit">Search</button>
+    </form>
+  </div>
+</div> -->
 
 
 
@@ -1457,38 +1473,38 @@ function load_more_button() {
 
 // Gs ScholarsHIP Search Box
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
-    function getSearchBoxHtml(isMobile) {
-        var imageUrl = "<?php bloginfo('stylesheet_directory'); ?>" + '/assets/images/scholarship-search-icon.png';
-        return '<div class="scholarship-search-container" style="display:none;">' +
-               '<form id="scholarship-search-form" action="#" method="get">' +
-               '<input type="text" id="scholarship-search-input" class="scholarship-search-field" placeholder="Search for scholarships or institutions" />' +
-               (isMobile ? '<button   class="scholarship-search-submit"><img src="' + imageUrl + '" alt="Search"></button>' :
-                           '<button class="scholarship-search-submit">Search</button>') +
-               '</form>' +
-               '</div>';
-    }
+//     function getSearchBoxHtml(isMobile) {
+//         var imageUrl = "<?php bloginfo('stylesheet_directory'); ?>" + '/assets/images/scholarship-search-icon.png';
+//         return '<div class="scholarship-search-container" style="display:none;">' +
+//                '<form id="scholarship-search-form" action="#" method="get">' +
+//                '<input type="text" id="scholarship-search-input" class="scholarship-search-field" placeholder="Search for scholarships or institutions" />' +
+//                (isMobile ? '<button   class="scholarship-search-submit"><img src="' + imageUrl + '" alt="Search"></button>' :
+//                            '<button class="scholarship-search-submit">Search</button>') +
+//                '</form>' +
+//                '</div>';
+//     }
 
-    function injectSearchBox() {
-        var isMobile = $(window).width() <= 767;
-        var searchBoxHtml = getSearchBoxHtml(isMobile);
+//     function injectSearchBox() {
+//         var isMobile = $(window).width() <= 767;
+//         var searchBoxHtml = getSearchBoxHtml(isMobile);
 
-        if (isMobile) {
-            $(".title-wrapper-scholarship-search").after(searchBoxHtml);
-        } else {
-            $("#scholarship-search-box-wrapper").append(searchBoxHtml);
-        }
-    }
+//         if (isMobile) {
+//             $(".title-wrapper-scholarship-search").after(searchBoxHtml);
+//         } else {
+//             $("#scholarship-search-box-wrapper").append(searchBoxHtml);
+//         }
+//     }
 
-    function adjustSearchBox() {
-        $('.scholarship-search-container').remove();
-        injectSearchBox();
-    }
+//     function adjustSearchBox() {
+//         $('.scholarship-search-container').remove();
+//         injectSearchBox();
+//     }
 
-    injectSearchBox();
-    $(window).resize(adjustSearchBox);
-});
+//     injectSearchBox();
+//     $(window).resize(adjustSearchBox);
+// });
 
 </script>
 

@@ -8500,7 +8500,10 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
 .filter-row #scholarship-cards{
-    width:75%;float:left;margin-top:-20px;padding-left:30px;
+    width:75%;
+    float:left;
+    margin-top:0px;
+    padding-left:30px;
 }
 
 .filter-row .card-section {
@@ -9079,17 +9082,33 @@ padding-bottom: 10px !important;
 
 
 /* GS Scholarship Css style */
+#scholarship-search-box-wrapper {
+    display: flex;
+    margin-top: 0px;
+    padding-left: 40px;
+}
+
+.gs-scholarship-search-form .list-group-item:hover {
+    background-color: #559cc625;
+    cursor: pointer;
+}
 
 .scholarship-search-container::placeholder {
   font-style: italic;
 }
 
 .scholarship-search-container {
-  width: 100%;
-  margin-top: 15px;
-  box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
 }
 
+.scholarship-search-container .search-results-container {
+    position: absolute;
+    top: 65px;
+    width: 100%;
+}
 #scholarship-search-form {
   display: flex;
   justify-content: center;
@@ -9122,6 +9141,9 @@ padding-bottom: 10px !important;
 }
 
 @media (max-width: 767px) {
+    #scholarship-search-box-wrapper {
+        padding-left: 1px;
+    }
   .scholarship-search-submit {
     padding-left: 15px;
     padding-right: 15px;

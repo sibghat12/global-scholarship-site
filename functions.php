@@ -5,6 +5,7 @@ include ('scripts/acf-options.php');
 include ('scripts/institutions-script.php'); 
 include ('scripts/saa-cities-cpt.php'); 
 include ('ajax-search.php'); 
+include ('ajax-scholarship-search.php'); 
 
 // filter
 function institutions_where( $where ) {
