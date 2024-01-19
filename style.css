@@ -8723,6 +8723,14 @@ padding-bottom: 10px !important;
     fill: #66A0F6;
     margin-top: 5px;
 }
+.single-ext-scholarships #main .post-content .gs-ext-schoalrship-application-requirements ul.fa-ul {
+    margin-left: 4.5em;
+}
+
+.single-ext-scholarships .post-content .gs-ext-schoalrship-application-requirements span.fa-li svg {
+    fill: #66A0F6;
+    margin-top: 5px;
+}
 
 
 /* Navigation Panel GS Sections */
