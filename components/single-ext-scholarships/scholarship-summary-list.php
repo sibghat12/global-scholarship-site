@@ -245,10 +245,12 @@ if($scholarship_funded_by) {
         }
         ?>
     <?php else : 
-            echo '<li>Application Deadline:<ul>';
-            foreach ($scholarship_deadlines_country_institution as $deadline) {
-                echo '<li>' . $deadline['country_institution'] . ': <b>' .  (strtotime($deadline['deadline']) >= strtotime($current_date) ? $deadline['deadline'] . ' (Open)' :  $deadline['deadline'] . ' (Past Deadline)') . '</b></li>';
-            }
+            if($scholarship_deadlines_country_institution) :
+                echo '<li>Application Deadline:<ul>';
+                foreach ($scholarship_deadlines_country_institution as $deadline) {
+                    echo '<li>' . $deadline['country_institution'] . ': <b>' .  (strtotime($deadline['deadline']) >= strtotime($current_date) ? $deadline['deadline'] . ' (Open)' :  $deadline['deadline'] . ' (Past Deadline)') . '</b></li>';
+                }
+            endif;
             echo '</ul></li>';
 
             ?>
