@@ -60,7 +60,8 @@
     
     $application_procedures = get_field('application_procedure');
 
-    $application_steps = get_field('application_steps');
+    $application_requirements = get_field('application_requirements');
+
     $helpful_links = get_field('helpful_links');
 
 
