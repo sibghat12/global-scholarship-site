@@ -306,7 +306,6 @@ function findValueInArray(value, arr) {
 function findValueInArray_withformat(value, arr) {
    var result = "Doesn't exist";
    console.log(arr);
-
    value = value.replace(/-/g, ' ');
 
    value = value.charAt(0).toUpperCase() + value.slice(1);
