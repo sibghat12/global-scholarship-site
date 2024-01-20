@@ -556,75 +556,67 @@ function get_location_values ($location_type){
 //Example2: Input(location-name:korea, location-type:continent), don't output loop since korea is not in continent
 //This function is used for get_institution_location
 function get_cities_location($location_name, $location_type){
-   
+    
     $locations = get_location_values($location_type);
-   
-  
-            
-    if (in_array($location_name, $locations)){
+
+    
+    $loop = new WP_Query();
+
+    // Check if the provided location name is in the array of locations
+    if (in_array($location_name, $locations)) {
         
         $city_args = array(
             'post_type' => 'city',
             'meta_key' => $location_type,
-            "meta_value" => $location_name,
- 
-         
-
+            'meta_value' => $location_name,
             'posts_per_page' => -1,
             'no_found_rows' => true, 
             'update_post_meta_cache' => false, 
             'update_post_term_cache' => false,   
-            'cache_results'          => false,
+            'cache_results' => false,
             'fields' => 'ids',
         );
-        
+
+        // Create a new WP_Query with the specified arguments for cities
         $the_query = new WP_Query($city_args);
-        
         $my_posts = $the_query->get_posts();
         
-        $post_ids = array();
-
-        if( ! empty( $my_posts ) ){
-            foreach ( $my_posts as $id ){
-                
+        // Check if there are posts
+        if (!empty($my_posts)) {
+            $post_ids = array();
+            foreach ($my_posts as $id) {
                 array_push($post_ids, $id);
-                
             }
-            
+
             $institute_args = array(
                 'post_type' => 'institution',
                 'post_status' => 'publish',
-                
-            
                 'posts_per_page' => -1,
                 'orderby' => 'title',
-                'order'   => 'ASC',
+                'order' => 'ASC',
                 'no_found_rows' => true, 
                 'update_post_meta_cache' => false, 
                 'update_post_term_cache' => false,   
-                'cache_results'          => false,
+                'cache_results' => false,
                 'fields' => 'ids',                     
                 'meta_query' => array(
-                        array(
-                            'key' => 'cities',
-                            'value' => $post_ids,
-                            'compare' => 'IN'
-                        )
+                    array(
+                        'key' => 'cities',
+                        'value' => $post_ids,
+                        'compare' => 'IN'
                     )
+                )
             );
-            
-            $loop = new WP_Query($institute_args);
-            
-            return $loop;            
-            
-            
-        }
-            
 
+            // Update $loop with the new WP_Query for institutions
+            $loop = new WP_Query($institute_args);
         }
-   
+    }
+
+    // Return the WP_Query object
     return $loop;
 }
+
 
 
 //Gets country, state values - Returns the text value, not the post id (there's no post id for state, country)

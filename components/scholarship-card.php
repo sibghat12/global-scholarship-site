@@ -1,8 +1,6 @@
 <?php
 
 
-
-
 $institute = $fields["scholarship_institution"];
 
 $accept_value = "";
@@ -18,10 +16,10 @@ if( have_rows('admission_deadlines', $institute->ID) ) {
 
 }
 
-
-
 // $opening_soon_labels = check_opening_soon($institute->ID);
 // print_r($opening_soon_labels);
+
+$currentDate = time();
 
 
    $bachelor_opeing_soon = "";
@@ -35,6 +33,8 @@ if( have_rows('admission_deadlines', $institute->ID) ) {
 
                 $startDate = strtotime($startDate);
                 $endDate = strtotime($endDate);
+
+                
 
                 if (!empty($startDate)) {
 
