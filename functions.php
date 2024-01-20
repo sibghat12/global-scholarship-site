@@ -1749,21 +1749,26 @@ function my_ajax_handler() {
    $offset = $_POST["offset"];
    $ppp = $_POST["ppp"];
    $page_count = $_POST['page_count'];
+
+   if(isset($_POST['query'])) {
+   $query = $_POST['query'];
+  }
+
   
    //$offset = $offset - 1;
   
-   $degrees = stripslashes($_POST['degrees']);
+   $degrees = isset($_POST['degrees']) ? stripslashes($_POST['degrees']) : '';
    $degrees_array = explode(',', $degrees); 
 
    $subjects = $_POST['subjects'];
    $subject_array = explode(',', $subjects); 
 
-   $scholarship = $_POST['scholarship'];
-   $scholarship_array = explode(',', $scholarship);
+   // $scholarship = $_POST['scholarship'];
+   // $scholarship_array = explode(',', $scholarship);
 
-  
    $locations = $_POST['locations'];
    $locations_array = explode(',', $locations); 
+
 
    $nationality = $_POST['nationality'];
    $nationality_array = explode(',', $nationality); 
@@ -1774,12 +1779,13 @@ function my_ajax_handler() {
    $applications = $_POST['applications'];
    $application_array = explode(',', $applications);
 
-   $institution_array = $_POST['institutions'];
-   $institution_array = explode(',', $institution_array);  
+   // $institution_array = $_POST['institutions'];
+   // $institution_array = explode(',', $institution_array); 
+
    
-$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
-$country_list = $published_countries['choices'];
+   $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+   $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+   $country_list = $published_countries['choices'];
   
 
 $reload_true = $_POST["reload"];
@@ -1951,13 +1957,15 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
   
 
   
-    if(isset($institution_array[0]) && $institution_array[0]){
-       $institution_query  = array('key' => 'scholarship_institution', 'value' => $institution_array, 'compare' => "IN");
-     } else {
-        if(isset($locations_array[0]) && $locations_array[0]){
+    // if(isset($institution_array[0]) && $institution_array[0]){
+    //    $institution_query  = array('key' => 'scholarship_institution', 'value' => $institution_array, 'compare' => "IN");
+    //  } else {
+       
+    //  } 
+
+      if(isset($locations_array[0]) && $locations_array[0]){
         $location_query  = array('key' => 'scholarship_institution', 'value' => $institute_ids, 'compare' => "IN");
         }
-     } 
 
     $meta_query = array( 'relation' => 'AND');    
         
@@ -1981,29 +1989,31 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     $meta_query[] = $nationality_query; 
     }
 
-    if ($institution_query) { 
-    $meta_query[] = $institution_query; 
-    }
+    // if ($institution_query) { 
+    // $meta_query[] = $institution_query; 
+    // }
 
      if ($application_query) { 
     $meta_query[] = $application_query; 
     }
     
    
- if($scholarship_array[0]){
- $ad_args = array(
-    'post_type' => 'scholarships',
-    'post_status' => 'publish',
-    'posts_per_page' => $ppp,
-    'offset' => $offset,
-    'fields' => 'ids', // Only return post IDs
-    'meta_key' => 'scholarship_weights',  // name of custom field
-    'orderby' => 'meta_value_num',  // we want to order by numeric value
-    'order' => 'DESC',  // highest to lowest
-    'title' => $scholarship_array[0]
-);
-   }
-   else {
+//  if($scholarship_array[0]){
+//  $ad_args = array(
+//     'post_type' => 'scholarships',
+//     'post_status' => 'publish',
+//     'posts_per_page' => $ppp,
+//     'offset' => $offset,
+//     'fields' => 'ids', // Only return post IDs
+//     'meta_key' => 'scholarship_weights',  // name of custom field
+//     'orderby' => 'meta_value_num',  // we want to order by numeric value
+//     'order' => 'DESC',  // highest to lowest
+//     'title' => $scholarship_array[0]
+// );
+//    }
+//    else {
+
+  
     $ad_args = array(
     'post_type' => 'scholarships',
     'post_status' => 'publish',
@@ -2014,7 +2024,11 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     'orderby' => 'meta_value_num',  // we want to order by numeric value
     'order' => 'DESC',  // highest to lowest
     );
-    }
+   // }
+
+    if (!empty($query)) {
+    $ad_args['s'] = $query;
+}
 
    if ($meta_query){
         $ad_args['meta_query'] = $meta_query;
@@ -2165,7 +2179,9 @@ if($type_array[0]) {
                 while ($loop->have_posts() ) {
                         $loop->the_post();
                        
-                        $scholarship_id = $post->ID;
+                        //$scholarship_id = $post->ID;
+                        $scholarship_id = get_the_ID();
+
                         $html   .= '<div class="col-sm-12 my-2 course-card" >';
                         $html   .= scholarship_card($scholarship_id);
                         $html   .= '</div>'; 

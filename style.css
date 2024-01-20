@@ -9181,4 +9181,19 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 } 
 
 
+/* Hide the mobile search box on screens larger than 767px */
+@media screen and (min-width: 768px) {
+    #mobile-search-box {
+        display: none;
+    }
+}
+
+/* Hide the desktop search box on screens smaller than or equal to 767px */
+@media screen and (max-width: 767px) {
+    #desktop-search-box {
+        display: none;
+    }
+}
+
+
 /* End GS Scholarship Search Css style */
