@@ -1340,6 +1340,11 @@ $country_value = isset($_POST['country']) ? strtolower($_POST['country']) : '';
 $degree_value = isset($_POST['degree']) ? strtolower($_POST['degree']) : '';
 $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
 
+    $page = $_POST['page'] ?? 1;
+    $order = $_POST['order'] ?? 'DESC';
+    $adsPerPage = 10;
+    $offset = ($page - 1) * $adsPerPage;
+
  $country_value = str_replace('-', ' ', $country_value);
  
 
@@ -1386,14 +1391,18 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
     $excluded_by_tier = exclude_institutions_by_tier($location);
     $excluded = array_merge($excluded, $excluded_by_tier);
 
+
+
+
     // Construct the query arguments
     $ad_args = array(
         'post_type' => 'ads',
         'post_status' => 'publish',
         'posts_per_page' => 10,
+        'offset' => $offset, 
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
-        'order' => "DESC",
+        'order' => $order,
         'meta_query' => array(
             'relation' => 'AND',
             array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
@@ -1406,9 +1415,10 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
         'post_type' => 'ads',
         'post_status' => 'publish',
         'posts_per_page' => 10,
+        'offset' => $offset, 
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
-        'order' => "DESC",
+        'order' => $order,
         'meta_query' => array(
             'relation' => 'AND',
             array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
@@ -4796,6 +4806,12 @@ add_action('wp_ajax_nopriv_load_ads', 'load_ads_ajax_handler');
 function load_ads_ajax_handler() {
 
 
+
+    $degree_value = $_POST['degree']; 
+    $subject_value = $_POST['subject'];
+    $country_value = $_POST['country'];
+    $country_value = str_replace('-', ' ', $country_value);
+
     $courses_details  = acf_get_fields('group_64c9f01dd1837');
     $courses_subject = array_column($courses_details, null, 'name')['subjects'];
     $ads_subject = $courses_subject['choices'];
@@ -4832,7 +4848,7 @@ function load_ads_ajax_handler() {
     $location = $country_code;
     
     //List of institutions in that country
-    $institute_ids_country = get_institution_ids($country);
+    $institute_ids_country = get_institution_ids($country_value);
 
     if ($country == "europe"){
         $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
@@ -4867,7 +4883,7 @@ function load_ads_ajax_handler() {
     $page = $_POST['page'] ?? 1;
     $order = $_POST['order'] ?? 'DESC';
     $adsPerPage = 10;
-   $offset = ($page - 1) * $adsPerPage;
+    $offset = ($page - 1) * $adsPerPage;
     // Prepare your query arguments based on the order
     $ad_args = array(
         'post_type' => 'ads',
@@ -4883,6 +4899,25 @@ function load_ads_ajax_handler() {
             array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
         ),
     );
+
+     $all_ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        'offset' => $offset, 
+        'meta_key' => 'tuition_USD',
+        'orderby' => "meta_value_num",
+        'order' => $order,
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN')
+        )
+    );
+
+
+
+
 
     if ($subject_value) {
         $ad_args['meta_query'][] = array('key' => 'ads_subject', 'value' => $subject_value, 'compare' => 'LIKE');
@@ -4905,7 +4940,18 @@ function load_ads_ajax_handler() {
             show_ads_card_new($ad_id); // Ensure this function outputs the correct HTML for an ad
         }
     } else {
-        echo 'No courses found.';
+         
+
+    $new_loop = new WP_Query($all_ad_args);
+    $total_count = $new_loop->found_posts;
+    if ($new_loop->have_posts()) {
+        
+        while ($new_loop->have_posts()) {
+            $new_loop->the_post();
+            $ad_id = get_the_ID(); // Correct way to get the post ID
+            show_ads_card_new($ad_id);
+        }
+    }
     }
 
     wp_die(); // Always include this in your AJAX handlers

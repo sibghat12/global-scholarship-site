@@ -279,7 +279,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php wp_reset_postdata(); ?>
     
     
-    <div class="feature-course-section">
+<div class="feature-course-section">
         
   
     <div  class="feature-course-div">
@@ -297,9 +297,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     </div>
 
 </div>
-
-
-      </div>
+</div>
 
 
 
@@ -314,11 +312,8 @@ var adsPerPage = 10;
 var openCourseCount = 0;
 
 jQuery( document ).ready( function($){
-
-    
-
-
-     reload_data();
+     
+    reload_data();
 
     $(document).on('click', '.ad-read-more', function (e) {
         $(this).siblings(".line-clamp-3").removeClass('line-clamp-3');
@@ -333,15 +328,12 @@ jQuery( document ).ready( function($){
         $(this).addClass("display-none-text");
         $(this).siblings(".ad-read-more").removeClass('display-none-text');        
     });
-    
-
-                          
-                    
+                      
 });    
     
 
-  jQuery('.fusion-search-field input').attr('placeholder', 'Search for Courses');
-  function adjustHeight() {
+jQuery('.fusion-search-field input').attr('placeholder', 'Search for Courses');
+function adjustHeight() {
     console.log("dd");
     if (window.matchMedia("(min-width: 991px)").matches) {
         var height_col_md_4 = jQuery('.col-md-4').height();
@@ -375,20 +367,17 @@ jQuery( document ).ready( function($){
 }
 
 
-
   jQuery(window).on('load', function() {
     // Run on document ready
     
     // Update on window resize
     jQuery(window).resize(adjustHeight);
-});
+  });
 
   
 
  jQuery(document).ready(function() {
-
-       adjustHeight();
-
+ adjustHeight();
   var filterToggleBtn = jQuery('.filter-toggle-btn');
   var filterPanel = jQuery('.toggle-filter');
   filterToggleBtn.on('click', function() {
@@ -585,9 +574,15 @@ function setSelectedValue(selector, value) {
 
  
 function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, adsPerPage, currentPage) {
+
+   
     
     jQuery('.card-section-new').css("display", "none");
     jQuery('#preloader').css("display", "block");
+      
+    currentOrder = getCurrentOrder(); 
+      
+
     var formData = new FormData();
     if(country_value) {
         formData.append('country', country_value);
@@ -597,6 +592,9 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
       formData.append('subject', subject_value);  
     } 
     formData.append("action", "load_courses");
+
+     formData.append("page", currentPage);
+     formData.append("order", currentOrder);
     
     url_update = "";
 
@@ -611,6 +609,11 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
     if(subject_value){
     url_update +=  "/" + subject_value;
     }
+    
+
+     // Extract page number from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('pages');
     
 
     jQuery.ajax({
@@ -643,8 +646,15 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
              if (openCourseCount <= 10) {
                  jQuery('.opencourse-pagination').hide();
                }
-            
-             changeurl("opencourses"  + url_update);
+
+                if(pageParam) {
+                changeurl("opencourses"  + url_update + "/?pages=" + pageParam);
+               } else {
+                 changeurl("opencourses"  + url_update);
+               }
+
+                           
+               
 
             jQuery('.opencourse-pagination .number-bold').first().text(currentPage);
             jQuery('.opencourse-pagination .number-bold').eq(1).text(totalPages);
@@ -666,7 +676,13 @@ function reload_data() {
    
     
     $('#preloader').css("display" , "block");
-
+    
+     // Extract page number from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('pages');
+    if(pageParam) {
+    currentPage = pageParam;
+    }
 
     var pathname_string = window.location.pathname;
     var result = pathname_string.substring(1, pathname_string.length-1);
@@ -754,11 +770,51 @@ jQuery(document).ready(function($) {
        var direction = jQuery(this).text().trim();
        
        currentOrder = getCurrentOrder(); 
-      
+
+    // Extract page number from the URL query parameters
+       const urlParams = new URLSearchParams(window.location.search);
+       const pageParam = urlParams.get('pages');
        if (direction === 'Next' && currentPage < totalPages) {
-            loadAds(currentPage + 1, currentOrder , totalPages , openCourseCount);
+       
+    if (pageParam && !isNaN(pageParam)) {
+    currentPage = parseInt(pageParam, 10); 
+    currentPage++; 
+    }  else {
+        currentPage++;
+    }
+    
+    const current_url = new URL(window.location.href);
+if (!current_url.pathname.endsWith('/')) {
+    current_url.pathname += '/';
+}
+current_url.searchParams.set('pages', currentPage);
+window.history.pushState({}, '', current_url); 
+
+updateURLForPageOne();
+    
+       
+       loadAds(currentPage, currentOrder , totalPages , openCourseCount);
+       
         } else if (direction === 'Prev' && currentPage > 1) {
-            loadAds(currentPage - 1, currentOrder ,   totalPages , openCourseCount);
+            
+    if (pageParam && !isNaN(pageParam)) {
+    currentPage = parseInt(pageParam, 10); 
+    currentPage--; }
+    else {
+        currentPage--;
+    }
+    
+
+    const current_url = new URL(window.location.href);
+if (!current_url.pathname.endsWith('/')) {
+    current_url.pathname += '/';
+}
+current_url.searchParams.set('pages', currentPage);
+window.history.pushState({}, '', current_url);
+
+updateURLForPageOne();
+
+            loadAds(currentPage, currentOrder ,   totalPages , openCourseCount);
         }
       });
 
@@ -769,13 +825,11 @@ jQuery(document).ready(function($) {
       
        var degreeValue = $('.degree-filter select').val();
        var subjectValue = $('.subject-filter select').val();
-       var countryValue = $('.country-filter select').val();    
+       var countryValue = $('.country-filter select').val(); 
 
      jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
      jQuery('#preloader').css("display" , "block");
      jQuery('.card-section-new').css("display", "none");
-        
-
         
         jQuery.ajax({
             url: '<?php echo admin_url('admin-ajax.php'); ?>',
@@ -814,6 +868,16 @@ function flipImage() {
     var adsPerPage = 10;
     var openCourseCount = parseInt(jQuery('.opencourse-pagination .number-bold').last().text(), 10);
 
+    const url = new URL(window.location.href);
+    const pageParam = parseInt(url.searchParams.get('pages'), 10);
+   
+    if (pageParam) {
+        url.searchParams.delete('pages');
+        window.history.pushState({}, '', url.toString());
+    }
+    
+
+
     var totalPages = Math.ceil(openCourseCount / adsPerPage);
     var currentOrder = 'DESC';
     currentOrder = getCurrentOrder(); 
@@ -822,18 +886,6 @@ function flipImage() {
 
 document.getElementById('flipImage').addEventListener('click', flipImage);
 
-
- 
-    // jQuery('#flipImage').click(function() {
-        
-    //     var image = jQuery(this);
-    //     image.toggleClass('flipped');
-    //     currentOrder = getCurrentOrder(); // Update the order based on the flipped state
-    //     loadAds(currentPage, currentOrder);
-    // });
-
-    //updatePaginationText(); // Initialize pagination text
-    //loadAds(1, currentOrder); // Load first page initially
 });
 
 
@@ -842,7 +894,15 @@ jQuery(document).ready(function($) {
     $('#ajax-course-form').on('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission
        
-       currentPage = 1;
+    currentPage = 1;
+       
+    const url = new URL(window.location.href);
+    const pageParam = parseInt(url.searchParams.get('pages'), 10);
+   
+    if (pageParam) {
+        url.searchParams.delete('pages');
+        window.history.pushState({}, '', url.toString());
+    }
        var degreeValue = $('.degree-filter select').val();
        var subjectValue = $('.subject-filter select').val();
        var countryValue = $('.country-filter select').val();    
@@ -859,6 +919,28 @@ function changeurl(url, title ) {
  function getCurrentOrder() {
         return jQuery('#flipImage').hasClass('flipped') ? 'ASC' : 'DESC';
     }
+
+
+// Function to update the URL
+function updateURLForPageOne() {
+    const url = new URL(window.location.href);
+    const currentPage = parseInt(url.searchParams.get('pages'), 10);
+
+    // Check if currentPage is 1, and if so, remove the 'pages' parameter
+    if (currentPage === 1) {
+        url.searchParams.delete('pages');
+        window.history.pushState({}, '', url.toString());
+    }
+}
+
+// Event listener for popstate event
+window.addEventListener('popstate', function() {
+    updateURLForPageOne();
+});
+
+// Initial call to the function when the page loads
+updateURLForPageOne();
+
 
 
 </script>

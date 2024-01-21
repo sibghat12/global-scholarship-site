@@ -9181,6 +9181,7 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 } 
 
 
+
 /* Hide the mobile search box on screens larger than 767px */
 @media screen and (min-width: 768px) {
     #mobile-search-box {
@@ -9194,6 +9195,7 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
         display: none;
     }
 }
+
 
 
 /* End GS Scholarship Search Css style */
