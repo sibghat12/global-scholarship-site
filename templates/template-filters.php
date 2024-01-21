@@ -140,8 +140,8 @@ $scholarships_array = get_all_scholarships();   ?>
 <!-- Content Start to display Cards -->
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
 
-<div id="desktop-search-box" style="display: none;">
-<div id="scholarship-search-box-wrapper" class="gs-scholarship-search-form" >
+<div id="desktop-search-box" style="display:none;">
+<div id="scholarship-search-box-wrapper"   class="gs-scholarship-search-form" >
   <div class="scholarship-search-container" >
   <input type="text" name="search" id="search" placeholder="Search for scholarships or institutions" class="search-input scholarship-search-field form-control">
   <div class="search-results-container">
@@ -1212,6 +1212,8 @@ function load_more_button() {
     const urlParams = new URLSearchParams(window.location.search);
     const queryValue = urlParams.get('query');
 
+
+
     // Display a preloader while loading data
     $('#preloader').css("display", "block");
     // Hide certain elements during the loading process
@@ -1561,13 +1563,27 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 // });
 
 
-$(document).ready(function(){
-    // Copy content from desktop to mobile search box
-    var desktopSearchContent = $('#desktop-search-box').html();
-    $('#mobile-search-box').html(desktopSearchContent);
+$(document).ready(function() {
+    function copyContentToMobile() {
+        var desktopSearchContent = $('#desktop-search-box').html();
+        $('#desktop-search-box').hide();
+        $('#mobile-search-box').html(desktopSearchContent);
+    }
 
+    function checkWindowSize() {
+        if (window.matchMedia('(max-width: 767px)').matches) {
 
+            copyContentToMobile();
+        }
+    }
+
+    // Check on page load
+    checkWindowSize();
+
+    // Check on window resize
+    $(window).resize(checkWindowSize);
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
