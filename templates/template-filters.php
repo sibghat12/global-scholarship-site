@@ -1182,7 +1182,7 @@ function changeurl(url, title ) {
 $(document).on("click", "#prev_posts", function(event){
   
    event.preventDefault(); // Prevent default behavior
-    page = page -  2;
+    page = page -  1;
   
     if(page==0) {
         page=1;
@@ -1194,16 +1194,23 @@ $(document).on("click", "#prev_posts", function(event){
 
 $(document).on("click", "#more_posts", function(event){
   event.preventDefault(); // Prevent default behavior
+       page = page + 1;
      if(page==1){
         page=2;
     }
+   
 load_more_button();
 });
 
 
 function load_more_button() {
+     
+    
     var check = $(this).is(":checked");
     var link = "<?php echo admin_url('admin-ajax.php'); ?>";
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryValue = urlParams.get('query');
 
     // Display a preloader while loading data
     $('#preloader').css("display", "block");
@@ -1258,14 +1265,31 @@ function load_more_button() {
     formData.append("institutions", institutionArr);
     formData.append("nationality", nationalityArr);
 
+    if(queryValue) {
+    formData.append("query" , queryValue);  
+    }
+
     // Append offset, page_count, and ppp to formData
     if (page === 1) {
         formData.append("offset", 0);
     } else {
         formData.append("offset", (page - 1) * ppp);
     }
+
+
     formData.append("page_count", page);
     formData.append("ppp", ppp);
+
+
+
+    var pageText = jQuery('.desktop_page_count').text();
+    
+     var numbers = pageText.match(/\d+/g);
+    if (numbers && numbers.length > 0) {
+        // The last number in the array will be the one you're interested in
+        var lastNumber = parseInt(numbers[numbers.length - 1], 10);
+        
+    }
 
     // Modify arrays and strings for specific formatting
     degreeArr = degreeArr.toString().replaceAll(",", '-');
@@ -1303,7 +1327,7 @@ function load_more_button() {
         contentType: false,
         type: 'post',
         success: function (response) {
-            page++;
+           
             // Show filter panel and enable the "Load More" button
             $('#filter-panell').css("display", "block");
             $("#more_posts").attr("disabled", false);
@@ -1325,14 +1349,28 @@ function load_more_button() {
             $('h1.title-text-new').after($spans);
 
             $(window).scrollTop(0);
-            pagee = page - 1;
-
+            //pagee = page - 1;
+             pagee = page;
             // Update the URL based on page number
             if (pagee < 2) {
+               
+                if(queryValue) {
+                 changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(queryValue), "Welcome");
+                } else {
+
                 changeurl("scholarship-search" + updatedUrl, "Welcome");
+            }
                 $('.next-page').show();
             } else {
+                if(queryValue) {
+                
+
+changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(queryValue) + "&pages=" + encodeURIComponent(pagee) ,  "Welcome");
+
+
+                } else {
                 changeurl("scholarship-search" + updatedUrl + "/?pages=" + pagee, "Welcome");
+                }
                 $('.prev-page').show();
                 $('.next-page').show();
             }
@@ -1350,15 +1388,17 @@ function load_more_button() {
             let page_number = Math.ceil(numberOnly / 20);
 
             console.log("page_number" + page_number + "  - Page:" + page);
-            page = page - 1;
+            //page = page - 1;
+              
+            
 
             // Hide "Load More" button if there are no more pages to load
-            if (page_number == page || page_number < page) {
+            if (lastNumber == page || lastNumber < page) {
                 console.log("shamima");
                 $('.next-page').hide();
                 $('#more_posts').hide();
             }
-            page = page + 1;
+            //page = page + 1;
 
             console.log("Page" + page);
 
@@ -1450,7 +1490,7 @@ function load_more_button() {
     jQuery(document).ready(function() {
         var url = window.location.href;
 
-        if (url.match(/\?page=\d+/)) {
+        if (url.match(/\?pages=\d+/)) {
             jQuery('.prev-page').show(); 
         } else {
             jQuery('.prev-page').hide(); 
@@ -1460,7 +1500,7 @@ function load_more_button() {
     function show_pre_or_not() {
         var url = window.location.href;
 
-        if (url.match(/\?page=\d+/)) {
+        if (url.match(/\?pages=\d+/)) {
             jQuery('.prev-page').show(); 
         } else {
             jQuery('.prev-page').hide(); 
