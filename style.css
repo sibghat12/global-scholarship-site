@@ -9186,5 +9186,33 @@ padding-bottom: 10px !important;
   }
 }
 
+.opencourse-title-div h1 {
+font-size:32px;
+font-weight:700;
+text-align:center; 
+color:black !important;
+padding-top:20px;
+padding-left:0px !important;
+padding-bottom: 10px;
+font-family: 'Roboto', Arial, Helvetica, sans-serif; 
+} 
+
+
+
+/* Hide the mobile search box on screens larger than 767px */
+@media screen and (min-width: 768px) {
+    #mobile-search-box {
+        display: none;
+    }
+}
+
+/* Hide the desktop search box on screens smaller than or equal to 767px */
+@media screen and (max-width: 767px) {
+    #desktop-search-box {
+        display: none;
+    }
+}
+
+
 
 /* End GS Scholarship Search Css style */

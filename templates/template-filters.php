@@ -14,7 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 
+
+
 <?php get_header(); 
+
+if (isset($_GET['query'])) {
+ $queryValue = $_GET['query'];
+}
 
 $scholarships_count = get_published_scholarships_count();$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
 $degrees_array = $scholarship_details[1]['choices'];
@@ -37,7 +43,9 @@ $scholarships_array = get_all_scholarships();   ?>
 
 
 
-
+<div id="mobile-search-box">
+    
+</div>
 
 
 
@@ -131,27 +139,22 @@ $scholarships_array = get_all_scholarships();   ?>
 
 <!-- Content Start to display Cards -->
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
-<div id="scholarship-search-box-wrapper" class="gs-scholarship-search-form">
-  <div class="scholarship-search-container">
+
+<div id="desktop-search-box" style="display:none;">
+<div id="scholarship-search-box-wrapper"   class="gs-scholarship-search-form" >
+  <div class="scholarship-search-container" >
   <input type="text" name="search" id="search" placeholder="Search for scholarships or institutions" class="search-input scholarship-search-field form-control">
   <div class="search-results-container">
     <ul class="list-group" id="search-results"></ul>
   </div>
   </div>
-  <button type="submit" class="scholarship-search-submit">search <span class="screen-reader-text">Search</span></button>
+  <button type="submit" class="scholarship-search-submit">Search <span class="screen-reader-text">Search</span></button>
 </div>
+</div>
+
 <div  id="scholarship-cards">
 
-<!-- Search Box For Desktop   -->
 
-<!-- <div id="scholarship-search-box-wrapper">
-  <div class="scholarship-search-container" style="display: block;">
-    <form id="scholarship-search-form" action="#" method="get">
-      <input type="text" id="scholarship-search-input" class="scholarship-search-field" placeholder="Search for scholarships or institutions">
-      <button class="scholarship-search-submit">Search</button>
-    </form>
-  </div>
-</div> -->
 
 
 
@@ -306,7 +309,6 @@ function findValueInArray(value, arr) {
 function findValueInArray_withformat(value, arr) {
    var result = "Doesn't exist";
    console.log(arr);
-
    value = value.replace(/-/g, ' ');
 
    value = value.charAt(0).toUpperCase() + value.slice(1);
@@ -332,11 +334,15 @@ var link = "<?php echo  admin_url("admin-ajax.php"); ?>";
 var ppp = 20;  // Post per page
 var page = 1;
 
+
+
+
 $(document).ready(function(){
 reload_data();
 });
 
 function reload_data() {
+
 
 $('#filter-panell').css("display" , "none");
 $('.next-page').css("display" , "none");
@@ -350,6 +356,8 @@ var current_page_number = "";
 // Extract page number from the URL query parameters
 const urlParams = new URLSearchParams(window.location.search);
 const pageParam = urlParams.get('pages');
+const queryValue = urlParams.get('query');
+
 
 console.log("Full URL: " + window.location.href);
 console.log("Page Parameter: " + pageParam);
@@ -589,6 +597,9 @@ if(page === 1){
    formData.append("offset", (page - 1) * ppp);
 }
 
+if(queryValue) {
+  formData.append("query" , queryValue);  
+}
 
 formData.append("page_count" , page);
 formData.append("ppp" , ppp);
@@ -662,7 +673,7 @@ $.ajax({
         $('#filter-panell').css("display" , "block");
         $('.title-textt').css("display" , "block");
         $('.title-wrapper-scholarship-search').css("display" , "block");
-        $('.scholarship-search-container').css("display" , "block");
+        $('#desktop-search-box').show();
        
           $('#prev-posts').css("display" , "none");
 
@@ -841,12 +852,14 @@ var institutionArr = new Array();
 var inst = $('select.institution_checkbox').find(":selected").val();
 
 institutionArr.push(inst);
-if(institutionArr[0]==''){
+// if(institutionArr[0]==''){
     
        
-}else {
-     locationArr =  new Array();
-}
+// }else {
+     
+// }
+
+//locationArr =  new Array();
 
 
 console.log(institutionArr);
@@ -876,6 +889,7 @@ if(page===1){
 
 formData.append("page_count" , page);
 formData.append("ppp" , ppp);
+formData.append("reload" , false);
 
 degreeArr = degreeArr.toString().replaceAll(",", '-');
 degreeArr = degreeArr.toString().replaceAll("'", "");
@@ -1168,7 +1182,7 @@ function changeurl(url, title ) {
 $(document).on("click", "#prev_posts", function(event){
   
    event.preventDefault(); // Prevent default behavior
-    page = page -  2;
+    page = page -  1;
   
     if(page==0) {
         page=1;
@@ -1180,16 +1194,25 @@ $(document).on("click", "#prev_posts", function(event){
 
 $(document).on("click", "#more_posts", function(event){
   event.preventDefault(); // Prevent default behavior
+       page = page + 1;
      if(page==1){
         page=2;
     }
+   
 load_more_button();
 });
 
 
 function load_more_button() {
+     
+    
     var check = $(this).is(":checked");
     var link = "<?php echo admin_url('admin-ajax.php'); ?>";
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryValue = urlParams.get('query');
+
+
 
     // Display a preloader while loading data
     $('#preloader').css("display", "block");
@@ -1244,14 +1267,31 @@ function load_more_button() {
     formData.append("institutions", institutionArr);
     formData.append("nationality", nationalityArr);
 
+    if(queryValue) {
+    formData.append("query" , queryValue);  
+    }
+
     // Append offset, page_count, and ppp to formData
     if (page === 1) {
         formData.append("offset", 0);
     } else {
         formData.append("offset", (page - 1) * ppp);
     }
+
+
     formData.append("page_count", page);
     formData.append("ppp", ppp);
+
+
+
+    var pageText = jQuery('.desktop_page_count').text();
+    
+     var numbers = pageText.match(/\d+/g);
+    if (numbers && numbers.length > 0) {
+        // The last number in the array will be the one you're interested in
+        var lastNumber = parseInt(numbers[numbers.length - 1], 10);
+        
+    }
 
     // Modify arrays and strings for specific formatting
     degreeArr = degreeArr.toString().replaceAll(",", '-');
@@ -1289,7 +1329,7 @@ function load_more_button() {
         contentType: false,
         type: 'post',
         success: function (response) {
-            page++;
+           
             // Show filter panel and enable the "Load More" button
             $('#filter-panell').css("display", "block");
             $("#more_posts").attr("disabled", false);
@@ -1311,14 +1351,28 @@ function load_more_button() {
             $('h1.title-text-new').after($spans);
 
             $(window).scrollTop(0);
-            pagee = page - 1;
-
+            //pagee = page - 1;
+             pagee = page;
             // Update the URL based on page number
             if (pagee < 2) {
+               
+                if(queryValue) {
+                 changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(queryValue), "Welcome");
+                } else {
+
                 changeurl("scholarship-search" + updatedUrl, "Welcome");
+            }
                 $('.next-page').show();
             } else {
+                if(queryValue) {
+                
+
+changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(queryValue) + "&pages=" + encodeURIComponent(pagee) ,  "Welcome");
+
+
+                } else {
                 changeurl("scholarship-search" + updatedUrl + "/?pages=" + pagee, "Welcome");
+                }
                 $('.prev-page').show();
                 $('.next-page').show();
             }
@@ -1336,15 +1390,17 @@ function load_more_button() {
             let page_number = Math.ceil(numberOnly / 20);
 
             console.log("page_number" + page_number + "  - Page:" + page);
-            page = page - 1;
+            //page = page - 1;
+              
+            
 
             // Hide "Load More" button if there are no more pages to load
-            if (page_number == page || page_number < page) {
+            if (lastNumber == page || lastNumber < page) {
                 console.log("shamima");
                 $('.next-page').hide();
                 $('#more_posts').hide();
             }
-            page = page + 1;
+            //page = page + 1;
 
             console.log("Page" + page);
 
@@ -1436,7 +1492,7 @@ function load_more_button() {
     jQuery(document).ready(function() {
         var url = window.location.href;
 
-        if (url.match(/\?page=\d+/)) {
+        if (url.match(/\?pages=\d+/)) {
             jQuery('.prev-page').show(); 
         } else {
             jQuery('.prev-page').hide(); 
@@ -1446,7 +1502,7 @@ function load_more_button() {
     function show_pre_or_not() {
         var url = window.location.href;
 
-        if (url.match(/\?page=\d+/)) {
+        if (url.match(/\?pages=\d+/)) {
             jQuery('.prev-page').show(); 
         } else {
             jQuery('.prev-page').hide(); 
@@ -1505,6 +1561,44 @@ function load_more_button() {
 //     injectSearchBox();
 //     $(window).resize(adjustSearchBox);
 // });
+
+
+$(document).ready(function() {
+    function copyContentToMobile() {
+        var desktopSearchContent = $('#desktop-search-box').html();
+        $('#desktop-search-box').hide();
+        $('#mobile-search-box').html(desktopSearchContent);
+    }
+
+    function checkWindowSize() {
+        if (window.matchMedia('(max-width: 767px)').matches) {
+
+            copyContentToMobile();
+        }
+    }
+
+    // Check on page load
+    checkWindowSize();
+
+    // Check on window resize
+    $(window).resize(checkWindowSize);
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var searchButton = document.querySelector('.scholarship-search-submit');
+    var searchInput = document.getElementById('search');
+
+    searchButton.addEventListener('click', function() {
+        var query = searchInput.value;
+        if (query) {
+            window.location.href = '?query=' + encodeURIComponent(query);
+        }
+    });
+});
+</script>
+
 
 </script>
 

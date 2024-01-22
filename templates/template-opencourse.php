@@ -12,16 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-
-
 <?php get_header(); 
 
+    $countries_array_Ads_INT  = acf_get_fields('group_62533afa917bb');
+    $countries_array = array_column($countries_array_Ads_INT, null, 'name')['adsIntCountry'];
+    $countries_array = $countries_array['choices']; 
+    
+    $degrees_array_Ads  = acf_get_fields('group_6240a27fc5d85');
+    $degrees_array = array_column($degrees_array_Ads, null, 'name')['degrees'];
+    $degrees_array = $degrees_array['choices']; 
+   
+    $subjects_array_Ads  = acf_get_fields('group_6240a27fc5d85');
+    $subjects_array = array_column($degrees_array_Ads, null, 'name')['ads_subject'];
+    $subjects_array = $subjects_array['choices']; 
 
-  //$countries_array_Ads_INT  = acf_get_fields('group_64c9f01dd1837');
-   // $courses_subject = array_column($courses_details, null, 'name')['subjects'];
-   // $ads_subject = $courses_subject['choices'];   
-    
-    
+
     $courses_details  = acf_get_fields('group_64c9f01dd1837');
     $courses_subject = array_column($courses_details, null, 'name')['subjects'];
     $ads_subject = $courses_subject['choices'];
@@ -36,6 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $degrees = $params["degrees"];
     $country = $params["country"];
     
+
 
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
@@ -119,7 +125,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    
 
 
-    $first = "Open " . ucwords($degrees) . " ". ucwords($subject) . " Courses ";
+    $first = "" . ucwords($degrees) . " ". ucwords($subject) . " Courses ";
     $second = "in " . ucwords($country) . " ";
     $third = "for Students " . $location_string;
 
@@ -130,29 +136,28 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
 ?>  
 
- 
-<div class="opencourse-title-div" style="max-width:1000px;margin:auto;" >
-    <h1 style="font-size:32px; font-weight:700;text-align:center; color:black !important;padding-top:20px;padding-left:0px !important; padding-bottom: 10px; font-family: 'Roboto', Arial, Helvetica, sans-serif"> <?php  echo $text; ?></h1>
+<div class="opencourse-title-div" style="display:none; max-width:1000px;margin:auto;" >
+    <h1> <?php echo $text; ?> </h1>
 </div>
-
 
 <div class="filter-toggle-btn" style=" font-size:18px;padding-top:10px;padding-bottom:10px;" > 
   <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png"
  style="padding-right:0px;text-align: center;height: 22px;"> Filter     
  </div> 
 
-
 <section id="content" class="small-text opencourse-template"   style="width:100% !important;">
 		<div id="openCourses" style="max-width: 1000px;margin: auto;">
 			<div class="post-content" style="max-width:100%;">
     <div class="toggle-filter"  >           
  <center>
-<aside style="width:75%;max-width:1000px;">            
-<div class="course-filter"> 
+<aside style="width:80%;max-width:1000px;">            
+<div class="course-filter" style="display: none;"> 
     
-    <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>"  style="margin-top:10px;width:100%;" method="POST" class="filter-wrapper">
+   <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" 
+    method="POST" class="filter-wrapper" id="ajax-course-form">
     
-    <input type="hidden" name="action" value="course_form">
+   
+    
     <div class="filter-boxes-wrap">
         
        <!--  <div class="filter-title">
@@ -226,86 +231,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
             
-            <div class="clearfix"> </div> 
+ <div class="clearfix"> </div> 
             
- <div class="sort-by-fee" style="margin-top:40px;margin-bottom:40px;display:block;margin-bottom:20px;">
+ <div class="sort-by-fee" style="display:none;margin-top:40px;margin-bottom:20px;margin-bottom:20px;">
     <span class="fee-text" style="font-size:14px;font-weight:600;"> Sort by: Tuition Fee 
-        <img id="flipImage"  style="margin-left:5px;border-radius:3px;background: white !important; padding:5px; width:auto;height:27px; box-shadow: 0 0 10px rgba(128, 128, 128, 0.5); " 
-             src="https://env-globalscholarshipsa-sibi.kinsta.cloud/wp-content/uploads/2023/11/Vector.png" 
-             onclick="flipImage()">
+        
+
+
+             <img id="flipImage" style="margin-left:5px;border-radius:3px;background: white !important; padding:5px; width:auto;height:27px; box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);" 
+     src="<?php echo site_url(); ?>/wp-content/uploads/2023/11/Vector.png">
+
+
+
     </span>
     <br>
 </div>
 
-<div id="preloader" style="display: none; margin:auto !important;max-width:600px !important;">
+<div id="preloader" style=" margin:auto !important;max-width:600px !important;">
 <img src="https://globalscholarships.com/wp-content/uploads/2023/03/Curve-Loading.gif"> </center>
 </div>
 
 
  
-            <div class="card-section-new" style="max-width:1000px;margin:auto;padding-top:45px;"> 
-            
-          
-            
-            
-<?php
 
+<div class="clearfix"></div>
 
-
-
-if ($loop->have_posts()) {
-    while ($loop->have_posts()) {
-        $loop->the_post();
-        $ad_id = $post->ID;
-        show_ads_card_new($ad_id);
-    }
-} else {
-
-    echo "<p style='padding-bottom:20px;' class='white-background'><b>There were no courses matching your search of " . $text . ". Instead, we will show all the courses available for students " . $location_string . ". </b></p>";
-
-    $all_ad_args = array(
-        'post_type' => 'ads',
-        'post_status' => 'publish',
-        'posts_per_page' => -1,
-        'meta_key' => 'priority',
-        'orderby' => "meta_value_num",
-        'order' => "DESC",
-        'meta_query' => array(
-            'relation' => 'AND',
-            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
-            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),
-        ),
-    );
-
-    $new_loop = new WP_Query($all_ad_args);
-
-    if ($new_loop->have_posts()) {
-        while ($new_loop->have_posts()) {
-            $new_loop->the_post();
-            $ad_id = $post->ID;
-            show_ads_card_new($ad_id);
-        }
-    }
-
-
-}
-?>
-
-                <?php wp_reset_postdata(); ?>
-
-            
+<div class="card-section-new" style="max-width:1000px;margin:auto;padding-top:15px;"> </div>
            
-
-
-            </div><!-- .card-section -->
-               
+ <div class="clearfix"> </div>
                 
- <div class="opencourse-pagination">
-                 <p style="margin-bottom:20px;">Page 
+ <div class="opencourse-pagination" style="display:none;">
+                 <p style="margin-bottom:20px !important;text-align: center !important;"> 
                     <span class="number-bold">1</span> to 
-                    <span class="number-bold">10 </span> of 
+                    <span class="number-bold">10 </span>  of
                     <span class="number-bold">100 </span> 
-                 Courses </p>
+                 Courses </p> 
                
                <a  class="pagination-button pag-pre"  style="border:1px solid #008ec5;background:transparent;color:blue;padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;
                width:40px;"> Prev </a>
@@ -319,7 +279,7 @@ if ($loop->have_posts()) {
 	<?php wp_reset_postdata(); ?>
     
     
-    <div class="feature-course-section">
+<div class="feature-course-section">
         
   
     <div  class="feature-course-div">
@@ -337,17 +297,23 @@ if ($loop->have_posts()) {
     </div>
 
 </div>
-
-
-      </div>
+</div>
 
 
 
 </section>
             
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
-    
+
+var currentPage = 1;
+var adsPerPage = 10;
+var openCourseCount = 0;
+
 jQuery( document ).ready( function($){
+     
+    reload_data();
 
     $(document).on('click', '.ad-read-more', function (e) {
         $(this).siblings(".line-clamp-3").removeClass('line-clamp-3');
@@ -362,17 +328,11 @@ jQuery( document ).ready( function($){
         $(this).addClass("display-none-text");
         $(this).siblings(".ad-read-more").removeClass('display-none-text');        
     });
-    
-
-                          
-                    
+                      
 });    
     
 
-  jQuery('.fusion-search-field input').attr('placeholder', 'Search for Courses');
-
-
-
+jQuery('.fusion-search-field input').attr('placeholder', 'Search for Courses');
 function adjustHeight() {
     console.log("dd");
     if (window.matchMedia("(min-width: 991px)").matches) {
@@ -407,20 +367,17 @@ function adjustHeight() {
 }
 
 
-
   jQuery(window).on('load', function() {
     // Run on document ready
     
     // Update on window resize
     jQuery(window).resize(adjustHeight);
-});
+  });
 
   
 
  jQuery(document).ready(function() {
-
-       adjustHeight();
-
+ adjustHeight();
   var filterToggleBtn = jQuery('.filter-toggle-btn');
   var filterPanel = jQuery('.toggle-filter');
   filterToggleBtn.on('click', function() {
@@ -459,8 +416,6 @@ document.querySelectorAll('.read-more').forEach((span) => {
 
     // If screen size is more than 991px
     if (window.innerWidth > 991) {
-
-
 
       // Select only the .col-md-8 element related to the clicked span
       var colMd8 = jQuery(this).closest('.col-md-8');
@@ -510,8 +465,6 @@ document.querySelectorAll('.read-more').forEach((span) => {
   });
 });
 
-
-
 function adjustHeight_disclaimer() {
     jQuery('.course-card-new').each(function() {
         var row = jQuery(this);
@@ -537,16 +490,10 @@ jQuery(window).resize(function() {
     adjustHeight_disclaimer();
 });
 
-
-
-
 function readLess(){
     jQuery('#short').show();
     jQuery('#full').hide();
 }
-
-
-
 
 </script>
 
@@ -554,104 +501,31 @@ function readLess(){
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         
-        <script>
-  function flipImage() {
-    var image = document.getElementById('flipImage');
-    image.classList.toggle('flipped');
+<script>
+ 
 
-    var order = image.classList.contains('flipped') ? 'ASC' : 'DESC';
-     jQuery('.card-section-new').css("display" , "none");
-    jQuery('#preloader').css("display" , "block");
-    jQuery.ajax({
-        url: '<?php echo admin_url('admin-ajax.php'); ?>',
-        type: 'POST',
-        data: {
-            'action': 'toggle_order',
-            'order': order
-        },
-        success: function(response) {
-            jQuery('#preloader').css("display" , "none");
-            // Replace the content of your cards section with the response
-            jQuery('.card-section-new').css("display" , "block");
-            jQuery('.card-section-new').html(response);
-        }
-    });
-}
+
+    // jQuery('.card-section-new').css("display" , "none");
+    // jQuery('#preloader').css("display" , "block");
+    // jQuery.ajax({
+    //     url: '<?php echo admin_url('admin-ajax.php'); ?>',
+    //     type: 'POST',
+    //     data: {
+    //         'action': 'toggle_order',
+    //         'order': order
+    //     },
+    //     success: function(response) {
+    //         jQuery('#preloader').css("display" , "none");
+    //         // Replace the content of your cards section with the response
+    //         jQuery('.card-section-new').css("display" , "block");
+    //         jQuery('.card-section-new').html(response);
+    //     }
+    // });
+
 
 </script>      
 
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-    var currentPage = 1;
-    var totalAds = <?php echo $total_count; ?>;
-    var adsPerPage = 10;
-    var totalPages = Math.ceil(totalAds / adsPerPage);
-    var currentOrder = 'DESC'; // Default order
-
-    function getCurrentOrder() {
-        // Check if the flipImage has the class 'flipped'
-        return jQuery('#flipImage').hasClass('flipped') ? 'ASC' : 'DESC';
-    }
-
-    function updatePaginationText() {
-        jQuery('.opencourse-pagination .number-bold').first().text(currentPage);
-        jQuery('.opencourse-pagination .number-bold').eq(1).text(totalPages);
-        jQuery('.opencourse-pagination .number-bold').last().text(totalAds);
-    }
-
-    function loadAds(pageNumber, order) {
-        jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
-     jQuery('#preloader').css("display" , "block");
-     jQuery('.card-section-new').css("display", "none");
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: {
-                'action': 'load_ads',
-                'page': pageNumber,
-                'order': order
-            },
-            success: function(response) {
-                 jQuery('.card-section-new').css("display", "block");
-                jQuery('.card-section-new').html(response);
-
-                currentPage = pageNumber;
-                updatePaginationText();
-                  
-                jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
-                jQuery('#preloader').css("display" , "none");
-
-            }
-        });
-    }
-
-    jQuery('.opencourse-pagination a').click(function(e) {
-        e.preventDefault();
-        var direction = jQuery(this).text().trim();
-        currentOrder = getCurrentOrder(); // Get current order based on the image class
-        if (direction === 'Next' && currentPage < totalPages) {
-             
-            loadAds(currentPage + 1, currentOrder);
-        } else if (direction === 'Prev' && currentPage > 1) {
-            
-            loadAds(currentPage - 1, currentOrder);
-        }
-    });
-
-    // Flip image function
-    // jQuery('#flipImage').click(function() {
-    //     alert("dd");
-    //     var image = jQuery(this);
-    //     image.toggleClass('flipped');
-    //     currentOrder = getCurrentOrder(); // Update the order based on the flipped state
-    //     loadAds(currentPage, currentOrder);
-    // });
-
-    updatePaginationText(); // Initialize pagination text
-    //loadAds(1, currentOrder); // Load first page initially
-});
-
+<script>
 
 // Function to Remove the Comma
 
@@ -663,6 +537,8 @@ function findValueInArray(value, arr) {
    var result = "Doesn't exist";
    for (var i = 0; i < arr.length; i++) {
       var name = arr[i];
+     console.log("aray " + name);
+     console.log("value " + value);
       if (name == value) {
          result = 'Exist';
          break;
@@ -670,60 +546,467 @@ function findValueInArray(value, arr) {
    }
    return result;
 }
+
+
 
 function findValueInArray_withformat(value, arr) {
-   var result = "Doesn't exist";
-   console.log(arr);
-
-   value = value.replace(/-/g, ' ');
-
-   value = value.charAt(0).toUpperCase() + value.slice(1);
-   value = value.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-      return letter.toUpperCase();
-   });
-
-   console.log(value);
-
-   for (var i = 0; i < arr.length; i++) {
-      var name = arr[i];
-      if (name == value) {
-         result = 'Exist';
-         break;
-      }
-   }
-   return result;
-
+    var result = "Doesn't exist";
+    for (var i = 0; i < arr.length; i++) {
+        // Convert each array element to lowercase, replace spaces with hyphens, and remove special characters
+        var name = arr[i].toLowerCase().replace(/\s/g, '-').replace(/'/g, '');
+        if (name === value) {
+            result = 'Exist';
+            break;
+        }
+    }
+    return result;
 }
 
+function isValidPathElement(element, array) {
+    return findValueInArray_withformat(element, array) === "Exist";
+}
 
-jQuery(document).ready(function(){
-  // reload_data();
-});
-
-function reload_data() {
-
-pathname_string = window.location.pathname;
-var result = pathname_string.substring(1, pathname_string.length-1);
-var pathArray = result.split('/');
-var removeItem = "opencourses";
-  pathArray = jQuery.grep(pathArray, function(value) {
-  return value != removeItem;
-});
-
-
-var countries_php_array = <?php echo json_encode($scholarships_array); ?>;
-var countries_array = $.map(countries_php_array, function(value, index){
-        return [value];
-});
+function setSelectedValue(selector, value) {
+    var selectElement = document.querySelector(selector);
+    var transformedValue = value.toLowerCase().replace(/\s/g, '-').replace(/'/g, '');
+    selectElement.value = transformedValue;
+}
 
  
+function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, adsPerPage, currentPage) {
+
+   
+    
+    jQuery('.card-section-new').css("display", "none");
+    jQuery('#preloader').css("display", "block");
+      
+      currentOrder = getCurrentOrder(); 
+     
+    
+
+    var formData = new FormData();
+    if(country_value) {
+        formData.append('country', country_value);
+    } if(degree_value) {
+        formData.append('degree', degree_value);
+    } if(subject_value) {
+      formData.append('subject', subject_value);  
+    } 
+    formData.append("action", "load_courses");
+
+     formData.append("page", currentPage);
+     formData.append("order", currentOrder);
+    
+    url_update = "";
+
+    if(degree_value){
+    url_update +=  "/" + degree_value;
+    }
+
+    if(country_value){
+    url_update +=  "/" + country_value;
+    }
+
+    if(subject_value){
+    url_update +=  "/" + subject_value;
+    }
+    
+
+     // Extract page number from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('pages');
+    
+
+    jQuery.ajax({
+        url: adminAjaxUrl,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'post',
+        success: function(response) {
+
+            jQuery('#preloader').css("display", "none");
+            var $response = jQuery('<div>').html(response);
+            var openCourseTitle = $response.find('.opencourse-ajax-title').text();
+            openCourseCount = $response.find('.opencourse-ajax-count').text();
+            
+           
+            jQuery('.opencourse-title-div h1').text(openCourseTitle);
+            $response.find('.opencourse-ajax-title, .opencourse-ajax-count').remove();
+
+            jQuery('.card-section-new').css("display", "block").html($response.html());
+            
+             $('.course-filter').css("display" , "block");
+             $('.opencourse-title-div').css("display" , "block");
+             $('.sort-by-fee').css("display" , "block");
+             $('.opencourse-pagination').css("display" , "block");
+             
+             
+
+            var totalPages = Math.ceil(openCourseCount / adsPerPage);
+
+            if(currentPage == totalPages ) {
+             jQuery('.pag-next').hide();
+           } else {
+            jQuery('.pag-next').show();
+           }
+           
+           if(currentPage > 1) {
+            jQuery('.pag-pre').show();
+           }
+
+            
+             if (openCourseCount <= 10) {
+                 jQuery('.opencourse-pagination').hide();
+               }
+
+                if(pageParam) {
+                changeurl("opencourses"  + url_update + "/?pages=" + pageParam);
+               } else {
+                 changeurl("opencourses"  + url_update);
+               }
+
+                           
+               var startNumber, endNumber;
+
+if (currentPage == 1) {
+    startNumber = 1;
+} else {
+    startNumber = (currentPage - 1) * adsPerPage + 1;
+}
+
+// Calculate the end number, making sure it does not exceed openCourseCount
+endNumber = currentPage * adsPerPage;
+if (endNumber > openCourseCount) {
+    endNumber = openCourseCount;
+}
+
+// Update the text in the spans
+jQuery('.opencourse-pagination .number-bold').first().text(startNumber);
+jQuery('.opencourse-pagination .number-bold').eq(1).text(endNumber);
+jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
 
 
 
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", error);
+            jQuery('.card-section-new').html("<p>Sorry, there was a problem loading the content.</p>");
+        }
+    });
 }
 
 
 
+
+function reload_data() {
+   
+    
+    $('#preloader').css("display" , "block");
+    
+     // Extract page number from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('pages');
+    
+    if(pageParam) {
+    currentPage = pageParam;
+    jQuery('.pag-pre').show();
+    } else {
+         jQuery('.pag-pre').hide();
+    }
+
+    var pathname_string = window.location.pathname;
+    var result = pathname_string.substring(1, pathname_string.length-1);
+    var pathArray = result.split('/').filter(value => value !== "opencourses");
+
+    var countries_array_js = convertPhpArrayToJson(<?php echo json_encode($countries_array); ?>);
+    var degrees_array_js = convertPhpArrayToJson(<?php echo json_encode($degrees_array); ?>);
+    var subjects_array_js = convertPhpArrayToJson(<?php echo json_encode($subjects_array); ?>);
+
+    if (!isValidPath(pathArray, countries_array_js, degrees_array_js, subjects_array_js)) {
+        window.location.href = '/404';
+        return;
+    } else {
+        $('.card-section-new').css("display" , "block");
+        $('#preloader').css("display" , "none");
+    }
+
+    var country_value = getValueFromPath(pathArray, countries_array_js);
+    var degree_value = getValueFromPath(pathArray, degrees_array_js);
+    var subject_value = getValueFromPath(pathArray, subjects_array_js);
+   
+    country_value = formatValue(country_value);
+    degree_value = formatValue(degree_value);
+    subject_value = formatValue(subject_value);
+
+    if(degree_value=="masters") {
+    degree_value = "Master's";
+    } if(degree_value=="bachelors") {
+    degree_value="Bachelor's";
+    }
+    
+
+    
+   // Example usage
+   loadCourses(degree_value, country_value, subject_value, '<?php echo admin_url('admin-ajax.php'); ?>', adsPerPage, currentPage);
+     
+   
+}
+
+function formatValue(value) {
+    value = value.replace(/-/g, ' ');
+    return value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+        return letter.toUpperCase();
+    });
+}
+
+
+function convertPhpArrayToJson(phpArray) {
+    return $.map(phpArray, function(value) {
+        return [value];
+    });
+}
+
+
+function isValidPath(pathArray, countries, degrees, subjects) {
+    return pathArray.every(element => 
+        isValidPathElement(element, countries) || 
+        isValidPathElement(element, degrees) || 
+        isValidPathElement(element, subjects)
+    );
+}
+
+function getValueFromPath(pathArray, array) {
+    for (let i = 0; i < pathArray.length; i++) {
+        if (isValidPathElement(pathArray[i], array)) {
+            return pathArray[i];
+        }
+    }
+    return "";
+}
+
+
+
+jQuery(document).ready(function($) {
+   
+    
+   
+
+   
+    jQuery('.opencourse-pagination a').click(function(e) {
+     e.preventDefault();
+     
+       var totalPages = Math.ceil(openCourseCount / adsPerPage);
+       var currentOrder = 'DESC';
+       var direction = jQuery(this).text().trim();
+       
+       currentOrder = getCurrentOrder(); 
+
+    // Extract page number from the URL query parameters
+       const urlParams = new URLSearchParams(window.location.search);
+       const pageParam = urlParams.get('pages');
+       if (direction === 'Next' && currentPage < totalPages) {
+       
+    if (pageParam && !isNaN(pageParam)) {
+    currentPage = parseInt(pageParam, 10); 
+    currentPage++; 
+    }  else {
+        currentPage++;
+    }
+    
+    const current_url = new URL(window.location.href);
+if (!current_url.pathname.endsWith('/')) {
+    current_url.pathname += '/';
+}
+current_url.searchParams.set('pages', currentPage);
+window.history.pushState({}, '', current_url); 
+
+updateURLForPageOne();
+    
+       
+       loadAds(currentPage, currentOrder , totalPages , openCourseCount);
+       
+        } else if (direction === 'Prev' && currentPage > 1) {
+            
+    if (pageParam && !isNaN(pageParam)) {
+    currentPage = parseInt(pageParam, 10); 
+    currentPage--; }
+    else {
+        currentPage--;
+    }
+    
+
+    const current_url = new URL(window.location.href);
+if (!current_url.pathname.endsWith('/')) {
+    current_url.pathname += '/';
+}
+current_url.searchParams.set('pages', currentPage);
+window.history.pushState({}, '', current_url);
+
+updateURLForPageOne();
+
+            loadAds(currentPage, currentOrder ,   totalPages , openCourseCount);
+        }
+      });
+
+
+
+
+     function loadAds(pageNumber, order , totalPages , total_courses) {
+      
+       var degreeValue = $('.degree-filter select').val();
+       var subjectValue = $('.subject-filter select').val();
+       var countryValue = $('.country-filter select').val(); 
+
+     jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
+     jQuery('#preloader').css("display" , "block");
+     jQuery('.card-section-new').css("display", "none");
+        
+        jQuery.ajax({
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            type: 'POST',
+            data: {
+                'action': 'load_ads',
+                'page': pageNumber,
+                'order': order, 
+                'degree' : degreeValue,
+                'subject' : subjectValue, 
+                'country' : countryValue
+            },
+            success: function(response) {
+             jQuery('#preloader').css("display" , "none");
+            jQuery('.card-section-new').css("display", "block");
+            jQuery('.card-section-new').html(response);
+
+        currentPage = pageNumber
+
+        if(currentPage == totalPages ) {
+            jQuery('.pag-next').hide();
+           } else {
+            jQuery('.pag-next').show();
+           }
+
+           if(currentPage > 1) {
+            jQuery('.pag-pre').show();
+           } else {
+             jQuery('.pag-pre').hide();
+           }
+        
+                  var startNumber, endNumber;
+
+if (currentPage == 1) {
+    startNumber = 1;
+} else {
+    startNumber = (currentPage - 1) * adsPerPage + 1;
+}
+
+// Calculate the end number, making sure it does not exceed openCourseCount
+endNumber = currentPage * adsPerPage;
+if (endNumber > openCourseCount) {
+    endNumber = openCourseCount;
+}
+
+// Update the text in the spans
+jQuery('.opencourse-pagination .number-bold').first().text(startNumber);
+jQuery('.opencourse-pagination .number-bold').eq(1).text(endNumber);
+jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
+                  
+        jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
+           }
+        
+        });
+    }
+
+function flipImage() {
+    var image = document.getElementById('flipImage');
+    image.classList.toggle('flipped');
+
+    var order = image.classList.contains('flipped') ? 'ASC' : 'DESC';
+    var currentPage = 1;
+    var adsPerPage = 10;
+    var openCourseCount = parseInt(jQuery('.opencourse-pagination .number-bold').last().text(), 10);
+
+    const url = new URL(window.location.href);
+    const pageParam = parseInt(url.searchParams.get('pages'), 10);
+   
+    if (pageParam) {
+        url.searchParams.delete('pages');
+        window.history.pushState({}, '', url.toString());
+    }
+    
+
+
+    var totalPages = Math.ceil(openCourseCount / adsPerPage);
+      
+
+    var currentOrder = 'DESC';
+    currentOrder = getCurrentOrder(); 
+    loadAds(currentPage, currentOrder , totalPages , openCourseCount);
+}
+
+document.getElementById('flipImage').addEventListener('click', flipImage);
+
+});
+
+
+
+jQuery(document).ready(function($) {
+    $('#ajax-course-form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+       
+    currentPage = 1;
+       
+    const url = new URL(window.location.href);
+    const pageParam = parseInt(url.searchParams.get('pages'), 10);
+   
+    if (pageParam) {
+        url.searchParams.delete('pages');
+        window.history.pushState({}, '', url.toString());
+        
+    }
+
+     
+
+    
+       var degreeValue = $('.degree-filter select').val();
+       var subjectValue = $('.subject-filter select').val();
+       var countryValue = $('.country-filter select').val();    
+
+        loadCourses(degreeValue, countryValue, subjectValue, '<?php echo admin_url('admin-ajax.php'); ?>', adsPerPage, currentPage);
+       });
+});
+
+function changeurl(url, title ) {
+    var new_url = '/' + url;
+    window.history.pushState('data', title, new_url);
+}
+
+ function getCurrentOrder() {
+        return jQuery('#flipImage').hasClass('flipped') ? 'ASC' : 'DESC';
+    }
+
+
+// Function to update the URL
+function updateURLForPageOne() {
+    const url = new URL(window.location.href);
+    const currentPage = parseInt(url.searchParams.get('pages'), 10);
+
+    // Check if currentPage is 1, and if so, remove the 'pages' parameter
+    if (currentPage === 1) {
+        $('.pag-pre').hide();
+
+        url.searchParams.delete('pages');
+        window.history.pushState({}, '', url.toString());
+    }
+}
+
+// Event listener for popstate event
+window.addEventListener('popstate', function() {
+    updateURLForPageOne();
+});
+
+// Initial call to the function when the page loads
+updateURLForPageOne();
 
 
 

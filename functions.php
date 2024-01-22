@@ -1358,11 +1358,165 @@ add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
 add_action( 'admin_post_course_form', 'course_form_submit' );
 
 
+
+
+add_action('wp_ajax_load_courses', 'handle_ajax_load_courses');
+add_action('wp_ajax_nopriv_load_courses', 'handle_ajax_load_courses');
+
+function handle_ajax_load_courses() {
+  
+
+$country_value = isset($_POST['country']) ? strtolower($_POST['country']) : '';
+$degree_value = isset($_POST['degree']) ? strtolower($_POST['degree']) : '';
+$subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
+
+    $page = $_POST['page'] ?? 1;
+    $order = $_POST['order'] ?? 'DESC';
+    $adsPerPage = 10;
+    $offset = ($page - 1) * $adsPerPage;
+
+ $country_value = str_replace('-', ' ', $country_value);
+ 
+
+
+    $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
+    // Get Current Device Data
+    $ip_api = file_get_contents('https://pro.ip-api.com/json/'.$_SERVER['REMOTE_ADDR'] . '?key='.$pro_ip_api_key);
+
+    // Data Decoded
+    $data = json_decode($ip_api);
+ 
+    // Turn Object into Associative Array
+    $data_array = get_object_vars($data);
+   
+    // Get Country Code to use to get other related content (Courses)
+    if($data_array) {
+        $country_code = $data_array['countryCode'];
+    } else {
+        // In case IP API is not working
+        $country_code = $_SERVER['GEOIP_COUNTRY_CODE'];
+    }
+
+    // Location
+    $location = $country_code;
+    
+    //List of institutions in that country
+    $institute_ids_country = get_institution_ids($country_value);
+
+    if ($country == "europe"){
+        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
+    }
+
+    $location = code_to_country($location);
+
+
+    if ($location == FALSE) {
+        $location_string = "around the World";
+    } else {
+        $location_string = "from " . $location; 
+    }
+
+    $active_institutions = get_active_institutions();
+    $excluded = exclude_institutions ($location);
+    $excluded_by_tier = exclude_institutions_by_tier($location);
+    $excluded = array_merge($excluded, $excluded_by_tier);
+
+
+
+
+    // Construct the query arguments
+    $ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        'offset' => $offset, 
+        'meta_key' => 'tuition_USD',
+        'orderby' => "meta_value_num",
+        'order' => $order,
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN')
+        )
+    );
+
+
+    $all_ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        'offset' => $offset, 
+        'meta_key' => 'tuition_USD',
+        'orderby' => "meta_value_num",
+        'order' => $order,
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN')
+        )
+    );
+
+
+
+    if ($subject_value) {
+        $ad_args['meta_query'][] = array('key' => 'ads_subject', 'value' => $subject_value, 'compare' => 'LIKE');
+    }
+
+    if ($degree_value) {
+        $ad_args['meta_query'][] = array('key' => 'degrees', 'value' => $degree_value, 'compare' => 'LIKE');
+    }
+
+    if ($country_value) {
+        $ad_args['meta_query'][] = array('key' => 'adsInstitution', 'value' => $institute_ids_country, 'compare' => "IN");
+    }
+
+ $text = " ";
+ $loop = new WP_Query($ad_args);
+ $total_count = $loop->found_posts;
+ $first = "" . ucwords($degree_value) . " ". ucwords($subject_value) . " Courses ";
+ $second = "in " . ucwords($country_value) . " ";
+ $third = "for Students " . $location_string;
+ if(isset($country_value) && $country_value){
+        $text = $first . $second . $third;
+    } else {
+        $text = $first . $third;
+    }
+   
+     
+
+   if ($loop->have_posts()) {
+    echo "<h2 class='opencourse-ajax-title'>" . $text . " </h2>"; 
+    echo "<p  class='opencourse-ajax-count'>" . $total_count . " </p>";
+    while ($loop->have_posts()) {
+        $loop->the_post();
+        $ad_id = get_the_ID();
+        show_ads_card_new($ad_id); // Adjust this to your function for displaying a card
+    }
+    } else {
+    echo "<p style='padding-bottom:20px;' class='white-background'><b>There were no courses matching your search of " . $text . ". Instead, we will show all the courses available for students " . $location_string . ". </b></p>";
+
+    $new_loop = new WP_Query($all_ad_args);
+    $total_count = $new_loop->found_posts;
+    if ($new_loop->have_posts()) {
+        echo "<h2 class='opencourse-ajax-title'>" . $text . " </h2>"; 
+        echo "<p  class='opencourse-ajax-count'>" . $total_count . " </p>";
+        while ($new_loop->have_posts()) {
+            $new_loop->the_post();
+            $ad_id = get_the_ID(); // Correct way to get the post ID
+            show_ads_card_new($ad_id);
+        }
+    }
+ }
+
+
+    wp_die();
+
+}
+
 function show_ads_card( $ad_id ){
     
     $ad = get_post( $ad_id );
     $fields = get_fields( $ad_id );
-    
     require get_stylesheet_directory() .'/components/ad-card.php';
 
 };
@@ -1371,7 +1525,6 @@ function show_ads_card_new( $ad_id ){
     
     $ad = get_post( $ad_id );
     $fields = get_fields( $ad_id );
-    
     require get_stylesheet_directory() .'/components/ad-card-new.php';
 
 };
@@ -1636,21 +1789,26 @@ function my_ajax_handler() {
    $offset = $_POST["offset"];
    $ppp = $_POST["ppp"];
    $page_count = $_POST['page_count'];
+
+   if(isset($_POST['query'])) {
+   $query = $_POST['query'];
+  }
+
   
    //$offset = $offset - 1;
   
-   $degrees = stripslashes($_POST['degrees']);
+   $degrees = isset($_POST['degrees']) ? stripslashes($_POST['degrees']) : '';
    $degrees_array = explode(',', $degrees); 
 
    $subjects = $_POST['subjects'];
    $subject_array = explode(',', $subjects); 
 
-   $scholarship = $_POST['scholarship'];
-   $scholarship_array = explode(',', $scholarship);
+   // $scholarship = $_POST['scholarship'];
+   // $scholarship_array = explode(',', $scholarship);
 
-  
    $locations = $_POST['locations'];
    $locations_array = explode(',', $locations); 
+
 
    $nationality = $_POST['nationality'];
    $nationality_array = explode(',', $nationality); 
@@ -1661,12 +1819,13 @@ function my_ajax_handler() {
    $applications = $_POST['applications'];
    $application_array = explode(',', $applications);
 
-   $institution_array = $_POST['institutions'];
-   $institution_array = explode(',', $institution_array);  
+   // $institution_array = $_POST['institutions'];
+   // $institution_array = explode(',', $institution_array); 
+
    
-$scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
-$published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
-$country_list = $published_countries['choices'];
+   $scholarship_details  = acf_get_fields('group_62ca6e3cc910c');
+   $published_countries = array_column($scholarship_details, null, 'name')['published_countries'];
+   $country_list = $published_countries['choices'];
   
 
 $reload_true = $_POST["reload"];
@@ -1838,13 +1997,15 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
   
 
   
-    if(isset($institution_array[0]) && $institution_array[0]){
-       $institution_query  = array('key' => 'scholarship_institution', 'value' => $institution_array, 'compare' => "IN");
-     } else {
-        if(isset($locations_array[0]) && $locations_array[0]){
+    // if(isset($institution_array[0]) && $institution_array[0]){
+    //    $institution_query  = array('key' => 'scholarship_institution', 'value' => $institution_array, 'compare' => "IN");
+    //  } else {
+       
+    //  } 
+
+      if(isset($locations_array[0]) && $locations_array[0]){
         $location_query  = array('key' => 'scholarship_institution', 'value' => $institute_ids, 'compare' => "IN");
         }
-     } 
 
     $meta_query = array( 'relation' => 'AND');    
         
@@ -1868,29 +2029,31 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     $meta_query[] = $nationality_query; 
     }
 
-    if ($institution_query) { 
-    $meta_query[] = $institution_query; 
-    }
+    // if ($institution_query) { 
+    // $meta_query[] = $institution_query; 
+    // }
 
      if ($application_query) { 
     $meta_query[] = $application_query; 
     }
     
    
- if($scholarship_array[0]){
- $ad_args = array(
-    'post_type' => 'scholarships',
-    'post_status' => 'publish',
-    'posts_per_page' => $ppp,
-    'offset' => $offset,
-    'fields' => 'ids', // Only return post IDs
-    'meta_key' => 'scholarship_weights',  // name of custom field
-    'orderby' => 'meta_value_num',  // we want to order by numeric value
-    'order' => 'DESC',  // highest to lowest
-    'title' => $scholarship_array[0]
-);
-   }
-   else {
+//  if($scholarship_array[0]){
+//  $ad_args = array(
+//     'post_type' => 'scholarships',
+//     'post_status' => 'publish',
+//     'posts_per_page' => $ppp,
+//     'offset' => $offset,
+//     'fields' => 'ids', // Only return post IDs
+//     'meta_key' => 'scholarship_weights',  // name of custom field
+//     'orderby' => 'meta_value_num',  // we want to order by numeric value
+//     'order' => 'DESC',  // highest to lowest
+//     'title' => $scholarship_array[0]
+// );
+//    }
+//    else {
+
+  
     $ad_args = array(
     'post_type' => 'scholarships',
     'post_status' => 'publish',
@@ -1901,7 +2064,11 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     'orderby' => 'meta_value_num',  // we want to order by numeric value
     'order' => 'DESC',  // highest to lowest
     );
-    }
+   // }
+
+    if (!empty($query)) {
+    $ad_args['s'] = $query;
+}
 
    if ($meta_query){
         $ad_args['meta_query'] = $meta_query;
@@ -2052,7 +2219,9 @@ if($type_array[0]) {
                 while ($loop->have_posts() ) {
                         $loop->the_post();
                        
-                        $scholarship_id = $post->ID;
+                        //$scholarship_id = $post->ID;
+                        $scholarship_id = get_the_ID();
+
                         $html   .= '<div class="col-sm-12 my-2 course-card" >';
                         $html   .= scholarship_card($scholarship_id);
                         $html   .= '</div>'; 
@@ -4670,6 +4839,12 @@ add_action('wp_ajax_nopriv_load_ads', 'load_ads_ajax_handler');
 function load_ads_ajax_handler() {
 
 
+
+    $degree_value = $_POST['degree']; 
+    $subject_value = $_POST['subject'];
+    $country_value = $_POST['country'];
+    $country_value = str_replace('-', ' ', $country_value);
+
     $courses_details  = acf_get_fields('group_64c9f01dd1837');
     $courses_subject = array_column($courses_details, null, 'name')['subjects'];
     $ads_subject = $courses_subject['choices'];
@@ -4706,7 +4881,7 @@ function load_ads_ajax_handler() {
     $location = $country_code;
     
     //List of institutions in that country
-    $institute_ids_country = get_institution_ids($country);
+    $institute_ids_country = get_institution_ids($country_value);
 
     if ($country == "europe"){
         $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
@@ -4731,12 +4906,17 @@ function load_ads_ajax_handler() {
 
     $excluded = array_merge($excluded, $excluded_by_tier);
 
-
+   
+      
+    $degree_value = $_POST['degree']; 
+    $subject_value = $_POST['subject'];
+    $country_value = $_POST['country'];
+    $country_value = str_replace('-', ' ', $country_value);
 
     $page = $_POST['page'] ?? 1;
     $order = $_POST['order'] ?? 'DESC';
     $adsPerPage = 10;
-   $offset = ($page - 1) * $adsPerPage;
+    $offset = ($page - 1) * $adsPerPage;
     // Prepare your query arguments based on the order
     $ad_args = array(
         'post_type' => 'ads',
@@ -4745,13 +4925,44 @@ function load_ads_ajax_handler() {
         'offset' => $offset, 
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
-        'order' => 'DESC',
+        'order' => $order,
         'meta_query' => array(
             'relation' => 'AND',
             array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
             array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),      
         ),
     );
+
+     $all_ad_args = array(
+        'post_type' => 'ads',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        'offset' => $offset, 
+        'meta_key' => 'tuition_USD',
+        'orderby' => "meta_value_num",
+        'order' => $order,
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+            array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN')
+        )
+    );
+
+
+
+
+
+    if ($subject_value) {
+        $ad_args['meta_query'][] = array('key' => 'ads_subject', 'value' => $subject_value, 'compare' => 'LIKE');
+    }
+
+    if ($degree_value) {
+        $ad_args['meta_query'][] = array('key' => 'degrees', 'value' => $degree_value, 'compare' => 'LIKE');
+    }
+
+    if ($country_value) {
+        $ad_args['meta_query'][] = array('key' => 'adsInstitution', 'value' => $institute_ids_country, 'compare' => "IN");
+    }
 
     $loop = new WP_Query($ad_args);
 
@@ -4762,7 +4973,18 @@ function load_ads_ajax_handler() {
             show_ads_card_new($ad_id); // Ensure this function outputs the correct HTML for an ad
         }
     } else {
-        echo 'No courses found.';
+         
+
+    $new_loop = new WP_Query($all_ad_args);
+    $total_count = $new_loop->found_posts;
+    if ($new_loop->have_posts()) {
+        
+        while ($new_loop->have_posts()) {
+            $new_loop->the_post();
+            $ad_id = get_the_ID(); // Correct way to get the post ID
+            show_ads_card_new($ad_id);
+        }
+    }
     }
 
     wp_die(); // Always include this in your AJAX handlers
