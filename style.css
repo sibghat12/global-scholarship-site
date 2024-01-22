@@ -9222,7 +9222,7 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     }
 
     .page-template-template-filters #search-box-container {
-        display: grid !important;
+        display: grid;
         order: 1;
     }
 
