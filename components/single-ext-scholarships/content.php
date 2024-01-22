@@ -20,6 +20,7 @@
     $country_array_original = $countries_field['choices'];
 
     $scholarship_funded_by = get_field('funded_by');
+    $scholarship_providers = get_field('providers');
     
     $scholarship_category = get_field('scholarship_category');
     $scholarship_type = get_field('scholarship_type');
@@ -28,9 +29,6 @@
     $varied_deadlines = get_field('varied_deadlines');
     $scholarship_deadlines = get_field('scholarship_deadlines');
     $scholarship_deadlines_country_institution = get_field('scholarship_deadlines_country_institution');
-    
-    $degrees = get_field('eligible_degrees');
-    $degrees_text = convert_array_to_text($degrees);
 
     $number_of_recipients = get_field('number_of_recipients');
     $scholarship_duration = get_field('scholarship_duration');
@@ -60,7 +58,8 @@
     
     $application_procedures = get_field('application_procedure');
 
-    $application_steps = get_field('application_steps');
+    $application_requirements = get_field('application_requirements');
+
     $helpful_links = get_field('helpful_links');
 
 

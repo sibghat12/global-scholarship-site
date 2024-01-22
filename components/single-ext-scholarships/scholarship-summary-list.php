@@ -111,6 +111,14 @@ if($scholarship_funded_by) {
     }
 }
 
+// Scholarship Providers Using Providers CPT
+$scholarship_providers_list = [];
+if($scholarship_providers) {
+    foreach($scholarship_providers as $scholarship_provider) {
+        $scholarship_providers_list[] = $scholarship_provider->post_title;
+    }
+}
+
 ?>
 <ul>
 
@@ -119,8 +127,9 @@ if($scholarship_funded_by) {
         <li>Host Country: <b><?php echo $scholarship_host_country; ?></b></li>
     <?php endif; ?>
     <?php if($scholarship_funded_by): ?>
-        <li>Offered By: <b><?php echo convert_array_to_text($offered_by_orgs); ?></b></li>
+        <li>Offered By: <b><?php echo convert_array_to_text($scholarship_providers_list); ?></b></li>
     <?php endif; ?>
+    <?php if(isset($eligible_nationalities_string)) : ?>
     <input type="hidden" class="gs-ext-scholarship-eligible-nationalities" value="<?php echo $eligible_nationalities_string; ?>" />
     <li>  Eligible Countries:  
         <div class="gs-ext-scholarship-nationalities-container">
@@ -130,6 +139,8 @@ if($scholarship_funded_by) {
             <?php endif; ?>
         </div>
     </li>
+    <?php endif; ?>
+    <?php if(isset($programs_string)): ?>
     <input type="hidden" class="gs-ext-scholarship-eligible-programs" value="<?php echo $programs_string; ?>" />
     <li>  Eligible Programs:  
         <div class="gs-ext-scholarship-programs-container">
@@ -139,7 +150,9 @@ if($scholarship_funded_by) {
             <?php endif; ?>
         </div>
     </li>
+    <?php endif; ?>
     <input type="hidden" class="gs-ext-scholarship-eligible-institutions" value="<?php echo $gs_eligible_places; ?>" />
+    <?php if(isset($eligible_institution_countries) || isset($eligible_institutions)) : ?>
     <li>Eligible Institutions: 
         <div class="gs-ext-scholarship-eligible-universities-container">
                 <b class="gs-ext-scholarship-eligible-universities"></b>
@@ -154,6 +167,7 @@ if($scholarship_funded_by) {
                 <?php endif; ?>
         </div>
     </li>
+    <?php endif; ?>
     
     <?php if ($number_of_recipients > 0) { ?>
         <li> Number of Recipients: <b> <?php echo $number_of_recipients; ?> </b> </li>
@@ -162,12 +176,13 @@ if($scholarship_funded_by) {
         echo "<li>Number of Recipients: <b>Not Specified</b> </li>";
     } ?>
 
-    <li>Scholarship Type: <b><?php echo $scholarship_category; ?> </b></li>
-    <?php if ($scholarship_amount > 0) { ?>
+    <?php if(isset($scholarship_category)) : ?>
+        <li>Scholarship Type: <b><?php echo $scholarship_category; ?> </b></li>
+    <?php endif; ?>
+    <?php if ($scholarship_amount > 0):?>
         <li>Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
         <?php echo $currency; ?></b></li>
-    <?php    }  ?>    
-
+    <?php endif; ?>    
     <?php
     $scholarship_duration_html='';
     if ($scholarship_duration) {
@@ -186,16 +201,8 @@ if($scholarship_funded_by) {
         }
     
         if ($similar_duration) {
-            // $degrees_count = count($scholarship_duration);
             $duration_text = '<span>';
-            // foreach ($scholarship_duration as $key => $duration) {
-            //     // $duration_text .= $duration['degrees'];
-            //     // if ($key === $degrees_count - 2) {
-            //     //     $duration_text .= ', and '; // Add a comma before the last degree
-            //     // } elseif ($key !== $degrees_count - 1) {
-            //     //     $duration_text .= ', ';
-            //     // }
-            // }
+
             $duration_text .= ': '. $same_number . ' ' . $label . '</span>';
             $scholarship_duration_html .= '<span class="gs-ext-scholarships-single-duration"><b>' . $duration_text . '</b></span>';
 
@@ -205,11 +212,13 @@ if($scholarship_funded_by) {
     
     } 
     ?>
-    <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
+    <?php if(isset($scholarship_duration_html)) : ?>
+        <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
+    <?php endif; ?>
     
-    
-    <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
-
+    <?php if(isset($scholarship_type)) : ?>
+        <li>Scholarship Type: <b><?php echo $scholarship_type; ?> </b> </li>
+    <?php endif; ?>
     <?php
     $current_date = date('Y-m-d'); // Current date in 'Y-m-d' format
     if(!$varied_deadlines) :
@@ -244,10 +253,12 @@ if($scholarship_funded_by) {
         }
         ?>
     <?php else : 
-            echo '<li>Application Deadline:<ul>';
-            foreach ($scholarship_deadlines_country_institution as $deadline) {
-                echo '<li>' . $deadline['country_institution'] . ': <b>' .  (strtotime($deadline['deadline']) >= strtotime($current_date) ? $deadline['deadline'] . ' (Open)' :  $deadline['deadline'] . ' (Past Deadline)') . '</b></li>';
-            }
+            if($scholarship_deadlines_country_institution) :
+                echo '<li>Application Deadline:<ul>';
+                foreach ($scholarship_deadlines_country_institution as $deadline) {
+                    echo '<li>' . $deadline['country_institution'] . ': <b>' .  (strtotime($deadline['deadline']) >= strtotime($current_date) ? $deadline['deadline'] . ' (Open)' :  $deadline['deadline'] . ' (Past Deadline)') . '</b></li>';
+                }
+            endif;
             echo '</ul></li>';
 
             ?>
