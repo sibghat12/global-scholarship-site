@@ -261,9 +261,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  <div class="clearfix"> </div>
                 
  <div class="opencourse-pagination" style="display:none;">
-                 <p style="margin-bottom:20px !important;text-align: center !important;">Page 
+                 <p style="margin-bottom:20px !important;text-align: center !important;"> 
                     <span class="number-bold">1</span> to 
-                    <span class="number-bold">10 </span> of 
+                    <span class="number-bold">10 </span>  of
                     <span class="number-bold">100 </span> 
                  Courses </p> 
                
@@ -580,8 +580,9 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
     jQuery('.card-section-new').css("display", "none");
     jQuery('#preloader').css("display", "block");
       
-    currentOrder = getCurrentOrder(); 
-      
+      currentOrder = getCurrentOrder(); 
+     
+    
 
     var formData = new FormData();
     if(country_value) {
@@ -629,6 +630,7 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
             var openCourseTitle = $response.find('.opencourse-ajax-title').text();
             openCourseCount = $response.find('.opencourse-ajax-count').text();
             
+           
             jQuery('.opencourse-title-div h1').text(openCourseTitle);
             $response.find('.opencourse-ajax-title, .opencourse-ajax-count').remove();
 
@@ -642,6 +644,17 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
              
 
             var totalPages = Math.ceil(openCourseCount / adsPerPage);
+
+            if(currentPage == totalPages ) {
+             jQuery('.pag-next').hide();
+           } else {
+            jQuery('.pag-next').show();
+           }
+           
+           if(currentPage > 1) {
+            jQuery('.pag-pre').show();
+           }
+
             
              if (openCourseCount <= 10) {
                  jQuery('.opencourse-pagination').hide();
@@ -654,11 +667,25 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
                }
 
                            
-               
+               var startNumber, endNumber;
 
-            jQuery('.opencourse-pagination .number-bold').first().text(currentPage);
-            jQuery('.opencourse-pagination .number-bold').eq(1).text(totalPages);
-            jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
+if (currentPage == 1) {
+    startNumber = 1;
+} else {
+    startNumber = (currentPage - 1) * adsPerPage + 1;
+}
+
+// Calculate the end number, making sure it does not exceed openCourseCount
+endNumber = currentPage * adsPerPage;
+if (endNumber > openCourseCount) {
+    endNumber = openCourseCount;
+}
+
+// Update the text in the spans
+jQuery('.opencourse-pagination .number-bold').first().text(startNumber);
+jQuery('.opencourse-pagination .number-bold').eq(1).text(endNumber);
+jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
+
 
 
         },
@@ -680,8 +707,12 @@ function reload_data() {
      // Extract page number from the URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('pages');
+    
     if(pageParam) {
     currentPage = pageParam;
+    jQuery('.pag-pre').show();
+    } else {
+         jQuery('.pag-pre').hide();
     }
 
     var pathname_string = window.location.pathname;
@@ -848,10 +879,37 @@ updateURLForPageOne();
             jQuery('.card-section-new').html(response);
 
         currentPage = pageNumber
-         
-        jQuery('.opencourse-pagination .number-bold').first().text(currentPage);
-        jQuery('.opencourse-pagination .number-bold').eq(1).text(totalPages);
-        jQuery('.opencourse-pagination .number-bold').last().text(total_courses);
+
+        if(currentPage == totalPages ) {
+            jQuery('.pag-next').hide();
+           } else {
+            jQuery('.pag-next').show();
+           }
+
+           if(currentPage > 1) {
+            jQuery('.pag-pre').show();
+           } else {
+             jQuery('.pag-pre').hide();
+           }
+        
+                  var startNumber, endNumber;
+
+if (currentPage == 1) {
+    startNumber = 1;
+} else {
+    startNumber = (currentPage - 1) * adsPerPage + 1;
+}
+
+// Calculate the end number, making sure it does not exceed openCourseCount
+endNumber = currentPage * adsPerPage;
+if (endNumber > openCourseCount) {
+    endNumber = openCourseCount;
+}
+
+// Update the text in the spans
+jQuery('.opencourse-pagination .number-bold').first().text(startNumber);
+jQuery('.opencourse-pagination .number-bold').eq(1).text(endNumber);
+jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
                   
         jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
            }
@@ -879,6 +937,8 @@ function flipImage() {
 
 
     var totalPages = Math.ceil(openCourseCount / adsPerPage);
+      
+
     var currentOrder = 'DESC';
     currentOrder = getCurrentOrder(); 
     loadAds(currentPage, currentOrder , totalPages , openCourseCount);
@@ -902,7 +962,12 @@ jQuery(document).ready(function($) {
     if (pageParam) {
         url.searchParams.delete('pages');
         window.history.pushState({}, '', url.toString());
+        
     }
+
+     
+
+    
        var degreeValue = $('.degree-filter select').val();
        var subjectValue = $('.subject-filter select').val();
        var countryValue = $('.country-filter select').val();    
@@ -928,6 +993,8 @@ function updateURLForPageOne() {
 
     // Check if currentPage is 1, and if so, remove the 'pages' parameter
     if (currentPage === 1) {
+        $('.pag-pre').hide();
+
         url.searchParams.delete('pages');
         window.history.pushState({}, '', url.toString());
     }
