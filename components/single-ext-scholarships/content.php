@@ -29,9 +29,6 @@
     $varied_deadlines = get_field('varied_deadlines');
     $scholarship_deadlines = get_field('scholarship_deadlines');
     $scholarship_deadlines_country_institution = get_field('scholarship_deadlines_country_institution');
-    
-    $degrees = get_field('eligible_degrees');
-    $degrees_text = convert_array_to_text($degrees);
 
     $number_of_recipients = get_field('number_of_recipients');
     $scholarship_duration = get_field('scholarship_duration');
