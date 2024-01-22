@@ -42,13 +42,6 @@ $scholarships_array = get_all_scholarships();   ?>
 </div>
 
 
-
-<div id="mobile-search-box">
-    
-</div>
-
-
-
 <!-- Filter Button for Mobile -->
 <div class="sticky-wrapper">
   <div class="mobile-sticky-div">
@@ -140,7 +133,7 @@ $scholarships_array = get_all_scholarships();   ?>
 <!-- Content Start to display Cards -->
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
 
-<div id="desktop-search-box" style="display:none;">
+<div id="search-box-container" style="display:none;">
 <div id="scholarship-search-box-wrapper"   class="gs-scholarship-search-form" >
   <div class="scholarship-search-container" >
   <input type="text" name="search" id="search" placeholder="Search for scholarships or institutions" class="search-input scholarship-search-field form-control">
@@ -673,7 +666,7 @@ $.ajax({
         $('#filter-panell').css("display" , "block");
         $('.title-textt').css("display" , "block");
         $('.title-wrapper-scholarship-search').css("display" , "block");
-        $('#desktop-search-box').show();
+        $('#search-box-container').css("display" , "block");
        
           $('#prev-posts').css("display" , "none");
 
@@ -1563,26 +1556,51 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 // });
 
 
-$(document).ready(function() {
-    function copyContentToMobile() {
-        var desktopSearchContent = $('#desktop-search-box').html();
-        $('#desktop-search-box').hide();
-        $('#mobile-search-box').html(desktopSearchContent);
-    }
+// $(document).ready(function() {
+//     function copyContentToMobile() {
+//         var desktopSearchContent = $('#search-box-container').html();
+//         $('#search-box-container').hide();
+//         $('#mobile-search-box').html(desktopSearchContent);
+//     }
 
-    function checkWindowSize() {
-        if (window.matchMedia('(max-width: 767px)').matches) {
+//     function checkWindowSize() {
+//         if (window.matchMedia('(max-width: 767px)').matches) {
 
-            copyContentToMobile();
+//             copyContentToMobile();
+//         }
+//     }
+
+//     // Check on page load
+//     checkWindowSize();
+
+// //     // Check on window resize
+//     $(window).resize(checkWindowSize);
+// });
+
+$(document).ready(function () {
+        // Function to update the button content based on window size
+        function updateButtonContent() {
+            var windowWidth = $(window).width();
+            var button = $("#search-box-container .scholarship-search-submit");
+
+            if (windowWidth <= 768) {
+                // Replace text with SVG icon or update as needed
+                button.html('<span class="svg-icon"><svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg></span><span class="screen-reader-text">Search</span>');
+            } else {
+                // Reset button text
+                button.html('Search <span class="screen-reader-text">Search</span>');
+            }
         }
-    }
 
-    // Check on page load
-    checkWindowSize();
+        // Initial call to set button content on page load
+        updateButtonContent();
 
-    // Check on window resize
-    $(window).resize(checkWindowSize);
-});
+        // Event listener for window resize
+        $(window).resize(function () {
+            // Call the function on window resize
+            updateButtonContent();
+        });
+    });
 
 
 

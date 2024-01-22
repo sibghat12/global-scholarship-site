@@ -9201,15 +9201,45 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 
 /* Hide the mobile search box on screens larger than 767px */
 @media screen and (min-width: 768px) {
-    #mobile-search-box {
+    /* #mobile-search-box {
         display: none;
-    }
+    } */
 }
 
 /* Hide the desktop search box on screens smaller than or equal to 767px */
 @media screen and (max-width: 767px) {
-    #desktop-search-box {
-        display: none;
+    .page-template-template-filters .fusion-row.f.filter-row {
+        display: grid;
+    }
+
+    .page-template-template-filters #search-box-container {
+        display: grid !important;
+        order: 1;
+    }
+
+    .page-template-template-filters .title-wrapper-scholarship-search {
+        order: 1;
+    }
+
+    .page-template-template-filters .sticky-wrapper {
+        order: 2;
+    }
+
+    .page-template-template-filters .filter-row .sticky-wrapper {
+        margin: 0 !important;
+    }
+
+    .page-template-template-filters div#filter-panell {
+        order: 3;
+    }
+
+    .page-template-template-filters div#scholarship-cards {
+        order: 4;
+    }
+
+    .page-template-template-filters span.svg-icon {
+        width: 24px;
+        display: block;
     }
 }
 
