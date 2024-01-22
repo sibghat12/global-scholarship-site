@@ -61,7 +61,7 @@ jQuery(document).ready(function ($) {
               }
   
                 // Check if institution_scholarships exists, otherwise use institution_scholarship
-                let scholarshipsToShow = institution_scholarships ? 'Number of Scholarships Offered: ' + institution_scholarships : institution_scholarship + ' | ' + scholarship_type;
+                let scholarshipsToShow = institution_scholarships != undefined ? 'Number of Scholarships Offered: ' + institution_scholarships : institution_scholarship + ' | ' + scholarship_type;
 
               resultsHtml += `<li class="list-group-item" id="${key}_${itemIndex}">
                           <a href="${permalink}" class="list_result_item list_result_item_${key}_${itemIndex}" 
