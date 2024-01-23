@@ -1,5 +1,26 @@
 jQuery(document).ready(function ($) {
+        // Function to update the button content based on window size
+        function updateButtonContent() {
+          var windowWidth = $(window).width();
+          var button = $("#search-box-container .scholarship-search-submit");
 
+          if (windowWidth <= 768) {
+              // Replace text with SVG icon or update as needed
+              button.html('<span class="svg-icon"><svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg></span><span class="screen-reader-text">Search</span>');
+          } else {
+              // Reset button text
+              button.html('Search <span class="screen-reader-text">Search</span>');
+          }
+      }
+
+      // Initial call to set button content on page load
+      updateButtonContent();
+
+      // Event listener for window resize
+      $(window).resize(function () {
+          // Call the function on window resize
+          updateButtonContent();
+      });
   
     function handleSearch() {
       let textInput = $(this).val().toLowerCase();
@@ -61,11 +82,11 @@ jQuery(document).ready(function ($) {
               }
   
                 // Check if institution_scholarships exists, otherwise use institution_scholarship
-                let scholarshipsToShow = institution_scholarships ? 'Number of Scholarships Offered: ' + institution_scholarships : institution_scholarship + ' | ' + scholarship_type;
+                let scholarshipsToShow = institution_scholarships != undefined ? 'Number of Scholarships Offered: ' + institution_scholarships : institution_scholarship + ' | ' + scholarship_type;
 
               resultsHtml += `<li class="list-group-item" id="${key}_${itemIndex}">
-                          <a href="${permalink}" class="list_result_item list_result_item_${key}_${itemIndex}" 
-                          data-link="${permalink}" data-title="${title}" ${dataInstitute}>
+                          <a href="${permalink}/" class="list_result_item list_result_item_${key}_${itemIndex}" 
+                          data-link="${permalink}/" data-title="${title}" ${dataInstitute}>
                           <b>${title}</b><div>${scholarshipsToShow}</div></a>
                       </li>`;
             });
