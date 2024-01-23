@@ -42,13 +42,6 @@ $scholarships_array = get_all_scholarships();   ?>
 </div>
 
 
-
-<div id="mobile-search-box">
-    
-</div>
-
-
-
 <!-- Filter Button for Mobile -->
 <div class="sticky-wrapper">
   <div class="mobile-sticky-div">
@@ -140,7 +133,7 @@ $scholarships_array = get_all_scholarships();   ?>
 <!-- Content Start to display Cards -->
 <button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
 
-<div id="desktop-search-box" style="display:none;">
+<div id="search-box-container" style="display:none;">
 <div id="scholarship-search-box-wrapper"   class="gs-scholarship-search-form" >
   <div class="scholarship-search-container" >
   <input type="text" name="search" id="search" placeholder="Search for scholarships or institutions" class="search-input scholarship-search-field form-control">
@@ -673,7 +666,7 @@ $.ajax({
         $('#filter-panell').css("display" , "block");
         $('.title-textt').css("display" , "block");
         $('.title-wrapper-scholarship-search').css("display" , "block");
-        $('#desktop-search-box').show();
+        $('#search-box-container').css("display" , "block");
        
           $('#prev-posts').css("display" , "none");
 
@@ -1563,26 +1556,26 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 // });
 
 
-$(document).ready(function() {
-    function copyContentToMobile() {
-        var desktopSearchContent = $('#desktop-search-box').html();
-        $('#desktop-search-box').hide();
-        $('#mobile-search-box').html(desktopSearchContent);
-    }
+// $(document).ready(function() {
+//     function copyContentToMobile() {
+//         var desktopSearchContent = $('#search-box-container').html();
+//         $('#search-box-container').hide();
+//         $('#mobile-search-box').html(desktopSearchContent);
+//     }
 
-    function checkWindowSize() {
-        if (window.matchMedia('(max-width: 767px)').matches) {
+//     function checkWindowSize() {
+//         if (window.matchMedia('(max-width: 767px)').matches) {
 
-            copyContentToMobile();
-        }
-    }
+//             copyContentToMobile();
+//         }
+//     }
 
-    // Check on page load
-    checkWindowSize();
+//     // Check on page load
+//     checkWindowSize();
 
-    // Check on window resize
-    $(window).resize(checkWindowSize);
-});
+// //     // Check on window resize
+//     $(window).resize(checkWindowSize);
+// });
 
 
 
