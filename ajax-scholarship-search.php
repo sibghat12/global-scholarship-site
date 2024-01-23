@@ -53,18 +53,23 @@ class GS_Scholarship_Search_Ajax {
         $the_loop_scholarships = new WP_Query($scholarships_args);
         $scholarships_posts_ids = $the_loop_scholarships->posts;
         
-        if($institutions_posts_ids) :
-            foreach($institutions_posts_ids as $id) :
+        if ($institutions_posts_ids) :
+            foreach ($institutions_posts_ids as $id) :
                 $university_url_slug = get_post_field('post_name', $id);
                 $institutions_scholarships_count = count(get_scholarships($id)->posts);
-                $data['gs_scholarship_institutions'][] = array(
-                    'id' => $id,
-                    'title' => get_the_title($id),
-                    'permalink' => get_site_url() .'/institutions/'. $university_url_slug,
-                    'institution_scholarships' => $institutions_scholarships_count,
-                );
+        
+                // Add to array only if the count is 1 or more
+                if ($institutions_scholarships_count >= 1) {
+                    $data['gs_scholarship_institutions'][] = array(
+                        'id' => $id,
+                        'title' => get_the_title($id),
+                        'permalink' => get_site_url() . '/institutions/' . $university_url_slug.'/',
+                        'institution_scholarships' => $institutions_scholarships_count,
+                    );
+                }
             endforeach;
-        endif; 
+        endif;
+        
         
         if($scholarships_posts_ids) :
             foreach($scholarships_posts_ids as $id) :
