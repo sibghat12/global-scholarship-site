@@ -5090,9 +5090,9 @@ function display_post_categories_as_bubbles() {
 add_shortcode('post_categories_bubbles', 'display_post_categories_as_bubbles');
 
 function gs_update_select_choices( $post_id ) {
-    
+
     // Check for autosave
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    // if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     $select_field_key = 'field_65b373705f46b';
 
     // Ensure the field is present in $_POST data
