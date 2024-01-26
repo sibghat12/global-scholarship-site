@@ -8836,6 +8836,7 @@ padding-bottom: 10px !important;
     max-height: 40px !important;
     margin-right: 18px;
 }
+
 .single-ext-scholarships #main .post-content .gs-scholarship-overview-box .gs-scholarship-overview-text h1 {
     font-size: 30px !important;
 }
@@ -9266,3 +9267,188 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 
 
 /* End GS Scholarship Search Css style */
+
+.gs-login-btn {
+    border:2px solid #5ab1d7;
+    color:black ;
+    background: transparent ;
+    padding: 5px 14px 5px 14px;
+    border-radius: 7px;
+    margin-left:7px;
+    font-size:14px;
+    font-weight: 500;
+    font-family: "Poppins";
+}
+.gs-signup-btn {
+    border:2px solid #5ab1d7;
+    color:white ;
+    background:#5ab1d7;
+    padding: 5px 14px 5px 14px;
+    border-radius: 7px;
+    margin-left:-2px;
+    font-size:14px;
+    font-weight: 500;
+    font-family: "Poppins";
+}
+.menu-divider {
+    margin-right:10px;
+    max-width: 1px;
+    width: 1px;
+    min-height: 25px;
+    height: 25px;
+    background: black;
+}
+
+
+
+
+
+
+/* Custom CSS for the Login Modal */
+#loginModal .modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#loginModal .modal-content {
+    padding: 20px;
+    
+    max-width:460px;
+    background-color: #fff; 
+    border-radius: 10px;
+    border: none;
+
+}
+
+#loginModal .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    padding-top:0px;
+}
+
+#loginModal .modal-title {
+    color: black;
+    font-size:32px; 
+    line-height: 38px;
+    font-weight: 700;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    margin: 0 auto; 
+    letter-spacing: normal;
+    font-family: "Poppins";
+    
+    padding-left:0px;
+
+}
+
+.alt-title-color {
+    color:#008fc6;
+}
+
+#loginModal .modal-body {
+    padding: 2rem 1rem;
+}
+
+
+#loginModal input[type=checkbox] {
+    margin:0px !important;
+}
+
+#loginModal .modal-body .form-control {
+    height: auto; 
+    padding: 0.75rem; 
+    font-size: 1rem; 
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da; 
+    margin-bottom: 1rem; 
+}
+
+#loginModal .modal-footer {
+    border-top: none;
+    padding-top: 0;
+    justify-content: center;
+}
+
+#loginModal .btn-primary {
+    width: 100%; 
+    background-color: #d9534f; 
+    border-color: #d9534f;
+    font-size:16px;
+    padding-top:7px;
+    padding-bottom:7px;
+    border-radius: 7px;
+    margin-bottom: 0.5rem; 
+}
+
+#loginModal .btn-danger {
+    width: 100%; 
+    
+}
+
+.google-btn {
+    background: #f7f7f7 !important;
+    color:black !important;
+    font-size:18px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius: 7px;
+    border:none !important;
+}
+
+
+#loginModal .modal-footer{
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    color:black !important;
+    letter-spacing: normal;
+}
+
+.alt-signup-text
+{
+    color:#d9534f !important;
+}
+#loginModal .modal-footer a {
+    color: black; 
+    margin-top:15px;
+
+    text-decoration: none;
+    text-align: center; 
+}
+
+.login-forget-password {
+    text-align:right;
+    color:black;
+}
+
+
+#loginModal .form-check-label {
+    margin-bottom: 1rem; 
+}
+
+#loginModal .form-check-input {
+    margin-right: 0.5rem;
+}
+
+/* Custom CSS for OR separator */
+.or-separator {
+    margin: 2rem 0;
+    text-align: center;
+    border-bottom: 1px solid #ced4da;
+    line-height: 0.1rem;
+    font-weight: 700;
+}
+
+.or-separator span {
+    background: #fff; 
+    padding: 0 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    #loginModal .modal-dialog {
+        width: 90%; /* Modal width on smaller screens */
+    }
+}

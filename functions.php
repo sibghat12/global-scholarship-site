@@ -5126,3 +5126,71 @@ function gs_update_select_choices( $post_id ) {
     }
 }
 add_action('acf/save_post', 'gs_update_select_choices', 20);
+
+
+function add_login_modal_and_js() {
+    ?>
+    <!-- Login Modal HTML -->
+    <div class="modal fade" style="display: none;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">
+
+                        Sign in to <span class="alt-title-color">Global Scholarships </span></h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body">
+                    <!-- The form inside the modal -->
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+
+                        <div style="width:50%;float:left;">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+
+                        </div>
+                        </div>
+
+                         <div style="width:50%;float:right;text-align: right; font-weight: 700;">
+                        <a class="login-forget-password" href="#"> <u>Forget Password? </u></a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                        <div class="or-separator"><span>OR</span></div>
+
+                        <button class="btn btn-danger google-btn">Continue with Google</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#">Don't have an account ? <span class="alt-signup-text"> Sign Up </span> </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS to open the login modal -->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+           
+            // Open the modal when the menu button with the 'login_form' id is clicked
+            jQuery(document).on('click', '.gs-login-btn', function(e) {
+                e.preventDefault();
+                jQuery('#loginModal').modal('show');
+            });
+        });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'add_login_modal_and_js');
