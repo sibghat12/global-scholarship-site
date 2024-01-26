@@ -9114,6 +9114,14 @@ padding-bottom: 10px !important;
     padding-left: 40px;
 }
 
+.page-template-template-filters #main .gs-scholarship-search-form .list-group-item a:hover {
+    text-decoration: none;
+}
+
+.page-template-template-filters #main .gs-scholarship-search-form .list-group-item:hover a {
+    color: #008fc5 !important;
+}
+
 .gs-scholarship-search-form .list-group-item:hover {
     background-color: #559cc625;
     cursor: pointer;

@@ -85,8 +85,8 @@ jQuery(document).ready(function ($) {
                 let scholarshipsToShow = institution_scholarships != undefined ? 'Number of Scholarships Offered: ' + institution_scholarships : institution_scholarship + ' | ' + scholarship_type;
 
               resultsHtml += `<li class="list-group-item" id="${key}_${itemIndex}">
-                          <a href="${permalink}/" class="list_result_item list_result_item_${key}_${itemIndex}" 
-                          data-link="${permalink}/" data-title="${title}" ${dataInstitute}>
+                          <a href="${permalink}" class="list_result_item list_result_item_${key}_${itemIndex}" 
+                          data-link="${permalink}" data-title="${title}" ${dataInstitute}>
                           <b>${title}</b><div>${scholarshipsToShow}</div></a>
                       </li>`;
             });

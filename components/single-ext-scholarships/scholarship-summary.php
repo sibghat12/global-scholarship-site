@@ -35,7 +35,7 @@
             <p class="gs-scholarship-summary-title"><?php echo $degrees_text; ?></p>
         </div>
         <?php endif; ?>
-        <?php if($scholarship_deadlines) : ?>
+        <?php if($scholarship_deadlines || $scholarship_deadlines_country_institution) : ?>
         <div class="gs-scholarship-summary-separate-application-box gs-summary-box">
             <div class="gs-scholarship-summary-insitute-image">
                 <img src="<?php echo site_url('wp-content/themes/Avada-Child-Theme/assets/images/Deadline.png'); ?>" alt="">

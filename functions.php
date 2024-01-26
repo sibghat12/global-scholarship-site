@@ -3267,6 +3267,9 @@ function render_institutions_update_deadlines_meta_page()
 
 function enqueue_scholarship_admin_scripts($hook_suffix)
 {
+    $screen = get_current_screen(); // Get the current screen object
+
+    
 
     if ($hook_suffix == 'scholarships_page_scholarships-form-feedback') {
         wp_enqueue_script('feedback_bootstrap_javascript', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.js', array(), '5.3.0', true);
@@ -3341,10 +3344,66 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
 
     }
 
+    if ($hook_suffix == 'edit-comments.php') {
+        
+
+        wp_enqueue_style('gs_comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.css' );
+
+    }
+
+    if ( is_object($screen) && $screen->id === 'ext-scholarships' ) { // Replace 'your_custom_post_type' with your specific custom post type
+        // This is the edit screen of your custom post type
+        // Run your code here
+
+        wp_enqueue_script('gs_ext_scholarship_acf',  get_stylesheet_directory_uri() . '/assets/ext-scholarship-update-include-exclude.js', array('jquery'),
+        '1.0.0',
+        false );
+        
+        wp_localize_script( 'gs_ext_scholarship_acf', 'my_ajax_object',
+          array( 
+            'countries_list' =>  get_stylesheet_directory_uri() .'/all_regions.json',
+          )
+        );
+    }
+
 
 }
 add_action('admin_enqueue_scripts', 'enqueue_scholarship_admin_scripts');
 
+function convert_countries_list_json() {
+    include dirname(__FILE__)  . "/functions/countries_list.php"; 
+
+
+    // Combine all arrays into one associative array
+    $all_regions = array(
+        'Africa' => $africa,
+        'LatinAmerica' => $latinAmerica,
+        'Caribbean' => $caribbean,
+        'SouthEastAsia' => $southeastAsia,
+        'Pacific' => $pacific,
+        'WesternHemisphere' => $westernHemisphere,
+        'Asia' => $asia,
+        'EuropeanUnion' => $EuropeanUnion,
+        'EuropeanEconomicArea' => $EuropeanEconomicArea,
+        'Europe' => $Europe,
+        'NorthAmerica' => $northAmerica_list,
+        'Oceania' => $oceania_list,
+        'MiddleEast' => $middleEast_list,
+        'Commonwealth' => $commonwealth_list,
+        'SouthAsia' => $southAsia_list,
+        'EastAsia' => $eastAsia_list,
+    );
+
+    // Convert the associative array into JSON
+    $all_regions_json = json_encode($all_regions, JSON_UNESCAPED_UNICODE);
+
+    // Specify the path to the new JSON file
+    $file_path = dirname(__FILE__) . '/all_regions.json';
+
+    // Write the JSON data to the file, creating it if it doesn't exist, or overwriting it if it does
+    file_put_contents($file_path, $all_regions_json);
+}
+add_action('convert_countries_list_json', 'convert_countries_list_json');
 
 
 

@@ -41,7 +41,7 @@
                             $formatted_deadline = date("F j, Y", $deadline_date);
                             $deadline_text = $formatted_deadline;
             
-                            echo '<li>' . $deadline['country_institution'] . ' Scholarship Application Deadline: '. $deadline_text .'</li>';
+                            echo '<li><a href='.$deadline['link'].' target="_blank">' . $deadline['country_institution'] . ' Scholarship Application Deadline</a>: '. $deadline_text .'</li>';
                         }
                     
                     echo "</ul>";
