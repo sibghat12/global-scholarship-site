@@ -5190,3 +5190,7 @@ function remove_provider_post_type() {
     unregister_post_type( 'provider' );
 }
 // add_action( 'init', 'remove_provider_post_type', 100 );
+
+
+// Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
+add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
