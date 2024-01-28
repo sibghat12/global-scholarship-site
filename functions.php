@@ -5093,6 +5093,43 @@ function display_post_categories_as_bubbles() {
 
 add_shortcode('post_categories_bubbles', 'display_post_categories_as_bubbles');
 
+function gs_update_select_choices( $post_id ) {
+
+    // Check for autosave
+    // if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    $select_field_key = 'field_65b373705f46b';
+
+    // Ensure the field is present in $_POST data
+    if (!isset($_POST['acf'][$select_field_key])) return;
+
+    // Get the submitted values
+    $submitted_values = $_POST['acf'][$select_field_key];
+
+    // Get the field object
+    $field = get_field_object($select_field_key, false, false, false);
+
+    if ($field && is_array($submitted_values)) {
+        $new_choices_added = false;
+
+        foreach ($submitted_values as $value) {
+            // Check if this value is not already a choice in the field
+            if (!in_array($value, $field['choices'])) {
+                // Add new choice
+                $field['choices'][$value] = $value;
+                $new_choices_added = true;
+            }
+        }
+
+        if ($new_choices_added) {
+            // Save the updated field to database
+            acf_update_field($field);
+        }
+
+        // Update the field value for the current post
+        update_field($select_field_key, $submitted_values, $post_id);
+    }
+}
+add_action('acf/save_post', 'gs_update_select_choices', 20);
 
 
 function add_login_modal_and_js() {
