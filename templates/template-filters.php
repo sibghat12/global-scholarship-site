@@ -43,11 +43,15 @@ $scholarships_array = get_all_scholarships();   ?>
 
 
 <!-- Filter Button for Mobile -->
-<div class="sticky-wrapper">
+<div class="sticky-wrapper" style="display: none;">
   <div class="mobile-sticky-div">
     <div class="filter-toggle-btn"> 
       <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png" alt="Filter"> Filter     
     </div> 
+     
+
+
+
   </div>
 </div>
 
@@ -129,9 +133,7 @@ $scholarships_array = get_all_scholarships();   ?>
 
 
 
-
-<!-- Content Start to display Cards -->
-<button class="show-only-mobile">  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button> 
+ 
 
 <div id="search-box-container" style="display:none;">
 <div id="scholarship-search-box-wrapper"   class="gs-scholarship-search-form" >
@@ -144,6 +146,9 @@ $scholarships_array = get_all_scholarships();   ?>
   <button type="submit" class="scholarship-search-submit">Search <span class="screen-reader-text">Search</span></button>
 </div>
 </div>
+
+<!-- Content Start to display Cards -->
+<button class="show-only-mobile" >  Show  <span id="show_number"><?php echo $scholarships_count; ?>  </span> Results </button>
 
 <div  id="scholarship-cards">
 
@@ -181,7 +186,7 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 }
 ?>
 
-<a  href="<?php echo $modifiedURL_pre; ?>"  style="display:none;" class="prev-page"  id='prev_posts'> Prev Page </a>
+<a  href="<?php echo $modifiedURL_pre; ?>"  style="display: none;"  class="prev-page"  id='prev_posts'  > Prev Page </a>
 
 <?php
 $currentURL = $_SERVER['REQUEST_URI'];
@@ -210,7 +215,10 @@ if (preg_match('/\/page\/\d+/', $currentURL, $matches)) {
 <!-- Ajax jS Start Here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
+
 <script>
+
 
 
 //Update Pagination Previous Button
@@ -337,12 +345,15 @@ reload_data();
 function reload_data() {
 
 
+$('#prev_posts').css("display" , "none");
+
+
 $('#filter-panell').css("display" , "none");
 $('.next-page').css("display" , "none");
 $('#preloader').css("display" , "block");
 $('.card-section').css("display" , "none");
 $('.prev-page').css("display" , "none");
-$('#prev-posts').css("display" , "none");
+
 
 var current_page_number = "";
 
@@ -667,8 +678,9 @@ $.ajax({
         $('.title-textt').css("display" , "block");
         $('.title-wrapper-scholarship-search').css("display" , "block");
         $('#search-box-container').css("display" , "block");
+        $('.sticky-wrapper').css("display" , "block");
        
-          $('#prev-posts').css("display" , "none");
+        $('#prev-posts').css("display" , "none");
 
     if (response.includes('No Scholarships Available')) {
   window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
@@ -1443,6 +1455,7 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
     $(document).ready(function() {
         var filterToggleBtn = $('.filter-toggle-btn');
         var filterPanel = $('#filter-panell');
+        
 
         $(window).on('resize', function() {
             if ($(this).width() <= 767) {
@@ -1452,22 +1465,30 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
             }
         }).trigger('resize');
 
-        filterToggleBtn.on('click', function() {
-            // Scroll to the top of the page
-            $('html, body').animate({ scrollTop: 0 }, 'slow');
+        // filterToggleBtn.on('click', function() {
+        //     // Scroll to the top of the page
+        //    $('html, body').animate({ scrollTop: 0 }, 'slow');
+        //    $('.page-template-template-filters .fusion-row.f.filter-row').css("display" , "block");
 
-            // Toggle filter panel and other elements
-            $('#filter-panell').toggle();
-            $('.show-only-mobile').toggle();
-            $('#scholarship-cards').toggle();
-        });
+        //     // Toggle filter panel and other elements
+        //     $('#filter-panell').toggle();
+        //     $('.show-only-mobile').toggle();
+        //     $('#scholarship-cards').toggle();
+        // });
 
         $('.show-only-mobile').on('click', function() {
+            
             $('html, body').animate({ scrollTop: 0 }, 'slow');
+           
             $('#scholarship-cards').show();
             $('.show-only-mobile').hide();
             filterPanel.toggle();
+             $('.page-template-template-filters .fusion-row.f.filter-row').css("display" , "grid");
         });
+
+
+
+
     });
 
     document.getElementById('previous-btnn').addEventListener('click', (function() {

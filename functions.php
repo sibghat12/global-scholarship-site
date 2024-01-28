@@ -86,6 +86,10 @@ function theme_enqueue_styles() {
     '1.0.45',
     false );
 
+    wp_enqueue_script('gs_toc_toggle',  get_stylesheet_directory_uri() . '/assets/toc.js', array('jquery'),
+    '1.0.45',
+    false );
+
     
     wp_localize_script( 'gs_scholarships_update', 'my_ajax_object',
       array( 
