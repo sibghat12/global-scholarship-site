@@ -498,36 +498,6 @@ function uscollege_custom_post_types() {
     );
     register_post_type( 'city', $args );  
     
-    $labels = array(
-        'name'              => __( 'Provider' ),
-        'singular_name'     => __( 'provider' ),
-        'add_new'           => __( 'Add New Provider' ),
-        'add_new_item'      => __( 'Add New Provider' ),
-        'edit_item'         => __( 'Edit Provider' ),
-        'new_item'          => __( 'Add New Provider' ),
-        'view_item'         => __( 'View Provider' ),
-        'search_items'      => __( 'Search Provider' ),
-        'not_found'         => __( 'No Provider found' ),
-        'not_found_in_trash' => __( 'No Provider found in trash' )
-    );
-    $supports = array(
-        'title',
-        'author',
-        'thumbnail',
-    );
-    $args = array(
-        'labels'                => $labels,
-        'supports'              => $supports,
-        'public'                => true,
-        'capability_type'       => 'post',
-        'rewrite'               => array( 'slug' => 'providers' ),
-        'has_archive'           => false,
-        'menu_position'         => 30,
-        'menu_icon'             => 'dashicons-admin-multisite',
-        'register_meta_box_cb'  => 'providers'
-    );
-    register_post_type( 'provider', $args );  
-
 
    $labels = array(
     'name'               => __( 'Landing Pages', 'my_theme' ),
@@ -5198,3 +5168,33 @@ function add_login_modal_and_js() {
     <?php
 }
 add_action('wp_footer', 'add_login_modal_and_js');
+
+function delete_provider_posts() {
+    $args = array(
+        'post_type'      => 'provider',
+        'posts_per_page' => -1,
+        'post_status'    => 'any'
+    );
+
+    $provider_posts = new WP_Query($args);
+
+    if ($provider_posts->have_posts()) {
+        while ($provider_posts->have_posts()) {
+            $provider_posts->the_post();
+            wp_delete_post(get_the_ID(), true);
+        }
+    }
+
+    wp_reset_postdata();
+}
+
+// Run to remove Posts and Post Type Provider
+function remove_provider_post_type() {
+    delete_provider_posts(); // Call function to delete all provider posts
+    unregister_post_type( 'provider' );
+}
+// add_action( 'init', 'remove_provider_post_type', 100 );
+
+
+// Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
+add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
