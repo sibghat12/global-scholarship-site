@@ -9262,7 +9262,16 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
         width: 24px;
         display: block;
     }
-}
+
+     .page-template-template-filter .show-only-mobile {
+        order: 3 !important;
+        display: grid;
+    
+     }
+     .s-course-details {
+        margin-top:20px !important
+     }
+} 
 
 
 
@@ -9451,4 +9460,14 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     #loginModal .modal-dialog {
         width: 90%; /* Modal width on smaller screens */
     }
+
 }
+
+
+
+@media screen and (max-width: 640px) {
+.page-template-template-filters .title-wrapper-scholarship-search {
+ margin-top:-40px;
+}
+}
+
