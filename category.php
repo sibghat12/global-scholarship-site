@@ -63,13 +63,13 @@ if($query->have_posts()):
         echo '</div>';
      echo '</div>';
      $total_pages = $query->max_num_pages;
-     
+     $current_page = max(1, get_query_var('paged'));
     echo '<div class="pagination-container">';
         $big = 999999999;
         echo paginate_links(array(
-            'base' => get_pagenum_link(1) . 'page/%#%/',
-            'format' => '/page/%#%/',
-            'current' => max(1, get_query_var('paged')),
+            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format' => '?paged=%#%',
+            'current' => $current_page,
             'total' => $total_pages,
             'prev_text'    => __('« Previous'),
             'next_text'    => __('Next »'),
