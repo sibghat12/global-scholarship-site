@@ -1913,7 +1913,7 @@ function add_custom_js() {
 
 
 <script type="text/javascript">
-    alert("dd");
+    // alert("dd");
      jQuery('.new-table-of-contents .toc-wrapper').hide();
     jQuery(document).ready(function($) {
     jQuery('.toc-icon').click(function() {
