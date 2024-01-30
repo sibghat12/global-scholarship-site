@@ -504,36 +504,6 @@ function uscollege_custom_post_types() {
     );
     register_post_type( 'city', $args );  
     
-    $labels = array(
-        'name'              => __( 'Provider' ),
-        'singular_name'     => __( 'provider' ),
-        'add_new'           => __( 'Add New Provider' ),
-        'add_new_item'      => __( 'Add New Provider' ),
-        'edit_item'         => __( 'Edit Provider' ),
-        'new_item'          => __( 'Add New Provider' ),
-        'view_item'         => __( 'View Provider' ),
-        'search_items'      => __( 'Search Provider' ),
-        'not_found'         => __( 'No Provider found' ),
-        'not_found_in_trash' => __( 'No Provider found in trash' )
-    );
-    $supports = array(
-        'title',
-        'author',
-        'thumbnail',
-    );
-    $args = array(
-        'labels'                => $labels,
-        'supports'              => $supports,
-        'public'                => true,
-        'capability_type'       => 'post',
-        'rewrite'               => array( 'slug' => 'providers' ),
-        'has_archive'           => false,
-        'menu_position'         => 30,
-        'menu_icon'             => 'dashicons-admin-multisite',
-        'register_meta_box_cb'  => 'providers'
-    );
-    register_post_type( 'provider', $args );  
-
 
    $labels = array(
     'name'               => __( 'Landing Pages', 'my_theme' ),
@@ -5099,6 +5069,43 @@ function display_post_categories_as_bubbles() {
 
 add_shortcode('post_categories_bubbles', 'display_post_categories_as_bubbles');
 
+function gs_update_select_choices( $post_id ) {
+
+    // Check for autosave
+    // if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    $select_field_key = 'field_65b373705f46b';
+
+    // Ensure the field is present in $_POST data
+    if (!isset($_POST['acf'][$select_field_key])) return;
+
+    // Get the submitted values
+    $submitted_values = $_POST['acf'][$select_field_key];
+
+    // Get the field object
+    $field = get_field_object($select_field_key, false, false, false);
+
+    if ($field && is_array($submitted_values)) {
+        $new_choices_added = false;
+
+        foreach ($submitted_values as $value) {
+            // Check if this value is not already a choice in the field
+            if (!in_array($value, $field['choices'])) {
+                // Add new choice
+                $field['choices'][$value] = $value;
+                $new_choices_added = true;
+            }
+        }
+
+        if ($new_choices_added) {
+            // Save the updated field to database
+            acf_update_field($field);
+        }
+
+        // Update the field value for the current post
+        update_field($select_field_key, $submitted_values, $post_id);
+    }
+}
+add_action('acf/save_post', 'gs_update_select_choices', 20);
 
 
 function add_login_modal_and_js() {
@@ -5156,4 +5163,36 @@ function add_login_modal_and_js() {
   
     <?php
 }
-add_action('wp_head', 'add_login_modal_and_js');
+
+add_action('wp_footer', 'add_login_modal_and_js');
+
+function delete_provider_posts() {
+    $args = array(
+        'post_type'      => 'provider',
+        'posts_per_page' => -1,
+        'post_status'    => 'any'
+    );
+
+    $provider_posts = new WP_Query($args);
+
+    if ($provider_posts->have_posts()) {
+        while ($provider_posts->have_posts()) {
+            $provider_posts->the_post();
+            wp_delete_post(get_the_ID(), true);
+        }
+    }
+
+    wp_reset_postdata();
+}
+
+// Run to remove Posts and Post Type Provider
+function remove_provider_post_type() {
+    delete_provider_posts(); // Call function to delete all provider posts
+    unregister_post_type( 'provider' );
+}
+// add_action( 'init', 'remove_provider_post_type', 100 );
+
+
+// Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
+add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
+
