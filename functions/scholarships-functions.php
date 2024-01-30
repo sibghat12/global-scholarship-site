@@ -1913,8 +1913,19 @@ function add_custom_js() {
 
 
 <script type="text/javascript">
+<<<<<<< HEAD
    
     
+=======
+    // alert("dd");
+     jQuery('.new-table-of-contents .toc-wrapper').hide();
+    jQuery(document).ready(function($) {
+    jQuery('.toc-icon').click(function() {
+    jQuery('.new-table-of-contents .toc-wrapper').toggle();
+     });
+        });
+
+>>>>>>> origin/GS-category-pagination-fix
 
    
         jQuery(document).ready(function () {
