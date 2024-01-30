@@ -86,11 +86,17 @@ function theme_enqueue_styles() {
     '1.0.45',
     false );
 
+
     wp_enqueue_script('gs_toc_toggle',  get_stylesheet_directory_uri() . '/assets/toc.js', array('jquery'),
     '1.0.45',
     false );
 
+
+   wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery'),
+    '1.0.45',
+    false );
     
+
     wp_localize_script( 'gs_scholarships_update', 'my_ajax_object',
       array( 
         'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -5103,7 +5109,7 @@ add_action('acf/save_post', 'gs_update_select_choices', 20);
 
 
 function add_login_modal_and_js() {
-    ?>
+  ?>
     <!-- Login Modal HTML -->
     <div class="modal fade" style="display: none;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -5154,19 +5160,10 @@ function add_login_modal_and_js() {
         </div>
     </div>
 
-    <!-- Custom JS to open the login modal -->
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-           
-            // Open the modal when the menu button with the 'login_form' id is clicked
-            jQuery(document).on('click', '.gs-login-btn', function(e) {
-                e.preventDefault();
-                jQuery('#loginModal').modal('show');
-            });
-        });
-    </script>
+  
     <?php
 }
+
 add_action('wp_footer', 'add_login_modal_and_js');
 
 function delete_provider_posts() {
@@ -5198,3 +5195,4 @@ function remove_provider_post_type() {
 
 // Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
 add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
+

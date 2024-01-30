@@ -700,18 +700,27 @@ $.ajax({
         
         var $spans = $response.find('span.ss').clone();
         $response.find('span.ss').remove();
-       $('h1.title-text-new').nextAll('span.ss').remove();
+        $('h1.title-text-new').nextAll('span.ss').remove();
 
 
         $('.card-section').html($response.html()); 
         $('.title-text-new').html(title);
         $('h1.title-text-new').after($spans);
+        
 
+    var url = window.location.href;
+    var pageMatch = url.match(/\?pages=(\d+)/);
+
+    if (pageMatch && pageMatch[1] !== '1') {
+        jQuery('.prev-page').show(); 
+    } else {
+        jQuery('.prev-page').hide(); 
+    }
 
         
         //changeurl('scholarship-search'+url_update , "Welcome");
 
-        show_pre_or_not();
+       
         var title_text = $('.title-textt').text();
        
         var numberOnly = parseInt(title_text.match(/\d+/));
@@ -1505,23 +1514,24 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 
     jQuery(document).ready(function() {
         var url = window.location.href;
-
         if (url.match(/\?pages=\d+/)) {
-            jQuery('.prev-page').show(); 
+            jQuery('.prev-page').hide(); 
         } else {
             jQuery('.prev-page').hide(); 
         }
     });
 
-    function show_pre_or_not() {
-        var url = window.location.href;
+   function show_pre_or_not() {
+    var url = window.location.href;
+    var pageMatch = url.match(/\?pages=(\d+)/);
 
-        if (url.match(/\?pages=\d+/)) {
-            jQuery('.prev-page').show(); 
-        } else {
-            jQuery('.prev-page').hide(); 
-        }
+    if (pageMatch && pageMatch[1] !== '1') {
+        jQuery('.prev-page').show(); 
+    } else {
+        jQuery('.prev-page').hide(); 
     }
+  }
+
 
     function updateFilterPanelMarginTop() {
         const mobileStickyDiv = document.getElementById('mobile-sticky-div');
@@ -1597,7 +1607,6 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 // //     // Check on window resize
 //     $(window).resize(checkWindowSize);
 // });
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
