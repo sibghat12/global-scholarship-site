@@ -39,43 +39,43 @@ $query = new WP_Query($args);
 
 if($query->have_posts()): 
     echo '<div class="recent-wrapper">';
-    echo '<div class="posts-grid">';
-    while($query->have_posts()): $query->the_post();
-?>
-    <div class="post-card">
-        <a href="<?php the_permalink(); ?>">
-            <?php the_post_thumbnail('medium'); ?>
-        </a>
-        <div class="text-wrapper">
-            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-            <?php 
-            $content = strip_tags(get_the_content());
-            $trimmed_content = substr($content, 0, 100);
-            echo "<p style='line-height:28px !important;'>" . $trimmed_content . "...</p>"; ?>
-              <a href="<?php the_permalink(); ?>" class="read-more"> <span>
-        Read More  </span> </a>
-           
-            
-        </div>
-    </div>
-<?php
-endwhile;
+        echo '<div class="posts-grid">';
+            while($query->have_posts()): $query->the_post(); ?>
+                <div class="post-card">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('medium'); ?>
+                    </a>
+                    <div class="text-wrapper">
+                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                        <?php 
+                        $content = strip_tags(get_the_content());
+                        $trimmed_content = substr($content, 0, 100);
+                        echo "<p style='line-height:28px !important;'>" . $trimmed_content . "...</p>"; ?>
+                    <a href="<?php the_permalink(); ?>" class="read-more"> 
+                        <span>Read More </span> 
+                    </a>
+                    
+                    </div>
+                </div>
+                <?php
+            endwhile;
 
-    echo '</div>';
+        echo '</div>';
      echo '</div>';
-
-   echo '<div class="pagination-container">';
-$big = 999999999;
-echo paginate_links(array(
-    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-    'format' => '?paged=%#%',
-    'current' => max(1, get_query_var('paged')),
-    'total' => $query->max_num_pages
-));
-
-
-
-echo '</div>';
+     $total_pages = $query->max_num_pages;
+     $current_page = max(1, get_query_var('paged'));
+    echo '<div class="pagination-container">';
+        $big = 999999999;
+        echo paginate_links(array(
+            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format' => '?paged=%#%',
+            'current' => $current_page,
+            'total' => $total_pages,
+            'prev_text'    => __('« Previous'),
+            'next_text'    => __('Next »'),
+        ));
+        
+    echo '</div>';
 
 
     wp_reset_postdata();

@@ -1913,8 +1913,6 @@ function add_custom_js() {
 
 
 <script type="text/javascript">
-   
-    
 
    
         jQuery(document).ready(function () {
