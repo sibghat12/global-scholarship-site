@@ -139,7 +139,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div>
 
 <div class="filter-toggle-btn" style=" font-size:18px;padding-top:10px;padding-bottom:10px;" > 
-  <img src="<?php echo site_url(); ?>/wp-content/uploads/2023/04/filter-1.png"
+  <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/filter-sort-fee.png"
  style="padding-right:0px;text-align: center;height: 22px;"> Filter     
  </div> 
 
@@ -237,7 +237,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
              <img id="flipImage" style="margin-left:5px;border-radius:3px;background: white !important; padding:5px; width:auto;height:27px; box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);" 
-     src="<?php echo site_url(); ?>/wp-content/uploads/2023/11/Vector.png">
+     src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/fee-sorting-icon.png">
 
 
 
@@ -771,8 +771,6 @@ function reload_data() {
     subject_input = subject_value.replace(/\s+/g, '-').toLowerCase();
      $('.subject-filter select').val(subject_input);
     }
-    
-      
     
 
 
