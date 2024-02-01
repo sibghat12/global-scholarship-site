@@ -444,7 +444,7 @@ function uscollege_custom_post_types() {
         'supports'              => $supports,
         'public'                => true,
         'capability_type'       => 'page',
-        'rewrite'               => array( 'slug' => 'ext-scholarships' ),
+        'rewrite'               => array( 'slug' => 'external' ),
         'has_archive'           => false,
         'menu_position'         => 30,
         'show_ui '              => true,  
