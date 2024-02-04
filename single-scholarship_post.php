@@ -100,19 +100,25 @@ if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 <a style="padding-top:15px;font-size:18px !important;color:#6f7171 !important" href="mailto:admin@globalscholarships.com"> admin@globalscholarships.com </a> </center>
 </section>
 
-
+<div class="clearfix"> </div>
 
 <section class="scholarship-post-main read-more-scholarship-post" style="margin-top:70px;margin-bottom:-20px;">
-  <h2 style="padding-top:20px;padding-bottom:30px;font-size:32px !important;color:black;text-align:center;font-family: 'Roboto', Arial, Helvetica, sans-serif;"> More Scholarship Recipients </h2>
+  <h2 style="padding-top:20px;padding-bottom:30px;font-size:32px !important;color:black;text-align:center;font-family: 'Roboto', Arial, Helvetica, sans-serif;"> More Scholarship Recipients </h2> 
+  <div class="clearfix"> </div>
  <?php
 echo do_shortcode('[latest_scholarships]');
 ?>
-    <?php 
+
+<?php 
         if ( comments_open() || get_comments_number() ) {
             comments_template();
         }
         ?>
+
+
 </section>
+
+
 
 
 <?php 

@@ -444,7 +444,7 @@ function uscollege_custom_post_types() {
         'supports'              => $supports,
         'public'                => true,
         'capability_type'       => 'page',
-        'rewrite'               => array( 'slug' => 'ext-scholarships' ),
+        'rewrite'               => array( 'slug' => 'external' ),
         'has_archive'           => false,
         'menu_position'         => 30,
         'show_ui '              => true,  
@@ -3026,7 +3026,7 @@ function display_latest_scholarships() {
         
         while ($query->have_posts()) {
             $query->the_post();
-            echo '<div class="col-md-4">';
+            echo '<div class="col-md-4" style="padding-left:2% !important;padding-right:4% !important;">';
             echo '<div class="scholarship-item">';
             echo '<div class="featured-image">' . get_the_post_thumbnail() . '</div>';
             echo '<h2 style="font-family:Roboto, Arial, Helvetica, sans-serif;padding-left:0px;padding-top:10px;padding-bottom:5px;font-size:26px !important;" class="scholarship-title">' . get_the_title() . '</h2>';
@@ -3034,10 +3034,11 @@ function display_latest_scholarships() {
             $brief_intro = get_field('brief_intro');
             $excerpt = substr($brief_intro, 0, 130);
 
-            echo '<div class="scholarship-excerpt">' . $excerpt .  '....</div>';
+            // echo '<div class="scholarship-excerpt">' . $excerpt .  '....</div>';
 
-            echo "<div class='meta-scholarship-blog' style='margin-top:-10px;margin-bottom:40px !important'>   <span style='float:left;'>"  . get_the_date() . "</span>  
-            <a href='" . esc_url(get_permalink()) . "' style='color:#77a6cp !important;float:right;font-size:17px !important;'>  Read more >   </a>   </div>";
+            echo "<div class='meta-scholarship-blog' style='margin-top:5px;margin-bottom:40px !important'>   <span style='float:left;'>"  . get_the_date() . "</span>  
+            <a href='" . esc_url(get_permalink()) . "' style='color:#77a6cp !important;float:right;padding-right:0px;margin-right:15px;
+            border-bottom:1px solid #008fc5 ;font-size:17px !important;padding-bottom:5px;'>  Read more >    </a>   </div>";
             
             echo '</div>'; // close scholarship-item
             echo '</div>'; // close col-md-4
@@ -4728,7 +4729,7 @@ function get_currency_conversion($fromCurrency, $toCurrency, $amount) {
     }
 }
 
-function process_ads() {
+function convert_ads_currency_to_usd() {
     $args = ['post_type' => 'ads', 'posts_per_page' => -1]; // Adjust query as needed
     $ads = new WP_Query($args);
 
@@ -4771,8 +4772,8 @@ function process_ads() {
     }
 }
 
-//process_ads();
-
+//convert_ads_currency_to_usd();
+add_action('convert_ads_currency_to_usd', 'convert_ads_currency_to_usd');
 
 
 add_action('wp_ajax_toggle_order', 'handle_toggle_order');
