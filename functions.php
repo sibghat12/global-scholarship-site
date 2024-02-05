@@ -6,6 +6,8 @@ include ('scripts/institutions-script.php');
 include ('scripts/saa-cities-cpt.php'); 
 include ('ajax-search.php'); 
 include ('ajax-scholarship-search.php'); 
+include ('google-sigin.php'); 
+
 
 // filter
 function institutions_where( $where ) {
@@ -92,10 +94,17 @@ function theme_enqueue_styles() {
     false );
 
 
-   wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery'),
+    wp_enqueue_script('google-platform', 'https://accounts.google.com/gsi/client', array(), null, true);
+   wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery','google-platform'),
     '1.0.45',
-    false );
+    true );
     
+    wp_localize_script('gs_modal-login', 'myAjax', 
+        array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
+        )
+    );
 
     wp_localize_script( 'gs_scholarships_update', 'my_ajax_object',
       array( 
@@ -109,7 +118,16 @@ function theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
+function make_script_async( $tag, $handle, $src )
+{
+    if ( 'google-platform' != $handle ) {
+        return $tag;
+    }
 
+    return str_replace( '<script', '<script async', $tag );
+}
+
+add_filter( 'script_loader_tag', 'make_script_async', 10, 3 );
 function update_scholarships_shortcode() {
     if( is_user_logged_in() &&  current_user_can('administrator') ) {
         return '<button id="update-gs-scholarships">Update Scholarships</button>';
@@ -5118,7 +5136,7 @@ function gs_update_select_choices( $post_id ) {
 }
 add_action('acf/save_post', 'gs_update_select_choices', 20);
 
-
+/*
 function add_login_modal_and_js() {
   ?>
     <!-- Login Modal HTML -->
@@ -5159,9 +5177,32 @@ function add_login_modal_and_js() {
 
                         <button type="submit" class="btn btn-primary">Continue</button>
                         <div class="or-separator"><span>OR</span></div>
-
+                        
+                        
                         <button class="btn btn-danger google-btn">Continue with Google</button>
                     </form>
+
+                    <div id="g_id_onload"
+                        data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com"
+                        data-context="signin"
+                        data-ux_mode="popup"
+                        data-login_uri="https://gs.lndo.site/google-auth"
+                        data-nonce=""
+                        data-auto_prompt="false">
+                    </div>
+
+                    <div class="g_id_signin"
+                        data-type="standard"
+                        data-shape="rectangular"
+                        data-theme="outline"
+                        data-text="continue_with"
+                        data-size="large"
+                        data-logo_alignment="center"
+                        data-width="450">
+                    </div>
+                    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+
+                    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com" data-theme="dark"></div> -->
                 </div>
                 <div class="modal-footer">
                     <a href="#">Don't have an account ? <span class="alt-signup-text"> Sign Up </span> </a>
@@ -5173,6 +5214,73 @@ function add_login_modal_and_js() {
 
   
     <?php
+}
+
+add_action('wp_footer', 'add_login_modal_and_js');
+*/
+function add_login_modal_and_js() {
+    ?>
+<div id="gsLoginModal" class="gs-modal">
+    <div class="gs-modal-dialog">
+        <div class="gs-modal-content">
+            <div class="gs-modal-header">
+                <!-- <span class="gs-close">&times;</span> -->
+                <h2>Sign in to <span class="alt-title-color">Global Scholarships</span></h2>
+            </div>
+            <div class="gs-modal-body">
+                <!-- The form inside the modal -->
+                    <form id="gsLoginForm">
+                        <div class="gs-form-group">
+                            <label for="gsEmail">Email address</label>
+                            <input type="email" class="gs-form-control" id="gsEmail" placeholder="Enter email">
+                        </div>
+                        <div class="gs-form-group">
+                            <label for="gsPassword">Password</label>
+                            <input type="password" class="gs-form-control" id="gsPassword" placeholder="Password">
+                        </div>
+
+                        <div class="gs-form-half">
+                            <div class="gs-form-check">
+                                <input type="checkbox" id="gsRememberMe">
+                                <label for="gsRememberMe">Remember me</label>
+                            </div>
+                        </div>
+
+                        <div class="gs-form-half" style="text-align: right;">
+                            <a href="#" class="login-forget-password"><u>Forget Password?</u></a>
+                        </div>
+
+                        <button type="submit" class="gs-btn gs-btn-danger">Continue</button>
+                        <div class="or-separator"><span>OR</span></div>
+                        <!-- <button type="button" class="gs-btn gs-btn-secondary">Continue with Google</button> -->
+                        <div id="g_id_onload"
+                        data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com"
+                        data-context="signin"
+                        data-ux_mode="popup"
+                        data-login_uri="https://gs.lndo.site/google-auth"
+                        data-nonce=""
+                        data-auto_prompt="false">
+                    </div>
+
+                    <div class="g_id_signin"
+                        data-type="standard"
+                        data-shape="rectangular"
+                        data-theme="outline"
+                        data-text="continue_with"
+                        data-size="large"
+                        data-logo_alignment="center"
+                        data-width="450">
+                    </div>
+                    </form>
+
+            </div>
+            <div class="gs-modal-footer">
+                <a href="#">Don't have an account? <span class="alt-signup-text">Sign Up</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
 }
 
 add_action('wp_footer', 'add_login_modal_and_js');
@@ -5207,3 +5315,25 @@ function remove_provider_post_type() {
 // Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
 add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
 
+function handle_google_login() {
+    $CLIENT_ID = "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com";
+    if (isset($_POST['id_token'])) {
+        $id_token = sanitize_text_field($_POST['id_token']);
+        
+        // require_once get_template_directory() . '/vendor/autoload.php'; // Adjust the path to the autoload script of the Google API client
+        require_once dirname( __FILE__, 1 ) . '/vendor/autoload.php';
+        $client = new Google_Client(['client_id' => $CLIENT_ID]); 
+        $payload = $client->verifyIdToken($id_token);
+        if ($payload) {
+            $userid = $payload['sub']; // User's Google ID
+            
+            // Here, you could check if the user exists in WordPress and log them in, or create a new user account
+            
+            wp_send_json_success(['userId' => $userid, 'message' => 'User authenticated.']);
+        } else {
+            wp_send_json_error('Token verification failed.');
+        }
+    }
+    wp_send_json_error('No token provided.');
+}
+add_action('wp_ajax_nopriv_google_login', 'handle_google_login');
