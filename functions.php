@@ -6,7 +6,8 @@ include ('scripts/institutions-script.php');
 include ('scripts/saa-cities-cpt.php'); 
 include ('ajax-search.php'); 
 include ('ajax-scholarship-search.php'); 
-include ('google-sigin.php'); 
+
+include ('google-callback.php'); 
 
 
 // filter
@@ -5217,6 +5218,9 @@ function add_login_modal_and_js() {
 }
 
 add_action('wp_footer', 'add_login_modal_and_js');
+https://bard.google.com/chat/3ac8173f4285929c
+https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
+codedegree.com
 */
 function add_login_modal_and_js() {
     ?>
@@ -5229,7 +5233,7 @@ function add_login_modal_and_js() {
             </div>
             <div class="gs-modal-body">
                 <!-- The form inside the modal -->
-                    <form id="gsLoginForm">
+                    <!-- <form id="gsLoginForm">
                         <div class="gs-form-group">
                             <label for="gsEmail">Email address</label>
                             <input type="email" class="gs-form-control" id="gsEmail" placeholder="Enter email">
@@ -5252,8 +5256,13 @@ function add_login_modal_and_js() {
 
                         <button type="submit" class="gs-btn gs-btn-danger">Continue</button>
                         <div class="or-separator"><span>OR</span></div>
-                        <!-- <button type="button" class="gs-btn gs-btn-secondary">Continue with Google</button> -->
-                        <div id="g_id_onload"
+                        <button type="button" class="gs-btn gs-btn-secondary">Continue with Google</button>
+                    </form> -->
+
+                    <?php echo do_shortcode('[mepr-login-form use_redirect="true"]'); ?>
+                    <button type="button" class="gs-btn gs-btn-secondary" onclick="client.requestCode();">Continue with Google</button>
+
+                    <!-- <div id="g_id_onload"
                         data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com"
                         data-context="signin"
                         data-ux_mode="popup"
@@ -5270,8 +5279,7 @@ function add_login_modal_and_js() {
                         data-size="large"
                         data-logo_alignment="center"
                         data-width="450">
-                    </div>
-                    </form>
+                    </div> -->
 
             </div>
             <div class="gs-modal-footer">
@@ -5284,6 +5292,14 @@ function add_login_modal_and_js() {
 }
 
 add_action('wp_footer', 'add_login_modal_and_js');
+
+function my_google_login_button() {
+    $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+    $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+    $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+    echo '<a href="' . $login_url . '" class="google-login-button">Sign in with Google</a>';
+}
+add_action('login_form', 'my_google_login_button');
 
 function delete_provider_posts() {
     $args = array(
@@ -5315,25 +5331,85 @@ function remove_provider_post_type() {
 // Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
 add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
 
-function handle_google_login() {
-    $CLIENT_ID = "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com";
-    if (isset($_POST['id_token'])) {
-        $id_token = sanitize_text_field($_POST['id_token']);
+// function handle_google_login() {
+//     $CLIENT_ID = "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com";
+//     if (isset($_POST['id_token'])) {
+//         $id_token = sanitize_text_field($_POST['id_token']);
         
-        // require_once get_template_directory() . '/vendor/autoload.php'; // Adjust the path to the autoload script of the Google API client
-        require_once dirname( __FILE__, 1 ) . '/vendor/autoload.php';
-        $client = new Google_Client(['client_id' => $CLIENT_ID]); 
-        $payload = $client->verifyIdToken($id_token);
-        if ($payload) {
-            $userid = $payload['sub']; // User's Google ID
+//         // require_once get_template_directory() . '/vendor/autoload.php'; // Adjust the path to the autoload script of the Google API client
+//         require_once dirname( __FILE__, 1 ) . '/vendor/autoload.php';
+//         $client = new Google_Client(['client_id' => $CLIENT_ID]); 
+//         $payload = $client->verifyIdToken($id_token);
+//         if ($payload) {
+//             $userid = $payload['sub']; // User's Google ID
             
-            // Here, you could check if the user exists in WordPress and log them in, or create a new user account
+//             // Here, you could check if the user exists in WordPress and log them in, or create a new user account
             
-            wp_send_json_success(['userId' => $userid, 'message' => 'User authenticated.']);
-        } else {
-            wp_send_json_error('Token verification failed.');
-        }
-    }
-    wp_send_json_error('No token provided.');
-}
+//             wp_send_json_success(['userId' => $userid, 'message' => 'User authenticated.']);
+//         } else {
+//             wp_send_json_error('Token verification failed.');
+//         }
+//     }
+//     wp_send_json_error('No token provided.');
+// }
+// add_action('wp_ajax_google_login', 'handle_google_login');
+// add_action('wp_ajax_nopriv_google_login', 'handle_google_login');
+
+// For logged-out users
 add_action('wp_ajax_nopriv_google_login', 'handle_google_login');
+// For logged-in users (if necessary)
+add_action('wp_ajax_google_login', 'handle_google_login');
+
+function handle_google_login() {
+    if (empty($_POST['id_token'])) {
+        wp_send_json_error(['message' => 'No ID token provided.']);
+        exit;
+    }
+
+    $id_token = sanitize_text_field($_POST['id_token']);
+    require_once dirname( __FILE__, 1 ) . '/vendor/autoload.php';
+
+    $client = new Google_Client(['client_id' => '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com']); // Replace with your actual client ID
+    $payload = $client->verifyIdToken($id_token);
+
+    if ($payload) {
+        $user_email = $payload['email'];
+
+        $user = get_user_by('email', $user_email);
+        if (!$user) {
+            // User does not exist, create a new user account
+            $random_password = wp_generate_password(); // Generate a random password or use a predefined one
+            $user_data = [
+                'user_login' => $user_email,
+                'user_email' => $user_email,
+                'user_pass' => $random_password,
+                'first_name' => $payload['given_name'] ?? '', // Optional
+                'last_name' => $payload['family_name'] ?? '', // Optional
+            ];
+            $user_id = wp_insert_user($user_data);
+
+            // Check for errors
+            if (is_wp_error($user_id)) {
+                wp_send_json_error(['message' => 'User registration failed.']);
+                exit;
+            }
+
+            // Optionally send the new user a notification about their account creation
+            // wp_send_new_user_notifications($user_id);
+
+            // Log the new user in
+            wp_set_current_user($user_id);
+            wp_set_auth_cookie($user_id);
+
+            wp_send_json_success(['message' => 'New user registered and logged in.', 'redirect_url' => home_url()]);
+        } else {
+            // User exists, log them in
+            wp_set_current_user($user->ID);
+            wp_set_auth_cookie($user->ID);
+
+            wp_send_json_success(['message' => 'User logged in.', 'redirect_url' => home_url()]);
+        }
+    } else {
+        wp_send_json_error(['message' => 'Invalid ID token.']);
+    }
+}
