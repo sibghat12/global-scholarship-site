@@ -394,20 +394,20 @@ if (isset($_GET['error'])) {
 // }
 
 // Check if the user is already logged in to prevent unnecessary redirects
-if (is_user_logged_in()) {
-    error_log('User is logged in, redirecting to a safe page.');
+// if (is_user_logged_in()) {
+//     error_log('User is logged in, redirecting to a safe page.');
 
-    // Example of redirecting to a different page based on user role
-    $user = wp_get_current_user();
-    if (in_array('administrator', (array) $user->roles)) {
-        // Redirect administrators to the dashboard
-        // wp_redirect(admin_url());
-    } else {
-        // Redirect other users to a profile or custom page
-        // wp_redirect(home_url('/member-dashboard/')); // Adjust the URL as needed
-    }
-    // exit;
-}
+//     // Example of redirecting to a different page based on user role
+//     $user = wp_get_current_user();
+//     if (in_array('administrator', (array) $user->roles)) {
+//         // Redirect administrators to the dashboard
+//         // wp_redirect(admin_url());
+//     } else {
+//         // Redirect other users to a profile or custom page
+//         // wp_redirect(home_url('/member-dashboard/')); // Adjust the URL as needed
+//     }
+//     // exit;
+// }
 
 // Process the Google OAuth flow if we have a 'code' parameter
 if (isset($_GET['code'])) {

@@ -104,6 +104,7 @@ function theme_enqueue_styles() {
         array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
+            'redirect_uri' => site_url('/google-callback'),
         )
     );
 
@@ -5258,9 +5259,15 @@ function add_login_modal_and_js() {
                         <div class="or-separator"><span>OR</span></div>
                         <button type="button" class="gs-btn gs-btn-secondary">Continue with Google</button>
                     </form> -->
-
+                    <?php 
+                        /*
+                        $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+                        $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+                        $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+                        */
+                    ?>
                     <?php echo do_shortcode('[mepr-login-form use_redirect="true"]'); ?>
-                    <button type="button" class="gs-btn gs-btn-secondary" onclick="client.requestCode();">Continue with Google</button>
+                    <button type="button" id="googleLoginButton" class="gs-btn gs-btn-secondary">Continue with Google</button>
 
                     <!-- <div id="g_id_onload"
                         data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com"
@@ -5293,13 +5300,13 @@ function add_login_modal_and_js() {
 
 add_action('wp_footer', 'add_login_modal_and_js');
 
-function my_google_login_button() {
-    $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
-    $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
-    $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
-    echo '<a href="' . $login_url . '" class="google-login-button">Sign in with Google</a>';
-}
-add_action('login_form', 'my_google_login_button');
+// function my_google_login_button() {
+//     $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+//     $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+//     $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+//     echo '<a href="' . $login_url . '" class="google-login-button">Sign in with Google</a>';
+// }
+// add_action('login_form', 'my_google_login_button');
 
 function delete_provider_posts() {
     $args = array(

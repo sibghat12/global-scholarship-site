@@ -114,6 +114,31 @@ jQuery(document).ready(function($) {
             modal.hide();
         }
     });
+    let clientId = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+    let redirectUri = window.location.origin + '/google-callback'; // Adjust the path as necessary
+    let scope = 'openid email profile';
+    let responseType = 'code';
+
+    $('.gs-btn').on('click', function(e) {
+        console.log("e.target", e.target)
+        let loginUrl = 'https://accounts.google.com/o/oauth2/v2/auth' +
+                    '?client_id=' + encodeURIComponent(clientId) +
+                    '&redirect_uri=' + encodeURIComponent(redirectUri) +
+                    '&response_type=' + encodeURIComponent(responseType) +
+                    '&scope=' + encodeURIComponent(scope);
+
+        // Example of how to use the login URL: redirect or attach to an element's event
+        // Redirect to the login URL
+        window.location.href = loginUrl;
+
+        // Or attach the login URL to a button click event
+        // var loginButton = document.getElementById('googleLoginButton'); // Ensure you have this element in your HTML
+        // if (loginButton) {
+        //     loginButton.addEventListener('click', function() {
+        //         window.location.href = loginUrl;
+        //     });
+        // }
+    })
 });
     
     // function onSignIn(googleUser) {
@@ -163,19 +188,19 @@ jQuery(document).ready(function($) {
 
 
 
-const client = google.accounts.oauth2.initCodeClient({
-    client_id: '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com',
-    scope: 'https://www.googleapis.com/auth/calendar.readonly',
-    ux_mode: 'popup',
-    callback: (response) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', code_receiver_uri, true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      // Set custom header for CRSF
-      xhr.setRequestHeader('X-Requested-With', 'XmlHttpRequest');
-      xhr.onload = function() {
-        console.log('Auth code response: ' + xhr.responseText);
-      };
-      xhr.send('code=' + response.code);
-    },
-  });
+// const client = google.accounts.oauth2.initCodeClient({
+//     client_id: '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com',
+//     scope: 'https://www.googleapis.com/auth/calendar.readonly',
+//     ux_mode: 'popup',
+//     callback: (response) => {
+//       const xhr = new XMLHttpRequest();
+//       xhr.open('POST', code_receiver_uri, true);
+//       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//       // Set custom header for CRSF
+//       xhr.setRequestHeader('X-Requested-With', 'XmlHttpRequest');
+//       xhr.onload = function() {
+//         console.log('Auth code response: ' + xhr.responseText);
+//       };
+//       xhr.send('code=' + response.code);
+//     },
+//   });
