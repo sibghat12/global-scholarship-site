@@ -9228,6 +9228,10 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     /* #mobile-search-box {
         display: none;
     } */
+    
+    .gs-modal-content {
+        padding: 0 10px;
+    }
 }
 
 /* Hide the desktop search box on screens smaller than or equal to 767px */
@@ -9356,6 +9360,7 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 
 .alt-title-color {
     color:#008fc6;
+    line-height: 2.7rem;
 }
 
 #loginModal .modal-body {
@@ -9418,10 +9423,6 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     letter-spacing: normal;
 }
 
-.alt-signup-text
-{
-    color:#d9534f !important;
-}
 #loginModal .modal-footer a {
     color: black; 
     margin-top:15px;
@@ -9451,11 +9452,6 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     border-bottom: 1px solid #ced4da;
     line-height: 0.1rem;
     font-weight: 700;
-}
-
-.or-separator span {
-    background: #fff; 
-    padding: 0 10px;
 }
 
 /* Responsive adjustments */
@@ -9492,17 +9488,17 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 .gs-modal-dialog {
     background-color: #FCFAFA;
     margin: 10% auto;
-    padding: 20px;
+    padding: 20px 10px;
     width: 460px;
-    max-width: 70%;
+    max-width: 84%;
     box-sizing: border-box;
     border-radius: 15px;
     box-shadow: -4px 5px 7px 0px #b8b8b8d1;
 }
 
-.gs-modal-content {
+/* .gs-modal-content {
     padding: 0 25px;
-}
+} */
 /* Add more styles for the form and other elements as needed */
 #gsLoginModal .gs-modal-header h2 {
     font-size: 36px;
@@ -9580,10 +9576,7 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background-color: #bd2130;
 }
 
-.or-separator {
-    text-align: center;
-    margin: 20px 0;
-}
+
 
 
 /* MemberPress Form in GS Login Modal*/
@@ -9678,4 +9671,92 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 /* Style for checked state */
 #gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#rememberme[type="checkbox"]:checked {
     background-color: #008FC6; /* Background color when checked */
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .gs-memberpress-login-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .gs-memberpress-login-remember {
+    display: flex;
+    flex-grow: 0;
+    margin-right: auto;
+    align-items: center;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mepr-login-actions {
+    display: flex !important;
+    flex-grow: 1;
+    text-align: right;
+    align-items: center;
+    width: 60%;
+    justify-content: flex-end;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mepr-login-actions a{
+    color: #000;
+    text-decoration: underline;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .gs-mepr-login {
+    width: 100%;
+    padding: 10px 5px !important;
+    background: #FF3131 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem !important;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .or-separator {
+    text-align: center;
+    margin: 30px 0;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .or-separator span {
+    background: #FCFAFA; 
+    padding: 0 10px;
+    font-size: 1.5rem;
+}
+
+#gsLoginModal .gs-modal-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#googleLoginButton {
+    font-size: 1.1rem !important;
+    margin-bottom: 1.2rem;
+}
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup .alt-signup-text
+{
+    color:#FF3131 !important;
+}
+
+button#googleLoginButton {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+button#googleLoginButton svg {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button#googleLoginButton span {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
