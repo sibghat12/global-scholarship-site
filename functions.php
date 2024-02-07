@@ -110,6 +110,18 @@ function theme_enqueue_styles() {
         )
     );
 
+    wp_enqueue_script('gs_modal-signup',  get_stylesheet_directory_uri() . '/assets/signup-modal.js', array('jquery','google-platform'),
+        '1.0.45',
+        true );
+        
+        wp_localize_script('gs_modal-signup', 'myAjax', 
+            array(
+                'ajaxurl' => admin_url('admin-ajax.php'),
+                'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
+                'redirect_uri' => site_url('/google-callback'),
+            )
+        );
+
     wp_localize_script( 'gs_scholarships_update', 'my_ajax_object',
       array( 
         'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -5205,6 +5217,47 @@ add_action('wp_footer', 'add_login_modal_and_js');
 //     echo '<a href="' . $login_url . '" class="google-login-button">Sign in with Google</a>';
 // }
 // add_action('login_form', 'my_google_login_button');
+
+
+
+//GS signup multistep modal
+/*
+https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
+*/
+function add_multistep_signup_modal_and_js() {
+    ?>
+<div id="gsSignupModal" style="display:none;" class="gs-modal">
+    <div class="gs-modal-dialog">
+        <div class="gs-modal-content">
+            <div class="gs-modal-header">
+                <!-- <span class="gs-close">&times;</span> -->
+                <h2>Sign in to <span class="alt-title-color">Global Scholarships</span></h2>
+            </div>
+            <div class="gs-modal-body">
+                    <?php 
+                        /*
+                        $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+                        $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+                        $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+                        */
+                    ?>
+                    <?php echo do_shortcode('[mepr-membership-registration-form]'); ?>
+                    <button type="button" id="googleLoginButton" class="gs-btn gs-btn-secondary"><?php echo get_svg_icon('google-icon'); ?>
+<span>Continue with Google</span></button>
+
+
+            </div>
+            <div class="gs-modal-footer">
+                <span class="gs-modal-signup">Don't have an account?<a href="#"> <span class="alt-signup-text">Sign Up</span></a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+}
+
+add_action('wp_footer', 'add_multistep_signup_modal_and_js');
+
 
 function delete_provider_posts() {
     $args = array(

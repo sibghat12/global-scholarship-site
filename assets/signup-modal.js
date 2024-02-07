@@ -1,14 +1,14 @@
 jQuery(document).ready(function($) {
     // Open the modal
-    $('.gs-login-btn').on('click', function(e) {
+    $('.gs-signup-btn').on('click', function(e) {
         e.preventDefault();
-        $('#gsLoginModal').show();
+        $('#gsSignupModal').show();
     });
 
 
     // Close the modal when user clicks anywhere outside of the modal
     $(window).on('click', function(event) {
-        var modal = $('#gsLoginModal');
+        var modal = $('#gsSignupModal');
         if ($(event.target).is(modal)) {
             modal.hide();
         }
@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
 
 
     // Toggle Password
-    $('#gsLoginModal .gs-modal-dialog .mp-hide-pw button').click(function(e) {
+    $('#gsSignupModal .gs-modal-dialog .mp-hide-pw button').click(function() {
         var $passwordInput = $('#user_pass');
         if ($passwordInput.attr('type') === 'password') {
             $passwordInput.attr('type', 'text');
