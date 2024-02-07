@@ -55,6 +55,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 // add_action('wp_enqueue_scripts', 'serach_script_enqueue');
 
 function theme_enqueue_styles() {
+    wp_enqueue_style( 'dashicons' );
+
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {

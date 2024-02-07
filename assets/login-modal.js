@@ -13,6 +13,20 @@ jQuery(document).ready(function($) {
             modal.hide();
         }
     });
+
+
+    // Toggle Password
+    $('.gs-modal-dialog .mp-hide-pw button').click(function() {
+        var $passwordInput = $('#user_pass');
+        if ($passwordInput.attr('type') === 'password') {
+            $passwordInput.attr('type', 'text');
+            $(this).html('<span class="dashicons dashicons-hidden" aria-hidden="true"></span>'); // Change icon if needed
+        } else {
+            $passwordInput.attr('type', 'password');
+            $(this).html('<span class="dashicons dashicons-visibility" aria-hidden="true"></span>'); // Revert icon
+        }
+    });
+
     let clientId = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
     let redirectUri = window.location.origin + '/google-callback'; // Adjust the path as necessary
     let scope = 'openid email profile';
