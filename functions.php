@@ -5420,3 +5420,25 @@ function handle_google_login() {
         wp_send_json_error(['message' => 'Invalid ID token.']);
     }
 }
+
+function change_gs_avatar($avatar, $id_or_email, $size, $default, $alt) {
+    $user = false;
+
+    if (is_numeric($id_or_email)) {
+        $user = get_user_by('id', $id_or_email);
+    } elseif (is_object($id_or_email)) {
+        if (!empty($id_or_email->user_id)) {
+            $user = get_user_by('id', $id_or_email->user_id);
+        }
+    } else {
+        $user = get_user_by('email', $id_or_email);
+    }
+
+    if ($user && $avatar_url = get_user_meta($user->ID, 'avatar', true)) {
+        $avatar = "<img alt='{$alt}' src='{$avatar_url}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+    }
+
+    return $avatar;
+}
+
+add_filter('get_avatar','change_gs_avatar', 10, 5);

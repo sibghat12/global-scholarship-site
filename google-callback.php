@@ -57,11 +57,28 @@ if (isset($_GET['code'])) {
             $email = $user_info->email;
             $user = get_user_by('email', $email);
             if (!$user) {
-                error_log('Creating new user with email: ' . $email);
-                $user_id = wp_create_user($email, wp_generate_password(), $email);
+                // If user doesn't exist, create new one
+                $userdata = [
+                    'user_email' => $email,
+                    'user_login' => $email,
+                    'first_name' => $user_info->given_name,
+                    'last_name' => $user_info->family_name,
+                    'display_name' => $user_info->given_name,
+                ];
+                $user_id = wp_insert_user($userdata);
+                update_user_meta($user_id, 'avatar', $user_info->picture);
             } else {
                 $user_id = $user->ID;
-                error_log('User found with email: ' . $email . '. ID: ' . $user_id);
+                // Update first name, last name, and avatar only if they are not already set
+                if (!get_user_meta($user_id, 'first_name', true)) {
+                    update_user_meta($user_id, 'first_name', $user_info->given_name);
+                }
+                if (!get_user_meta($user_id, 'last_name', true)) {
+                    update_user_meta($user_id, 'last_name', $user_info->family_name);
+                }
+                if (!get_user_meta($user_id, 'display_name', true)) {
+                    update_user_meta($user_id, 'display_name', $user_info->given_name);
+                }
             }
 
             wp_set_current_user($user_id);
