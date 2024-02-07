@@ -5117,11 +5117,15 @@ function display_post_categories_as_bubbles() {
 
 add_shortcode('post_categories_bubbles', 'display_post_categories_as_bubbles');
 
+/**
+ * Update ACF field select on the fly when user types a select text it gets added in Select (NEW!) this is a custom behaviour -Not an ACF Default behaviour-
+ * 
+ */
 function gs_update_select_choices( $post_id ) {
 
     // Check for autosave
     // if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    $select_field_key = 'field_65b373705f46b';
+    $select_field_key = 'field_65b373705f46b'; // Select Field Providers in External Scholarships CPT
 
     // Ensure the field is present in $_POST data
     if (!isset($_POST['acf'][$select_field_key])) return;
@@ -5156,89 +5160,7 @@ function gs_update_select_choices( $post_id ) {
 add_action('acf/save_post', 'gs_update_select_choices', 20);
 
 /*
-function add_login_modal_and_js() {
-  ?>
-    <!-- Login Modal HTML -->
-    <div class="modal fade" style="display: none;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">
-
-                        Sign in to <span class="alt-title-color">Global Scholarships </span></h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
-                </div>
-                <div class="modal-body">
-                    <!-- The form inside the modal -->
-                    <form>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-
-                        <div style="width:50%;float:left;">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember me</label>
-
-                        </div>
-                        </div>
-
-                         <div style="width:50%;float:right;text-align: right; font-weight: 700;">
-                        <a class="login-forget-password" href="#"> <u>Forget Password? </u></a>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Continue</button>
-                        <div class="or-separator"><span>OR</span></div>
-                        
-                        
-                        <button class="btn btn-danger google-btn">Continue with Google</button>
-                    </form>
-
-                    <div id="g_id_onload"
-                        data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com"
-                        data-context="signin"
-                        data-ux_mode="popup"
-                        data-login_uri="https://gs.lndo.site/google-auth"
-                        data-nonce=""
-                        data-auto_prompt="false">
-                    </div>
-
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-shape="rectangular"
-                        data-theme="outline"
-                        data-text="continue_with"
-                        data-size="large"
-                        data-logo_alignment="center"
-                        data-width="450">
-                    </div>
-                    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-
-                    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com" data-theme="dark"></div> -->
-                </div>
-                <div class="modal-footer">
-                    <a href="#">Don't have an account ? <span class="alt-signup-text"> Sign Up </span> </a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-  
-    <?php
-}
-
-add_action('wp_footer', 'add_login_modal_and_js');
-https://bard.google.com/chat/3ac8173f4285929c
 https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
-codedegree.com
 */
 function add_login_modal_and_js() {
     ?>
@@ -5250,32 +5172,6 @@ function add_login_modal_and_js() {
                 <h2>Sign in to <span class="alt-title-color">Global Scholarships</span></h2>
             </div>
             <div class="gs-modal-body">
-                <!-- The form inside the modal -->
-                    <!-- <form id="gsLoginForm">
-                        <div class="gs-form-group">
-                            <label for="gsEmail">Email address</label>
-                            <input type="email" class="gs-form-control" id="gsEmail" placeholder="Enter email">
-                        </div>
-                        <div class="gs-form-group">
-                            <label for="gsPassword">Password</label>
-                            <input type="password" class="gs-form-control" id="gsPassword" placeholder="Password">
-                        </div>
-
-                        <div class="gs-form-half">
-                            <div class="gs-form-check">
-                                <input type="checkbox" id="gsRememberMe">
-                                <label for="gsRememberMe">Remember me</label>
-                            </div>
-                        </div>
-
-                        <div class="gs-form-half" style="text-align: right;">
-                            <a href="#" class="login-forget-password"><u>Forget Password?</u></a>
-                        </div>
-
-                        <button type="submit" class="gs-btn gs-btn-danger">Continue</button>
-                        <div class="or-separator"><span>OR</span></div>
-                        <button type="button" class="gs-btn gs-btn-secondary">Continue with Google</button>
-                    </form> -->
                     <?php 
                         /*
                         $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
@@ -5286,24 +5182,6 @@ function add_login_modal_and_js() {
                     <?php echo do_shortcode('[mepr-login-form use_redirect="true"]'); ?>
                     <button type="button" id="googleLoginButton" class="gs-btn gs-btn-secondary">Continue with Google</button>
 
-                    <!-- <div id="g_id_onload"
-                        data-client_id="332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com"
-                        data-context="signin"
-                        data-ux_mode="popup"
-                        data-login_uri="https://gs.lndo.site/google-auth"
-                        data-nonce=""
-                        data-auto_prompt="false">
-                    </div>
-
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-shape="rectangular"
-                        data-theme="outline"
-                        data-text="continue_with"
-                        data-size="large"
-                        data-logo_alignment="center"
-                        data-width="450">
-                    </div> -->
 
             </div>
             <div class="gs-modal-footer">
@@ -5354,91 +5232,6 @@ function remove_provider_post_type() {
 
 // Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
 add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
-
-
-
-// function handle_google_login() {
-//     $CLIENT_ID = "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com";
-//     if (isset($_POST['id_token'])) {
-//         $id_token = sanitize_text_field($_POST['id_token']);
-        
-//         // require_once get_template_directory() . '/vendor/autoload.php'; // Adjust the path to the autoload script of the Google API client
-//         require_once dirname( __FILE__, 1 ) . '/vendor/autoload.php';
-//         $client = new Google_Client(['client_id' => $CLIENT_ID]); 
-//         $payload = $client->verifyIdToken($id_token);
-//         if ($payload) {
-//             $userid = $payload['sub']; // User's Google ID
-            
-//             // Here, you could check if the user exists in WordPress and log them in, or create a new user account
-            
-//             wp_send_json_success(['userId' => $userid, 'message' => 'User authenticated.']);
-//         } else {
-//             wp_send_json_error('Token verification failed.');
-//         }
-//     }
-//     wp_send_json_error('No token provided.');
-// }
-// add_action('wp_ajax_google_login', 'handle_google_login');
-// add_action('wp_ajax_nopriv_google_login', 'handle_google_login');
-
-// For logged-out users
-add_action('wp_ajax_nopriv_google_login', 'handle_google_login');
-// For logged-in users (if necessary)
-add_action('wp_ajax_google_login', 'handle_google_login');
-
-function handle_google_login() {
-    if (empty($_POST['id_token'])) {
-        wp_send_json_error(['message' => 'No ID token provided.']);
-        exit;
-    }
-
-    $id_token = sanitize_text_field($_POST['id_token']);
-    require_once dirname( __FILE__, 1 ) . '/vendor/autoload.php';
-
-    $client = new Google_Client(['client_id' => '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com']); // Replace with your actual client ID
-    $payload = $client->verifyIdToken($id_token);
-
-    if ($payload) {
-        $user_email = $payload['email'];
-
-        $user = get_user_by('email', $user_email);
-        if (!$user) {
-            // User does not exist, create a new user account
-            $random_password = wp_generate_password(); // Generate a random password or use a predefined one
-            $user_data = [
-                'user_login' => $user_email,
-                'user_email' => $user_email,
-                'user_pass' => $random_password,
-                'first_name' => $payload['given_name'] ?? '', // Optional
-                'last_name' => $payload['family_name'] ?? '', // Optional
-            ];
-            $user_id = wp_insert_user($user_data);
-
-            // Check for errors
-            if (is_wp_error($user_id)) {
-                wp_send_json_error(['message' => 'User registration failed.']);
-                exit;
-            }
-
-            // Optionally send the new user a notification about their account creation
-            // wp_send_new_user_notifications($user_id);
-
-            // Log the new user in
-            wp_set_current_user($user_id);
-            wp_set_auth_cookie($user_id);
-
-            wp_send_json_success(['message' => 'New user registered and logged in.', 'redirect_url' => home_url()]);
-        } else {
-            // User exists, log them in
-            wp_set_current_user($user->ID);
-            wp_set_auth_cookie($user->ID);
-
-            wp_send_json_success(['message' => 'User logged in.', 'redirect_url' => home_url()]);
-        }
-    } else {
-        wp_send_json_error(['message' => 'Invalid ID token.']);
-    }
-}
 
 function change_gs_avatar($avatar, $id_or_email, $size, $default, $alt) {
     $user = false;
