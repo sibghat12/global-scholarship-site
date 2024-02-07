@@ -5166,7 +5166,7 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
 */
 function add_login_modal_and_js() {
     ?>
-<div id="gsLoginModal" class="gs-modal">
+<div id="gsLoginModal" style="display:none;" class="gs-modal">
     <div class="gs-modal-dialog">
         <div class="gs-modal-content">
             <div class="gs-modal-header">
