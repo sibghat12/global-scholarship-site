@@ -1379,15 +1379,23 @@ function handle_ajax_load_courses() {
 $country_value = isset($_POST['country']) ? strtolower($_POST['country']) : '';
 $degree_value = isset($_POST['degree']) ? strtolower($_POST['degree']) : '';
 $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
+   
+
+  
+    $subject_value = str_replace('-', ' ', $subject_value);
+    $subject_value = ucwords($subject_value);
+
+    
 
     $page = $_POST['page'] ?? 1;
     $order = $_POST['order'] ?? 'DESC';
-    $adsPerPage = 10;
+    $adsPerPage = 30;
     $offset = ($page - 1) * $adsPerPage;
 
- $country_value = str_replace('-', ' ', $country_value);
- 
-
+    $country_value = str_replace('-', ' ', $country_value);
+    
+  
+   
 
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
@@ -1438,7 +1446,7 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
     $ad_args = array(
         'post_type' => 'ads',
         'post_status' => 'publish',
-        'posts_per_page' => 10,
+        'posts_per_page' => 30,
         'offset' => $offset, 
         // 'meta_key' => 'tuition_USD',
         // 'orderby' => "meta_value_num",
@@ -1457,11 +1465,17 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
     $all_ad_args = array(
         'post_type' => 'ads',
         'post_status' => 'publish',
-        'posts_per_page' => 10,
+        'posts_per_page' => 30,
         'offset' => $offset, 
-        'meta_key' => 'tuition_USD',
+        
+        // 'meta_key' => 'tuition_USD',
+        // 'orderby' => "meta_value_num",
+        // 'order' => $order,
+
+        'meta_key' => 'priority',
         'orderby' => "meta_value_num",
-        'order' => $order,
+        'order' => "DESC",
+
         'meta_query' => array(
             'relation' => 'AND',
             array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
@@ -1486,7 +1500,8 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
  $text = " ";
  $loop = new WP_Query($ad_args);
  $total_count = $loop->found_posts;
- $first = "" . ucwords($degree_value) . " ". ucwords($subject_value) . " Courses ";
+
+ $first = "" . ucwords($degree_value) . " ". $subject_value . " Courses ";
  $second = "in " . ucwords($country_value) . " ";
  $third = "for Students " . $location_string;
  if(isset($country_value) && $country_value){
@@ -1505,11 +1520,13 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
         $ad_id = get_the_ID();
         show_ads_card_new($ad_id); // Adjust this to your function for displaying a card
     }
-    } else {
+    } 
+    else {
     echo "<p style='padding-bottom:20px;' class='white-background'><b>There were no courses matching your search of " . $text . ". Instead, we will show all the courses available for students " . $location_string . ". </b></p>";
 
     $new_loop = new WP_Query($all_ad_args);
     $total_count = $new_loop->found_posts;
+    
     if ($new_loop->have_posts()) {
         echo "<h2 class='opencourse-ajax-title'>" . $text . " </h2>"; 
         echo "<p  class='opencourse-ajax-count'>" . $total_count . " </p>";
@@ -4911,12 +4928,15 @@ add_action('wp_ajax_nopriv_load_ads', 'load_ads_ajax_handler');
 
 function load_ads_ajax_handler() {
 
-
-
     $degree_value = $_POST['degree']; 
     $subject_value = $_POST['subject'];
+
     $country_value = $_POST['country'];
     $country_value = str_replace('-', ' ', $country_value);
+
+
+    $subject_value = str_replace('-', ' ', $subject_value);
+    $subject_value = ucwords($subject_value);
 
     $courses_details  = acf_get_fields('group_64c9f01dd1837');
     $courses_subject = array_column($courses_details, null, 'name')['subjects'];
@@ -4981,20 +5001,20 @@ function load_ads_ajax_handler() {
 
    
       
-    $degree_value = $_POST['degree']; 
-    $subject_value = $_POST['subject'];
-    $country_value = $_POST['country'];
+    // $degree_value = $_POST['degree']; 
+    // $subject_value = $_POST['subject'];
+    // $country_value = $_POST['country'];
     $country_value = str_replace('-', ' ', $country_value);
 
     $page = $_POST['page'] ?? 1;
     $order = $_POST['order'] ?? 'DESC';
-    $adsPerPage = 10;
+    $adsPerPage = 30;
     $offset = ($page - 1) * $adsPerPage;
     // Prepare your query arguments based on the order
     $ad_args = array(
         'post_type' => 'ads',
         'post_status' => 'publish',
-        'posts_per_page' => 10,
+        'posts_per_page' => 30,
         'offset' => $offset, 
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
@@ -5011,18 +5031,15 @@ function load_ads_ajax_handler() {
         'post_status' => 'publish',
         'posts_per_page' => 10,
         'offset' => $offset, 
-        'meta_key' => 'tuition_USD',
+        'meta_key' => 'priority',
         'orderby' => "meta_value_num",
-        'order' => $order,
+        'order' => "DESC",
         'meta_query' => array(
             'relation' => 'AND',
             array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
             array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN')
         )
     );
-
-
-
 
 
     if ($subject_value) {
@@ -5337,6 +5354,8 @@ function remove_provider_post_type() {
 
 // Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
 add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
+
+
 
 // function handle_google_login() {
 //     $CLIENT_ID = "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com";

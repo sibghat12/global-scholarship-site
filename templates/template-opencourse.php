@@ -7,7 +7,7 @@
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Direct script access denied.' );
+    exit( 'Direct script access denied.' );
 }
 
 ?>
@@ -90,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $ad_args = array(
         'post_type' => 'ads',
         'post_status' => 'publish',
-        'posts_per_page' => 10,
+        'posts_per_page' => 30,
         'meta_key' => 'tuition_USD',
         'orderby' => "meta_value_num",
         'order' => "DESC",
@@ -144,8 +144,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  </div> 
 
 <section id="content" class="small-text opencourse-template"   style="width:100% !important;">
-		<div id="openCourses" style="max-width: 1000px;margin: auto;">
-			<div class="post-content" style="max-width:100%;">
+        <div id="openCourses" style="max-width: 1000px;margin: auto;">
+            <div class="post-content" style="max-width:100%;">
     <div class="toggle-filter"  >           
  <center>
 <aside style="width:80%;max-width:1000px;">            
@@ -274,7 +274,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
 
     
-	<?php wp_reset_postdata(); ?>
+    <?php wp_reset_postdata(); ?>
     
     
 <div class="feature-course-section">
@@ -306,12 +306,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script>
 
 var currentPage = 1;
-var adsPerPage = 10;
+var adsPerPage = 30;
 var openCourseCount = 0;
 
 jQuery( document ).ready( function($){
      
-    reload_data();
+   reload_data();
 
     $(document).on('click', '.ad-read-more', function (e) {
         $(this).siblings(".line-clamp-3").removeClass('line-clamp-3');
@@ -366,8 +366,6 @@ function adjustHeight() {
 
 
   jQuery(window).on('load', function() {
-    // Run on document ready
-    
     // Update on window resize
     jQuery(window).resize(adjustHeight);
   });
@@ -574,15 +572,11 @@ function setSelectedValue(selector, value) {
  
 function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, adsPerPage, currentPage , reload) {
 
-   
-    
     jQuery('.card-section-new').css("display", "none");
     jQuery('#preloader').css("display", "block");
       
-      currentOrder = getCurrentOrder(); 
+    currentOrder = getCurrentOrder(); 
      
-    
-
     var formData = new FormData();
     if(country_value) {
         formData.append('country', country_value);
@@ -613,13 +607,11 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
     url_update +=  "/" + subject_value;
     }
 
-  
-    
-
-     // Extract page number from the URL query parameters
+    // Extract page number from the URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('pages');
-    
+     
+
 
     jQuery.ajax({
         url: adminAjaxUrl,
@@ -660,14 +652,14 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
            }
 
             
-             if (openCourseCount <= 10) {
+             if (openCourseCount <= 30) {
                  jQuery('.opencourse-pagination').hide();
                }
 
                 if(pageParam) {
-                changeurl("opencourses"  + url_update + "/?pages=" + pageParam);
+               // changeurl("opencourses"  + url_update + "/?pages=" + pageParam);
                } else {
-                 changeurl("opencourses"  + url_update);
+               //  changeurl("opencourses"  + url_update);
                }
 
                            
@@ -712,6 +704,9 @@ function reload_data() {
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('pages');
     
+    const subject_query = urlParams.get('subject');
+    const degree_query = urlParams.get('degrees');
+    const country_query = urlParams.get('country');
     
     
     if(pageParam) {
@@ -745,6 +740,17 @@ function reload_data() {
     var degree_value = getValueFromPath(pathArray, degrees_array_js);
     var subject_value = getValueFromPath(pathArray, subjects_array_js);
    
+if (!country_value && country_query) {
+    country_value = country_query;
+}
+if (!degree_value && degree_query) {
+    degree_value = degree_query;
+}
+if (!subject_value && subject_query) {
+    subject_value = subject_query;
+}
+     
+
     country_value = formatValue(country_value);
     degree_value = formatValue(degree_value);
     subject_value = formatValue(subject_value);
@@ -772,11 +778,13 @@ function reload_data() {
      $('.subject-filter select').val(subject_input);
     }
     
-
+    
 
     // Example usage
      loadCourses(degree_value, country_value, subject_value, '<?php echo admin_url('admin-ajax.php'); ?>', 
     adsPerPage, currentPage , reload);
+     
+
      }
 
 function formatValue(value) {
@@ -941,7 +949,7 @@ jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
            }
         
         });
-    }
+}
 
 function flipImage() {
     var image = document.getElementById('flipImage');
@@ -949,7 +957,7 @@ function flipImage() {
 
     var order = image.classList.contains('flipped') ? 'ASC' : 'DESC';
     var currentPage = 1;
-    var adsPerPage = 10;
+    var adsPerPage = 30;
     var openCourseCount = parseInt(jQuery('.opencourse-pagination .number-bold').last().text(), 10);
 
     const url = new URL(window.location.href);
@@ -977,24 +985,34 @@ jQuery(document).ready(function($) {
         e.preventDefault(); // Prevent the default form submission
        
     currentPage = 1;
-       
+        const urlParams = new URLSearchParams(window.location.search);
     const url = new URL(window.location.href);
     const pageParam = parseInt(url.searchParams.get('pages'), 10);
    
     if (pageParam) {
         url.searchParams.delete('pages');
         window.history.pushState({}, '', url.toString());
-        
     }
 
-     
+   let subject_value, degree_value, country_value;
 
-    
-       var degreeValue = $('.degree-filter select').val();
-       var subjectValue = $('.subject-filter select').val();
-       var countryValue = $('.country-filter select').val();    
 
-        loadCourses(degreeValue, countryValue, subjectValue, '<?php echo admin_url('admin-ajax.php'); ?>', adsPerPage, currentPage, reload);
+    var selectDegreeValue = $('.degree-filter select').val() || null;
+    var selectSubjectValue = $('.subject-filter select').val() || null;
+    var selectCountryValue = $('.country-filter select').val() || null;
+
+    // Fallback to URL parameters if select values are not provided
+    subject_value = selectSubjectValue || urlParams.get('subject');
+    degree_value = selectDegreeValue || urlParams.get('degrees');
+    country_value = selectCountryValue || urlParams.get('country');
+
+  
+
+        
+
+
+
+        loadCourses(degree_value, country_value, subject_value, '<?php echo admin_url('admin-ajax.php'); ?>', adsPerPage, currentPage, reload);
        });
 });
 
@@ -1028,6 +1046,7 @@ window.addEventListener('popstate', function() {
 });
 
 // Initial call to the function when the page loads
+
 updateURLForPageOne();
 
 
@@ -1039,5 +1058,3 @@ updateURLForPageOne();
 
 <?php
 get_footer();
-
-
