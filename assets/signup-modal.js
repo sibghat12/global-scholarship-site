@@ -146,10 +146,10 @@ jQuery(document).ready(function($) {
             steps[currentStep].style.display = "none"; // Hide current step
             currentStep += next ? 1 : -1;
             
-            if (currentStep >= steps.length) {
-                document.getElementById("gsMultiStepFormRegister").submit(); // Submit form if on the last step
-                return;
-            }
+            // if (currentStep >= steps.length) {
+                // document.getElementById("gsMultiStepFormRegister").submit(); // Submit form if on the last step
+                // return;
+            // }
             showStep(currentStep);
         }
 
@@ -189,7 +189,45 @@ jQuery(document).ready(function($) {
             button.addEventListener("click", function() { moveStep(true); });
         });
 
-        continueBtn.addEventListener("click", function() { moveStep(true); });
+        continueBtn.addEventListener("click", function() {
+            // Check if the current step is the last step before submitting
+            if (currentStep === steps.length - 1) {
+                // Prepare form data for AJAX request
+                var formData = new FormData();
+                formData.append('action', 'gs_register_new_user'); // The action hook for wp_ajax_ and wp_ajax_nopriv_
+                formData.append('security', myAjax.security); // Nonce for security
+                
+                // Append form fields to formData
+                formData.append('email', document.querySelector('input[name="email"]').value);
+                formData.append('password', document.querySelector('input[name="password"]').value);
+                formData.append('first_name', document.querySelector('input[name="first_name"]').value);
+                formData.append('last_name', document.querySelector('input[name="last_name"]').value);
+                // Continue appending other form fields as needed...
+        
+                // AJAX request to register the user
+                fetch(myAjax.ajaxurl, {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin' // Include cookies in the request
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        alert('User Registered Successfully!');
+                        // Optionally, redirect or update UI here
+                    } else {
+                        // Handle errors
+                        alert(data.data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            } else {
+                moveStep(true); // Otherwise, just move to the next step
+            }
+        });
+        // continueBtn.addEventListener("click", function() { moveStep(true); });
 
         prevButtons.forEach(function(button) {
             button.addEventListener("click", function() { moveStep(false); });

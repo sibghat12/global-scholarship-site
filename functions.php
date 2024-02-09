@@ -119,6 +119,7 @@ function theme_enqueue_styles() {
                 'ajaxurl' => admin_url('admin-ajax.php'),
                 'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
                 'redirect_uri' => site_url('/google-callback'),
+                'security' => wp_create_nonce('my-ajax-nonce'),
             )
         );
 
@@ -5329,6 +5330,64 @@ function get_svg_icon($icon_name) {
 
 function my_multistep_form_shortcode() {
     ob_start(); // Start output buffer to return the form as a string
+            
+        // Check if form is submitted and the continue button is clicked
+        // if (isset($_POST['final-submit'])) {
+        //     // Sanitize and validate input data
+        //     $email = sanitize_email($_POST['email']);
+        //     $password = sanitize_text_field($_POST['password']);
+        //     $first_name = sanitize_text_field($_POST['first_name']);
+        //     $last_name = sanitize_text_field($_POST['last_name']);
+        //     // $birth_date = sanitize_text_field($_POST['birth_date']); // Ensure this is properly sanitized
+        //     // $gender = sanitize_text_field($_POST['gender']);
+        //     // Additional fields as necessary
+
+        //     // Validate email and password (basic validation)
+        //     if (!is_email($email) || empty($password)) {
+        //         // Handle validation error
+        //         echo '<div>Error: Invalid email or password.</div>';
+        //     } else {
+        //         // Attempt to create a new user
+        //         $user_id = wp_create_user($email, $password, $email);
+        //         if (is_wp_error($user_id)) {
+        //             // Handle error when creating user
+        //             echo '<div>Error: ' . $user_id->get_error_message() . '</div>';
+        //         } else {
+        //             // Update user meta with additional information
+        //             update_user_meta($user_id, 'first_name', $first_name);
+        //             update_user_meta($user_id, 'last_name', $last_name);
+        //             // Additional user meta updates as necessary
+
+        //             // Redirect to profile page after successful registration
+        //             wp_redirect(site_url("/account/?action=profile&userId=$user_id"));
+        //             exit;
+        //         }
+        //     }
+        // }
+        //  // Check if the final form submission has occurred
+        //  if (isset($_POST['final-submit'])) {
+        //     // Proceed with sanitization and validation of input data
+        //     $email = sanitize_email($_POST['email']);
+        //     $password = sanitize_text_field($_POST['password']);
+        //     // Continue with the rest of your sanitization for other fields
+
+        //     // Validate and register user
+        //     if (!is_email($email) || empty($password)) {
+        //         echo '<div>Error: Invalid email or password.</div>';
+        //     } else {
+        //         $user_id = wp_create_user($email, $password, $email);
+        //         if (is_wp_error($user_id)) {
+        //             echo '<div>Error: ' . $user_id->get_error_message() . '</div>';
+        //         } else {
+        //             // Update user meta and perform redirection
+        //             update_user_meta($user_id, 'first_name', $first_name);
+        //             // Additional meta updates as needed
+                    
+        //             wp_redirect(site_url('/account/?action=profile&userId=' . $user_id));
+        //             exit;
+        //         }
+        //     }
+        // }
 
     // Insert the form PHP/HTML code here (from the previous step)
     // Make sure to replace any 'echo' statements with direct HTML output or concatenate strings.
@@ -5339,13 +5398,12 @@ function my_multistep_form_shortcode() {
 
     ?>
     
-    <form id="gsMultiStepFormRegister" class="gs-form-register" action="#" method="post">
+    <form id="gsMultiStepFormRegister" class="gs-form-register" method="post">
         <div class="steps-navigation" style="display:none;">
             <span class="step">01</span>
             <span class="step">02</span>
             <span class="step">03</span>
             <span class="step">04</span>
-            <span class="step">05</span>
             <!-- Add or remove steps as necessary -->
         </div>
         <!-- Step 1 -->
@@ -5427,3 +5485,26 @@ function my_multistep_form_shortcode() {
     return ob_get_clean(); // Return the buffered content
 }
 add_shortcode('gs-multistep-register-form', 'my_multistep_form_shortcode');
+
+
+function gs_register_new_user() {
+    check_ajax_referer('my-ajax-nonce', 'security');
+
+    $email = sanitize_email($_POST['email']);
+    $password = sanitize_text_field($_POST['password']);
+    // Sanitize and validate other form data...
+
+    if (!is_email($email) || empty($password)) {
+        wp_send_json_error(array('message' => 'Invalid email or password.'));
+    } else {
+        $user_id = wp_create_user($email, $password, $email);
+        if (is_wp_error($user_id)) {
+            wp_send_json_error(array('message' => $user_id->get_error_message()));
+        } else {
+            // Optionally set additional user data here
+            wp_send_json_success(array('message' => 'User registered successfully.'));
+        }
+    }
+}
+add_action('wp_ajax_gs_register_new_user', 'gs_register_new_user');
+add_action('wp_ajax_nopriv_gs_register_new_user', 'gs_register_new_user');
