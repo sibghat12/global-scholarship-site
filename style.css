@@ -9760,3 +9760,111 @@ button#googleLoginButton span {
     align-items: center;
     width: 100%;
 }
+
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gs-signup-button-continue {
+    width: 100% !important;
+    padding: 10px 5px !important;
+    background: #FF3131 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem !important;
+    border: 0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.steps-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.steps-navigation .step {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #f9f9f9; /* Default background */
+    color: #000; /* Default text color, hidden when step is completed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    position: relative;
+    font-size: 14px; /* Adjust as needed */
+}
+
+.step-completed, .step-active {
+    background-color: #008FC6 !important;
+    border-color: #008FC6 !important;
+    font-size: 0 !important; /* Hide the text by setting font-size to 0 */
+}
+
+.step-completed::after, .step-active::after {
+    content: "\2713"; /* Checkmark */
+    font-size: 16px; /* Adjust as needed */
+    color: white; /* Checkmark color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the checkmark */
+    line-height: 1; /* Adjust line height for vertical alignment */
+}
+
+.step-completed:before, .step-active:before {
+    content: "\2713"; /* Checkmark */
+    font-size: 16px; /* Adjust as needed */
+    color: white; /* Checkmark color */
+    position: absolute;
+}
+
+/* Line between steps */
+.steps-navigation .step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    left: 128%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(100% + 50px);
+    height: 2px;
+    background-color: #767676;
+}
+
+/* Dynamic class for changing line color */
+.step.line-active:after {
+    background-color: #008FC6 !important; /* Change line color when step is active or completed */
+}
+
+/* .degree-options {
+    font-family: Arial, sans-serif;
+  } */
+  
+  .degree-options input[type="radio"] {
+    display: none; /* Hide the radio button itself */
+  }
+  
+  .degree-options label.degree-label {
+    display: inline-block;
+    background-color: white; /* Background color */
+    color: black; /* Text color */
+    padding: 10px 20px; /* Padding around text */
+    border: 2px solid #008FC6; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    margin: 5px; /* Space between buttons */
+    cursor: pointer; /* Mouse pointer changes to hand symbol */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  /* Change background color slightly when hovering over the label */
+  .degree-options label.degree-label:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Style for when the radio button is checked */
+  .degree-options input[type="radio"]:checked + label {
+    background-color: #008FC6; /* Change background color */
+    color: white; /* Change text color */
+  }
+  

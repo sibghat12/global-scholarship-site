@@ -5241,14 +5241,15 @@ function add_multistep_signup_modal_and_js() {
                         $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
                         */
                     ?>
-                    <?php echo do_shortcode('[mepr-membership-registration-form]'); ?>
-                    <button type="button" id="googleLoginButton" class="gs-btn gs-btn-secondary"><?php echo get_svg_icon('google-icon'); ?>
+                    <?php echo do_shortcode('[gs-multistep-register-form]'); ?>
+                    <?php /* echo do_shortcode('[mepr-membership-registration-form id="86040"]'); */ ?>
+                    <button type="button" id="googleSignupButton" class="gs-btn gs-btn-secondary"><?php echo get_svg_icon('google-icon'); ?>
 <span>Continue with Google</span></button>
 
 
             </div>
             <div class="gs-modal-footer">
-                <span class="gs-modal-signup">Don't have an account?<a href="#"> <span class="alt-signup-text">Sign Up</span></a></span>
+                <span class="gs-modal-signup gs-signup-gs-privacy-policy">By continuing, you agree and acknowledge Global Scholarship’s Privacy Policy.</span>
             </div>
         </div>
     </div>
@@ -5325,3 +5326,104 @@ function get_svg_icon($icon_name) {
     return '';
 }
 
+
+function my_multistep_form_shortcode() {
+    ob_start(); // Start output buffer to return the form as a string
+
+    // Insert the form PHP/HTML code here (from the previous step)
+    // Make sure to replace any 'echo' statements with direct HTML output or concatenate strings.
+    // For example, use HTML output directly and PHP for dynamic parts like looping through countries.
+
+    $countries = array('USA', 'Canada', 'UK'); // Example countries
+    $subjects = array('Mathematics', 'Science', 'History'); // Example subjects
+
+    ?>
+    
+    <form id="gsMultiStepFormRegister" class="gs-form-register" action="#" method="post">
+        <div class="steps-navigation" style="display:none;">
+            <span class="step">01</span>
+            <span class="step">02</span>
+            <span class="step">03</span>
+            <span class="step">04</span>
+            <span class="step">05</span>
+            <!-- Add or remove steps as necessary -->
+        </div>
+        <!-- Step 1 -->
+        <div class="form-step">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <label>
+                <input type="checkbox" name="newsletter"> <span>Accept receiving newsletter</span>
+            </label>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" style="display:none">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="date" name="birth_date" required>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <div class="gs-home-country">Home Country:</div>
+
+            <select name="gs-signup-home-country" required>
+                <option value=""></option>
+                <?php foreach($countries as $country): ?>
+                    <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" style="display:none">
+            <div class="degree-options">
+                <div class="gs-degree-choose">Choose Degree:</div>
+                <input type="radio" id="bachelor" name="degree" value="Bachelor">
+                <label for="bachelor" class="degree-label">Bachelor</label>
+
+                <input type="radio" id="master" name="degree" value="Master">
+                <label for="master" class="degree-label">Master</label>
+
+                <input type="radio" id="phd" name="degree" value="Ph.D.">
+                <label for="phd" class="degree-label">Ph.D.</label>
+            </div>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+        <!-- Step 4 -->
+        <div class="form-step" style="display:none">
+            <div class="gs-country-choose">Choose a Country:</div>
+
+            <select name="gs-signup-country" required>
+                <option value=""></option>
+                <?php foreach($countries as $country): ?>
+                    <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+        <!-- Step 5 -->
+        <div class="form-step" style="display:none">
+            <div class="gs-subject-choose">Choose a Subject:</div>
+
+            <select name="gs-signup-subject" required>
+                <option value=""></option>
+                <?php foreach($subjects as $subject): ?>
+                    <option value="<?php echo $subject; ?>"><?php echo $subject; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+
+
+
+        <input type="button" name="wp-signup-continue" id="wp-signup-continue-btn" class="button-primary gs-signup-button-continue" value="Continue">
+    </form>
+   
+    <?php
+    return ob_get_clean(); // Return the buffered content
+}
+add_shortcode('gs-multistep-register-form', 'my_multistep_form_shortcode');
