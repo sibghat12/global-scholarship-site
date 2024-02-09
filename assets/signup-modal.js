@@ -55,82 +55,6 @@ jQuery(document).ready(function($) {
     }
 
 
-        // // Signup Multistep Modal Logic
-
-        // var currentStep = 0;
-        // var steps = document.getElementsByClassName("form-step");
-        // var navSteps = document.querySelectorAll(".steps-navigation .step");
-        // var navStepContainer = document.querySelector(".steps-navigation");
-    
-        // showStep(currentStep); // Initialize the form to show the first step
-    
-        // // Update the moveStep function to highlight steps
-        // function moveStep(next) {
-        //     steps[currentStep].style.display = "none"; // Hide current step
-        //     currentStep += next ? 1 : -1;
-            
-        //     if (currentStep >= steps.length) {
-        //         document.getElementById("gsMultiStepFormRegister").submit(); // Submit form if on the last step
-        //         return;
-        //     }
-        //     showStep(currentStep);
-        // }
-    
-        // function showStep(n) {
-        //     steps[n].style.display = "block"; // Show the current step
-        //     updateStepsNavigation(n);
-        // }
-    
-        // function updateStepsNavigation(currentStep) {
-        //     // Reset all steps to default state and remove line-active class from all steps
-        //     navSteps.forEach(function(step, index) {
-        //         step.classList.remove("step-active", "step-completed", "line-active");
-        //         if (index < currentStep) {
-        //             // Add step-completed to all steps before the current step
-        //             step.classList.add("step-completed");
-        //         } else if (index === currentStep) {
-        //             // Add step-active to the current step
-        //             step.classList.add("step-active");
-        //         }
-        //         // Adding line-active class based on step's state
-        //         if (index <= currentStep) {
-        //             step.classList.add("line-active");
-        //         }
-        //     });
-        
-        //     // Ensure the line before the first step is not colored
-        //     if (currentStep > 0) {
-        //         navSteps[0].classList.add("line-active");
-        //     }
-        // }
-        
-        // // Attach event listeners to next and previous buttons
-        // var continueBtn = document.querySelector(".gs-signup-button-continue");
-        // var nextButtons = document.querySelectorAll(".next-btn");
-        // var prevButtons = document.querySelectorAll(".prev-btn");
-        
-        // nextButtons.forEach(function(button) {
-        //     button.addEventListener("click", function() { moveStep(true); });
-        // });
-
-        // continueBtn.addEventListener("click", function() { moveStep(true); navStepContainer.style.display="flex"; });
-        
-        // prevButtons.forEach(function(button) {
-        //     button.addEventListener("click", function() { moveStep(false); });
-        // });
-        
-        // // Direct navigation to previous steps
-        // navSteps.forEach((step, index) => {
-        //     step.addEventListener("click", () => {
-        //         if (index <= currentStep) {
-        //             steps[currentStep].style.display = "none";
-        //             currentStep = index;
-        //             showStep(currentStep);
-        //         }
-        //     });
-        // });
-        
-
         // Signup Multistep Modal Logic
         var currentStep = 0;
         var steps = document.getElementsByClassName("form-step");
@@ -189,34 +113,74 @@ jQuery(document).ready(function($) {
             button.addEventListener("click", function() { moveStep(true); });
         });
 
+        // continueBtn.addEventListener("click", function() {
+        //     // Check if the current step is the last step before submitting
+        //     if (currentStep === steps.length - 1) {
+        //         // Prepare form data for AJAX request
+        //         var formData = new FormData();
+        //         formData.append('action', 'gs_register_new_user'); // The action hook for wp_ajax_ and wp_ajax_nopriv_
+        //         formData.append('security', myAjax.security); // Nonce for security
+                
+        //         // Append form fields to formData
+        //         formData.append('email', document.querySelector('input[name="email"]').value);
+        //         formData.append('password', document.querySelector('input[name="password"]').value);
+        //         formData.append('first_name', document.querySelector('input[name="first_name"]').value);
+        //         formData.append('last_name', document.querySelector('input[name="last_name"]').value);
+        //         // Continue appending other form fields as needed...
+        
+        //         // AJAX request to register the user
+        //         fetch(myAjax.ajaxurl, {
+        //             method: 'POST',
+        //             body: formData,
+        //             credentials: 'same-origin' // Include cookies in the request
+        //         })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             if(data.success) {
+        //                 alert('User Registered Successfully!');
+        //                 // Optionally, redirect or update UI here
+        //             } else {
+        //                 // Handle errors
+        //                 alert(data.data.message);
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.error('Error:', error);
+        //         });
+        //     } else {
+        //         moveStep(true); // Otherwise, just move to the next step
+        //     }
+        // });
+
         continueBtn.addEventListener("click", function() {
             // Check if the current step is the last step before submitting
             if (currentStep === steps.length - 1) {
-                // Prepare form data for AJAX request
                 var formData = new FormData();
-                formData.append('action', 'gs_register_new_user'); // The action hook for wp_ajax_ and wp_ajax_nopriv_
-                formData.append('security', myAjax.security); // Nonce for security
-                
-                // Append form fields to formData
-                formData.append('email', document.querySelector('input[name="email"]').value);
-                formData.append('password', document.querySelector('input[name="password"]').value);
-                formData.append('first_name', document.querySelector('input[name="first_name"]').value);
-                formData.append('last_name', document.querySelector('input[name="last_name"]').value);
-                // Continue appending other form fields as needed...
+                formData.append('action', 'gs_register_new_user');
+                formData.append('security', myAjax.security);
+                formData.append('gs_email', document.querySelector('input[name="email"]').value);
+                formData.append('gs_password', document.querySelector('input[name="password"]').value);
+                formData.append('gs_newsletter', document.querySelector('input[name="gs_newsletter"]').checked ? 'yes' : 'no');
+                formData.append('gs_first_name', document.querySelector('input[name="gs_first_name"]').value);
+                formData.append('gs_last_name', document.querySelector('input[name="gs_last_name"]').value);
+                formData.append('gs_birth_date', document.querySelector('input[name="gs_birth_date"]').value);
+                formData.append('gs_gender', document.querySelector('select[name="gs_gender"]').value);
+                formData.append('gs_home_country', document.querySelector('select[name="gs_home_country"]').value);
+                formData.append('gs_degree', document.querySelector('input[name="gs_degree"]:checked').value);
+                formData.append('gs_interested_country', document.querySelector('select[name="gs_interested_country"]').value);
+                formData.append('gs_subject', document.querySelector('select[name="gs_subject"]').value);
         
-                // AJAX request to register the user
                 fetch(myAjax.ajaxurl, {
                     method: 'POST',
                     body: formData,
-                    credentials: 'same-origin' // Include cookies in the request
+                    credentials: 'same-origin'
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if(data.success) {
+                    if (data.success) {
                         alert('User Registered Successfully!');
                         // Optionally, redirect or update UI here
                     } else {
-                        // Handle errors
                         alert(data.data.message);
                     }
                 })
@@ -227,6 +191,7 @@ jQuery(document).ready(function($) {
                 moveStep(true); // Otherwise, just move to the next step
             }
         });
+        
         // continueBtn.addEventListener("click", function() { moveStep(true); });
 
         prevButtons.forEach(function(button) {

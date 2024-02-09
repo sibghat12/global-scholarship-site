@@ -111,7 +111,7 @@ function theme_enqueue_styles() {
     );
 
     wp_enqueue_script('gs_modal-signup',  get_stylesheet_directory_uri() . '/assets/signup-modal.js', array('jquery','google-platform'),
-        '1.0.45',
+        time(),
         true );
         
         wp_localize_script('gs_modal-signup', 'myAjax', 
@@ -5330,71 +5330,9 @@ function get_svg_icon($icon_name) {
 
 function my_multistep_form_shortcode() {
     ob_start(); // Start output buffer to return the form as a string
-            
-        // Check if form is submitted and the continue button is clicked
-        // if (isset($_POST['final-submit'])) {
-        //     // Sanitize and validate input data
-        //     $email = sanitize_email($_POST['email']);
-        //     $password = sanitize_text_field($_POST['password']);
-        //     $first_name = sanitize_text_field($_POST['first_name']);
-        //     $last_name = sanitize_text_field($_POST['last_name']);
-        //     // $birth_date = sanitize_text_field($_POST['birth_date']); // Ensure this is properly sanitized
-        //     // $gender = sanitize_text_field($_POST['gender']);
-        //     // Additional fields as necessary
 
-        //     // Validate email and password (basic validation)
-        //     if (!is_email($email) || empty($password)) {
-        //         // Handle validation error
-        //         echo '<div>Error: Invalid email or password.</div>';
-        //     } else {
-        //         // Attempt to create a new user
-        //         $user_id = wp_create_user($email, $password, $email);
-        //         if (is_wp_error($user_id)) {
-        //             // Handle error when creating user
-        //             echo '<div>Error: ' . $user_id->get_error_message() . '</div>';
-        //         } else {
-        //             // Update user meta with additional information
-        //             update_user_meta($user_id, 'first_name', $first_name);
-        //             update_user_meta($user_id, 'last_name', $last_name);
-        //             // Additional user meta updates as necessary
-
-        //             // Redirect to profile page after successful registration
-        //             wp_redirect(site_url("/account/?action=profile&userId=$user_id"));
-        //             exit;
-        //         }
-        //     }
-        // }
-        //  // Check if the final form submission has occurred
-        //  if (isset($_POST['final-submit'])) {
-        //     // Proceed with sanitization and validation of input data
-        //     $email = sanitize_email($_POST['email']);
-        //     $password = sanitize_text_field($_POST['password']);
-        //     // Continue with the rest of your sanitization for other fields
-
-        //     // Validate and register user
-        //     if (!is_email($email) || empty($password)) {
-        //         echo '<div>Error: Invalid email or password.</div>';
-        //     } else {
-        //         $user_id = wp_create_user($email, $password, $email);
-        //         if (is_wp_error($user_id)) {
-        //             echo '<div>Error: ' . $user_id->get_error_message() . '</div>';
-        //         } else {
-        //             // Update user meta and perform redirection
-        //             update_user_meta($user_id, 'first_name', $first_name);
-        //             // Additional meta updates as needed
-                    
-        //             wp_redirect(site_url('/account/?action=profile&userId=' . $user_id));
-        //             exit;
-        //         }
-        //     }
-        // }
-
-    // Insert the form PHP/HTML code here (from the previous step)
-    // Make sure to replace any 'echo' statements with direct HTML output or concatenate strings.
-    // For example, use HTML output directly and PHP for dynamic parts like looping through countries.
-
-    $countries = array('USA', 'Canada', 'UK'); // Example countries
-    $subjects = array('Mathematics', 'Science', 'History'); // Example subjects
+    $countries = array('USA', 'Canada', 'UK');
+    $subjects = array('Mathematics', 'Science', 'History');
 
     ?>
     
@@ -5411,23 +5349,23 @@ function my_multistep_form_shortcode() {
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <label>
-                <input type="checkbox" name="newsletter"> <span>Accept receiving newsletter</span>
+                <input type="checkbox" name="gs_newsletter"> <span>Accept receiving newsletter</span>
             </label>
         </div>
 
         <!-- Step 2 -->
         <div class="form-step" style="display:none">
-            <input type="text" name="first_name" placeholder="First Name" required>
-            <input type="text" name="last_name" placeholder="Last Name" required>
-            <input type="date" name="birth_date" required>
-            <select name="gender" required>
+            <input type="text" name="gs_first_name" placeholder="First Name" required>
+            <input type="text" name="gs_last_name" placeholder="Last Name" required>
+            <input type="date" name="gs_birth_date" required>
+            <select name="gs_gender" required>
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
             <div class="gs-home-country">Home Country:</div>
 
-            <select name="gs-signup-home-country" required>
+            <select name="gs_home_country" required>
                 <option value=""></option>
                 <?php foreach($countries as $country): ?>
                     <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
@@ -5440,13 +5378,13 @@ function my_multistep_form_shortcode() {
         <div class="form-step" style="display:none">
             <div class="degree-options">
                 <div class="gs-degree-choose">Choose Degree:</div>
-                <input type="radio" id="bachelor" name="degree" value="Bachelor">
+                <input type="radio" id="bachelor" name="gs_degree" value="bachelor">
                 <label for="bachelor" class="degree-label">Bachelor</label>
 
-                <input type="radio" id="master" name="degree" value="Master">
+                <input type="radio" id="master" name="gs_degree" value="master">
                 <label for="master" class="degree-label">Master</label>
 
-                <input type="radio" id="phd" name="degree" value="Ph.D.">
+                <input type="radio" id="phd" name="gs_degree" value="phd">
                 <label for="phd" class="degree-label">Ph.D.</label>
             </div>
             <button type="button" class="prev-btn">Previous</button>
@@ -5455,7 +5393,7 @@ function my_multistep_form_shortcode() {
         <div class="form-step" style="display:none">
             <div class="gs-country-choose">Choose a Country:</div>
 
-            <select name="gs-signup-country" required>
+            <select name="gs_interested_country" required>
                 <option value=""></option>
                 <?php foreach($countries as $country): ?>
                     <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
@@ -5467,7 +5405,7 @@ function my_multistep_form_shortcode() {
         <div class="form-step" style="display:none">
             <div class="gs-subject-choose">Choose a Subject:</div>
 
-            <select name="gs-signup-subject" required>
+            <select name="gs_subject" required>
                 <option value=""></option>
                 <?php foreach($subjects as $subject): ?>
                     <option value="<?php echo $subject; ?>"><?php echo $subject; ?></option>
@@ -5490,21 +5428,132 @@ add_shortcode('gs-multistep-register-form', 'my_multistep_form_shortcode');
 function gs_register_new_user() {
     check_ajax_referer('my-ajax-nonce', 'security');
 
-    $email = sanitize_email($_POST['email']);
-    $password = sanitize_text_field($_POST['password']);
-    // Sanitize and validate other form data...
+    $email = sanitize_email($_POST['gs_email']);
+    $password = $_POST['gs_password']; // Ensure to validate and sanitize
+    $newsletter = sanitize_text_field($_POST['gs_newsletter']);
+    $first_name = sanitize_text_field($_POST['gs_first_name']);
+    $last_name = sanitize_text_field($_POST['gs_last_name']);
+    $birth_date = sanitize_text_field($_POST['gs_birth_date']);
+    $gender = sanitize_text_field($_POST['gs_gender']);
+    $home_country = sanitize_text_field($_POST['gs_home_country']);
+    $degree = sanitize_text_field($_POST['gs_degree']);
+    $country = sanitize_text_field($_POST['gs_interested_country']);
+    $subject = sanitize_text_field($_POST['gs_subject']);
 
     if (!is_email($email) || empty($password)) {
-        wp_send_json_error(array('message' => 'Invalid email or password.'));
-    } else {
-        $user_id = wp_create_user($email, $password, $email);
-        if (is_wp_error($user_id)) {
-            wp_send_json_error(array('message' => $user_id->get_error_message()));
-        } else {
-            // Optionally set additional user data here
-            wp_send_json_success(array('message' => 'User registered successfully.'));
-        }
+        wp_send_json_error(['message' => 'Invalid email or password.']);
+        return;
     }
+
+    $user_id = wp_create_user($email, $password, $email);
+    if (is_wp_error($user_id)) {
+        wp_send_json_error(['message' => $user_id->get_error_message()]);
+        return;
+    }
+
+    // Update user meta with additional information
+    update_user_meta($user_id, 'first_name', $first_name);
+    update_user_meta($user_id, 'last_name', $last_name);
+    update_user_meta($user_id, 'gs_newsletter', $newsletter);
+    update_user_meta($user_id, 'birth_date', $birth_date);
+    update_user_meta($user_id, 'gender', $gender);
+    update_user_meta($user_id, 'home_country', $home_country);
+    update_user_meta($user_id, 'degree', $degree);
+    update_user_meta($user_id, 'interested_country', $country);
+    update_user_meta($user_id, 'subject', $subject);
+
+    wp_send_json_success(['message' => 'User registered successfully.']);
 }
 add_action('wp_ajax_gs_register_new_user', 'gs_register_new_user');
 add_action('wp_ajax_nopriv_gs_register_new_user', 'gs_register_new_user');
+
+
+
+// Hook to add additional user fields
+add_action('show_user_profile', 'custom_user_profile_fields');
+add_action('edit_user_profile', 'custom_user_profile_fields');
+
+function custom_user_profile_fields($user) {
+    ?>
+    <h3>Additional Information</h3>
+
+    <table class="form-table">
+        <tr>
+            <th><label for="gs_newsletter">Newsletter Subscription</label></th>
+            <td>
+                <input type="checkbox" name="gs_newsletter" id="gs_newsletter" value="yes" <?php checked('yes', get_user_meta($user->ID, 'gs_newsletter', true)); ?>/>
+                <span class="description">Check to subscribe to the newsletter.</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="birth_date">Birth Date</label></th>
+            <td>
+                <input type="date" name="birth_date" id="birth_date" value="<?php echo esc_attr(get_user_meta($user->ID, 'birth_date', true)); ?>" class="regular-text" />
+            </td>
+        </tr>
+        <tr>
+            <th><label for="gender">Gender</label></th>
+            <td>
+                <select name="gender" id="gender">
+                    <option value="male" <?php selected('male', get_user_meta($user->ID, 'gender', true)); ?>>Male</option>
+                    <option value="female" <?php selected('female', get_user_meta($user->ID, 'gender', true)); ?>>Female</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="home_country">Home Country</label></th>
+            <td>
+                <input type="text" name="home_country" id="home_country" value="<?php echo esc_attr(get_user_meta($user->ID, 'home_country', true)); ?>" class="regular-text" />
+            </td>
+        </tr>
+        <tr>
+        <tr>
+            <th><label for="degree">Degree</label></th>
+            <td>
+                <select name="degree" id="degree">
+                    <option value="bachelor" <?php selected('bachelor', get_user_meta($user->ID, 'degree', true)); ?>>Bachelor</option>
+                    <option value="master" <?php selected('master', get_user_meta($user->ID, 'degree', true)); ?>>Master</option>
+                    <option value="phd" <?php selected('phd', get_user_meta($user->ID, 'degree', true)); ?>>Ph.D.</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="interested_country">Interested Country</label></th>
+            <td>
+                <input type="text" name="interested_country" id="interested_country" value="<?php echo esc_attr(get_user_meta($user->ID, 'interested_country', true)); ?>" class="regular-text" />
+            </td>
+        </tr>
+        <tr>
+            <th><label for="subject">Subject</label></th>
+            <td>
+                <input type="text" name="subject" id="subject" value="<?php echo esc_attr(get_user_meta($user->ID, 'subject', true)); ?>" class="regular-text" />
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+
+
+// Hook to save the custom user fields
+add_action('personal_options_update', 'save_custom_user_profile_fields');
+add_action('edit_user_profile_update', 'save_custom_user_profile_fields');
+
+function save_custom_user_profile_fields($user_id) {
+    if (!current_user_can('edit_user', $user_id)) {
+        return false;
+    }
+
+    update_user_meta($user_id, 'birth_date', $_POST['gs_birth_date']);
+    update_user_meta($user_id, 'gender', $_POST['gs_gender']);
+    update_user_meta($user_id, 'home_country', $_POST['gs_home_country']);
+    update_user_meta($user_id, 'degree', $_POST['gs_degree']);
+    update_user_meta($user_id, 'interested_country', $_POST['gs_interested_country']);
+    update_user_meta($user_id, 'subject', $_POST['gs_subject']);
+    // Save the Newsletter Subscription state
+    if (!empty($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes') {
+        update_user_meta($user_id, 'gs_newsletter', 'yes');
+    } else {
+        delete_user_meta($user_id, 'gs_newsletter');
+    }
+}
