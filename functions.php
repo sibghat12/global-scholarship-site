@@ -120,6 +120,7 @@ function theme_enqueue_styles() {
                 'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
                 'redirect_uri' => site_url('/google-callback'),
                 'security' => wp_create_nonce('my-ajax-nonce'),
+                'siteUrl' => get_site_url(),
             )
         );
 
@@ -4731,6 +4732,9 @@ function mepr_add_some_tabs($user) {
         <span class="mepr-nav-item gs-monthly-scholarships <?php MeprAccountHelper::active_nav('monthly-scholarships'); ?>">
             <a href="/account/?action=monthly-scholarships">Monthly Scholarships</a>
         </span>
+        <span class="mepr-nav-item gs-profile <?php MeprAccountHelper::active_nav('profile'); ?>">
+            <a href="/account/?action=profile">Profile</a>
+        </span>
     <?php
 }
 add_action('mepr_account_nav', 'mepr_add_some_tabs');
@@ -4742,6 +4746,9 @@ function mepr_add_tabs_content($action) {
     }
     if($action == 'monthly-scholarships') {
         include 'gs-memberpress-templates/monthly-scholarships.php';
+    }
+    if($action == 'profile') {
+        include 'gs-memberpress-templates/profile.php';
     }
 }
 add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
@@ -5313,14 +5320,49 @@ function change_gs_avatar($avatar, $id_or_email, $size, $default, $alt) {
 
 add_filter('get_avatar','change_gs_avatar', 10, 5);
 
+// function get_svg_icon($icon_name) {
+//     // Path to the SVG file
+//     $svg_file_path = get_stylesheet_directory() . '/assets/images/' . $icon_name . '.svg';
+    
+//     // Check if the SVG file exists
+//     if (file_exists($svg_file_path)) {
+//         // Return the contents of the SVG file
+//         return file_get_contents($svg_file_path);
+//     }
+
+//     // Return an empty string if the file doesn't exist
+//     return '';
+// }
+
+// Use a global variable to count the number of times an SVG is rendered
+global $_SVG_RENDER_COUNT;
+if (!isset($_SVG_RENDER_COUNT)) {
+    $_SVG_RENDER_COUNT = 0;
+}
+
 function get_svg_icon($icon_name) {
+    global $_SVG_RENDER_COUNT;
+    
+    // Increment the render count
+    $_SVG_RENDER_COUNT++;
+
     // Path to the SVG file
     $svg_file_path = get_stylesheet_directory() . '/assets/images/' . $icon_name . '.svg';
     
+    // Generate a unique but consistent ID for each render of the SVG
+    $unique_id = 'pattern' . hash('crc32', $icon_name . $_SVG_RENDER_COUNT);
+
     // Check if the SVG file exists
     if (file_exists($svg_file_path)) {
-        // Return the contents of the SVG file
-        return file_get_contents($svg_file_path);
+        // Get the contents of the SVG file
+        $svg_content = file_get_contents($svg_file_path);
+        
+        // Replace the pattern ID and fill attribute with the new unique ID
+        $svg_content = str_replace('id="pattern0"', 'id="' . $unique_id . '"', $svg_content);
+        $svg_content = str_replace('fill="url(#pattern0)"', 'fill="url(#' . $unique_id . ')"', $svg_content);
+
+        // Return the modified SVG content
+        return $svg_content;
     }
 
     // Return an empty string if the file doesn't exist
@@ -5346,10 +5388,13 @@ function my_multistep_form_shortcode() {
         </div>
         <!-- Step 1 -->
         <div class="form-step">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <label>
-                <input type="checkbox" name="gs_newsletter"> <span>Accept receiving newsletter</span>
+
+            <label for="gs_user_email">Email</label>
+            <input type="email" name="email" id="gs_user_email" placeholder="Email" required>
+            <label for="gs_user_password">Email</label>
+            <input type="password" name="password"  id="gs_user_password" placeholder="Password" required>
+            <label for="gs_newsletter">
+                <input type="checkbox" id="gs_newsletter" name="gs_newsletter"> <span>Accept receiving newsletter</span>
             </label>
         </div>
 
@@ -5462,7 +5507,7 @@ function gs_register_new_user() {
     update_user_meta($user_id, 'interested_country', $country);
     update_user_meta($user_id, 'subject', $subject);
 
-    wp_send_json_success(['message' => 'User registered successfully.']);
+    wp_send_json_success(['message' => 'User registered successfully.', 'user_id' => $user_id]);
 }
 add_action('wp_ajax_gs_register_new_user', 'gs_register_new_user');
 add_action('wp_ajax_nopriv_gs_register_new_user', 'gs_register_new_user');
@@ -5474,6 +5519,11 @@ add_action('show_user_profile', 'custom_user_profile_fields');
 add_action('edit_user_profile', 'custom_user_profile_fields');
 
 function custom_user_profile_fields($user) {
+
+    
+    $countries = array('USA', 'Canada', 'UK');
+    $subjects = array('Mathematics', 'Science', 'History');
+
     ?>
     <h3>Additional Information</h3>
 
@@ -5488,13 +5538,14 @@ function custom_user_profile_fields($user) {
         <tr>
             <th><label for="birth_date">Birth Date</label></th>
             <td>
-                <input type="date" name="birth_date" id="birth_date" value="<?php echo esc_attr(get_user_meta($user->ID, 'birth_date', true)); ?>" class="regular-text" />
+                <input type="date" name="birth_date" id="birth_date" value="<?php echo esc_attr(get_user_meta($user->ID, 'birth_date', true)); ?>" class="gs_input_text" />
             </td>
         </tr>
         <tr>
             <th><label for="gender">Gender</label></th>
             <td>
                 <select name="gender" id="gender">
+                    <option value="">Select</option>
                     <option value="male" <?php selected('male', get_user_meta($user->ID, 'gender', true)); ?>>Male</option>
                     <option value="female" <?php selected('female', get_user_meta($user->ID, 'gender', true)); ?>>Female</option>
                 </select>
@@ -5503,7 +5554,12 @@ function custom_user_profile_fields($user) {
         <tr>
             <th><label for="home_country">Home Country</label></th>
             <td>
-                <input type="text" name="home_country" id="home_country" value="<?php echo esc_attr(get_user_meta($user->ID, 'home_country', true)); ?>" class="regular-text" />
+                <select name="home_country" id="home_country" class="gs_input_text">
+                    <option value="">Select Country</option>
+                    <?php foreach($countries as $country): ?>
+                        <option value="<?php echo esc_attr($country); ?>" <?php selected($country, get_user_meta($user->ID, 'home_country', true)); ?>><?php echo esc_html($country); ?></option>
+                    <?php endforeach; ?>
+                </select>
             </td>
         </tr>
         <tr>
@@ -5520,13 +5576,23 @@ function custom_user_profile_fields($user) {
         <tr>
             <th><label for="interested_country">Interested Country</label></th>
             <td>
-                <input type="text" name="interested_country" id="interested_country" value="<?php echo esc_attr(get_user_meta($user->ID, 'interested_country', true)); ?>" class="regular-text" />
+                <select name="interested_country" id="interested_country" class="gs_input_text">
+                    <option value="">Select Country</option>
+                    <?php foreach($countries as $country): ?>
+                        <option value="<?php echo esc_attr($country); ?>" <?php selected($country, get_user_meta($user->ID, 'interested_country', true)); ?>><?php echo esc_html($country); ?></option>
+                    <?php endforeach; ?>
+                </select>
             </td>
         </tr>
         <tr>
             <th><label for="subject">Subject</label></th>
             <td>
-                <input type="text" name="subject" id="subject" value="<?php echo esc_attr(get_user_meta($user->ID, 'subject', true)); ?>" class="regular-text" />
+                <select name="subject" id="subject" class="gs_input_text">
+                    <option value="">Select Subject</option>
+                    <?php foreach($subjects as $subject): ?>
+                        <option value="<?php echo esc_attr($subject); ?>" <?php selected($subject, get_user_meta($user->ID, 'subject', true)); ?>><?php echo esc_html($subject); ?></option>
+                    <?php endforeach; ?>
+                </select>
             </td>
         </tr>
     </table>
@@ -5544,16 +5610,52 @@ function save_custom_user_profile_fields($user_id) {
         return false;
     }
 
-    update_user_meta($user_id, 'birth_date', $_POST['gs_birth_date']);
-    update_user_meta($user_id, 'gender', $_POST['gs_gender']);
-    update_user_meta($user_id, 'home_country', $_POST['gs_home_country']);
-    update_user_meta($user_id, 'degree', $_POST['gs_degree']);
-    update_user_meta($user_id, 'interested_country', $_POST['gs_interested_country']);
-    update_user_meta($user_id, 'subject', $_POST['gs_subject']);
-    // Save the Newsletter Subscription state
-    if (!empty($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes') {
-        update_user_meta($user_id, 'gs_newsletter', 'yes');
-    } else {
-        delete_user_meta($user_id, 'gs_newsletter');
+    // Check if the fields are set and not empty, then update user meta
+    if (isset($_POST['gs_birth_date']) && !empty($_POST['gs_birth_date'])) {
+        update_user_meta($user_id, 'birth_date', sanitize_text_field($_POST['gs_birth_date']));
     }
+
+    if (isset($_POST['gs_gender']) && !empty($_POST['gs_gender'])) {
+        update_user_meta($user_id, 'gender', sanitize_text_field($_POST['gs_gender']));
+    }
+
+    if (isset($_POST['gs_home_country']) && !empty($_POST['gs_home_country'])) {
+        update_user_meta($user_id, 'home_country', sanitize_text_field($_POST['gs_home_country']));
+    }
+
+    if (isset($_POST['gs_degree']) && !empty($_POST['gs_degree'])) {
+        update_user_meta($user_id, 'degree', sanitize_text_field($_POST['gs_degree']));
+    }
+
+    if (isset($_POST['gs_interested_country']) && !empty($_POST['gs_interested_country'])) {
+        update_user_meta($user_id, 'interested_country', sanitize_text_field($_POST['gs_interested_country']));
+    }
+
+    if (isset($_POST['gs_subject']) && !empty($_POST['gs_subject'])) {
+        update_user_meta($user_id, 'subject', sanitize_text_field($_POST['gs_subject']));
+    }
+
+    // For checkboxes, checking if set is sufficient
+    update_user_meta($user_id, 'gs_newsletter', isset($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes' ? 'yes' : 'no');
 }
+
+
+
+// function save_custom_user_profile_fields($user_id) {
+//     if (!current_user_can('edit_user', $user_id)) {
+//         return false;
+//     }
+
+//     update_user_meta($user_id, 'birth_date', $_POST['gs_birth_date']);
+//     update_user_meta($user_id, 'gender', $_POST['gs_gender']);
+//     update_user_meta($user_id, 'home_country', $_POST['gs_home_country']);
+//     update_user_meta($user_id, 'degree', $_POST['gs_degree']);
+//     update_user_meta($user_id, 'interested_country', $_POST['gs_interested_country']);
+//     update_user_meta($user_id, 'subject', $_POST['gs_subject']);
+//     // Save the Newsletter Subscription state
+//     if (!empty($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes') {
+//         update_user_meta($user_id, 'gs_newsletter', 'yes');
+//     } else {
+//         delete_user_meta($user_id, 'gs_newsletter');
+//     }
+// }

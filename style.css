@@ -9762,6 +9762,41 @@ button#googleLoginButton span {
 }
 
 
+#googleSignupButton {
+    font-size: 1.1rem !important;
+    margin-bottom: 1.2rem;
+}
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup .alt-signup-text
+{
+    color:#FF3131 !important;
+}
+
+button#googleSignupButton {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+button#googleSignupButton svg {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button#googleSignupButton span {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
 #gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gs-signup-button-continue {
     width: 100% !important;
     padding: 10px 5px !important;

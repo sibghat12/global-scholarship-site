@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
     let redirectUri = window.location.origin + '/google-callback'; // Adjust the path as necessary
     let scope = 'openid email profile';
     let responseType = 'code';
-    let loginUrl = 'https://accounts.google.com/o/oauth2/v2/auth' +
+    let signupUrl = 'https://accounts.google.com/o/oauth2/v2/auth' +
                 '?client_id=' + encodeURIComponent(clientId) +
                 '&redirect_uri=' + encodeURIComponent(redirectUri) +
                 '&response_type=' + encodeURIComponent(responseType) +
@@ -42,15 +42,15 @@ jQuery(document).ready(function($) {
 
     //     // Example of how to use the login URL: redirect or attach to an element's event
     //     // Redirect to the login URL
-    //     window.location.href = loginUrl;
+    //     window.location.href = signupUrl;
 
     // })
     
     // Or attach the login URL to a button click event
-    var loginButton = document.getElementById('googleLoginButton'); // Ensure you have this element in your HTML
-    if (loginButton) {
-        loginButton.addEventListener('click', function() {
-            window.location.href = loginUrl;
+    var signupButton = document.getElementById('googleSignupButton'); // Ensure you have this element in your HTML
+    if (signupButton) {
+        signupButton.addEventListener('click', function() {
+            window.location.href = signupUrl;
         });
     }
 
@@ -113,45 +113,6 @@ jQuery(document).ready(function($) {
             button.addEventListener("click", function() { moveStep(true); });
         });
 
-        // continueBtn.addEventListener("click", function() {
-        //     // Check if the current step is the last step before submitting
-        //     if (currentStep === steps.length - 1) {
-        //         // Prepare form data for AJAX request
-        //         var formData = new FormData();
-        //         formData.append('action', 'gs_register_new_user'); // The action hook for wp_ajax_ and wp_ajax_nopriv_
-        //         formData.append('security', myAjax.security); // Nonce for security
-                
-        //         // Append form fields to formData
-        //         formData.append('email', document.querySelector('input[name="email"]').value);
-        //         formData.append('password', document.querySelector('input[name="password"]').value);
-        //         formData.append('first_name', document.querySelector('input[name="first_name"]').value);
-        //         formData.append('last_name', document.querySelector('input[name="last_name"]').value);
-        //         // Continue appending other form fields as needed...
-        
-        //         // AJAX request to register the user
-        //         fetch(myAjax.ajaxurl, {
-        //             method: 'POST',
-        //             body: formData,
-        //             credentials: 'same-origin' // Include cookies in the request
-        //         })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             if(data.success) {
-        //                 alert('User Registered Successfully!');
-        //                 // Optionally, redirect or update UI here
-        //             } else {
-        //                 // Handle errors
-        //                 alert(data.data.message);
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             console.error('Error:', error);
-        //         });
-        //     } else {
-        //         moveStep(true); // Otherwise, just move to the next step
-        //     }
-        // });
-
         continueBtn.addEventListener("click", function() {
             // Check if the current step is the last step before submitting
             if (currentStep === steps.length - 1) {
@@ -178,8 +139,9 @@ jQuery(document).ready(function($) {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('User Registered Successfully!');
-                        // Optionally, redirect or update UI here
+                        // alert('User Registered Successfully!');
+                        // Redirect to the profile page with the user_id
+                        window.location.href = `${myAjax.siteUrl}/account/?action=profile`;
                     } else {
                         alert(data.data.message);
                     }
