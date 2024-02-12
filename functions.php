@@ -2078,7 +2078,7 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
 
     if (!empty($query)) {
     $ad_args['s'] = $query;
-}
+    }
 
    if ($meta_query){
         $ad_args['meta_query'] = $meta_query;
@@ -2096,21 +2096,25 @@ if($type_array[0]=="Full Funding"){
     $type_array[0] = "Partially Funded";
 }
 
-if($type_array[0]) {
-  if($degrees_array[0]){
-     $text .= $loop->found_posts . " ". $type_array[0] . " ". $degrees_array[0]. " Scholarships";
-  } else {
-    $text .= $loop->found_posts .  " " . $type_array[0] ." Scholarships";
-  }
+
+
+if ($type_array[0]) {
+    if ($degrees_array[0]) {
+        $text .= $loop->found_posts . " " . $type_array[0] . " " . $degrees_array[0];
+    } else {
+        $text .= $loop->found_posts . " " . $type_array[0];
+    }
 } else {
-
- if($degrees_array[0]){
-     $text .= $loop->found_posts . " " . $degrees_array[0]. " Scholarships";
-  } else {
-    $text .= $loop->found_posts . " Scholarships";
-  }
-
+    if ($degrees_array[0]) {
+        $text .= $loop->found_posts . " " . $degrees_array[0];
+    } else {
+        $text .= $loop->found_posts;
+    }
 }
+
+// Add the $query conditionally after checking $type_array[0] and $degrees_array[0]
+$text .= $query ? " \"" . $query . "\"" : "";
+$text .= " Scholarships";
 
 
 
@@ -2128,13 +2132,7 @@ if($type_array[0]) {
      $text .= " for International Students ";
   }
 
-   
-  
-
-   
-
-
-
+ 
   
   $checkk = stripslashes($_POST['checkk']);
   // if($checkk) {

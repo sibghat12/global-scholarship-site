@@ -1608,19 +1608,36 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 //     $(window).resize(checkWindowSize);
 // });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     var searchButton = document.querySelector('.scholarship-search-submit');
     var searchInput = document.getElementById('search');
 
-    searchButton.addEventListener('click', function() {
+    // Function to handle the search
+    function handleSearch() {
         var query = searchInput.value;
         if (query) {
             window.location.href = '?query=' + encodeURIComponent(query);
         }
+    }
+
+    // Event listener for the search button click
+    searchButton.addEventListener('click', function() {
+        handleSearch();
+    });
+
+    // Event listener for the Enter key in the search input field
+    searchInput.addEventListener('keypress', function(event) {
+        // Check if the Enter key was pressed
+        if (event.key === 'Enter') {
+            // Prevent the default action to avoid submitting a form if there is one
+            event.preventDefault();
+            // Call the search handling function
+            handleSearch();
+        }
     });
 });
-</script>
+
+
 
 
 </script>
