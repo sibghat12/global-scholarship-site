@@ -403,13 +403,22 @@ var location_label_array = <?php echo json_encode($country_list_for_url); ?>;
 
 var scholarship_type_label_array = ['Full Funding' , 'Full Tuition' , 'Partial Funding'];
 
-pathname_string = window.location.pathname;
-var result = pathname_string.substring(1, pathname_string.length-1);
-var pathArray = result.split('/');
-var removeItem = "scholarship-search";
-  pathArray = jQuery.grep(pathArray, function(value) {
-  return value != removeItem;
+var pathname_string = window.location.pathname;
+var pathArray = pathname_string.split('/').filter(function(value) {
+    return value !== ''; // Filter out empty strings
 });
+
+var removeItem = "scholarship-search";
+
+// Use a loop to filter out the removeItem
+for (var i = 0; i < pathArray.length; i++) {
+    if (pathArray[i] === removeItem) {
+        pathArray.splice(i, 1); // Remove the item at index i
+        i--; // Decrement i since the array is now shorter
+    }
+}
+
+
 
 
 var degree_value = "";
@@ -431,6 +440,8 @@ for (let i = 0; i < pathArray.length; i++) {
   }
 }
 
+
+
 // Scholarship Type: Get Schloarhsip Type  from the url path
 var type_value = "";
 for (let i = 0; i < pathArray.length; i++) {
@@ -446,6 +457,8 @@ type_value = type_value.replace(/-/g, ' ');
     type_value = type_value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
 });
+
+  
 
 // Location Name : Get Location Name from the url path
 
@@ -590,6 +603,8 @@ var typeArr = new Array();
 }
 
 
+
+
 if(current_page_number) {
 page = current_page_number;
 }
@@ -623,44 +638,64 @@ validValues = validValues.map(value =>
         .replace(/'/g, '') // Remove apostrophes
 );
 
-if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value) 
-    && isEmpty(type_value) && isEmpty(currenty_open_array) && isEmpty(nationality_value)) {
 
-    // Additional check for ["page", "2"] or ["page", any_number]
-    if (pathArray.length === 2 && pathArray[0] === 'page' && !isNaN(pathArray[1])) {
-       check_call = false;
-       window.location.href = '/page-not-found';
-    } else if (pathArray.length > 0) {
-        console.log("pagenotfound");
-        // Redirect to '/page-not-found'
-        check_call = false;
-      window.location.href = '/page-not-found';
-    }
-} else {
-    // If pathArray has more than one value
-    if (pathArray.length > 1) {
-        
-        for(let i = 1; i < pathArray.length; i++) {
-            // If it's not a valid value and not a page number
-            if (!validValues.includes(pathArray[i]) && 
-                !(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1]))) {
-                console.log("pagenotfound due to invalid value in pathArray");
+
+// Get the pathArray from the URL
+const pathArray_check_404 = window.location.pathname.split('/').filter(part => part); // Filter out empty strings
+
+// Check if the pathname contains 'scholarship-search-not-found', if yes, ignore the code block
+if (!pathArray_check_404.includes('scholarship-search-not-found')) {
+    // Check the conditions for redirection only if 'scholarship-search' is present in the URL pathname
+    if (pathArray_check_404.includes('scholarship-search')) {
+        if (isEmpty(degree_value) && isEmpty(subject_value) && isEmpty(location_value) 
+            && isEmpty(type_value) && isEmpty(currenty_open_array) && isEmpty(nationality_value)) {
+
+            // Additional check for ["page", "2"] or ["page", any_number]
+            if (pathArray.length === 2 && pathArray[0] === 'page' && !isNaN(pathArray[1])) {
+                check_call = false;
+              
+var currentUrl = window.location.href;
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+window.location.href = newUrl;
+
+            } else if (pathArray.length > 0) {
+                console.log("pagenotfound");
                 // Redirect to '/page-not-found'
-             check_call = false;
-                window.location.href = '/page-not-found';
-                break;
+                check_call = false;
+                var currentUrl = window.location.href;
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+window.location.href = newUrl;
             }
-            // If current path is 'page' and next is a number, skip next path
-            if(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1])) {
-                 check_call = false;
-                window.location.href = '/page-not-found';
-                break;
-                i++;
+        } else {
+            // If pathArray has more than one value
+            if (pathArray.length > 1) {
+                for(let i = 1; i < pathArray.length; i++) {
+                    // If it's not a valid value and not a page number
+                    if (!validValues.includes(pathArray[i]) && 
+                        !(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1]))) {
+                        console.log("pagenotfound due to invalid value in pathArray");
+                        // Redirect to '/page-not-found'
+                        check_call = false;
+                        var currentUrl = window.location.href;
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+window.location.href = newUrl;
+                        break;
+                    }
+                    // If current path is 'page' and next is a number, skip next path
+                    if(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1])) {
+                        check_call = false;
+                        var currentUrl = window.location.href;
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+window.location.href = newUrl;
+                        break;
+                        i++;
+                    }
+                }
             }
         }
     }
-  
 }
+
 
 
 
@@ -674,7 +709,24 @@ $.ajax({
     contentType: false,
     type : 'post',
       success:function(response){
-        $('#filter-panell').css("display" , "block");
+
+        var $response = $('<div>').html(response); 
+        
+         var title = $response.find('h1').html(); 
+         $response.find('h1').remove();
+         var numberOnly = parseInt(title.match(/\d+/));
+       
+       if(numberOnly==0) {
+const pathParts = window.location.pathname.split('/').filter(part => part); // Filter out empty strings to ignore leading/trailing slashes
+
+if (pathParts.includes('scholarship-search')) {
+const newPathParts = pathParts.map(part => part === 'scholarship-search' ? 'scholarship-search-not-found' : part);
+const newPathName = '/' + newPathParts.join('/');
+const newUrl = window.location.protocol + "//" + window.location.host + newPathName + window.location.search + window.location.hash;
+window.location.href = newUrl;
+} else {
+    $('.card-section').css("display" , "block");
+     $('#filter-panell').css("display" , "block");
         $('.title-textt').css("display" , "block");
         $('.title-wrapper-scholarship-search').css("display" , "block");
         $('#search-box-container').css("display" , "block");
@@ -682,8 +734,24 @@ $.ajax({
        
         $('#prev-posts').css("display" , "none");
 
+}
+
+} else {
+
+        $('#filter-panell').css("display" , "block");
+        $('.title-textt').css("display" , "block");
+        $('.title-wrapper-scholarship-search').css("display" , "block");
+        $('#search-box-container').css("display" , "block");
+        $('.sticky-wrapper').css("display" , "block");
+       
+        $('#prev-posts').css("display" , "none");
+}
+
+
+
+
     if (response.includes('No Scholarships Available')) {
-  window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
+  //window.location.href = '/page-not-found'; // Redirect to the custom 404 page or not found URL
 }  else {
         
 
@@ -692,11 +760,7 @@ $.ajax({
         $('#preloader').css("display" , "none");
 
         $('.card-section').css("height" , "0px");
-        
-         var $response = $('<div>').html(response); 
-        
-         var title = $response.find('h1').html(); 
-         $response.find('h1').remove(); 
+    
         
         var $spans = $response.find('span.ss').clone();
         $response.find('span.ss').remove();
@@ -723,11 +787,12 @@ $.ajax({
        
         var title_text = $('.title-textt').text();
        
-        var numberOnly = parseInt(title_text.match(/\d+/));
+        
         
         if(numberOnly==0){
            $('.prev-page').hide();
-               window.location.href = '/page-not-found';
+          
+               //window.location.href = '/page-not-found';
           }else {
             $('.card-section').css("display" , "block");
             $('.card-section').css("height" , "auto");
@@ -1608,19 +1673,36 @@ changeurl("scholarship-search" + updatedUrl + "/?query=" + encodeURIComponent(qu
 //     $(window).resize(checkWindowSize);
 // });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     var searchButton = document.querySelector('.scholarship-search-submit');
     var searchInput = document.getElementById('search');
 
-    searchButton.addEventListener('click', function() {
+    // Function to handle the search
+    function handleSearch() {
         var query = searchInput.value;
         if (query) {
             window.location.href = '?query=' + encodeURIComponent(query);
         }
+    }
+
+    // Event listener for the search button click
+    searchButton.addEventListener('click', function() {
+        handleSearch();
+    });
+
+    // Event listener for the Enter key in the search input field
+    searchInput.addEventListener('keypress', function(event) {
+        // Check if the Enter key was pressed
+        if (event.key === 'Enter') {
+            // Prevent the default action to avoid submitting a form if there is one
+            event.preventDefault();
+            // Call the search handling function
+            handleSearch();
+        }
     });
 });
-</script>
+
+
 
 
 </script>
