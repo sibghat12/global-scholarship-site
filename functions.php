@@ -131,10 +131,8 @@ function avada_lang_setup() {
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 
-
-
 function scholarship_search_enqueue_scripts() {
-    if (is_page('scholarship-search')) {
+    if (is_page('scholarship-search') || is_404()) {
 
         wp_enqueue_style( 'scholarship-search-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' );
         
@@ -515,39 +513,39 @@ function uscollege_custom_post_types() {
     register_post_type( 'city', $args );  
     
 
-   $labels = array(
-    'name'               => __( 'Landing Pages', 'my_theme' ),
-    'singular_name'      => __( 'Landing Page', 'my_theme' ),
-    'add_new'            => __( 'Add New Landing Page', 'my_theme' ),
-    'add_new_item'       => __( 'Add New Landing Page', 'my_theme' ),
-    'edit_item'          => __( 'Edit Landing Page', 'my_theme' ),
-    'new_item'           => __( 'Add New Landing Page', 'my_theme' ),
-    'view_item'          => __( 'View Landing Page', 'my_theme' ),
-    'search_items'       => __( 'Search Landing Page', 'my_theme' ),
-    'not_found'          => __( 'No Landing Pages found', 'my_theme' ),
-    'not_found_in_trash' => __( 'No Landing Pages found in trash', 'my_theme' )
-);
+//    $labels = array(
+//     'name'               => __( 'Landing Pages', 'my_theme' ),
+//     'singular_name'      => __( 'Landing Page', 'my_theme' ),
+//     'add_new'            => __( 'Add New Landing Page', 'my_theme' ),
+//     'add_new_item'       => __( 'Add New Landing Page', 'my_theme' ),
+//     'edit_item'          => __( 'Edit Landing Page', 'my_theme' ),
+//     'new_item'           => __( 'Add New Landing Page', 'my_theme' ),
+//     'view_item'          => __( 'View Landing Page', 'my_theme' ),
+//     'search_items'       => __( 'Search Landing Page', 'my_theme' ),
+//     'not_found'          => __( 'No Landing Pages found', 'my_theme' ),
+//     'not_found_in_trash' => __( 'No Landing Pages found in trash', 'my_theme' )
+// );
 
-$supports = array(
-    'title',
-    'author',
-    'thumbnail',
-     'editor' // This enables the text editor
-);
+// $supports = array(
+//     'title',
+//     'author',
+//     'thumbnail',
+//      'editor' // This enables the text editor
+// );
 
-$args = array(
-    'labels'             => $labels,
-    'supports'           => $supports,
-    'public'             => true,
-    'capability_type'    => 'post',
-    'rewrite'            => array( 'slug' => 'landing-page' ),
-    'has_archive'        => false,
-    'menu_position'      => 30,
-    'menu_icon'          => 'dashicons-admin-multisite',
+// $args = array(
+//     'labels'             => $labels,
+//     'supports'           => $supports,
+//     'public'             => true,
+//     'capability_type'    => 'post',
+//     'rewrite'            => array( 'slug' => 'landing-page' ),
+//     'has_archive'        => false,
+//     'menu_position'      => 30,
+//     'menu_icon'          => 'dashicons-admin-multisite',
    
-);
+// );
 
-register_post_type( 'landing-page', $args );
+// register_post_type( 'landing-page', $args );
 
 
    
@@ -2017,6 +2015,10 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
         $location_query  = array('key' => 'scholarship_institution', 'value' => $institute_ids, 'compare' => "IN");
         }
 
+
+
+    //  Start Here 
+    
     $meta_query = array( 'relation' => 'AND');    
         
     if ($subject_query) { 
@@ -2039,32 +2041,77 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     $meta_query[] = $nationality_query; 
     }
 
-    // if ($institution_query) { 
-    // $meta_query[] = $institution_query; 
-    // }
-
      if ($application_query) { 
     $meta_query[] = $application_query; 
     }
-    
-   
-//  if($scholarship_array[0]){
-//  $ad_args = array(
-//     'post_type' => 'scholarships',
-//     'post_status' => 'publish',
-//     'posts_per_page' => $ppp,
-//     'offset' => $offset,
-//     'fields' => 'ids', // Only return post IDs
-//     'meta_key' => 'scholarship_weights',  // name of custom field
-//     'orderby' => 'meta_value_num',  // we want to order by numeric value
-//     'order' => 'DESC',  // highest to lowest
-//     'title' => $scholarship_array[0]
-// );
-//    }
-//    else {
 
-  
-    $ad_args = array(
+if (!empty($query)) { 
+$institution_args = array(
+    'post_type' => 'institution',
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    'fields' => 'ids', 
+    's' => $query,
+);
+$institution_query = new WP_Query($institution_args);
+$matching_institution_ids = $institution_query->posts;
+}
+
+if (!empty($query) AND  !empty($matching_institution_ids)) {  
+
+if (!empty($matching_institution_ids)) {
+    $meta_query[] = array(
+        'key' => 'scholarship_institution',
+        'value' => $matching_institution_ids,
+        'compare' => 'IN',
+    );
+}
+
+
+$ad_args_meta = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    'fields' => 'ids', 
+    'meta_query' => $meta_query,
+);
+$first_query = new WP_Query($ad_args_meta);
+$first_query_ids = $first_query->posts;
+
+
+$ad_args_search = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',
+    'posts_per_page' => -1, 
+    'fields' => 'ids', 
+    's' => $query, 
+);
+$second_query = new WP_Query($ad_args_search);
+$second_query_ids = $second_query->posts;
+
+
+$combined_ids = array_unique(array_merge($first_query_ids, $second_query_ids));
+
+
+$final_args = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',
+    'posts_per_page' => $ppp,
+    'offset' => $offset,
+    'fields' => 'ids', // Only return post IDs
+    'meta_key' => 'scholarship_weights',  // name of custom field
+    'orderby' => 'meta_value_num',  // we want to order by numeric value
+    'order' => 'DESC',  // highest to lowest
+
+    'post__in' => $combined_ids,
+   
+);
+
+$loop = new WP_Query($final_args);
+
+} else {
+
+ $ad_args = array(
     'post_type' => 'scholarships',
     'post_status' => 'publish',
     'posts_per_page' => $ppp,
@@ -2074,11 +2121,10 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
     'orderby' => 'meta_value_num',  // we want to order by numeric value
     'order' => 'DESC',  // highest to lowest
     );
-   // }
-
-    if (!empty($query)) {
-    $ad_args['s'] = $query;
-    }
+   
+   if ($meta_query){
+        $ad_args['s'] = $query;
+   }
 
    if ($meta_query){
         $ad_args['meta_query'] = $meta_query;
@@ -2086,6 +2132,10 @@ if(isset($nationality_array[0]) && $nationality_array[0]){
       
      
     $loop = new WP_Query($ad_args);
+
+}
+
+    
     
     $text = "";
   
@@ -2251,7 +2301,12 @@ $text .= " Scholarships";
                // $html .=  "<span style='background:#f7f7f7;width:160px !important;border:1px solid #cdcdcd; padding:10px;padding-left:30px;padding-right:30px;font-size:18px !important;' id='more_posts'> Next Page </span> </center>";
             }
            
-        } 
+        }  else {
+
+                     
+                    $html = "<p style='font-size:18px;font-weight:500;'>There are  " . $text . "<br>Please broaden your filters and search again to find more scholarships." ;
+
+                    }
 
     echo $html;
 
