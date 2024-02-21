@@ -655,7 +655,8 @@ if (!pathArray_check_404.includes('scholarship-search-not-found')) {
                 check_call = false;
               
 var currentUrl = window.location.href;
-var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
+alert(newUrl);
 window.location.href = newUrl;
 
             } else if (pathArray.length > 0) {
@@ -663,7 +664,8 @@ window.location.href = newUrl;
                 // Redirect to '/page-not-found'
                 check_call = false;
                 var currentUrl = window.location.href;
-var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
+alert(newUrl);
 window.location.href = newUrl;
             }
         } else {
@@ -677,7 +679,8 @@ window.location.href = newUrl;
                         // Redirect to '/page-not-found'
                         check_call = false;
                         var currentUrl = window.location.href;
-var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
+alert(newUrl);
 window.location.href = newUrl;
                         break;
                     }
@@ -685,7 +688,8 @@ window.location.href = newUrl;
                     if(pathArray[i] === 'page' && pathArray[i+1] && !isNaN(pathArray[i+1])) {
                         check_call = false;
                         var currentUrl = window.location.href;
-var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found/');
+var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
+alert(newUrl);
 window.location.href = newUrl;
                         break;
                         i++;
@@ -720,9 +724,10 @@ $.ajax({
 const pathParts = window.location.pathname.split('/').filter(part => part); // Filter out empty strings to ignore leading/trailing slashes
 
 if (pathParts.includes('scholarship-search')) {
-const newPathParts = pathParts.map(part => part === 'scholarship-search' ? 'scholarship-search-not-found' : part);
+const newPathParts = pathParts.map(part => part === 'scholarship-search' ? 'scholarship-search-not-found/' : part);
 const newPathName = '/' + newPathParts.join('/');
 const newUrl = window.location.protocol + "//" + window.location.host + newPathName + window.location.search + window.location.hash;
+
 window.location.href = newUrl;
 } else {
     $('.card-section').css("display" , "block");
@@ -791,8 +796,7 @@ window.location.href = newUrl;
         
         if(numberOnly==0){
            $('.prev-page').hide();
-          
-               //window.location.href = '/page-not-found';
+          //window.location.href = '/page-not-found';
           }else {
             $('.card-section').css("display" , "block");
             $('.card-section').css("height" , "auto");

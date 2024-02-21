@@ -2179,7 +2179,7 @@ $text .= " Scholarships";
    if($nationality_array[0]){
      $text .= " for " . $nationality_array[0] . " Students";
   }else {
-     $text .= " for International Students ";
+     $text .= " for International Students";
   }
 
  
@@ -2304,7 +2304,7 @@ $text .= " Scholarships";
         }  else {
 
                      
-                    $html = "<p style='font-size:18px;font-weight:500;'>There are  " . $text . "<br>Please broaden your filters and search again to find more scholarships." ;
+                    $html = "<p style='font-size:18px;font-weight:500;'>There are  " . $text.".  Please broaden your filters and search again to find more scholarships." ;
 
                     }
 
