@@ -9594,3 +9594,8 @@ margin:auto;
 .page-template-template-partner .wpcf7-form textarea {
 margin-bottom:40px;
 }
+
+
+.error404 .courses-filter-search {
+    display: none;
+}
