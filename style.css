@@ -8010,7 +8010,9 @@ padding-left:15px !important;
     border: none !important;
     background: #3E8CBF;
 }
-
+.page-template-page-homepage .gs-homepage-search-form button.search-submit-search:hover {
+    cursor: pointer;
+}
 /* .page-template-page-homepage #main {
     padding: 0 14px !important;
 } */
@@ -8170,6 +8172,10 @@ padding-left:15px !important;
         border-radius: 46% 10px 10px 46%;
         border: none !important;
         background: #3E8CBF;
+    }
+
+    .page-template-page-homepage .gs-homepage-search-form button.search-submit-search:hover {
+        cursor: pointer;
     }
 
     .page-template-page-homepage .gs-homepage-search-form .search_container input#search {
