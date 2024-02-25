@@ -9599,3 +9599,8 @@ margin-bottom:40px;
 .error404 .courses-filter-search {
     display: none;
 }
+
+
+.error404 .fusion-tb-footer {
+    margin-top: 150px !important;
+}

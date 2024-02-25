@@ -52,7 +52,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 // add_action('wp_enqueue_scripts', 'serach_script_enqueue');
 
 function theme_enqueue_styles() {
-    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
+wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], '7.1.0' );
+
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {
         wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
@@ -60,7 +61,8 @@ function theme_enqueue_styles() {
             'ajaxurl' => admin_url( 'admin-ajax.php' )
         ));
     }
-    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
+    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], '7.1.0' );
+
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('ext-scholarships')) {
         wp_enqueue_script('single-ext-scholarship',  get_stylesheet_directory_uri() . '/assets/single-ext-scholarship.js', array('jquery'), '1.0.0', true);
