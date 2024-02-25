@@ -140,24 +140,24 @@ class GS_Search_Ajax {
 			$version = '1.0.0';
 		}
 
-        if (!is_page_template('page-homepage.php')) {
-            return;
+        if (is_page_template('page-homepage.php')) {
+            wp_enqueue_script(
+                $this->slug,
+                get_stylesheet_directory_uri() . '/assets/ajax-search.js',
+                array( 'jquery' ),
+                $version,
+                true
+            );
+    
+            
+            wp_localize_script( $this->slug, 'my_ajax_object',
+            array( 
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'script_url' => get_stylesheet_directory_uri() . '/scripts/',
+                'site_url'  => get_site_url(),
+            ) );
+            
         }
-		wp_enqueue_script(
-			$this->slug,
-			get_stylesheet_directory_uri() . '/assets/ajax-search.js',
-			array( 'jquery' ),
-			$version,
-			true
-		);
-
-        
-        wp_localize_script( $this->slug, 'my_ajax_object',
-        array( 
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'script_url' => get_stylesheet_directory_uri() . '/scripts/',
-        ) );
-        
     }
 
 
