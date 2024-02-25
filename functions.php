@@ -7,6 +7,9 @@ include ('scripts/saa-cities-cpt.php');
 include ('ajax-search.php'); 
 include ('ajax-scholarship-search.php'); 
 
+include ('google-callback.php'); 
+
+
 // filter
 function institutions_where( $where ) {
     $where = str_replace("meta_key = 'admission_deadlines_$", "meta_key LIKE 'admission_deadlines_%", $where);
@@ -52,7 +55,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 // add_action('wp_enqueue_scripts', 'serach_script_enqueue');
 
 function theme_enqueue_styles() {
-wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], '7.1.0' );
+    wp_enqueue_style( 'dashicons' );
+  wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {
@@ -94,10 +98,32 @@ wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', 
     false );
 
 
-   wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery'),
+    wp_enqueue_script('google-platform', 'https://accounts.google.com/gsi/client', array(), null, true);
+   wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery','google-platform'),
     '1.0.45',
-    false );
+    true );
     
+    wp_localize_script('gs_modal-login', 'myAjax', 
+        array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
+            'redirect_uri' => site_url('/google-callback'),
+        )
+    );
+
+    wp_enqueue_script('gs_modal-signup',  get_stylesheet_directory_uri() . '/assets/signup-modal.js', array('jquery','google-platform'),
+        time(),
+        true );
+        
+        wp_localize_script('gs_modal-signup', 'myAjax', 
+            array(
+                'ajaxurl' => admin_url('admin-ajax.php'),
+                'client_id' => "332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com",
+                'redirect_uri' => site_url('/google-callback'),
+                'security' => wp_create_nonce('my-ajax-nonce'),
+                'siteUrl' => get_site_url(),
+            )
+        );
 
     wp_localize_script( 'gs_scholarships_update', 'my_ajax_object',
       array( 
@@ -111,7 +137,16 @@ wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', 
 
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
+function make_script_async( $tag, $handle, $src )
+{
+    if ( 'google-platform' != $handle ) {
+        return $tag;
+    }
 
+    return str_replace( '<script', '<script async', $tag );
+}
+
+add_filter( 'script_loader_tag', 'make_script_async', 10, 3 );
 function update_scholarships_shortcode() {
     if( is_user_logged_in() &&  current_user_can('administrator') ) {
         return '<button id="update-gs-scholarships">Update Scholarships</button>';
@@ -4751,6 +4786,9 @@ function mepr_add_some_tabs($user) {
         <span class="mepr-nav-item gs-monthly-scholarships <?php MeprAccountHelper::active_nav('monthly-scholarships'); ?>">
             <a href="/account/?action=monthly-scholarships">Monthly Scholarships</a>
         </span>
+        <span class="mepr-nav-item gs-profile <?php MeprAccountHelper::active_nav('profile'); ?>">
+            <a href="/account/?action=profile">Profile</a>
+        </span>
     <?php
 }
 add_action('mepr_account_nav', 'mepr_add_some_tabs');
@@ -4762,6 +4800,9 @@ function mepr_add_tabs_content($action) {
     }
     if($action == 'monthly-scholarships') {
         include 'gs-memberpress-templates/monthly-scholarships.php';
+    }
+    if($action == 'profile') {
+        include 'gs-memberpress-templates/profile.php';
     }
 }
 add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
@@ -5152,11 +5193,15 @@ function display_post_categories_as_bubbles() {
 
 add_shortcode('post_categories_bubbles', 'display_post_categories_as_bubbles');
 
+/**
+ * Update ACF field select on the fly when user types a select text it gets added in Select (NEW!) this is a custom behaviour -Not an ACF Default behaviour-
+ * 
+ */
 function gs_update_select_choices( $post_id ) {
 
     // Check for autosave
     // if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    $select_field_key = 'field_65b373705f46b';
+    $select_field_key = 'field_65b373705f46b'; // Select Field Providers in External Scholarships CPT
 
     // Ensure the field is present in $_POST data
     if (!isset($_POST['acf'][$select_field_key])) return;
@@ -5190,64 +5235,92 @@ function gs_update_select_choices( $post_id ) {
 }
 add_action('acf/save_post', 'gs_update_select_choices', 20);
 
-
+/*
+https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
+*/
 function add_login_modal_and_js() {
-  ?>
-    <!-- Login Modal HTML -->
-    <div class="modal fade" style="display: none;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">
+    ?>
+<div id="gsLoginModal" style="display:none;" class="gs-modal">
+    <div class="gs-modal-dialog">
+        <div class="gs-modal-content">
+            <div class="gs-modal-header">
+                <!-- <span class="gs-close">&times;</span> -->
+                <h2>Sign in to <span class="alt-title-color">Global Scholarships</span></h2>
+            </div>
+            <div class="gs-modal-body">
+                    <?php 
+                        /*
+                        $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+                        $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+                        $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+                        */
+                    ?>
+                    <?php echo do_shortcode('[mepr-login-form use_redirect="true"]'); ?>
+                    <button type="button" id="googleLoginButton" class="gs-btn gs-btn-secondary"><?php echo get_svg_icon('google-icon'); ?>
+<span>Continue with Google</span></button>
 
-                        Sign in to <span class="alt-title-color">Global Scholarships </span></h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
-                </div>
-                <div class="modal-body">
-                    <!-- The form inside the modal -->
-                    <form>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
 
-                        <div style="width:50%;float:left;">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember me</label>
-
-                        </div>
-                        </div>
-
-                         <div style="width:50%;float:right;text-align: right; font-weight: 700;">
-                        <a class="login-forget-password" href="#"> <u>Forget Password? </u></a>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Continue</button>
-                        <div class="or-separator"><span>OR</span></div>
-
-                        <button class="btn btn-danger google-btn">Continue with Google</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a href="#">Don't have an account ? <span class="alt-signup-text"> Sign Up </span> </a>
-                    
-                </div>
+            </div>
+            <div class="gs-modal-footer">
+                <span class="gs-modal-signup">Don't have an account?<a href="#"> <span class="alt-signup-text">Sign Up</span></a></span>
             </div>
         </div>
     </div>
-
-  
-    <?php
+</div>
+<?php
 }
 
 add_action('wp_footer', 'add_login_modal_and_js');
+
+// function my_google_login_button() {
+//     $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+//     $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+//     $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+//     echo '<a href="' . $login_url . '" class="google-login-button">Sign in with Google</a>';
+// }
+// add_action('login_form', 'my_google_login_button');
+
+
+
+//GS signup multistep modal
+/*
+https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
+*/
+function add_multistep_signup_modal_and_js() {
+    ?>
+<div id="gsSignupModal" style="display:none;" class="gs-modal">
+    <div class="gs-modal-dialog">
+        <div class="gs-modal-content">
+            <div class="gs-modal-header">
+                <!-- <span class="gs-close">&times;</span> -->
+                <h2>Sign in to <span class="alt-title-color">Global Scholarships</span></h2>
+            </div>
+            <div class="gs-modal-body">
+                    <?php 
+                        /*
+                        $client_id = '332720383708-1t60jqsr5dsjeh4s0cphk8f6hta4u10l.apps.googleusercontent.com';
+                        $redirect_uri = site_url('/google-callback'); // This should be https://www.example.com/google-callback
+                        $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' . urlencode($client_id) . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=openid%20email%20profile';
+                        */
+                    ?>
+                    <?php echo do_shortcode('[gs-multistep-register-form]'); ?>
+                    <?php /* echo do_shortcode('[mepr-membership-registration-form id="86040"]'); */ ?>
+                    <button type="button" id="googleSignupButton" class="gs-btn gs-btn-secondary"><?php echo get_svg_icon('google-icon'); ?>
+<span>Continue with Google</span></button>
+
+
+            </div>
+            <div class="gs-modal-footer">
+                <span class="gs-modal-signup gs-signup-gs-privacy-policy">By continuing, you agree and acknowledge Global Scholarship’s Privacy Policy.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+}
+
+add_action('wp_footer', 'add_multistep_signup_modal_and_js');
+
 
 function delete_provider_posts() {
     $args = array(
@@ -5279,5 +5352,364 @@ function remove_provider_post_type() {
 // Cannot Reply to Comments issue caused by RankMath SEO Plugin source: https://wordpress.org/support/topic/cannot-reply-to-comments/
 add_filter( 'rank_math/frontend/remove_reply_to_com', '__return_false');
 
+function change_gs_avatar($avatar, $id_or_email, $size, $default, $alt) {
+    $user = false;
+
+    if (is_numeric($id_or_email)) {
+        $user = get_user_by('id', $id_or_email);
+    } elseif (is_object($id_or_email)) {
+        if (!empty($id_or_email->user_id)) {
+            $user = get_user_by('id', $id_or_email->user_id);
+        }
+    } else {
+        $user = get_user_by('email', $id_or_email);
+    }
+
+    if ($user && $avatar_url = get_user_meta($user->ID, 'avatar', true)) {
+        $avatar = "<img alt='{$alt}' src='{$avatar_url}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+    }
+
+    return $avatar;
+}
+
+add_filter('get_avatar','change_gs_avatar', 10, 5);
+
+// function get_svg_icon($icon_name) {
+//     // Path to the SVG file
+//     $svg_file_path = get_stylesheet_directory() . '/assets/images/' . $icon_name . '.svg';
+    
+//     // Check if the SVG file exists
+//     if (file_exists($svg_file_path)) {
+//         // Return the contents of the SVG file
+//         return file_get_contents($svg_file_path);
+//     }
+
+//     // Return an empty string if the file doesn't exist
+//     return '';
+// }
+
+// Use a global variable to count the number of times an SVG is rendered
+global $_SVG_RENDER_COUNT;
+if (!isset($_SVG_RENDER_COUNT)) {
+    $_SVG_RENDER_COUNT = 0;
+}
+
+function get_svg_icon($icon_name) {
+    global $_SVG_RENDER_COUNT;
+    
+    // Increment the render count
+    $_SVG_RENDER_COUNT++;
+
+    // Path to the SVG file
+    $svg_file_path = get_stylesheet_directory() . '/assets/images/' . $icon_name . '.svg';
+    
+    // Generate a unique but consistent ID for each render of the SVG
+    $unique_id = 'pattern' . hash('crc32', $icon_name . $_SVG_RENDER_COUNT);
+
+    // Check if the SVG file exists
+    if (file_exists($svg_file_path)) {
+        // Get the contents of the SVG file
+        $svg_content = file_get_contents($svg_file_path);
+        
+        // Replace the pattern ID and fill attribute with the new unique ID
+        $svg_content = str_replace('id="pattern0"', 'id="' . $unique_id . '"', $svg_content);
+        $svg_content = str_replace('fill="url(#pattern0)"', 'fill="url(#' . $unique_id . ')"', $svg_content);
+
+        // Return the modified SVG content
+        return $svg_content;
+    }
+
+    // Return an empty string if the file doesn't exist
+    return '';
+}
 
 
+function my_multistep_form_shortcode() {
+    ob_start(); // Start output buffer to return the form as a string
+
+    $countries = array('USA', 'Canada', 'UK');
+    $subjects = array('Mathematics', 'Science', 'History');
+
+    ?>
+    
+    <form id="gsMultiStepFormRegister" class="gs-form-register" method="post">
+        <div class="steps-navigation" style="display:none;">
+            <span class="step">01</span>
+            <span class="step">02</span>
+            <span class="step">03</span>
+            <span class="step">04</span>
+            <!-- Add or remove steps as necessary -->
+        </div>
+        <!-- Step 1 -->
+        <div class="form-step">
+
+            <label for="gs_user_email">Email</label>
+            <input type="email" name="email" id="gs_user_email" placeholder="Email" required>
+            <label for="gs_user_password">Email</label>
+            <input type="password" name="password"  id="gs_user_password" placeholder="Password" required>
+            <label for="gs_newsletter">
+                <input type="checkbox" id="gs_newsletter" name="gs_newsletter"> <span>Accept receiving newsletter</span>
+            </label>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" style="display:none">
+            <input type="text" name="gs_first_name" placeholder="First Name" required>
+            <input type="text" name="gs_last_name" placeholder="Last Name" required>
+            <input type="date" name="gs_birth_date" required>
+            <select name="gs_gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <div class="gs-home-country">Home Country:</div>
+
+            <select name="gs_home_country" required>
+                <option value=""></option>
+                <?php foreach($countries as $country): ?>
+                    <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" style="display:none">
+            <div class="degree-options">
+                <div class="gs-degree-choose">Choose Degree:</div>
+                <input type="radio" id="bachelor" name="gs_degree" value="bachelor">
+                <label for="bachelor" class="degree-label">Bachelor</label>
+
+                <input type="radio" id="master" name="gs_degree" value="master">
+                <label for="master" class="degree-label">Master</label>
+
+                <input type="radio" id="phd" name="gs_degree" value="phd">
+                <label for="phd" class="degree-label">Ph.D.</label>
+            </div>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+        <!-- Step 4 -->
+        <div class="form-step" style="display:none">
+            <div class="gs-country-choose">Choose a Country:</div>
+
+            <select name="gs_interested_country" required>
+                <option value=""></option>
+                <?php foreach($countries as $country): ?>
+                    <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+        <!-- Step 5 -->
+        <div class="form-step" style="display:none">
+            <div class="gs-subject-choose">Choose a Subject:</div>
+
+            <select name="gs_subject" required>
+                <option value=""></option>
+                <?php foreach($subjects as $subject): ?>
+                    <option value="<?php echo $subject; ?>"><?php echo $subject; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="button" class="prev-btn">Previous</button>
+        </div>
+
+
+
+        <input type="button" name="wp-signup-continue" id="wp-signup-continue-btn" class="button-primary gs-signup-button-continue" value="Continue">
+    </form>
+   
+    <?php
+    return ob_get_clean(); // Return the buffered content
+}
+add_shortcode('gs-multistep-register-form', 'my_multistep_form_shortcode');
+
+
+function gs_register_new_user() {
+    check_ajax_referer('my-ajax-nonce', 'security');
+
+    $email = sanitize_email($_POST['gs_email']);
+    $password = $_POST['gs_password']; // Ensure to validate and sanitize
+    $newsletter = sanitize_text_field($_POST['gs_newsletter']);
+    $first_name = sanitize_text_field($_POST['gs_first_name']);
+    $last_name = sanitize_text_field($_POST['gs_last_name']);
+    $birth_date = sanitize_text_field($_POST['gs_birth_date']);
+    $gender = sanitize_text_field($_POST['gs_gender']);
+    $home_country = sanitize_text_field($_POST['gs_home_country']);
+    $degree = sanitize_text_field($_POST['gs_degree']);
+    $country = sanitize_text_field($_POST['gs_interested_country']);
+    $subject = sanitize_text_field($_POST['gs_subject']);
+
+    if (!is_email($email) || empty($password)) {
+        wp_send_json_error(['message' => 'Invalid email or password.']);
+        return;
+    }
+
+    $user_id = wp_create_user($email, $password, $email);
+    if (is_wp_error($user_id)) {
+        wp_send_json_error(['message' => $user_id->get_error_message()]);
+        return;
+    }
+
+    // Update user meta with additional information
+    update_user_meta($user_id, 'first_name', $first_name);
+    update_user_meta($user_id, 'last_name', $last_name);
+    update_user_meta($user_id, 'gs_newsletter', $newsletter);
+    update_user_meta($user_id, 'birth_date', $birth_date);
+    update_user_meta($user_id, 'gender', $gender);
+    update_user_meta($user_id, 'home_country', $home_country);
+    update_user_meta($user_id, 'degree', $degree);
+    update_user_meta($user_id, 'interested_country', $country);
+    update_user_meta($user_id, 'subject', $subject);
+
+    wp_send_json_success(['message' => 'User registered successfully.', 'user_id' => $user_id]);
+}
+add_action('wp_ajax_gs_register_new_user', 'gs_register_new_user');
+add_action('wp_ajax_nopriv_gs_register_new_user', 'gs_register_new_user');
+
+
+
+// Hook to add additional user fields
+add_action('show_user_profile', 'custom_user_profile_fields');
+add_action('edit_user_profile', 'custom_user_profile_fields');
+
+function custom_user_profile_fields($user) {
+
+    
+    $countries = array('USA', 'Canada', 'UK');
+    $subjects = array('Mathematics', 'Science', 'History');
+
+    ?>
+    <h3>Additional Information</h3>
+
+    <table class="form-table">
+        <tr>
+            <th><label for="gs_newsletter">Newsletter Subscription</label></th>
+            <td>
+                <input type="checkbox" name="gs_newsletter" id="gs_newsletter" value="yes" <?php checked('yes', get_user_meta($user->ID, 'gs_newsletter', true)); ?>/>
+                <span class="description">Check to subscribe to the newsletter.</span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="birth_date">Birth Date</label></th>
+            <td>
+                <input type="date" name="birth_date" id="birth_date" value="<?php echo esc_attr(get_user_meta($user->ID, 'birth_date', true)); ?>" class="gs_input_text" />
+            </td>
+        </tr>
+        <tr>
+            <th><label for="gender">Gender</label></th>
+            <td>
+                <select name="gender" id="gender">
+                    <option value="">Select</option>
+                    <option value="male" <?php selected('male', get_user_meta($user->ID, 'gender', true)); ?>>Male</option>
+                    <option value="female" <?php selected('female', get_user_meta($user->ID, 'gender', true)); ?>>Female</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="home_country">Home Country</label></th>
+            <td>
+                <select name="home_country" id="home_country" class="gs_input_text">
+                    <option value="">Select Country</option>
+                    <?php foreach($countries as $country): ?>
+                        <option value="<?php echo esc_attr($country); ?>" <?php selected($country, get_user_meta($user->ID, 'home_country', true)); ?>><?php echo esc_html($country); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+        <tr>
+            <th><label for="degree">Degree</label></th>
+            <td>
+                <select name="degree" id="degree">
+                    <option value="bachelor" <?php selected('bachelor', get_user_meta($user->ID, 'degree', true)); ?>>Bachelor</option>
+                    <option value="master" <?php selected('master', get_user_meta($user->ID, 'degree', true)); ?>>Master</option>
+                    <option value="phd" <?php selected('phd', get_user_meta($user->ID, 'degree', true)); ?>>Ph.D.</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="interested_country">Interested Country</label></th>
+            <td>
+                <select name="interested_country" id="interested_country" class="gs_input_text">
+                    <option value="">Select Country</option>
+                    <?php foreach($countries as $country): ?>
+                        <option value="<?php echo esc_attr($country); ?>" <?php selected($country, get_user_meta($user->ID, 'interested_country', true)); ?>><?php echo esc_html($country); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="subject">Subject</label></th>
+            <td>
+                <select name="subject" id="subject" class="gs_input_text">
+                    <option value="">Select Subject</option>
+                    <?php foreach($subjects as $subject): ?>
+                        <option value="<?php echo esc_attr($subject); ?>" <?php selected($subject, get_user_meta($user->ID, 'subject', true)); ?>><?php echo esc_html($subject); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+
+
+// Hook to save the custom user fields
+add_action('personal_options_update', 'save_custom_user_profile_fields');
+add_action('edit_user_profile_update', 'save_custom_user_profile_fields');
+
+function save_custom_user_profile_fields($user_id) {
+    if (!current_user_can('edit_user', $user_id)) {
+        return false;
+    }
+
+    // Check if the fields are set and not empty, then update user meta
+    if (isset($_POST['gs_birth_date']) && !empty($_POST['gs_birth_date'])) {
+        update_user_meta($user_id, 'birth_date', sanitize_text_field($_POST['gs_birth_date']));
+    }
+
+    if (isset($_POST['gs_gender']) && !empty($_POST['gs_gender'])) {
+        update_user_meta($user_id, 'gender', sanitize_text_field($_POST['gs_gender']));
+    }
+
+    if (isset($_POST['gs_home_country']) && !empty($_POST['gs_home_country'])) {
+        update_user_meta($user_id, 'home_country', sanitize_text_field($_POST['gs_home_country']));
+    }
+
+    if (isset($_POST['gs_degree']) && !empty($_POST['gs_degree'])) {
+        update_user_meta($user_id, 'degree', sanitize_text_field($_POST['gs_degree']));
+    }
+
+    if (isset($_POST['gs_interested_country']) && !empty($_POST['gs_interested_country'])) {
+        update_user_meta($user_id, 'interested_country', sanitize_text_field($_POST['gs_interested_country']));
+    }
+
+    if (isset($_POST['gs_subject']) && !empty($_POST['gs_subject'])) {
+        update_user_meta($user_id, 'subject', sanitize_text_field($_POST['gs_subject']));
+    }
+
+    // For checkboxes, checking if set is sufficient
+    update_user_meta($user_id, 'gs_newsletter', isset($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes' ? 'yes' : 'no');
+}
+
+
+
+// function save_custom_user_profile_fields($user_id) {
+//     if (!current_user_can('edit_user', $user_id)) {
+//         return false;
+//     }
+
+//     update_user_meta($user_id, 'birth_date', $_POST['gs_birth_date']);
+//     update_user_meta($user_id, 'gender', $_POST['gs_gender']);
+//     update_user_meta($user_id, 'home_country', $_POST['gs_home_country']);
+//     update_user_meta($user_id, 'degree', $_POST['gs_degree']);
+//     update_user_meta($user_id, 'interested_country', $_POST['gs_interested_country']);
+//     update_user_meta($user_id, 'subject', $_POST['gs_subject']);
+//     // Save the Newsletter Subscription state
+//     if (!empty($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes') {
+//         update_user_meta($user_id, 'gs_newsletter', 'yes');
+//     } else {
+//         delete_user_meta($user_id, 'gs_newsletter');
+//     }
+// }

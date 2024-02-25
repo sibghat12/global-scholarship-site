@@ -8010,7 +8010,9 @@ padding-left:15px !important;
     border: none !important;
     background: #3E8CBF;
 }
-
+.page-template-page-homepage .gs-homepage-search-form button.search-submit-search:hover {
+    cursor: pointer;
+}
 /* .page-template-page-homepage #main {
     padding: 0 14px !important;
 } */
@@ -8170,6 +8172,10 @@ padding-left:15px !important;
         border-radius: 46% 10px 10px 46%;
         border: none !important;
         background: #3E8CBF;
+    }
+
+    .page-template-page-homepage .gs-homepage-search-form button.search-submit-search:hover {
+        cursor: pointer;
     }
 
     .page-template-page-homepage .gs-homepage-search-form .search_container input#search {
@@ -9199,6 +9205,10 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     /* #mobile-search-box {
         display: none;
     } */
+    
+    .gs-modal-content {
+        padding: 0 10px;
+    }
 }
 
 /* Hide the desktop search box on screens smaller than or equal to 767px */
@@ -9323,6 +9333,7 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
 
 .alt-title-color {
     color:#008fc6;
+    line-height: 2.7rem;
 }
 
 #loginModal .modal-body {
@@ -9385,10 +9396,6 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     letter-spacing: normal;
 }
 
-.alt-signup-text
-{
-    color:#d9534f !important;
-}
 #loginModal .modal-footer a {
     color: black; 
     margin-top:15px;
@@ -9420,11 +9427,6 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
 
-.or-separator span {
-    background: #fff; 
-    padding: 0 10px;
-}
-
 /* Responsive adjustments */
 @media (max-width: 576px) {
     #loginModal .modal-dialog {
@@ -9453,21 +9455,23 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     width: 100%;
     height: 100%;
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Dimmed background */
+    background-color: rgb(194 194 194 / 40%); /* Dimmed background */
 }
 
 .gs-modal-dialog {
     background-color: #FCFAFA;
     margin: 10% auto;
-    padding: 20px;
-    width: 520px;
-    max-width: 70%;
+    padding: 20px 10px;
+    width: 460px;
+    max-width: 84%;
     box-sizing: border-box;
     border-radius: 15px;
+    box-shadow: -4px 5px 7px 0px #b8b8b8d1;
 }
-.gs-modal-content {
+
+/* .gs-modal-content {
     padding: 0 25px;
-}
+} */
 /* Add more styles for the form and other elements as needed */
 #gsLoginModal .gs-modal-header h2 {
     font-size: 36px;
@@ -9545,54 +9549,200 @@ font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background-color: #bd2130;
 }
 
-.or-separator {
-    text-align: center;
-    margin: 20px 0;
+
+
+
+/* MemberPress Form in GS Login Modal*/
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#user_login {
+    height: 41px !important;
+    border-radius: 8px !important;
+    background-color: #FEFEFE !important;
+    border: 1px solid #008FC6 !important;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#user_pass {
+    height: 41px !important;
+    border-radius: 8px !important;
+    background-color: #FEFEFE !important;
+    border: 1px solid #008FC6 !important;
 }
 
 
-.recent-wrapper .read-more-article {
-    display: block;
-    margin-top: 10px;
-    font-size:16px;
-    line-height: 28px;
-    margin-top:20px;
-    font-weight: 600;
-    color: blue;
-    width:inherit;
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mp-form-row label {
+    display: block !important;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mp-form-row label[for="user_login"] {
+    margin-bottom: 6px !important;
+    font-weight: 700;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mp-form-row label[for="user_pass"] {
+    margin-bottom: 6px !important;
+    font-weight: 700;
+}
+
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mp-hide-pw button.button.mp-hide-pw.hide-if-no-js {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    width: auto;
+    height: 100%;
+    align-items: center;
+    background: 0 0;
+    color: #85929e;
     text-decoration: none;
+    padding: 1em 1.4em;
+    border: none !important;
+    box-shadow: none;
 }
-
-.recent-wrapper .read-more-article span {
-    border-bottom: 1px solid #008fd0;
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mp-hide-pw {
+    position: relative;
 }
-
-.error404 .avada-page-titlebar-wrapper {
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mp-hide-pw button.button.mp-hide-pw.hide-if-no-js .dashicons-visibility:before {
+    content: "\f177";
+}
+/* #gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#rememberme {
+    background-color: #FEFEFE !important;
+    border: 1px solid #008FC6 !important;
+} */
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#rememberme[type="checkbox"] {
+    -webkit-appearance: none; /* Remove default styling for WebKit browsers */
+    -moz-appearance: none;    /* Remove default styling for Mozilla browsers */
+    appearance: none;         /* Remove default styling */
+    width: 20px;              /* Width of the checkbox */
+    height: 20px;             /* Height of the checkbox */
+    border: 1px solid #008FC6;   /* Border around the checkbox */
+    cursor: pointer;          /* Cursor changes to pointer when hovering over the checkbox */
+    position: relative; /* Position relative to allow absolute positioning of pseudo-elements inside */
+    display: inline-block; /* Ensure the checkbox aligns properly with text if needed */
+}
+/* Hide the checkmark by default */
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#rememberme[type="checkbox"]::after {
+    content: '';
+    position: absolute;
     display: none;
 }
 
+/* Style and show the checkmark when the checkbox is checked */
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#rememberme[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+}
 
-.err404-header {
-    padding-top:40px;
-font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
-font-weight: 700;
-font-size:32px;
-text-align: center;
+/* Style for checked state */
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form input#rememberme[type="checkbox"]:checked {
+    background-color: #008FC6; /* Background color when checked */
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .gs-memberpress-login-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .gs-memberpress-login-remember {
+    display: flex;
+    flex-grow: 0;
+    margin-right: auto;
+    align-items: center;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mepr-login-actions {
+    display: flex !important;
+    flex-grow: 1;
+    text-align: right;
+    align-items: center;
+    width: 60%;
+    justify-content: flex-end;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .mepr-login-actions a{
+    color: #000;
+    text-decoration: underline;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .mepr-form .gs-mepr-login {
+    width: 100%;
+    padding: 10px 5px !important;
+    background: #FF3131 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem !important;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .or-separator {
+    text-align: center;
+    margin: 30px 0;
+}
+
+#gsLoginModal .gs-modal-body .mp_wrapper .or-separator span {
+    background: #FCFAFA; 
+    padding: 0 10px;
+    font-size: 1.5rem;
+}
+
+#gsLoginModal .gs-modal-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#googleLoginButton {
+    font-size: 1.1rem !important;
+    margin-bottom: 1.2rem;
+}
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup .alt-signup-text
+{
+    color:#FF3131 !important;
+}
+
+button#googleLoginButton {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+button#googleLoginButton svg {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button#googleLoginButton span {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 
-.err404-para  {
-max-width: 1000px;
-padding-top:40px;
-padding-bottom:60px;
-color:black;
-text-align: center;
-margin:auto;
+#googleSignupButton {
+    font-size: 1.1rem !important;
+    margin-bottom: 1.2rem;
 }
 
-
-.page-template-template-partner .wpcf7-form textarea {
-margin-bottom:40px;
+#gsLoginModal .gs-modal-footer span.gs-modal-signup {
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 
@@ -9604,3 +9754,136 @@ margin-bottom:40px;
 .error404 .fusion-tb-footer {
     margin-top: 150px !important;
 }
+
+#gsLoginModal .gs-modal-footer span.gs-modal-signup .alt-signup-text
+{
+    color:#FF3131 !important;
+}
+
+button#googleSignupButton {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+button#googleSignupButton svg {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button#googleSignupButton span {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gs-signup-button-continue {
+    width: 100% !important;
+    padding: 10px 5px !important;
+    background: #FF3131 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem !important;
+    border: 0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.steps-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.steps-navigation .step {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #f9f9f9; /* Default background */
+    color: #000; /* Default text color, hidden when step is completed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    position: relative;
+    font-size: 14px; /* Adjust as needed */
+}
+
+.step-completed, .step-active {
+    background-color: #008FC6 !important;
+    border-color: #008FC6 !important;
+    font-size: 0 !important; /* Hide the text by setting font-size to 0 */
+}
+
+.step-completed::after, .step-active::after {
+    content: "\2713"; /* Checkmark */
+    font-size: 16px; /* Adjust as needed */
+    color: white; /* Checkmark color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the checkmark */
+    line-height: 1; /* Adjust line height for vertical alignment */
+}
+
+.step-completed:before, .step-active:before {
+    content: "\2713"; /* Checkmark */
+    font-size: 16px; /* Adjust as needed */
+    color: white; /* Checkmark color */
+    position: absolute;
+}
+
+/* Line between steps */
+.steps-navigation .step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    left: 128%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(100% + 50px);
+    height: 2px;
+    background-color: #767676;
+}
+
+/* Dynamic class for changing line color */
+.step.line-active:after {
+    background-color: #008FC6 !important; /* Change line color when step is active or completed */
+}
+
+/* .degree-options {
+    font-family: Arial, sans-serif;
+  } */
+  
+  .degree-options input[type="radio"] {
+    display: none; /* Hide the radio button itself */
+  }
+  
+  .degree-options label.degree-label {
+    display: inline-block;
+    background-color: white; /* Background color */
+    color: black; /* Text color */
+    padding: 10px 20px; /* Padding around text */
+    border: 2px solid #008FC6; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    margin: 5px; /* Space between buttons */
+    cursor: pointer; /* Mouse pointer changes to hand symbol */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  /* Change background color slightly when hovering over the label */
+  .degree-options label.degree-label:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Style for when the radio button is checked */
+  .degree-options input[type="radio"]:checked + label {
+    background-color: #008FC6; /* Change background color */
+    color: white; /* Change text color */
+  }
+  
+
