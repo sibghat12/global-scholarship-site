@@ -9745,6 +9745,16 @@ button#googleLoginButton span {
     font-size: 1rem;
 }
 
+
+.error404 .courses-filter-search {
+    display: none;
+}
+
+
+.error404 .fusion-tb-footer {
+    margin-top: 150px !important;
+}
+
 #gsLoginModal .gs-modal-footer span.gs-modal-signup .alt-signup-text
 {
     color:#FF3131 !important;
@@ -9876,3 +9886,4 @@ button#googleSignupButton span {
     color: white; /* Change text color */
   }
   
+
