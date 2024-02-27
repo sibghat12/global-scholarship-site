@@ -9928,3 +9928,70 @@ button#googleSignupButton span {
     font-size: 0.8rem;
     font-weight: 700;
 }
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .newsletter_container .newsletter input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.4); /* IE */
+  -moz-transform: scale(1.4); /* FF */
+  -webkit-transform: scale(1.4); /* Safari and Chrome */
+  -o-transform: scale(1.4); /* Opera */
+  transform: scale(1.4);
+  padding: 10px;
+  margin-right: 8px;
+}
+
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .first_name_container {
+    margin-bottom: 12px;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .first_name_container label.first_name {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .first_name_container input {
+    background-color: #fff !important;
+    border: 1px solid #008FC6 !important;
+    border-radius: 5px !important;
+    height: 47px !important;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .last_name_container {
+    margin-bottom: 12px;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .last_name_container label.last_name {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .last_name_container input {
+    background-color: #fff !important;
+    border: 1px solid #008FC6 !important;
+    border-radius: 5px !important;
+    height: 47px !important;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .birth_date_container {
+    margin-bottom: 12px;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .birth_date_container label.birth_date {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .birth_date_container input {
+    background-color: #fff !important;
+    border: 1px solid #008FC6 !important;
+    border-radius: 5px !important;
+    height: 47px !important;
+}
