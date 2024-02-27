@@ -9858,12 +9858,12 @@ button#googleSignupButton span {
 /* .degree-options {
     font-family: Arial, sans-serif;
   } */
-  
-  .degree-options input[type="radio"] {
+
+.degree-options input[type="radio"] {
     display: none; /* Hide the radio button itself */
-  }
-  
-  .degree-options label.degree-label {
+}
+
+.degree-options label.degree-label {
     display: inline-block;
     background-color: white; /* Background color */
     color: black; /* Text color */
@@ -9873,17 +9873,58 @@ button#googleSignupButton span {
     margin: 5px; /* Space between buttons */
     cursor: pointer; /* Mouse pointer changes to hand symbol */
     transition: background-color 0.3s ease; /* Smooth transition for background color */
-  }
-  
-  /* Change background color slightly when hovering over the label */
-  .degree-options label.degree-label:hover {
+}
+
+/* Change background color slightly when hovering over the label */
+.degree-options label.degree-label:hover {
     background-color: #f0f0f0;
-  }
-  
-  /* Style for when the radio button is checked */
-  .degree-options input[type="radio"]:checked + label {
+}
+
+/* Style for when the radio button is checked */
+.degree-options input[type="radio"]:checked + label {
     background-color: #008FC6; /* Change background color */
     color: white; /* Change text color */
-  }
-  
+}
 
+#gsSignupModal .gs-modal-header h2 {
+    padding: 0px !important;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .user_email_container {
+    margin-bottom: 12px;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .user_email_container label.user_email {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .user_email_container input {
+    background-color: #fff !important;
+    border: 1px solid #008FC6;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .user_password_container label.user_password {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .user_password_container input{ 
+    background-color: #fff !important;
+    border: 1px solid #008FC6;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .newsletter_container{
+    margin: 12px 0 !important;
+    padding: 12px 20px !important;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .newsletter_container .newsletter{
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+}

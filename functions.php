@@ -5442,74 +5442,106 @@ function my_multistep_form_shortcode() {
         </div>
         <!-- Step 1 -->
         <div class="form-step">
-
-            <label for="gs_user_email">Email</label>
-            <input type="email" name="email" id="gs_user_email" placeholder="Email" required>
-            <label for="gs_user_password">Email</label>
-            <input type="password" name="password"  id="gs_user_password" placeholder="Password" required>
-            <label for="gs_newsletter">
-                <input type="checkbox" id="gs_newsletter" name="gs_newsletter"> <span>Accept receiving newsletter</span>
-            </label>
+            <div class="user_email_container">
+                <label class="user_email" for="gs_user_email">Email</label>
+                <input type="email" name="email" id="gs_user_email" placeholder="Email" required>
+            </div>
+            <div class="user_password_container">
+                <label class="user_password" for="gs_user_password">Password</label>
+                <input type="password" name="password"  id="gs_user_password" placeholder="Password" required>
+            </div>
+            <div class="newsletter_container">
+                <label class="newsletter" for="gs_newsletter">
+                    <input type="checkbox" id="gs_newsletter" name="gs_newsletter"> <span>I would like to receive Global Scholarship’s newsletter.</span>
+                </label>
+            </div>
         </div>
 
         <!-- Step 2 -->
         <div class="form-step" style="display:none">
-            <input type="text" name="gs_first_name" placeholder="First Name" required>
-            <input type="text" name="gs_last_name" placeholder="Last Name" required>
-            <input type="date" name="gs_birth_date" required>
-            <select name="gs_gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-            <div class="gs-home-country">Home Country:</div>
-
-            <select name="gs_home_country" required>
-                <option value=""></option>
-                <?php foreach($countries as $country): ?>
-                    <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
-                <?php endforeach; ?>
-            </select>
+            <div class="first_name_container">
+                <label class="first_name" for="gs_first_name">First Name</label>
+                <input type="text" id="gs_first_name" name="gs_first_name" placeholder="First Name" required>
+            </div>
+            <div class="last_name_container">
+                <label class="last_name" for="gs_last_name">Last Name</label>
+                <input type="text" id="gs_last_name" name="gs_last_name" placeholder="Last Name" required>
+            </div>
+            <div class="birth_date_container">
+                <label class="birth_date" for="gs_birth_date">Birth Date</label>
+                <input type="date" id="gs_birth_date" name="gs_birth_date" required>
+            </div>
+            <div class="gender_container">
+                <label class="gender" for="gs_gender">Gender</label>
+                <select id="gs_gender" name="gs_gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="home_country_container">
+                <label class="home_country" for="gs_home_country">Home Country</label>
+                <select id="gs_home_country" name="gs_home_country" required>
+                    <option value=""></option>
+                    <?php foreach($countries as $country): ?>
+                        <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <button type="button" class="prev-btn">Previous</button>
         </div>
 
         <!-- Step 3 -->
         <div class="form-step" style="display:none">
             <div class="degree-options">
-                <div class="gs-degree-choose">Choose Degree:</div>
-                <input type="radio" id="bachelor" name="gs_degree" value="bachelor">
-                <label for="bachelor" class="degree-label">Bachelor</label>
-
-                <input type="radio" id="master" name="gs_degree" value="master">
-                <label for="master" class="degree-label">Master</label>
-
-                <input type="radio" id="phd" name="gs_degree" value="phd">
-                <label for="phd" class="degree-label">Ph.D.</label>
+                <div class="degree-choose_container">
+                    <div class="degree-choose">Choose Degree:</div>
+                </div>
+                <div class="degree-option_container">
+                    <input type="radio" id="bachelor" name="gs_degree" value="bachelor">
+                    <label for="bachelor" class="degree-label">Bachelor</label>
+                </div>
+                <div class="degree-option_container">
+                    <input type="radio" id="master" name="gs_degree" value="master">
+                    <label for="master" class="degree-label">Master</label>
+                </div>
+                <div class="degree-option_container">
+                    <input type="radio" id="phd" name="gs_degree" value="phd">
+                    <label for="phd" class="degree-label">Ph.D.</label>
+                </div>
             </div>
             <button type="button" class="prev-btn">Previous</button>
         </div>
+
         <!-- Step 4 -->
         <div class="form-step" style="display:none">
-            <div class="gs-country-choose">Choose a Country:</div>
-
-            <select name="gs_interested_country" required>
-                <option value=""></option>
-                <?php foreach($countries as $country): ?>
-                    <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
-                <?php endforeach; ?>
-            </select>
+            <div class="country-choose_container">
+                <div class="country-choose">Choose a Country:</div>
+            </div>
+            <div class="interested_country_container">
+                <select name="gs_interested_country" required>
+                    <option value=""></option>
+                    <?php foreach($countries as $country): ?>
+                        <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <button type="button" class="prev-btn">Previous</button>
         </div>
+
         <!-- Step 5 -->
         <div class="form-step" style="display:none">
-            <div class="gs-subject-choose">Choose a Subject:</div>
-
-            <select name="gs_subject" required>
-                <option value=""></option>
-                <?php foreach($subjects as $subject): ?>
-                    <option value="<?php echo $subject; ?>"><?php echo $subject; ?></option>
-                <?php endforeach; ?>
-            </select>
+            <div class="subject-choose_container">
+                <div class="subject-choose">Choose a Subject:</div>
+            </div>
+            <div class="subject_container">
+                <select name="gs_subject" required>
+                    <option value=""></option>
+                    <?php foreach($subjects as $subject): ?>
+                        <option value="<?php echo $subject; ?>"><?php echo $subject; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <button type="button" class="prev-btn">Previous</button>
         </div>
 
