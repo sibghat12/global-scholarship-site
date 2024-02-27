@@ -5467,17 +5467,19 @@ function my_multistep_form_shortcode() {
                 <label class="last_name" for="gs_last_name">Last Name</label>
                 <input type="text" id="gs_last_name" name="gs_last_name" placeholder="Last Name" required>
             </div>
-            <div class="birth_date_container">
-                <label class="birth_date" for="gs_birth_date">Birth Date</label>
-                <input type="date" id="gs_birth_date" name="gs_birth_date" required>
-            </div>
-            <div class="gender_container">
-                <label class="gender" for="gs_gender">Gender</label>
-                <select id="gs_gender" name="gs_gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
+            <div class="gs_birth_gender_container">
+                <div class="birth_date_container">
+                    <label class="birth_date" for="gs_birth_date">Birth Date</label>
+                    <input type="date" id="gs_birth_date" name="gs_birth_date" required>
+                </div>
+                <div class="gender_container">
+                    <label class="gender" for="gs_gender">Gender</label>
+                    <select id="gs_gender" name="gs_gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
             </div>
             <div class="home_country_container">
                 <label class="home_country" for="gs_home_country">Home Country</label>
@@ -5494,20 +5496,22 @@ function my_multistep_form_shortcode() {
         <!-- Step 3 -->
         <div class="form-step" style="display:none">
             <div class="degree-options">
-                <div class="degree-choose_container">
+                <div class="degree-choose-container">
                     <div class="degree-choose">Choose Degree:</div>
                 </div>
-                <div class="degree-option_container">
-                    <input type="radio" id="bachelor" name="gs_degree" value="bachelor">
-                    <label for="bachelor" class="degree-label">Bachelor</label>
-                </div>
-                <div class="degree-option_container">
-                    <input type="radio" id="master" name="gs_degree" value="master">
-                    <label for="master" class="degree-label">Master</label>
-                </div>
-                <div class="degree-option_container">
-                    <input type="radio" id="phd" name="gs_degree" value="phd">
-                    <label for="phd" class="degree-label">Ph.D.</label>
+                <div class="degree_options_container">
+                    <div class="degree-option">
+                        <input type="radio" id="bachelor" name="gs_degree" value="bachelor">
+                        <label for="bachelor" class="degree-label">Bachelor</label>
+                    </div>
+                    <div class="degree-option">
+                        <input type="radio" id="master" name="gs_degree" value="master">
+                        <label for="master" class="degree-label">Master</label>
+                    </div>
+                    <div class="degree-option">
+                        <input type="radio" id="phd" name="gs_degree" value="phd">
+                        <label for="phd" class="degree-label">Ph.D.</label>
+                    </div>
                 </div>
             </div>
             <button type="button" class="prev-btn">Previous</button>
@@ -5515,11 +5519,11 @@ function my_multistep_form_shortcode() {
 
         <!-- Step 4 -->
         <div class="form-step" style="display:none">
-            <div class="country-choose_container">
+            <div class="country-choose-container">
                 <div class="country-choose">Choose a Country:</div>
             </div>
             <div class="interested_country_container">
-                <select name="gs_interested_country" required>
+                <select multiple name="gs_interested_country" required>
                     <option value=""></option>
                     <?php foreach($countries as $country): ?>
                         <option value="<?php echo $country; ?>"><?php echo $country; ?></option>

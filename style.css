@@ -9978,6 +9978,13 @@ button#googleSignupButton span {
     height: 47px !important;
 }
 
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gs_birth_gender_container{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+}
+
 #gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .birth_date_container {
     margin-bottom: 12px;
 }
@@ -9995,3 +10002,70 @@ button#googleSignupButton span {
     border-radius: 5px !important;
     height: 47px !important;
 }
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gender_container {
+    margin-bottom: 12px;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gender_container label.gender {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gender_container select {
+    background-color: #fff !important;
+    border: 1px solid #008FC6 !important;
+    border-radius: 5px !important;
+    height: 47px !important;
+}
+
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .home_country_container  {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .home_country_container select {
+    background-color: #fff !important;
+    border: 1px solid #008FC6 !important;
+    border-radius: 5px !important;
+    height: 47px !important;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .home_country_container label.home_country {
+    margin-bottom: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .degree_options_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .degree-choose-container .degree-choose {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .degree_options_container .degree-option label.degree-label {
+    min-width: 7.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .country-choose-container .country-choose {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
