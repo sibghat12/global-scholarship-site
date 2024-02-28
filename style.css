@@ -10069,3 +10069,20 @@ button#googleSignupButton span {
     margin-bottom: 12px;
 }
 
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .interested_country_container .select2 {
+    width: 100% !important;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .subject-choose_container .subject-choose {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .subject_container .select2 {
+    width: 100% !important;
+}
+
+.select2-container span.select2-dropdown.select2-dropdown--below {
+    margin-top: 32px;
+}

@@ -178,4 +178,7 @@ jQuery(document).ready(function($) {
 
         });
 
+            $('.interested_country_container select').select2();
+            $('.subject_container select').select2();
+
 });

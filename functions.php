@@ -99,7 +99,7 @@ function theme_enqueue_styles() {
 
 
     wp_enqueue_script('google-platform', 'https://accounts.google.com/gsi/client', array(), null, true);
-   wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery','google-platform'),
+    wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery','google-platform'),
     '1.0.45',
     true );
     
@@ -111,7 +111,9 @@ function theme_enqueue_styles() {
         )
     );
 
-    wp_enqueue_script('gs_modal-signup',  get_stylesheet_directory_uri() . '/assets/signup-modal.js', array('jquery','google-platform'),
+    wp_enqueue_style('gs_select2-style',  get_stylesheet_directory_uri() . '/assets/select2/select2.min.css', array(), '4.1.0' );
+    wp_enqueue_script('gs_select2-script',  get_stylesheet_directory_uri() . '/assets/select2/select2.min.js', array(), '4.1.0' );
+    wp_enqueue_script('gs_modal-signup',  get_stylesheet_directory_uri() . '/assets/signup-modal.js', array('jquery','gs_select2-script','google-platform'),
         time(),
         true );
         
@@ -5523,7 +5525,7 @@ function my_multistep_form_shortcode() {
                 <div class="country-choose">Choose a Country:</div>
             </div>
             <div class="interested_country_container">
-                <select multiple name="gs_interested_country" required>
+                <select multiple="multiple" name="gs_interested_country[]" required>
                     <option value=""></option>
                     <?php foreach($countries as $country): ?>
                         <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
@@ -5539,7 +5541,7 @@ function my_multistep_form_shortcode() {
                 <div class="subject-choose">Choose a Subject:</div>
             </div>
             <div class="subject_container">
-                <select name="gs_subject" required>
+                <select multiple="multiple" name="gs_subject[]" required>
                     <option value=""></option>
                     <?php foreach($subjects as $subject): ?>
                         <option value="<?php echo $subject; ?>"><?php echo $subject; ?></option>
