@@ -161,8 +161,7 @@
             <?php // GS Scholarship Outro ?>
             <?php require get_stylesheet_directory() . '/components/single-scholarships/scholarship-outro.php'; ?>
 
-            <?php // GS Scholarship Form ?>
-            <?php require get_stylesheet_directory() . '/components/single-scholarships/feedback-form.php'; ?>
+            
 
             
             <?php 
@@ -170,6 +169,9 @@
                 comments_template();
             }
             ?>
+
+            <?php // GS Scholarship Form ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/feedback-form.php'; ?>
 
         </div>
         <?php // GS Scholarships Newsletter ?>

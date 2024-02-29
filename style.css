@@ -2916,9 +2916,7 @@ height: 30px !important;
 }
 
 
-.meta-scholarship-blog {
-    padding-bottom:30px !important;
-}
+
 
 .the-journey h2{
     padding-top:50px;
@@ -8378,9 +8376,8 @@ padding-left:15px !important;
         padding-right:40px;
     }
 
-      .single-scholarship_post h2{
-        padding-top:10px;
-      }
+      
+
 
     .image-container, .image-container1 {
        border:none;
@@ -9887,3 +9884,180 @@ button#googleSignupButton span {
   }
   
 
+.single-scholarship_post .courses-filter-search , .tax-scholarship_category .courses-filter-search ,
+.page-template-template-recent-scholarship-posts  .courses-filter-search {
+    display: none; 
+}
+
+
+.single-scholarship_post .scholarship-post-main {
+    width:100%;
+}
+.single-scholarship_post .blog-breadcrumb {
+    padding-left:0px;
+}
+
+.single-scholarship_post .brief_intro_text a span {
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
+
+
+.single-scholarship_post .brief_intro_text a  {
+ font-size:16px !important;
+ line-height: 20px !important;
+ }
+
+ .single-scholarship_post .brief_intro_text span strong , .single-scholarship_post .brief_intro_text  strong  {
+    font-size:16px;
+   ine-height: 20px !important;
+ }
+
+ .single-scholarship_post .brief_intro_text li {
+    line-height: 20px !important;
+ }
+  .single-scholarship_post .brief_intro_text {
+    padding-left:10px;
+  }
+
+
+  .single-scholarship_post .the_journey_text p {
+    font-size:20px !important;
+  }
+
+.single-scholarship_post .more-scholarship-post-title , .tax-scholarship_category .more-scholarship-post-title , 
+.page-template-template-recent-scholarship-posts .more-scholarship-post-title  {
+  width:70%;  
+  float:left;
+
+  font-family:Roboto, Arial, Helvetica, sans-serif;
+  padding-left:0px;
+  padding-bottom:5px;
+  font-size:22px !important;
+}
+.single-scholarship_post .more-scholarship-post-title a , .tax-scholarship_category .more-scholarship-post-title a ,
+.page-template-template-recent-scholarship-posts  .more-scholarship-post-title a {
+    color:black !important; 
+}
+
+.single-scholarship_post .more-scholarship-post-title a:hover , .tax-scholarship_category .more-scholarship-post-title a:hover ,
+.page-template-template-recent-scholarship-posts .more-scholarship-post-title a:hover
+{
+text-decoration: underline;
+color:black !important;
+}
+
+.single-scholarship_post .more-scholarship-post-excerpt a:hover , .tax-scholarship_category .more-scholarship-post-excerpt a:hover ,
+.page-template-template-recent-scholarship-posts .more-scholarship-post-excerpt a:hover {
+text-decoration: underline;
+color:#6C98DA !important;
+}
+
+.single-scholarship_post .more-scholarship-post-excerpt , .tax-scholarship_category .more-scholarship-post-excerpt , 
+.page-template-template-recent-scholarship-posts .more-scholarship-post-excerpt {
+width:100%;margin-top:0px !important;
+font-size:16px !important;
+line-height: 26px !important;
+}
+
+.single-scholarship_post .more-scholarship-post-excerpt a , .tax-scholarship_category .more-scholarship-post-excerpt a , 
+.page-template-template-recent-scholarship-posts  .more-scholarship-post-excerpt a{ 
+color:#6C98DA !important;
+padding-right:0px;
+margin-right:15px;
+font-size:16px !important;
+padding-bottom:5px;
+}
+
+.single-scholarship_post .more-scholarship-post-excerpt .fa , .tax-scholarship_category .more-scholarship-post-excerpt .fa , 
+.page-template-template-recent-scholarship-posts .more-scholarship-post-excerpt .fa{  
+ color:#6C98DA !important;
+ font-size:14px;   
+}
+
+
+.category-list  {
+    list-style: none;
+    padding: 0;
+    margin-top:0px;
+}
+
+.category-list li {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing between categories */
+}
+
+/* Optional: Style the box around the categories */
+.more-scholarship-post-categories .scholarship_post_category_link {
+    
+    margin-left:0px !important;
+    padding: 10px 7px;
+    font-size: 10px;
+    background: white !important;
+    color: black;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+   
+
+}
+
+.more-scholarship-title-wrapper {
+    min-height: 50px;
+}
+
+
+.tax-scholarship_category .more-scholarship-post-categories,
+.page-template-template-recent-scholarship-posts .more-scholarship-post-categories {
+    margin-top:20px !important;
+}
+
+@media (max-width: 1400px) {
+.more-scholarship-post-title, .more-scholarship-post-title a {
+    font-size: 20px !important;
+}
+
+.meta-scholarship-blog{
+     margin-top:8px;
+}
+
+.meta-scholarship-blog span{
+    font-size:12px;
+   
+}
+}
+
+
+@media (max-width: 1100px) {
+.more-scholarship-title-wrapper {
+    min-height: auto !important;
+}
+.more-scholarship-post-title {
+    width:100% !important;
+    padding-bottom:0px !important;
+}
+.meta-scholarship-blog{
+    width:100% !important;
+    margin-top:0px !important;
+    margin-bottom:10px;
+}
+.meta-scholarship-blog span{
+    font-weight: 600;
+} 
+
+.scholarship-item {
+    padding-left:5%;
+    padding-right:5%;
+}
+.scholarship-item .featured-image img {
+    height: auto !important;
+    max-height: auto !important;
+}
+
+}
+
+
+
+.gs-feedback-form-container {
+   margin-bottom:40px;
+   margin-top:40px !important;
+}
