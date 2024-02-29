@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <section class="scholarship-post-main">
 
 <div style="margin-top:20px;" >
-<a class="blog-breadcrumb" href="" style="color:#767676 !important;"> Home </a> >  <a style="color:#767676 !important;" class="blog-breadcrumb" href="" > Scholarship Recipients </a>  >  
+<a class="blog-breadcrumb" href="/" style="color:#767676 !important;"> Home </a> >  <a style="color:#767676 !important;" class="blog-breadcrumb" href="/recent-scholarship-posts/" > Scholarship Recipients </a>  >  
 <a  style="color:#77a6c9 !important" href="" class="blog-breadcrumb active-breadcrumb">  <?php echo get_the_title(); ?> Scholarship Journey </a>
 </div>
 
@@ -58,7 +58,7 @@ This is the story of my <br><span style="color:#5590bc !important;">Scholarship 
   <div class="clearfix"></div>
 
   <div class="the_journey_text">
-   <?php echo get_the_content(); ?>
+   <?php echo wpautop(get_the_content()); ?>
   </div>
     
       
@@ -71,7 +71,7 @@ This is the story of my <br><span style="color:#5590bc !important;">Scholarship 
 
 <?php
 $taxonomy = 'scholarship_category'; // Replace with your custom taxonomy slug
-$terms = get_terms( $taxonomy );
+$terms = get_the_terms( get_the_ID(), $taxonomy );
 
 if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
     foreach ( $terms as $term ) {
@@ -82,6 +82,7 @@ if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
     }
 }
 ?>
+
 
 
 
@@ -119,7 +120,19 @@ echo do_shortcode('[latest_scholarships]');
 </section>
 
 
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+    const $commentsAuthors = $('.comments-container').find('.comment-author');
+    
+    $commentsAuthors.each(function (index, author) {
+        const $authorElement = $(author);
+        const authorHTML = $authorElement.html();
+        const modifiedHTMLwithoutAT = authorHTML.replace(' at ', '');
 
+        $authorElement.html(modifiedHTMLwithoutAT);
+    });
+});
+</script>
 
 <?php 
 get_footer();
