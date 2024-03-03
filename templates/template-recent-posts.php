@@ -45,7 +45,7 @@ if($query->have_posts()):
             $trimmed_content = substr($content, 0, 100);
             echo "<p style='line-height:28px !important;'>" . $trimmed_content . "...</p>"; 
             ?>
-            <a href="<?php the_permalink(); ?>" class="read-more"> <span>
+            <a href="<?php the_permalink(); ?>" class="read-more-article"> <span>
         Read More  </span> </a>
         </div>
     </div>

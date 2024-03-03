@@ -3136,7 +3136,7 @@ function display_latest_scholarships() {
             echo '<div class="featured-image">' . get_the_post_thumbnail() . '</div>';
             echo '<div class="more-scholarship-title-wrapper">';
             echo '<h2 class="scholarship-title more-scholarship-post-title"><a style="color:#333c4d !important;" href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></h2>';
-            echo '<div class="meta-scholarship-blog" style="width:30%;float:right;margin-top:8px;"><span style="float:left;">' . get_the_date() . '</span></div></div>';
+            echo '<div class="meta-scholarship-blog" style="width:33%;float:right;margin-top:8px;"><span style="float:left;">' . get_the_date() . '</span></div></div>';
              
             $excerpt = get_the_content();
             $excerpt = substr($excerpt, 0, 124);

@@ -51,7 +51,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
 
 ?>
 
-<a href="<?php echo $link ?>" target="_blank">
+<!-- <a href="<?php //echo $link ?>" target="_blank"> -->
 <div class="col-lg-12 my-2 course-card-new " style=" border-radius:5px;box-shadow: 0px 2px 2px rgba(128, 128, 128, 0.3);margin-bottom:20px;padding-bottom:20px !important;">
                 
                 <div class="col-md-8" >
@@ -133,7 +133,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
 
                              if (strlen($des) > 180) {
     $des = substr($des, 0, 180);
-    $des = $des . '...  <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
+    $des = $des . '...  <span class="read-more-link" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
 }
 
 echo $des;
@@ -300,7 +300,7 @@ echo $des;
                </div>
 
             </div>
-        </a>
+       
 
           <div class="clearfix"> </div>
           <br>
