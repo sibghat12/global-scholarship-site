@@ -300,6 +300,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all 'read-more-link' class elements that are descendants of <p> elements
+    var readMoreLinks = document.querySelectorAll('p .read-more-link');
+
+    // Function to show alert on click
+    function showAlert(event) {
+        event.preventDefault(); // Prevent the default action
+        alert("dd");
+    }
+
+    // Attach the showAlert function as an event listener to each found element
+    readMoreLinks.forEach(function(link) {
+        link.addEventListener('click', showAlert);
+    });
+});
+
+
+</script>
             
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -331,8 +351,9 @@ jQuery( document ).ready( function($){
     
 
 jQuery('.fusion-search-field input').attr('placeholder', 'Search for Courses');
+
 function adjustHeight() {
-    console.log("dd");
+    
     if (window.matchMedia("(min-width: 991px)").matches) {
         var height_col_md_4 = jQuery('.col-md-4').height();
         var height_col_md_8 = jQuery('.col-md-8').height();
@@ -399,67 +420,50 @@ jQuery(function() {
 });
 
 
-document.querySelectorAll('.read-more').forEach((span) => {
-  span.addEventListener('click', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    var short = this.parentElement;
-    var full = short.nextElementSibling;
-
-    jQuery(short).hide();
-    jQuery(full).show();
-
-    // If screen size is more than 991px
-    if (window.innerWidth > 991) {
-
-      // Select only the .col-md-8 element related to the clicked span
-      var colMd8 = jQuery(this).closest('.col-md-8');
-      
-      // Select the .col-md-4 that immediately follows .col-md-8
-      var colMd4 = colMd8.next('.col-md-4');
-
-      var fullHeight = jQuery(full).height();
-      console.log(fullHeight);
-
-      // If the height of the full div is more than 100px
-      if (fullHeight > 140) {
-        console.log("150");
-        colMd8.height('370');
-        colMd4.height('370');
-      } 
-
-        else if (fullHeight > 100) {
-            console.log("100");
-        colMd8.height('320');
-        colMd4.height('320');
-      } 
 
 
-      // If the height of the full div is more than 70px
-      else if (fullHeight > 70) {
-        console.log("70");
-        colMd8.height('280');
-        colMd4.height('280');
-      } else {
-        colMd8.height('250');
-        colMd4.height('250');
-      }
-    jQuery('.funded-line').css('position' , 'absolute');
-    jQuery('.funded-line').css('bottom' , '10px');
-     
 
-      // Add a border to the left side of the .col-md-4 element
-      colMd4.css('border-left', '1px solid #77a6c9');
+$('.read-more').on('click', function(event) {
+  event.preventDefault(); // Prevent the default behavior of the anchor tag
+  event.stopPropagation();
 
-      jQuery('.annual-tuition-div').css('position' , 'absolute');
-      jQuery('.annual-tuition-div').css('bottom' , '0px');
-      jQuery('.annual-tuition-div').css('left' , '0px');
+  var short = $(this).closest('.row').find('#short');
+  var full = $(this).closest('.row').find('#full');
 
+  short.hide();
+  full.show();
 
+  // If screen size is more than 991px
+  if (window.innerWidth > 991) {
+    var colMd8 = $(this).closest('.col-md-8');
+    var colMd4 = colMd8.next('.col-md-4');
+    var fullHeight = full.height();
+
+    if (fullHeight > 140) {
+      colMd8.height('370');
+      colMd4.height('370');
+    } else if (fullHeight > 100) {
+      colMd8.height('320');
+      colMd4.height('320');
+    } else if (fullHeight > 70) {
+      colMd8.height('280');
+      colMd4.height('280');
+    } else {
+      colMd8.height('250');
+      colMd4.height('250');
     }
-  });
+
+    $('.funded-line').css('position', 'absolute');
+    $('.funded-line').css('bottom', '10px');
+   
+    colMd4.css('border-left', '1px solid #77a6c9');
+
+    $('.annual-tuition-div').css('position', 'absolute');
+    $('.annual-tuition-div').css('bottom', '0px');
+    $('.annual-tuition-div').css('left', '0px');
+  }
 });
+
 
 function adjustHeight_disclaimer() {
     jQuery('.course-card-new').each(function() {
@@ -494,8 +498,8 @@ function readLess(){
 </script>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
         
 <script>
  

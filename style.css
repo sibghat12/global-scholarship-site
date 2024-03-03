@@ -9927,7 +9927,7 @@ button#googleSignupButton span {
 
 .single-scholarship_post .more-scholarship-post-title , .tax-scholarship_category .more-scholarship-post-title , 
 .page-template-template-recent-scholarship-posts .more-scholarship-post-title  {
-  width:70%;  
+  width:67%;  
   float:left;
 
   font-family:Roboto, Arial, Helvetica, sans-serif;
@@ -10000,11 +10000,9 @@ padding-bottom:5px;
    
 
 }
-
 .more-scholarship-title-wrapper {
     min-height: 50px;
 }
-
 
 .tax-scholarship_category .more-scholarship-post-categories,
 .page-template-template-recent-scholarship-posts .more-scholarship-post-categories {
@@ -10025,7 +10023,6 @@ padding-bottom:5px;
    
 }
 }
-
 
 @media (max-width: 1100px) {
 .more-scholarship-title-wrapper {
@@ -10055,9 +10052,23 @@ padding-bottom:5px;
 
 }
 
-
-
 .gs-feedback-form-container {
    margin-bottom:40px;
    margin-top:40px !important;
 }
+
+
+.page-template-template-partner .wpcf7-textarea {
+    margin-bottom:20px !important;
+}
+
+.single .fusion-content-tb a{
+    font-weight: normal !important;
+}
+.read-more-article{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+.read-more-article span {
+border-bottom: 1px solid #008fd0;
+} 
