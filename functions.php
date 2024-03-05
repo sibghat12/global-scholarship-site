@@ -56,8 +56,10 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'dashicons' );
-  wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
+    
+    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 
+    wp_enqueue_script('test_script', get_stylesheet_directory_uri() . '/assets/dist/test.js', array('jquery'), '1.0.0', true);
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {
         wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
