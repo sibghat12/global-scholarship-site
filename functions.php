@@ -5726,3 +5726,27 @@ function save_custom_user_profile_fields($user_id) {
 //         delete_user_meta($user_id, 'gs_newsletter');
 //     }
 // }
+
+function custom_mime_types( $mime_types ) {
+    $mime_types['avif'] = 'image/avif'; // Adding .avif
+    return $mime_types;
+}
+add_filter( 'mime_types', 'custom_mime_types' );
+
+function add_avif_upload_support( $checked, $file, $filename, $mimes ) {
+    if ( ! $checked['type'] ) {
+        $check_filetype = wp_check_filetype( $filename, $mimes );
+        $ext = $check_filetype['ext'];
+        $type = $check_filetype['type'];
+        $proper_filename = $filename;
+
+        if ( $type && 0 === strpos( $type, 'image/' ) && $ext !== 'svg' ) {
+            $checked = compact( 'ext', 'type', 'proper_filename' );
+        } else {
+            $checked = array( 'ext' => false, 'type' => false, 'proper_filename' => false );
+        }
+    }
+
+    return $checked;
+}
+add_filter( 'wp_check_filetype_and_ext', 'add_avif_upload_support', 10, 4 );
