@@ -56,10 +56,10 @@ add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap_scripts' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'dashicons' );
-    
+
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 
-    wp_enqueue_script('test_script', get_stylesheet_directory_uri() . '/assets/dist/test.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('test_script', get_stylesheet_directory_uri() . '/assets/dist/js/test.js', array('jquery'), '1.0.0', true);
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('scholarships')) {
         wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
@@ -84,6 +84,10 @@ function theme_enqueue_styles() {
         // ));
 
         
+    }
+
+    if(is_singular('scholarships' )) {
+        wp_enqueue_style( 'scholarship-cpt-css', get_stylesheet_directory_uri() . '/assets/dist/css/test.css', [], '1.0.0' );
     }
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
@@ -172,22 +176,17 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 function scholarship_search_enqueue_scripts() {
     if (is_page('scholarship-search') || is_404()) {
-
-        wp_enqueue_style( 'scholarship-search-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' );
+        wp_enqueue_style( 'scholarship-search-bootstrap-css', get_stylesheet_directory_uri() . '/assets/bootstrap/bootstrap-3.4.1.min.css', [], '3.4.1' );
+        wp_enqueue_style( 'scholarship-search-bootstrap-select-css', get_stylesheet_directory_uri() . '/assets/bootstrap/bootstrap-select.min.css', [], '1.13.14' );
         
-        wp_enqueue_style( 'scholarship-search-bootstrap-select-css', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css' );
         
         // Enqueue jQuery if it's not already included
         if (!wp_script_is('jquery', 'enqueued')) {
             wp_enqueue_script( 'jquery' );
         }
 
-        // Set the last parameter to true to load it in the footer
-        wp_enqueue_script( 'scholarship-search-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), null, true );
-
-        wp_enqueue_script( 'scholarship-search-bootstrap-select-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), null, true );
-
-        wp_enqueue_script( 'scholarship-search-bootstrap-select-i18n-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js', array('jquery', 'scholarship-search-bootstrap-select-js'), null, true );
+        wp_enqueue_script( 'scholarship-search-bootstrap-js', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap-3.4.1.min.js', array('jquery'), '3.4.1', true );
+        wp_enqueue_script( 'scholarship-search-bootstrap-select-js', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), '1.13.14', true );
 
     }
 }

@@ -1,1 +1,1 @@
-console.log("HLLLLLLLLLLL");
+import '../sass/test.scss';
