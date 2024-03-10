@@ -41,7 +41,7 @@ body.single-scholarship_post {
       width: 80%;
       margin: auto;
 
-      h2 {
+      >h2 {
         font-size: 48px;
         margin-bottom: 0px;
         line-height: 60px;
@@ -62,16 +62,28 @@ body.single-scholarship_post {
           color: black !important;
         }
       }
+
+      .the_journey_text {
+        padding-top: 20px !important;
+        font-size: 20px !important;
+        line-height: 34px !important;
+      }
+
+      h2 {
+        padding-top: 50px;
+        padding-bottom: 10px !important;
+        padding-left: 0 !important;
+      }
     }
 
     .cta_submit {
       .cta-heading {
-          margin-top: 0px !important;
-          margin-bottom: 0px !important;
-          padding-bottom: 0px !important;
-          padding-top: 0px !important;
-          font-size: 32px !important;
-          line-height: 42px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 32px !important;
+        line-height: 42px !important;
       }
 
       hr {
