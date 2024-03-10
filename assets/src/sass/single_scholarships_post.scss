@@ -1,0 +1,116 @@
+body.single-scholarship_post {
+  #main {
+    .scholarship-post-breadcrumb {
+      margin-top: 20px;
+
+      a.blog-breadcrumb {
+        color: #767676 !important;
+
+        &.active-breadcrumb {
+          color: #77a6c9 !important;
+        }
+      }
+    }
+
+    .scholarship-post-hero {
+      padding-top: 40px;
+
+      .scholarship-post-hero-text {
+        padding-right: 5%;
+
+        h1 {
+          padding-left: 0px;
+          font-family: "Roboto", Arial, Helvetica, sans-serif;
+          font-size: 51px;
+          font-weight: 600;
+          line-height: 62px;
+
+          span {
+            color: #5590bc !important;
+          }
+        }
+      }
+
+      .scholarship-post-hero-image {
+        float: right;
+      }
+    }
+
+    .the-journey {
+      padding-top: 20px;
+      width: 80%;
+      margin: auto;
+
+      h2 {
+        font-size: 48px;
+        margin-bottom: 0px;
+        line-height: 60px;
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        padding-left: 0px;
+        display: block;
+      }
+
+      hr {
+        width: 25%;
+        float: left;
+        margin-top: 0px;
+        border: 2px solid #77a6c9;
+      }
+
+      .scholarship_categories {
+        .scholarship_post_category_link {
+          color: black !important;
+        }
+      }
+    }
+
+    .cta_submit {
+      .cta-heading {
+        p {
+          margin-top: 0px !important;
+          margin-bottom: 0px !important;
+          padding-bottom: 0px !important;
+          padding-top: 0px !important;
+          font-size: 32px !important;
+          line-height: 42px !important;
+        }
+      }
+
+      hr {
+        width: 18%;
+        margin: auto;
+        border: 2px solid #77a6c9;
+        margin-top: 20px;
+        margin-bottom: 15px;
+      }
+
+      .cta-text {
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+        font-size: 20px !important;
+        padding-bottom: 0px !important;
+        margin-bottom: 0px;
+      }
+
+      .cta-contact-email {
+        padding-top: 15px;
+        font-size: 18px !important;
+        color: #6f7171 !important;
+      }
+    }
+
+    .read-more-scholarship-post {
+      margin-top: 70px;
+      margin-bottom: -20px;
+
+      h2 {
+        padding-top: 20px;
+        padding-bottom: 30px;
+        font-size: 32px !important;
+        color: black;
+        text-align: center;
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+      }
+    }
+  }
+}
