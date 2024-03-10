@@ -146,23 +146,6 @@ function theme_enqueue_styles() {
         'themeBaseUrl' => get_template_directory_uri()
     ));
 
-
-    // Optimizations codes
-    // From header.php
-
-    $post_type = get_post_type();
-
-    // Conditionally decide which script to enqueue based on post type
-    wp_enqueue_script('snigle-script', 'https://cdn.snigelweb.com/adengine/globalscholarships.com/loader.js', array(), null, false);
-    if ($post_type === 'post' || $post_type === 'institution') {
-        $script_data = 'window.snigelPubConf = {"adengine": {"activeAdUnits": ["incontent_1"]}};';
-    } else {
-        $script_data = 'window.snigelPubConf = {"adengine": {"activeAdUnits": ["interstitial"]}};';
-    }
-
-    // Inline script
-    wp_add_inline_script('snigle-script', $script_data, 'before');
-
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
 

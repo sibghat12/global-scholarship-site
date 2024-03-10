@@ -20,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	
 <?php
-/*
 $post_type = get_post_type();
 
 
@@ -52,7 +51,6 @@ window.snigelPubConf = {
 <?php
 }
 
-*/
 ?>
 
 	<?php Avada()->head->the_viewport(); ?>
