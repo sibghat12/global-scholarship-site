@@ -63,7 +63,7 @@
                 <p>Start being mindful of the deadlines from this moment onward. Submitting your application on or before the deadline ensures that your application will be reviewed and considered. Therefore, avoid late submissions, as these might be reviewed separately or not considered at all.</p>
             </div>
             <div class="gs-institution-deadlines-thumbnail">
-                <img class="gs-institution-deadlines-thumbnail-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/institution-deadlines.png" alt="Institution Deadlines">
+                <img class="gs-institution-deadlines-thumbnail-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/institution-deadlines.webp" alt="Institution Deadlines">
             </div>
         </div>
 

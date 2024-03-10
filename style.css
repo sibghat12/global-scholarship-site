@@ -4413,8 +4413,13 @@ input[type="submit"] {
     color: #008fc5!important;
 }
 
+.single-institution #main .gs-institution-deadlines .gs-institution-deadlines-container .gs-institution-deadlines-thumbnail {
+    display: flex;
+    flex-shrink: 0;
+}
+
 .single-institution #main .gs-institution-deadlines .gs-institution-deadlines-container .gs-institution-deadlines-thumbnail img{
-    height: 274px;
+    height: 180px;
 }
 
 
