@@ -20,7 +20,7 @@ get_header();
 $current_category = get_queried_object();
 $category_name = $current_category->name; ?>
 
-<section class="avada-page-titlebar-wrapper" style="margin-top:20px;margin-bottom: 40px;" >
+<section class="avada-page-titlebar-wrapper tax-scholarship-receipt-title" >
     <div class="fusion-page-title-bar fusion-page-title-bar-breadcrumbs fusion-page-title-bar-center">
         <div class="fusion-page-title-row">
             <div class="fusion-page-title-wrapper">
@@ -58,7 +58,7 @@ $args = array(
         
         while ($query->have_posts()) {
             $query->the_post();
-            echo '<div class="col-md-4" style="padding-left:2% !important;padding-right:4% !important;">';
+            echo '<div class="col-md-4 tax-scholarship-receipt-grid">';
             echo '<div class="scholarship-item">';
             echo '<div class="featured-image">' . get_the_post_thumbnail() . '</div>';
             echo '<div class="more-scholarship-title-wrapper">';

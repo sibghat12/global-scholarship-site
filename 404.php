@@ -30,8 +30,6 @@ if (strpos($current_url, '/scholarship-search-not-found/') !== false) {
     header("HTTP/1.1 404 Not Found");
 
     include(get_stylesheet_directory() . '/templates/template-filters.php');
-   
- 
     // Echo out the jQuery script
     echo "<script>
     jQuery(document).ready(function($) {
@@ -39,9 +37,6 @@ if (strpos($current_url, '/scholarship-search-not-found/') !== false) {
     });
     </script>";
   
-
-
-   
 }  else { ?>
         
          <h1 class="err404-header">  Page Not Found! </h1> 

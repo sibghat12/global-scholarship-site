@@ -1914,6 +1914,9 @@ function add_custom_js() {
 
 <script type="text/javascript">
 
+
+
+
    
         jQuery(document).ready(function () {
            
@@ -1955,6 +1958,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     jQuery(document).ready(function($) {
+
+
     
     // Run Tool Ajax Call
 
@@ -2011,6 +2016,35 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
    });
+       
+
+
+    // Remove All Entries for Keywords
+        jQuery('#remove-keyword-entries').on('click', function(event) {
+        event.preventDefault();
+        var customPostID = jQuery(this).closest('.inside').find('#acf-field_653f97c2da5db').val();
+        console.log('Custom Post IDa:', customPostID);
+      
+        var link = "<?php echo  admin_url("admin-ajax.php"); ?>";
+
+        $.ajax({
+        type: 'POST',
+        url: link, 
+        data: {
+            action: 'remove_keyword_entries', // Replace with your actual PHP function name
+            customPostID: customPostID
+        },
+        success: function(response) {
+            console.log('AJAX request successful.');
+            location.reload();
+        },
+        error: function(error) {
+        console.error('Error in AJAX request:', error);
+        }
+        });
+
+    });
+
 
 
     // Calculate  Institutions
@@ -3931,9 +3965,23 @@ function generate_posts_by_keywords($specific_post_id = null) {
         $keywords_repeater = get_field('keywords', $specific_post_id);
         if ($keywords_repeater) {
             foreach ($keywords_repeater as $keyword_item) {
-                $keywords[] = $keyword_item['keyword'];
+                // Ensure the keyword is not empty
+                if (!empty($keyword_item['keyword'])) {
+                    $keywords[] = $keyword_item['keyword'];
+                }
             }
         }
+    }
+
+    // If no keywords are present, exit the function
+    if (empty($keywords)) {
+        return; // No keywords specified, do nothing
+    }
+
+    // Get the limit for the number of posts to generate
+    $posts_limit = get_field('number_of_posts_to_generate', $specific_post_id);
+    if (empty($posts_limit) || !is_numeric($posts_limit)) {
+        $posts_limit = 100; // Set to a high number if not specified or invalid
     }
 
     // Fetch the first 100 published posts
@@ -3945,54 +3993,57 @@ function generate_posts_by_keywords($specific_post_id = null) {
         $current_generated_posts = array();
     }
 
-
-       // Remove duplicate rows based on the 'post_name' field
-       $current_generated_posts = array_map("unserialize", array_unique(array_map("serialize", $current_generated_posts)));
-       $current_generated_posts = array_values($current_generated_posts);
+    // Remove duplicate rows based on the 'post_name' field
+    $current_generated_posts = array_map("unserialize", array_unique(array_map("serialize", $current_generated_posts)));
+    $current_generated_posts = array_values($current_generated_posts);
     
-    $count = 1;
-    foreach ($post_data as $post) {
-    $post_id = $post->ID;
-    $post_content = $post->post_content;
-    $post_exists = false;
+    $generated_count = count($current_generated_posts); // Count already generated posts
 
-    // Loop through all keywords and check if they exist in the post content
-    foreach ($keywords as $keyword) {
-        if (preg_match('/\b' . preg_quote($keyword, '/') . '\b/i', $post_content)) {
-           
-            foreach ($current_generated_posts as $generated_post) {
-                if ($generated_post['post_name'] === $post->post_title) {
-                    $post_exists = true;
-                    if ($generated_post['inputted'] === 'Yes') {
-                        break; // Skip adding the post if it already exists and is marked as 'Yes'
+    foreach ($post_data as $post) {
+        if ($generated_count >= $posts_limit) {
+            break; // Stop if the limit is reached
+        }
+
+        $post_id = $post->ID;
+        $post_content = $post->post_content;
+        $post_exists = false;
+
+        // Loop through all keywords and check if they exist in the post content
+        foreach ($keywords as $keyword) {
+            if (preg_match('/\b' . preg_quote($keyword, '/') . '\b/i', $post_content)) {
+                
+                foreach ($current_generated_posts as $generated_post) {
+                    if ($generated_post['post_name'] === $post->post_title) {
+                        $post_exists = true;
+                        if ($generated_post['inputted'] === 'Yes') {
+                            break; // Skip adding the post if it already exists and is marked as 'Yes'
+                        }
                     }
                 }
-            }
-            
-           
-            // Add the post if it doesn't exist already
-            if (!$post_exists) {
-             $count = $count +1;
-                $current_generated_posts[] = array(
-                    'post_name' => $post->post_title,
-                    'post_link' => get_permalink($post_id),
-                    'inputted' => 'No'
-                );
-            }
-            
-            // Break the keyword loop if the post exists
-            if ($post_exists) {
-                break;
+                
+                // Add the post if it doesn't exist already and increment counter
+                if (!$post_exists) {
+                    $current_generated_posts[] = array(
+                        'post_name' => $post->post_title,
+                        'post_link' => get_permalink($post_id),
+                        'inputted' => 'No'
+                    );
+                    $generated_count++;
+                }
+                
+                // Break the keyword loop if the post exists
+                if ($post_exists) {
+                    break;
+                }
             }
         }
     }
 
-   
+    // Update the ACF field 'generated_posts_for_posts' after the loop
+    update_field('generated_posts_for_posts', $current_generated_posts, $specific_post_id);
 }
 
-// Update the ACF field 'generated_posts_for_posts' after the loop
-update_field('generated_posts_for_posts', $current_generated_posts, $specific_post_id);
-}
+
 
 
 
@@ -5610,7 +5661,7 @@ function count_resulted_institutions($specific_post_id) {
 // Add Generated Institutions to the Resultant Institutions
 function add_generated_to_resulted($post_id) {
     delete_field('resulted_institutions', $post_id);
-     $generated_institutions = get_field('generated_institutions', $post_id);
+    $generated_institutions = get_field('generated_institutions', $post_id);
     if ($generated_institutions) {
         foreach ($generated_institutions as $generated_institution) {
             if ($generated_institution['inputted'] === 'No') {
@@ -5708,7 +5759,19 @@ function run_interlinking_tool() {
 }
 
 
-// Button: Calculate Instituions
+// Button: Remvoe Keyword Entries
+add_action('wp_ajax_remove_keyword_entries', 'remove_keyword_entries');
+add_action('wp_ajax_nopriv_remove_keyword_entries', 'remove_keyword_entries');
+
+function remove_keyword_entries() {
+    if (isset($_POST['customPostID'])) {
+        $custom_post_id = $_POST['customPostID'];
+        delete_field('generated_posts_for_posts', $custom_post_id);
+        delete_field('resultant_posts_for_posts', $custom_post_id);
+        update_field('count_resulted_posts', 0, $custom_post_id);
+    }
+    wp_die(); 
+}
 
 add_action('wp_ajax_calculate_institutions', 'calculate_institutions');
 add_action('wp_ajax_nopriv_calculate_institutions', 'calculate_institutions');
@@ -5761,14 +5824,16 @@ add_action('wp_ajax_generate_posts', 'generate_posts');
 add_action('wp_ajax_generate_posts', 'generate_posts');
 
 function generate_posts() {
-
     if (isset($_POST['customPostID'])) {
         $custom_post_id = $_POST['customPostID'];
-        generate_posts_by_keywords($custom_post_id); 
-        add_generated_posts_to_resulted_posts($custom_post_id);  
+         generate_posts_by_keywords($custom_post_id); 
+        add_generated_posts_to_resulted_posts($custom_post_id);
+        
+
     }
     wp_die(); 
 }
+
 
 
 
@@ -5778,16 +5843,13 @@ add_action('wp_ajax_calculate_posts', 'calculate_posts');
 add_action('wp_ajax_nopriv_calculate_posts', 'calculate_posts');
 
 function calculate_posts() {
-    
     if (isset($_POST['customPostID'])) {
         $custom_post_id = $_POST['customPostID'];
-
-        make_generated_posts_to_inputted($custom_post_id);
-        add_generated_posts_to_resulted_posts($custom_post_id); 
-       count_resulted_posts($custom_post_id);
-     
-     }
-    
+            make_generated_posts_to_inputted($custom_post_id);
+            add_generated_posts_to_resulted_posts($custom_post_id);
+            count_resulted_posts($custom_post_id);
+        
+    }
     wp_die(); 
 }
 

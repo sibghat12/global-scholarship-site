@@ -120,7 +120,7 @@ echo do_shortcode('[latest_scholarships]');
 </section>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     jQuery(document).ready(function ($) {
     const $commentsAuthors = $('.comments-container').find('.comment-author');
     
@@ -132,7 +132,7 @@ echo do_shortcode('[latest_scholarships]');
         $authorElement.html(modifiedHTMLwithoutAT);
     });
 });
-</script>
+</script> -->
 
 <?php 
 get_footer();

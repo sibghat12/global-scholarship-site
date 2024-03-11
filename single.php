@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php get_header(); ?>
 
 
-<section id="content  aa" style="<?php esc_attr_e( apply_filters( 'awb_content_tag_style', '' ) ); ?>">
+<section id="content" style="<?php esc_attr_e( apply_filters( 'awb_content_tag_style', '' ) ); ?>">
 	<?php $post_pagination = get_post_meta( $post->ID, 'pyre_post_pagination', true ); ?>
 	<?php if ( ( Avada()->settings->get( 'blog_pn_nav' ) && 'no' !== $post_pagination ) || ( ! Avada()->settings->get( 'blog_pn_nav' ) && 'yes' === $post_pagination ) ) : ?>
 		<div class="single-navigation clearfix">
@@ -185,10 +185,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </section>
 
-<script>
-var s = document.getElementById("sourceCourseNav");
-var element = document.getElementsByClassName('fusion-header-wrapper')[0].appendChild(s);
-</script>
+
 
 <?php do_action( 'avada_after_content' ); ?>
 <?php
