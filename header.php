@@ -50,6 +50,7 @@ window.snigelPubConf = {
 
 <?php
 }
+
 ?>
 
 	<?php Avada()->head->the_viewport(); ?>

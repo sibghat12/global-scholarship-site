@@ -89,6 +89,11 @@ function theme_enqueue_styles() {
     if(is_singular('scholarships' )) {
         wp_enqueue_style( 'scholarship-cpt-css', get_stylesheet_directory_uri() . '/assets/dist/css/test.css', [], '1.0.0' );
     }
+
+    if(is_singular('scholarship_post' )) {
+        wp_enqueue_script('gs-scholarship_post',  get_stylesheet_directory_uri() . '/assets/dist/js/single_scholarships_post.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_style( 'gs-scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+    }
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
         wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
@@ -143,6 +148,17 @@ function theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
+
+function add_data_attribute($tag, $handle, $src) {
+    // Only add the attribute to your specific script
+    if ($handle === 'snigle-script') {
+        $tag = str_replace('<script ', '<script data-cfasync="false" ', $tag);
+    }
+    return $tag;
+}
+add_filter('script_loader_tag', 'add_data_attribute', 10, 3);
+
+
 function make_script_async( $tag, $handle, $src )
 {
     if ( 'google-platform' != $handle ) {
