@@ -116,7 +116,26 @@ $featured_image_url = get_the_post_thumbnail_url(get_the_ID());
 
 </section>
 
+
+
+<!-- <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+    const $commentsAuthors = $('.comments-container').find('.comment-author');
+    
+    $commentsAuthors.each(function (index, author) {
+        const $authorElement = $(author);
+        const authorHTML = $authorElement.html();
+        const modifiedHTMLwithoutAT = authorHTML.replace(' at ', '');
+
+        $authorElement.html(modifiedHTMLwithoutAT);
+    });
+});
+</script> -->
+
+
+
 <?php
+
 get_footer();
 
 /* Omit closing PHP tag to avoid "Headers already sent" issues. */

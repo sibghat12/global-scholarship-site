@@ -44,7 +44,7 @@ if ($query->have_posts()) {
         }
         
         $query->the_post();
-        echo '<div class="col-md-4 col-sm-4" style="padding-left:2% !important;padding-right:4% !important;">';
+        echo '<div class="col-md-4" style="padding-left:2% !important; padding-right:4% !important;">';
         echo '<div class="scholarship-item">';
         echo '<div class="featured-image">' . get_the_post_thumbnail() . '</div>';
         echo '<div class="more-scholarship-title-wrapper">';
