@@ -15,10 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php get_header();  ?>
 
-<div class="container nonmatching-container">
-<p class="number-of-scholarships"> Number of scholarships: <b> <span id="cc"> </span> </b></p>
+<div class="container" style="width:70%;">
+<p style="margin-top:50px;margin-bottom:5px; font-size:24px;"> Number of scholarships: <b> <span id="cc"> </span> </b></p>
 <hr>
-<p class="nonmatching-paragraph"> These are the below scholarships that has the number in the Permalink<br> And If some Url Has Different permalink and title. </p>
+<p style="font-size:15px;margin-bottom:60px;"> These are the below scholarships that has the number in the Permalink<br> And If some Url Has Different permalink and title. </p>
 
 <?php
 
@@ -183,9 +183,16 @@ if (strpos($post_title, '-–-') !== false) {
 </div>
 
 <script type="">
+    
+
 jQuery(document).ready(function() {
-   jQuery('#cc').text(<?php echo $count-1; ?>);
+    // If you need to perform additional operations on the count
+    // using jQuery, you can access it using the following code:
+    jQuery('#cc').text(<?php echo $count-1; ?>);
+    
+    // Perform additional operations or updates to the #cc span if needed
 });
+
 </script>
 
 <?php
