@@ -19,9 +19,10 @@ add_filter('posts_where', 'institutions_where');
 
 function add_datatables_scripts() {
     $page_template_slug = get_page_template_slug();
-    if ($page_template_slug != 'templates/template-deadlines.php') {
-        return;
-    }
+    if (!($page_template_slug == 'templates/template-deadlines.php' || $page_template_slug == 'templates/template-external-scholarships.php')) {
+    return;
+}
+
     
    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
    wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
