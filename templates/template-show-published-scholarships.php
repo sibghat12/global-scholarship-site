@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         'post_status' => 'publish',        
         'posts_per_page' => -1,
         'orderby'   => 'title',
-        'order'     => 'ASC',
+        'order'     => 'DESC',
         'no_found_rows' => true, 
         'update_post_meta_cache' => false, 
         'update_post_term_cache' => false,   

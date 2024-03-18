@@ -375,68 +375,118 @@ function to_number($number){
       return (float) str_replace(',', '', $number);
 }        
 
+function fetch_and_store_currency_conversion_rates() {
+    $transient_key = 'currency_conversion_rates';
+    
+    // Attempt to get cached rates
+    $rates = get_transient($transient_key);
 
+    // If rates are not cached or expired, fetch new rates
+    if ($rates === false) {
+        $api_key = 'fxr_live_c26ae8c14971ba9e361e44017e494e33635f'; // Use your actual API key
+        $api_url = "https://api.fxratesapi.com/latest?api_key={$api_key}&base=USD";
+        $response = wp_remote_get($api_url);
 
-function convert_to_usd($amount, $currency){
+        if (is_wp_error($response)) {
+            // Error handling
+            return;
+        }
 
-$list = array(
-"KRW" => 0.00074,
-"CAD" => 0.73,
-"RMB" => 0.14,
-"Yen" => 0.0067,
-"NZD" => 0.60,
-"GBP" => 1.22,
-"AUD" => 0.64,
-"Euros" => 1.06,
-"NOK" => 0.092,
-"CHF" => 1.10,
-"USD" => 1,
-"PLN" => 0.23,
-"INR" => 0.012,
-"Pesos" => 0.018,
-"Rand" => 0.052,
-"SGD" => 0.73,
-"RUB" => 0.0099,
-"CZK" => 0.043,
-"kr" => 0.091,
-"Danish Krone" => 0.14,
-"MXN" => 0.054,
-"Brazilian Real" => 0.19,
-"UAH" => 0.027,
-"TRY" => 0.036,
-"TWD" => 0.031,
-"Rp" => 0.000064,
-"RON" => 0.21,
-"BYN" => 0.30,
-"HUF" => 0.0027,
-"BAM" => 0.54,
-"ALL" =>0.01 ,
-"ISK" => 0.0073,
-"VND" => 0.000041,
-"THB" => 0.027,
-"LKR" => 0.0031,
-"PKR" => 0.0036,
-"NPR" => 0.0075,
-"QAR" => 0.27,
-"RSD" => 0.0090,
-"MYR" => 0.21,
-"SAR" => 0.27,
-"KHR" => 0.00024,
-"AED" =>  0.27,
-"ILS" =>  0.25,
-"CRC" =>  0.0019,
-"BGN"  => 0.54,
-"MDL"  => 0.055,
-"NGN"  => 0.0013,
- 
- );
-  
- if ($amount > 0){
-      return $amount * $list[$currency];
-   } else {
-      return $amount;
-   }
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+
+        if (!empty($data) && isset($data['rates'])) {
+            // Cache rates for 30 days
+            set_transient($transient_key, $data['rates'], 30 * DAY_IN_SECONDS);
+            $rates = $data['rates'];
+        }
+    }
+
+    return $rates;
 }
+
+function convert_to_usd($amount, $currency) {
+    $rates = fetch_and_store_currency_conversion_rates();
+    $currency = strtoupper($currency);
+
+    if (isset($rates[$currency]) && $amount > 0) {
+        return $amount / $rates[$currency];
+    }
+
+    return $amount;
+}
+
+// Schedule monthly update of rates
+if (!wp_next_scheduled('update_currency_conversion_rates')) {
+    wp_schedule_event(time(), 'monthly', 'update_currency_conversion_rates');
+}
+
+add_action('update_currency_conversion_rates', 'fetch_and_store_currency_conversion_rates');
+
+
+
+
+
+// function convert_to_usd($amount, $currency){
+
+// $list = array(
+// "KRW" => 0.00074,
+// "CAD" => 0.73,
+// "RMB" => 0.14,
+// "Yen" => 0.0067,
+// "NZD" => 0.60,
+// "GBP" => 1.22,
+// "AUD" => 0.64,
+// "Euros" => 1.06,
+// "NOK" => 0.092,
+// "CHF" => 1.10,
+// "USD" => 1,
+// "PLN" => 0.23,
+// "INR" => 0.012,
+// "Pesos" => 0.018,
+// "Rand" => 0.052,
+// "SGD" => 0.73,
+// "RUB" => 0.0099,
+// "CZK" => 0.043,
+// "kr" => 0.091,
+// "Danish Krone" => 0.14,
+// "MXN" => 0.054,
+// "Brazilian Real" => 0.19,
+// "UAH" => 0.027,
+// "TRY" => 0.036,
+// "TWD" => 0.031,
+// "Rp" => 0.000064,
+// "RON" => 0.21,
+// "BYN" => 0.30,
+// "HUF" => 0.0027,
+// "BAM" => 0.54,
+// "ALL" =>0.01 ,
+// "ISK" => 0.0073,
+// "VND" => 0.000041,
+// "THB" => 0.027,
+// "LKR" => 0.0031,
+// "PKR" => 0.0036,
+// "NPR" => 0.0075,
+// "QAR" => 0.27,
+// "RSD" => 0.0090,
+// "MYR" => 0.21,
+// "SAR" => 0.27,
+// "KHR" => 0.00024,
+// "AED" =>  0.27,
+// "ILS" =>  0.25,
+// "CRC" =>  0.0019,
+// "BGN"  => 0.54,
+// "MDL"  => 0.055,
+// "NGN"  => 0.0013,
+ 
+//  );
+  
+//  if ($amount > 0){
+//       return $amount * $list[$currency];
+//    } else {
+//       return $amount;
+//    }
+// }
 
 
 
