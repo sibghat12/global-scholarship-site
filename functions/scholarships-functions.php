@@ -373,56 +373,73 @@ function formatArrayToString($array) {
 
 function to_number($number){
       return (float) str_replace(',', '', $number);
-}        
+}  
+
+
+
+
+add_action('conditionally_fetch_and_store_currency_conversion_rates', 'conditionally_fetch_and_store_currency_conversion_rates');
+
+function conditionally_fetch_and_store_currency_conversion_rates() {
+    $last_update = get_option('currency_rates_last_update', 0);
+    $current_time = current_time('timestamp');
+
+    // Update rates if more than a month has passed since the last update
+    if (($current_time - $last_update) > 30 * DAY_IN_SECONDS) {
+        fetch_and_store_currency_conversion_rates();
+        update_option('currency_rates_last_update', $current_time); // Update last update time
+    }
+}
 
 function fetch_and_store_currency_conversion_rates() {
     $transient_key = 'currency_conversion_rates';
-    
-    // Attempt to get cached rates
-    $rates = get_transient($transient_key);
+    $api_key = 'fxr_live_c26ae8c14971ba9e361e44017e494e33635f';  // Use your actual API key
+    $api_url = "https://api.fxratesapi.com/latest?api_key={$api_key}&base=USD";
 
-    // If rates are not cached or expired, fetch new rates
-    if ($rates === false) {
-        $api_key = 'fxr_live_c26ae8c14971ba9e361e44017e494e33635f'; // Use your actual API key
-        $api_url = "https://api.fxratesapi.com/latest?api_key={$api_key}&base=USD";
-        $response = wp_remote_get($api_url);
+    $response = wp_remote_get($api_url);
 
-        if (is_wp_error($response)) {
-            // Error handling
-            return;
-        }
-
-        $body = wp_remote_retrieve_body($response);
-        $data = json_decode($body, true);
-
-        if (!empty($data) && isset($data['rates'])) {
-            // Cache rates for 30 days
-            set_transient($transient_key, $data['rates'], 30 * DAY_IN_SECONDS);
-            $rates = $data['rates'];
-        }
+    if (is_wp_error($response)) {
+        // Handle error appropriately
+        return;
     }
 
-    return $rates;
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+
+    if (!empty($data) && isset($data['rates'])) {
+        // Cache the rates for 30 days
+        set_transient($transient_key, $data['rates'], 30 * DAY_IN_SECONDS);
+    }
 }
 
 function convert_to_usd($amount, $currency) {
-    $rates = fetch_and_store_currency_conversion_rates();
-    $currency = strtoupper($currency);
+    // Attempt to use cached conversion rates
+    $rates = get_transient('currency_conversion_rates');
 
+    // Normalize the currency input
+    $currencyMappings = [
+        "KR" => "SEK",
+        "RAND" => "ZAR",
+        "DANISH KRONE" => "DKK",
+        "PESOS" => "PHP",
+        "RMB" => "CNY",
+        "YEN" => "JPY",
+        "EUROS" => "EUR",
+    ];
+
+    $currency = strtoupper($currency);
+    if (array_key_exists($currency, $currencyMappings)) {
+        $currency = $currencyMappings[$currency];
+    }
+
+    // Perform conversion if the rate is available
     if (isset($rates[$currency]) && $amount > 0) {
         return $amount / $rates[$currency];
     }
 
+    // Return the original amount if conversion rate is not found
     return $amount;
 }
-
-// Schedule monthly update of rates
-if (!wp_next_scheduled('update_currency_conversion_rates')) {
-    wp_schedule_event(time(), 'monthly', 'update_currency_conversion_rates');
-}
-
-add_action('update_currency_conversion_rates', 'fetch_and_store_currency_conversion_rates');
-
 
 
 

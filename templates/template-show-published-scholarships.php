@@ -24,18 +24,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
       <?php 
 
- $args = array(
-        'post_type' => 'scholarships',
-        'post_status' => 'publish',        
-        'posts_per_page' => -1,
-        'orderby'   => 'title',
-        'order'     => 'DESC',
-        'no_found_rows' => true, 
-        'update_post_meta_cache' => false, 
-        'update_post_term_cache' => false,   
-        'cache_results'          => false,
-        'fields' => 'ids',      
-    );
+$args = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',        
+    'posts_per_page' => -1,
+    'orderby' => 'ID', // Order by post ID
+    'order' => 'DESC', // Descending order
+    'no_found_rows' => true, 
+    'update_post_meta_cache' => false, 
+    'update_post_term_cache' => false,   
+    'cache_results' => false,
+    'fields' => 'ids',      
+);
+
     
     $the_query = new WP_Query($args);
     
