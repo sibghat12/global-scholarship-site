@@ -149,7 +149,7 @@ function theme_enqueue_styles() {
         'themeBaseUrl' => get_template_directory_uri()
     ));
 
-    wp_enqueue_script('snigel-adengine', get_stylesheet_directory_uri() . '/assets/snigel-adengine.js', array(), null, true);
+    wp_enqueue_script('snigel-adengine', get_stylesheet_directory_uri() . '/assets/snigel-adengine.js', array(), '1.0.0', true);
 
     // Pass the post type to the JavaScript file
     wp_localize_script('snigel-adengine', 'snigelAdConfig', array('postType' => get_post_type()));
