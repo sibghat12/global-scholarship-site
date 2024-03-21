@@ -95,8 +95,17 @@
         
     }
 
+    $the_currency;
+    $acf_currency = get_field('currency');
     $currency = get_currency($scholarship_host_country);
 
+    if(isset($acf_currency) && !empty($acf_currency)) {
+        $the_currency = $acf_currency;
+    } else {
+        $the_currency = $currency;
+    }
+
+    
 
 ?>
 

@@ -182,7 +182,7 @@ if($scholarship_providers) {
     <?php endif; ?>
     <?php if ($scholarship_amount > 0):?>
         <li>Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
-        <?php echo $currency; ?></b></li>
+        <?php echo $the_currency; ?></b></li>
     <?php endif; ?>    
     <?php
     $scholarship_duration_html='';
