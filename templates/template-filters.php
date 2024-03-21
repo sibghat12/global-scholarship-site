@@ -656,7 +656,7 @@ if (!pathArray_check_404.includes('scholarship-search-not-found')) {
               
 var currentUrl = window.location.href;
 var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
-alert(newUrl);
+
 window.location.href = newUrl;
 
             } else if (pathArray.length > 0) {
@@ -665,7 +665,7 @@ window.location.href = newUrl;
                 check_call = false;
                 var currentUrl = window.location.href;
 var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
-alert(newUrl);
+
 window.location.href = newUrl;
             }
         } else {
@@ -680,7 +680,7 @@ window.location.href = newUrl;
                         check_call = false;
                         var currentUrl = window.location.href;
 var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
-alert(newUrl);
+
 window.location.href = newUrl;
                         break;
                     }
@@ -689,7 +689,7 @@ window.location.href = newUrl;
                         check_call = false;
                         var currentUrl = window.location.href;
 var newUrl = currentUrl.replace('/scholarship-search/', '/scholarship-search-not-found//');
-alert(newUrl);
+
 window.location.href = newUrl;
                         break;
                         i++;

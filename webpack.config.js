@@ -13,6 +13,7 @@ const assetsFolder = "assets";
 const mainAssets = path.resolve(__dirname, `${assetsFolder}`);
 const entry = {
   test: [__dirname + `/${assetsFolder}/src/js/test.js`],
+  single_scholarships_post: [__dirname + `/${assetsFolder}/src/js/single_scholarships_post.js`], // Single Scholarships Posts
 };
 const mainDistentation = path.resolve(__dirname, `${assetsFolder}/dist`);
 const output = {

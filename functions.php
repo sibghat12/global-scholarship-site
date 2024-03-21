@@ -19,9 +19,10 @@ add_filter('posts_where', 'institutions_where');
 
 function add_datatables_scripts() {
     $page_template_slug = get_page_template_slug();
-    if ($page_template_slug != 'templates/template-deadlines.php') {
-        return;
-    }
+    if (!($page_template_slug == 'templates/template-deadlines.php' || $page_template_slug == 'templates/template-external-scholarships.php')) {
+    return;
+}
+
     
    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
    wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
@@ -89,6 +90,11 @@ function theme_enqueue_styles() {
     if(is_singular('scholarships' )) {
         wp_enqueue_style( 'scholarship-cpt-css', get_stylesheet_directory_uri() . '/assets/dist/css/test.css', [], '1.0.0' );
     }
+
+    if(is_singular('scholarship_post' )) {
+        wp_enqueue_script('gs-scholarship_post',  get_stylesheet_directory_uri() . '/assets/dist/js/single_scholarships_post.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_style( 'gs-scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+    }
     // Enqueue single-scholarship.js file in assets folder
     if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
         wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
@@ -103,6 +109,8 @@ function theme_enqueue_styles() {
     '1.0.45',
     false );
 
+ 
+    
 
     wp_enqueue_script('google-platform', 'https://accounts.google.com/gsi/client', array(), null, true);
    wp_enqueue_script('gs_modal-login',  get_stylesheet_directory_uri() . '/assets/login-modal.js', array('jquery','google-platform'),
@@ -143,6 +151,17 @@ function theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
+
+function add_data_attribute($tag, $handle, $src) {
+    // Only add the attribute to your specific script
+    if ($handle === 'snigle-script') {
+        $tag = str_replace('<script ', '<script data-cfasync="false" ', $tag);
+    }
+    return $tag;
+}
+add_filter('script_loader_tag', 'add_data_attribute', 10, 3);
+
+
 function make_script_async( $tag, $handle, $src )
 {
     if ( 'google-platform' != $handle ) {
@@ -1384,25 +1403,20 @@ add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
 add_action( 'admin_post_course_form', 'course_form_submit' );
 
 
-
-
 add_action('wp_ajax_load_courses', 'handle_ajax_load_courses');
 add_action('wp_ajax_nopriv_load_courses', 'handle_ajax_load_courses');
 
 function handle_ajax_load_courses() {
-  
 
+  
 $country_value = isset($_POST['country']) ? strtolower($_POST['country']) : '';
 $degree_value = isset($_POST['degree']) ? strtolower($_POST['degree']) : '';
 $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
    
-
-  
     $subject_value = str_replace('-', ' ', $subject_value);
     $subject_value = ucwords($subject_value);
 
     
-
     $page = $_POST['page'] ?? 1;
     $order = $_POST['order'] ?? 'DESC';
     $adsPerPage = 30;
@@ -1410,8 +1424,6 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
 
     $country_value = str_replace('-', ' ', $country_value);
     
-  
-   
 
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
@@ -1437,7 +1449,7 @@ $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
     //List of institutions in that country
     $institute_ids_country = get_institution_ids($country_value);
 
-    if ($country == "europe"){
+    if ($country_value == "europe"){
         $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
     }
 
@@ -2672,6 +2684,14 @@ add_filter('query_vars', function ($vars) {
 });
 
 
+function custom_category_query_adjustments($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_category()) {
+        // Set the number of posts per page on category archives
+        $query->set('posts_per_page', 12);
+        // Add any other query adjustments here
+    }
+}
+add_action('pre_get_posts', 'custom_category_query_adjustments');
 
 
 // $url = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -5066,7 +5086,7 @@ function load_ads_ajax_handler() {
     //List of institutions in that country
     $institute_ids_country = get_institution_ids($country_value);
 
-    if ($country == "europe"){
+    if ($country_value == "europe"){
         $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
     }
 
@@ -5728,6 +5748,95 @@ function save_custom_user_profile_fields($user_id) {
 //     }
 // }
 
+
+add_filter('rank_math/frontend/breadcrumb/items', function($crumbs, $class) {
+
+    if (is_singular("scholarships")) {
+
+        $post_id = get_the_ID();
+        $institution = get_field("scholarship_institution", $post_id);
+
+        $city = get_post($institution->cities);
+        $city_name = get_the_title($city);
+        $country_name = get_post_meta($city->ID, 'country', TRUE);
+
+        $lowercase = strtolower($country_name);
+        $hyphenated = str_replace(' ', '-', $lowercase);
+
+        $institution_query = get_institution_by_id($institution->ID);
+        
+        while ($institution_query->have_posts()) {
+            $institution_query->the_post();
+            $institution_name = get_the_title();
+        }
+        wp_reset_postdata();
+        $country_name = $country_name . " Scholarships";
+        $institution_link = get_permalink($institution->ID);
+
+        $last_item = $crumbs[1];
+        $crumbs[1] = [
+            'Scholarships',
+            site_url() . '/scholarship-search',
+        ];
+
+        $crumbs[2] = [
+            $country_name,
+            site_url() . '/scholarship-search/' . $hyphenated,
+        ];
+
+        $crumbs[3] = [
+            $institution_name . ' Scholarships',
+            $institution_link,
+        ];
+
+        $crumbs[4] = $last_item;
+    }
+
+     if (is_singular("institution")) {
+    
+    wp_reset_postdata();
+    
+    $institution_post_id = get_the_ID();
+    $institution_title = get_the_title();
+    
+    $institution = get_post($institution_post_id);
+    
+    $city = get_post($institution->cities);
+
+    $city_name = get_the_title($city);
+    $country_name = get_post_meta($city->ID, 'country', TRUE);
+
+        $lowercase = strtolower($country_name);
+        $hyphenated = str_replace(' ', '-', $lowercase);
+        $country_name = $country_name . " Scholarships";
+        
+        wp_reset_postdata();
+        $last_item1 = $crumbs[1];
+        
+        $crumbs[1] = [
+             $country_name,
+             site_url() . '/scholarship-search/' . $hyphenated,
+        ]; 
+        
+
+        $crumbs[2] = [
+             $institution_title . ' Scholarships for International Students',
+             '',
+             'hide_in_schema' => '',
+        ]; 
+
+     }
+
+    return $crumbs;
+
+}, 10, 2);
+
+
+
+
+
+
+
 function custom_mime_types( $mime_types ) {
     $mime_types['avif'] = 'image/avif'; // Adding .avif
     return $mime_types;
@@ -5751,3 +5860,4 @@ function add_avif_upload_support( $checked, $file, $filename, $mimes ) {
     return $checked;
 }
 add_filter( 'wp_check_filetype_and_ext', 'add_avif_upload_support', 10, 4 );
+
