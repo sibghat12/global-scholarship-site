@@ -149,12 +149,17 @@ function theme_enqueue_styles() {
         'themeBaseUrl' => get_template_directory_uri()
     ));
 
+    wp_enqueue_script('snigel-adengine', get_stylesheet_directory_uri() . '/assets/snigel-adengine.js', array(), null, true);
+
+    // Pass the post type to the JavaScript file
+    wp_localize_script('snigel-adengine', 'snigelAdConfig', array('postType' => get_post_type()));
+
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
 
 function add_data_attribute($tag, $handle, $src) {
     // Only add the attribute to your specific script
-    if ($handle === 'snigle-script') {
+    if ($handle === 'snigel-adengine') {
         $tag = str_replace('<script ', '<script data-cfasync="false" ', $tag);
     }
     return $tag;
