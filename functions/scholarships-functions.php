@@ -373,70 +373,137 @@ function formatArrayToString($array) {
 
 function to_number($number){
       return (float) str_replace(',', '', $number);
-}        
+}  
 
 
 
-function convert_to_usd($amount, $currency){
 
-$list = array(
-"KRW" => 0.00074,
-"CAD" => 0.73,
-"RMB" => 0.14,
-"Yen" => 0.0067,
-"NZD" => 0.60,
-"GBP" => 1.22,
-"AUD" => 0.64,
-"Euros" => 1.06,
-"NOK" => 0.092,
-"CHF" => 1.10,
-"USD" => 1,
-"PLN" => 0.23,
-"INR" => 0.012,
-"Pesos" => 0.018,
-"Rand" => 0.052,
-"SGD" => 0.73,
-"RUB" => 0.0099,
-"CZK" => 0.043,
-"kr" => 0.091,
-"Danish Krone" => 0.14,
-"MXN" => 0.054,
-"Brazilian Real" => 0.19,
-"UAH" => 0.027,
-"TRY" => 0.036,
-"TWD" => 0.031,
-"Rp" => 0.000064,
-"RON" => 0.21,
-"BYN" => 0.30,
-"HUF" => 0.0027,
-"BAM" => 0.54,
-"ALL" =>0.01 ,
-"ISK" => 0.0073,
-"VND" => 0.000041,
-"THB" => 0.027,
-"LKR" => 0.0031,
-"PKR" => 0.0036,
-"NPR" => 0.0075,
-"QAR" => 0.27,
-"RSD" => 0.0090,
-"MYR" => 0.21,
-"SAR" => 0.27,
-"KHR" => 0.00024,
-"AED" =>  0.27,
-"ILS" =>  0.25,
-"CRC" =>  0.0019,
-"BGN"  => 0.54,
-"MDL"  => 0.055,
-"NGN"  => 0.0013,
- 
- );
-  
- if ($amount > 0){
-      return $amount * $list[$currency];
-   } else {
-      return $amount;
-   }
+add_action('conditionally_fetch_and_store_currency_conversion_rates', 'conditionally_fetch_and_store_currency_conversion_rates');
+
+function conditionally_fetch_and_store_currency_conversion_rates() {
+    $last_update = get_option('currency_rates_last_update', 0);
+    $current_time = current_time('timestamp');
+
+    // Update rates if more than a month has passed since the last update
+    if (($current_time - $last_update) > 30 * DAY_IN_SECONDS) {
+        fetch_and_store_currency_conversion_rates();
+        update_option('currency_rates_last_update', $current_time); // Update last update time
+    }
 }
+
+function fetch_and_store_currency_conversion_rates() {
+    $transient_key = 'currency_conversion_rates';
+    $api_key = 'fxr_live_c26ae8c14971ba9e361e44017e494e33635f';  // Use your actual API key
+    $api_url = "https://api.fxratesapi.com/latest?api_key={$api_key}&base=USD";
+
+    $response = wp_remote_get($api_url);
+
+    if (is_wp_error($response)) {
+        // Handle error appropriately
+        return;
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+
+    if (!empty($data) && isset($data['rates'])) {
+        // Cache the rates for 30 days
+        set_transient($transient_key, $data['rates'], 30 * DAY_IN_SECONDS);
+    }
+}
+
+function convert_to_usd($amount, $currency) {
+    // Attempt to use cached conversion rates
+    $rates = get_transient('currency_conversion_rates');
+
+    // Normalize the currency input
+    $currencyMappings = [
+        "KR" => "SEK",
+        "RAND" => "ZAR",
+        "DANISH KRONE" => "DKK",
+        "PESOS" => "PHP",
+        "RMB" => "CNY",
+        "YEN" => "JPY",
+        "EUROS" => "EUR",
+    ];
+
+    $currency = strtoupper($currency);
+    if (array_key_exists($currency, $currencyMappings)) {
+        $currency = $currencyMappings[$currency];
+    }
+
+    // Perform conversion if the rate is available
+    if (isset($rates[$currency]) && $amount > 0) {
+        return $amount / $rates[$currency];
+    }
+
+    // Return the original amount if conversion rate is not found
+    return $amount;
+}
+
+
+
+
+// function convert_to_usd($amount, $currency){
+
+// $list = array(
+// "KRW" => 0.00074,
+// "CAD" => 0.73,
+// "RMB" => 0.14,
+// "Yen" => 0.0067,
+// "NZD" => 0.60,
+// "GBP" => 1.22,
+// "AUD" => 0.64,
+// "Euros" => 1.06,
+// "NOK" => 0.092,
+// "CHF" => 1.10,
+// "USD" => 1,
+// "PLN" => 0.23,
+// "INR" => 0.012,
+// "Pesos" => 0.018,
+// "Rand" => 0.052,
+// "SGD" => 0.73,
+// "RUB" => 0.0099,
+// "CZK" => 0.043,
+// "kr" => 0.091,
+// "Danish Krone" => 0.14,
+// "MXN" => 0.054,
+// "Brazilian Real" => 0.19,
+// "UAH" => 0.027,
+// "TRY" => 0.036,
+// "TWD" => 0.031,
+// "Rp" => 0.000064,
+// "RON" => 0.21,
+// "BYN" => 0.30,
+// "HUF" => 0.0027,
+// "BAM" => 0.54,
+// "ALL" =>0.01 ,
+// "ISK" => 0.0073,
+// "VND" => 0.000041,
+// "THB" => 0.027,
+// "LKR" => 0.0031,
+// "PKR" => 0.0036,
+// "NPR" => 0.0075,
+// "QAR" => 0.27,
+// "RSD" => 0.0090,
+// "MYR" => 0.21,
+// "SAR" => 0.27,
+// "KHR" => 0.00024,
+// "AED" =>  0.27,
+// "ILS" =>  0.25,
+// "CRC" =>  0.0019,
+// "BGN"  => 0.54,
+// "MDL"  => 0.055,
+// "NGN"  => 0.0013,
+ 
+//  );
+  
+//  if ($amount > 0){
+//       return $amount * $list[$currency];
+//    } else {
+//       return $amount;
+//    }
+// }
 
 
 
@@ -1914,6 +1981,9 @@ function add_custom_js() {
 
 <script type="text/javascript">
 
+
+
+
    
         jQuery(document).ready(function () {
            
@@ -1955,6 +2025,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     jQuery(document).ready(function($) {
+
+
     
     // Run Tool Ajax Call
 
@@ -2011,6 +2083,35 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
    });
+       
+
+
+    // Remove All Entries for Keywords
+        jQuery('#remove-keyword-entries').on('click', function(event) {
+        event.preventDefault();
+        var customPostID = jQuery(this).closest('.inside').find('#acf-field_653f97c2da5db').val();
+        console.log('Custom Post IDa:', customPostID);
+      
+        var link = "<?php echo  admin_url("admin-ajax.php"); ?>";
+
+        $.ajax({
+        type: 'POST',
+        url: link, 
+        data: {
+            action: 'remove_keyword_entries', // Replace with your actual PHP function name
+            customPostID: customPostID
+        },
+        success: function(response) {
+            console.log('AJAX request successful.');
+            location.reload();
+        },
+        error: function(error) {
+        console.error('Error in AJAX request:', error);
+        }
+        });
+
+    });
+
 
 
     // Calculate  Institutions
@@ -3931,9 +4032,23 @@ function generate_posts_by_keywords($specific_post_id = null) {
         $keywords_repeater = get_field('keywords', $specific_post_id);
         if ($keywords_repeater) {
             foreach ($keywords_repeater as $keyword_item) {
-                $keywords[] = $keyword_item['keyword'];
+                // Ensure the keyword is not empty
+                if (!empty($keyword_item['keyword'])) {
+                    $keywords[] = $keyword_item['keyword'];
+                }
             }
         }
+    }
+
+    // If no keywords are present, exit the function
+    if (empty($keywords)) {
+        return; // No keywords specified, do nothing
+    }
+
+    // Get the limit for the number of posts to generate
+    $posts_limit = get_field('number_of_posts_to_generate', $specific_post_id);
+    if (empty($posts_limit) || !is_numeric($posts_limit)) {
+        $posts_limit = 100; // Set to a high number if not specified or invalid
     }
 
     // Fetch the first 100 published posts
@@ -3945,54 +4060,57 @@ function generate_posts_by_keywords($specific_post_id = null) {
         $current_generated_posts = array();
     }
 
-
-       // Remove duplicate rows based on the 'post_name' field
-       $current_generated_posts = array_map("unserialize", array_unique(array_map("serialize", $current_generated_posts)));
-       $current_generated_posts = array_values($current_generated_posts);
+    // Remove duplicate rows based on the 'post_name' field
+    $current_generated_posts = array_map("unserialize", array_unique(array_map("serialize", $current_generated_posts)));
+    $current_generated_posts = array_values($current_generated_posts);
     
-    $count = 1;
-    foreach ($post_data as $post) {
-    $post_id = $post->ID;
-    $post_content = $post->post_content;
-    $post_exists = false;
+    $generated_count = count($current_generated_posts); // Count already generated posts
 
-    // Loop through all keywords and check if they exist in the post content
-    foreach ($keywords as $keyword) {
-        if (preg_match('/\b' . preg_quote($keyword, '/') . '\b/i', $post_content)) {
-           
-            foreach ($current_generated_posts as $generated_post) {
-                if ($generated_post['post_name'] === $post->post_title) {
-                    $post_exists = true;
-                    if ($generated_post['inputted'] === 'Yes') {
-                        break; // Skip adding the post if it already exists and is marked as 'Yes'
+    foreach ($post_data as $post) {
+        if ($generated_count >= $posts_limit) {
+            break; // Stop if the limit is reached
+        }
+
+        $post_id = $post->ID;
+        $post_content = $post->post_content;
+        $post_exists = false;
+
+        // Loop through all keywords and check if they exist in the post content
+        foreach ($keywords as $keyword) {
+            if (preg_match('/\b' . preg_quote($keyword, '/') . '\b/i', $post_content)) {
+                
+                foreach ($current_generated_posts as $generated_post) {
+                    if ($generated_post['post_name'] === $post->post_title) {
+                        $post_exists = true;
+                        if ($generated_post['inputted'] === 'Yes') {
+                            break; // Skip adding the post if it already exists and is marked as 'Yes'
+                        }
                     }
                 }
-            }
-            
-           
-            // Add the post if it doesn't exist already
-            if (!$post_exists) {
-             $count = $count +1;
-                $current_generated_posts[] = array(
-                    'post_name' => $post->post_title,
-                    'post_link' => get_permalink($post_id),
-                    'inputted' => 'No'
-                );
-            }
-            
-            // Break the keyword loop if the post exists
-            if ($post_exists) {
-                break;
+                
+                // Add the post if it doesn't exist already and increment counter
+                if (!$post_exists) {
+                    $current_generated_posts[] = array(
+                        'post_name' => $post->post_title,
+                        'post_link' => get_permalink($post_id),
+                        'inputted' => 'No'
+                    );
+                    $generated_count++;
+                }
+                
+                // Break the keyword loop if the post exists
+                if ($post_exists) {
+                    break;
+                }
             }
         }
     }
 
-   
+    // Update the ACF field 'generated_posts_for_posts' after the loop
+    update_field('generated_posts_for_posts', $current_generated_posts, $specific_post_id);
 }
 
-// Update the ACF field 'generated_posts_for_posts' after the loop
-update_field('generated_posts_for_posts', $current_generated_posts, $specific_post_id);
-}
+
 
 
 
@@ -5610,7 +5728,7 @@ function count_resulted_institutions($specific_post_id) {
 // Add Generated Institutions to the Resultant Institutions
 function add_generated_to_resulted($post_id) {
     delete_field('resulted_institutions', $post_id);
-     $generated_institutions = get_field('generated_institutions', $post_id);
+    $generated_institutions = get_field('generated_institutions', $post_id);
     if ($generated_institutions) {
         foreach ($generated_institutions as $generated_institution) {
             if ($generated_institution['inputted'] === 'No') {
@@ -5708,7 +5826,19 @@ function run_interlinking_tool() {
 }
 
 
-// Button: Calculate Instituions
+// Button: Remvoe Keyword Entries
+add_action('wp_ajax_remove_keyword_entries', 'remove_keyword_entries');
+add_action('wp_ajax_nopriv_remove_keyword_entries', 'remove_keyword_entries');
+
+function remove_keyword_entries() {
+    if (isset($_POST['customPostID'])) {
+        $custom_post_id = $_POST['customPostID'];
+        delete_field('generated_posts_for_posts', $custom_post_id);
+        delete_field('resultant_posts_for_posts', $custom_post_id);
+        update_field('count_resulted_posts', 0, $custom_post_id);
+    }
+    wp_die(); 
+}
 
 add_action('wp_ajax_calculate_institutions', 'calculate_institutions');
 add_action('wp_ajax_nopriv_calculate_institutions', 'calculate_institutions');
@@ -5761,14 +5891,16 @@ add_action('wp_ajax_generate_posts', 'generate_posts');
 add_action('wp_ajax_generate_posts', 'generate_posts');
 
 function generate_posts() {
-
     if (isset($_POST['customPostID'])) {
         $custom_post_id = $_POST['customPostID'];
-        generate_posts_by_keywords($custom_post_id); 
-        add_generated_posts_to_resulted_posts($custom_post_id);  
+         generate_posts_by_keywords($custom_post_id); 
+        add_generated_posts_to_resulted_posts($custom_post_id);
+        
+
     }
     wp_die(); 
 }
+
 
 
 
@@ -5778,16 +5910,13 @@ add_action('wp_ajax_calculate_posts', 'calculate_posts');
 add_action('wp_ajax_nopriv_calculate_posts', 'calculate_posts');
 
 function calculate_posts() {
-    
     if (isset($_POST['customPostID'])) {
         $custom_post_id = $_POST['customPostID'];
-
-        make_generated_posts_to_inputted($custom_post_id);
-        add_generated_posts_to_resulted_posts($custom_post_id); 
-       count_resulted_posts($custom_post_id);
-     
-     }
-    
+            make_generated_posts_to_inputted($custom_post_id);
+            add_generated_posts_to_resulted_posts($custom_post_id);
+            count_resulted_posts($custom_post_id);
+        
+    }
     wp_die(); 
 }
 

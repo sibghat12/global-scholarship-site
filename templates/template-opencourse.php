@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     $countries_array_Ads_INT  = acf_get_fields('group_62533afa917bb');
     $countries_array = array_column($countries_array_Ads_INT, null, 'name')['adsIntCountry'];
     $countries_array = $countries_array['choices']; 
+    $countries_array['Europe'] = 'Europe';
+
+    
     
     $degrees_array_Ads  = acf_get_fields('group_6240a27fc5d85');
     $degrees_array = array_column($degrees_array_Ads, null, 'name')['degrees'];
@@ -301,25 +304,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Find all 'read-more-link' class elements that are descendants of <p> elements
-    var readMoreLinks = document.querySelectorAll('p .read-more-link');
-
-    // Function to show alert on click
-    function showAlert(event) {
-        event.preventDefault(); // Prevent the default action
-        alert("dd");
-    }
-
-    // Attach the showAlert function as an event listener to each found element
-    readMoreLinks.forEach(function(link) {
-        link.addEventListener('click', showAlert);
-    });
-});
 
 
-</script>
             
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -421,47 +407,48 @@ jQuery(function() {
 
 
 
+jQuery(document).ready(function($) {
+    // Using event delegation for dynamic content
+    $(document).on('click', '.read-more', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
+        // Assuming '.card' class wraps each card. Adjust the class name based on your actual HTML structure.
+        var card = $(this).closest('.card'); 
 
-$('.read-more').on('click', function(event) {
-  event.preventDefault(); // Prevent the default behavior of the anchor tag
-  event.stopPropagation();
+        var short = $(this).parent(); // Adjust if the short content is not the direct parent
+        var full = short.next(); // Adjust based on your actual structure
 
-  var short = $(this).closest('.row').find('#short');
-  var full = $(this).closest('.row').find('#full');
+        $(short).hide();
+        $(full).show();
 
-  short.hide();
-  full.show();
+        if (window.innerWidth > 991) {
+            // Assuming each card contains its own .col-md-8 and .col-md-4. Adjust these selectors based on your actual HTML structure.
+            var colMd8 = card.find('.col-md-8');
+            var colMd4 = card.find('.col-md-4');
 
-  // If screen size is more than 991px
-  if (window.innerWidth > 991) {
-    var colMd8 = $(this).closest('.col-md-8');
-    var colMd4 = colMd8.next('.col-md-4');
-    var fullHeight = full.height();
+            var fullHeight = $(full).height();
 
-    if (fullHeight > 140) {
-      colMd8.height('370');
-      colMd4.height('370');
-    } else if (fullHeight > 100) {
-      colMd8.height('320');
-      colMd4.height('320');
-    } else if (fullHeight > 70) {
-      colMd8.height('280');
-      colMd4.height('280');
-    } else {
-      colMd8.height('250');
-      colMd4.height('250');
-    }
+            // Adjust heights based on the full div's height
+            if (fullHeight > 140) {
+                colMd8.height('370');
+                colMd4.height('370');
+            } else if (fullHeight > 100) {
+                colMd8.height('320');
+                colMd4.height('320');
+            } else if (fullHeight > 70) {
+                colMd8.height('280');
+                colMd4.height('280');
+            } else {
+                colMd8.height('250');
+                colMd4.height('250');
+            }
 
-    $('.funded-line').css('position', 'absolute');
-    $('.funded-line').css('bottom', '10px');
-   
-    colMd4.css('border-left', '1px solid #77a6c9');
-
-    $('.annual-tuition-div').css('position', 'absolute');
-    $('.annual-tuition-div').css('bottom', '0px');
-    $('.annual-tuition-div').css('left', '0px');
-  }
+            card.find('.funded-line').css('position', 'absolute').css('bottom', '10px');
+            colMd4.css('border-left', '1px solid #77a6c9');
+            card.find('.annual-tuition-div').css({'position': 'absolute', 'bottom': '0px', 'left': '0px'});
+        }
+    });
 });
 
 
@@ -498,8 +485,8 @@ function readLess(){
 </script>
 
 
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         
 <script>
  
@@ -594,6 +581,8 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
      formData.append("page", currentPage);
      formData.append("order", currentOrder);
     
+    
+
     url_update = "";
 
     if(degree_value){
@@ -615,7 +604,7 @@ function loadCourses(degree_value, country_value, subject_value, adminAjaxUrl, a
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('pages');
      
-
+    
 
     jQuery.ajax({
         url: adminAjaxUrl,
@@ -826,9 +815,6 @@ function getValueFromPath(pathArray, array) {
 
 
 jQuery(document).ready(function($) {
-   
-    
-   
 
    
     jQuery('.opencourse-pagination a').click(function(e) {
@@ -989,7 +975,7 @@ jQuery(document).ready(function($) {
         e.preventDefault(); // Prevent the default form submission
        
     currentPage = 1;
-        const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     const url = new URL(window.location.href);
     const pageParam = parseInt(url.searchParams.get('pages'), 10);
    
@@ -1004,6 +990,7 @@ jQuery(document).ready(function($) {
     var selectDegreeValue = $('.degree-filter select').val() || null;
     var selectSubjectValue = $('.subject-filter select').val() || null;
     var selectCountryValue = $('.country-filter select').val() || null;
+    
 
     // Fallback to URL parameters if select values are not provided
     subject_value = selectSubjectValue || urlParams.get('subject');
