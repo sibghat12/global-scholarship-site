@@ -10,7 +10,7 @@
         $deadline_text = '';
 
         if(!$varied_deadlines) :
-            echo '<p>Here are the application deadlines for '. $scholarship_title .'</p>';
+            echo '<p>Here are the application deadlines for '. $scholarship_title .':</p>';
             if($scholarship_deadlines):
             echo "<ul>";
                 foreach ($scholarship_deadlines as $deadline) {
