@@ -149,10 +149,21 @@ function theme_enqueue_styles() {
         'themeBaseUrl' => get_template_directory_uri()
     ));
 
-    wp_enqueue_script('snigel-adengine', get_stylesheet_directory_uri() . '/assets/snigel-adengine.js', array(), '1.0.0', true);
+    if ( ! is_user_logged_in() ) {
+        // Enqueue MailerLite script
+        wp_enqueue_script('gs-mailerlite', get_stylesheet_directory_uri() . '/assets/mailerlite.js', array(), '1.0.0', true);
+
+        // Enqueue local PushEngage script
+        wp_enqueue_script('gs-pushengage', get_stylesheet_directory_uri() . '/assets/pushengage.js', array(), '1.0.0', true);
+        
+        // Enqueue the external PushEngage script
+        wp_enqueue_script('gs-pushengage-external', 'https://clientcdn.pushengage.com/core/5786848d-070d-49f0-bfa5-13ae40254555.js', array(), null, true);
+    }
+
+    wp_enqueue_script('gs-snigel-adengine', get_stylesheet_directory_uri() . '/assets/snigel-adengine.js', array(), '1.0.0', true);
 
     // Pass the post type to the JavaScript file
-    wp_localize_script('snigel-adengine', 'snigelAdConfig', array('postType' => get_post_type()));
+    wp_localize_script('gs-snigel-adengine', 'snigelAdConfig', array('postType' => get_post_type()));
 
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
