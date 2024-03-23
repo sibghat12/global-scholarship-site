@@ -18,41 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 
-	
-<?php
-$post_type = get_post_type();
-
-
-if ($post_type === 'post' || $post_type === 'institution') {
-	    ?>
-
-<script data-cfasync="false" type="text/javascript">
-  window.snigelPubConf = {
-    "adengine": {
-      "activeAdUnits": ["incontent_1"]
-    }
-  }
-</script>
-<script async data-cfasync="false" src="https://cdn.snigelweb.com/adengine/globalscholarships.com/loader.js" type="text/javascript"></script>
-
-<?php
-} else {
-    ?>
-
-<script data-cfasync="false" type="text/javascript">
-window.snigelPubConf = {
-  "adengine": {
-    "activeAdUnits": ["interstitial"]
-  }
-}
-</script>
-<script async data-cfasync="false" src="https://cdn.snigelweb.com/adengine/globalscholarships.com/loader.js" type="text/javascript"></script>
-
-<?php
-}
-
-?>
-
 	<?php Avada()->head->the_viewport(); ?>
 
 	<?php wp_head(); ?>
