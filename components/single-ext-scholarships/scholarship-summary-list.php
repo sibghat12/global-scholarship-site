@@ -182,7 +182,7 @@ if($scholarship_providers) {
     <?php endif; ?>
     <?php if ($scholarship_amount > 0):?>
         <li>Scholarship Amount: <b><?php echo number_format($scholarship_amount); ?>
-        <?php echo $currency; ?></b></li>
+        <?php echo $the_currency; ?></b></li>
     <?php endif; ?>    
     <?php
     $scholarship_duration_html='';
@@ -204,7 +204,7 @@ if($scholarship_providers) {
         if ($similar_duration) {
             $duration_text = '<span>';
 
-            $duration_text .= ': '. $same_number . ' ' . $label . '</span>';
+            $duration_text .= ' '. $same_number . ' ' . $label . '</span>';
             $scholarship_duration_html .= '<span class="gs-ext-scholarships-single-duration"><b>' . $duration_text . '</b></span>';
 
         } else {
@@ -213,7 +213,7 @@ if($scholarship_providers) {
     
     } 
     ?>
-    <?php if(isset($scholarship_duration_html)) : ?>
+    <?php if(isset($scholarship_duration_html) && isset($scholarship_duration) && !empty($scholarship_duration)) : ?>
         <li>Scholarship Duration: <?php echo $scholarship_duration_html; ?></li>
     <?php endif; ?>
     

@@ -233,11 +233,11 @@ function convert_array_to_text($array_list ){
 
 //Get Currency Function
 
-function get_currency($country){
-    $currency_list = country_currency_list();
+// function get_currency($country){
+//     $currency_list = country_currency_list();
     
-    return $currency_list[$country];
-}
+//     return $currency_list[$country];
+// }
 
 
 
@@ -5522,6 +5522,16 @@ function country_currency_list() {
     return $currency_list;
  }
 
+
+ function get_currency($country){
+    $currency_list = country_currency_list();
+
+    if(array_key_exists($country, $currency_list)){
+        return $currency_list[$country];
+    } else {
+        return "USD";
+    }
+}
 
 function has_usd_currency($country){
     $currency_list = country_currency_list();
