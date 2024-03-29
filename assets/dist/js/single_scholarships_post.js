@@ -1,0 +1,3 @@
+/*! For license information please see single_scholarships_post.js.LICENSE */
+(()=>{"use strict";var t={"./src/sass/single_scholarships_post.scss":(e,s,t)=>{t.r(s)}},o={};function r(e){var s=o[e];return void 0!==s||(s=o[e]={exports:{}},t[e](s,s.exports,r)),s.exports}(r.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})})({}),r("./src/sass/single_scholarships_post.scss"),jQuery(document).ready(function(o){o(".comments-container").find(".comment-author").each(function(e,s){var s=o(s),t=s.html().replace(" at ","");s.html(t)})})})();
+//# sourceMappingURL=single_scholarships_post.js.map

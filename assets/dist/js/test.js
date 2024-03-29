@@ -1,0 +1,3 @@
+/*! For license information please see test.js.LICENSE */
+(()=>{"use strict";var t={"./src/sass/test.scss":(e,s,t)=>{t.r(s)}},r={};function o(e){var s=r[e];return void 0!==s||(s=r[e]={exports:{}},t[e](s,s.exports,o)),s.exports}(o.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})})({}),o("./src/sass/test.scss")})();
+//# sourceMappingURL=test.js.map
