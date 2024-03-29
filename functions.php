@@ -3515,6 +3515,12 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
             )
         );
     }
+
+    wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
+    wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'));
+
+    wp_enqueue_script('user_update', get_stylesheet_directory_uri() .'/assets/update-user.js');
+
 }
 add_action('admin_enqueue_scripts', 'enqueue_scholarship_admin_scripts');
 
@@ -5639,8 +5645,8 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
         $gender = sanitize_text_field($_POST['gs_gender']);
         $home_country = sanitize_text_field($_POST['gs_home_country']);
         $degree = sanitize_text_field($_POST['gs_degree']);
-        $country = sanitize_text_field($_POST['gs_interested_country']);
-        $subject = sanitize_text_field($_POST['gs_subject']);
+        // $country = sanitize_text_field($_POST['gs_interested_country']);
+        // $subject = sanitize_text_field($_POST['gs_subject']);
 
         if (!is_email($email) || empty($password)) {
             wp_send_json_error(['message' => 'Invalid email or password.']);
@@ -5661,8 +5667,19 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
         update_user_meta($user_id, 'gender', $gender);
         update_user_meta($user_id, 'home_country', $home_country);
         update_user_meta($user_id, 'degree', $degree);
-        update_user_meta($user_id, 'interested_country', $country);
-        update_user_meta($user_id, 'subject', $subject);
+        // update_user_meta($user_id, 'interested_country', $country);
+        // update_user_meta($user_id, 'subject', $subject);
+
+        // Handle multi-select fields for 'interested_country' and 'subject'
+        if (isset($_POST['gs_interested_country']) && is_array($_POST['gs_interested_country'])) {
+            $interested_countries = array_map('sanitize_text_field', $_POST['gs_interested_country']);
+            update_user_meta($user_id, 'interested_country', $interested_countries);
+        }
+
+        if (isset($_POST['gs_subject']) && is_array($_POST['gs_subject'])) {
+            $subjects = array_map('sanitize_text_field', $_POST['gs_subject']);
+            update_user_meta($user_id, 'subject', $subjects);
+        }
 
         wp_send_json_success(['message' => 'User registered successfully.', 'user_id' => $user_id]);
     }
@@ -5681,6 +5698,10 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
 
         $countries = array('USA', 'Canada', 'UK');
         $subjects = array('Mathematics', 'Science', 'History');
+
+        // Inside custom_user_profile_fields function
+        $selected_countries = (array) get_user_meta($user->ID, 'interested_country', true); // Cast to array for compatibility
+        $selected_subjects = (array) get_user_meta($user->ID, 'subject', true);
 
     ?>
         <h3>Additional Information</h3>
@@ -5734,10 +5755,10 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
             <tr>
                 <th><label for="interested_country">Interested Country</label></th>
                 <td>
-                    <select name="interested_country" id="interested_country" class="gs_input_text">
+                    <select name="interested_country[]" id="interested_country" class="gs_input_text" multiple="multiple">
                         <option value="">Select Country</option>
                         <?php foreach ($countries as $country) : ?>
-                            <option value="<?php echo esc_attr($country); ?>" <?php selected($country, get_user_meta($user->ID, 'interested_country', true)); ?>><?php echo esc_html($country); ?></option>
+                            <option value="<?php echo esc_attr($country); ?>" <?php echo in_array($country, $selected_countries) ? 'selected' : ''; ?>><?php echo esc_html($country); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </td>
@@ -5745,10 +5766,10 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
             <tr>
                 <th><label for="subject">Subject</label></th>
                 <td>
-                    <select name="subject" id="subject" class="gs_input_text">
+                    <select name="subject[]" id="subject" class="gs_input_text" multiple="multiple">
                         <option value="">Select Subject</option>
                         <?php foreach ($subjects as $subject) : ?>
-                            <option value="<?php echo esc_attr($subject); ?>" <?php selected($subject, get_user_meta($user->ID, 'subject', true)); ?>><?php echo esc_html($subject); ?></option>
+                            <option value="<?php echo esc_attr($subject); ?>" <?php echo in_array($subject, $selected_subjects) ? 'selected' : ''; ?>><?php echo esc_html($subject); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </td>
@@ -5786,14 +5807,26 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
             update_user_meta($user_id, 'degree', sanitize_text_field($_POST['gs_degree']));
         }
 
-        if (isset($_POST['gs_interested_country']) && !empty($_POST['gs_interested_country'])) {
-            update_user_meta($user_id, 'interested_country', sanitize_text_field($_POST['gs_interested_country']));
-        }
+        // // Handle multi-select fields
+        // if (isset($_POST['interested_country']) && is_array($_POST['interested_country'])) {
+        //     update_user_meta($user_id, 'interested_country', $_POST['interested_country']);
+        // }
 
-        if (isset($_POST['gs_subject']) && !empty($_POST['gs_subject'])) {
-            update_user_meta($user_id, 'subject', sanitize_text_field($_POST['gs_subject']));
-        }
+        // if (isset($_POST['subject']) && is_array($_POST['subject'])) {
+        //     update_user_meta($user_id, 'subject', $_POST['subject']);
+        // }
+    // Handle multi-select fields for 'interested_country' and 'subject'
+    if (isset($_POST['interested_country']) && !empty($_POST['interested_country'])) {
+        // Ensure it's an array and sanitize each value
+        $interested_countries = array_map('sanitize_text_field', $_POST['interested_country']);
+        update_user_meta($user_id, 'interested_country', $interested_countries);
+    }
 
+    if (isset($_POST['subject']) && !empty($_POST['subject'])) {
+        // Ensure it's an array and sanitize each value
+        $subjects = array_map('sanitize_text_field', $_POST['subject']);
+        update_user_meta($user_id, 'subject', $subjects);
+    }
         // For checkboxes, checking if set is sufficient
         update_user_meta($user_id, 'gs_newsletter', isset($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes' ? 'yes' : 'no');
     }

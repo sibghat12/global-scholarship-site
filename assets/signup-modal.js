@@ -128,9 +128,19 @@ jQuery(document).ready(function($) {
                 formData.append('gs_gender', document.querySelector('select[name="gs_gender"]').value);
                 formData.append('gs_home_country', document.querySelector('select[name="gs_home_country"]').value);
                 formData.append('gs_degree', document.querySelector('input[name="gs_degree"]:checked').value);
-                formData.append('gs_interested_country', document.querySelector('select[name="gs_interested_country"]').value);
-                formData.append('gs_subject', document.querySelector('select[name="gs_subject"]').value);
-        
+                // formData.append('gs_interested_country', document.querySelector('select[name="gs_interested_country"]').value);
+                // formData.append('gs_subject', document.querySelector('select[name="gs_subject"]').value);
+                // Handle multi-select for interested countries
+                var interestedCountries = document.querySelector('select[name="gs_interested_country[]"]');
+                Array.from(interestedCountries.selectedOptions).forEach(option => {
+                    formData.append('gs_interested_country[]', option.value);
+                });
+
+                // Handle multi-select for subjects
+                var subjects = document.querySelector('select[name="gs_subject[]"]');
+                Array.from(subjects.selectedOptions).forEach(option => {
+                    formData.append('gs_subject[]', option.value);
+                });
                 fetch(myAjax.ajaxurl, {
                     method: 'POST',
                     body: formData,
@@ -141,7 +151,8 @@ jQuery(document).ready(function($) {
                     if (data.success) {
                         // alert('User Registered Successfully!');
                         // Redirect to the profile page with the user_id
-                        window.location.href = `${myAjax.siteUrl}/account/?action=profile`;
+                        // window.location.href = `${myAjax.siteUrl}/account/?action=profile`;
+                        window.location.href = `${myAjax.siteUrl}/account/?action=profile&user_id=${data.data.user_id}`;
                     } else {
                         alert(data.data.message);
                     }
