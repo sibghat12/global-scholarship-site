@@ -3522,31 +3522,47 @@ padding-bottom:5px;
     text-decoration: underline;
 }
 
-  .degree-options input[type="radio"] {
-    display: none;
-  }
+.degree-options input[type="radio"] {
+display: none;
+}
+
+.degree-options label.degree-label {
+display: inline-block;
+background-color: white; /* Background color */
+color: black; /* Text color */
+padding: 10px 20px; /* Padding around text */
+border: 2px solid #008FC6; /* Border color */
+border-radius: 5px; /* Rounded corners */
+margin: 5px; /* Space between buttons */
+cursor: pointer; /* Mouse pointer changes to hand symbol */
+transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Change background color slightly when hovering over the label */
+.degree-options label.degree-label:hover {
+background-color: #f0f0f0;
+}
+
+/* Style for when the radio button is checked */
+.degree-options input[type="radio"]:checked + label {
+background-color: #008FC6; /* Change background color */
+color: white; /* Change text color */
+}
   
-  .degree-options label.degree-label {
-    display: inline-block;
-    background-color: white; /* Background color */
-    color: black; /* Text color */
-    padding: 10px 20px; /* Padding around text */
-    border: 2px solid #008FC6; /* Border color */
-    border-radius: 5px; /* Rounded corners */
-    margin: 5px; /* Space between buttons */
-    cursor: pointer; /* Mouse pointer changes to hand symbol */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-  }
-  
-  /* Change background color slightly when hovering over the label */
-  .degree-options label.degree-label:hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Style for when the radio button is checked */
-  .degree-options input[type="radio"]:checked + label {
-    background-color: #008FC6; /* Change background color */
-    color: white; /* Change text color */
-  }
-  
+.tax-scholarship-receipt-title{
+    margin-top:20px;
+    margin-bottom: 40px;
+}
+.tax-scholarship-receipt-grid {
+padding-left:2% !important;
+padding-right:4% !important;
+}
+.nonmatching-container {
+    width:70%;
+}
+.nonmatching-container .number-of-scholarships{
+    margin-top:50px;
+    margin-bottom:5px; 
+    font-size:24px;
+}
 
