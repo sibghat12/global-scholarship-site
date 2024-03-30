@@ -5710,8 +5710,10 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
             <tr>
                 <th><label for="gs_newsletter">Newsletter Subscription</label></th>
                 <td>
-                    <input type="checkbox" name="gs_newsletter" id="gs_newsletter" value="yes" <?php checked('yes', get_user_meta($user->ID, 'gs_newsletter', true)); ?> />
-                    <span class="description">Check to subscribe to the newsletter.</span>
+                    <label>
+                        <input type="checkbox" name="gs_newsletter" id="gs_newsletter" value="yes" <?php checked('yes', get_user_meta($user->ID, 'gs_newsletter', true)); ?> />
+                        <span class="description">Check to subscribe to the newsletter.</span>
+                    </label>
                 </td>
             </tr>
             <tr>
@@ -5791,20 +5793,20 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
         }
 
         // Check if the fields are set and not empty, then update user meta
-        if (isset($_POST['gs_birth_date']) && !empty($_POST['gs_birth_date'])) {
-            update_user_meta($user_id, 'birth_date', sanitize_text_field($_POST['gs_birth_date']));
+        if (isset($_POST['birth_date']) && !empty($_POST['birth_date'])) {
+            update_user_meta($user_id, 'birth_date', sanitize_text_field($_POST['birth_date']));
         }
 
-        if (isset($_POST['gs_gender']) && !empty($_POST['gs_gender'])) {
-            update_user_meta($user_id, 'gender', sanitize_text_field($_POST['gs_gender']));
+        if (isset($_POST['gender']) && !empty($_POST['gender'])) {
+            update_user_meta($user_id, 'gender', sanitize_text_field($_POST['gender']));
         }
 
-        if (isset($_POST['gs_home_country']) && !empty($_POST['gs_home_country'])) {
-            update_user_meta($user_id, 'home_country', sanitize_text_field($_POST['gs_home_country']));
+        if (isset($_POST['home_country']) && !empty($_POST['home_country'])) {
+            update_user_meta($user_id, 'home_country', sanitize_text_field($_POST['home_country']));
         }
 
-        if (isset($_POST['gs_degree']) && !empty($_POST['gs_degree'])) {
-            update_user_meta($user_id, 'degree', sanitize_text_field($_POST['gs_degree']));
+        if (isset($_POST['degree']) && !empty($_POST['degree'])) {
+            update_user_meta($user_id, 'degree', sanitize_text_field($_POST['degree']));
         }
 
         // // Handle multi-select fields
@@ -5815,18 +5817,18 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
         // if (isset($_POST['subject']) && is_array($_POST['subject'])) {
         //     update_user_meta($user_id, 'subject', $_POST['subject']);
         // }
-    // Handle multi-select fields for 'interested_country' and 'subject'
-    if (isset($_POST['interested_country']) && !empty($_POST['interested_country'])) {
-        // Ensure it's an array and sanitize each value
-        $interested_countries = array_map('sanitize_text_field', $_POST['interested_country']);
-        update_user_meta($user_id, 'interested_country', $interested_countries);
-    }
+        // Handle multi-select fields for 'interested_country' and 'subject'
+        if (isset($_POST['interested_country']) && !empty($_POST['interested_country'])) {
+            // Ensure it's an array and sanitize each value
+            $interested_countries = array_map('sanitize_text_field', $_POST['interested_country']);
+            update_user_meta($user_id, 'interested_country', $interested_countries);
+        }
 
-    if (isset($_POST['subject']) && !empty($_POST['subject'])) {
-        // Ensure it's an array and sanitize each value
-        $subjects = array_map('sanitize_text_field', $_POST['subject']);
-        update_user_meta($user_id, 'subject', $subjects);
-    }
+        if (isset($_POST['subject']) && !empty($_POST['subject'])) {
+            // Ensure it's an array and sanitize each value
+            $subjects = array_map('sanitize_text_field', $_POST['subject']);
+            update_user_meta($user_id, 'subject', $subjects);
+        }
         // For checkboxes, checking if set is sufficient
         update_user_meta($user_id, 'gs_newsletter', isset($_POST['gs_newsletter']) && $_POST['gs_newsletter'] === 'yes' ? 'yes' : 'no');
     }
