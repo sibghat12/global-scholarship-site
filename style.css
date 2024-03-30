@@ -9791,7 +9791,7 @@ button#googleSignupButton span {
     font-weight: 700;
     cursor: pointer;
 }
-
+/*
 .steps-navigation {
     display: flex;
     align-items: center;
@@ -9804,20 +9804,59 @@ button#googleSignupButton span {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background-color: #f9f9f9; /* Default background */
-    color: #000; /* Default text color, hidden when step is completed */
+    background-color: #f9f9f9;
+    color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid #ccc;
     position: relative;
-    font-size: 14px; /* Adjust as needed */
+    font-size: 14px;
+}
+*/
+
+.steps-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.steps-navigation .step {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #f9f9f9;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    position: relative;
+    font-size: 14px;
+}
+
+.step-label {
+    font-size: 12px; /* Adjust as needed */
+    color: #000; /* Text color */
+    margin-top: 5px; /* Space between circle and text */
 }
 
 .step-completed, .step-active {
     background-color: #008FC6 !important;
     border-color: #008FC6 !important;
     font-size: 0 !important; /* Hide the text by setting font-size to 0 */
+}
+
+.step-label.stepLabel-active, .step-label.stepLabel-completed {
+    font-weight: 700;
 }
 
 .step-completed::after, .step-active::after {
@@ -9839,7 +9878,7 @@ button#googleSignupButton span {
 }
 
 /* Line between steps */
-.steps-navigation .step:not(:last-child):after {
+.steps-navigation .step-container:not(:last-child) .step:after {
     content: '';
     position: absolute;
     left: 128%;

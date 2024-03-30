@@ -5506,11 +5506,27 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
 
         <form id="gsMultiStepFormRegister" class="gs-form-register" method="post">
             <div class="steps-navigation" style="display:none;">
-                <span class="step">01</span>
+                <!-- <span class="step">01</span>
                 <span class="step">02</span>
                 <span class="step">03</span>
-                <span class="step">04</span>
+                <span class="step">04</span> -->
                 <!-- Add or remove steps as necessary -->
+                <div class="step-container">
+                    <span class="step step-active line-active">01</span>
+                    <span class="step-label">Personal Info</span>
+                </div>
+                <div class="step-container">
+                    <span class="step">02</span>
+                    <span class="step-label">Degree</span>
+                </div>
+                <div class="step-container">
+                    <span class="step">03</span>
+                    <span class="step-label">Country</span>
+                </div>
+                <div class="step-container">
+                    <span class="step">04</span>
+                    <span class="step-label">Subject</span>
+                </div>
             </div>
             <!-- Step 1 -->
             <div class="form-step">

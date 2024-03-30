@@ -37,14 +37,6 @@ jQuery(document).ready(function($) {
                 '&response_type=' + encodeURIComponent(responseType) +
                 '&scope=' + encodeURIComponent(scope);
 
-    // $('.gs-btn').on('click', function(e) {
-    //     console.log("e.target", e.target)
-
-    //     // Example of how to use the login URL: redirect or attach to an element's event
-    //     // Redirect to the login URL
-    //     window.location.href = signupUrl;
-
-    // })
     
     // Or attach the login URL to a button click event
     var signupButton = document.getElementById('googleSignupButton'); // Ensure you have this element in your HTML
@@ -58,7 +50,7 @@ jQuery(document).ready(function($) {
         // Signup Multistep Modal Logic
         var currentStep = 0;
         var steps = document.getElementsByClassName("form-step");
-        var navSteps = document.querySelectorAll(".steps-navigation .step");
+        var navSteps = document.querySelectorAll(".steps-navigation .step-container"); // Updated selector
         var navStepContainer = document.querySelector(".steps-navigation");
 
         // Initially hide the steps navigation
@@ -89,20 +81,40 @@ jQuery(document).ready(function($) {
             }
         }
 
+        // function updateStepsNavigation(currentStep) {
+        //     // Adjust the navigation steps based on the current step
+        //     navSteps.forEach(function(step, index) {
+        //         step.classList.remove("step-active", "step-completed", "line-active");
+        //         if (index < currentStep - 1) { // Adjust index for visual representation
+        //             step.classList.add("step-completed");
+        //         } else if (index === currentStep - 1) {
+        //             step.classList.add("step-active");
+        //         }
+        //         if (index < currentStep) {
+        //             step.classList.add("line-active");
+        //         }
+        //     });
+        // }
+
         function updateStepsNavigation(currentStep) {
-            // Adjust the navigation steps based on the current step
-            navSteps.forEach(function(step, index) {
+            navSteps.forEach(function(container, index) {
+                var step = container.querySelector(".step");
+                var stepLabel = container.querySelector(".step-label");
                 step.classList.remove("step-active", "step-completed", "line-active");
-                if (index < currentStep - 1) { // Adjust index for visual representation
+                stepLabel.classList.remove("stepLabel-active", "stepLabel-completed");
+                if (index < currentStep - 1) {
                     step.classList.add("step-completed");
+                    stepLabel.classList.add("stepLabel-completed");
                 } else if (index === currentStep - 1) {
                     step.classList.add("step-active");
+                    stepLabel.classList.add("stepLabel-active");
                 }
                 if (index < currentStep) {
                     step.classList.add("line-active");
                 }
             });
         }
+    
 
         // Attach event listeners to next and previous buttons
         var continueBtn = document.querySelector(".gs-signup-button-continue");
@@ -189,7 +201,6 @@ jQuery(document).ready(function($) {
 
         });
 
-            $('.interested_country_container select').select2();
-            $('.subject_container select').select2();
+            $('.interested_country_container select, .subject_container select').select2();
 
 });
