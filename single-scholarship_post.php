@@ -53,7 +53,7 @@ $featured_image_url = get_the_post_thumbnail_url(get_the_ID());
     <div class="row the-journey">
 
         <h2> The <br> Journey</h2>
-        <hr>
+        <hr style="width:25%;float:left;margin-top:0px; border: 2px solid #77a6c9;">
 
         <div class="clearfix"></div>
 
@@ -89,14 +89,18 @@ $featured_image_url = get_the_post_thumbnail_url(get_the_ID());
 
 <section class="cta_submit">
     <center>
-        <p class="cta-heading">Want to <b>submit</b> your <br>
-            <b>scholarship journey? </b>
+        <p class="cta-heading">Want to <strong>submit</strong> your <br>
+            <strong>scholarship journey? </strong>
         </p>
-        <hr>
+        <hr class="cta-hr">
         <p class="cta-text">Contact us at</p>
         <a class="cta-contact-email" href="mailto:admin@globalscholarships.com"> admin@globalscholarships.com </a>
     </center>
 </section>
+
+
+
+
 
 <div class="clearfix"> </div>
 

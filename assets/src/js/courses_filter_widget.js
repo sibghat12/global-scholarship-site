@@ -1,0 +1,1 @@
+import "../sass/courses_filter_widget.scss";
