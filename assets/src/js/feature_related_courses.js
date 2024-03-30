@@ -1,0 +1,1 @@
+import "../sass/feature_related_courses.scss";

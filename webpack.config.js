@@ -14,6 +14,22 @@ const mainAssets = path.resolve(__dirname, `${assetsFolder}`);
 const entry = {
   test: [__dirname + `/${assetsFolder}/src/js/test.js`],
   single_scholarships_post: [__dirname + `/${assetsFolder}/src/js/single_scholarships_post.js`], // Single Scholarships Posts
+  single_post: [__dirname + `/${assetsFolder}/src/js/single_post.js`], // Single  Posts
+  scholarship_search_filter: [__dirname + `/${assetsFolder}/src/js/scholarship_search_filter.js`], // Single  Posts
+  opencourses_template: [__dirname + `/${assetsFolder}/src/js/opencourses_template.js`],
+  partner_template: [__dirname + `/${assetsFolder}/src/js/partner_template.js`],
+  courses_filter_widget: [__dirname + `/${assetsFolder}/src/js/courses_filter_widget.js`],
+  wise: [__dirname + `/${assetsFolder}/src/js/wise.js`],
+  table_of_content: [__dirname + `/${assetsFolder}/src/js/table_of_content.js`],
+  single_scholarships: [__dirname + `/${assetsFolder}/src/js/single_scholarships.js`],
+  single_institution: [__dirname + `/${assetsFolder}/src/js/single_institution.js`],
+  single_external_scholarships: [__dirname + `/${assetsFolder}/src/js/single_external_scholarships.js`],
+  gs_login_modal: [__dirname + `/${assetsFolder}/src/js/gs_login_modal.js`],
+  currently_open_template: [__dirname + `/${assetsFolder}/src/js/currently_open_template.js`],
+  scholarship_institution_responsive: [__dirname + `/${assetsFolder}/src/js/scholarship_institution_responsive.js`],
+  feature_related_courses: [__dirname + `/${assetsFolder}/src/js/feature_related_courses.js`],
+  homepage_template: [__dirname + `/${assetsFolder}/src/js/homepage_template.js`],
+
 };
 const mainDistentation = path.resolve(__dirname, `${assetsFolder}/dist`);
 const output = {

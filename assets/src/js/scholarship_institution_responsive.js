@@ -1,0 +1,1 @@
+import "../sass/scholarship_institution_responsive.scss";

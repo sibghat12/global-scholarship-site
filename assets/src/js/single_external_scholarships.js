@@ -1,0 +1,1 @@
+import "../sass/single_external_scholarships.scss";
