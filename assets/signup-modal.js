@@ -81,21 +81,6 @@ jQuery(document).ready(function($) {
             }
         }
 
-        // function updateStepsNavigation(currentStep) {
-        //     // Adjust the navigation steps based on the current step
-        //     navSteps.forEach(function(step, index) {
-        //         step.classList.remove("step-active", "step-completed", "line-active");
-        //         if (index < currentStep - 1) { // Adjust index for visual representation
-        //             step.classList.add("step-completed");
-        //         } else if (index === currentStep - 1) {
-        //             step.classList.add("step-active");
-        //         }
-        //         if (index < currentStep) {
-        //             step.classList.add("line-active");
-        //         }
-        //     });
-        // }
-
         function updateStepsNavigation(currentStep) {
             navSteps.forEach(function(container, index) {
                 var step = container.querySelector(".step");
@@ -183,24 +168,33 @@ jQuery(document).ready(function($) {
             button.addEventListener("click", function() { moveStep(false); });
         });
 
-        // Direct navigation to previous steps
-        navSteps.forEach((step, index) => {
-            step.addEventListener("click", () => {
+        // // Direct navigation to previous steps
+        // navSteps.forEach((step, index) => {
+        //     step.addEventListener("click", () => {
+        //         if (index <= currentStep) {
+        //             steps[currentStep].style.display = "none";
+        //             currentStep = index;
+        //             showStep(currentStep);
+        //         }
+        //         // Check if we're navigating backwards; forward navigation might need validation
+        //       if (index < currentStep) {
+        //           steps[currentStep].style.display = "none"; // Hide the current step
+        //           currentStep = index + 1; // Adjust because navigation starts from step 2 visually
+        //           showStep(currentStep);
+        //       }
+        //     });
+
+        // });
+        navSteps.forEach((container, index) => {
+            container.addEventListener("click", () => {
                 if (index <= currentStep) {
-                    steps[currentStep].style.display = "none";
-                    currentStep = index;
+                    steps[currentStep].style.display = "none"; // Hide the current step
+                    currentStep = index; // Set the current step to the one clicked
                     showStep(currentStep);
                 }
-                // Check if we're navigating backwards; forward navigation might need validation
-              if (index < currentStep) {
-                  steps[currentStep].style.display = "none"; // Hide the current step
-                  currentStep = index + 1; // Adjust because navigation starts from step 2 visually
-                  showStep(currentStep);
-              }
             });
-
         });
 
-            $('.interested_country_container select, .subject_container select').select2();
+        $('.interested_country_container select, .subject_container select').select2();
 
 });

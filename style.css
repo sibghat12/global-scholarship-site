@@ -9853,10 +9853,13 @@ button#googleSignupButton span {
     background-color: #008FC6 !important;
     border-color: #008FC6 !important;
     font-size: 0 !important; /* Hide the text by setting font-size to 0 */
+    cursor: pointer;
 }
 
 .step-label.stepLabel-active, .step-label.stepLabel-completed {
     font-weight: 700;
+    color: #008FC6;
+    cursor: pointer;
 }
 
 .step-completed::after, .step-active::after {
@@ -9868,6 +9871,7 @@ button#googleSignupButton span {
     left: 50%;
     transform: translate(-50%, -50%); /* Center the checkmark */
     line-height: 1; /* Adjust line height for vertical alignment */
+    cursor: pointer;
 }
 
 .step-completed:before, .step-active:before {
