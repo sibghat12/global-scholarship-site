@@ -21,14 +21,16 @@ add_filter('posts_where', 'institutions_where');
 function add_datatables_scripts()
 {
     $page_template_slug = get_page_template_slug();
-    if ($page_template_slug != 'templates/template-deadlines.php') {
-        return;
-    }
+    if (!($page_template_slug == 'templates/template-deadlines.php' || $page_template_slug == 'templates/template-external-scholarships.php')) {
+    return;
+}
 
-    wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri() . '/assets/bootstrap/bootstrap.min.css');
-    wp_enqueue_style('deadline_datatables-css', get_stylesheet_directory_uri() . '/assets/datatables/dataTables.min.css');
-    wp_enqueue_script('deadline_datatables-js', get_stylesheet_directory_uri() . '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true);
-    wp_enqueue_script('deadlines-js',  get_stylesheet_directory_uri() . '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true);
+    
+   wp_enqueue_style('deadline_bootstrap_css', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap.min.css');
+   wp_enqueue_style( 'deadline_datatables-css', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.css');
+   wp_enqueue_script( 'deadline_datatables-js', get_stylesheet_directory_uri(). '/assets/datatables/dataTables.min.js', array('jquery'), '1.10.25', true );
+   wp_enqueue_script( 'deadlines-js',  get_stylesheet_directory_uri(). '/assets/deadlines.js', array('jquery', 'deadline_datatables-js'), '1.10.25', true );
+         
 }
 
 add_action('wp_enqueue_scripts', 'add_datatables_scripts');
@@ -56,10 +58,10 @@ add_action('wp_enqueue_scripts', 'enqueue_bootstrap_scripts');
 // }
 // add_action('wp_enqueue_scripts', 'serach_script_enqueue');
 
-function theme_enqueue_styles()
-{
-    wp_enqueue_style('dashicons');
-    wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', []);
+
+
+function theme_enqueue_styles() {
+    wp_enqueue_style( 'dashicons' );
 
     // Enqueue single-scholarship.js file in assets folder
     if (is_singular('scholarships')) {
@@ -68,7 +70,7 @@ function theme_enqueue_styles()
             'ajaxurl' => admin_url('admin-ajax.php')
         ));
     }
-    wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', [], '7.1.0');
+    wp_enqueue_style('avada-child-style', get_stylesheet_directory_uri() . '/style.css', [], '1.0.1');
 
     // Enqueue single-scholarship.js file in assets folder
     if (is_singular('ext-scholarships')) {
@@ -86,8 +88,64 @@ function theme_enqueue_styles()
 
 
     }
+   
+    wp_enqueue_style( 'courses-filter-widget-css', get_stylesheet_directory_uri() . '/assets/dist/css/courses_filter_widget.css', [], '1.0.0' );
+    wp_enqueue_style( 'wise-css', get_stylesheet_directory_uri() . '/assets/dist/css/wise.css', [], '1.0.0' );
+    wp_enqueue_style( 'table-of-content-css', get_stylesheet_directory_uri() . '/assets/dist/css/table_of_content.css', [], '1.0.0' );
+    wp_enqueue_style( 'gs_login_modal-css', get_stylesheet_directory_uri() . '/assets/dist/css/gs_login_modal.css', [], '1.0.0' );
+
+
+    if (is_front_page()) {
+        wp_enqueue_style( 'homepage-css', get_stylesheet_directory_uri() . '/assets/dist/css/homepage_template.css', [], '1.0.0' );
+    }   
+
+    if (is_single() && get_post_type() === 'post') {
+     wp_enqueue_style( 'single-post-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_post.css', [], '1.0.0' );
+     wp_enqueue_style( 'feature_related_courses-css', get_stylesheet_directory_uri() . '/assets/dist/css/feature_related_courses.css', [], '1.0.0' );
+    }
+
+    if(is_page('partner-with-us')){
+         wp_enqueue_style( 'partner-template-css', get_stylesheet_directory_uri() . '/assets/dist/css/partner_template.css', [], '1.0.0' );
+    }
+
+    $page_template_slug = get_page_template_slug();
+    if (is_page_template('templates/template-currently-open-scholarship.php')) {
+        wp_enqueue_style( 'currently-open-scholarship-template', get_stylesheet_directory_uri() . '/assets/dist/css/currently_open_template.css', [], '1.0.0' );
+    }
+
+   
+    if(is_page('opencourses')){
+         wp_enqueue_style( 'opencourses-template-css', get_stylesheet_directory_uri() . '/assets/dist/css/opencourses_template.css', [], '1.0.0' );
+    } 
+
+    if(is_page('scholarship-search')){
+         wp_enqueue_style( 'scholarship-filter-css', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_search_filter.css', [], '1.0.0' );
+    } 
+
+    if(is_singular('scholarships')) {
+        wp_enqueue_style( 'single-scholarship-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships.css', [], '1.0.0' );
+    }
+
+    if(is_singular('ext-scholarships')) {
+        wp_enqueue_style( 'external-scholarships-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_external_scholarships.css', [], '1.0.0' );
+    }
+
+  
+
+    if(is_singular('institution')) {
+        wp_enqueue_style( 'scholarship-cpt-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_institution.css', [], '1.0.0' );
+    }
+    
+    wp_enqueue_style( 'scholarship_institution_responsive', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_institution_responsive.css', [], '1.0.0' );
+
+    if(is_singular('scholarship_post')) {
+        wp_enqueue_script('gs-scholarship_post',  get_stylesheet_directory_uri() . '/assets/dist/js/single_scholarships_post.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_style( 'gs-scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+    }
+
+
     // Enqueue single-scholarship.js file in assets folder
-    if (is_singular('institution') || is_singular('scholarships')) {
+    if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
         wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
     }
 
@@ -100,14 +158,12 @@ function theme_enqueue_styles()
     );
 
 
-    wp_enqueue_script(
-        'gs_toc_toggle',
-        get_stylesheet_directory_uri() . '/assets/toc.js',
-        array('jquery'),
-        '1.0.45',
-        false
-    );
+    wp_enqueue_script('gs_toc_toggle',  get_stylesheet_directory_uri() . '/assets/toc.js', array('jquery'),
+    '1.0.45',
+    false );
 
+ 
+    
 
     wp_enqueue_script('google-platform', 'https://accounts.google.com/gsi/client', array(), null, true);
     wp_enqueue_script(
@@ -161,9 +217,26 @@ function theme_enqueue_styles()
     wp_localize_script('mytheme-script', 'myThemeParams', array(
         'themeBaseUrl' => get_template_directory_uri()
     ));
+
+    if ( ! is_user_logged_in() ) {
+        // Enqueue MailerLite script
+        wp_enqueue_script('gs-mailerlite', get_stylesheet_directory_uri() . '/assets/mailerlite.js', array(), '1.0.0', true);
+
+        // Enqueue local PushEngage script
+        wp_enqueue_script('gs-pushengage', get_stylesheet_directory_uri() . '/assets/pushengage.js', array(), '1.0.0', true);
+        
+        // Enqueue the external PushEngage script
+        wp_enqueue_script('gs-pushengage-external', 'https://clientcdn.pushengage.com/core/5786848d-070d-49f0-bfa5-13ae40254555.js', array(), null, true);
+    }
+
+    wp_enqueue_script('gs-snigel-adengine', get_stylesheet_directory_uri() . '/assets/snigel-adengine.js', array(), '1.0.0', true);
+
+    // Pass the post type to the JavaScript file
+    wp_localize_script('gs-snigel-adengine', 'snigelAdConfig', array('postType' => get_post_type()));
+
 }
-add_action('wp_enqueue_scripts', 'theme_enqueue_styles', 20);
-function make_script_async($tag, $handle, $src)
+add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
+function make_script_async( $tag, $handle, $src )
 {
     if ('google-platform' != $handle) {
         return $tag;
@@ -199,22 +272,18 @@ add_action('after_setup_theme', 'avada_lang_setup');
 function scholarship_search_enqueue_scripts()
 {
     if (is_page('scholarship-search') || is_404()) {
-
-        wp_enqueue_style('scholarship-search-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css');
-
-        wp_enqueue_style('scholarship-search-bootstrap-select-css', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css');
-
+        wp_enqueue_style( 'scholarship-search-bootstrap-css', get_stylesheet_directory_uri() . '/assets/bootstrap/bootstrap-3.4.1.min.css', [], '3.4.1' );
+        wp_enqueue_style( 'scholarship-search-bootstrap-select-css', get_stylesheet_directory_uri() . '/assets/bootstrap/bootstrap-select.min.css', [], '1.13.14' );
+        
+        
         // Enqueue jQuery if it's not already included
         if (!wp_script_is('jquery', 'enqueued')) {
             wp_enqueue_script('jquery');
         }
 
-        // Set the last parameter to true to load it in the footer
-        wp_enqueue_script('scholarship-search-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), null, true);
+        wp_enqueue_script( 'scholarship-search-bootstrap-js', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap-3.4.1.min.js', array('jquery'), '3.4.1', true );
+        wp_enqueue_script( 'scholarship-search-bootstrap-select-js', get_stylesheet_directory_uri(). '/assets/bootstrap/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), '1.13.14', true );
 
-        wp_enqueue_script('scholarship-search-bootstrap-select-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js', array('jquery', 'scholarship-search-bootstrap-js'), null, true);
-
-        wp_enqueue_script('scholarship-search-bootstrap-select-i18n-js', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js', array('jquery', 'scholarship-search-bootstrap-select-js'), null, true);
     }
 }
 add_action('wp_footer', 'scholarship_search_enqueue_scripts');
@@ -1415,39 +1484,33 @@ function course_form_submit()
     exit;
 }
 
-add_action('admin_post_nopriv_course_form', 'course_form_submit');
-add_action('admin_post_course_form', 'course_form_submit');
-
-
+add_action( 'admin_post_nopriv_course_form', 'course_form_submit' );
+add_action( 'admin_post_course_form', 'course_form_submit' );
 
 
 add_action('wp_ajax_load_courses', 'handle_ajax_load_courses');
 add_action('wp_ajax_nopriv_load_courses', 'handle_ajax_load_courses');
 
-function handle_ajax_load_courses()
-{
+function handle_ajax_load_courses() {
 
-
-    $country_value = isset($_POST['country']) ? strtolower($_POST['country']) : '';
-    $degree_value = isset($_POST['degree']) ? strtolower($_POST['degree']) : '';
-    $subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
-
-
-
+  
+$country_value = isset($_POST['country']) ? strtolower($_POST['country']) : '';
+$degree_value = isset($_POST['degree']) ? strtolower($_POST['degree']) : '';
+$subject_value = isset($_POST['subject']) ? strtolower($_POST['subject']) : '';
+   
     $subject_value = str_replace('-', ' ', $subject_value);
     $subject_value = ucwords($subject_value);
 
-
-
+    
     $page = $_POST['page'] ?? 1;
     $order = $_POST['order'] ?? 'DESC';
     $adsPerPage = 30;
     $offset = ($page - 1) * $adsPerPage;
 
     $country_value = str_replace('-', ' ', $country_value);
-
-
-
+    
+  
+   
 
     $pro_ip_api_key = '2fNMZlFIbNC1Ii8';
     // Get Current Device Data
@@ -1473,8 +1536,8 @@ function handle_ajax_load_courses()
     //List of institutions in that country
     $institute_ids_country = get_institution_ids($country_value);
 
-    if ($country == "europe") {
-        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));
+    if ($country_value == "europe"){
+        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
     }
 
     $location = code_to_country($location);
@@ -2692,6 +2755,14 @@ add_filter('query_vars', function ($vars) {
 });
 
 
+function custom_category_query_adjustments($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_category()) {
+        // Set the number of posts per page on category archives
+        $query->set('posts_per_page', 12);
+        // Add any other query adjustments here
+    }
+}
+add_action('pre_get_posts', 'custom_category_query_adjustments');
 
 
 // $url = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -3143,9 +3214,7 @@ function change_title_placeholder_text($title_placeholder, $post)
     }
     return $title_placeholder;
 }
-add_filter('enter_title_here', 'change_title_placeholder_text', 10, 2);
-
-
+add_filter( 'enter_title_here', 'change_title_placeholder_text', 10, 2 );
 
 
 
@@ -3170,6 +3239,33 @@ function display_latest_scholarships()
             echo '<div class="col-md-4" style="padding-left:2% !important;padding-right:4% !important;">';
             echo '<div class="scholarship-item">';
             echo '<div class="featured-image">' . get_the_post_thumbnail() . '</div>';
+            echo '<div class="more-scholarship-title-wrapper">';
+            echo '<h2 class="scholarship-title more-scholarship-post-title"><a style="color:#333c4d !important;" href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></h2>';
+            echo '<div class="meta-scholarship-blog" style="width:33%;float:right;margin-top:8px;"><span style="float:left;">' . get_the_date() . '</span></div></div>';
+             
+            $excerpt = get_the_content();
+            $excerpt = substr($excerpt, 0, 124);
+            echo '<p class="more-scholarship-post-excerpt" >' . $excerpt . ' ....  
+            <a href="' . esc_url(get_permalink()) . '" > Read more <i class="fa fa-arrow-right"></i> </a></p>';
+            
+            // Display scholarship categories associated with the current post
+$taxonomy = 'scholarship_category';
+$terms = get_the_terms(get_the_ID(), $taxonomy);
+if ($terms && !is_wp_error($terms)) {
+    echo '<div class="more-scholarship-post-categories">';
+    echo '<ul class="category-list">';
+    foreach ($terms as $term) {
+        $term_link = get_term_link($term, $taxonomy);
+        echo '<li><a href="' . esc_url($term_link) . '" class="scholarship_post_category_link" style="color:black !important;">' . esc_html($term->name) . '</a></li>';
+    }
+    echo '</ul>';
+    echo '</div>';
+}
+
+
+            echo '</div>'; 
+            echo '</div>'; 
+           
             echo '<h2 style="font-family:Roboto, Arial, Helvetica, sans-serif;padding-left:0px;padding-top:10px;padding-bottom:5px;font-size:26px !important;" class="scholarship-title">' . get_the_title() . '</h2>';
 
             $brief_intro = get_field('brief_intro');
@@ -3186,7 +3282,7 @@ function display_latest_scholarships()
 
         }
 
-        echo '</div>'; // close row
+        echo '</div>'; // Close the div with class="row"
     }
 
     wp_reset_postdata();
@@ -3194,6 +3290,10 @@ function display_latest_scholarships()
     return ob_get_clean();
 }
 add_shortcode('latest_scholarships', 'display_latest_scholarships');
+
+
+
+
 
 
 
@@ -5115,9 +5215,9 @@ function mepr_add_some_tabs($user)
         //List of institutions in that country
         $institute_ids_country = get_institution_ids($country_value);
 
-        if ($country == "europe") {
-            $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));
-        }
+    if ($country_value == "europe"){
+        $institute_ids_country = array_merge(get_institution_ids("germany"), get_institution_ids("united kingdom"));      
+    }
 
         $location = code_to_country($location);
 
@@ -5865,3 +5965,117 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
 //         delete_user_meta($user_id, 'gs_newsletter');
 //     }
 // }
+
+
+add_filter('rank_math/frontend/breadcrumb/items', function($crumbs, $class) {
+
+    if (is_singular("scholarships")) {
+
+        $post_id = get_the_ID();
+        $institution = get_field("scholarship_institution", $post_id);
+
+        $city = get_post($institution->cities);
+        $city_name = get_the_title($city);
+        $country_name = get_post_meta($city->ID, 'country', TRUE);
+
+        $lowercase = strtolower($country_name);
+        $hyphenated = str_replace(' ', '-', $lowercase);
+
+        $institution_query = get_institution_by_id($institution->ID);
+        
+        while ($institution_query->have_posts()) {
+            $institution_query->the_post();
+            $institution_name = get_the_title();
+        }
+        wp_reset_postdata();
+        $country_name = $country_name . " Scholarships";
+        $institution_link = get_permalink($institution->ID);
+
+        $last_item = $crumbs[1];
+        $crumbs[1] = [
+            'Scholarships',
+            site_url() . '/scholarship-search',
+        ];
+
+        $crumbs[2] = [
+            $country_name,
+            site_url() . '/scholarship-search/' . $hyphenated,
+        ];
+
+        $crumbs[3] = [
+            $institution_name . ' Scholarships',
+            $institution_link,
+        ];
+
+        $crumbs[4] = $last_item;
+    }
+
+     if (is_singular("institution")) {
+    
+    wp_reset_postdata();
+    
+    $institution_post_id = get_the_ID();
+    $institution_title = get_the_title();
+    
+    $institution = get_post($institution_post_id);
+    
+    $city = get_post($institution->cities);
+
+    $city_name = get_the_title($city);
+    $country_name = get_post_meta($city->ID, 'country', TRUE);
+
+        $lowercase = strtolower($country_name);
+        $hyphenated = str_replace(' ', '-', $lowercase);
+        $country_name = $country_name . " Scholarships";
+        
+        wp_reset_postdata();
+        $last_item1 = $crumbs[1];
+        
+        $crumbs[1] = [
+             $country_name,
+             site_url() . '/scholarship-search/' . $hyphenated,
+        ]; 
+        
+
+        $crumbs[2] = [
+             $institution_title . ' Scholarships for International Students',
+             '',
+             'hide_in_schema' => '',
+        ]; 
+
+     }
+
+    return $crumbs;
+
+}, 10, 2);
+
+
+
+
+
+
+
+function custom_mime_types( $mime_types ) {
+    $mime_types['avif'] = 'image/avif'; // Adding .avif
+    return $mime_types;
+}
+add_filter( 'mime_types', 'custom_mime_types' );
+
+function add_avif_upload_support( $checked, $file, $filename, $mimes ) {
+    if ( ! $checked['type'] ) {
+        $check_filetype = wp_check_filetype( $filename, $mimes );
+        $ext = $check_filetype['ext'];
+        $type = $check_filetype['type'];
+        $proper_filename = $filename;
+
+        if ( $type && 0 === strpos( $type, 'image/' ) && $ext !== 'svg' ) {
+            $checked = compact( 'ext', 'type', 'proper_filename' );
+        } else {
+            $checked = array( 'ext' => false, 'type' => false, 'proper_filename' => false );
+        }
+    }
+
+    return $checked;
+}
+add_filter( 'wp_check_filetype_and_ext', 'add_avif_upload_support', 10, 4 );
+

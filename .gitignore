@@ -1,3 +1,8 @@
 scripts/search-data.json
 node_modules
+<<<<<<< HEAD
 vendor
+=======
+vendor
+assets/dist
+>>>>>>> origin/master

@@ -1,0 +1,1 @@
+import "../sass/partner_template.scss";

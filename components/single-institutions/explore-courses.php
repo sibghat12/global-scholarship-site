@@ -5,6 +5,6 @@
         <a class="gs-institution-explore-courses-button" target="_blank" href="<?php echo site_url('opencourses').'/' ?>">Search Courses &raquo;</a>
     </div>
     <div class="gs-institution-explore-courses-thumbnail-container">
-        <img class="gs-institution-explore-courses-thumbnail-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/explore-institutions.png" alt="Explore Institutions">
+        <img class="gs-institution-explore-courses-thumbnail-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/explore-institutions.webp" alt="Explore Institutions">
     </div>
 </aside>

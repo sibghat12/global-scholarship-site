@@ -1,0 +1,146 @@
+.new-table-of-contents {
+  width:80%;  
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding-bottom: 30px;
+}
+
+
+
+.new-table-of-contents a:hover {
+  text-decoration: underline;
+}
+
+
+.new-table-of-contents  h2 {
+    margin-bottom:0px !important;
+    margin-top:0px !important;
+    padding-top:10px !important;
+}
+
+.new-table-of-contents li {
+   color:#008fc5  !important;
+}
+
+
+.new-table-of-contents ol,
+.new-table-of-contents ul {
+  list-style: none !important;
+}
+.new-table-of-contents li {
+    list-style: none !important;
+    font-size:20px !important;
+}
+
+
+.new-table-of-contents {
+  width: 100%;
+}
+
+.new-table-of-contents .toc-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.new-table-of-contents .toc-column {
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.new-table-of-contents .sub-steps {
+  padding-left: 35px;
+  font-size:15px;
+  list-style-type: none;
+}
+
+.sub-steps a {
+    font-size:18px;
+}
+
+
+
+@media screen and (max-width: 767px)  {
+.new-table-of-contents {
+    width:100% !important;
+}
+.new-table-of-contents .toc-columns {
+    display: block !important;
+}
+.new-table-of-contents .toc-column {
+    width:100% !important;
+}
+}
+
+
+.toc-column li {
+    margin-top:10px !important;
+    margin-bottom:10px !important;
+    font-weight: 600 !important;
+}
+.sub-steps li {
+    margin-top:0px !important;
+    margin-bottom:0px !important;
+    font-weight: 400 !important;
+}
+
+
+.sub-steps li a{
+    font-weight:400 !important;
+    text-decoration: none !important;
+    font-size:18px !important;
+}
+
+.toc-columns li a {
+
+ 
+ text-decoration: none !important;
+}
+
+.new-table-of-contents {
+ 
+background: #f7f7f7 !important;
+}
+
+.new-table-of-contents h2{
+color:black !important;
+}
+
+
+.toc-columns li a:hover {
+ color:#f7f7f7 !important;
+ text-decoration: underline !important;
+}
+
+
+
+
+.toc-icon {
+    margin-left:20px;
+    background: #559cc6;
+    padding:5px !important;
+}
+.toc-icon img {
+
+
+    width:20px;
+    height:20px;
+}
+
+.toc-wrapper {
+    display: none;
+}
+
+.toc-icon {
+    height: 30px !important;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+   background: #559cc6;
+    padding-top: 17px !important;
+     padding-bottom: 17px !important;  
+     padding-left:10px !important;
+    border-radius: 2px; 
+}

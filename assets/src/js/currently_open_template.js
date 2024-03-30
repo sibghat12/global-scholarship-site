@@ -1,0 +1,1 @@
+import "../sass/currently_open_template.scss";

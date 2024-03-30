@@ -1,0 +1,515 @@
+.page-template-template-opencourse .fusion-row {
+    width:1280px;
+}
+
+
+.page-template-template-opencourse  .searchform {
+
+    width:30% !important;
+    float:left !important;
+    border:none !important;
+}
+
+ .opencourse-template .filter-boxes-wrap {
+    align-items:center !important;
+}
+ .opencourse-template .filter-wrapper {
+    background:none !important;
+    border:none;
+    padding:0px;
+}
+
+ .opencourse-template  .fusion-search-form-content .fusion-search-field input {
+     
+    background:#f4f8fa !important;
+    border:none !important;
+}
+
+.opencourse-template .fusion-search-submit  {
+    color: #aaadaf !important;
+     font-size:24px !important;
+}
+
+.opencourse-template  .fusion-search-form-content .fusion-search-field ::placeholder {
+     color:#aaadaf !important;
+    font-size:16px !important;
+}
+
+ .opencourse-template .filter-btn button {
+     text-shadow:none !important;
+     font-size:20px !important;
+     color:white !important;
+     border:none !important;
+
+     border:none !important;
+     background:#77a6c9 !important;
+}
+
+.opencourse-template .filter-box select { 
+    background:#f4f8fa !important;
+    border-radius:0px !important;
+    border:none !important;
+    color:black;
+    font-size:18px;
+    font-weight:500;
+    
+    }
+
+.page-template-template-opencourse  .sidebar {
+    display:none !important;
+}
+
+
+
+.course-card-new{
+padding-top:24px !important;
+    padding-bottom:24px !important;
+    background:#f4f8fa !important;
+ height: auto !important;
+ min-height: 100px !important;
+ margin-top:20px !important;
+}
+
+.opencourse-template .course-filter form {
+    margin-left:0px !important;
+}
+
+
+.opencourse-template .filter-box {
+  position: relative;
+  display: inline-block;
+}
+
+.opencourse-template .filter-box select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  outline: none;
+  color: #333;
+  min-width: 100%;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.opencourse-template .filter-box::after {
+ content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background-image: url('https://media-public.canva.com/xCswQ/MAESmzxCswQ/1/t.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+    margin-top:5px!important;
+}
+
+
+
+.opencourse-template .post-content p
+{ 
+    line-height:32px !important;
+}
+
+.left-course-card p {
+    font-size:16px !important;
+    font-weight:400 !important;
+}
+
+
+
+opencourse-title p {
+    font-size:15px !important;
+    }
+    
+    .funded-line-moble{ 
+        display: none !important;
+    }
+    
+    .domestic , .international {
+        width:33% !important;
+    }
+    .domestic p , .international p {
+            font-size:16px !important;
+        } 
+
+
+
+        @media screen and (max-width: 1250px) {
+
+            .course-card-new {
+              min-height: 300px !important; 
+                height: auto !important; 
+             }
+                /* Set the font size of the <p> elements inside elements with .domestic and .international classes to 14px */
+                .domestic p, .international p {
+                    font-size: 14px !important;
+                }
+            
+                /* Set the width of the element with .annual-tuition class inside another .annual-tuition element to 100% */
+               .col-md-4 .annual-tuition {
+                    width: 100% !important;
+                }
+            
+                .col-md-4 .annual-tuition {
+                   text-align: center !important;
+                }
+            
+                /* Set the width of the elements with .domestic and .international classes to 50% */
+                .col-md-4 .domestic, .col-md-4 .international {
+                    width: 50% !important;
+                }
+            
+                
+            }
+
+
+
+
+            @media screen and (max-width: 1400px) {
+
+                .opencourse-template .domestic , .opencourse-template .international{
+                   width:50% !important;
+                } 
+                
+                .opencourse-template .apply-now-btn{
+                    width:98% !important;
+                    text-align: center !important;
+                    padding-top:6px !important;
+                    padding-left:0px !important;
+                }
+                
+                .annual-tuition {
+                    width:100% !important;
+                }
+                .apply-now-btn p {
+                    margin-bottom:0px !important;
+                }
+                
+                .opencourse-template aside {
+                    width:100% !important;
+                }
+                
+                .opencourse-template .filter-boxes-wrap {
+                    width:100% !important;
+                }
+                
+                .opencourse-template .filter-wrapper {
+                    width:100% !important;
+                }
+                
+                
+                }
+
+                .course-card-new:hover .opencourse-title h2 {
+                    text-decoration: underline; 
+                }
+
+
+
+                @media screen and (max-width: 991px) {
+
+                    .opencourse-template .col-md-4{
+                    border-left:none !important;
+                    }
+                    
+                    .opencourse-template aside {
+                        width:100% !important;
+                    }
+                    
+                    .opencourse-template .filter-boxes-wrap {
+                        width:100% !important;
+                    }
+                    
+                    .apply-now-btn p {
+                        margin-bottom:0px !important;
+                    }
+                    
+                    .funded-line{
+                        display:none;
+                    }
+                    .funded-line-moble{
+                        display: block !important;
+                    }
+                    .funded-line-mobile {
+                        display: block !important;
+                    }
+                    
+                    .opencourse-title  p {
+                        font-size:15px !important;
+                    }
+                    
+                    .annual-tuition {
+                    font-size: 18px !important;
+                    }
+                    
+                    }
+
+
+
+                    
+@media screen and (max-width: 1100px) { 
+    .opencourse-template .filter-boxes-wrap {
+         display: flex !important;
+     }
+     .opencourse-template .filter-btn {
+         margin-top:0px !important;
+     }
+ }
+ 
+ @media screen and (max-width: 767px) { 
+    .opencourse-template .filter-boxes-wrap {
+         display: grid !important;
+     }
+ }
+ 
+ @media screen and (max-width: 600px) {
+ .opencourse-title-div h1{
+     text-align:center !important;
+     font-size:38px !important;
+ }
+ .opencourse-template aside {
+     width:100% !important;
+ }
+ 
+ .opencourse-template .col-md-4{
+ border-left:none !important;
+ }
+ 
+ .opencourse-template .right-aside{
+     height: auto !important;
+ }
+ 
+ 
+ .opencourse-template .domestic , .opencourse-template .international{
+    width:50% !important;
+ } 
+ 
+ .opencourse-template .apply-now-btn{
+     width:100% !important;
+     text-align: center !important;
+     padding-top:10px !important;
+     padding-left:0px !important;
+ }
+ 
+ .opencourse-template .apply-now-btn button{
+     margin:auto !important;
+ }
+ 
+ .annual-tuition {
+     width:100% !important;
+ }
+ 
+ .opencourse-template .col-md-8 h2 {
+      padding-top:10px !important;
+ } 
+ 
+ .funded-line-mobile {
+     display: block !important;
+ }
+ 
+ .course-img img {
+     height: auto !important;
+ }
+ .opencourse-title-div h1 {
+     font-size:24px !important;
+ }
+ 
+ .right-mobile {
+     display: block !important;
+ }
+ .right-desktop{
+     display: none !important;
+ }
+ 
+ .opencourse-title h2 {
+     margin-top:10px !important;
+     line-height: 28px !important;
+ }
+ 
+ .opencourse-title  p {
+     font-size:15px !important;
+ }
+ 
+ .annual-tuition-div {
+     margin-top:10px !important;
+ }
+ 
+ 
+ .opencourse-template .apply-now-btn p{
+ padding-left:0px !important;
+  }
+ 
+ .opencourse-title h2 {
+ 
+     font-size: 18px !important;
+     line-height: 23px !important
+ }
+ 
+ .page-template-template-opencourse .fusion-row{
+     padding-left:10px;
+     padding-right:10px;
+ }
+ 
+ .opencourse-title h2{
+     padding-left:7px !important;
+     padding-right:0px !important;
+     margin-top:0px !important;
+ }
+ 
+ .opencourse-title p {
+     padding-top:0px !important;
+     padding-left:7px !important;
+     font-size:13px !important;
+     line-height: 18px !important;
+ }
+ 
+ 
+ .col-md-8 {
+     
+     padding-right:0px !important;
+ }
+ 
+ }
+
+
+ 
+ @media screen and (max-width: 400px) {
+
+
+    .col-md-8{
+        padding-left:5px !important;
+    }
+    
+    
+    
+    .course-card-new{
+        padding-left:7px !important;
+        padding-right:7px !important;
+    }
+    }
+    
+    
+    
+    .course-card-new {
+        margin:auto !important;
+        max-width:1440px !important;
+    }
+    
+    
+    .right-mobile p {
+    padding-left:0px !important;
+    }
+    
+    .right-mobile {
+        margin-bottom:20px !important;
+    }
+    
+    
+    
+    .custom-tooltip-styling {
+        width: 240px;
+        background-color: black !important;
+        color: white !important;
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px !important;
+        font-size:12px !important;
+        border:none !important;
+    }
+
+    .card-section-new {
+        max-width:1000px !important;
+    }
+    
+    .opencourse-template .filter-wrapper {
+        width:100% !important;
+    }
+
+    .right-mobile p{
+        height: 30px !important;
+        }
+        .right-mobile {
+          margin-bottom:5px !important;
+        }
+        
+        @media screen and (max-width: 350px) {
+        
+        
+        
+        .right-mobile p{
+            width:100% !important;
+            height: 30px !important;
+            font-size:14px !important;
+        }
+        
+        }
+
+
+        #main .sort-by-fee {
+            float:right !important;
+            max-width:1000px !important;
+            margin-bottom:20px !important;
+        }
+        
+        #main .fee-text {
+            font-weight: 700px !important;
+            color:black !important;
+            font-size: 14px !important;
+        }
+        
+        .flipped {
+                    transform: rotate(180deg) !important;
+                    transition: transform 0.3s ease !important; /* Add a smooth transition effect */
+                }
+        
+                #flipImage {
+                    cursor: pointer !important; /* Change cursor to a pointer */
+                }
+        
+        
+                .opencourse-pagination {
+                    text-align: center !important;
+                    margin:auto;
+                    padding-top:30px;
+                    padding-bottom:30px;
+                }
+
+
+
+                .pagination-button {
+                    cursor: pointer;
+                }
+                
+                .pag-next:hover{
+                   background-color: #008fc6 !important; 
+                }
+                      
+                .pag-pre:hover{
+                    color:black !important;
+                }
+                
+                
+                @media (max-width: 1100px) {
+                    .card-section-new {
+                    margin-top:60px !important;
+                    }
+                }
+
+
+                .opencourse-title-div h1 {
+                    font-size:32px;
+                    font-weight:700;
+                    text-align:center; 
+                    color:black !important;
+                    padding-top:20px;
+                    padding-left:0px !important;
+                    padding-bottom: 10px;
+                    font-family: 'Roboto', Arial, Helvetica, sans-serif; 
+                    } 
+                
