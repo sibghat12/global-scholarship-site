@@ -37,14 +37,6 @@ jQuery(document).ready(function($) {
                 '&response_type=' + encodeURIComponent(responseType) +
                 '&scope=' + encodeURIComponent(scope);
 
-    // $('.gs-btn').on('click', function(e) {
-    //     console.log("e.target", e.target)
-
-    //     // Example of how to use the login URL: redirect or attach to an element's event
-    //     // Redirect to the login URL
-    //     window.location.href = signupUrl;
-
-    // })
     
     // Or attach the login URL to a button click event
     var signupButton = document.getElementById('googleSignupButton'); // Ensure you have this element in your HTML
@@ -58,7 +50,7 @@ jQuery(document).ready(function($) {
         // Signup Multistep Modal Logic
         var currentStep = 0;
         var steps = document.getElementsByClassName("form-step");
-        var navSteps = document.querySelectorAll(".steps-navigation .step");
+        var navSteps = document.querySelectorAll(".steps-navigation .step-container"); // Updated selector
         var navStepContainer = document.querySelector(".steps-navigation");
 
         // Initially hide the steps navigation
@@ -90,19 +82,24 @@ jQuery(document).ready(function($) {
         }
 
         function updateStepsNavigation(currentStep) {
-            // Adjust the navigation steps based on the current step
-            navSteps.forEach(function(step, index) {
+            navSteps.forEach(function(container, index) {
+                var step = container.querySelector(".step");
+                var stepLabel = container.querySelector(".step-label");
                 step.classList.remove("step-active", "step-completed", "line-active");
-                if (index < currentStep - 1) { // Adjust index for visual representation
+                stepLabel.classList.remove("stepLabel-active", "stepLabel-completed");
+                if (index < currentStep - 1) {
                     step.classList.add("step-completed");
+                    stepLabel.classList.add("stepLabel-completed");
                 } else if (index === currentStep - 1) {
                     step.classList.add("step-active");
+                    stepLabel.classList.add("stepLabel-active");
                 }
                 if (index < currentStep) {
                     step.classList.add("line-active");
                 }
             });
         }
+    
 
         // Attach event listeners to next and previous buttons
         var continueBtn = document.querySelector(".gs-signup-button-continue");
@@ -128,9 +125,19 @@ jQuery(document).ready(function($) {
                 formData.append('gs_gender', document.querySelector('select[name="gs_gender"]').value);
                 formData.append('gs_home_country', document.querySelector('select[name="gs_home_country"]').value);
                 formData.append('gs_degree', document.querySelector('input[name="gs_degree"]:checked').value);
-                formData.append('gs_interested_country', document.querySelector('select[name="gs_interested_country"]').value);
-                formData.append('gs_subject', document.querySelector('select[name="gs_subject"]').value);
-        
+                // formData.append('gs_interested_country', document.querySelector('select[name="gs_interested_country"]').value);
+                // formData.append('gs_subject', document.querySelector('select[name="gs_subject"]').value);
+                // Handle multi-select for interested countries
+                var interestedCountries = document.querySelector('select[name="gs_interested_country[]"]');
+                Array.from(interestedCountries.selectedOptions).forEach(option => {
+                    formData.append('gs_interested_country[]', option.value);
+                });
+
+                // Handle multi-select for subjects
+                var subjects = document.querySelector('select[name="gs_subject[]"]');
+                Array.from(subjects.selectedOptions).forEach(option => {
+                    formData.append('gs_subject[]', option.value);
+                });
                 fetch(myAjax.ajaxurl, {
                     method: 'POST',
                     body: formData,
@@ -141,7 +148,8 @@ jQuery(document).ready(function($) {
                     if (data.success) {
                         // alert('User Registered Successfully!');
                         // Redirect to the profile page with the user_id
-                        window.location.href = `${myAjax.siteUrl}/account/?action=profile`;
+                        // window.location.href = `${myAjax.siteUrl}/account/?action=profile`;
+                        window.location.href = `${myAjax.siteUrl}/account/?action=profile&user_id=${data.data.user_id}`;
                     } else {
                         alert(data.data.message);
                     }
@@ -160,22 +168,33 @@ jQuery(document).ready(function($) {
             button.addEventListener("click", function() { moveStep(false); });
         });
 
-        // Direct navigation to previous steps
-        navSteps.forEach((step, index) => {
-            step.addEventListener("click", () => {
+        // // Direct navigation to previous steps
+        // navSteps.forEach((step, index) => {
+        //     step.addEventListener("click", () => {
+        //         if (index <= currentStep) {
+        //             steps[currentStep].style.display = "none";
+        //             currentStep = index;
+        //             showStep(currentStep);
+        //         }
+        //         // Check if we're navigating backwards; forward navigation might need validation
+        //       if (index < currentStep) {
+        //           steps[currentStep].style.display = "none"; // Hide the current step
+        //           currentStep = index + 1; // Adjust because navigation starts from step 2 visually
+        //           showStep(currentStep);
+        //       }
+        //     });
+
+        // });
+        navSteps.forEach((container, index) => {
+            container.addEventListener("click", () => {
                 if (index <= currentStep) {
-                    steps[currentStep].style.display = "none";
-                    currentStep = index;
+                    steps[currentStep].style.display = "none"; // Hide the current step
+                    currentStep = index; // Set the current step to the one clicked
                     showStep(currentStep);
                 }
-                // Check if we're navigating backwards; forward navigation might need validation
-              if (index < currentStep) {
-                  steps[currentStep].style.display = "none"; // Hide the current step
-                  currentStep = index + 1; // Adjust because navigation starts from step 2 visually
-                  showStep(currentStep);
-              }
             });
-
         });
+
+        $('.interested_country_container select, .subject_container select').select2();
 
 });

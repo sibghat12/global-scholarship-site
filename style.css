@@ -2945,7 +2945,7 @@ padding:16px !important;
     color:white;
     background-color: #559cc6; 
 }
- 
+
 .tax-scholarship_category .courses-filter-search ,
 .page-template-template-recent-scholarship-posts  .courses-filter-search {
     display: none; 
@@ -3074,6 +3074,7 @@ padding-bottom:5px;
    margin-top:40px !important;
 }
 
+
 .tax-scholarship-receipt-title{
     margin-top:20px;
     margin-bottom: 40px;
@@ -3092,3 +3093,4 @@ padding-right:4% !important;
     margin-bottom:5px; 
     font-size:24px;
 }
+

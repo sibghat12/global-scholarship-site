@@ -165,12 +165,13 @@
 
             
             <?php 
-            if ( comments_open() || get_comments_number() ) {
-                comments_template();
-            }
+                if ( comments_open() || get_comments_number() ) {
+                    comments_template();
+                }
+                // GS Scholarship Feedback Form    
             ?>
+            <?php require get_stylesheet_directory() . '/components/single-scholarships/feedback-form.php'; ?>
 
-            
 
         </div>
         <?php // GS Scholarships Newsletter ?>

@@ -1,0 +1,1 @@
+{"version":3,"file":"css/test.css","mappings":"AAKY,qGACI,wBAJhB","sources":["webpack:///./src/sass/test.scss"],"sourcesContent":[".scholarships-template-default.single-scholarships {\n\n    #boxed-wrapper{\n\n        #main {\n            .gs-scholarship-overview-box {\n                background-color: inherit;\n            }\n        }\n    }\n}"],"names":[],"sourceRoot":""}
