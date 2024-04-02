@@ -27,7 +27,7 @@ const entry = {
   gs_login_modal: [__dirname + `/${assetsFolder}/src/js/gs_login_modal.js`],
   currently_open_template: [__dirname + `/${assetsFolder}/src/js/currently_open_template.js`],
   scholarship_institution_responsive: [__dirname + `/${assetsFolder}/src/js/scholarship_institution_responsive.js`],
-  feature_related_courses: [__dirname + `/${assetsFolder}/src/js/feature_related_courses.js`],
+  //feature_related_courses: [__dirname + `/${assetsFolder}/src/js/feature_related_courses.js`],
   homepage_template: [__dirname + `/${assetsFolder}/src/js/homepage_template.js`],
 
 };
