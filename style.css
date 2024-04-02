@@ -1953,9 +1953,6 @@ input[type="submit"] {
         -.25px 0px .1px;
 }
 
-
-
-
 .s-course-details .info-tags{
     display: flex;
     flex-wrap: wrap;
@@ -2071,8 +2068,6 @@ input[type="submit"] {
        min-width:400px !important;
    }
 }
-
-
 
 .feature-course-section {
   margin-top:50px;
@@ -2950,147 +2945,7 @@ padding:16px !important;
     color:white;
     background-color: #559cc6; 
 }
-
-/* Hide the mobile search box on screens larger than 767px */
-@media screen and (min-width: 768px) {
-    .gs-modal-content {
-        padding: 0 10px;
-    }
-}
-
-
-.error404 .courses-filter-search {
-    display: none;
-}
-
-.error404 .fusion-tb-footer {
-    margin-top: 150px !important;
-}
-
-#gsLoginModal .gs-modal-footer span.gs-modal-signup .alt-signup-text
-{
-    color:#FF3131 !important;
-}
-
-button#googleSignupButton {
-    display: flex;
-    align-items: center;
-    /* justify-content: space-around; */
-}
-
-button#googleSignupButton svg {
-    display: flex;
-    justify-content: flex-start;
-}
-
-button#googleSignupButton span {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-#gsSignupModal .gs-modal-body #gsMultiStepFormRegister.gs-form-register .gs-signup-button-continue {
-    width: 100% !important;
-    padding: 10px 5px !important;
-    background: #FF3131 !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    font-size: 1.1rem !important;
-    border: 0;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.steps-navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.steps-navigation .step {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background-color: #f9f9f9; /* Default background */
-    color: #000; /* Default text color, hidden when step is completed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid #ccc;
-    position: relative;
-    font-size: 14px; /* Adjust as needed */
-}
-
-.step-completed, .step-active {
-    background-color: #008FC6 !important;
-    border-color: #008FC6 !important;
-    font-size: 0 !important; /* Hide the text by setting font-size to 0 */
-}
-
-.step-completed::after, .step-active::after {
-    content: "\2713"; /* Checkmark */
-    font-size: 16px; /* Adjust as needed */
-    color: white; /* Checkmark color */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the checkmark */
-    line-height: 1; /* Adjust line height for vertical alignment */
-}
-
-.step-completed:before, .step-active:before {
-    content: "\2713"; /* Checkmark */
-    font-size: 16px; /* Adjust as needed */
-    color: white; /* Checkmark color */
-    position: absolute;
-}
-
-/* Line between steps */
-.steps-navigation .step:not(:last-child):after {
-    content: '';
-    position: absolute;
-    left: 128%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: calc(100% + 50px);
-    height: 2px;
-    background-color: #767676;
-}
-
-/* Dynamic class for changing line color */
-.step.line-active:after {
-    background-color: #008FC6 !important; /* Change line color when step is active or completed */
-}
-  .degree-options input[type="radio"] {
-    display: none;
-  }
-  
-  .degree-options label.degree-label {
-    display: inline-block;
-    background-color: white; 
-    color: black; 
-    padding: 10px 20px; 
-    border: 2px solid #008FC6; 
-    border-radius: 5px; 
-    margin: 5px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Change background color slightly when hovering over the label */
-  .degree-options label.degree-label:hover {
-    background-color: #f0f0f0;
-  }
-  /* Style for when the radio button is checked */
-  .degree-options input[type="radio"]:checked + label {
-    background-color: #008FC6; /* Change background color */
-    color: white; /* Change text color */
-  }
-  
+ 
 .tax-scholarship_category .courses-filter-search ,
 .page-template-template-recent-scholarship-posts  .courses-filter-search {
     display: none; 
@@ -3100,7 +2955,6 @@ button#googleSignupButton span {
 .page-template-template-recent-scholarship-posts .more-scholarship-post-title  {
   width:66%;  
   float:left;
-
   font-family:Roboto, Arial, Helvetica, sans-serif;
   padding-left:0px;
   padding-bottom:5px;
@@ -3157,7 +3011,6 @@ padding-bottom:5px;
     display: inline-block;
     margin-right: 10px; 
 }
-
 
 .more-scholarship-post-categories .scholarship_post_category_link {
     margin-left:0px !important;
@@ -3221,53 +3074,6 @@ padding-bottom:5px;
    margin-top:40px !important;
 }
 
-.single-scholarships #main .rank-math-breadcrumb a {
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-    line-height: 1.1rem;
-    color: #000000 !important;
-}
-.single-scholarships #main .rank-math-breadcrumb a:hover {
-   text-decoration: underline;
-}
-
-.single-scholarships  .rank-math-breadcrumb .last {
-    font-size: 14px;
-    font-weight: 700;
-    color: #66A0F6;
-}
-.single-institution #main .rank-math-breadcrumb a {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    text-align: center;
-    line-height: 24px;
-    color: #000000 !important;
-    text-decoration: underline;
-}
-.single-institution #main .rank-math-breadcrumb a:hover {
-   text-decoration: underline;
-}
-
-.single-institution  .rank-math-breadcrumb .last {
-    color: #66A0F6;
-     font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem  !important;
-    font-weight: 400;
-     line-height: 24px;
-}
-
-.gs-institution-overview-text p {
-    line-height: 24px !important;
-}
-
-@media screen and (max-width: 600px) {
-.gs-scholarship-overview-text h1 {
-    font-size:24px !important;
-    line-height: 31px;
-}  }
-
 .tax-scholarship-receipt-title{
     margin-top:20px;
     margin-bottom: 40px;
@@ -3276,6 +3082,8 @@ padding-bottom:5px;
 padding-left:2% !important;
 padding-right:4% !important;
 }
+
+
 .nonmatching-container {
     width:70%;
 }

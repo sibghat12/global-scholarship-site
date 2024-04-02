@@ -801,3 +801,28 @@ form#gs-feedback-form {
     width: max-content;
     border-radius: 6px;
 }
+
+
+.single-scholarships #main .rank-math-breadcrumb a {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1rem;
+    color: #000000 !important;
+}
+.single-scholarships #main .rank-math-breadcrumb a:hover {
+   text-decoration: underline;
+}
+
+.single-scholarships  .rank-math-breadcrumb .last {
+    font-size: 14px;
+    font-weight: 700;
+    color: #66A0F6;
+}
+
+
+@media screen and (max-width: 600px) {
+.gs-scholarship-overview-text h1 {
+    font-size:24px !important;
+    line-height: 31px;
+}  }
