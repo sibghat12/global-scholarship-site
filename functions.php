@@ -100,7 +100,6 @@ function theme_enqueue_styles() {
 
     if (is_single() && get_post_type() === 'post') {
      wp_enqueue_style( 'single-post-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_post.css', [], '1.0.0' );
-     wp_enqueue_style( 'feature_related_courses-css', get_stylesheet_directory_uri() . '/assets/dist/css/feature_related_courses.css', [], '1.0.0' );
     }
 
     if(is_page('partner-with-us')){
@@ -135,7 +134,9 @@ function theme_enqueue_styles() {
         wp_enqueue_style( 'scholarship-cpt-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_institution.css', [], '1.0.0' );
     }
     
-    wp_enqueue_style( 'scholarship_institution_responsive', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_institution_responsive.css', [], '1.0.0' );
+   if ( is_singular('institution') || is_singular('scholarships') ) {
+       wp_enqueue_style( 'scholarship_institution_responsive', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_institution_responsive.css', array(), '1.0.0' );
+    }
 
     if(is_singular('scholarship_post')) {
         wp_enqueue_script('gs-scholarship_post',  get_stylesheet_directory_uri() . '/assets/dist/js/single_scholarships_post.js', array('jquery'), '1.0.0', true);
