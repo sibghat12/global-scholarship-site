@@ -1,3 +1,9 @@
+
+.gs-feedback-form-container {
+   margin-bottom:40px;
+   margin-top:40px !important;
+}
+
 .single-scholarships .post-content {
     width: 1250px;
     max-width: 100%;
@@ -438,7 +444,7 @@
     text-decoration: none;
     color: #000 !important;
     margin-right: 10px;
-    font-family: roboto,sans-serif;
+    
 }
 
 /* Scholarships Form */
@@ -745,7 +751,7 @@ form#gs-feedback-form {
     color: #000 !important;
     font-weight: 100 !important;
     font-style: italic;
-    font-family: 'Roboto', sans-serif;
+   
 }
 
 
@@ -776,7 +782,7 @@ form#gs-feedback-form {
 #main .gs-institution-explore-courses .gs-institution-explore-courses-content p.gs-institution-explore-courses-title {
     padding: 0;
     font-size: 1.8rem;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+   
     font-weight: 700;
 }
 
@@ -786,11 +792,11 @@ form#gs-feedback-form {
 }
 
 #main .gs-institution-explore-courses .gs-institution-explore-courses-title{
-    font-family: 'Roboto', sans-serif;
+    
 }
 
 #main .gs-institution-explore-courses .gs-institution-explore-courses-button{
-    font-family: 'Roboto', sans-serif;
+   
     font-weight: 700;
     font-size: 1rem;
     padding: 10px 18px;
@@ -826,3 +832,4 @@ form#gs-feedback-form {
     font-size:24px !important;
     line-height: 31px;
 }  }
+

@@ -1,0 +1,1 @@
+import "../sass/recent_scholarship_receipents.scss";

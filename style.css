@@ -9,6 +9,9 @@ Text Domain:  Avada
 */
 /* Intitution Single PAge Content 100%*/
 
+
+
+
 body.single.single-institution #main #content {
     width: 100% !important; 
 }
@@ -1782,27 +1785,7 @@ input[type="submit"] {
     font-size:1.3em !important;
 }
 
-.course-buttons {
-    padding: 15px 25px;
-    display:block;
-    background-color: white;
-    color:black;
-    font-size: 1.15rem;
-    border-color:black;
-    border:2px solid;
-    font-weight:700;
-    margin-left:auto;
-    margin-right:auto;
-}
 
-.course-aside a{
-    text-decoration: none;
-}
-
-.course-buttons:hover{
-    background-color:#f0f0f0;
-    color:black;
-}
 
 /*Tablet + Desktop*/
 @media only screen and (min-width: 481px){
@@ -2033,7 +2016,7 @@ input[type="submit"] {
      }
     }
     
-    .feature-course-section {
+    /*.feature-course-section {
         margin-top:50px;
     }
    .feature-course-div{
@@ -2047,7 +2030,7 @@ input[type="submit"] {
     padding-bottom:30px;
     padding-left:20px;
     padding-right:20px;
-}
+}*/
 
 .awb-menu_row .menu-text {
     text-align: left !important; 
@@ -2063,13 +2046,17 @@ input[type="submit"] {
     .awb-menu__mega-wrap {
         display: none;
     }
-   @media screen and (max-width: 767px) {
+
+
+/*@media screen and (max-width: 767px) {
    .page-template-template-currently-open-scholarship .filter-box{
        min-width:400px !important;
    }
-}
+}*/
 
-.feature-course-section {
+
+
+/*.feature-course-section {
   margin-top:50px;
 }
    .feature-course-div{
@@ -2108,9 +2095,9 @@ input[type="submit"] {
 .courses-text-color {
   color:  #008FC6 !important;
 }
+*/
 
-
-@media screen and (max-width: 900px) {
+/*@media screen and (max-width: 900px) {
     .feature-course-div img {
     height: auto;
     width:100%;
@@ -2137,7 +2124,7 @@ input[type="submit"] {
         padding:05px !important;
      }    
     
-}
+}*/
 
 /*  End Currently Open Scholarship */
 .table.data-table tr.closed {
@@ -2778,7 +2765,7 @@ padding:16px !important;
 
 /* GS Email Subscription Page */
 
-#main .post-content .fusion-text.gs-email-subscription-text p{
+/*#main .post-content .fusion-text.gs-email-subscription-text p{
     padding-left: 0!important;
 }
 #main .post-content .equal-height .fusion-builder-row {
@@ -2807,7 +2794,6 @@ padding:16px !important;
     object-fit: contain;
 }
 
-/* What They Say about us Section */
 .wts-row .fusion-builder-row {
     margin-top: 78px !important
 }
@@ -2847,6 +2833,10 @@ padding:16px !important;
     font-size: 20px !important;
 }
 
+*/
+
+
+
 #main .post-cta-section .apply-now {
     font-size: 18px;
     font-weight: 500;
@@ -2872,7 +2862,7 @@ padding:16px !important;
 }
 
 
-.gs-courses-boxes-container {
+/*.gs-courses-boxes-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2886,9 +2876,9 @@ padding:16px !important;
     justify-content: center;
     align-items: center;
     background: #F4F7FB;
-    /* gap: 12px; */
+    
     padding: 20px 0;
-    /* gap: 12px; */
+    
     align-self: stretch;
     width: 190px;
     max-height: 220px;
@@ -2923,9 +2913,14 @@ padding:16px !important;
     padding: 2px;
     margin: 0px !important;
     color: #516A8E;
-}
+}*/
 
-.post_categories {
+
+
+
+
+
+/*.post_categories {
     margin-left:10px;
     margin-top:30px;
 }
@@ -3069,10 +3064,7 @@ padding-bottom:5px;
     max-height: auto !important;
 } }
 
-.gs-feedback-form-container {
-   margin-bottom:40px;
-   margin-top:40px !important;
-}
+
 
 
 .tax-scholarship-receipt-title{
@@ -3082,7 +3074,9 @@ padding-bottom:5px;
 .tax-scholarship-receipt-grid {
 padding-left:2% !important;
 padding-right:4% !important;
-}
+}*/
+
+
 
 
 .nonmatching-container {
