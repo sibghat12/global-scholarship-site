@@ -310,4 +310,12 @@ box-shadow:2px 2px 2px #cdcdcd !important;
          display: grid !important;
      }
  }
+
+
+
+ @media screen and (max-width: 767px) {
+   .page-template-template-currently-open-scholarship .filter-box{
+       min-width:400px !important;
+   }
+}
  

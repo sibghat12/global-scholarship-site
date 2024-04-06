@@ -63,7 +63,9 @@ add_action('wp_enqueue_scripts', 'enqueue_bootstrap_scripts');
 function theme_enqueue_styles() {
     wp_enqueue_style( 'dashicons' );
 
-    // Enqueue single-scholarship.js file in assets folder
+     wp_enqueue_style( 'course_button_shortcode', get_stylesheet_directory_uri() . '/assets/dist/css/course_button_shortcode.css', [], '1.0.0' );
+   
+   
     if (is_singular('scholarships')) {
         wp_enqueue_script('single-scholarship',  get_stylesheet_directory_uri() . '/assets/single-scholarship.js', array('jquery'), '1.0.0', true);
         wp_localize_script('single-scholarship', 'frontendajax', array(
@@ -89,15 +91,21 @@ function theme_enqueue_styles() {
 
     }
    
+
     wp_enqueue_style( 'courses-filter-widget-css', get_stylesheet_directory_uri() . '/assets/dist/css/courses_filter_widget.css', [], '1.0.0' );
     wp_enqueue_style( 'wise-css', get_stylesheet_directory_uri() . '/assets/dist/css/wise.css', [], '1.0.0' );
     wp_enqueue_style( 'table-of-content-css', get_stylesheet_directory_uri() . '/assets/dist/css/table_of_content.css', [], '1.0.0' );
     wp_enqueue_style( 'gs_login_modal-css', get_stylesheet_directory_uri() . '/assets/dist/css/gs_login_modal.css', [], '1.0.0' );
+     wp_enqueue_style( 'gs_course_box', get_stylesheet_directory_uri() . '/assets/dist/css/gs_course_box.css', [], '1.0.0' );
 
 
     if (is_front_page()) {
         wp_enqueue_style( 'homepage-css', get_stylesheet_directory_uri() . '/assets/dist/css/homepage_template.css', [], '1.0.0' );
-    }   
+    } 
+
+    if (is_page('email-subscription-page')) {
+        wp_enqueue_style( 'email_subscription-page-css', get_stylesheet_directory_uri() . '/assets/dist/css/email_subscription_page.css', [], '1.0.0' );
+    }  
 
     if (is_single() && get_post_type() === 'post') {
      wp_enqueue_style( 'single-post-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_post.css', [], '1.0.0' );
@@ -111,13 +119,25 @@ function theme_enqueue_styles() {
     if (is_page_template('templates/template-currently-open-scholarship.php')) {
         wp_enqueue_style( 'currently-open-scholarship-template', get_stylesheet_directory_uri() . '/assets/dist/css/currently_open_template.css', [], '1.0.0' );
     }
+    
+    if (is_page('recent-scholarship-posts')) {
+    wp_enqueue_style( 'recent_scholarship_receipents', get_stylesheet_directory_uri() . '/assets/dist/css/recent_scholarship_receipents.css', [], '1.0.0' );
+    wp_enqueue_style( 'gs-scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+    }
 
+    $current_url = $_SERVER['REQUEST_URI'];
+     if (strpos($current_url, '/scholarship-category/') !== false) {
+       wp_enqueue_style('tax-scholarship-category-css', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_receipents_post_category.css', array(), '1.0.0');
+      
+      wp_enqueue_style( 'gs-scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+
+    }
    
     if(is_page('opencourses')){
          wp_enqueue_style( 'opencourses-template-css', get_stylesheet_directory_uri() . '/assets/dist/css/opencourses_template.css', [], '1.0.0' );
     } 
 
-    if(is_page('scholarship-search')){
+    if(is_page('scholarship-search') || is_404()){
          wp_enqueue_style( 'scholarship-filter-css', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_search_filter.css', [], '1.0.0' );
     } 
 
@@ -135,13 +155,15 @@ function theme_enqueue_styles() {
         wp_enqueue_style( 'scholarship-cpt-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_institution.css', [], '1.0.0' );
     }
     
-   if ( is_singular('institution') || is_singular('scholarships') ) {
+   if ( is_singular('institution') || is_singular('scholarships') || is_singular("ext-scholarships")) {
        wp_enqueue_style( 'scholarship_institution_responsive', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_institution_responsive.css', array(), '1.0.0' );
     }
 
     if(is_singular('scholarship_post')) {
         wp_enqueue_script('gs-scholarship_post',  get_stylesheet_directory_uri() . '/assets/dist/js/single_scholarships_post.js', array('jquery'), '1.0.0', true);
-    wp_enqueue_style( 'gs-scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+    wp_enqueue_style( 'gs-single_scholarship_post', get_stylesheet_directory_uri() . '/assets/dist/css/single_scholarships_post.css', [], '1.0.0' );
+
+    wp_enqueue_style('tax-scholarship-category-css', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_receipents_post_category.css', array(), '1.0.0');
     }
 
 
@@ -3219,10 +3241,9 @@ add_filter( 'enter_title_here', 'change_title_placeholder_text', 10, 2 );
 
 
 
-function display_latest_scholarships()
-{
+function display_latest_scholarships() {
     ob_start();
-
+   
     $args = array(
         'post_type' => 'scholarship_post',
         'posts_per_page' => 3,
@@ -3234,7 +3255,7 @@ function display_latest_scholarships()
 
     if ($query->have_posts()) {
         echo '<div class="row">';
-
+        
         while ($query->have_posts()) {
             $query->the_post();
             echo '<div class="col-md-4" style="padding-left:2% !important;padding-right:4% !important;">';
@@ -3242,7 +3263,9 @@ function display_latest_scholarships()
             echo '<div class="featured-image">' . get_the_post_thumbnail() . '</div>';
             echo '<div class="more-scholarship-title-wrapper">';
             echo '<h2 class="scholarship-title more-scholarship-post-title"><a style="color:#333c4d !important;" href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></h2>';
-            echo '<div class="meta-scholarship-blog" style="width:33%;float:right;margin-top:8px;"><span style="float:left;">' . get_the_date() . '</span></div></div>';
+            echo '<div class="meta-scholarship-blog" style="width:30%;float:right;margin-top:8px;"><span style="float:left;">' . get_the_date() . '</span></div></div>';
+
+
              
             $excerpt = get_the_content();
             $excerpt = substr($excerpt, 0, 124);
@@ -3267,22 +3290,8 @@ if ($terms && !is_wp_error($terms)) {
             echo '</div>'; 
             echo '</div>'; 
            
-            echo '<h2 style="font-family:Roboto, Arial, Helvetica, sans-serif;padding-left:0px;padding-top:10px;padding-bottom:5px;font-size:26px !important;" class="scholarship-title">' . get_the_title() . '</h2>';
-
-            $brief_intro = get_field('brief_intro');
-            $excerpt = substr($brief_intro, 0, 130);
-
-            // echo '<div class="scholarship-excerpt">' . $excerpt .  '....</div>';
-
-            echo "<div class='meta-scholarship-blog' style='margin-top:5px;margin-bottom:40px !important'>   <span style='float:left;'>"  . get_the_date() . "</span>  
-            <a href='" . esc_url(get_permalink()) . "' style='color:#77a6cp !important;float:right;padding-right:0px;margin-right:15px;
-            border-bottom:1px solid #008fc5 ;font-size:17px !important;padding-bottom:5px;'>  Read more >    </a>   </div>";
-
-            echo '</div>'; // close scholarship-item
-            echo '</div>'; // close col-md-4
-
         }
-
+        
         echo '</div>'; // Close the div with class="row"
     }
 
@@ -6080,3 +6089,12 @@ function add_avif_upload_support( $checked, $file, $filename, $mimes ) {
 }
 add_filter( 'wp_check_filetype_and_ext', 'add_avif_upload_support', 10, 4 );
 
+
+
+function add_noindex_for_scholarships() {
+    if (is_singular('scholarships')) {
+        echo '<meta name="googlebot" content="noindex, nofollow">' . "\n";
+    }
+}
+
+add_action('wp_head', 'add_noindex_for_scholarships');

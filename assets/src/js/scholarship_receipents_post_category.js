@@ -1,0 +1,1 @@
+import "../sass/scholarship_receipents_post_category.scss";

@@ -1,0 +1,1 @@
+import "../sass/email_subscription_page.scss";
