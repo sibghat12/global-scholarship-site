@@ -241,7 +241,7 @@ function theme_enqueue_styles() {
         'themeBaseUrl' => get_template_directory_uri()
     ));
 
-    if ( ! is_user_logged_in() ) {
+    if ( ! is_user_logged_in() && !is_front_page() ) {
         // Enqueue MailerLite script
         wp_enqueue_script('gs-mailerlite', get_stylesheet_directory_uri() . '/assets/mailerlite.js', array(), '1.0.0', true);
 
