@@ -93,8 +93,7 @@ function theme_enqueue_styles() {
    
 
     wp_enqueue_style( 'courses-filter-widget-css', get_stylesheet_directory_uri() . '/assets/dist/css/courses_filter_widget.css', [], '1.0.0' );
-    wp_enqueue_style( 'wise-css', get_stylesheet_directory_uri() . '/assets/dist/css/wise.css', [], '1.0.0' );
-    wp_enqueue_style( 'table-of-content-css', get_stylesheet_directory_uri() . '/assets/dist/css/table_of_content.css', [], '1.0.0' );
+    
     wp_enqueue_style( 'gs_login_modal-css', get_stylesheet_directory_uri() . '/assets/dist/css/gs_login_modal.css', [], '1.0.0' );
      wp_enqueue_style( 'gs_course_box', get_stylesheet_directory_uri() . '/assets/dist/css/gs_course_box.css', [], '1.0.0' );
 
@@ -109,6 +108,8 @@ function theme_enqueue_styles() {
 
     if (is_single() && get_post_type() === 'post') {
      wp_enqueue_style( 'single-post-css', get_stylesheet_directory_uri() . '/assets/dist/css/single_post.css', [], '1.0.0' );
+     wp_enqueue_style( 'wise-css', get_stylesheet_directory_uri() . '/assets/dist/css/wise.css', [], '1.0.0' );
+     wp_enqueue_style( 'table-of-content-css', get_stylesheet_directory_uri() . '/assets/dist/css/table_of_content.css', [], '1.0.0' );
     }
 
     if(is_page('partner-with-us')){
@@ -2084,10 +2085,39 @@ function my_ajax_handler()
     }
 
 
-    if (isset($subject_array[0]) && $subject_array[0]) {
 
-        $subject_query = array('type' => 'string', 'key' => 'eligible_programs', 'value' => $subject_array[0], 'compare' => 'LIKE');
-    }
+$subject_query = array(
+    'relation' => 'OR', 
+);
+
+
+
+
+if (isset($subject_array[0]) && $subject_array[0]) {
+   
+     
+    $subject_query[] = array(
+        'type' => 'string',
+        'key' => 'eligible_programs',
+        'value' => $subject_array[0],
+        'compare' => 'LIKE',
+    ); 
+   
+$subject_query[] = array(
+    'type' => 'string',
+    'key' => 'eligible_programs',
+    'value' => 'All Subjects',
+    'compare' => 'LIKE',
+);
+
+ 
+}
+
+
+
+
+
+
 
 
 
@@ -3226,7 +3256,19 @@ add_action('admin_menu', 'remove_menu');
 
 
 
-add_filter('rank_math/frontend/canonical', '__return_false');
+add_filter('rank_math/frontend/canonical', 'custom_scholarship_search_canonical', 10, 1);
+function custom_scholarship_search_canonical($canonical_url) {
+    global $wp;
+
+    // Check if the current page URL contains '/scholarship-search/'
+    if (strpos($wp->request, 'scholarship-search') !== false) {
+        // Return the current page URL as the canonical URL
+        return home_url(add_query_arg(array(),$wp->request));
+    }
+
+    // For non-scholarship-search pages, return the original canonical URL
+    return $canonical_url;
+}
 
 
 
@@ -5810,7 +5852,7 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
 
 
 
-    // Hook to add additional user fields
+    
     add_action('show_user_profile', 'custom_user_profile_fields');
     add_action('edit_user_profile', 'custom_user_profile_fields');
 

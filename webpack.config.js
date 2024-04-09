@@ -13,7 +13,6 @@ const assetsFolder = "assets";
 const mainAssets = path.resolve(__dirname, `${assetsFolder}`);
 const entry = {
   course_button_shortcode: [__dirname + `/${assetsFolder}/src/js/course_button_shortcode.js`],
-  test: [__dirname + `/${assetsFolder}/src/js/test.js`],
   single_scholarships_post: [__dirname + `/${assetsFolder}/src/js/single_scholarships_post.js`], // Single Scholarships Posts
   single_post: [__dirname + `/${assetsFolder}/src/js/single_post.js`], // Single  Posts
   scholarship_search_filter: [__dirname + `/${assetsFolder}/src/js/scholarship_search_filter.js`], // Single  Posts
@@ -30,7 +29,6 @@ const entry = {
   scholarship_institution_responsive: [__dirname + `/${assetsFolder}/src/js/scholarship_institution_responsive.js`],
   //feature_related_courses: [__dirname + `/${assetsFolder}/src/js/feature_related_courses.js`],
   homepage_template: [__dirname + `/${assetsFolder}/src/js/homepage_template.js`],
- 
   gs_course_box: [__dirname + `/${assetsFolder}/src/js/gs_course_box.js`],
   email_subscription_page: [__dirname + `/${assetsFolder}/src/js/email_subscription_page.js`],
   scholarship_receipents_post_category: [__dirname + `/${assetsFolder}/src/js/scholarship_receipents_post_category.js`],

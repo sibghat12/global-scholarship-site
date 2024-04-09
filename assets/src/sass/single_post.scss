@@ -1,5 +1,25 @@
+.post_categories {
+    margin-left:10px;
+    margin-top:30px;
+}
 
+.post_category_link {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px; 
+    border-radius: 15px; 
+    background-color: #f4f8fa; 
+    color: white !important; 
+    text-decoration: none; 
+    font-size: 14px; 
+    transition: background-color 0.3s ease; 
+}
+.post_category_link:hover {
+    color:white;
+    background-color: #559cc6; 
+}
 
+        
 
 .single-post strong {
     font-weight: bold !important;
