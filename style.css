@@ -3088,3 +3088,7 @@ padding-right:4% !important;
     font-size:24px;
 }
 
+/* Used for Article by Topic*/
+.collapse.show {
+    display: block;
+}
