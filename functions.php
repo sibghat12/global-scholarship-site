@@ -5852,7 +5852,7 @@ https://developers.google.com/identity/oauth2/web/guides/how-user-authz-works
 
 
 
-    // Hook to add additional user fields
+    
     add_action('show_user_profile', 'custom_user_profile_fields');
     add_action('edit_user_profile', 'custom_user_profile_fields');
 
