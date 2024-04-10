@@ -3668,8 +3668,8 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
         );
     }
 
-    wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
-    wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'));
+    wp_enqueue_style('gs_admin_select2-style',  get_stylesheet_directory_uri() . '/assets/select2/select2.min.css', array(), '4.1.0');
+    wp_enqueue_script('gs_admin_select2-script',  get_stylesheet_directory_uri() . '/assets/select2/select2.min.js', array('jquery'), '4.1.0');
 
     wp_enqueue_script('user_update', get_stylesheet_directory_uri() .'/assets/update-user.js');
 
