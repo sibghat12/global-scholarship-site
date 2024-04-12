@@ -169,9 +169,9 @@ function theme_enqueue_styles() {
 
 
     // Enqueue single-scholarship.js file in assets folder
-    if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
-        wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
-    }
+    // if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
+    //     wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
+    // }
 
     wp_enqueue_script(
         'gs_scholarships_update',
@@ -3838,19 +3838,19 @@ function fusion_comment($comment, $args, $depth)
     <?php
 }
 
-// Remove comment date
-function wpb_remove_comment_date($date, $d, $comment)
-{
-    return;
-}
-add_filter('get_comment_date', 'wpb_remove_comment_date', 10, 3);
+// // Remove comment date
+// function wpb_remove_comment_date($date, $d, $comment)
+// {
+//     return;
+// }
+// add_filter('get_comment_date', 'wpb_remove_comment_date', 10, 3);
 
-// Remove comment time
-function wpb_remove_comment_time($date, $d, $comment)
-{
-    return;
-}
-add_filter('get_comment_time', 'wpb_remove_comment_time', 10, 3);
+// // Remove comment time
+// function wpb_remove_comment_time($date, $d, $comment)
+// {
+//     return;
+// }
+// add_filter('get_comment_time', 'wpb_remove_comment_time', 10, 3);
 
 /**
  * ACF SVG filter to allow raw SVG code.
