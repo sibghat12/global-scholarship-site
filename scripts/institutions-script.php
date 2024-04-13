@@ -38,6 +38,7 @@ Class InstitutionsScripts {
         $false = 0;
         $institutions_status = 'publish';
         // Get all institutions custom post type ids
+        remove_filter('the_title', 'wptexturize');
 
         $institute_args = array(
             'post_type' => 'institution',
@@ -167,6 +168,7 @@ Class InstitutionsScripts {
         }
 
         echo wp_json_encode( $results );
+        add_filter('the_title', 'wptexturize');
         wp_die();
 
 
@@ -197,6 +199,7 @@ Class InstitutionsScripts {
         // Decode JSON object
 
         $false = 0;
+        remove_filter('the_title', 'wptexturize');
 		if ( ! empty( $_POST['resultsJSONString'] ) ) { // phpcs:ignore
 
             $results_json_to_string = $_POST['resultsJSONString']; // phpcs:ignore
@@ -417,6 +420,7 @@ Class InstitutionsScripts {
             );
             echo wp_json_encode( $results );
         }
+        add_filter('the_title', 'wptexturize');
         wp_die();
 
     }
