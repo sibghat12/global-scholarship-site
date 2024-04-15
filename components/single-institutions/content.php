@@ -94,6 +94,8 @@
     // $ibu = $tuition_fee['upper_tuition_fee'];
 
     $admission_pages = get_field("admissions_pages");
+    $application_video = get_field("application_video");
+    $scholarship_video = get_field("scholarship_video");
 
     $admission_deadlines = get_field("admission_deadlines");
 

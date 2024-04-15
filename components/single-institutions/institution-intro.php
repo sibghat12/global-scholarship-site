@@ -257,8 +257,7 @@
 <p>Scholarships, grants, and other forms of funding are offered by <?php echo $institution_title; ?> to international students. We’ll discuss them in this article, and you can use them to fulfill your dream of studying abroad without incurring high costs. So, let’s get started!</p>
 
 <?php
-if (!empty($undergraduate_list)) {
-    require get_stylesheet_directory() . '/components/single-institutions/explore-courses.php';
-}
+require get_stylesheet_directory() . '/components/single-institutions/explore-courses.php';
 ?>
+
 </div>

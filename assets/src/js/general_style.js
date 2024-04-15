@@ -1,1 +1,1 @@
-general_style.js
+import "../sass/general_style.scss";
