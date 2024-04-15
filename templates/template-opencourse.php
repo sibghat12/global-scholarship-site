@@ -312,9 +312,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script>
 
 var currentPage = 1;
-var adsPerPage = 30;
+var adsPerPage = 5;
 var openCourseCount = 0;
-
+var hasBeenClicked = false;
 jQuery( document ).ready( function($){
      
    reload_data();
@@ -690,17 +690,17 @@ jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
 
 function reload_data() {
    
-    
+     
+
     $('#preloader').css("display" , "block");
     
-     // Extract page number from the URL query parameters
+    // Extract page number from the URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('pages');
     
     const subject_query = urlParams.get('subject');
     const degree_query = urlParams.get('degrees');
     const country_query = urlParams.get('country');
-    
     
     if(pageParam) {
     currentPage = pageParam;
@@ -711,8 +711,6 @@ function reload_data() {
          
     }
 
-    
-   
     var pathname_string = window.location.pathname;
     var result = pathname_string.substring(1, pathname_string.length-1);
     var pathArray = result.split('/').filter(value => value !== "opencourses");
@@ -771,8 +769,8 @@ if (!subject_value && subject_query) {
      $('.subject-filter select').val(subject_input);
     }
     
+      
     
-
     // Example usage
      loadCourses(degree_value, country_value, subject_value, '<?php echo admin_url('admin-ajax.php'); ?>', 
     adsPerPage, currentPage , reload);
@@ -825,8 +823,8 @@ jQuery(document).ready(function($) {
        var direction = jQuery(this).text().trim();
        
        currentOrder = getCurrentOrder(); 
-
-    // Extract page number from the URL query parameters
+       
+       // Extract page number from the URL query parameters
        const urlParams = new URLSearchParams(window.location.search);
        const pageParam = urlParams.get('pages');
        if (direction === 'Next' && currentPage < totalPages) {
@@ -885,6 +883,8 @@ updateURLForPageOne();
      jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
      jQuery('#preloader').css("display" , "block");
      jQuery('.card-section-new').css("display", "none");
+
+    
         
         jQuery.ajax({
             url: '<?php echo admin_url('admin-ajax.php'); ?>',
@@ -941,11 +941,17 @@ jQuery('.opencourse-pagination .number-bold').last().text(openCourseCount);
         });
 }
 
+var order = ""; 
+
+
 function flipImage() {
     var image = document.getElementById('flipImage');
     image.classList.toggle('flipped');
 
+     hasBeenClicked = true;
+
     var order = image.classList.contains('flipped') ? 'ASC' : 'DESC';
+
     var currentPage = 1;
     var adsPerPage = 30;
     var openCourseCount = parseInt(jQuery('.opencourse-pagination .number-bold').last().text(), 10);
@@ -959,8 +965,9 @@ function flipImage() {
     }
     
     var totalPages = Math.ceil(openCourseCount / adsPerPage);
-    var currentOrder = 'DESC';
+    var currentOrder = '';
     currentOrder = getCurrentOrder(); 
+    
     loadAds(currentPage, currentOrder , totalPages , openCourseCount);
 }
 
@@ -974,15 +981,17 @@ jQuery(document).ready(function($) {
     $('#ajax-course-form').on('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission
        
-    currentPage = 1;
-    const urlParams = new URLSearchParams(window.location.search);
-    const url = new URL(window.location.href);
-    const pageParam = parseInt(url.searchParams.get('pages'), 10);
+    // currentPage = 1;
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const url = new URL(window.location.href);
+    // const pageParam = parseInt(url.searchParams.get('pages'), 10);
    
-    if (pageParam) {
-        url.searchParams.delete('pages');
-        window.history.pushState({}, '', url.toString());
-    }
+    currentPage = 1;
+        const url = new URL(window.location.href);
+        url.search = ''; // Clear all query parameters
+
+        window.history.pushState({}, '', url.pathname); // Update the URL without reloading the page
+
 
    let subject_value, degree_value, country_value;
 
@@ -993,18 +1002,18 @@ jQuery(document).ready(function($) {
     
 
     // Fallback to URL parameters if select values are not provided
-    subject_value = selectSubjectValue || urlParams.get('subject');
-    degree_value = selectDegreeValue || urlParams.get('degrees');
-    country_value = selectCountryValue || urlParams.get('country');
+    // subject_value = selectSubjectValue || urlParams.get('subject');
+    // degree_value = selectDegreeValue || urlParams.get('degrees');
+    // country_value = selectCountryValue || urlParams.get('country');
 
-  
+    subject_value = selectSubjectValue;
+    degree_value = selectDegreeValue;
+    country_value = selectCountryValue;
 
-        
 
-
-
-        loadCourses(degree_value, country_value, subject_value, '<?php echo admin_url('admin-ajax.php'); ?>', adsPerPage, currentPage, reload);
-       });
+    loadCourses(degree_value, country_value, subject_value, '<?php echo admin_url('admin-ajax.php'); ?>', adsPerPage, currentPage, reload);
+    
+    });
 });
 
 function changeurl(url, title ) {
@@ -1012,9 +1021,23 @@ function changeurl(url, title ) {
     window.history.pushState('data', title, new_url);
 }
 
- function getCurrentOrder() {
+ // function getCurrentOrder() {
+ //        return jQuery('#flipImage').hasClass('flipped') ? 'ASC' : 'DESC';
+ //    }
+
+
+
+function getCurrentOrder() {
+    // Check if the image has been clicked at least once
+    if (!hasBeenClicked) {
+        return ""; // Return an empty string if not clicked
+    } else {
+        // Return 'ASC' if the 'flipped' class is present, 'DESC' otherwise
         return jQuery('#flipImage').hasClass('flipped') ? 'ASC' : 'DESC';
     }
+}
+
+
 
 
 // Function to update the URL

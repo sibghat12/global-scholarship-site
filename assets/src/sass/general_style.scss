@@ -1,5 +1,25 @@
-#main p,
-#main li {
-    font-size: 16px !important; 
-    line-height: 1.5 !important; 
+@media screen and (min-width: 767px) {
+  body:not(.page-template-template-filters) #main p:not(.page-template-template-filters),
+  body:not(.page-template-template-filters) #main li:not(.page-template-template-filters) {
+    font-size: 16px;
+    line-height: 24px; /* 1.5 times the font size */
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body:not(.page-template-template-filters) #main p:not(.page-template-template-filters) {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    margin-bottom: 25px;
+  }
+
+  body:not(.page-template-template-filters) #main li:not(.page-template-template-filters) {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
 }

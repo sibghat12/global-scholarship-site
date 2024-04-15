@@ -33,6 +33,7 @@ const entry = {
   email_subscription_page: [__dirname + `/${assetsFolder}/src/js/email_subscription_page.js`],
   scholarship_receipents_post_category: [__dirname + `/${assetsFolder}/src/js/scholarship_receipents_post_category.js`],
   recent_scholarship_receipents: [__dirname + `/${assetsFolder}/src/js/recent_scholarship_receipents.js`],
+  general_style: [__dirname + `/${assetsFolder}/src/js/general_style.js`],
 
  
 

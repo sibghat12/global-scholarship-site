@@ -166,6 +166,10 @@ function theme_enqueue_styles() {
 
     wp_enqueue_style('tax-scholarship-category-css', get_stylesheet_directory_uri() . '/assets/dist/css/scholarship_receipents_post_category.css', array(), '1.0.0');
     }
+    
+  
+
+    wp_enqueue_style('general-style-css', get_stylesheet_directory_uri() . '/assets/dist/css/general_style.css', array(), '1.0.0');
 
 
     // Enqueue single-scholarship.js file in assets folder
@@ -3259,14 +3263,10 @@ add_action('admin_menu', 'remove_menu');
 add_filter('rank_math/frontend/canonical', 'custom_scholarship_search_canonical', 10, 1);
 function custom_scholarship_search_canonical($canonical_url) {
     global $wp;
-
-    // Check if the current page URL contains '/scholarship-search/'
     if (strpos($wp->request, 'scholarship-search') !== false) {
         // Return the current page URL as the canonical URL
         return home_url(add_query_arg(array(),$wp->request));
     }
-
-    // For non-scholarship-search pages, return the original canonical URL
     return $canonical_url;
 }
 
@@ -5298,10 +5298,29 @@ function mepr_add_some_tabs($user)
         $country_value = str_replace('-', ' ', $country_value);
 
         $page = $_POST['page'] ?? 1;
-        $order = $_POST['order'] ?? 'DESC';
+        $order = $_POST['order'] ?? '';
         $adsPerPage = 30;
         $offset = ($page - 1) * $adsPerPage;
         // Prepare your query arguments based on the order
+         
+         if($order==''){
+            $ad_args = array(
+            'post_type' => 'ads',
+            'post_status' => 'publish',
+            'posts_per_page' => 30,
+            'offset' => $offset,
+            'meta_key' => 'priority',
+            'orderby' => "meta_value_num",
+            'order' => "DESC",
+            'meta_query' => array(
+                'relation' => 'AND',
+                array('key' => 'adsInstitution', 'value' => $active_institutions, 'compare' => 'IN'),
+                array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),
+            ),
+        );
+
+        } else {
+
         $ad_args = array(
             'post_type' => 'ads',
             'post_status' => 'publish',
@@ -5316,6 +5335,7 @@ function mepr_add_some_tabs($user)
                 array('key' => 'adsInstitution', 'value' => $excluded, 'compare' => 'NOT IN'),
             ),
         );
+      }
 
         $all_ad_args = array(
             'post_type' => 'ads',

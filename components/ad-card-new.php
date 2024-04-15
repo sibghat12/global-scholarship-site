@@ -128,7 +128,7 @@ $language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions'
                   <div class="clearfix"> </div>
 
                     <div class="row">
-                        <p id="short" style="font-size:12px;line-height: 18px !important;padding-right:3%;color:black;">
+                        <p id="short" style="font-size:14px;line-height: 22px !important;padding-right:3%;color:black;">
                             <?php $des = get_post_meta($ad_id, 'description', true);
 
                              if (strlen($des) > 180) {
@@ -145,7 +145,7 @@ echo $des;
                              ?>
                         </p>
 
-                          <p id="full" style="height:auto;display:none;font-size:12px;line-height: 18px !important;padding-right:3%;color:black;">
+                          <p id="full" style="height:auto;display:none;font-size:14px;line-height: 22px !important;padding-right:3%;color:black;">
                             <?php $des = get_post_meta($ad_id, 'description', true);
                             echo $des;
                              ?>

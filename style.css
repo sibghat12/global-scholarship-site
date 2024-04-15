@@ -1405,7 +1405,7 @@ h2 {
     color:#77a6c9 !important;
 }
 
-@media screen and (min-width: 767px) {
+/*@media screen and (min-width: 767px) {
   body:not(.page-template-template-filters)  #main p:not(.page-template-template-filters) {
     font-size: 20px;
     line-height: 32px;
@@ -1435,7 +1435,7 @@ h2 {
     font-weight: 300;
     margin-bottom: 10px;
   }
-}
+}*/
 
 @media screen and (max-width: 1024px) {
    

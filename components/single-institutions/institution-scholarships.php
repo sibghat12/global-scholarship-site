@@ -9,7 +9,11 @@
         <div class="gs-institution-scholarships-text">
         <?php
             if($undergraduate_list) {
+                 
+            require get_stylesheet_directory() . '/components/single-institutions/in-house-graduate-ad.php'; 
+
                 ?>
+
                 <div class="gs-institution-scholarships-subtext">
                 <?php
                 echo  "<h3 class='gs-institution-scholarships-heading'> Undergraduate Scholarships </h3>";
@@ -55,6 +59,7 @@
         <?php } 
 
             
+
         // If there is scholarships associated with this institution for Graduate Program.
     
         if($graduate_list) { 
@@ -62,7 +67,9 @@
 
             <?php // GS In House Graduate Search Ad ?>
 
-            <?php require get_stylesheet_directory() . '/components/single-institutions/in-house-graduate-ad.php'; ?>
+            
+
+            
             <?php
             $degrees = get_field('eligible_degrees');
             ?>
@@ -120,8 +127,23 @@
             
             
             
-        <?php } ?> 
-        <?php } 
+        <?php }
+          
+          if($scholarship_video){ 
+               
+                $parsed_url = parse_url($scholarship_video);
+                parse_str($parsed_url['query'], $query_params);
+                $video_id = $query_params['v']; ?>
+                 
+                 <div class="youtube-video-shortcode-container">
+                 <?php echo do_shortcode("[lyte id='$video_id' /]"); ?>
+                </div>
+            
+             <?php }   
+        
+
+          }
+
         ?>
     </div>
     <?php else: ?>

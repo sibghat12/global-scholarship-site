@@ -79,6 +79,20 @@
                 
                 echo '</div>';
             }
+
+             
+             if($application_video){ 
+               
+                $parsed_url = parse_url($application_video);
+                parse_str($parsed_url['query'], $query_params);
+                $video_id = $query_params['v']; ?>
+                 
+                 <div class="youtube-video-shortcode-container">
+                 <?php echo do_shortcode("[lyte id='$video_id' /]"); ?>
+                </div>
+            
+             <?php }
+
             ?>
     
     </div>

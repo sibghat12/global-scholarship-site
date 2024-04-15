@@ -1,0 +1,1 @@
+import "../sass/general_style.scss";

@@ -16,6 +16,8 @@
 
     $separate_application = get_field('separate_application');
 
+    $scholarship_video = get_field('scholarship_video');
+
     $countries_field = get_field_object('field_62ca6ed806bc6');
 
     $country_array_original = $countries_field['choices'];

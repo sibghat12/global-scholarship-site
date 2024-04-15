@@ -3,7 +3,22 @@
 
     <p>Want to learn more about <?php echo $institution_name; ?>, <?php echo $scholarship_title; ?>, scholarship requirements, deadlines, application process, and other related information?  Check the <a href="<?php echo $scholarship_page_link; ?>"><?php echo $scholarship_title; ?> page</a>!</p>
 
+    <?php 
     
+    if($scholarship_video){ 
+               
+                $parsed_url = parse_url($scholarship_video);
+                parse_str($parsed_url['query'], $query_params);
+                $video_id = $query_params['v']; ?>
+                 
+                 <div class="youtube-video-shortcode-container">
+                 <?php echo do_shortcode("[lyte id='$video_id' /]"); ?>
+                </div>
+            
+             <?php } 
+
+    ?>
+
     <h2>Popular Scholarships in  <?php echo $country_name; ?></h2> 
 
     <?php
