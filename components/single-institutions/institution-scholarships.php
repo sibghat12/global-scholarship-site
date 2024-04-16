@@ -128,20 +128,6 @@
             
             
         <?php }
-          
-          if($scholarship_video){ 
-               
-                $parsed_url = parse_url($scholarship_video);
-                parse_str($parsed_url['query'], $query_params);
-                $video_id = $query_params['v']; ?>
-                 
-                 <div class="youtube-video-shortcode-container">
-                 <?php echo do_shortcode("[lyte id='$video_id' /]"); ?>
-                </div>
-            
-             <?php }   
-        
-
           }
 
         ?>
@@ -175,4 +161,19 @@
             <p>Make sure to visit the <a href="<?php echo site_url(); ?>/globalscholarships-com-1000-scholarship-for-international-students/">official scholarship page</a> to learn more about the requirements, application process, and selection criteria</p>
         </div>
     </div>
+
+
 <?php endif;
+
+
+ if($scholarship_video){ 
+               
+                $parsed_url = parse_url($scholarship_video);
+                parse_str($parsed_url['query'], $query_params);
+                $video_id = $query_params['v']; ?>
+                 
+                 <div class="youtube-video-shortcode-container">
+                 <?php echo do_shortcode("[lyte id='$video_id' /]"); ?>
+                </div>
+            
+             <?php } ?>

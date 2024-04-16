@@ -312,7 +312,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script>
 
 var currentPage = 1;
-var adsPerPage = 5;
+var adsPerPage = 30;
 var openCourseCount = 0;
 var hasBeenClicked = false;
 jQuery( document ).ready( function($){

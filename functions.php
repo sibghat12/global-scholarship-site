@@ -173,9 +173,9 @@ function theme_enqueue_styles() {
 
 
     // Enqueue single-scholarship.js file in assets folder
-    // if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
-    //     wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
-    // }
+    if(is_singular('institution') || is_singular('scholarships' ) || is_singular('scholarship-post' ) ) {
+        wp_enqueue_script('gs-comments',  get_stylesheet_directory_uri() . '/assets/gs-comments.js', array('jquery'), '1.0.0', true);
+    }
 
     wp_enqueue_script(
         'gs_scholarships_update',
@@ -752,6 +752,43 @@ function uscollege_custom_post_types()
     );
 
     register_post_type('scholarship_post', $args);
+
+
+
+    $labels = array(
+        'name'              => __('Admission Profile'),
+        'singular_name'     => __('Admission Profile'),
+        'add_new'           => __('Add New Profile'),
+        'add_new_item'      => __('Add New Profile'),
+        'edit_item'         => __('Edit Profile'),
+        'new_item'          => __('Add New Profile'),
+        'view_item'         => __('View Profile'),
+        'search_items'      => __('Search Profile'),
+        'not_found'         => __('No Profile found'),
+        'not_found_in_trash' => __('No Profile found in trash')
+    );
+
+    $supports = array(
+        'title',
+        'author',
+        'thumbnail',
+    );
+
+    $args = array(
+        'labels'                => $labels,
+        'supports'              => $supports,
+        'public'                => true,
+        'capability_type'       => 'post',
+        'rewrite'               => array('slug' => 'admission-profile'),
+        'has_archive'           => false,
+        'menu_position'         => 30,
+        'menu_icon'             => 'dashicons-admin-multisite',
+        'register_meta_box_cb'  => 'admission-profile'
+    );
+    register_post_type('admission-profile', $args);
+
+
+
 
 
     $labels = array(
@@ -3260,15 +3297,28 @@ add_action('admin_menu', 'remove_menu');
 
 
 
+// add_filter('rank_math/frontend/canonical', 'custom_scholarship_search_canonical', 10, 1);
+// function custom_scholarship_search_canonical($canonical_url) {
+//     global $wp;
+//     if (strpos($wp->request, 'scholarship-search') !== false) {
+        
+//         return home_url(add_query_arg(array(),$wp->request));
+//     }
+//     return $canonical_url;
+// }
+
 add_filter('rank_math/frontend/canonical', 'custom_scholarship_search_canonical', 10, 1);
 function custom_scholarship_search_canonical($canonical_url) {
     global $wp;
     if (strpos($wp->request, 'scholarship-search') !== false) {
-        // Return the current page URL as the canonical URL
-        return home_url(add_query_arg(array(),$wp->request));
+        $canonical_url = home_url(add_query_arg(array(), $wp->request));
+        if (substr($canonical_url, -1) !== '/') {
+            $canonical_url .= '/';
+        }
     }
     return $canonical_url;
 }
+
 
 
 
@@ -3668,8 +3718,8 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
         );
     }
 
-    wp_enqueue_style('gs_admin_select2-style',  get_stylesheet_directory_uri() . '/assets/select2/select2.min.css', array(), '4.1.0');
-    wp_enqueue_script('gs_admin_select2-script',  get_stylesheet_directory_uri() . '/assets/select2/select2.min.js', array('jquery'), '4.1.0');
+    wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
+    wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'));
 
     wp_enqueue_script('user_update', get_stylesheet_directory_uri() .'/assets/update-user.js');
 
@@ -3838,19 +3888,19 @@ function fusion_comment($comment, $args, $depth)
     <?php
 }
 
-// // Remove comment date
-// function wpb_remove_comment_date($date, $d, $comment)
-// {
-//     return;
-// }
-// add_filter('get_comment_date', 'wpb_remove_comment_date', 10, 3);
+// Remove comment date
+function wpb_remove_comment_date($date, $d, $comment)
+{
+    return;
+}
+add_filter('get_comment_date', 'wpb_remove_comment_date', 10, 3);
 
-// // Remove comment time
-// function wpb_remove_comment_time($date, $d, $comment)
-// {
-//     return;
-// }
-// add_filter('get_comment_time', 'wpb_remove_comment_time', 10, 3);
+// Remove comment time
+function wpb_remove_comment_time($date, $d, $comment)
+{
+    return;
+}
+add_filter('get_comment_time', 'wpb_remove_comment_time', 10, 3);
 
 /**
  * ACF SVG filter to allow raw SVG code.
