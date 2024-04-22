@@ -214,8 +214,10 @@ scholarship-item {
 .single-scholarship_post .brief_intro_text {
 }
 
+
 .single-scholarship_post .the_journey_text p {
-  font-size: 20px !important;
+  font-size: 16px !important;
+  line-height:24px !important;
 }
 
 .single-scholarship_post .courses-filter-search {
@@ -249,9 +251,7 @@ scholarship-item {
   line-height: 20px !important;
 }
 
-.single-scholarship_post .the_journey_text p {
-  font-size: 20px !important;
-}
+
 
 .single-scholarship_post .more-scholarship-post-title a {
   color: black !important;
@@ -476,4 +476,9 @@ padding-right:4% !important;
     padding-bottom: 5px;
     padding-left: 0;
     width: 66%;
+}
+
+
+.single-scholarship_post #main .the_journey_text p, .single-scholarship_post .brief_intro_text p  {
+  font-size:16px !important;
 }

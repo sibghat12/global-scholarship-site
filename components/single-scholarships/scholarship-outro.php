@@ -19,7 +19,7 @@
 
     ?>
 
-    <h2>Popular Scholarships in  <?php echo $country_name; ?></h2> 
+    <!-- <h2>Popular Scholarships in  <?php //echo $country_name; ?></h2>  -->
 
     <?php
 
@@ -29,13 +29,13 @@
     $best_scholarships_ids = $best_scholarships_country_query->get_posts();
     ?>
 
-    <div class="gs-popular-scholarships-container">
+   <!--  <div class="gs-popular-scholarships-container">
         <?php foreach($best_scholarships_ids as $key => $scholarship) : ?>
             <div class="gs-popular-scholarship-item">
                 <a href="<?php echo get_the_permalink($scholarship) ?>"><?php echo get_the_title($scholarship); ?></a>
             </div>
         <?php endforeach ?>
-    </div>
+    </div> -->
 
 </section>
 
