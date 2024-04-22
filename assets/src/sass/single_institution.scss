@@ -258,15 +258,15 @@
 
 .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text  p.gs-institution-admissions-degree {
     margin-left: 60px;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     
     font-weight: 700;
 }
 
 .single-institution #main .gs-institution-admissions .gs-institution-admissions-boxes .gs-institution-admissions-box .gs-institution-admissions-box-text a.gs-institution-admissions-link {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
-    
+    line-height:22px;
     color: #242424 !important;
     text-decoration: underline;
     position: relative;
@@ -358,7 +358,7 @@
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-bachelors p {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
    
     font-weight: 700;
     margin-bottom: 8px !important;
@@ -380,7 +380,7 @@
 }
 
 .single-institution #main .gs-institution-tuition-fees .gs-institution-tuition-fees-for-international-average .gs-institution-tuition-fees-masters p {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
    
     font-weight: 700;
     margin-bottom: 8px !important;
@@ -638,9 +638,11 @@
     line-height: 24px !important;
 }
 
-
-@media (min-width: 1251px) {
-.single-institution .post-content {
-    max-width:1100px !important;
+@media only screen and (max-width: 768px) {
+.single-institution #main .gs-institution-scholarships .gs-institution-scholarships-text .gs-institution-scholarships-scholarship-container ul {
+    margin-left: 10px !important;
+}
+.gs-institution-scholarships-scholarship-container h4{
+    padding-left:0px;
 }
 }

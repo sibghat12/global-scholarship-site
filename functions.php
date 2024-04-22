@@ -3719,7 +3719,7 @@ function enqueue_scholarship_admin_scripts($hook_suffix)
     }
 
     wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
-    wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'));
+    //wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'));
 
     wp_enqueue_script('user_update', get_stylesheet_directory_uri() .'/assets/update-user.js');
 
@@ -6202,11 +6202,17 @@ function add_avif_upload_support( $checked, $file, $filename, $mimes ) {
 add_filter( 'wp_check_filetype_and_ext', 'add_avif_upload_support', 10, 4 );
 
 
-
 function add_noindex_for_scholarships() {
     if (is_singular('scholarships')) {
-        echo '<meta name="googlebot" content="noindex, nofollow">' . "\n";
+        // Check if the 'index' custom field exists and if its value is '0'
+        $should_index = get_post_meta(get_the_ID(), 'index', true);
+    
+        // Only echo the meta tag if 'index' is '0'
+        if ($should_index === '0') {
+            echo '<meta name="googlebot" content="noindex, nofollow">' . "\n";
+        }
     }
 }
 
 add_action('wp_head', 'add_noindex_for_scholarships');
+
