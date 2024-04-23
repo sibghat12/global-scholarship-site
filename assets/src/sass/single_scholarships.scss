@@ -856,14 +856,18 @@ form#gs-feedback-form {
     .single-scholarships #scholarship-deadline , .single-scholarships #ext-scholarship-official,
     .single-scholarships #ext-scholarship-outro , .single-scholarships #respond , 
     .single-scholarships #scholarships ,  .single-scholarships #scholarship-outro,  .single-scholarships .gs-feedback-form-container , 
-    .single-scholarships  .gs-scholarship-overview-div-text , .single-scholarships .gs-scholarship-disclaimer-text
-
+    .single-scholarships  .gs-scholarship-overview-div-text , .single-scholarships .gs-scholarship-disclaimer-container , 
+    .single-scholarships #comments 
+    
      {
         max-width: 1050px !important;
         margin:auto;
     }
 }
 
+.single-scholarships #comments  {
+    padding-top:50px !important;
+}
 
 
 .gs-scholarship-summary-box h2 {
@@ -941,3 +945,6 @@ form#gs-feedback-form {
    padding-left:10px !important;
  }
 }
+
+
+
