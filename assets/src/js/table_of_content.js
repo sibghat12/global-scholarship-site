@@ -1,0 +1,1 @@
+import "../sass/table_of_content.scss";

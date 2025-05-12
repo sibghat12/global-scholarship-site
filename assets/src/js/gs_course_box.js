@@ -1,0 +1,1 @@
+import "../sass/gs_course_box.scss";

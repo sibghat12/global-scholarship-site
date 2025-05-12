@@ -1,0 +1,93 @@
+.category-featured .custom-search {
+    display:none;
+}
+
+.category-external-scholarships .custom-search {
+    display:none;
+}
+
+
+.custom-search .course-filter .filter-wrapper {
+    display: flex;
+    padding: 30px 15px;
+    margin: auto;
+}
+
+.custom-search .course-filter .filter-btn button {
+    height: 100%;
+}
+
+
+.custom-search .course-filter .filter-title {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 1100px) {
+    .custom-search .course-filter .filter-wrapper {
+        display: block;
+    }
+
+    .custom-search .course-filter .filter-boxes-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+        width: 75%;
+        margin: auto;
+    }
+
+    .custom-search .course-filter .filter-title {
+        width: 100%;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .custom-search .course-filter .filter-box {
+        width: 100%;
+    }
+
+    .custom-search .filter-box select {
+        font-size: 1rem;
+    }
+
+    .custom-search .course-filter .filter-btn {
+        margin-top: 15px;
+    }
+
+    .custom-search .course-filter .filter-btn button {
+        display: block;
+        margin: auto!important;
+        padding: 13px 50px!important;
+        font-size: 1.1rem;
+    }
+} 
+
+@media only screen and (max-width: 870px) {
+    .custom-search .course-filter .filter-boxes-wrap {
+        width: 100%;
+    }
+}
+
+
+
+#desktopSticky .custom-search {
+    z-index:1000;
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
+}
+
+#desktopSticky .custom-search .filter-btn button {
+    padding: 12px 50px;
+}
+
+@media screen and (max-width: 1000px) {
+      #desktopSticky .custom-search{ display: none;
+        }
+    
+}
+
+

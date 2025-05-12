@@ -1,0 +1,4 @@
+#the-comment-list .column-author[data-colname="Author"] a[href^="mailto:"], #the-comment-list .column-author[data-colname="Author"] a[href$="&mode=detail"] {
+
+    display: none !important;
+}

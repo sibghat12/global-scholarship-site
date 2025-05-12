@@ -1,0 +1,3 @@
+<div class="gs-institution-conclusion">
+    <p>Start your academic journey with <?php echo $institution_title; ?>! With these <?php echo $institution_title; ?> scholarships, unlock your full potential and delve into the diverse range of courses, all without worrying about expensive study costs. As you explore the scholarships of <?php echo $institution_title; ?>, make sure to also check out the <b><a href='/opencourses/' id='institution_conclusion_link'>Available Programs for International Students</a></b>.</p>
+</div>

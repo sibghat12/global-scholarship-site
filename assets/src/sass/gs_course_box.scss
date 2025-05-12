@@ -1,0 +1,52 @@
+.gs-courses-boxes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-flow: wrap-reverse;
+}
+
+.gs-course-box-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F4F7FB;
+    /* gap: 12px; */
+    padding: 20px 0;
+    /* gap: 12px; */
+    align-self: stretch;
+    width: 190px;
+    max-height: 220px;
+    border-radius: 15px;
+}
+
+.gs-course-box-item .gs-course-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+
+.gs-course-box-item .gs-course-image {
+    padding: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 3px 4px 3px #ddd;
+}
+
+.gs-course-box-item .gs-course-title h2 {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    font-family: 'Open Sans', sans-serif !important;
+    padding: 5px;
+    margin: 0;
+}
+.gs-course-box-item .gs-course-info p {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: 'Open Sans', sans-serif !important;
+    padding: 2px;
+    margin: 0px !important;
+    color: #516A8E;
+}

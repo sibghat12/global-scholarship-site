@@ -76,24 +76,6 @@
 
         </header><!-- .entry-header -->
 
-        <div class="entry-content clearfix">
-            <h1><?php the_title(); ?></h1>
-
-            <p>
-                Hello Content School
-                TEST EXCLUDED Countries here:
-            </p>
-            
-            <ol>
-            <?php 
-            foreach($Excluded_Countries_AdsInt as $key => $value) {
-                ?>
-                    <li><?php echo $value; ?></li>
-                <?php
-            }
-            ?>
-            </ol>
-            <?php  the_content(); ?>
 		</div><!-- .entry-content -->
 
     </div><!-- .post-content -->

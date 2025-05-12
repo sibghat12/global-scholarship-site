@@ -40,13 +40,18 @@ $currency = get_currency($country);
 
 
 $image_url = get_the_post_thumbnail_url($institute->ID);
+$disclaimer = get_post_meta($institute->ID, 'show_disclaimer', true);
 
+$custom_disclaimer = get_post_meta($institute->ID, 'custom_disclaimer_text', true);
+
+$language_of_instructions_AdsInt = get_post_meta($institute->ID, 'language_of_instructions', true);
+$language_of_instructions_ads = get_post_meta($ad_id, 'language_of_instructions' , true);
 
 
 
 ?>
 
-<a href="<?php echo $link ?>" target="_blank">
+ <a href="<?php echo $link ?>" rel="nofollow"  target="_blank"> 
 <div class="col-lg-12 my-2 course-card-new " style=" border-radius:5px;box-shadow: 0px 2px 2px rgba(128, 128, 128, 0.3);margin-bottom:20px;padding-bottom:20px !important;">
                 
                 <div class="col-md-8" >
@@ -94,35 +99,53 @@ $image_url = get_the_post_thumbnail_url($institute->ID);
                  </p>
                   
                    <div class="clearfix"> </div>
+                    
 
-              
-                <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
+                    <?php  
+                    $language_of_instruction = "";
+                    if($language_of_instructions_ads){
+                      $language_of_instruction = $language_of_instructions_ads;
+                    } else if($language_of_instructions_AdsInt){
+                      $language_of_instruction = $language_of_instructions_AdsInt; }
+                      else {
+                      $language_of_instruction = "English";
+                    }
+                   
+                    ?>
+                            
+
+                              <p style="line-height:18px !important; color:black;font-size:12px !important;margin-left:0px;font-weight: 400;margin-bottom:20px;"> 
                     
                     <span style="float:left;width:32px;">
-                        <img style="width:24px;height: 24px;margin-right:4px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
+                        <img style="width:24px;height: 24px;margin-right:4px;" src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php echo $intake_dates; ?></span></p> 
-                     <div class="clearfix"> </div> 
+                    <span style="float:left;  width: calc(100% - 32px) !important; line-height: 24px;"><?php echo $language_of_instruction; ?></span></p>  
+                      
                </div>
 
 
                   <div class="clearfix"> </div>
 
                     <div class="row">
-                        <p id="short" style="font-size:12px;line-height: 18px !important;padding-right:3%;color:black;">
+                        <p id="short" style="font-size:14px;line-height: 22px !important;padding-right:3%;color:black;">
                             <?php $des = get_post_meta($ad_id, 'description', true);
 
-                             if (strlen($des) > 200) {
-    $des = substr($des, 0, 200);
-    $des = $des . ' <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span>';
+                             if (strlen($des) > 180) {
+    $des = substr($des, 0, 180);
+    $des = $des . '... <span class="read-more" style="font-size:12px;font-weight:600;margin-left:5px;border-bottom:1px solid #77a6c9 ;color:#77a6c9;"> Read More </span> ';
 }
 
 echo $des;
+?>
+
+
+
+<?php 
                              ?>
                         </p>
 
-                          <p id="full" style="height:auto;display:none;font-size:12px;line-height: 18px !important;padding-right:3%;color:black;">
+                          <p id="full" style="height:auto;display:none;font-size:14px;line-height: 22px !important;padding-right:3%;color:black;">
                             <?php $des = get_post_meta($ad_id, 'description', true);
                             echo $des;
                              ?>
@@ -132,10 +155,10 @@ echo $des;
                     </div>
 
 <div class="clearfix"> </div>
-                    <div class="row funded-line" style="position:absolute;bottom:0px;margin-top:0px;">
+                    <div class="row funded-line" style="">
                       
                      <p  style="font-size:12px;line-height: 18px;color:black;margin-bottom:0px !important;
-                     line-height: 22px !important;">
+                     line-height: 18px !important;">
                        
                        
 
@@ -143,8 +166,18 @@ echo $des;
                        <span title="We work closely with these partner universities to match you with the best possible courses"  style="font-size:14px; font-weight: 600; display: block;"> Partner University  
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
-                           <span style="width:100% !important;">
-                           <strong>  *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                           <span id="disclaimerr" style="padding-top:5px !important;width:100% !important;">
+                          <?php   if($disclaimer === "1")  {  ?>
+                         
+                        <?php if($custom_disclaimer) { ?>
+                            <strong  style="font-weight:600 !important;line-height: 14px !important;padding-top:10px;"> * <?php echo $custom_disclaimer ?>  </strong>
+                        <?php   } else { ?>
+
+                         <strong  style="padding-top:5px !important;font-weight:600 !important; "> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                       
+                       <?php } } ?>
+                      
+
                          </span> 
                               
                         </p>
@@ -162,7 +195,7 @@ echo $des;
 
                  <div class="clearfix"> </div>
 
-                <p style="font-size:12px !important;  line-height:22px;color:black;  font-weight: 400;height:40px;margin-bottom:0px;" > 
+                <p style="font-size:12px !important;  line-height:22px;color:black;  font-weight: 400;height:36px;margin-bottom:0px;" > 
                     <span style="float:left;">  
                  <img style="width:28px;height: 28px;margin-right:8px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-6.png"> </span> 
                  
@@ -173,16 +206,16 @@ echo $des;
                    <div class="clearfix"> </div>
 
               
-                <p style="line-height:22px !important; color:black;font-size:13px !important;margin-left:0px;font-weight: 400;margin-bottom:10px;"> 
+            <p style="line-height:22px !important; color:black;font-size:13px !important;margin-left:0px;font-weight: 400;margin-bottom:10px;"> 
                     
                     <span style="float:left;width:39px;">
-                        <img style="width:28px;height: 28px;margin-right:8px;" src="https://globalscholarships.com/wp-content/uploads/2023/04/ocp-icon-5.png">
+                        <img style="width:28px;height: 28px;margin-right:8px;" src="<?php echo site_url(); ?>/wp-content/uploads/2023/07/language.png">
                          </span> 
 
-                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:-2px;  "><?php echo $intake_dates; ?></span></p>
+                    <span style="float:left;  width: calc(100% - 39px) !important; margin-top:4px;  "><?php echo $language_of_instruction; ?></span></p> 
 
 
-                    <div class="clearfix"> </div> 
+                    
                </div>
                   <div class="clearfix"> </div>
                 
@@ -223,7 +256,7 @@ echo $des;
                         echo number_format($international_tuition_fees) ." ".  $currency ;
                       }  elseif ($international_tuition_fees_INT)  {
                        
-                        echo number_format($domestic_tuition_fees_INT)  ." ". $currency;
+                        echo number_format($international_tuition_fees_INT)  ." ". $currency;
                       }else {
 
                            echo "N/A";
@@ -244,8 +277,21 @@ echo $des;
                                   <i style="margin-left:5px;margin-top:5px;color:gray;" class="fas fa-exclamation-circle"></i>
                                </span>
 
-                         <strong> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
-                           
+                        
+                         
+                          <?php   if($disclaimer === "1")  {  ?>
+                         
+                        <?php if($custom_disclaimer) { ?>
+                            <strong  style="font-weight:600 !important;"> * <?php echo $custom_disclaimer ?>  </strong>
+                        <?php   } else { ?>
+
+                         <strong  style="font-weight:600 !important;"> *<?php echo $institute->post_title; ?>  does not offer fully-funded scholarships.  </strong>
+                       
+                       <?php } } ?>
+
+                        
+
+                                                   
                         </p>
                     </div>
 
@@ -259,7 +305,7 @@ echo $des;
                </div>
 
             </div>
-        </a>
+            </a>
 
           <div class="clearfix"> </div>
           <br>

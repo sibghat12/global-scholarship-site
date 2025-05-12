@@ -18,4 +18,12 @@ if ( function_exists( 'acf_add_options_page' ) ) :
 		)
 	);
 
+	    
+    acf_add_options_sub_page(array(
+        'page_title'     => 'Update Institutions Deadlines',
+        'menu_title'    => 'Update Institutions Deadlines',
+        'parent_slug'    => 'edit.php?post_type=institution',
+        'capability'     => 'edit_posts',
+    ));
+
 endif;

@@ -16,15 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>  <!-- fusion-row -->
 				</main>  <!-- #main -->
 
-<!-- #Sticky Mobile -->
-<div id="sourceCourseNav">
-    <?php echo do_shortcode('[coursenav]'); ?>
+<!-- Courses Filter Search -->
+<div class="courses-filter-search">
+	<?php echo do_shortcode('[courseFilter filter_word="Search"]'); ?>
 </div>
-<div id="desktopSticky">
-    <div class="custom-search">
-    <?php echo do_shortcode('[courseFilter]'); ?>
-    </div>
-</div>
+
 				<?php do_action( 'avada_after_main_container' ); ?>
 
 				<?php
@@ -74,5 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<?php get_template_part( 'templates/to-top' ); ?>
+
+
 	</body>
 </html>

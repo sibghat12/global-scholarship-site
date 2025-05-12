@@ -1,0 +1,21 @@
+.course-buttons {
+    padding: 15px 25px;
+    display:block;
+    background-color: white;
+    color:black;
+    font-size: 1.15rem;
+    border-color:black;
+    border:2px solid;
+    font-weight:700;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.course-aside a{
+    text-decoration: none;
+}
+
+.course-buttons:hover{
+    background-color:#f0f0f0;
+    color:black;
+}

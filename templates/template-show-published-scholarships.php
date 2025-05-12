@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php get_header(); 
 
-include get_stylesheet_directory() . "/functions/cities_functions.php";
+//include get_stylesheet_directory() . "/functions/cities_functions.php";
 
 ?>  
 
@@ -22,8 +22,31 @@ include get_stylesheet_directory() . "/functions/cities_functions.php";
 <section id="content" class="small-text">
 			<div class="post-content">
 
-      <?php       
-$ids = get_all_scholarships();
+      <?php 
+
+$args = array(
+    'post_type' => 'scholarships',
+    'post_status' => 'publish',        
+    'posts_per_page' => -1,
+    'orderby' => 'ID', // Order by post ID
+    'order' => 'DESC', // Descending order
+    'no_found_rows' => true, 
+    'update_post_meta_cache' => false, 
+    'update_post_term_cache' => false,   
+    'cache_results' => false,
+    'fields' => 'ids',      
+);
+
+    
+    $the_query = new WP_Query($args);
+    
+    $ids = $the_query->get_posts();
+  
+ 
+
+//$ids = get_all_scholarships("Published");
+
+
 
 // Create an associative array to group scholarships by university
 $universities = array();

@@ -1,0 +1,90 @@
+.post_categories {
+    margin-left:10px;
+    margin-top:30px;
+}
+
+.post_category_link {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px; 
+    border-radius: 15px; 
+    background-color: #f4f8fa; 
+    color: white !important; 
+    text-decoration: none; 
+    font-size: 14px; 
+    transition: background-color 0.3s ease; 
+}
+.post_category_link:hover {
+    color:white;
+    background-color: #559cc6; 
+}
+
+        
+
+.single-post strong {
+    font-weight: bold !important;
+  }
+  
+  .single-post table {
+    margin-top:20px;
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+.single-post td , .single-post th{
+    padding:5px;
+    text-align:left;
+    border: 1px solid black !important;
+    border-collapse: collapse;
+}
+
+.single-post th { 
+    background:#c1dfef !important;
+}
+
+.single-post td li { 
+font-size:14px !important;
+  line-height:22px !important;
+}
+
+
+.single-post  h3{
+    margin-bottom:15px;
+}
+
+.single-post table{
+    width:auto;
+    margin-top:20px !important;
+    margin-bottom:20px !important;
+    margin:auto;
+}
+
+
+.single-post .rank-math-breadcrumb {
+    text-align: center;
+}
+
+
+@media screen and (min-width: 767px) {
+ .single-post #mian p {
+    font-size:20px !important;
+    line-height: 30px !important;
+    font-weight: 300 !important;
+    margin-bottom:10px !important;
+    }
+ .single-post #mian li {
+    font-size:20px !important;
+    line-height: 30px !important;
+    font-weight: 300 !important;
+    margin-bottom:10px !important;
+}
+
+}
+
+
+
+
+
+
